@@ -4,4 +4,5 @@
     <string name="about">about</string>
     <string name="reset">reset</string>
     <string name="add">add</string>
+    <string name="target_string">target: %s</string>
 </resources>

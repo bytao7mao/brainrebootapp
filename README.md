@@ -14,3 +14,7 @@
 The project is using the following libraries: Butterknife.
 
 ## License :scroll: in progress ...
+
+How the app looks right now ... it is a work in progress
+
+<br><img width="300" src="img/screenshot.jpg" alt="screenshot" />

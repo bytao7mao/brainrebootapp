@@ -2,6 +2,7 @@ package com.taozen.quithabit;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.taozen.quithabit.Intro.IntroActivity;
 
 import java.util.Calendar;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressId) TextView txtProgress;
     @BindView(R.id.progressCardId) CardView progressCardView;
+    @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
 
     //counter for user
     int counter;
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-
+    CircularProgressBar progressBar;
 
 
     //OnCreate
@@ -63,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
         parentLayout = findViewById(R.id.mylayoutId);
+
+        //progress for percent - this is a circular bar
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setProgress(10f);
+        //target counter string
+        String userMax = String.valueOf(userMaxCountForHabit);
+        String target = getString(R.string.target_string, userMax);
+        targetTxtViewId.setText("You current " + target);
+        //add font to counter number
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
+        counterText.setTypeface(typeface);
 
         try {
             updatePercent();
@@ -81,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //  Create a new boolean and preference and set it to true
+                Log.d("taozenD", "thread separat: " + Thread.currentThread().getName());
                 boolean isFirstStart = preferences.getBoolean("firstStart", true);
                 //  If the activity has never started before...
                 if (isFirstStart) {
@@ -88,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     final Intent i = new Intent(MainActivity.this, IntroActivity.class);
                     runOnUiThread(new Runnable() {
                         @Override public void run() {
+                            Log.d("taozenD", "thread din ui: " + Thread.currentThread().getName());
                             startActivity(i);
                         }
                     });
@@ -157,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
             counterText.setText(String.valueOf(counter));
             buttonClickedToday = preferences.getBoolean("clicked", false);
             progressPercent = preferences.getInt("progressPercent", 0);
+            progressBar.setProgress(progressPercent);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
@@ -318,6 +335,7 @@ public class MainActivity extends AppCompatActivity {
     public void startTheEngine() {
         try {
             updatePercent();
+            progressBar.setProgress(progressPercent);
             DAY_OF_CLICK = preferences.getInt("presentday", 0);
             buttonClickedToday = preferences.getBoolean("clicked", false);
             //[calendar area]
