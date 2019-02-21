@@ -5,6 +5,7 @@
     android:id="@+id/mylayoutId"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wall"
     tools:context=".MainActivity">
 
     <ImageView
@@ -20,6 +21,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="20dp"
         android:layout_toRightOf="@id/tipImageId"
+        android:textColor="@color/white"
         android:text="Today you can be whatever you want!"/>
 
 
@@ -38,6 +40,14 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/plus" />
 
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="70dp"
+        android:src="@drawable/ok"/>
+
 
     <RelativeLayout
         android:id="@+id/rltvlayout"
@@ -46,16 +56,28 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp">
 
+        <!--<ImageView-->
+            <!--android:id="@+id/counterImageId"-->
+            <!--android:layout_width="170dp"-->
+            <!--android:layout_height="170dp"-->
+            <!--android:src="@drawable/conn"/>-->
+
         <ImageView
-            android:id="@+id/counterImageId"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:src="@drawable/conn"/>
+            android:layout_centerInParent="true"
+            android:src="@drawable/blackhole"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/oney"/>
 
         <TextView
             android:id="@+id/counterTextId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             android:layout_centerInParent="true"
             android:textSize="60sp"
             android:text="1" />
@@ -78,11 +100,9 @@
         android:paddingTop="20dp"
         android:paddingLeft="5dp"
         android:layout_marginTop="250dp"
+        android:textColor="@color/white"
         android:layout_toRightOf="@id/targetImageId"
         android:text="Today you can be whatever you want!"/>
-
-
-
 
     <FrameLayout
         android:id="@+id/frameCardId"
@@ -96,14 +116,12 @@
             android:layout_height="80dp"
             android:layout_marginStart="30dp"
             android:layout_marginBottom="60dp"
-            app:cardBackgroundColor="@color/greenColor"
-            android:alpha="0.8"
             app:cardCornerRadius="8dp">
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:background="@drawable/life"-->
-                <!--android:alpha="0.3"/>-->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/test"
+                android:alpha="0.8"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -138,39 +156,37 @@
         </android.support.v7.widget.CardView>
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/frameCardId2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true">
-        <android.support.v7.widget.CardView
-            android:id="@+id/progressCardId2"
-            android:layout_width="300dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginBottom="60dp"
-            app:cardBackgroundColor="@color/colorAccent"
-            android:alpha="0.8"
-            app:cardCornerRadius="8dp">
+    <!--<FrameLayout-->
+        <!--android:id="@+id/frameCardId2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_alignParentBottom="true">-->
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/progressCardId2"-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_marginStart="30dp"-->
+            <!--android:layout_marginBottom="60dp"-->
+            <!--app:cardCornerRadius="8dp">-->
             <!--<ImageView-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="match_parent"-->
-                <!--android:background="@color/colorAccent"-->
-                <!--android:alpha="0.3"/>-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_alignTop="@+id/progressCardId"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:text="Get started on the life you want"/>
+                <!--android:background="@drawable/test2"-->
+                <!--android:alpha="0.8"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:layout_alignTop="@+id/progressCardId"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:text="Get started on the life you want"/>-->
 
 
-        </android.support.v7.widget.CardView>
+        <!--</android.support.v7.widget.CardView>-->
 
-    </FrameLayout>
+    <!--</FrameLayout>-->
     <TextView
         android:id="@+id/txtProgressId"
         android:layout_width="wrap_content"
