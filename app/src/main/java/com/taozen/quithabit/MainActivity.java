@@ -16,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.taozen.quithabit.Intro.IntroActivity;
@@ -28,6 +30,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.itangqi.waveloadingview.WaveLoadingView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
     CircularProgressBar progressBar;
 
+    WaveLoadingView waveLoadingView;
+    SeekBar seekBar;
 
     //OnCreate
     @Override
@@ -66,6 +71,46 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
         parentLayout = findViewById(R.id.mylayoutId);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //wave loading
+        seekBar = findViewById(R.id.seekbarId);
+        waveLoadingView = findViewById(R.id.waveLoadingId);
+        waveLoadingView.setProgressValue(0);
+        //animation speed :/
+        waveLoadingView.setAnimDuration(2300);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                waveLoadingView.setProgressValue(progress);
+                if (progress < 50) {
+                    waveLoadingView.setBottomTitle(String.format("%d", progress));
+                    waveLoadingView.setCenterTitle("");
+                    waveLoadingView.setTopTitle("");
+                } else if (progress < 80) {
+                    waveLoadingView.setBottomTitle("");
+                    waveLoadingView.setTopTitle("");
+                    waveLoadingView.setCenterTitle(String.format("%d", progress));
+                } else {
+                    waveLoadingView.setBottomTitle("");
+                    waveLoadingView.setCenterTitle("");
+                    waveLoadingView.setTopTitle(String.format("%d", progress));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         //progress for percent - this is a circular bar
         progressBar = findViewById(R.id.progress_bar);

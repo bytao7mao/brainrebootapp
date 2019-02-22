@@ -5,8 +5,62 @@
     android:id="@+id/mylayoutId"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wall"
     tools:context=".MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp"
+        android:translationZ="0.5dp">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/colorAccent"
+            android:theme="@style/customToolbarTheme"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <me.itangqi.waveloadingview.WaveLoadingView
+        android:id="@+id/waveLoadingId"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:wlv_borderColor="@color/colorPrimary"
+        app:wlv_borderWidth="3dp"
+        app:wlv_shapeType="circle"
+        app:wlv_round_rectangle="true"
+        android:layout_centerInParent="true"
+        app:wlv_triangle_direction="north"
+
+        app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleCenterStrokeWidth="3dp"
+        app:wlv_titleCenterColor="@color/white"
+        app:wlv_titleCenterSize="24dp"
+
+        app:wlv_titleTopStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleTopStrokeWidth="3dp"
+        app:wlv_titleTopColor="@color/white"
+        app:wlv_titleTopSize="24dp"
+
+        app:wlv_titleBottomStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleBottomStrokeWidth="3dp"
+        app:wlv_titleBottomColor="@color/white"
+        app:wlv_titleBottomSize="24dp"
+
+        app:wlv_waveAmplitude="70"
+        app:wlv_waveColor="@color/colorAccent"/>
+
+    <SeekBar
+        android:id="@+id/seekbarId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:max="100"/>
 
     <ImageView
         android:id="@+id/tipImageId"
@@ -21,7 +75,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="20dp"
         android:layout_toRightOf="@id/tipImageId"
-        android:textColor="@color/white"
         android:text="Today you can be whatever you want!"/>
 
 
@@ -40,13 +93,13 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/plus" />
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="70dp"
-        android:src="@drawable/ok"/>
+    <!--<ImageView-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="70dp"-->
+        <!--android:src="@drawable/ok"/>-->
 
 
     <RelativeLayout
@@ -56,28 +109,28 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp">
 
-        <!--<ImageView-->
-            <!--android:id="@+id/counterImageId"-->
-            <!--android:layout_width="170dp"-->
-            <!--android:layout_height="170dp"-->
-            <!--android:src="@drawable/conn"/>-->
-
         <ImageView
+            android:id="@+id/counterImageId"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/blackhole"/>
+            android:src="@drawable/conn"/>
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/oney"/>
+        <!--<ImageView-->
+            <!--android:layout_width="170dp"-->
+            <!--android:layout_height="170dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:src="@drawable/blackhole"/>-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:src="@drawable/oney"/>-->
 
         <TextView
             android:id="@+id/counterTextId"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textSize="60sp"
             android:text="1" />
@@ -100,7 +153,6 @@
         android:paddingTop="20dp"
         android:paddingLeft="5dp"
         android:layout_marginTop="250dp"
-        android:textColor="@color/white"
         android:layout_toRightOf="@id/targetImageId"
         android:text="Today you can be whatever you want!"/>
 
@@ -156,37 +208,35 @@
         </android.support.v7.widget.CardView>
     </FrameLayout>
 
-    <!--<FrameLayout-->
-        <!--android:id="@+id/frameCardId2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="20dp"-->
-        <!--android:layout_alignParentBottom="true">-->
-        <!--<android.support.v7.widget.CardView-->
-            <!--android:id="@+id/progressCardId2"-->
-            <!--android:layout_width="300dp"-->
-            <!--android:layout_height="80dp"-->
-            <!--android:layout_marginStart="30dp"-->
-            <!--android:layout_marginBottom="60dp"-->
-            <!--app:cardCornerRadius="8dp">-->
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:background="@drawable/test2"-->
-                <!--android:alpha="0.8"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textColor="@color/white"-->
-                <!--android:layout_alignTop="@+id/progressCardId"-->
-                <!--android:layout_marginTop="20dp"-->
-                <!--android:layout_marginStart="10dp"-->
-                <!--android:text="Get started on the life you want"/>-->
+    <FrameLayout
+        android:id="@+id/frameCardId2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true">
+        <android.support.v7.widget.CardView
+            android:id="@+id/progressCardId2"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="60dp"
+            app:cardCornerRadius="8dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/test2"
+                android:alpha="0.8"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_alignTop="@+id/progressCardId"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:text="Get started on the life you want"/>
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
 
-
-        <!--</android.support.v7.widget.CardView>-->
-
-    <!--</FrameLayout>-->
     <TextView
         android:id="@+id/txtProgressId"
         android:layout_width="wrap_content"
