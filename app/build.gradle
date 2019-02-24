@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -44,5 +46,15 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
     implementation 'com.budiyev.android:circular-progress-bar:1.2.2'
     implementation 'me.itangqi.waveloadingview:library:0.3.5'
+    implementation 'com.github.joaquimley:faboptions:1.2.0'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0-rc01'
+    implementation 'com.google.firebase:firebase-database:16.0.6'
+
 }
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android-extensions'
+repositories {
+    mavenCentral()
+}

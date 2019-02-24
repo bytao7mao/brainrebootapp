@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.taozen.quithabit">
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -22,6 +24,7 @@
         <activity
             android:name=".Intro.IntroActivity"
             android:label="app_intro" />
+        <activity android:name=".ProgressKotlinActivity" />
     </application>
 
 </manifest>

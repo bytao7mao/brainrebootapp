@@ -20,21 +20,21 @@
             app:titleTextColor="@color/colorAccent"
             android:theme="@style/customToolbarTheme"
             app:popupTheme="@style/AppTheme.PopupOverlay">
-
         </android.support.v7.widget.Toolbar>
-
     </android.support.design.widget.AppBarLayout>
 
 
+    <!--app:wlv_borderWidth="3dp"-->
     <me.itangqi.waveloadingview.WaveLoadingView
         android:id="@+id/waveLoadingId"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:wlv_borderColor="@color/colorPrimary"
-        app:wlv_borderWidth="3dp"
+
         app:wlv_shapeType="circle"
         app:wlv_round_rectangle="true"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         app:wlv_triangle_direction="north"
 
         app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"
@@ -66,6 +66,7 @@
         android:id="@+id/tipImageId"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginTop="40dp"
         android:paddingLeft="10dp"
         android:paddingTop="20dp"
         android:src="@drawable/idea"/>
@@ -73,6 +74,7 @@
         android:id="@+id/tipofthedayTxtViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:paddingTop="20dp"
         android:layout_toRightOf="@id/tipImageId"
         android:text="Today you can be whatever you want!"/>
@@ -85,21 +87,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:tint="@color/greenColor"
-        app:backgroundTint="@color/colorPrimaryDark"
         app:borderWidth="0dp"
         app:elevation="6dp"
         app:fabSize="normal"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/plus" />
+        android:src="@drawable/ic_done_white" />
 
-    <!--<ImageView-->
-        <!--android:layout_width="80dp"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginBottom="70dp"-->
-        <!--android:src="@drawable/ok"/>-->
+    <com.joaquimley.faboptions.FabOptions
+        android:id="@+id/fab_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="50dp"
+        app:button_menu="@menu/menu_main_lib"
+        android:layout_toLeftOf="@id/fab" />
 
 
     <RelativeLayout
@@ -107,13 +108,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="63.5dp">
 
         <ImageView
             android:id="@+id/counterImageId"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:src="@drawable/conn"/>
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/days"/>
 
         <!--<ImageView-->
             <!--android:layout_width="170dp"-->

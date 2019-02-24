@@ -15,7 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
@@ -169,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     progressPercent = preferences.getInt("progressPercent", progressPercent);
-                    Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ProgressKotlinActivity.class);
                     intent.putExtra("pro", progressPercent);
                     startActivity(intent);
                 } catch (NullPointerException e) {
@@ -211,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
                 fab.hide();
             }
         });
+
+
 
         //retrieving the counter, progressPercent and minute values
         try {
@@ -509,6 +512,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
     }
+
     public void endOfTheYearCondition(){
         if ((DAY_OF_CLICK >= 365 && DAY_OF_PRESENT > 0) && (!buttonClickedToday)) {
             fab.show();
