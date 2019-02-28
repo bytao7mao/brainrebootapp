@@ -29,6 +29,37 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
+    <!--app:wlv_borderWidth="3dp"-->
+    <me.itangqi.waveloadingview.WaveLoadingView
+        android:id="@+id/waveLoadingId2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:wlv_borderColor="@color/colorPrimary"
+
+        app:wlv_shapeType="circle"
+        app:wlv_round_rectangle="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        app:wlv_triangle_direction="north"
+
+        app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleCenterStrokeWidth="3dp"
+        app:wlv_titleCenterColor="@color/white"
+        app:wlv_titleCenterSize="24dp"
+
+        app:wlv_titleTopStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleTopStrokeWidth="3dp"
+        app:wlv_titleTopColor="@color/white"
+        app:wlv_titleTopSize="24dp"
+
+        app:wlv_titleBottomStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleBottomStrokeWidth="3dp"
+        app:wlv_titleBottomColor="@color/white"
+        app:wlv_titleBottomSize="24dp"
+
+        app:wlv_waveAmplitude="70"
+        app:wlv_waveColor="@color/colorAccent"/>
+
     <SeekBar
         android:id="@+id/seekbarId"
         android:layout_width="match_parent"

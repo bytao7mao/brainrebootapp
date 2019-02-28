@@ -17,5 +17,11 @@ The project is using the following libraries: Butterknife.
 
 How the app looks right now ... it is a work in progress
 
+//these are the updated images
+<br><img width="300" src="img/scr1.png" alt="screenshot" />
+<br><img width="300" src="img/scr2.png" alt="screenshot" />
+<br><img width="300" src="img/scr3.png" alt="screenshot" />
+
+//these are old images
 <br><img width="300" src="img/screenshot.png" alt="screenshot" />
 <br><img width="300" src="img/screenshot_dark.png" alt="screenshot_dark" />

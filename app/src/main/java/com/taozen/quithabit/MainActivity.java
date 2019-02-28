@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_old);
         ButterKnife.bind(MainActivity.this);
         parentLayout = findViewById(R.id.mylayoutId);
 
@@ -170,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     progressPercent = preferences.getInt("progressPercent", progressPercent);
-                    Intent intent = new Intent(MainActivity.this, ProgressKotlinActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
+//                    Intent intent = new Intent(MainActivity.this, ProgressKotlinActivity.class);
                     intent.putExtra("pro", progressPercent);
                     startActivity(intent);
                 } catch (NullPointerException e) {
