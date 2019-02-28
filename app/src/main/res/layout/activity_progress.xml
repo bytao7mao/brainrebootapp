@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ProgressActivity">
 
     <TextView
@@ -11,14 +13,6 @@
         android:layout_height="wrap_content"
         android:text="none"
         android:textSize="38sp"/>
-
-    <!--<ImageView-->
-    <!--android:id="@+id/percentImageId"-->
-    <!--android:layout_width="300dp"-->
-    <!--android:layout_height="300dp"-->
-    <!--android:layout_centerInParent="true"-->
-    <!--android:src="@drawable/ten">-->
-    <!--</ImageView>-->
 
     <ImageView
         android:id="@+id/percentImgId"
@@ -31,6 +25,7 @@
         android:id="@+id/apiText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:textSize="40sp"
         android:layout_alignParentBottom="true"
         android:text="placeholder"/>

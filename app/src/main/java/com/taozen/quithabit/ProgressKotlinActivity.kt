@@ -52,8 +52,7 @@ class ProgressKotlinActivity : AppCompatActivity() {
         progressTextViewId.text
         apiText.text
         tvErrorId
-        loadingProgressId.progress
-
+        loadingProgressId.setVisibility(View.INVISIBLE)
         percentImgId
 
         MyAsyncTask().execute()

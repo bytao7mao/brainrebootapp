@@ -9,7 +9,6 @@ import static org.junit.Assert.*;
 public class ProgressActivityTest {
 
     @Test
-    public void onCreate() {
-        Log.d("t", "d");
+    public void onCreate1() {
     }
 }
