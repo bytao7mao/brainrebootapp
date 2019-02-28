@@ -36,6 +36,7 @@ public class ProgressActivity extends AppCompatActivity {
 
     @BindView(R.id.progressTextViewId) TextView progressPercentView;
     @BindView(R.id.percentImgId) ImageView percentImageView;
+    @BindView(R.id.errorImageId) ImageView errorImageId;
     @BindView(R.id.apiText) TextView apiText;
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.tvErrorId) TextView errorText;
@@ -62,11 +63,13 @@ public class ProgressActivity extends AppCompatActivity {
         Log.d("TAGG", "onCreate created ");
         //executing task to retrieve data from firebase
         myAsyncTasks = new ArrayList<>();
+        errorImageId.setVisibility(View.INVISIBLE);
         if (isOnline()){
             errorText.setVisibility(View.INVISIBLE);
             startAsyncTask();
         } else {
             errorText.setVisibility(View.VISIBLE);
+            errorImageId.setVisibility(View.VISIBLE);
             percentImageView.setVisibility(View.INVISIBLE);
             apiText.setText("ERROR 404 :(");
             Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG).show();
