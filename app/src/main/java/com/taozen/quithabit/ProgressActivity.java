@@ -206,6 +206,7 @@ public class ProgressActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String... values) {
 //            updateDisplay(values[0]);
+            updateDisplay("Starting to fetch data from firebase ...");
         }
 
     }
