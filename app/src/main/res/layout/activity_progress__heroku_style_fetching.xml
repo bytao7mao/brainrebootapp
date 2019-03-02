@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProgressCard.ProgressActivity_HerokuStyleFetching">
+
+    <TextView
+        android:id="@+id/outputId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="empty"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/startBtnId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="start"/>
+
+    <ImageView
+        android:id="@+id/errorImageId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:src="@drawable/fortyfour"/>
+
+    <TextView
+        android:id="@+id/progressTextViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="none"
+        android:textSize="38sp"/>
+
+    <ImageView
+        android:id="@+id/percentImgId"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/levels"/>
+
+    <TextView
+        android:id="@+id/apiText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:textSize="40sp"
+        android:layout_alignParentBottom="true"
+        android:text="placeholder"/>
+
+    <ProgressBar
+        android:id="@+id/loadingProgressId"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyle"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/tvErrorId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:text="Error loading data from api"/>
+
+</RelativeLayout>

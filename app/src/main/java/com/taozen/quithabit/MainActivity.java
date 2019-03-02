@@ -23,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.taozen.quithabit.Intro.IntroActivity;
+import com.taozen.quithabit.ProgressCard.ProgressActivity_HerokuStyleFetching;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -170,8 +171,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     progressPercent = preferences.getInt("progressPercent", progressPercent);
-                    Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
+//                    Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
 //                    Intent intent = new Intent(MainActivity.this, ProgressKotlinActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ProgressActivity_HerokuStyleFetching.class);
                     intent.putExtra("pro", progressPercent);
                     startActivity(intent);
                 } catch (NullPointerException e) {

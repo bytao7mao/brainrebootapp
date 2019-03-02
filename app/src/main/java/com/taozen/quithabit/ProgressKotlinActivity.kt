@@ -204,17 +204,6 @@ class ProgressKotlinActivity : AppCompatActivity() {
                     Log.d("TAGG", " retrieved some data " + key!!)
                 }
                 Log.d("TAGG", " retrieved some data " + dataSnapshot.getValue(String::class.java)!!)
-
-//                if(!isNetworkAvailable()) {
-//                    tip = "no connection"
-//                    apiText.text = tip
-//                }else{
-//                    loadingProgressId.visibility = View.INVISIBLE
-//                    tip = dataSnapshot.getValue(String::class.java)
-//                    apiText.text = tip
-//                    editor.putString("tip", tip)
-//                    editor.apply()
-//                }
                 tip = dataSnapshot.getValue(String::class.java)
                 Log.d("Firebasetao", " tip = $tip")
                 editor.putString("tip", tip)
@@ -261,12 +250,6 @@ class ProgressKotlinActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: Void?) {
             loadingProgressId.setVisibility(View.INVISIBLE)
-//            loadingProgressId.visibility = View.INVISIBLE
-//            if (isNetworkAvailable()) {
-//                percentImgId.visibility = View.VISIBLE
-//            } else {
-//                percentImgId.visibility = View.INVISIBLE
-
             if (isNetworkConnected()) {
                 tip = preferences.getString("tip", tip)
                 Log.d("Firebasetao", "connected")

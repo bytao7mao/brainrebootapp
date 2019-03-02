@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,7 +55,7 @@ public class ProgressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_progress);
         View parentLayout = findViewById(android.R.id.content);
         ButterKnife.bind(ProgressActivity.this);
-        progressBarLoading.setVisibility(View.INVISIBLE);
+        progressBarLoading.setVisibility(View.INVISIBLE);//redundant
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(ProgressActivity.this);
         editor = preferences.edit();
@@ -71,7 +70,7 @@ public class ProgressActivity extends AppCompatActivity {
             errorText.setVisibility(View.VISIBLE);
             errorImageId.setVisibility(View.VISIBLE);
             percentImageView.setVisibility(View.INVISIBLE);
-            apiText.setText("ERROR 404 :(");
+            apiText.setText("ERROR fortyfour :(");
             Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG).show();
         }
 
