@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ProgressCard.ProgressActivity_HerokuStyleFetching"></activity>
-        <activity android:name=".ProgressActivity" />
+        <activity android:name=".Old.ProgressActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
         <activity
             android:name=".Intro.IntroActivity"
             android:label="app_intro" />
-        <activity android:name=".ProgressKotlinActivity" />
+        <activity android:name=".Old.ProgressKotlinActivity" />
     </application>
 
 </manifest>

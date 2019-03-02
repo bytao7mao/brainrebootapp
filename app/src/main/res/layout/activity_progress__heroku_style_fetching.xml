@@ -10,8 +10,8 @@
         android:id="@+id/outputId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="empty"
-        android:textSize="24sp"/>
+        android:text=""
+        android:textSize="12sp"/>
 
     <Button
         android:id="@+id/startBtnId"
@@ -33,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="none"
+        android:visibility="invisible"
         android:textSize="38sp"/>
 
     <ImageView
@@ -41,15 +42,6 @@
         android:layout_height="300dp"
         android:layout_centerInParent="true"
         android:src="@drawable/levels"/>
-
-    <TextView
-        android:id="@+id/apiText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:textSize="40sp"
-        android:layout_alignParentBottom="true"
-        android:text="placeholder"/>
 
     <ProgressBar
         android:id="@+id/loadingProgressId"

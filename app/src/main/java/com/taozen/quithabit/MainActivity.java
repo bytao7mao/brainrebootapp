@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
@@ -215,8 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 fab.hide();
             }
         });
-
-
 
         //retrieving the counter, progressPercent and minute values
         try {

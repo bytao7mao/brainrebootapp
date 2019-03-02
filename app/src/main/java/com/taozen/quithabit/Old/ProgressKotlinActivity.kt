@@ -1,8 +1,7 @@
-package com.taozen.quithabit
+package com.taozen.quithabit.Old
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.net.wifi.WifiManager
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -15,11 +14,11 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_progress.*
-import java.util.*
 import kotlin.reflect.KClass
-import android.net.NetworkInfo
 import android.net.ConnectivityManager
 import android.preference.PreferenceManager
+import com.taozen.quithabit.MainActivity
+import com.taozen.quithabit.R
 
 
 class ProgressKotlinActivity : AppCompatActivity() {
@@ -60,7 +59,7 @@ class ProgressKotlinActivity : AppCompatActivity() {
         //reference of java class MainActivity class in kotlin
         val cls: Class<MainActivity> = MainActivity::class.java
         //reference of kotlin class
-        val cls2: KClass<DialogKotlin> = DialogKotlin::class
+        val cls2: KClass<MainActivity> = MainActivity::class
 
 
 //        Timer().scheduleAtFixedRate(object : TimerTask() {

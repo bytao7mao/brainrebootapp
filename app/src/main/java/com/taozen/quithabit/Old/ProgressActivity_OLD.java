@@ -1,14 +1,12 @@
-package com.taozen.quithabit;
+package com.taozen.quithabit.Old;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,83 +20,48 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.taozen.quithabit.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProgressActivity extends AppCompatActivity {
+public class ProgressActivity_OLD extends AppCompatActivity {
     public static final String TAG = ProgressActivity.class.getSimpleName();
 
     @BindView(R.id.progressTextViewId) TextView progressPercentView;
     @BindView(R.id.percentImgId) ImageView percentImageView;
-    @BindView(R.id.errorImageId) ImageView errorImageId;
     @BindView(R.id.apiText) TextView apiText;
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.tvErrorId) TextView errorText;
 
     String valueOfpercent = null;
-    String[] valuesFromFirebase = new String[2];
-    ArrayList<String> valuesArrayListfromFirebase;
+    String tip = null;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    List<MyAsyncTask> myAsyncTasks;
+    private boolean isNetworkConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo() != null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
-        View parentLayout = findViewById(android.R.id.content);
-        ButterKnife.bind(ProgressActivity.this);
-        progressBarLoading.setVisibility(View.INVISIBLE);//redundant
+        ButterKnife.bind(ProgressActivity_OLD.this);
         //shared pref
-        preferences = PreferenceManager.getDefaultSharedPreferences(ProgressActivity.this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(ProgressActivity_OLD.this);
         editor = preferences.edit();
         Log.d("TAGG", "onCreate created ");
         //executing task to retrieve data from firebase
-        myAsyncTasks = new ArrayList<>();
-        errorImageId.setVisibility(View.INVISIBLE);
-        if (isOnline()){
-            errorText.setVisibility(View.INVISIBLE);
-            startAsyncTask();
-        } else {
-            errorText.setVisibility(View.VISIBLE);
-            errorImageId.setVisibility(View.VISIBLE);
-            percentImageView.setVisibility(View.INVISIBLE);
-            apiText.setText("ERROR fortyfour :(");
-            Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG).show();
-        }
-
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute();
         //get value from MainActivity of percent
         getValueOfPercent();
         //change the coresponding image for percent
         conditionForImagePercent();
-    }
-
-    private void startAsyncTask(){
-        MyAsyncTask myAsyncTask = new MyAsyncTask();
-        myAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    protected boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()){
-            return true;
-        }else {
-            return false;
-        }
     }
 
     private void getValueOfPercent() {
@@ -137,80 +100,77 @@ public class ProgressActivity extends AppCompatActivity {
             percentImageView.setImageResource(R.drawable.hundred);
         }
     }
-
-    private String[] getFirebaseDataAsynchronous2(){
-        valuesArrayListfromFirebase = new ArrayList<>();
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("books");
+    private void getFirebaseDataAsynchronous(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("books").child("2");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String key = ds.getValue(String.class);
                     Log.d("TAGG", " retrieved some data " + key);
-                    valuesArrayListfromFirebase.add(key);
                 }
-                for (int i = 0; i < 2; i++) {
-                    valuesFromFirebase[i] = valuesArrayListfromFirebase.get(i);
-                    Log.d("TAGG", "firebaseMethod val = " + valuesFromFirebase[i]);
-                }
+                Log.d("TAGG", " retrieved some data " + dataSnapshot.getValue(String.class));
+                tip = dataSnapshot.getValue(String.class);
+                Log.d("Firebasetao", " tip = " + tip);
+                editor.putString("tip", tip);
+                editor.apply();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                editor.putString("tip", "canceled");
+                editor.apply();
             }
         };
         myRef.addValueEventListener(valueEventListener);
-
-        return valuesFromFirebase;
     }
 
-    protected void updateDisplay(String message) {
-        apiText.setText(message + " ");
-    }
-
-    class MyAsyncTask extends AsyncTask<String, String, String> {
+    class MyAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
-            updateDisplay("Starting to fetch data from firebase ...");
-            if (myAsyncTasks.size() == 0) {
-                progressBarLoading.setVisibility(View.VISIBLE);
-                percentImageView.setVisibility(View.INVISIBLE);
-            }
-            myAsyncTasks.add(this);
+            apiText.setText("Starting to fetch data from firebase ...");
+            progressBarLoading.setVisibility(View.VISIBLE);
+            percentImageView.setVisibility(View.INVISIBLE);
+            errorText.setVisibility(View.INVISIBLE);
         }
 
         @Override
-        protected String doInBackground(String... voids) {
-            voids = getFirebaseDataAsynchronous2();
-            for (int i = 0; i < voids.length; i++) {
-                Log.d("TAGG", "itar " + voids[i]);
-                publishProgress(voids[i]);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            return Arrays.toString(voids);
+        protected Void doInBackground(Void... voids) {
+            try {Thread.sleep(1000);}catch (InterruptedException e){e.printStackTrace();}
+            getFirebaseDataAsynchronous();
+//            try {Thread.sleep(1000);}catch (InterruptedException e){e.printStackTrace();}
+            return null;
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            updateDisplay(result);
-            myAsyncTasks.remove(this);
-            if (myAsyncTasks.size() == 0) {
-                progressBarLoading.setVisibility(View.INVISIBLE);
+        protected void onPostExecute(Void result) {
+            progressBarLoading.setVisibility(View.INVISIBLE);
+            if (isNetworkConnected()){
+                tip = preferences.getString("tip", tip);
+                Log.d("Firebasetao", "connected");
+                apiText.setText(tip);
                 percentImageView.setVisibility(View.VISIBLE);
+                errorText.setVisibility(View.INVISIBLE);
+            } else {
+                tip = "not connected ... sorry :(";
+                Log.d("Firebasetao", "not connected");
+                apiText.setText(tip);
+                percentImageView.setVisibility(View.INVISIBLE);
+                errorText.setVisibility(View.VISIBLE);
             }
         }
 
         @Override
-        protected void onProgressUpdate(String... values) {
-//            updateDisplay(values[0]);
-            updateDisplay("Starting to fetch data from firebase ...");
+        protected void onProgressUpdate(Void... values) {
+//            apiText.setText(values[0]);
         }
 
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            apiText.setText("no wifi");
+        }
     }
 
 }
