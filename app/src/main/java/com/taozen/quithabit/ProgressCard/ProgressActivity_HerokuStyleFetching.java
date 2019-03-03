@@ -46,8 +46,14 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
     TextView outputText;
     @BindView(R.id.loadingProgressId)
     ProgressBar progressBarLoading;
+    @BindView(R.id.loadingProgressId2)
+    ProgressBar progressBarLoading2;
+    @BindView(R.id.loadingProgressId3)
+    ProgressBar progressBarLoading3;
     @BindView(R.id.tvErrorId)
     TextView errorText;
+    @BindView(R.id.percentImgId2)
+    ImageView percentImageView2;
 
     Button myBtn;
     List<MyAsyncTask> tasks;
@@ -87,6 +93,7 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
                     errorText.setVisibility(View.VISIBLE);
                     errorImageId.setVisibility(View.VISIBLE);
                     percentImageView.setVisibility(View.INVISIBLE);
+                    percentImageView2.setVisibility(View.INVISIBLE);
                     outputText.setText("ERROR fortyfour :(");
                     Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG).show();
 //                    Toast.makeText(ProgressActivity_HerokuStyleFetching.this, "Network isn't available", Toast.LENGTH_LONG).show();
@@ -139,9 +146,10 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
             level += 100;
         }
         percentImageView.setImageLevel(level);
+        percentImageView2.setImageLevel(level);
     }//condForImageLevelMode[END]
 
-    //fetching value from main activity
+    //fetching value from MainActivity
     private void getValueOfPercent() {
         try {
             Intent intent = getIntent();
@@ -168,7 +176,10 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
             updateDisplayString("Starting to fetch data from heroku ...");
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.VISIBLE);
+                progressBarLoading2.setVisibility(View.VISIBLE);
+                progressBarLoading3.setVisibility(View.VISIBLE);
                 percentImageView.setVisibility(View.INVISIBLE);
+                percentImageView2.setVisibility(View.INVISIBLE);
             }
             //if we click we add a task
             tasks.add(this);
@@ -202,7 +213,10 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
             tasks.remove(this);
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.INVISIBLE);
+                progressBarLoading2.setVisibility(View.INVISIBLE);
+                progressBarLoading3.setVisibility(View.INVISIBLE);
                 percentImageView.setVisibility(View.VISIBLE);
+                percentImageView2.setVisibility(View.VISIBLE);
             }
             if (result == null) {
                 Toast.makeText(ProgressActivity_HerokuStyleFetching.this, "Can't connect to web service",

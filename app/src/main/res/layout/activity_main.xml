@@ -7,12 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <WebView
-        android:id="@+id/webvwId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></WebView>
-
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,12 +23,25 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <SeekBar
-        android:id="@+id/seekbarId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:max="100"/>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<SeekBar-->
+        <!--android:id="@+id/seekbarId"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:max="100"/>-->
 
     <ImageView
         android:id="@+id/tipImageId"
@@ -52,20 +59,6 @@
         android:paddingTop="20dp"
         android:layout_toRightOf="@id/tipImageId"
         android:text="Today you can be whatever you want!"/>
-
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        app:borderWidth="0dp"
-        app:elevation="6dp"
-        app:fabSize="normal"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_done_white" />
 
     <RelativeLayout
         android:id="@+id/rltvlayout"
@@ -136,21 +129,27 @@
         android:id="@+id/remaining_days_Id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="270dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="275dp"
         android:layout_toRightOf="@id/progress_bar_outer"
-        android:text="remaining days" />
+        android:text="@string/remaining_days" />
+
+    <View
+        android:id="@+id/delimitationBarId"
+        android:layout_marginTop="50dp"
+        style="@style/Divider"
+        android:layout_below="@id/remaining_days_Id"
+        android:background="@android:color/darker_gray"/>
 
     <FrameLayout
         android:id="@+id/frameCardId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="110dp"
-        android:layout_alignParentBottom="true">
+        android:layout_marginTop="360dp">
         <android.support.v7.widget.CardView
             android:id="@+id/progressCardId"
             android:layout_width="300dp"
-            android:layout_height="80dp"
+            android:layout_height="120dp"
             android:layout_marginStart="30dp"
             android:layout_marginBottom="60dp"
             app:cardCornerRadius="8dp">
@@ -166,7 +165,8 @@
                 android:layout_alignTop="@+id/progressCardId"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
-                android:text="Get started on the life you want"/>
+                android:text="ProgressActivity
+   Get started on the life you want"/>
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar"
@@ -228,12 +228,11 @@
         android:id="@+id/frameCardId2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true">
+        android:layout_marginTop="490dp">
         <android.support.v7.widget.CardView
             android:id="@+id/progressCardId2"
             android:layout_width="300dp"
-            android:layout_height="80dp"
+            android:layout_height="120dp"
             android:layout_marginStart="30dp"
             android:layout_marginBottom="60dp"
             app:cardCornerRadius="8dp">
@@ -249,7 +248,37 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
-                android:text="placeholder"
+                android:text="Savings Total = 50$ or 50 hours"
+                android:textColor="@color/white" />
+
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameCardId3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="620dp">
+        <android.support.v7.widget.CardView
+            android:id="@+id/progressCardId3"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="60dp"
+            app:cardCornerRadius="8dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/test2"
+                android:alpha="0.8"/>
+
+            <TextView
+                android:id="@+id/moneyortimeId2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:text="see your Personal logs - failures"
                 android:textColor="@color/white" />
 
         </android.support.v7.widget.CardView>
@@ -264,4 +293,17 @@
         android:textColor="@color/white"
         android:layout_alignTop="@id/frameCardId"
         android:text="0"/>
+</RelativeLayout>
+</ScrollView>
+    <android.support.design.widget.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    app:borderWidth="0dp"
+    app:elevation="6dp"
+    app:fabSize="normal"
+    android:layout_margin="@dimen/fab_margin"
+    android:src="@drawable/ic_done_white" />
 </RelativeLayout>

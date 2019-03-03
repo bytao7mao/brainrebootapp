@@ -4,115 +4,112 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rltvlayoutOuter"
     tools:context=".ProgressCard.ProgressActivity_HerokuStyleFetching">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rltvlayout">
 
-    <include
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/test_material" />
+        <include
+            android:id="@+id/card_oneId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/material_card_one_progressactivity" />
 
-    <!--<FrameLayout-->
-        <!--android:id="@+id/frameCardId2"-->
+        <include
+            android:id="@+id/card_twoId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/card_oneId"
+            layout="@layout/material_card_two_progressactivity" />
+        <include
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/card_twoId"
+            layout="@layout/material_card_three_progressactivity" />
+
+        <!--<ImageView-->
+        <!--android:id="@+id/rankImgId"-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginTop="240dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:src="@drawable/target"/>-->
+        <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
+        <!--android:text="Beginner"-->
         <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:layout_alignParentTop="true">-->
-        <!--<android.support.v7.widget.CardView-->
-            <!--android:id="@+id/progressCardId2"-->
-            <!--android:layout_width="300dp"-->
-            <!--android:layout_height="80dp"-->
-            <!--app:cardCornerRadius="8dp">-->
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent" />-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textColor="@color/black"-->
-                <!--android:layout_alignTop="@+id/progressCardId"-->
-                <!--android:layout_marginTop="20dp"-->
-                <!--android:layout_marginStart="10dp"-->
-                <!--android:text="Get started on the life you want"/>-->
-        <!--</android.support.v7.widget.CardView>-->
-    <!--</FrameLayout>-->
+        <!--android:layout_below="@id/rankImgId"/>-->
 
-    <ImageView
-        android:id="@+id/rankImgId"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="240dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/target"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Beginner"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/rankImgId"/>
+        <TextView
+            android:id="@+id/outputId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"/>
 
-    <TextView
-        android:id="@+id/outputId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="12sp"/>
+        <Button
+            android:id="@+id/startBtnId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="start"/>
 
-    <Button
-        android:id="@+id/startBtnId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="start"/>
+        <ImageView
+            android:id="@+id/errorImageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:src="@drawable/fortyfour"/>
 
-    <ImageView
-        android:id="@+id/errorImageId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="invisible"
-        android:src="@drawable/fortyfour"/>
+        <TextView
+            android:id="@+id/progressTextViewId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="none"
+            android:visibility="invisible"
+            android:textSize="38sp"/>
 
-    <TextView
-        android:id="@+id/progressTextViewId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="none"
-        android:visibility="invisible"
-        android:textSize="38sp"/>
 
-    <ImageView
-        android:id="@+id/percentImgId"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="300dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/levels"/>
 
-    <ProgressBar
-        android:id="@+id/loadingProgressId"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyle"
-        android:layout_centerInParent="true" />
+        <!--<ProgressBar-->
+            <!--android:id="@+id/loadingProgressId"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--style="?android:attr/progressBarStyle"-->
+            <!--android:layout_centerInParent="true" />-->
 
-    <TextView
-        android:id="@+id/tvErrorId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="invisible"
-        android:text="Error loading data from api"/>
-
-    <com.joaquimley.faboptions.FabOptions
+        <TextView
+            android:id="@+id/tvErrorId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:text="Error loading data from api"/>
+</RelativeLayout>
+</ScrollView>
+        <com.joaquimley.faboptions.FabOptions
         android:id="@+id/fab_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/percentImgId"
         app:button_menu="@menu/menu_main_lib"
         app:fab_color="@color/blue"
+        android:layout_alignParentBottom="true"
+        app:layout_anchor="@id/ScrollView01"
+        app:layout_anchorGravity="bottom|right|end"
         android:layout_toLeftOf="@id/fab" />
-
 </RelativeLayout>

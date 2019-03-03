@@ -14,15 +14,33 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/album_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/life"
+                android:src="@drawable/test"
+                android:padding="@dimen/card_album_padding"
                 android:clickable="true"
-                android:scaleType="fitXY"
-                android:alpha="0.7"/>
+                android:scaleType="fitXY" />
+
+            <ProgressBar
+                android:id="@+id/loadingProgressId2"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyle"
+                android:layout_centerInParent="true" />
+
+            <ImageView
+                android:id="@+id/percentImgId"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/levels"/>
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"

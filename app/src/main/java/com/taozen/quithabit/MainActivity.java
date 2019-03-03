@@ -12,17 +12,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.taozen.quithabit.Intro.IntroActivity;
+import com.taozen.quithabit.ProgressCard.FailLogsActivity;
 import com.taozen.quithabit.ProgressCard.ProgressActivity_HerokuStyleFetching;
+import com.taozen.quithabit.ProgressCard.SavingsActivity;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -38,25 +38,31 @@ public class MainActivity extends AppCompatActivity {
     Handler handler;
     Timer timer;
 
+    //view
     @BindView(android.R.id.content) View parentLayout;
+    //fab
     @BindView(R.id.fab) FloatingActionButton fab;
+    //card views
+    @BindView(R.id.progressCardId) CardView progressCardView;
+    @BindView(R.id.progressCardId2) CardView savingsCardView;
+    @BindView(R.id.progressCardId3) CardView timeStampLogsCardview;
+    //text views
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressId) TextView txtProgress;
-    @BindView(R.id.progressCardId) CardView progressCardView;
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
-//    @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
+    @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
+    @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
 
 
     //counter for user
     int counter;
     //user input from start dialog
-    String habitString = "userHabit";
+    String habitString = "userHabit";//smoke, porn or alcohool
+    int savings = 0;
     int progressPercent = 0, DAY_OF_CLICK = 0, DAY_OF_PRESENT = 0;
     //wil start from 1 to 3 to 7 to 14 to 21 to 30
     int userMaxCountForHabit = 35;
     boolean buttonClickedToday;
-
-    TextView moneyOrTimeTextView;
 
     //Calendar
     Calendar calendarOnClick, calendarForProgress;
@@ -65,9 +71,8 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     CircularProgressBar progressBar;
-
     WaveLoadingView waveLoadingView;
-    SeekBar seekBar;
+//    SeekBar seekBar;
 
     //OnCreate
     @Override
@@ -76,59 +81,54 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
         parentLayout = findViewById(R.id.mylayoutId);
+        //shared pref
+        preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        editor = preferences.edit();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //wave loading
-        seekBar = findViewById(R.id.seekbarId);
+//        seekBar = findViewById(R.id.seekbarId);
         waveLoadingView = findViewById(R.id.waveLoadingId);
-        moneyOrTimeTextView = (TextView) findViewById(R.id.moneyortimeId);
         waveLoadingView.setProgressValue(0);
         //animation speed :/
         waveLoadingView.setAnimDuration(2300);
 
-        String moneyOrTimeFromUser = String.valueOf("MONEY");
-        String moneyOrTimeTarget = getString(R.string.money_time, moneyOrTimeFromUser);
-        moneyOrTimeTextView.setText("-" + moneyOrTimeTarget);
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                waveLoadingView.setProgressValue(progress);
-                if (progress < 50) {
-                    waveLoadingView.setBottomTitle(String.format("%d", progress));
-                    waveLoadingView.setCenterTitle("");
-                    waveLoadingView.setTopTitle("");
-                } else if (progress < 80) {
-                    waveLoadingView.setBottomTitle("");
-                    waveLoadingView.setTopTitle("");
-                    waveLoadingView.setCenterTitle(String.format("%d", progress));
-                } else {
-                    waveLoadingView.setBottomTitle("");
-                    waveLoadingView.setCenterTitle("");
-                    waveLoadingView.setTopTitle(String.format("%d", progress));
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                waveLoadingView.setProgressValue(progress);
+//                if (progress < 50) {
+//                    waveLoadingView.setBottomTitle(String.format("%d", progress));
+//                    waveLoadingView.setCenterTitle("");
+//                    waveLoadingView.setTopTitle("");
+//                } else if (progress < 80) {
+//                    waveLoadingView.setBottomTitle("");
+//                    waveLoadingView.setTopTitle("");
+//                    waveLoadingView.setCenterTitle(String.format("%d", progress));
+//                } else {
+//                    waveLoadingView.setBottomTitle("");
+//                    waveLoadingView.setCenterTitle("");
+//                    waveLoadingView.setTopTitle(String.format("%d", progress));
+//                }
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
 
         //progress for percent - this is a circular bar
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setProgress(10f);
-        //target counter string
-        String userMax = String.valueOf(userMaxCountForHabit);
-        String target = getString(R.string.target_string, userMax);
-        targetTxtViewId.setText("You current " + target);
+        targetDaysInitializer(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId, "You current ");
 
         //add font to counter number
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -140,38 +140,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //shared pref
-        preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        editor = preferences.edit();
-
-        //intro
-        //code for INTRO
-        Thread threadForSlider = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //  Create a new boolean and preference and set it to true
-                Log.d("taozenD", "thread separat: " + Thread.currentThread().getName());
-                boolean isFirstStart = preferences.getBoolean("firstStart", true);
-                //  If the activity has never started before...
-                if (isFirstStart) {
-                    //  Launch app intro
-                    final Intent i = new Intent(MainActivity.this, IntroActivity.class);
-                    runOnUiThread(new Runnable() {
-                        @Override public void run() {
-                            Log.d("taozenD", "thread din ui: " + Thread.currentThread().getName());
-                            startActivity(i);
-                        }
-                    });
-                    //  Make a new preferences editor
-                    SharedPreferences.Editor e = preferences.edit();
-                    //  Edit preference to make it false because we don'threadForSlider want this to run again
-                    e.putBoolean("firstStart", false);
-                    //  Apply changes
-                    e.apply();
-                }
-            }
-        });
-        threadForSlider.start();//end of INTRO
+        //intro activity check in a separate thread
+        startIntroActivity();
 
         //GOTO percent Activity
         progressCardView.setOnClickListener(new View.OnClickListener() {
@@ -190,44 +160,37 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-        });
-
-        //run the task
-        runningInBackground();
-        //active when user passed a day
-        //inactive when user wait
-        //counter++;
-        fab.setOnClickListener(new View.OnClickListener() {
+        });//progressCardView[END]
+        timeStampLogsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonClickedToday = true;
-                editor.putBoolean("clicked", buttonClickedToday);
-                updatePercent();
-                resetProgressBar(progressPercent);
-                //[calendar area]
-                calendarOnClick = Calendar.getInstance();
-                calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-//                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
-                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
-                editor.putInt("presentday", DAY_OF_CLICK);
-                editor.putInt("progressPercent", progressPercent);
-                editor.apply();
-                counter++;
-                counterText.setText(String.valueOf(counter));
-                editor.putInt("counter", counter);
-                editor.apply();
-                Log.d("taolenX", "counter from onclick = " + counter);
-
-                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                fab.hide();
+                Calendar calendarOnClick2 = Calendar.getInstance();
+                calendarOnClick2.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                Intent intent = new Intent(MainActivity.this, FailLogsActivity.class);
+                intent.putExtra("log", calendarOnClick2.getTime().toString());
+                startActivity(intent);
             }
-        });
+        });//timeStampCardView[END]
+        savingsCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SavingsActivity.class);
+                intent.putExtra("savings", savings);
+                startActivity(intent);
+            }
+        });//savingsCardView[END]
+        //run the task
+        runningInBackground();
+        //counter on click for fab button
+        counterFabButtonInitializer();
 
         //retrieving the counter, progressPercent and minute values
         try {
             counter = preferences.getInt("counter", 0);
+            getTargetDays();
+            savings = setTheSavingsPerDay(counter);
+            Log.d("LOGG", "in oncreate "+"savings = " + savings + " counter = " + counter);
+            moneyOrTimeInitializer();
             counterText.setText(String.valueOf(counter));
             buttonClickedToday = preferences.getBoolean("clicked", false);
             progressPercent = preferences.getInt("progressPercent", 0);
@@ -365,6 +328,101 @@ public class MainActivity extends AppCompatActivity {
 //                .build();
     }//[END OF ONCREATE]
 
+    private void startIntroActivity() {
+        //intro
+        //code for INTRO
+        Thread threadForSlider = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //  Create a new boolean and preference and set it to true
+                Log.d("taozenD", "thread separat: " + Thread.currentThread().getName());
+                boolean isFirstStart = preferences.getBoolean("firstStart", true);
+                //  If the activity has never started before...
+                if (isFirstStart) {
+                    //  Launch app intro
+                    final Intent i = new Intent(MainActivity.this, IntroActivity.class);
+                    runOnUiThread(new Runnable() {
+                        @Override public void run() {
+                            Log.d("taozenD", "thread din ui: " + Thread.currentThread().getName());
+                            startActivity(i);
+                        }
+                    });
+                    //  Make a new preferences editor
+                    SharedPreferences.Editor e = preferences.edit();
+                    //  Edit preference to make it false because we don'threadForSlider want this to run again
+                    e.putBoolean("firstStart", false);
+                    //  Apply changes
+                    e.apply();
+                }
+            }
+        });
+        threadForSlider.start();//end of INTRO
+    }
+
+    private void counterFabButtonInitializer() {
+        //active when user passed a day
+        //inactive when user wait
+        //counter++;
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonClickedToday = true;
+                editor.putBoolean("clicked", buttonClickedToday);
+                updatePercent();
+                resetProgressBar(progressPercent);
+                //[calendar area]
+                calendarOnClick = Calendar.getInstance();
+                calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+//                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
+                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
+                editor.putInt("presentday", DAY_OF_CLICK);
+                editor.putInt("progressPercent", progressPercent);
+                editor.apply();
+                counter++;
+                savings = setTheSavingsPerDay(counter);
+                targetDaysInitializer(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                editor.putInt("savings", savings);
+                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                counterText.setText(String.valueOf(counter));
+                editor.putInt("counter", counter);
+                editor.apply();
+                Log.d("taolenX", "counter from onclick = " + counter);
+
+                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                fab.hide();
+            }
+        });
+    }
+
+    private void targetDaysInitializer(String s, int p, TextView targetTxtViewId, String p2) {
+        //target counter string
+        String userMax = s;
+        String target = getString(p, p2, userMax);
+        targetTxtViewId.setText(target);
+    }
+
+    private void moneyOrTimeInitializer() {
+        savings = preferences.getInt("savings", 0);
+        Log.d("LOGG", "in moneyOrTimeInitializer "+"savings = " + savings + " counter = " + counter);
+        targetDaysInitializer(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+    }
+
+    private void getTargetDays() {
+        //remaining days
+        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter);
+        String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
+        remainingDaysTxt.setText(targetCalcDaysTarget);
+    }
+
+    private int setTheSavingsPerDay(int c){
+        savings = c * 10;//dollars per day
+        editor.putInt("savings", savings);
+        editor.apply();
+        return savings;
+    }
+
     //running task
     private void runningInBackground(){
         AsyncTask.execute(new Runnable() {
@@ -404,6 +462,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("taolenZ", "DAY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
             if (counter >= userMaxCountForHabit){
                 counter = 0;
+
                 progressPercent=0;
             }
             editor.putInt("counter", counter);
