@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.txtProgressId) TextView txtProgress;
     @BindView(R.id.progressCardId) CardView progressCardView;
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
+//    @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
+
 
     //counter for user
     int counter;
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     //wil start from 1 to 3 to 7 to 14 to 21 to 30
     int userMaxCountForHabit = 35;
     boolean buttonClickedToday;
+
+    TextView moneyOrTimeTextView;
 
     //Calendar
     Calendar calendarOnClick, calendarForProgress;
@@ -68,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_old);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
         parentLayout = findViewById(R.id.mylayoutId);
 
@@ -78,9 +83,14 @@ public class MainActivity extends AppCompatActivity {
         //wave loading
         seekBar = findViewById(R.id.seekbarId);
         waveLoadingView = findViewById(R.id.waveLoadingId);
+        moneyOrTimeTextView = (TextView) findViewById(R.id.moneyortimeId);
         waveLoadingView.setProgressValue(0);
         //animation speed :/
         waveLoadingView.setAnimDuration(2300);
+
+        String moneyOrTimeFromUser = String.valueOf("MONEY");
+        String moneyOrTimeTarget = getString(R.string.money_time, moneyOrTimeFromUser);
+        moneyOrTimeTextView.setText("-" + moneyOrTimeTarget);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -119,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         String userMax = String.valueOf(userMaxCountForHabit);
         String target = getString(R.string.target_string, userMax);
         targetTxtViewId.setText("You current " + target);
+
         //add font to counter number
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
         counterText.setTypeface(typeface);
@@ -611,7 +622,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.exit:
 
                 return(true);
-
         }
         return super.onOptionsItemSelected(item);
     }

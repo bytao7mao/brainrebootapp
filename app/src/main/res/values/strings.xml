@@ -5,4 +5,5 @@
     <string name="reset">reset</string>
     <string name="add">add</string>
     <string name="target_string">target: %s</string>
+    <string name="money_time">save this ammount of %s per day</string>
 </resources>

@@ -242,14 +242,16 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/test2"
                 android:alpha="0.8"/>
+
             <TextView
+                android:id="@+id/moneyortimeId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_alignTop="@+id/progressCardId"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
-                android:text="Get started on the life you want"/>
+                android:text="placeholder"
+                android:textColor="@color/white" />
+
         </android.support.v7.widget.CardView>
     </FrameLayout>
 

@@ -51,7 +51,6 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
 
     Button myBtn;
     List<MyAsyncTask> tasks;
-    List<Books> booksList;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -98,15 +97,9 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
         //get value from MainActivity of percent
         getValueOfPercent();
         //change the coresponding image for percent
-        conditionForImagePercent();
+        condForImageLevelMode();
 
     }//onCreate[END]
-
-    private void requestData(String url) {
-        MyAsyncTask task = new MyAsyncTask();
-        task.execute(url);
-
-    }//requestData[END]
 
     private void requestDataById(String url, int id) {
         MyAsyncTask task = new MyAsyncTask();
@@ -124,35 +117,29 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
         }
     }//isOnline[END]
 
-    protected void updateDisplay() {
-        if (booksList != null) {
-            for (Books books : booksList) {
-                outputText.append(books.getName() + "\n");
-            }
-        }
-    }//updateDisplay[END]
-
-    //condition for setting proper image
-    private void conditionForImagePercent(){
+    //condition to update percent image, we use levels.xml layout and change the image accordingly to the coresponding level
+    private void condForImageLevelMode(){
+        int level = 0;
         getValueOfPercent();
         if (Integer.parseInt(valueOfpercent) < 11) {
-            percentImageView.setImageResource(R.drawable.ten);
+            level += 10;
         } else if (Integer.parseInt(valueOfpercent) < 21) {
-            percentImageView.setImageResource(R.drawable.twenty);
+            level += 20;
         } else if (Integer.parseInt(valueOfpercent) < 36) {
-            percentImageView.setImageResource(R.drawable.thirty);
+            level += 30;
         } else if (Integer.parseInt(valueOfpercent) < 51) {
-            percentImageView.setImageResource(R.drawable.fifty);
+            level += 50;
         } else if (Integer.parseInt(valueOfpercent) < 66) {
-            percentImageView.setImageResource(R.drawable.sixty);
+            level += 60;
         } else if (Integer.parseInt(valueOfpercent) < 76) {
-            percentImageView.setImageResource(R.drawable.seventeen);
+            level += 70;
         } else if (Integer.parseInt(valueOfpercent) < 96) {
-            percentImageView.setImageResource(R.drawable.eightfive);
+            level += 90;
         } else if (Integer.parseInt(valueOfpercent) == 100) {
-            percentImageView.setImageResource(R.drawable.hundred);
+            level += 100;
         }
-    }//condition for setting proper image[END]
+        percentImageView.setImageLevel(level);
+    }//condForImageLevelMode[END]
 
     //fetching value from main activity
     private void getValueOfPercent() {
@@ -230,3 +217,37 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
     }//MyAsyncTask[END]
 
 }//progressActivityClass[END]
+
+
+
+
+
+
+
+
+
+
+
+
+
+//condition for setting proper image
+//    private void conditionForImagePercent(){
+//        getValueOfPercent();
+//        if (Integer.parseInt(valueOfpercent) < 11) {
+//            percentImageView.setImageResource(R.drawable.ten);
+//        } else if (Integer.parseInt(valueOfpercent) < 21) {
+//            percentImageView.setImageResource(R.drawable.twenty);
+//        } else if (Integer.parseInt(valueOfpercent) < 36) {
+//            percentImageView.setImageResource(R.drawable.thirty);
+//        } else if (Integer.parseInt(valueOfpercent) < 51) {
+//            percentImageView.setImageResource(R.drawable.fifty);
+//        } else if (Integer.parseInt(valueOfpercent) < 66) {
+//            percentImageView.setImageResource(R.drawable.sixty);
+//        } else if (Integer.parseInt(valueOfpercent) < 76) {
+//            percentImageView.setImageResource(R.drawable.seventeen);
+//        } else if (Integer.parseInt(valueOfpercent) < 96) {
+//            percentImageView.setImageResource(R.drawable.eightfive);
+//        } else if (Integer.parseInt(valueOfpercent) == 100) {
+//            percentImageView.setImageResource(R.drawable.hundred);
+//        }
+//    }//condition for setting proper image[END]
