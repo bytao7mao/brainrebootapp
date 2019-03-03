@@ -4,22 +4,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
 
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.taozen.quithabit.Intro.IntroActivity;
@@ -173,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
 //                    Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
 //                    Intent intent = new Intent(MainActivity.this, ProgressKotlinActivity.class);
                     Intent intent = new Intent(MainActivity.this, ProgressActivity_HerokuStyleFetching.class);
+//                    Intent intent = new Intent(MainActivity.this, Test.class);
                     intent.putExtra("pro", progressPercent);
                     startActivity(intent);
                 } catch (NullPointerException e) {
@@ -529,75 +528,43 @@ public class MainActivity extends AppCompatActivity {
     public void updatePercent(){
         if (counter < userMaxCountForHabit*9/100){
             progressPercent = 10;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + "%");
         } else if (counter < userMaxCountForHabit*19/100){
             progressPercent = 15;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + "%");
         }else if (counter < userMaxCountForHabit*25/100){
             progressPercent = 20;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + "%");
         }else if (counter < userMaxCountForHabit*30/100){
             progressPercent = 25;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + "%");
         }else if (counter < userMaxCountForHabit*40/100){
             progressPercent = 30;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + "%");
         }else if (counter < userMaxCountForHabit*50/100){
             progressPercent = 40;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + "%");
         }else if (counter < userMaxCountForHabit*60/100){
             progressPercent = 50;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + "%");
         }else if (counter < userMaxCountForHabit*70/100){
             progressPercent = 60;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + " %");
         }else if (counter < userMaxCountForHabit*80/100){
             progressPercent = 70;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + " %");
         }else if (counter < userMaxCountForHabit*90/100){
             progressPercent = 80;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + " %");
         }else if (counter < userMaxCountForHabit*95/100 && counter > userMaxCountForHabit*90/100){
             progressPercent = 90;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + " %");
         }else if (counter == userMaxCountForHabit){
             progressPercent = 97;
-            editor.putInt("progressPercent", progressPercent);
-            editor.apply();
-            txtProgress.setText(progressPercent + " %");
             handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     progressPercent = 100;
                     editor.putInt("progressPercent", progressPercent);
-                    editor.apply();
                     txtProgress.setText(progressPercent + " %");
                 }
             }, 5000);
         }
+        txtProgress.setText(progressPercent + " %");
+        editor.putInt("progressPercent", progressPercent);
+        editor.apply();
+        Log.d("TAGG", progressPercent+" ");
+        waveLoadingView.setProgressValue(progressPercent);
     }
 
     //MENU

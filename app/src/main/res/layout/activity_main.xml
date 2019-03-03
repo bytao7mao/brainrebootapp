@@ -67,16 +67,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_done_white" />
 
-    <com.joaquimley.faboptions.FabOptions
-        android:id="@+id/fab_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="50dp"
-        app:button_menu="@menu/menu_main_lib"
-        android:layout_toLeftOf="@id/fab" />
-
-
     <RelativeLayout
         android:id="@+id/rltvlayout"
         android:layout_width="wrap_content"
@@ -261,8 +251,6 @@
                 android:layout_marginStart="10dp"
                 android:text="Get started on the life you want"/>
         </android.support.v7.widget.CardView>
-
-
     </FrameLayout>
 
     <TextView

@@ -20,10 +20,10 @@
             app:showAsAction="never"
             android:title="Download" />
 
-
         <item
             android:id="@+id/faboptions_share"
-            app:showAsAction="never"
+            app:showAsAction="always"
+            android:icon="@drawable/bomb"
             android:title="exit" />
 
 </menu>

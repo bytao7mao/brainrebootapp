@@ -26,6 +26,7 @@
             android:name=".Intro.IntroActivity"
             android:label="app_intro" />
         <activity android:name=".Old.ProgressKotlinActivity" />
+        <activity android:name=".Test"/>
     </application>
 
 </manifest>
