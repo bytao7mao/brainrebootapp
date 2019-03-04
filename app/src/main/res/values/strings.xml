@@ -8,4 +8,31 @@
     <string name="money_time">save this ammount of %s per day is = %s</string>
     <string name="remaining_days">%s days till target</string>
     <string name="total_savings">This is your total savings: %s $</string>
+
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="add_image">addImage</string>
+    <string name="delete_image">deleteImage</string>
+    <string name="thumbnail">thumbnail</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>Birds</item>
+        <item>Animal</item>
+        <item>Forest</item>
+        <item>Ocean</item>
+        <item>Planets</item>
+        <item>Landscape</item>
+    </string-array>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="delete">Delete</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="edit">Edit</string>
+
 </resources>

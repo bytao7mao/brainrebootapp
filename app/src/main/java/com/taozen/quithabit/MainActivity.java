@@ -9,8 +9,10 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     int userMaxCountForHabit = 35;
     boolean buttonClickedToday;
 
+    //Toolbar
+    private Toolbar toolbar;
+
     //Calendar
     Calendar calendarOnClick, calendarForProgress;
     //shared pref
@@ -86,8 +91,11 @@ public class MainActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+        setUpToolbar();
+        setUpDrawer();
+
 
         //wave loading
 //        seekBar = findViewById(R.id.seekbarId);
@@ -331,6 +339,32 @@ public class MainActivity extends AppCompatActivity {
 //                })
 //                .build();
     }//[END OF ONCREATE]
+
+    //another toolbar
+    private void setUpToolbar(){
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Home Page");
+        toolbar.inflateMenu(R.menu.menu_main2);
+
+
+    }
+    private void setUpDrawer(){
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_drwr_fragment);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerFragment.setUpDrawer(R.id.nav_drwr_fragment, drawerLayout, toolbar);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     private void startIntroActivity() {
         //intro
