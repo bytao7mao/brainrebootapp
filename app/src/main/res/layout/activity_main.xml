@@ -12,12 +12,12 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp"
-        android:translationZ="0.5dp">
+        android:translationZ="0.5dp">s
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextColor="@color/colorAccent"
+            app:titleTextColor="@color/black"
             android:theme="@style/customToolbarTheme"
             app:popupTheme="@style/AppTheme.PopupOverlay">
         </android.support.v7.widget.Toolbar>
@@ -59,6 +59,38 @@
         android:paddingTop="20dp"
         android:layout_toRightOf="@id/tipImageId"
         android:text="Today you can be whatever you want!"/>
+
+    <!--app:wlv_borderWidth="3dp"-->
+    <me.itangqi.waveloadingview.WaveLoadingView
+        android:id="@+id/waveLoadingIdBigger"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="102dp"
+        app:wlv_borderColor="@color/colorPrimary"
+
+        app:wlv_shapeType="circle"
+        app:wlv_round_rectangle="true"
+        android:layout_centerHorizontal="true"
+        app:wlv_triangle_direction="north"
+
+        app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleCenterStrokeWidth="3dp"
+        app:wlv_titleCenterColor="@color/white"
+        app:wlv_titleCenterSize="24dp"
+
+        app:wlv_titleTopStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleTopStrokeWidth="3dp"
+        app:wlv_titleTopColor="@color/white"
+        app:wlv_titleTopSize="24dp"
+
+        app:wlv_titleBottomStrokeColor="@android:color/holo_blue_dark"
+        app:wlv_titleBottomStrokeWidth="3dp"
+        app:wlv_titleBottomColor="@color/white"
+        app:wlv_titleBottomSize="24dp"
+
+        app:wlv_waveAmplitude="70"
+        app:wlv_waveColor="@color/colorPrimary"/>
 
     <RelativeLayout
         android:id="@+id/rltvlayout"
@@ -161,7 +193,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                style="@style/TextColor"
                 android:layout_alignTop="@+id/progressCardId"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
@@ -220,7 +252,7 @@
                 app:wlv_titleBottomSize="24dp"
 
                 app:wlv_waveAmplitude="70"
-                app:wlv_waveColor="@color/blue"/>
+                app:wlv_waveColor="@color/colorPrimary"/>
         </android.support.v7.widget.CardView>
     </FrameLayout>
 
@@ -249,7 +281,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:text="Savings Total = 50$ or 50 hours"
-                android:textColor="@color/white" />
+                style="@style/TextColor" />
 
         </android.support.v7.widget.CardView>
     </FrameLayout>
@@ -279,7 +311,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:text="see your Personal logs - failures"
-                android:textColor="@color/white" />
+                style="@style/TextColor" />
 
         </android.support.v7.widget.CardView>
     </FrameLayout>

@@ -13,8 +13,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
     </style>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
@@ -22,16 +20,16 @@
     <style name="menuColorButton" parent="@style/Widget.AppCompat.ActionButton.Overflow">
     </style>
     <style name="customToolbarTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:textColorPrimary">@color/colorAccent</item>
-        <item name="android:textColorSecondary">@color/colorAccent</item>
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:background">@color/white</item>
     </style>
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
+    <style name="TextColor">
+        <item name="android:textColor">#FFF</item>
     </style>
 
 </resources>

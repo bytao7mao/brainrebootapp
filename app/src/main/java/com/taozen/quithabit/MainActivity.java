@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     CircularProgressBar progressBar;
-    WaveLoadingView waveLoadingView;
+    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
 //    SeekBar seekBar;
 
     //OnCreate
@@ -91,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         //wave loading
 //        seekBar = findViewById(R.id.seekbarId);
         waveLoadingView = findViewById(R.id.waveLoadingId);
+        waveLoadingViewBigger = findViewById(R.id.waveLoadingIdBigger);
+        waveLoadingViewBigger.setProgressValue(80);
         waveLoadingView.setProgressValue(0);
         //animation speed :/
         waveLoadingView.setAnimDuration(2300);
@@ -128,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
         //progress for percent - this is a circular bar
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setProgress(10f);
-        targetDaysInitializer(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId, "You current ");
+        //format string of MAX target txt view
+        targetDaysInitializer2(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
 
         //add font to counter number
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -396,11 +400,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void targetDaysInitializer(String s, int p, TextView targetTxtViewId, String p2) {
+    private void targetDaysInitializer(String string, int androiId, TextView textview, String secondString) {
         //target counter string
-        String userMax = s;
-        String target = getString(p, p2, userMax);
-        targetTxtViewId.setText(target);
+        String userMax = string;
+        String target = getString(androiId, secondString, userMax);
+        textview.setText(target);
+    }
+    private void targetDaysInitializer2(String string, int androiId, TextView textview) {
+        //target counter string
+        String userMaxString = string;
+        String target = getString(androiId, userMaxString);
+        textview.setText(target);
     }
 
     private void moneyOrTimeInitializer() {
