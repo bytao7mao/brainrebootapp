@@ -32,11 +32,19 @@
             android:layout_below="@id/card_oneId"
             layout="@layout/material_card_two_progressactivity" />
         <include
+            android:id="@+id/card_threeId"
+            android:layout_below="@id/card_twoId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_below="@id/card_twoId"
             layout="@layout/material_card_three_progressactivity" />
+        <include
+            android:id="@+id/card_fourId"
+            android:layout_below="@id/card_threeId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            layout="@layout/material_card_four_progressactivity" />
 
         <!--<ImageView-->
         <!--android:id="@+id/rankImgId"-->

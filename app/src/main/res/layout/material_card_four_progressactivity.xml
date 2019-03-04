@@ -26,12 +26,12 @@
                 android:scaleType="fitXY" />
 
             <!--<ImageView-->
-                <!--android:id="@+id/percentImgId2"-->
-                <!--android:layout_width="150dp"-->
-                <!--android:layout_height="150dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:src="@drawable/levels"/>-->
+            <!--android:id="@+id/percentImgId2"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:src="@drawable/levels"/>-->
 
             <ProgressBar
                 android:id="@+id/loadingProgressId3"

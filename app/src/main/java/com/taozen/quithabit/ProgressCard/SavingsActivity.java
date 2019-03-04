@@ -49,7 +49,8 @@ public class SavingsActivity extends AppCompatActivity {
     private void getValueFromHerokuServer(){
         //RETROFIT
         MessageService taskService = ServiceBuilder.builderService(MessageService.class);
-        Call<Books> call = taskService.getFirstBook();
+        //we get id of book from heroku server
+        Call<Books> call = taskService.getFirstBook(1);
         call.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {

@@ -10,6 +10,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MessageService {
-    @GET("1")
-    Call<Books> getFirstBook();
+    @GET("{id}")
+    Call<Books> getFirstBook(@Path("id") int id);
 }
