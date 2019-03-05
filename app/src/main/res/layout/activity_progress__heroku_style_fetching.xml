@@ -1,123 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:id="@+id/rltvlayoutOuter"
-    tools:context=".ProgressCard.ProgressActivity_HerokuStyleFetching">
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ScrollView01"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/rltvlayout">
-
+    android:layout_width="match_parent">
         <include
-            android:id="@+id/card_oneId"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/material_card_one_progressactivity" />
+            layout="@layout/app_bar_main3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <include
-            android:id="@+id/card_twoId"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/card_oneId"
-            layout="@layout/material_card_two_progressactivity" />
-        <include
-            android:id="@+id/card_threeId"
-            android:layout_below="@id/card_twoId"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            layout="@layout/material_card_three_progressactivity" />
-        <include
-            android:id="@+id/card_fourId"
-            android:layout_below="@id/card_threeId"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            layout="@layout/material_card_four_progressactivity" />
+<!--<LinearLayout android:id="@+id/rltvlayoutOuter"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--tools:context=".ProgressCard.ProgressActivity_HerokuStyleFetching"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto">-->
 
-        <!--<ImageView-->
-        <!--android:id="@+id/rankImgId"-->
-        <!--android:layout_width="30dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_marginTop="240dp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:src="@drawable/target"/>-->
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Beginner"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_below="@id/rankImgId"/>-->
-
-        <TextView
-            android:id="@+id/outputId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="12sp"/>
-
-        <Button
-            android:id="@+id/startBtnId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="start"/>
-
-        <ImageView
-            android:id="@+id/errorImageId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="invisible"
-            android:src="@drawable/fortyfour"/>
-
-        <TextView
-            android:id="@+id/progressTextViewId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="none"
-            android:visibility="invisible"
-            android:textSize="38sp"/>
-
-
-
-        <!--<ProgressBar-->
-            <!--android:id="@+id/loadingProgressId"-->
-            <!--android:visibility="invisible"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--style="?android:attr/progressBarStyle"-->
-            <!--android:layout_centerInParent="true" />-->
-
-        <TextView
-            android:id="@+id/tvErrorId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="invisible"
-            android:text="Error loading data from api"/>
-</RelativeLayout>
-</ScrollView>
-        <com.joaquimley.faboptions.FabOptions
-        android:id="@+id/fab_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:button_menu="@menu/menu_main_lib"
-        app:fab_color="@color/blue"
-        android:layout_alignParentBottom="true"
-        app:layout_anchor="@id/ScrollView01"
-        app:layout_anchorGravity="bottom|right|end"
-        android:layout_toLeftOf="@id/fab" />
-</RelativeLayout>
+<!--</LinearLayout>-->
+</LinearLayout>

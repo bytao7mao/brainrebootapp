@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -72,6 +73,9 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
 
         final View parentLayout = findViewById(android.R.id.content);
         ButterKnife.bind(ProgressActivity_HerokuStyleFetching.this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(ProgressActivity_HerokuStyleFetching.this);

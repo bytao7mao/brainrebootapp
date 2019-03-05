@@ -14,12 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ProgressCard.FailLogsActivity"
-            tools:ignore="InnerclassSeparator"></activity>
-        <activity android:name=".ProgressCard.ProgressActivity_HerokuStyleFetching"
+        <activity
+            android:name=".NavigationDrawer.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/MaterialTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ProgressCard.FailLogsActivity"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ProgressCard.ProgressActivity_HerokuStyleFetching"
             tools:ignore="InnerclassSeparator" />
         <activity android:name=".Old.ProgressActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/MaterialTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +38,7 @@
             android:label="app_intro" />
         <activity android:name=".Old.ProgressKotlinActivity" />
         <activity android:name=".Test" />
-        <activity android:name=".ProgressCard.SavingsActivity"/>
+        <activity android:name=".ProgressCard.SavingsActivity" />
     </application>
 
 </manifest>

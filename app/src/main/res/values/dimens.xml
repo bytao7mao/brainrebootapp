@@ -21,4 +21,6 @@
     <dimen name="ic_album_overflow_margin_top">10dp</dimen>
     <dimen name="card_album_padding">2dp</dimen>
     <dimen name="nav_drawer_width">280dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
 </resources>

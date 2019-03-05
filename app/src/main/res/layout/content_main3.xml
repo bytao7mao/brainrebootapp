@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rltvlayout">
+
+        <include
+            android:id="@+id/card_oneId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/material_card_one_progressactivity" />
+
+        <include
+            android:id="@+id/card_twoId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/card_oneId"
+            layout="@layout/material_card_two_progressactivity" />
+        <include
+            android:id="@+id/card_threeId"
+            android:layout_below="@id/card_twoId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            layout="@layout/material_card_three_progressactivity" />
+        <include
+            android:id="@+id/card_fourId"
+            android:layout_below="@id/card_threeId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            layout="@layout/material_card_four_progressactivity" />
+
+        <TextView
+            android:id="@+id/outputId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/startBtnId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="start"/>
+
+        <ImageView
+            android:id="@+id/errorImageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:src="@drawable/fortyfour"/>
+
+        <TextView
+            android:id="@+id/progressTextViewId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="none"
+            android:visibility="invisible"
+            android:textSize="38sp"/>
+
+        <TextView
+            android:id="@+id/tvErrorId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:text="Error loading data from api"/>
+    </RelativeLayout>
