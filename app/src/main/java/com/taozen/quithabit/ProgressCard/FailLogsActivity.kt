@@ -2,11 +2,13 @@ package com.taozen.quithabit.ProgressCard
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.util.Log
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.taozen.quithabit.R
 import kotlinx.android.synthetic.main.activity_fail_logs.*
+import kotlinx.android.synthetic.main.contentfaillogs.*
 
 
 class FailLogsActivity : AppCompatActivity() {
@@ -15,6 +17,9 @@ class FailLogsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fail_logs)
         ButterKnife.bind(this@FailLogsActivity)
+
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
 
         logtxtVwId.text
         getValueOfPercent()

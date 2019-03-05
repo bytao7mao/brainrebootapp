@@ -7,17 +7,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,7 +44,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     //view
     @BindView(android.R.id.content) View parentLayout;
     //fab
-    @BindView(R.id.fab) FloatingActionButton fab;
+//    @BindView(R.id.fab) FloatingActionButton fab;
     //card views
     @BindView(R.id.progressCardId) CardView progressCardView;
     @BindView(R.id.progressCardId2) CardView savingsCardView;
@@ -400,37 +396,37 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //active when user passed a day
         //inactive when user wait
         //counter++;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonClickedToday = true;
-                editor.putBoolean("clicked", buttonClickedToday);
-                updatePercent();
-                resetProgressBar(progressPercent);
-                //[calendar area]
-                calendarOnClick = Calendar.getInstance();
-                calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-//                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
-                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
-                editor.putInt("presentday", DAY_OF_CLICK);
-                editor.putInt("progressPercent", progressPercent);
-                editor.apply();
-                counter++;
-                savings = setTheSavingsPerDay(counter);
-                targetDaysInitializer(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                editor.putInt("savings", savings);
-                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                counterText.setText(String.valueOf(counter));
-                editor.putInt("counter", counter);
-                editor.apply();
-                Log.d("taolenX", "counter from onclick = " + counter);
-
-                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                fab.hide();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                buttonClickedToday = true;
+//                editor.putBoolean("clicked", buttonClickedToday);
+//                updatePercent();
+//                resetProgressBar(progressPercent);
+//                //[calendar area]
+//                calendarOnClick = Calendar.getInstance();
+//                calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+////                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
+//                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
+//                editor.putInt("presentday", DAY_OF_CLICK);
+//                editor.putInt("progressPercent", progressPercent);
+//                editor.apply();
+//                counter++;
+//                savings = setTheSavingsPerDay(counter);
+//                targetDaysInitializer(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+//                editor.putInt("savings", savings);
+//                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+//                counterText.setText(String.valueOf(counter));
+//                editor.putInt("counter", counter);
+//                editor.apply();
+//                Log.d("taolenX", "counter from onclick = " + counter);
+//
+//                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//
+//                fab.hide();
+//            }
+//        });
     }
 
     private void targetDaysInitializer(String string, int androiId, TextView textview, String secondString) {
@@ -590,7 +586,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     public void updateButton(){
         if (buttonClickedToday){
-            fab.hide();
+//            fab.hide();
         }
     }
 
@@ -601,12 +597,12 @@ implements NavigationView.OnNavigationItemSelectedListener{
             buttonClickedToday = false;
             editor.putBoolean("clicked", buttonClickedToday);
             editor.apply();
-            fab.hide();
+//            fab.hide();
             Log.d("taolenX", "buttonClickedToday from !=favoriteUserHourAM is " + buttonClickedToday);
             Log.d("taolenX", " counter = " + counter);
             //when days are the same and user already clicked
         } else if (DAY_OF_PRESENT == DAY_OF_CLICK && buttonClickedToday) {
-            fab.hide();
+//            fab.hide();
         }
     }
     public void greenCodition(){
@@ -614,7 +610,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             //to do
             //show the activate button
             Log.d("taolenX", "greenCodition WORKINGGGGG");
-            fab.show();
+//            fab.show();
             //instead of counter add dialog to ask user if he did his habit
             Log.i("taolenX", "counter from greenCodition in async is " + counter);
             //NEED SOME CHECKS/TESTS FOR THIS---TO SEE IF I NEED THIS BOOLEAN TO GET
@@ -627,7 +623,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     public void endOfTheYearCondition(){
         if ((DAY_OF_CLICK >= 365 && DAY_OF_PRESENT > 0) && (!buttonClickedToday)) {
-            fab.show();
+//            fab.show();
             //instead of counter add dialog to ask user if he did his habit
             //dialog and onclick counter++;
             Log.i("taolenX", "counter from endOfTheYearCondition in async is " + counter);

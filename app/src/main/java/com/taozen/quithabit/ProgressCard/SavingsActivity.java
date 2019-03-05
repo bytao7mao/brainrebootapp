@@ -3,6 +3,7 @@ package com.taozen.quithabit.ProgressCard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -30,7 +31,8 @@ public class SavingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_savings);
         ButterKnife.bind(SavingsActivity.this);
 
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         getValueFromHerokuServer();
 
