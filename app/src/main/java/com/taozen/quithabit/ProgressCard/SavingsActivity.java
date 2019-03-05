@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.taozen.quithabit.Obj.Books;
 import com.taozen.quithabit.R;
+import com.taozen.quithabit.Retrofit.FromHerokuWithRetrofit;
 import com.taozen.quithabit.Retrofit.MessageService;
 import com.taozen.quithabit.Retrofit.ServiceBuilder;
 
@@ -19,6 +20,8 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.taozen.quithabit.Retrofit.FromHerokuWithRetrofit.getValueFromHerokuServer;
 
 public class SavingsActivity extends AppCompatActivity {
 
@@ -52,32 +55,30 @@ public class SavingsActivity extends AppCompatActivity {
 
     }
 
-    private void getValueFromHerokuServer(){
-        //RETROFIT
-        MessageService taskService = ServiceBuilder.builderService(MessageService.class);
-        //we get id of book from heroku server
-        Call<Books> call = taskService.getFirstBook(1);
-        call.enqueue(new Callback<Books>() {
-            @Override
-            public void onResponse(Call<Books> call, Response<Books> response) {
-                if (response.isSuccessful()){
-                    String responseFromRetrofit = response.body().getName();
-                    Log.d("RETROFIT", "response = " + responseFromRetrofit);
-                } else if (response.code() == 404) {
-                    Log.d("RETROFIT", "response = " + response.code());
-                } else {
-                    Log.d("RETROFIT", "response = " + response.code());
-                }
+//    private void getValueFromHerokuServer(){
+//        //RETROFIT
+//        MessageService taskService = ServiceBuilder.builderService(MessageService.class);
+//        //we get id of book from heroku server
+//        Call<Books> call = taskService.getFirstBook(1);
+//        call.enqueue(new Callback<Books>() {
+//            @Override
+//            public void onResponse(Call<Books> call, Response<Books> response) {
+//                if (response.isSuccessful()){
+//                    String responseFromRetrofit = response.body().getName();
+//                    Log.d("RETROFIT", "response = " + responseFromRetrofit);
+//                    //if server is dead
+//                } else if (response.code() == 404) {
+//                    Log.d("RETROFIT", "response = " + response.code());
+//                } else {
+//                    Log.d("RETROFIT", "response = " + response.code());
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<Books> call, Throwable t) {
+//            }
+//        });
+//    }//RETROFIT[END]
 
-            }
-
-            @Override
-            public void onFailure(Call<Books> call, Throwable t) {
-
-            }
-        });
-        //RETROFIT[END]
-    }
 
     //fetching value from MainActivity
     private void getValueOfPercent() {
