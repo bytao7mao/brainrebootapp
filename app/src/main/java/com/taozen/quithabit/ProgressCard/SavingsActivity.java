@@ -12,6 +12,8 @@ import com.taozen.quithabit.R;
 import com.taozen.quithabit.Retrofit.MessageService;
 import com.taozen.quithabit.Retrofit.ServiceBuilder;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -33,6 +35,8 @@ public class SavingsActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         getValueFromHerokuServer();
 
@@ -93,4 +97,10 @@ public class SavingsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }//fetching value from main activity[END]
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

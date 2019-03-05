@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
         <include
-            layout="@layout/app_bar_main3"
+            layout="@layout/app_bar_main_progressactivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

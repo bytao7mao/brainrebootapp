@@ -2,12 +2,16 @@ package com.taozen.quithabit;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -38,13 +42,15 @@ import me.itangqi.waveloadingview.WaveLoadingView;
 public class MainActivity extends AppCompatActivity
 implements NavigationView.OnNavigationItemSelectedListener{
 
+    static final int REQUEST_TAKE_PHOTO = 123;
+
     Handler handler;
     Timer timer;
 
     //view
     @BindView(android.R.id.content) View parentLayout;
     //fab
-//    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.fab) FloatingActionButton fab;
     //card views
     @BindView(R.id.progressCardId) CardView progressCardView;
     @BindView(R.id.progressCardId2) CardView savingsCardView;
@@ -55,7 +61,6 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
     @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
-
 
     //counter for user
     int counter;
@@ -86,14 +91,14 @@ implements NavigationView.OnNavigationItemSelectedListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
-        parentLayout = findViewById(R.id.mylayoutId);
+        parentLayout = findViewById(R.id.drawer_layout);
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -114,36 +119,6 @@ implements NavigationView.OnNavigationItemSelectedListener{
         waveLoadingView.setProgressValue(0);
         //animation speed :/
         waveLoadingView.setAnimDuration(2300);
-
-//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                waveLoadingView.setProgressValue(progress);
-//                if (progress < 50) {
-//                    waveLoadingView.setBottomTitle(String.format("%d", progress));
-//                    waveLoadingView.setCenterTitle("");
-//                    waveLoadingView.setTopTitle("");
-//                } else if (progress < 80) {
-//                    waveLoadingView.setBottomTitle("");
-//                    waveLoadingView.setTopTitle("");
-//                    waveLoadingView.setCenterTitle(String.format("%d", progress));
-//                } else {
-//                    waveLoadingView.setBottomTitle("");
-//                    waveLoadingView.setCenterTitle("");
-//                    waveLoadingView.setTopTitle(String.format("%d", progress));
-//                }
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
 
         //progress for percent - this is a circular bar
         progressBar = findViewById(R.id.progress_bar);
@@ -396,37 +371,37 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //active when user passed a day
         //inactive when user wait
         //counter++;
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                buttonClickedToday = true;
-//                editor.putBoolean("clicked", buttonClickedToday);
-//                updatePercent();
-//                resetProgressBar(progressPercent);
-//                //[calendar area]
-//                calendarOnClick = Calendar.getInstance();
-//                calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-////                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
-//                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
-//                editor.putInt("presentday", DAY_OF_CLICK);
-//                editor.putInt("progressPercent", progressPercent);
-//                editor.apply();
-//                counter++;
-//                savings = setTheSavingsPerDay(counter);
-//                targetDaysInitializer(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-//                editor.putInt("savings", savings);
-//                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-//                counterText.setText(String.valueOf(counter));
-//                editor.putInt("counter", counter);
-//                editor.apply();
-//                Log.d("taolenX", "counter from onclick = " + counter);
-//
-//                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//
-//                fab.hide();
-//            }
-//        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonClickedToday = true;
+                editor.putBoolean("clicked", buttonClickedToday);
+                updatePercent();
+                resetProgressBar(progressPercent);
+                //[calendar area]
+                calendarOnClick = Calendar.getInstance();
+                calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+//                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
+                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
+                editor.putInt("presentday", DAY_OF_CLICK);
+                editor.putInt("progressPercent", progressPercent);
+                editor.apply();
+                counter++;
+                savings = setTheSavingsPerDay(counter);
+                targetDaysInitializer(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                editor.putInt("savings", savings);
+                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                counterText.setText(String.valueOf(counter));
+                editor.putInt("counter", counter);
+                editor.apply();
+                Log.d("taolenX", "counter from onclick = " + counter);
+
+                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                fab.hide();
+            }
+        });
     }
 
     private void targetDaysInitializer(String string, int androiId, TextView textview, String secondString) {
@@ -586,7 +561,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     public void updateButton(){
         if (buttonClickedToday){
-//            fab.hide();
+            fab.hide();
         }
     }
 
@@ -597,12 +572,12 @@ implements NavigationView.OnNavigationItemSelectedListener{
             buttonClickedToday = false;
             editor.putBoolean("clicked", buttonClickedToday);
             editor.apply();
-//            fab.hide();
+            fab.hide();
             Log.d("taolenX", "buttonClickedToday from !=favoriteUserHourAM is " + buttonClickedToday);
             Log.d("taolenX", " counter = " + counter);
             //when days are the same and user already clicked
         } else if (DAY_OF_PRESENT == DAY_OF_CLICK && buttonClickedToday) {
-//            fab.hide();
+            fab.hide();
         }
     }
     public void greenCodition(){
@@ -610,7 +585,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             //to do
             //show the activate button
             Log.d("taolenX", "greenCodition WORKINGGGGG");
-//            fab.show();
+            fab.show();
             //instead of counter add dialog to ask user if he did his habit
             Log.i("taolenX", "counter from greenCodition in async is " + counter);
             //NEED SOME CHECKS/TESTS FOR THIS---TO SEE IF I NEED THIS BOOLEAN TO GET
@@ -623,7 +598,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     public void endOfTheYearCondition(){
         if ((DAY_OF_CLICK >= 365 && DAY_OF_PRESENT > 0) && (!buttonClickedToday)) {
-//            fab.show();
+            fab.show();
             //instead of counter add dialog to ask user if he did his habit
             //dialog and onclick counter++;
             Log.i("taolenX", "counter from endOfTheYearCondition in async is " + counter);
@@ -719,6 +694,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraIntent, 123);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -734,6 +711,13 @@ implements NavigationView.OnNavigationItemSelectedListener{
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void takePicture() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+        }
     }
 
 //    //MENU
@@ -784,4 +768,34 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //        return super.onOptionsItemSelected(item);
 //    }
     //[END OF MENU]
+
+    //        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                waveLoadingView.setProgressValue(progress);
+//                if (progress < 50) {
+//                    waveLoadingView.setBottomTitle(String.format("%d", progress));
+//                    waveLoadingView.setCenterTitle("");
+//                    waveLoadingView.setTopTitle("");
+//                } else if (progress < 80) {
+//                    waveLoadingView.setBottomTitle("");
+//                    waveLoadingView.setTopTitle("");
+//                    waveLoadingView.setCenterTitle(String.format("%d", progress));
+//                } else {
+//                    waveLoadingView.setBottomTitle("");
+//                    waveLoadingView.setCenterTitle("");
+//                    waveLoadingView.setTopTitle(String.format("%d", progress));
+//                }
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
 }

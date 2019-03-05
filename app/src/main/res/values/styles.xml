@@ -6,9 +6,7 @@
     </style>
 
     <style name="ParentMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
         <!-- Parent theme For all Pre - lollipop and lollipop above versions i.e. For all devices -->
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -45,10 +43,9 @@
     </style>
 
     <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Light">
-
         <item name="android:textColorPrimary">#fff</item>    <!-- Text Color of Toolbar Title  -->
         <item name="android:textColorSecondary">#fff</item>  <!-- Color of Overflow Menu ( 3 DOTS icon )
-                                                                    and color of Navigation Drawer Icon-->
+                                                         and color of Navigation Drawer Icon-->
     </style>
 
     <style name="PopupTheme" parent="ThemeOverlay.AppCompat.Light">

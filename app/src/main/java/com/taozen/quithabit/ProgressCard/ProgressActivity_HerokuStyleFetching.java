@@ -23,13 +23,12 @@ import android.widget.Toast;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.taozen.quithabit.Obj.Books;
-import com.taozen.quithabit.Old.ProgressActivity;
 import com.taozen.quithabit.R;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -76,6 +75,9 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(ProgressActivity_HerokuStyleFetching.this);
@@ -234,6 +236,11 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }//progressActivityClass[END]
 
 

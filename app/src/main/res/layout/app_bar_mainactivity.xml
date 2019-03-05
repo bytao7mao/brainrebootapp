@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NavigationDrawer.Main2Activity">
+    tools:context=".MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -19,14 +19,7 @@
             app:popupTheme="@style/MaterialTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/ScrollView01"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="60dp">
-    <include layout="@layout/content_main3" />
-    </ScrollView>
+
+    <include layout="@layout/content_mainactivity" />
 
 </android.support.design.widget.CoordinatorLayout>

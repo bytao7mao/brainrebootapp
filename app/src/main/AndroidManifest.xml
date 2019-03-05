@@ -5,6 +5,17 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--<uses-permission android:name="android.permission.CAMERA"/>-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -15,16 +26,11 @@
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".NavigationDrawer.Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/MaterialTheme.NoActionBar"></activity>
-        <activity
             android:name=".ProgressCard.FailLogsActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".ProgressCard.ProgressActivity_HerokuStyleFetching"
             tools:ignore="InnerclassSeparator" />
-        <activity android:name=".Old.ProgressActivity" />
         <activity android:name=".MainActivity"
             android:theme="@style/MaterialTheme.NoActionBar">
             <intent-filter>
@@ -36,7 +42,6 @@
         <activity
             android:name=".Intro.IntroActivity"
             android:label="app_intro" />
-        <activity android:name=".Old.ProgressKotlinActivity" />
         <activity android:name=".Test" />
         <activity android:name=".ProgressCard.SavingsActivity" />
     </application>
