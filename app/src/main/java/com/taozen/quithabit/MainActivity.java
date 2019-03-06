@@ -2,7 +2,6 @@ package com.taozen.quithabit;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -124,7 +123,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setProgress(10f);
         //format string of MAX target txt view
-        targetDaysInitializer2(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
+        setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
 
         //add font to counter number
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -186,7 +185,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             getTargetDays();
             savings = setTheSavingsPerDay(counter);
             Log.d("LOGG", "in oncreate "+"savings = " + savings + " counter = " + counter);
-            moneyOrTimeInitializer();
+            moneyOrTimeAndGetValueOfItFromSharedPreferences();
             counterText.setText(String.valueOf(counter));
             buttonClickedToday = preferences.getBoolean("clicked", false);
             progressPercent = preferences.getInt("progressPercent", 0);
@@ -388,7 +387,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
                 editor.apply();
                 counter++;
                 savings = setTheSavingsPerDay(counter);
-                targetDaysInitializer(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
                 editor.putInt("savings", savings);
                 Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
                 counterText.setText(String.valueOf(counter));
@@ -404,23 +403,23 @@ implements NavigationView.OnNavigationItemSelectedListener{
         });
     }
 
-    private void targetDaysInitializer(String string, int androiId, TextView textview, String secondString) {
+    private void setTxtViewForUserSavingValueOfMoneyOrTime(String string, int androiId, TextView textview, String secondString) {
         //target counter string
         String userMax = string;
         String target = getString(androiId, secondString, userMax);
         textview.setText(target);
     }
-    private void targetDaysInitializer2(String string, int androiId, TextView textview) {
+    private void setTxtViewForUserMaxCountDaysOnStringVersion(String string, int androiId, TextView textview) {
         //target counter string
         String userMaxString = string;
         String target = getString(androiId, userMaxString);
         textview.setText(target);
     }
 
-    private void moneyOrTimeInitializer() {
+    private void moneyOrTimeAndGetValueOfItFromSharedPreferences() {
         savings = preferences.getInt("savings", 0);
-        Log.d("LOGG", "in moneyOrTimeInitializer "+"savings = " + savings + " counter = " + counter);
-        targetDaysInitializer(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+        Log.d("LOGG", "in moneyOrTimeAndGetValueOfItFromSharedPreferences "+"savings = " + savings + " counter = " + counter);
+        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
     }
 
     private void getTargetDays() {
