@@ -10,27 +10,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
+        <item name="spinBars">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"></style>
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"></style>
-
-    <style name="menuColorButton" parent="@style/Widget.AppCompat.ActionButton.Overflow"></style>
-
-    <style name="customToolbarTheme" parent="Theme.AppCompat.NoActionBar"></style>
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
@@ -49,11 +32,8 @@
     </style>
 
     <style name="PopupTheme" parent="ThemeOverlay.AppCompat.Light">
-
-        <item name="android:textColorPrimary">@color/grey_500
-        </item>  <!-- Text color of Overflow Menu -->
-        <item name="android:background">@color/overflowMenuBg
-        </item>        <!-- Background of Overflow Menu -->
+        <item name="android:textColorPrimary">@color/grey_500</item>  <!-- Text color of Overflow Menu -->
+        <item name="android:background">@color/overflowMenuBg</item>        <!-- Background of Overflow Menu -->
 
     </style>
 

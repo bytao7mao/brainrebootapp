@@ -109,6 +109,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        progressCardView.setCardElevation(0);
+        savingsCardView.setCardElevation(0);
+        timeStampLogsCardview.setCardElevation(0);
+
 
         //wave loading
 //        seekBar = findViewById(R.id.seekbarId);
@@ -694,7 +698,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         if (id == R.id.nav_camera) {
             // Handle the camera action
             Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraIntent, 123);
+            startActivityForResult(cameraIntent, REQUEST_TAKE_PHOTO);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
