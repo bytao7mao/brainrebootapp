@@ -6,7 +6,7 @@
     <string name="add">add</string>
     <string name="target_string">target: %s</string>
     <string name="money_time">save this ammount of %s per day is = %s</string>
-    <string name="remaining_days">%s days till target</string>
+    <string name="remaining_days">%s days remaining</string>
     <string name="total_savings">This is your total savings: %s $</string>
 
 
@@ -40,5 +40,6 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="progressactivity_get_started">ProgressActivity \nGet started on the life you want</string>
 
 </resources>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--start of days counter-->
+<RelativeLayout
+    android:id="@+id/activity_main_body"
+    android:layout_width="match_parent"
+    android:layout_height="380dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="60dp"
+    tools:context=".MainActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include
+        android:id="@+id/body_maincardId"
+        layout="@layout/activity_main_body_maincard"
+        tools:context=".MainActivity"/>
+
+    <View
+        android:id="@+id/delimitationBarId"
+        style="@style/Divider"
+        android:layout_below="@id/body_maincardId"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/delimitationBarId">
+        <FrameLayout
+            android:id="@+id/frameCardId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/progressCardId"
+                android:layout_width="340dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="10dp"
+                app:cardCornerRadius="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.8"
+                    android:background="@drawable/lowera" />
+
+                <TextView
+                    android:id="@+id/progressActivityId"
+                    style="@style/TextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/progressCardId"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/progressactivity_get_started" />
+
+                <TextView
+                    android:id="@+id/txtProgressId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/frameCardId"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="20dp"
+                    android:text="0"
+                    style="@style/TextColor2" />
+
+                <com.budiyev.android.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="15dp"
+                    app:animateProgress="true"
+                    app:backgroundStrokeColor="#ff3f51b5"
+                    app:backgroundStrokeWidth="2dp"
+                    app:drawBackgroundStroke="true"
+                    app:foregroundStrokeCap="butt"
+                    app:foregroundStrokeColor="#ffff4081"
+                    app:foregroundStrokeWidth="5dp"
+                    app:indeterminate="false"
+                    app:indeterminateMinimumAngle="45"
+                    app:indeterminateRotationAnimationDuration="1200"
+                    app:indeterminateSweepAnimationDuration="600"
+                    app:maximum="100"
+                    app:progress="50"
+                    app:progressAnimationDuration="100"
+                    app:startAngle="270" />
+                <!--app:wlv_borderWidth="3dp"-->
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameCardId2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/frameCardId">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/progressCardId2"
+                android:layout_width="340dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="10dp"
+                app:cardCornerRadius="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.8"
+                    android:background="@drawable/cardlowered" />
+
+                <TextView
+                    android:id="@+id/moneyortimeId"
+                    style="@style/TextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Savings Total = 50$ or 50 hours" />
+
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameCardId3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/frameCardId2">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/progressCardId3"
+                android:layout_width="340dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="120dp"
+                app:cardCornerRadius="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.8"
+                    android:background="@drawable/test2" />
+
+                <TextView
+                    android:id="@+id/moneyortimeId2"
+                    style="@style/TextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="see your Personal logs - failures" />
+
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

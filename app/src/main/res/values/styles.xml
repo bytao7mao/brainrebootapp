@@ -35,6 +35,9 @@
     <style name="TextColor2">
         <item name="android:textColor">#C21753</item>
     </style>
+    <style name="TextColorErr">
+        <item name="android:textColor">#FF0000</item>
+    </style>
 
     <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColorPrimary">#fff</item>    <!-- Text Color of Toolbar Title  -->

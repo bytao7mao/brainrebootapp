@@ -1,9 +1,11 @@
 package com.taozen.quithabit;
 
-import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,22 +20,29 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
 import com.taozen.quithabit.ProgressCard.ProgressActivity_HerokuStyleFetching;
 import com.taozen.quithabit.ProgressCard.SavingsActivity;
+import com.taozen.quithabit.Retrofit.FromHerokuWithRetrofit;
+import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,9 +53,10 @@ import me.itangqi.waveloadingview.WaveLoadingView;
 
 public class MainActivity extends AppCompatActivity
 implements NavigationView.OnNavigationItemSelectedListener{
-
+    public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     static final int REQUEST_TAKE_PHOTO = 123;
-
+    Random ran;
+    List<MainActivity.MyAsyncTask> tasks;
     Handler handler;
     Timer timer;
 
@@ -68,6 +78,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtViewId;
     @BindView(R.id.progressActivityId) TextView progressActivityId;
     @BindView(R.id.moneyortimeId2) TextView moneyortimeId2;
+    @BindView(R.id.tvErrorId) TextView errorText;
+    //progressbar
+    @BindView(R.id.loadingProgressId)
+    ProgressBar progressBarLoading;
 
     //counter for user
     int counter;
@@ -88,8 +102,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    CircularProgressBar progressBar;
-//    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
+    CircularProgressBar progressBarCardMini, progressBarCardMain;
+    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
 //    SeekBar seekBar;
 
     //OnCreate
@@ -99,6 +113,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
         parentLayout = findViewById(R.id.drawer_layout);
+        tasks = new ArrayList<>();
+        ran = new Random();
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
@@ -107,35 +123,36 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //        setSupportActionBar(toolbar);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+//        NavigationView navigationView = findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
 
         progressCardView.setCardElevation(0);
         savingsCardView.setCardElevation(0);
         timeStampLogsCardview.setCardElevation(0);
         cardViewMain.setCardElevation(0);
 
+        checkActivityOnline();
+
 
         //wave loading
 //        seekBar = findViewById(R.id.seekbarId);
 
-//        waveLoadingViewBigger = findViewById(R.id.waveLoadingIdBigger);
-//        waveLoadingViewBigger.setProgressValue(30);
+        waveLoadingViewBigger = findViewById(R.id.waveLoadingIdBigger);
+        waveLoadingViewBigger.setProgressValue(30);
 //
 //        //animation speed :/
-//        waveLoadingViewBigger.setAnimDuration(2300);
+        waveLoadingViewBigger.setAnimDuration(2300);
 
         //progress for percent - this is a circular bar
-        progressBar = findViewById(R.id.progress_bar);
-        progressBar.setProgress(10f);
+        progressBarCardMini = findViewById(R.id.progress_bar);
+        progressBarCardMain = findViewById(R.id.progress_bar_outer);
+        progressBarCardMini.setProgress(10f);
         //format string of MAX target txt view
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
         //add font to counter number
@@ -211,7 +228,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
             counterText.setText(String.valueOf(counter));
             buttonClickedToday = preferences.getBoolean("clicked", false);
             progressPercent = preferences.getInt("progressPercent", 0);
-            progressBar.setProgress(progressPercent);
+            updatePercent();
+            progressBarCardMini.setProgress(progressPercent);
+            progressBarCardMain.setProgress(progressPercent);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
@@ -397,7 +416,6 @@ implements NavigationView.OnNavigationItemSelectedListener{
             public void onClick(View v) {
                 buttonClickedToday = true;
                 editor.putBoolean("clicked", buttonClickedToday);
-                updatePercent();
                 resetProgressBar(progressPercent);
                 //[calendar area]
                 calendarOnClick = Calendar.getInstance();
@@ -419,7 +437,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
                 Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-
+                getTargetDays();
                 fab.hide();
             }
         });
@@ -445,8 +463,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
     }
 
     private void getTargetDays() {
-        //remaining days
-        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter);
+        //remaining days -- + "  " for space between number of days and text
+        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "    ";
         String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
@@ -485,8 +503,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     public void startTheEngine() {
         try {
-            updatePercent();
-            progressBar.setProgress(progressPercent);
+            resetProgressBar(progressPercent);
+            progressBarCardMini.setProgress(progressPercent);
+            progressBarCardMain.setProgress(progressPercent);
             DAY_OF_CLICK = preferences.getInt("presentday", 0);
             buttonClickedToday = preferences.getBoolean("clicked", false);
             //[calendar area]
@@ -651,25 +670,27 @@ implements NavigationView.OnNavigationItemSelectedListener{
             progressPercent = 70;
         }else if (counter < userMaxCountForHabit*90/100){
             progressPercent = 80;
-        }else if (counter < userMaxCountForHabit*95/100 && counter > userMaxCountForHabit*90/100){
+        }else if (counter < userMaxCountForHabit*95/100 || counter > userMaxCountForHabit*90/100){
             progressPercent = 90;
         }else if (counter == userMaxCountForHabit){
-            progressPercent = 97;
-            handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    progressPercent = 100;
-                    editor.putInt("progressPercent", progressPercent);
-                    txtProgress.setText(progressPercent + " %");
-                }
-            }, 5000);
+            progressPercent = 100;
+//            handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    progressPercent = 100;
+//                    editor.putInt("progressPercent", progressPercent);
+//                    txtProgress.setText(progressPercent + " %");
+//                }
+//            }, 5000);
         }
         txtProgress.setText(progressPercent + " %");
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
-        Log.d("TAGG", progressPercent+" ");
-//        waveLoadingViewBigger.setProgressValue(progressPercent);
+        Log.d("TAGG", progressPercent+" progressPercent");
+        waveLoadingViewBigger.setProgressValue(progressPercent);
+        progressBarCardMain.setProgress(progressPercent);
+        progressBarCardMini.setProgress(progressPercent);
     }
 
 
@@ -701,6 +722,11 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            counter++;
+            counterText.setText(String.valueOf(counter));
+            editor.putInt("counter", counter);
+            editor.apply();
+            updatePercent();
             return true;
         }
 
@@ -819,4 +845,96 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //
 //            }
 //        });
+
+
+
+
+
+
+
+
+
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            return true;
+        } else {
+            return false;
+        }
+    }//isOnline[END]
+    private void requestDataById(String url, int id) {
+        MainActivity.MyAsyncTask task = new MainActivity.MyAsyncTask();
+        task.execute(url + "/" + id);
+    }
+    private void checkActivityOnline(){
+        if (isOnline()) {
+            int i = ran.nextInt(4) + 1;
+            int i2 = 5;
+            requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, i2);
+        } else {
+            errorText.setVisibility(View.VISIBLE);
+            tipofthedayTxtViewId.setText("ERROR fortyfour :(");
+            Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG).show();
+        }
+    }
+    protected void updateDisplayString(String message) {
+        tipofthedayTxtViewId.setText(message + "\n");
+    }
+    private class MyAsyncTask extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            updateDisplayString("Starting to fetch data from heroku ...");
+            if (tasks.size() == 0) {
+                progressBarLoading.setVisibility(View.VISIBLE);
+            }
+            //if we click we add a task
+            tasks.add(this);
+
+        }//onPreExecute[END]
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                //using GSON
+                JsonParser parser = new JsonParser();
+                //using MyHttpManager getData static method
+//              String content = MyHttpManager.getData(params[0]);
+
+                //using MyHttpCoreAndroid
+                String content = MyHttpCoreAndroid.getData(params[0]);
+                JsonElement rootNode = parser.parse(content);
+                JsonObject details = rootNode.getAsJsonObject();
+                JsonElement nameNode = details.get("name");
+                return nameNode.getAsString();
+
+
+//                return res;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }//using GSON[END]
+        }//doInBackground[END]
+
+        @Override
+        protected void onPostExecute(String result) {
+            //using raw JSON PARSER
+            updateDisplayString(result);
+            //we get rid of the task that we created
+            tasks.remove(this);
+            if (tasks.size() == 0) {
+                progressBarLoading.setVisibility(View.INVISIBLE);
+            }
+            if (result == null) {
+                Toast.makeText(MainActivity.this, "Can't connect to web service",
+                        Toast.LENGTH_LONG).show();
+            }
+        }//onPostExecute[END]
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            updateDisplayString(values[0]);
+        }//onProgressUpdate[END]
+    }//MyAsyncTask[END]
 }
