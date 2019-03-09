@@ -33,7 +33,8 @@ public class SavingsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        FromHerokuWithRetrofit.getValueFromHerokuServer();
+//        FromHerokuWithRetrofit.resp = FromHerokuWithRetrofit.returnStringFromServerWithRetrofit(2);
+//        Log.d("RETROFIT", "response: " + FromHerokuWithRetrofit.resp);
 
         getValueOfPercent();
     }

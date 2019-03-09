@@ -1,5 +1,6 @@
 package com.taozen.quithabit;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -17,6 +18,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,12 +58,16 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.progressCardId) CardView progressCardView;
     @BindView(R.id.progressCardId2) CardView savingsCardView;
     @BindView(R.id.progressCardId3) CardView timeStampLogsCardview;
+    @BindView(R.id.card_view_mainID) CardView cardViewMain;
     //text views
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressId) TextView txtProgress;
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
     @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
+    @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtViewId;
+    @BindView(R.id.progressActivityId) TextView progressActivityId;
+    @BindView(R.id.moneyortimeId2) TextView moneyortimeId2;
 
     //counter for user
     int counter;
@@ -81,7 +89,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     SharedPreferences.Editor editor;
 
     CircularProgressBar progressBar;
-    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
+//    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
 //    SeekBar seekBar;
 
     //OnCreate
@@ -100,6 +108,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -112,26 +121,35 @@ implements NavigationView.OnNavigationItemSelectedListener{
         progressCardView.setCardElevation(0);
         savingsCardView.setCardElevation(0);
         timeStampLogsCardview.setCardElevation(0);
+        cardViewMain.setCardElevation(0);
 
 
         //wave loading
 //        seekBar = findViewById(R.id.seekbarId);
-        waveLoadingView = findViewById(R.id.waveLoadingId);
-        waveLoadingViewBigger = findViewById(R.id.waveLoadingIdBigger);
-        waveLoadingViewBigger.setProgressValue(80);
-        waveLoadingView.setProgressValue(0);
-        //animation speed :/
-        waveLoadingView.setAnimDuration(2300);
+
+//        waveLoadingViewBigger = findViewById(R.id.waveLoadingIdBigger);
+//        waveLoadingViewBigger.setProgressValue(30);
+//
+//        //animation speed :/
+//        waveLoadingViewBigger.setAnimDuration(2300);
 
         //progress for percent - this is a circular bar
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setProgress(10f);
         //format string of MAX target txt view
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
-
         //add font to counter number
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
         counterText.setTypeface(typeface);
+        targetTxtViewId.setTypeface(typeface);
+        tipofthedayTxtViewId.setTypeface(typeface);
+        txtProgress.setTypeface(typeface);
+        moneyOrTimeTextView.setTypeface(typeface);
+        remainingDaysTxt.setTypeface(typeface);
+        progressActivityId.setTypeface(typeface);
+        moneyortimeId2.setTypeface(typeface);
+
+
 
         try {
             updatePercent();
@@ -651,7 +669,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
         Log.d("TAGG", progressPercent+" ");
-        waveLoadingView.setProgressValue(progressPercent);
+//        waveLoadingViewBigger.setProgressValue(progressPercent);
     }
 
 

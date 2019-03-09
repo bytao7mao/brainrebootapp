@@ -23,7 +23,11 @@ import android.widget.Toast;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.taozen.quithabit.Obj.Books;
 import com.taozen.quithabit.R;
+import com.taozen.quithabit.Retrofit.FromHerokuWithRetrofit;
+import com.taozen.quithabit.Retrofit.MessageService;
+import com.taozen.quithabit.Retrofit.ServiceBuilder;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
 
 import java.util.ArrayList;
@@ -33,8 +37,12 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
+    String res = "";
 
     @BindView(R.id.progressTextViewId)
     TextView progressPercentTextView;
@@ -180,6 +188,7 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             updateDisplayString("Starting to fetch data from heroku ...");
+            res = FromHerokuWithRetrofit.returnStringFromServerWithRetrofit(2);
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.VISIBLE);
                 progressBarLoading2.setVisibility(View.VISIBLE);
@@ -199,12 +208,16 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
                 JsonParser parser = new JsonParser();
                 //using MyHttpManager getData static method
 //              String content = MyHttpManager.getData(params[0]);
+
                 //using MyHttpCoreAndroid
                 String content = MyHttpCoreAndroid.getData(params[0]);
                 JsonElement rootNode = parser.parse(content);
                 JsonObject details = rootNode.getAsJsonObject();
                 JsonElement nameNode = details.get("name");
                 return nameNode.getAsString();
+
+
+//                return res;
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
