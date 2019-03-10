@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -137,7 +138,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
         timeStampLogsCardview.setCardElevation(0);
         cardViewMain.setCardElevation(0);
 
+        //check online state
         checkActivityOnline();
+        //set margin for counter
+        setTheMarginOfCounter();
 
 
         //wave loading
@@ -414,6 +418,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //set margin for counter
+                setTheMarginOfCounter();
                 buttonClickedToday = true;
                 editor.putBoolean("clicked", buttonClickedToday);
                 resetProgressBar(progressPercent);
@@ -503,7 +509,14 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     public void startTheEngine() {
         try {
+            updatePercent();
+            Log.d("TAGG", "try { counterText = " + counter);
+            setTheMarginOfCounter();
             resetProgressBar(progressPercent);
+            counter = preferences.getInt("counter", 0);
+            Log.d("TAGG", "resetProgressBar = " + counter);
+            counterText.setText(String.valueOf(counter));
+            Log.d("TAGG", "counter = preferences.getInt(\"counter\", 0); = " + counter);
             progressBarCardMini.setProgress(progressPercent);
             progressBarCardMain.setProgress(progressPercent);
             DAY_OF_CLICK = preferences.getInt("presentday", 0);
@@ -591,8 +604,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
     private void resetProgressBar(Integer progressBar){
         updatePercent();
         if (progressBar == 100) {
+            //to do: if press yes go counter = 1
             progressPercent = 0;
-            counter = 0;
+            counter = 1;
+            counterText.setText(counter);
             editor.putInt("counter", counter);
             editor.putInt("progressPercent", progressPercent);
             editor.apply();
@@ -674,6 +689,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
             progressPercent = 90;
         }else if (counter == userMaxCountForHabit){
             progressPercent = 100;
+            counter = 1;
+            editor.putInt("counter", counter);
+            editor.apply();
+            Log.d("TAGG2", "counter == userMaxCountForHabit = " + counter);
 //            handler = new Handler();
 //            handler.postDelayed(new Runnable() {
 //                @Override
@@ -684,7 +703,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //                }
 //            }, 5000);
         }
+        Log.d("TAGG2", "counter in %%% = " + counter);
         txtProgress.setText(progressPercent + " %");
+        editor.putInt("counter", counter);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
         Log.d("TAGG", progressPercent+" progressPercent");
@@ -937,4 +958,23 @@ implements NavigationView.OnNavigationItemSelectedListener{
             updateDisplayString(values[0]);
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
+
+    private void setTheMarginOfCounter(){
+        // Get the TextView current LayoutParams
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) counterText.getLayoutParams();
+//        int val = Integer.parseInt(String.valueOf(counterText));
+        if (counter < 10) {
+            // Set TextView layout margin 25 pixels to all side
+            // Left Top Right Bottom Margin
+            lp.setMargins(DptoPxConvertion(110),0,0,0);
+            // Apply the updated layout parameters to TextView
+            counterText.setLayoutParams(lp);
+        } else if (counter > 10 || counter <= userMaxCountForHabit){
+            lp.setMargins(DptoPxConvertion(95),0,0,0);
+            counterText.setLayoutParams(lp);
+        }
+    }
+    private int DptoPxConvertion(int dpValue) {
+        return (int)((dpValue * getApplicationContext().getResources().getDisplayMetrics().density) + 0.5);
+    }
 }
