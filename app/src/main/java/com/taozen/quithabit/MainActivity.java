@@ -37,7 +37,6 @@ import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
 import com.taozen.quithabit.ProgressCard.ProgressActivity_HerokuStyleFetching;
 import com.taozen.quithabit.ProgressCard.SavingsActivity;
-import com.taozen.quithabit.Retrofit.FromHerokuWithRetrofit;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
 
 import java.util.ArrayList;
@@ -78,7 +77,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
     @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtViewId;
     @BindView(R.id.progressActivityId) TextView progressActivityId;
-    @BindView(R.id.moneyortimeId2) TextView moneyortimeId2;
+    @BindView(R.id.moneyortimeId2) TextView failLogsTxtView;
     @BindView(R.id.tvErrorId) TextView errorText;
     @BindView(R.id.TxttilliquitsmokingId) TextView tilliquitsmokingTxtView;
     //progressbar
@@ -163,15 +162,21 @@ implements NavigationView.OnNavigationItemSelectedListener{
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
         //add font to counter number
         Typeface montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
+        Typeface montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
+        Typeface montSerratLightTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.ttf");
+        Typeface montSerratMediumTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Medium.ttf");
+        Typeface montSerratSemiBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.ttf");
+        Typeface montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
+
         counterText.setTypeface(montSerratBoldTypeface);
-        targetTxtViewId.setTypeface(montSerratBoldTypeface);
-        tipofthedayTxtViewId.setTypeface(montSerratBoldTypeface);
-        txtProgress.setTypeface(montSerratBoldTypeface);
-        moneyOrTimeTextView.setTypeface(montSerratBoldTypeface);
-        remainingDaysTxt.setTypeface(montSerratBoldTypeface);
-        progressActivityId.setTypeface(montSerratBoldTypeface);
-        moneyortimeId2.setTypeface(montSerratBoldTypeface);
-        tilliquitsmokingTxtView.setTypeface(montSerratBoldTypeface);
+        targetTxtViewId.setTypeface(montSerratMediumTypeface);
+        tipofthedayTxtViewId.setTypeface(montSerratItallicTypeface);
+        txtProgress.setTypeface(montSerratMediumTypeface);
+        moneyOrTimeTextView.setTypeface(montSerratMediumTypeface);
+        remainingDaysTxt.setTypeface(montSerratMediumTypeface);
+        progressActivityId.setTypeface(montSerratMediumTypeface);
+        failLogsTxtView.setTypeface(montSerratMediumTypeface);
+        tilliquitsmokingTxtView.setTypeface(montSerratExtraBoldTypeface);
 
 
 

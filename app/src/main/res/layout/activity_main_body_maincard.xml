@@ -103,15 +103,7 @@
                     android:layout_marginLeft="-20dp"
                     android:layout_centerVertical="true"/>
                 <!--android:layout_marginLeft="95dp"-->
-                <TextView
-                    android:id="@+id/TxttilliquitsmokingId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/counterImageId"
-                    style="@style/TextColor"
-                    android:textSize="20sp"
-                    android:text="Till i quit smoking"
-                    android:layout_centerHorizontal="true"/>
+
                 <TextView
                     android:id="@+id/counterTextId"
                     android:layout_width="wrap_content"
@@ -132,6 +124,18 @@
                     android:visibility="invisible" />
             </RelativeLayout>
             <!--end of days counter-->
+            <TextView
+                android:id="@+id/TxttilliquitsmokingId"
+                style="@style/TextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rltvlayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-20dp"
+                android:alpha="0.9"
+                android:text="Non-smoker since"
+                android:textSize="20sp" />
+            <!--android:text="Since i've quit smoking"android:text="Non-smoker since"-->
 
             <LinearLayout
                 android:layout_width="match_parent"
