@@ -65,13 +65,13 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="33.5dp">
 
-                <!--app:wlv_borderWidth="3dp"android:layout_marginTop="52dp"-->
+                <!--app:wlv_borderWidth="3dp"android:layout_marginTop="52dp"android:layout_marginLeft="50dp"-->
                 <me.itangqi.waveloadingview.WaveLoadingView
                     android:id="@+id/waveLoadingIdBigger"
                     android:layout_width="163dp"
                     android:layout_height="163dp"
                     android:layout_marginTop="43dp"
-                    android:layout_marginLeft="50dp"
+                    android:layout_centerHorizontal="true"
 
                     app:wlv_borderColor="@color/colorPrimary"
                     app:wlv_round_rectangle="true"
@@ -100,13 +100,24 @@
                     android:layout_width="240dp"
                     android:layout_height="240dp"
                     android:src="@drawable/days"
+                    android:layout_marginLeft="-20dp"
                     android:layout_centerVertical="true"/>
+                <!--android:layout_marginLeft="95dp"-->
+                <TextView
+                    android:id="@+id/TxttilliquitsmokingId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/counterImageId"
+                    style="@style/TextColor"
+                    android:textSize="20sp"
+                    android:text="Till i quit smoking"
+                    android:layout_centerHorizontal="true"/>
                 <TextView
                     android:id="@+id/counterTextId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="95dp"
+                    android:layout_centerHorizontal="true"
                     android:text="1"
                     android:alpha="0.9"
                     style="@style/TextColor"
@@ -132,6 +143,7 @@
                     android:id="@+id/targetImageId"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="5dp"
                     android:src="@drawable/target" />
@@ -167,7 +179,7 @@
                     android:id="@+id/remaining_days_Id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-25dp"
+                    android:layout_marginLeft="-30dp"
                     android:layout_marginTop="10dp"
                     style="@style/TextColor"
                     android:layout_toRightOf="@id/progress_bar_outer"

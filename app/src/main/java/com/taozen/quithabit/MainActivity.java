@@ -80,6 +80,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.progressActivityId) TextView progressActivityId;
     @BindView(R.id.moneyortimeId2) TextView moneyortimeId2;
     @BindView(R.id.tvErrorId) TextView errorText;
+    @BindView(R.id.TxttilliquitsmokingId) TextView tilliquitsmokingTxtView;
     //progressbar
     @BindView(R.id.loadingProgressId)
     ProgressBar progressBarLoading;
@@ -142,7 +143,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //check online state
         checkActivityOnline();
         //set margin for counter
-        setTheMarginOfCounter();
+//        setTheMarginOfCounter();
 
 
         //wave loading
@@ -161,15 +162,16 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //format string of MAX target txt view
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
         //add font to counter number
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
-        counterText.setTypeface(typeface);
-        targetTxtViewId.setTypeface(typeface);
-        tipofthedayTxtViewId.setTypeface(typeface);
-        txtProgress.setTypeface(typeface);
-        moneyOrTimeTextView.setTypeface(typeface);
-        remainingDaysTxt.setTypeface(typeface);
-        progressActivityId.setTypeface(typeface);
-        moneyortimeId2.setTypeface(typeface);
+        Typeface montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
+        counterText.setTypeface(montSerratBoldTypeface);
+        targetTxtViewId.setTypeface(montSerratBoldTypeface);
+        tipofthedayTxtViewId.setTypeface(montSerratBoldTypeface);
+        txtProgress.setTypeface(montSerratBoldTypeface);
+        moneyOrTimeTextView.setTypeface(montSerratBoldTypeface);
+        remainingDaysTxt.setTypeface(montSerratBoldTypeface);
+        progressActivityId.setTypeface(montSerratBoldTypeface);
+        moneyortimeId2.setTypeface(montSerratBoldTypeface);
+        tilliquitsmokingTxtView.setTypeface(montSerratBoldTypeface);
 
 
 
@@ -422,7 +424,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             @Override
             public void onClick(View v) {
                 //set margin for counter
-                setTheMarginOfCounter();
+//                setTheMarginOfCounter();
                 buttonClickedToday = true;
                 editor.putBoolean("clicked", buttonClickedToday);
                 resetProgressBar(progressPercent);
@@ -473,7 +475,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     private void getTargetDays() {
         //remaining days -- + "  " for space between number of days and text
-        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "    ";
+        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
         String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
@@ -514,7 +516,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         try {
             updatePercent();
             Log.d("TAGG", "try { counterText = " + counter);
-            setTheMarginOfCounter();
+//            setTheMarginOfCounter();
             resetProgressBar(progressPercent);
             counter = preferences.getInt("counter", 0);
             Log.d("TAGG", "resetProgressBar = " + counter);
@@ -708,7 +710,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //            }, 5000);
         }
         Log.d("TAGG2", "counter in %%% = " + counter);
-        txtProgress.setText(progressPercent + " %");
+        txtProgress.setText(progressPercent + "%");
         editor.putInt("counter", counter);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
