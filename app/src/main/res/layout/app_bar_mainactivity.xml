@@ -9,15 +9,23 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/MaterialTheme.AppBarOverlay">
-
+        app:elevation="0dp"
+        android:background="@color/white"
+        android:translationZ="0.1dp"
+        android:theme="@style/MaterialTheme.NoActionBar">
+        <!--android:background="?attr/colorPrimary"-->
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:titleTextAppearance="@style/TitleBarTextAppearance"
-            app:popupTheme="@style/MaterialTheme.PopupOverlay" />
+            app:titleTextAppearance="@style/TitleBarTextAppearance2"
+            app:popupTheme="@style/MaterialTheme.NoActionBar" />
+        <!--android:layout_marginTop="?attr/actionBarSize"-->
+        <View
+            android:id="@+id/delimitationBarId"
+            style="@style/Divider"
+            android:layout_height="0.2dp"
+            android:background="@android:color/darker_gray" />
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_mainactivity" />

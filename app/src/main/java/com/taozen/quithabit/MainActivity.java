@@ -122,8 +122,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        getSupportActionBar().setElevation(0); //remove shadow
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -172,8 +173,11 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 
 
+
         try {
+            counter = preferences.getInt("counter", 0);
             updatePercent();
+            Log.d("counterval", "try { on creat " + counter);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -224,12 +228,11 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
         //retrieving the counter, progressPercent and minute values
         try {
-            counter = preferences.getInt("counter", 0);
             getTargetDays();
             savings = setTheSavingsPerDay(counter);
             Log.d("LOGG", "in oncreate "+"savings = " + savings + " counter = " + counter);
             moneyOrTimeAndGetValueOfItFromSharedPreferences();
-            counterText.setText(String.valueOf(counter));
+            Log.d("counterval", "counter value = " + counter);
             buttonClickedToday = preferences.getBoolean("clicked", false);
             progressPercent = preferences.getInt("progressPercent", 0);
             updatePercent();
@@ -595,6 +598,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     protected void onDestroy() {
         super.onDestroy();
         editor.putInt("counter", counter);
+        Log.d("counterval", "onDestroy " + counter);
         editor.putInt("progressPercent", progressPercent);
         editor.putBoolean("clicked", buttonClickedToday);
         editor.apply();
@@ -744,6 +748,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             counter++;
+            Calendar calendar = Calendar.getInstance();
+            int zet = calendar.get(Calendar.MINUTE);
+            editor.putInt("presentday", zet);
             counterText.setText(String.valueOf(counter));
             editor.putInt("counter", counter);
             editor.apply();
@@ -906,6 +913,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
     private class MyAsyncTask extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
+            counter = preferences.getInt("counter", counter);
+            counterText.setText(String.valueOf(counter));
             updateDisplayString("Starting to fetch data from heroku ...");
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.VISIBLE);

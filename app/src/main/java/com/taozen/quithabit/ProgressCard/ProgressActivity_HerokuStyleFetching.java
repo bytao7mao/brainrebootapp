@@ -81,7 +81,7 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
         final View parentLayout = findViewById(android.R.id.content);
         ButterKnife.bind(ProgressActivity_HerokuStyleFetching.this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
