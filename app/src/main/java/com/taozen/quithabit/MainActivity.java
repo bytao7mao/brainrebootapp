@@ -528,7 +528,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             DAY_OF_PRESENT = calendarForProgress.get(Calendar.MINUTE);
             Log.d("taolenZ", "DAY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
             if (counter >= userMaxCountForHabit){
-                counter = 0;
+                counter = 1;
 
                 progressPercent=0;
             }
