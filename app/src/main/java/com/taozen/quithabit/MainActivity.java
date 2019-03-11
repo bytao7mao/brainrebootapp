@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -83,6 +84,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
     //progressbar
     @BindView(R.id.loadingProgressId)
     ProgressBar progressBarLoading;
+    //image view
+    @BindView(R.id.counterImageId)
+    ImageView counterImgView;
 
     //counter for user
     int counter;
@@ -480,7 +484,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     private void getTargetDays() {
         //remaining days -- + "  " for space between number of days and text
-        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
+        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "    ";
         String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
@@ -925,6 +929,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
             updateDisplayString("Starting to fetch data from heroku ...");
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.VISIBLE);
+                counterImgView.setVisibility(View.INVISIBLE);
+                counterText.setVisibility(View.INVISIBLE);
             }
             //if we click we add a task
             tasks.add(this);
@@ -962,6 +968,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
             tasks.remove(this);
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.INVISIBLE);
+                counterImgView.setVisibility(View.VISIBLE);
+                counterText.setVisibility(View.VISIBLE
+
+                );
             }
             if (result == null) {
                 Toast.makeText(MainActivity.this, "Can't connect to web service",

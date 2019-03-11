@@ -32,6 +32,7 @@
                     android:id="@+id/tipImageId"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:src="@drawable/idea" />
 
@@ -40,6 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:paddingRight="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@id/tipImageId"
                     style="@style/TextColor"
@@ -60,17 +62,17 @@
 
             <RelativeLayout
                 android:id="@+id/rltvlayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="33.5dp">
+                android:layout_marginTop="73.5dp">
 
                 <!--app:wlv_borderWidth="3dp"android:layout_marginTop="52dp"android:layout_marginLeft="50dp"-->
                 <me.itangqi.waveloadingview.WaveLoadingView
                     android:id="@+id/waveLoadingIdBigger"
                     android:layout_width="163dp"
                     android:layout_height="163dp"
-                    android:layout_marginTop="43dp"
+                    android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
 
                     app:wlv_borderColor="@color/colorPrimary"
@@ -95,12 +97,16 @@
                     app:wlv_waveAmplitude="70"
                     android:alpha="0.9"
                     app:wlv_waveColor="@color/colorAccent" />
+                <!--android:layout_width="240dp"-->
+                <!--android:layout_height="240dp"android:scaleType="centerCrop"-->
                 <ImageView
                     android:id="@+id/counterImageId"
-                    android:layout_width="240dp"
-                    android:layout_height="240dp"
-                    android:src="@drawable/days"
+                    android:layout_width="163dp"
+                    android:layout_height="163dp"
+
+                    android:src="@drawable/dayshd"
                     android:layout_marginLeft="-20dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
                 <!--android:layout_marginLeft="95dp"-->
 
@@ -131,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rltvlayout"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="-20dp"
+                android:layout_marginTop="5dp"
                 android:alpha="0.9"
                 android:text="Non-smoker since"
                 android:textSize="20sp" />
@@ -183,7 +189,7 @@
                     android:id="@+id/remaining_days_Id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-30dp"
+                    android:layout_marginLeft="-25dp"
                     android:layout_marginTop="10dp"
                     style="@style/TextColor"
                     android:layout_toRightOf="@id/progress_bar_outer"
