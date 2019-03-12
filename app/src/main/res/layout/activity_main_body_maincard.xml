@@ -34,7 +34,7 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
-                    android:src="@drawable/idea" />
+                    android:src="@drawable/tipsofday" />
 
                 <ProgressBar
                     android:id="@+id/loadingProgressId2"
@@ -166,7 +166,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="5dp"
-                    android:src="@drawable/target" />
+                    android:src="@drawable/milestone" />
                 <TextView
                     android:id="@+id/targetTxtViewId"
                     android:layout_width="wrap_content"

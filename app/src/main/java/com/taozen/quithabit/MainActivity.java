@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -35,6 +37,7 @@ import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
 import com.taozen.quithabit.ProgressCard.ProgressActivity_HerokuStyleFetching;
@@ -85,6 +88,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.moneyortimeId2) TextView failLogsTxtView;
     @BindView(R.id.tvErrorId) TextView errorText;
     @BindView(R.id.TxttilliquitsmokingId) TextView tilliquitsmokingTxtView;
+    @BindView(R.id.textProg) TextView textProg;
+    @BindView(R.id.textProg2) TextView textProg2;
+    @BindView(R.id.textProg22) TextView textProg22;
+    @BindView(R.id.textProg3) TextView textProg3;
     //progressbar
     @BindView(R.id.loadingProgressId)
     ProgressBar progressBarLoading;
@@ -136,6 +143,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN
         );
+
+        setDrawableLeft();
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -197,6 +206,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
         progressActivityId.setTypeface(montSerratMediumTypeface);
         failLogsTxtView.setTypeface(montSerratMediumTypeface);
         tilliquitsmokingTxtView.setTypeface(montSerratExtraBoldTypeface);
+        textProg.setTypeface(montSerratMediumTypeface);
+        textProg2.setTypeface(montSerratMediumTypeface);
+        textProg22.setTypeface(montSerratMediumTypeface);
+        textProg3.setTypeface(montSerratMediumTypeface);
 
 
 
@@ -495,7 +508,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     private void moneyOrTimeAndGetValueOfItFromSharedPreferences() {
         savings = preferences.getInt("savings", 0);
         Log.d("LOGG", "in moneyOrTimeAndGetValueOfItFromSharedPreferences "+"savings = " + savings + " counter = " + counter);
-        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("money"));
     }
 
     private void getTargetDays() {
@@ -786,6 +799,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
             editor.apply();
             updatePercent();
             return true;
+        } else if (id == R.id.action_about) {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -1023,5 +1040,13 @@ implements NavigationView.OnNavigationItemSelectedListener{
     }
     private int DptoPxConvertion(int dpValue) {
         return (int)((dpValue * getApplicationContext().getResources().getDisplayMetrics().density) + 0.5);
+    }
+
+    private void setDrawableLeft(){
+        Drawable drawable = getResources().getDrawable(R.mipmap.savings);
+        drawable.setBounds(0, 0, (int) (drawable.getIntrinsicWidth() * 0.6),
+                (int) (drawable.getIntrinsicHeight() * 0.6));
+        ScaleDrawable sd = new ScaleDrawable(drawable, 0, 40, 40);
+        moneyOrTimeTextView.setCompoundDrawables(sd.getDrawable(), null, null, null);
     }
 }

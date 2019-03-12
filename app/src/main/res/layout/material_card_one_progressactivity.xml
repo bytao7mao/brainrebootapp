@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/album_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/life"
+                android:src="@drawable/test"
                 android:padding="@dimen/card_album_padding"
                 android:clickable="true"
                 android:scaleType="fitXY" />
