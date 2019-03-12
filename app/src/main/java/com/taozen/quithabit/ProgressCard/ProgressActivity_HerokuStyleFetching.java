@@ -3,6 +3,7 @@ package com.taozen.quithabit.ProgressCard;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -80,6 +81,10 @@ public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
 
         final View parentLayout = findViewById(android.R.id.content);
         ButterKnife.bind(ProgressActivity_HerokuStyleFetching.this);
+
+        progressBarLoading3.getIndeterminateDrawable().setColorFilter(
+                getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN
+        );
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

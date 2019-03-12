@@ -3,6 +3,7 @@ package com.taozen.quithabit;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -73,6 +74,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
     //text views
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressId) TextView txtProgress;
+    @BindView(R.id.txtProgressId2) TextView txtProgress2;
+    @BindView(R.id.txtProgressId22) TextView txtProgress22;
+    @BindView(R.id.txtProgressId3) TextView txtProgress3;
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
     @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
@@ -84,6 +88,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     //progressbar
     @BindView(R.id.loadingProgressId)
     ProgressBar progressBarLoading;
+    @BindView(R.id.loadingProgressId2) ProgressBar progressBarLoading2;
     //image view
     @BindView(R.id.counterImageId)
     ImageView counterImgView;
@@ -123,6 +128,14 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
+
+
+        progressBarLoading.getIndeterminateDrawable().setColorFilter(
+                getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN
+        );
+        progressBarLoading2.getIndeterminateDrawable().setColorFilter(
+                getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN
+        );
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -176,6 +189,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
         targetTxtViewId.setTypeface(montSerratMediumTypeface);
         tipofthedayTxtViewId.setTypeface(montSerratItallicTypeface);
         txtProgress.setTypeface(montSerratMediumTypeface);
+        txtProgress2.setTypeface(montSerratMediumTypeface);
+        txtProgress22.setTypeface(montSerratMediumTypeface);
+        txtProgress3.setTypeface(montSerratMediumTypeface);
         moneyOrTimeTextView.setTypeface(montSerratMediumTypeface);
         remainingDaysTxt.setTypeface(montSerratMediumTypeface);
         progressActivityId.setTypeface(montSerratMediumTypeface);
@@ -720,6 +736,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
         }
         Log.d("TAGG2", "counter in %%% = " + counter);
         txtProgress.setText(progressPercent + "%");
+        txtProgress2.setText(progressPercent + "%");
+        txtProgress22.setText(progressPercent + "%");
+        txtProgress3.setText(progressPercent + "%");
         editor.putInt("counter", counter);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
@@ -929,6 +948,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             updateDisplayString("Starting to fetch data from heroku ...");
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.VISIBLE);
+                progressBarLoading2.setVisibility(View.VISIBLE);
                 counterImgView.setVisibility(View.INVISIBLE);
                 counterText.setVisibility(View.INVISIBLE);
             }
@@ -942,9 +962,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
             try {
                 //using GSON
                 JsonParser parser = new JsonParser();
+
                 //using MyHttpManager getData static method
 //              String content = MyHttpManager.getData(params[0]);
-
+                Thread.sleep(3000);
                 //using MyHttpCoreAndroid
                 String content = MyHttpCoreAndroid.getData(params[0]);
                 JsonElement rootNode = parser.parse(content);
@@ -968,9 +989,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
             tasks.remove(this);
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.INVISIBLE);
+                progressBarLoading2.setVisibility(View.GONE);
                 counterImgView.setVisibility(View.VISIBLE);
                 counterText.setVisibility(View.VISIBLE
-
                 );
             }
             if (result == null) {

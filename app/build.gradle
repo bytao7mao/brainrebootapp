@@ -25,8 +25,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //firebase
     implementation 'com.google.firebase:firebase-core:16.0.7'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    implementation 'com.google.firebase:firebase-database:16.0.6'
+    implementation 'com.google.firebase:firebase-messaging:17.4.0'
+//    implementation 'com.google.firebase:firebase-database:16.0.6'
     //google
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-places:16.0.0'

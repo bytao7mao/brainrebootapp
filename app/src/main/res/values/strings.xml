@@ -40,6 +40,6 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="progressactivity_get_started">ProgressActivity \nGet started on the life you want</string>
+    <string name="progressactivity_get_started">Get started on the life you want</string>
 
 </resources>

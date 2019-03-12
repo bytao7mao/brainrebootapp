@@ -68,6 +68,9 @@
 
     </style>
 
+    <style name="BarLoading" parent="Widget.AppCompat.ProgressBar">
+        <item name="colorAccent">@color/white</item></style>
+
     <style name="MaterialTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
     </style>
 

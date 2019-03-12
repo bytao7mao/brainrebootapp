@@ -36,6 +36,14 @@
                     android:layout_marginLeft="5dp"
                     android:src="@drawable/idea" />
 
+                <ProgressBar
+                    android:id="@+id/loadingProgressId2"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/tipofthedayTxtViewId"
                     android:layout_width="wrap_content"
@@ -66,6 +74,14 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="73.5dp">
+
+                <ProgressBar
+                    android:id="@+id/loadingProgressId"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible" />
 
                 <!--app:wlv_borderWidth="3dp"android:layout_marginTop="52dp"android:layout_marginLeft="50dp"-->
                 <me.itangqi.waveloadingview.WaveLoadingView
@@ -121,13 +137,7 @@
                     style="@style/TextColor"
                     android:textSize="60sp" />
 
-                <ProgressBar
-                    android:id="@+id/loadingProgressId"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:visibility="invisible" />
+
             </RelativeLayout>
             <!--end of days counter-->
             <TextView
