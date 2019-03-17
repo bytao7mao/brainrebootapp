@@ -83,7 +83,6 @@
                     android:layout_centerInParent="true"
                     android:visibility="invisible" />
 
-                <!--app:wlv_borderWidth="3dp"android:layout_marginTop="52dp"android:layout_marginLeft="50dp"-->
                 <me.itangqi.waveloadingview.WaveLoadingView
                     android:id="@+id/waveLoadingIdBigger"
                     android:layout_width="163dp"
@@ -113,8 +112,7 @@
                     app:wlv_waveAmplitude="70"
                     android:alpha="0.9"
                     app:wlv_waveColor="@color/colorAccent" />
-                <!--android:layout_width="240dp"-->
-                <!--android:layout_height="240dp"android:scaleType="centerCrop"-->
+
                 <ImageView
                     android:id="@+id/counterImageId"
                     android:layout_width="163dp"
