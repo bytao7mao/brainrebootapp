@@ -83,35 +83,35 @@
                     android:layout_centerInParent="true"
                     android:visibility="invisible" />
 
-                <me.itangqi.waveloadingview.WaveLoadingView
-                    android:id="@+id/waveLoadingIdBigger"
-                    android:layout_width="163dp"
-                    android:layout_height="163dp"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
+                <!--<me.itangqi.waveloadingview.WaveLoadingView-->
+                    <!--android:id="@+id/waveLoadingIdBigger"-->
+                    <!--android:layout_width="163dp"-->
+                    <!--android:layout_height="163dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_centerHorizontal="true"-->
 
-                    app:wlv_borderColor="@color/colorPrimary"
-                    app:wlv_round_rectangle="true"
-                    app:wlv_shapeType="circle"
-                    app:wlv_titleBottomColor="@color/white"
-                    app:wlv_titleBottomSize="24dp"
-                    app:wlv_titleBottomStrokeColor="@android:color/holo_blue_dark"
-                    app:wlv_titleBottomStrokeWidth="3dp"
-                    app:wlv_titleCenterColor="@color/white"
+                    <!--app:wlv_borderColor="@color/colorPrimary"-->
+                    <!--app:wlv_round_rectangle="true"-->
+                    <!--app:wlv_shapeType="circle"-->
+                    <!--app:wlv_titleBottomColor="@color/white"-->
+                    <!--app:wlv_titleBottomSize="24dp"-->
+                    <!--app:wlv_titleBottomStrokeColor="@android:color/holo_blue_dark"-->
+                    <!--app:wlv_titleBottomStrokeWidth="3dp"-->
+                    <!--app:wlv_titleCenterColor="@color/white"-->
 
-                    app:wlv_titleCenterSize="24dp"
-                    app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"
-                    app:wlv_titleCenterStrokeWidth="3dp"
-                    app:wlv_titleTopColor="@color/white"
+                    <!--app:wlv_titleCenterSize="24dp"-->
+                    <!--app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"-->
+                    <!--app:wlv_titleCenterStrokeWidth="3dp"-->
+                    <!--app:wlv_titleTopColor="@color/white"-->
 
-                    app:wlv_titleTopSize="24dp"
-                    app:wlv_titleTopStrokeColor="@android:color/holo_blue_dark"
-                    app:wlv_titleTopStrokeWidth="3dp"
-                    app:wlv_triangle_direction="north"
+                    <!--app:wlv_titleTopSize="24dp"-->
+                    <!--app:wlv_titleTopStrokeColor="@android:color/holo_blue_dark"-->
+                    <!--app:wlv_titleTopStrokeWidth="3dp"-->
+                    <!--app:wlv_triangle_direction="north"-->
 
-                    app:wlv_waveAmplitude="70"
-                    android:alpha="0.9"
-                    app:wlv_waveColor="@color/colorAccent" />
+                    <!--app:wlv_waveAmplitude="70"-->
+                    <!--android:alpha="0.9"-->
+                    <!--app:wlv_waveColor="@color/colorAccent" />-->
 
                 <ImageView
                     android:id="@+id/counterImageId"

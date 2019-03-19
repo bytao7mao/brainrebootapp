@@ -120,7 +120,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     SharedPreferences.Editor editor;
 
     CircularProgressBar progressBarCardMini, progressBarCardMain;
-    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
+//    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
 //    SeekBar seekBar;
 
     //OnCreate
@@ -174,11 +174,11 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //wave loading
 //        seekBar = findViewById(R.id.seekbarId);
 
-        waveLoadingViewBigger = findViewById(R.id.waveLoadingIdBigger);
-        waveLoadingViewBigger.setProgressValue(30);
-//
-//        //animation speed :/
-        waveLoadingViewBigger.setAnimDuration(2300);
+//        waveLoadingViewBigger = findViewById(R.id.waveLoadingIdBigger);
+//        waveLoadingViewBigger.setProgressValue(30);
+////
+////        //animation speed :/
+//        waveLoadingViewBigger.setAnimDuration(2300);
 
         //progress for percent - this is a circular bar
         progressBarCardMini = findViewById(R.id.progress_bar);
@@ -756,7 +756,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
         Log.d("TAGG", progressPercent+" progressPercent");
-        waveLoadingViewBigger.setProgressValue(progressPercent);
+//        waveLoadingViewBigger.setProgressValue(progressPercent);
         progressBarCardMain.setProgress(progressPercent);
         progressBarCardMini.setProgress(progressPercent);
     }
@@ -774,39 +774,39 @@ implements NavigationView.OnNavigationItemSelectedListener{
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main2, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            counter++;
-//            Calendar calendar = Calendar.getInstance();
-//            int zet = calendar.get(Calendar.MINUTE);
-//            editor.putInt("presentday", zet);
-//            counterText.setText(String.valueOf(counter));
-//            editor.putInt("counter", counter);
-//            editor.apply();
-//            updatePercent();
-//            return true;
-//        } else if (id == R.id.action_about) {
-//            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-//            startActivity(intent);
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            counter++;
+            Calendar calendar = Calendar.getInstance();
+            int zet = calendar.get(Calendar.MINUTE);
+            editor.putInt("presentday", zet);
+            counterText.setText(String.valueOf(counter));
+            editor.putInt("counter", counter);
+            editor.apply();
+            updatePercent();
+            return true;
+        } else if (id == R.id.action_about) {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
