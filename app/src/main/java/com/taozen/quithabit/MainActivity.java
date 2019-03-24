@@ -3,6 +3,7 @@ package com.taozen.quithabit;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -17,6 +18,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -135,6 +137,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
+
+//        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.grey_800));
 
 
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
@@ -545,7 +549,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
                             }//run from runonuithread
                         });//runonuithread
                     }//run from Timertask
-                }, 100, 1000);//Timertask
+                }, 0, 10000);//Timertask
             }//run from async
         });//async
     }//runningInBackground

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#03A9F4</color>
-    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorPrimary">#E91E63</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorPrimaryLight">#B3E5FC</color>
     <color name="colorAccent">#FF4081</color>
     <color name="primary_text">#212121</color>
@@ -17,11 +17,9 @@
     <color name="blue">#6095D5</color>
     <color name="vanilla">#FFFAD1</color>
 
-
-
-    <color name="windowBackground">#FFFFFF</color>
+    <color name="windowBackground">#FF0000</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="overflowMenuBg">#fffcfff6</color>
+    <color name="overflowMenuBg">#A6FF00</color>
 
     <!-- Grey Color Shades -->
     <color name="grey_25">#FDFDFD</color>

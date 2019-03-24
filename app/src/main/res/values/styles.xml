@@ -1,10 +1,13 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="MaterialTheme" parent="ParentMaterialTheme">
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="android:windowActionBarOverlay">true</item>
+
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="ParentMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -48,33 +51,16 @@
         <item name="android:textColor">#FF0000</item>
     </style>
 
-    <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:textColor">@color/grey_800</item>
-        <item name="android:colorForeground">#3C3C3C</item>
-        <item name="android:textColorPrimary">#3C3C3C</item>    <!-- Text Color of Toolbar Title  -->
-        <item name="android:textColorSecondary">#444444</item>  <!-- Color of Overflow Menu ( 3 DOTS icon )
-                                                         and color of Navigation Drawer Icon-->
-    </style>
-
-    <style name="PopupTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:textColorPrimary">@color/grey_500</item>  <!-- Text color of Overflow Menu -->
-        <item name="android:background">@color/overflowMenuBg</item>        <!-- Background of Overflow Menu -->
-
-    </style>
-
     <style name="MaterialTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
     </style>
 
     <style name="BarLoading" parent="Widget.AppCompat.ProgressBar">
         <item name="colorAccent">@color/white</item></style>
 
-    <style name="MaterialTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
-    </style>
-
-    <style name="MaterialTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
-    </style>
+    <!--<style name="statusBarStyle" parent="@android:style/Theme.DeviceDefault.Light">-->
+        <!--<item name="android:statusBarColor">@color/grey_50</item>-->
+        <!--<item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
+    <!--</style>-->
 
 </resources>
