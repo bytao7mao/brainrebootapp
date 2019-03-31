@@ -29,7 +29,7 @@
         android:layout_margin="10dp"
         android:layout_below="@id/delimitationBarId">
         <FrameLayout
-            android:id="@+id/frameCardId"
+            android:id="@+id/frameCardIdStatistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -227,7 +227,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_below="@id/frameCardId">
+            android:layout_below="@id/frameCardIdStatistics">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/YourProgressCardId"
@@ -245,20 +245,61 @@
                     android:id="@+id/YourProgressImgId"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:background="@mipmap/savemoney" />
+                    android:background="@mipmap/plant" />
                 <!--android:layout_marginTop="30dp"-->
+
                 <TextView
                     android:id="@+id/YourProgressId"
                     style="@style/TextColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Your entire progress" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextColor"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toRightOf="@id/savingsImgId"
+                    android:text="cigarates not smoked = 3 x days"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextColor"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toRightOf="@id/savingsImgId"
+                    android:text="rank: PRO"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextColor"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="75dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toRightOf="@id/savingsImgId"
+                    android:text="Life regained: 20 hours"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextColor"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="95dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toRightOf="@id/savingsImgId"
+                    android:text="Cravings resisted: 0"/>
 
             </android.support.v7.widget.CardView>
         </FrameLayout>
@@ -282,30 +323,51 @@
                     android:alpha="0.8"
                     android:background="@drawable/cardlowerl" />
 
-                <ImageView
-                    android:id="@+id/YourAchievmentsImgId"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@mipmap/savemoney" />
-                <!--android:layout_marginTop="30dp"-->
                 <TextView
                     android:id="@+id/YourAchievmentsId"
                     style="@style/TextColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="70dp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_toRightOf="@id/savingsImgId"
                     android:text="Your achievments" />
+
+                <ImageView
+                    android:id="@+id/achievmentImgId"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:background="@mipmap/success" />
+
+                <ImageView
+                    android:id="@+id/rankOneId"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginLeft="65dp"
+                    android:background="@mipmap/chevrona" />
+                <ImageView
+                    android:id="@+id/rankTwoId"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center|center_vertical"
+                    android:background="@mipmap/chevronb" />
+                <ImageView
+                    android:id="@+id/rankThreeId"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginRight="65dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="@mipmap/chevronc" />
+                <!--android:layout_marginTop="30dp"-->
 
             </android.support.v7.widget.CardView>
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/frameCardId2"
+            android:id="@+id/frameCardIdMoneySaved"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -327,7 +389,7 @@
                     android:id="@+id/savingsImgId"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:background="@mipmap/savemoney" />
                 <!--android:layout_marginTop="30dp"-->
@@ -346,11 +408,11 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/frameCardId3"
+            android:id="@+id/frameCardIdpersonalLogs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_below="@id/frameCardId2">
+            android:layout_below="@id/frameCardIdMoneySaved">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardId3"
@@ -369,7 +431,7 @@
                     android:id="@+id/logsImgId"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:background="@mipmap/logs" />
 

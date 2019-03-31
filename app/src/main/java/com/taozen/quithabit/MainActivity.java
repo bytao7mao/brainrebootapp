@@ -1046,11 +1046,11 @@ implements NavigationView.OnNavigationItemSelectedListener{
         return (int)((dpValue * getApplicationContext().getResources().getDisplayMetrics().density) + 0.5);
     }
 
-    private void setDrawableLeft(){
-        Drawable drawable = getResources().getDrawable(R.mipmap.savings);
-        drawable.setBounds(0, 0, (int) (drawable.getIntrinsicWidth() * 0.6),
-                (int) (drawable.getIntrinsicHeight() * 0.6));
-        ScaleDrawable sd = new ScaleDrawable(drawable, 0, 40, 40);
-        moneyOrTimeTextView.setCompoundDrawables(sd.getDrawable(), null, null, null);
-    }
+//    private void setDrawableLeft(){
+//        Drawable drawable = getResources().getDrawable(R.mipmap.savings);
+//        drawable.setBounds(0, 0, (int) (drawable.getIntrinsicWidth() * 0.6),
+//                (int) (drawable.getIntrinsicHeight() * 0.6));
+//        ScaleDrawable sd = new ScaleDrawable(drawable, 0, 40, 40);
+//        moneyOrTimeTextView.setCompoundDrawables(sd.getDrawable(), null, null, null);
+//    }
 }
