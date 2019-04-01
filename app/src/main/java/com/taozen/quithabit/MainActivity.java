@@ -35,6 +35,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anupcowkur.herebedragons.SideEffect;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -76,6 +77,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.progressCardId2) CardView savingsCardView;
     @BindView(R.id.progressCardId3) CardView timeStampLogsCardview;
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
+    @BindView(R.id.YourAchievmentsCardId) CardView achievmentCard;
     //text views
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressId) TextView txtProgress;
@@ -140,13 +142,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 //        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.grey_800));
 
-
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN
-        );
+                getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN
-        );
+                getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
 
 //        setDrawableLeft();
 
@@ -168,6 +167,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         savingsCardView.setCardElevation(0);
         timeStampLogsCardview.setCardElevation(0);
         cardViewMain.setCardElevation(0);
+        achievmentCard.setCardElevation(0);
 
         //check online state
         checkActivityOnline();
@@ -229,6 +229,13 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //intro activity check in a separate thread
         startIntroActivity();
 
+        achievmentCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AchievmentsActivity.class);
+                startActivity(intent);
+            }
+        });
         //GOTO percent Activity
         progressCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -427,6 +434,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 
 
+    @SideEffect
     private void startIntroActivity() {
         //intro
         //code for INTRO
@@ -457,7 +465,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         });
         threadForSlider.start();//end of INTRO
     }
-
+    @SideEffect
     private void counterFabButtonInitializer() {
         //active when user passed a day
         //inactive when user wait
@@ -473,8 +481,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
                 //[calendar area]
                 calendarOnClick = Calendar.getInstance();
                 calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-//                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
-                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
+                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
+//                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
                 editor.putInt("presentday", DAY_OF_CLICK);
                 editor.putInt("progressPercent", progressPercent);
                 editor.apply();
@@ -530,6 +538,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     }
 
     //running task
+    @SideEffect
     private void runningInBackground(){
         AsyncTask.execute(new Runnable() {
             @Override
@@ -554,6 +563,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         });//async
     }//runningInBackground
 
+    @SideEffect
     public void startTheEngine() {
         try {
             updatePercent();
@@ -571,12 +581,11 @@ implements NavigationView.OnNavigationItemSelectedListener{
             //[calendar area]
             calendarForProgress = Calendar.getInstance();
             calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-//          DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
-            DAY_OF_PRESENT = calendarForProgress.get(Calendar.MINUTE);
+          DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+//            DAY_OF_PRESENT = calendarForProgress.get(Calendar.MINUTE);
             Log.d("taolenZ", "DAY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
             if (counter >= userMaxCountForHabit){
                 counter = 1;
-
                 progressPercent=0;
             }
             editor.putInt("counter", counter);
@@ -668,6 +677,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         }
     }
 
+    @SideEffect
     public void updateConditionGreenState() {
         //when click day is lower than today (present) && button was already clicked
         //we make the boolean false (in order for greenCondition to work) and for enabling button
@@ -683,6 +693,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             fab.hide();
         }
     }
+    @SideEffect
     public void greenCodition(){
         if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday) {
             //to do
@@ -699,6 +710,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         }
     }
 
+    @SideEffect
     public void endOfTheYearCondition(){
         if ((DAY_OF_CLICK >= 365 && DAY_OF_PRESENT > 0) && (!buttonClickedToday)) {
             fab.show();
@@ -712,6 +724,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         }
     }
 
+    @SideEffect
     public void updatePercent(){
         if (counter < userMaxCountForHabit*9/100){
             progressPercent = 10;
@@ -927,12 +940,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 
 
-
-
-
-
-
-
+    @SideEffect
     protected boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -947,6 +955,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         MainActivity.MyAsyncTask task = new MainActivity.MyAsyncTask();
         task.execute(url + "/" + id);
     }
+    @SideEffect
     private void checkActivityOnline(){
         if (isOnline()) {
             int i = ran.nextInt(4) + 1;

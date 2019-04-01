@@ -72,6 +72,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     //about page library
     implementation 'com.github.Shashank02051997:FancyAboutPage-Android:2.6'
+    //here be dragons - a plugin for seeing the methods used
+    implementation 'com.anupcowkur:here-be-dragons-annotation:1.0.1'
 
 
 }
