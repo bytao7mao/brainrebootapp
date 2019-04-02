@@ -103,6 +103,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
     //image view
     @BindView(R.id.counterImageId)
     ImageView counterImgView;
+    @BindView(R.id.rankOneId) ImageView rankOneImg;
+    @BindView(R.id.rankTwoId) ImageView rankTwoImg;
+    @BindView(R.id.rankThreeId) ImageView rankThreeImg;
 
     //counter for user
     int counter;
@@ -219,6 +222,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 
         try {
+            setImagesForAchievmentCard();
             counter = preferences.getInt("counter", 0);
             updatePercent();
             Log.d("counterval", "try { on creat " + counter);
@@ -566,6 +570,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @SideEffect
     public void startTheEngine() {
         try {
+//            setImagesForAchievmentCard();
             updatePercent();
             Log.d("TAGG", "try { counterText = " + counter);
 //            setTheMarginOfCounter();
@@ -957,6 +962,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
     }
     @SideEffect
     private void checkActivityOnline(){
+        //TODO replace ran.next with int i to be equal to the present day
+        //ex: DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+        //int i = DAY_OF_PRESENT;
+        //for this to work i have to provide 366 quotes
         if (isOnline()) {
             int i = ran.nextInt(4) + 1;
             int i2 = 5;
@@ -1021,8 +1030,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
                 progressBarLoading.setVisibility(View.INVISIBLE);
                 progressBarLoading2.setVisibility(View.GONE);
                 counterImgView.setVisibility(View.VISIBLE);
-                counterText.setVisibility(View.VISIBLE
-                );
+                counterText.setVisibility(View.VISIBLE);
             }
             if (result == null) {
                 Toast.makeText(MainActivity.this, "Can't connect to web service",
@@ -1062,4 +1070,47 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //        ScaleDrawable sd = new ScaleDrawable(drawable, 0, 40, 40);
 //        moneyOrTimeTextView.setCompoundDrawables(sd.getDrawable(), null, null, null);
 //    }
+
+    @SideEffect
+    private void setImagesForAchievmentCard(){
+        counter = preferences.getInt("counter", counter);
+        //TODO to replace with if else
+        switch (counter){
+            case 3:
+            case 4:
+            case 5:
+                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setAlpha(0.2f);
+                break;
+            case 6:
+            case 7:
+            case 8:
+                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setAlpha(0.2f);
+            case 9:
+                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                break;
+            case 10:
+                rankOneImg.setBackgroundResource(R.mipmap.chevron11);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                break;
+            default:
+                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankOneImg.setAlpha(0.2f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setAlpha(0.2f);
+                break;
+        }
+    }
+
 }

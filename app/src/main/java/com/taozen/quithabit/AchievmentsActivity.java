@@ -17,17 +17,20 @@ public class AchievmentsActivity extends AppCompatActivity {
     String[] listviewTitle = new String[]{
             "ListView Title 1", "ListView Title 2", "ListView Title 3", "ListView Title 4",
             "ListView Title 5", "ListView Title 6", "ListView Title 7", "ListView Title 8",
-            "ListView Title 8", "ListView Title 8", "ListView Title 8", "ListView Title 8"};
+            "ListView Title 8", "ListView Title 8", "ListView Title 8", "ListView Title 8",
+    "last title chevron"};
 
     int[] listviewImage = new int[]{
-            R.mipmap.chevron, R.mipmap.chevron, R.mipmap.chevron, R.mipmap.chevron,
-            R.mipmap.chevron, R.mipmap.chevron, R.mipmap.chevron, R.mipmap.chevron,
-            R.mipmap.chevron, R.mipmap.chevron, R.mipmap.chevron, R.mipmap.chevron};
+            R.mipmap.chevron7, R.mipmap.chevron8, R.mipmap.chevron9, R.mipmap.chevron11,
+            R.mipmap.chevron16, R.mipmap.chevron17, R.mipmap.chevron18, R.mipmap.chevron10,
+            R.mipmap.chevron3, R.mipmap.chevron4, R.mipmap.chevron5, R.mipmap.chevron6,
+    R.mipmap.chevron12};
 
     String[] listviewShortDescription = new String[]{
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
-            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description"};
+            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
+    "last chevron"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
