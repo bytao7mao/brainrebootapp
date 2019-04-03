@@ -222,6 +222,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 
         try {
+            //setting the achievments images for user
             setImagesForAchievmentCard();
             counter = preferences.getInt("counter", 0);
             updatePercent();
@@ -967,9 +968,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //int i = DAY_OF_PRESENT;
         //for this to work i have to provide 366 quotes
         if (isOnline()) {
-            int i = ran.nextInt(4) + 1;
-            int i2 = 5;
-            requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, i2);
+            //int i = ran.nextInt(366)+1; to add 1000 quotes or so
+            int i = 5;
+            requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, i);
         } else {
             errorText.setVisibility(View.VISIBLE);
             tipofthedayTxtViewId.setText("ERROR fortyfour :(");
@@ -993,7 +994,6 @@ implements NavigationView.OnNavigationItemSelectedListener{
             }
             //if we click we add a task
             tasks.add(this);
-
         }//onPreExecute[END]
 
         @Override
@@ -1011,8 +1011,6 @@ implements NavigationView.OnNavigationItemSelectedListener{
                 JsonObject details = rootNode.getAsJsonObject();
                 JsonElement nameNode = details.get("name");
                 return nameNode.getAsString();
-
-
 //                return res;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1044,24 +1042,24 @@ implements NavigationView.OnNavigationItemSelectedListener{
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
 
-    private void setTheMarginOfCounter(){
-        // Get the TextView current LayoutParams
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) counterText.getLayoutParams();
-//        int val = Integer.parseInt(String.valueOf(counterText));
-        if (counter < 10) {
-            // Set TextView layout margin 25 pixels to all side
-            // Left Top Right Bottom Margin
-            lp.setMargins(DptoPxConvertion(110),0,0,0);
-            // Apply the updated layout parameters to TextView
-            counterText.setLayoutParams(lp);
-        } else if (counter > 10 || counter <= userMaxCountForHabit){
-            lp.setMargins(DptoPxConvertion(95),0,0,0);
-            counterText.setLayoutParams(lp);
-        }
-    }
-    private int DptoPxConvertion(int dpValue) {
-        return (int)((dpValue * getApplicationContext().getResources().getDisplayMetrics().density) + 0.5);
-    }
+//    private void setTheMarginOfCounter(){
+//        // Get the TextView current LayoutParams
+//        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) counterText.getLayoutParams();
+////        int val = Integer.parseInt(String.valueOf(counterText));
+//        if (counter < 10) {
+//            // Set TextView layout margin 25 pixels to all side
+//            // Left Top Right Bottom Margin
+//            lp.setMargins(DptoPxConvertion(110),0,0,0);
+//            // Apply the updated layout parameters to TextView
+//            counterText.setLayoutParams(lp);
+//        } else if (counter > 10 || counter <= userMaxCountForHabit){
+//            lp.setMargins(DptoPxConvertion(95),0,0,0);
+//            counterText.setLayoutParams(lp);
+//        }
+//    }
+//    private int DptoPxConvertion(int dpValue) {
+//        return (int)((dpValue * getApplicationContext().getResources().getDisplayMetrics().density) + 0.5);
+//    }
 
 //    private void setDrawableLeft(){
 //        Drawable drawable = getResources().getDrawable(R.mipmap.savings);
@@ -1074,42 +1072,33 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @SideEffect
     private void setImagesForAchievmentCard(){
         counter = preferences.getInt("counter", counter);
-        //TODO to replace with if else
-        switch (counter){
-            case 3:
-            case 4:
-            case 5:
-                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-                rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-                rankThreeImg.setAlpha(0.2f);
-                break;
-            case 6:
-            case 7:
-            case 8:
-                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-                rankThreeImg.setAlpha(0.2f);
-            case 9:
-                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-                break;
-            case 10:
-                rankOneImg.setBackgroundResource(R.mipmap.chevron11);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-                break;
-            default:
-                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-                rankOneImg.setAlpha(0.2f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-                rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-                rankThreeImg.setAlpha(0.2f);
-                break;
+        if (counter>1&&counter<8){//user have between a day and a week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankTwoImg.setAlpha(0.2f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+            rankThreeImg.setAlpha(0.2f);
+        } else if (counter>7&&counter<14) {//when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+            rankThreeImg.setAlpha(0.2f);
+        } else if (counter==14){//when user reach 2 weeks
+            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+        } else if (counter==15){//user receive the great blue badge for those 2 weeks
+            rankOneImg.setBackgroundResource(R.mipmap.chevron11);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+        }//TODO the rest of badges to receive
+            else {
+            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankOneImg.setAlpha(0.2f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankTwoImg.setAlpha(0.2f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+            rankThreeImg.setAlpha(0.2f);
         }
     }
 
