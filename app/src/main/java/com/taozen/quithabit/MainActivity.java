@@ -89,13 +89,19 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
     @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtViewId;
     @BindView(R.id.progressActivityId) TextView progressActivityId;
-    @BindView(R.id.moneyortimeId2) TextView failLogsTxtView;
+    @BindView(R.id.logsTxtId) TextView failLogsTxtView;
     @BindView(R.id.tvErrorId) TextView errorText;
     @BindView(R.id.TxttilliquitsmokingId) TextView tilliquitsmokingTxtView;
     @BindView(R.id.textProg) TextView textProg;
     @BindView(R.id.textProg2) TextView textProg2;
     @BindView(R.id.textProg22) TextView textProg22;
     @BindView(R.id.textProg3) TextView textProg3;
+    @BindView(R.id.YourAchievmentsId) TextView yourAchievmentTxt;
+    @BindView(R.id.YourProgressId) TextView yourProgressTxt;
+    @BindView(R.id.YourProgressIda) TextView yourProgressTxta;
+    @BindView(R.id.YourProgressIdb) TextView yourProgressTxtb;
+    @BindView(R.id.YourProgressIdc) TextView yourProgressTxtc;
+    @BindView(R.id.YourProgressIdd) TextView yourProgressTxtd;
     //progressbar
     @BindView(R.id.loadingProgressId)
     ProgressBar progressBarLoading;
@@ -208,15 +214,21 @@ implements NavigationView.OnNavigationItemSelectedListener{
         txtProgress2.setTypeface(montSerratMediumTypeface);
         txtProgress22.setTypeface(montSerratMediumTypeface);
         txtProgress3.setTypeface(montSerratMediumTypeface);
-        moneyOrTimeTextView.setTypeface(montSerratMediumTypeface);
+        moneyOrTimeTextView.setTypeface(montSerratLightTypeface);
         remainingDaysTxt.setTypeface(montSerratMediumTypeface);
         progressActivityId.setTypeface(montSerratMediumTypeface);
-        failLogsTxtView.setTypeface(montSerratMediumTypeface);
+        failLogsTxtView.setTypeface(montSerratLightTypeface);
         tilliquitsmokingTxtView.setTypeface(montSerratExtraBoldTypeface);
         textProg.setTypeface(montSerratMediumTypeface);
         textProg2.setTypeface(montSerratMediumTypeface);
         textProg22.setTypeface(montSerratMediumTypeface);
         textProg3.setTypeface(montSerratMediumTypeface);
+        yourAchievmentTxt.setTypeface(montSerratLightTypeface);
+        yourProgressTxt.setTypeface(montSerratLightTypeface);
+        yourProgressTxta.setTypeface(montSerratLightTypeface);
+        yourProgressTxtb.setTypeface(montSerratLightTypeface);
+        yourProgressTxtc.setTypeface(montSerratLightTypeface);
+        yourProgressTxtd.setTypeface(montSerratLightTypeface);
 
 
 

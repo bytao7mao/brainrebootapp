@@ -20,7 +20,12 @@
                 android:id="@+id/backgroundImgViewId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/brozs" />
+                android:background="@color/grey_200" />
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:alpha="0.2"-->
+                <!--android:background="@drawable/brozsb" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,7 +39,7 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
-                    android:src="@drawable/tipsofday" />
+                    android:src="@drawable/lightbulb" />
 
                 <ProgressBar
                     android:id="@+id/loadingProgressId2"
@@ -52,7 +57,7 @@
                     android:paddingRight="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@id/tipImageId"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:text="Today you can be whatever you want!" />
 
                 <TextView
@@ -83,41 +88,10 @@
                     android:layout_centerInParent="true"
                     android:visibility="invisible" />
 
-                <!--<me.itangqi.waveloadingview.WaveLoadingView-->
-                    <!--android:id="@+id/waveLoadingIdBigger"-->
-                    <!--android:layout_width="163dp"-->
-                    <!--android:layout_height="163dp"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:layout_centerHorizontal="true"-->
-
-                    <!--app:wlv_borderColor="@color/colorPrimary"-->
-                    <!--app:wlv_round_rectangle="true"-->
-                    <!--app:wlv_shapeType="circle"-->
-                    <!--app:wlv_titleBottomColor="@color/white"-->
-                    <!--app:wlv_titleBottomSize="24dp"-->
-                    <!--app:wlv_titleBottomStrokeColor="@android:color/holo_blue_dark"-->
-                    <!--app:wlv_titleBottomStrokeWidth="3dp"-->
-                    <!--app:wlv_titleCenterColor="@color/white"-->
-
-                    <!--app:wlv_titleCenterSize="24dp"-->
-                    <!--app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"-->
-                    <!--app:wlv_titleCenterStrokeWidth="3dp"-->
-                    <!--app:wlv_titleTopColor="@color/white"-->
-
-                    <!--app:wlv_titleTopSize="24dp"-->
-                    <!--app:wlv_titleTopStrokeColor="@android:color/holo_blue_dark"-->
-                    <!--app:wlv_titleTopStrokeWidth="3dp"-->
-                    <!--app:wlv_triangle_direction="north"-->
-
-                    <!--app:wlv_waveAmplitude="70"-->
-                    <!--android:alpha="0.9"-->
-                    <!--app:wlv_waveColor="@color/colorAccent" />-->
-
                 <ImageView
                     android:id="@+id/counterImageId"
                     android:layout_width="163dp"
                     android:layout_height="163dp"
-
                     android:src="@drawable/dayshd"
                     android:layout_marginLeft="-20dp"
                     android:layout_centerHorizontal="true"
@@ -132,7 +106,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="1"
                     android:alpha="0.9"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:textSize="60sp" />
 
 
@@ -140,7 +114,7 @@
             <!--end of days counter-->
             <TextView
                 android:id="@+id/TxttilliquitsmokingId"
-                style="@style/TextColor"
+                style="@style/TextColorBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rltvlayout"
@@ -164,14 +138,14 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="5dp"
-                    android:src="@drawable/milestone" />
+                    android:src="@drawable/target" />
                 <TextView
                     android:id="@+id/targetTxtViewId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/targetImageId"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:text="Current target: " />
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_outer"
@@ -199,12 +173,222 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-25dp"
                     android:layout_marginTop="10dp"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:layout_toRightOf="@id/progress_bar_outer"
                     android:text="@string/remaining_days" />
             </LinearLayout>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
+
+    <View
+        android:id="@+id/delimitationBarId"
+        style="@style/Divider"
+        android:layout_below="@id/card_view_mainID"
+        android:background="@android:color/darker_gray" />
+
+    <FrameLayout
+        android:id="@+id/frameCardIdStatistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/delimitationBarId">
+        <!--android:layout_margin="10dp"-->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/progressCardId"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/grey_200" />
+
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:alpha="0.2"-->
+                <!--android:background="@drawable/parttwo" />-->
+
+            <TextView
+                android:id="@+id/progressActivityId"
+                style="@style/TextColorBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/progressCardId"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/progressactivity_get_started" />
+
+            <TextView
+                android:id="@+id/txtProgressId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="36dp"
+                android:layout_gravity="end|center_vertical"
+                android:text="0"
+                android:textSize="17sp"
+                style="@style/TextColor2" />
+            <TextView
+                android:id="@+id/txtProgressId2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="-40dp"
+                android:layout_gravity="center|center_vertical"
+                android:text="0"
+                android:textSize="17sp"
+                style="@style/TextColor2" />
+            <TextView
+                android:id="@+id/txtProgressId22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_gravity="center|center_vertical"
+                android:text="0"
+                android:textSize="17sp"
+                style="@style/TextColor2" />
+            <TextView
+                android:id="@+id/txtProgressId3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_gravity="start|center_vertical"
+                android:text="0"
+                android:textSize="17sp"
+                style="@style/TextColor2" />
+
+
+            <TextView
+                android:id="@+id/textProg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginEnd="40dp"
+                android:layout_gravity="end|bottom"
+                android:text="gums"
+                style="@style/TextColorBlack" />
+            <TextView
+                android:id="@+id/textProg2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="-40dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center|bottom"
+                android:text="breath"
+                style="@style/TextColorBlack" />
+            <TextView
+                android:id="@+id/textProg22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center|bottom"
+                android:text="fatigue"
+                style="@style/TextColorBlack" />
+            <TextView
+                android:id="@+id/textProg3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="start|bottom"
+                android:text="energy"
+                style="@style/TextColorBlack" />
+
+            <com.budiyev.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="25dp"
+                app:animateProgress="true"
+                app:backgroundStrokeColor="#ff3f51b5"
+                app:backgroundStrokeWidth="2dp"
+                app:drawBackgroundStroke="true"
+                app:foregroundStrokeCap="butt"
+                app:foregroundStrokeColor="#ffff4081"
+                app:foregroundStrokeWidth="7dp"
+                app:indeterminate="false"
+                app:indeterminateMinimumAngle="45"
+                app:indeterminateRotationAnimationDuration="1200"
+                app:indeterminateSweepAnimationDuration="600"
+                app:maximum="100"
+                app:progress="50"
+                app:progressAnimationDuration="100"
+                app:startAngle="270" />
+            <!--app:wlv_borderWidth="3dp"-->
+
+            <com.budiyev.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginRight="-40dp"
+                app:animateProgress="true"
+                app:backgroundStrokeColor="#ff3f51b5"
+                app:backgroundStrokeWidth="2dp"
+                app:drawBackgroundStroke="true"
+                app:foregroundStrokeCap="butt"
+                app:foregroundStrokeColor="#ffff4081"
+                app:foregroundStrokeWidth="7dp"
+                app:indeterminate="false"
+                app:indeterminateMinimumAngle="45"
+                app:indeterminateRotationAnimationDuration="1200"
+                app:indeterminateSweepAnimationDuration="600"
+                app:maximum="100"
+                app:progress="50"
+                app:progressAnimationDuration="100"
+                app:startAngle="270" />
+            <!--app:wlv_borderWidth="3dp"-->
+
+            <com.budiyev.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar22"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center|center_vertical"
+                android:layout_marginRight="40dp"
+                app:animateProgress="true"
+                app:backgroundStrokeColor="#ff3f51b5"
+                app:backgroundStrokeWidth="2dp"
+                app:drawBackgroundStroke="true"
+                app:foregroundStrokeCap="butt"
+                app:foregroundStrokeColor="#ffff4081"
+                app:foregroundStrokeWidth="7dp"
+                app:indeterminate="false"
+                app:indeterminateMinimumAngle="45"
+                app:indeterminateRotationAnimationDuration="1200"
+                app:indeterminateSweepAnimationDuration="600"
+                app:maximum="100"
+                app:progress="50"
+                app:progressAnimationDuration="100"
+                app:startAngle="270" />
+            <com.budiyev.android.circularprogressbar.CircularProgressBar
+                android:id="@+id/progress_bar3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginRight="25dp"
+                app:animateProgress="true"
+                app:backgroundStrokeColor="#ff3f51b5"
+                app:backgroundStrokeWidth="2dp"
+                app:drawBackgroundStroke="true"
+                app:foregroundStrokeCap="butt"
+                app:foregroundStrokeColor="#ffff4081"
+                app:foregroundStrokeWidth="7dp"
+                app:indeterminate="false"
+                app:indeterminateMinimumAngle="45"
+                app:indeterminateRotationAnimationDuration="1200"
+                app:indeterminateSweepAnimationDuration="600"
+                app:maximum="100"
+                app:progress="50"
+                app:progressAnimationDuration="100"
+                app:startAngle="270" />
+            <!--app:wlv_borderWidth="3dp"-->
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
 
 </RelativeLayout>

@@ -15,7 +15,7 @@ public class AboutActivity extends AppCompatActivity {
 
         FancyAboutPage fancyAboutPage=findViewById(R.id.fancyaboutpage);
         //fancyAboutPage.setCoverTintColor(Color.BLUE);  //Optional
-        fancyAboutPage.setCover(R.drawable.test); //Pass your cover image
+        fancyAboutPage.setCover(R.drawable.dayshd); //Pass your cover image
         fancyAboutPage.setName("Marius Nicolae");
         fancyAboutPage.setDescription("Google Certified Associate Android Developer | Android App, Game, Web and Software Developer.");
         fancyAboutPage.setAppIcon(R.drawable.cakepop); //Pass your app icon image

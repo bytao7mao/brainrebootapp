@@ -28,206 +28,12 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:layout_below="@id/delimitationBarId">
-        <FrameLayout
-            android:id="@+id/frameCardIdStatistics"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/progressCardId"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                app:cardCornerRadius="8dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0.8"
-                    android:background="@drawable/lowera" />
-
-                <TextView
-                    android:id="@+id/progressActivityId"
-                    style="@style/TextColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/progressCardId"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/progressactivity_get_started" />
-
-                <TextView
-                    android:id="@+id/txtProgressId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="36dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:text="0"
-                    android:textSize="17sp"
-                    style="@style/TextColor2" />
-                <TextView
-                    android:id="@+id/txtProgressId2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="-40dp"
-                    android:layout_gravity="center|center_vertical"
-                    android:text="0"
-                    android:textSize="17sp"
-                    style="@style/TextColor2" />
-                <TextView
-                    android:id="@+id/txtProgressId22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_gravity="center|center_vertical"
-                    android:text="0"
-                    android:textSize="17sp"
-                    style="@style/TextColor2" />
-                <TextView
-                    android:id="@+id/txtProgressId3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="36dp"
-                    android:layout_gravity="start|center_vertical"
-                    android:text="0"
-                    android:textSize="17sp"
-                    style="@style/TextColor2" />
-
-
-                <TextView
-                    android:id="@+id/textProg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_gravity="end|bottom"
-                    android:text="gums"
-                    style="@style/TextColor" />
-                <TextView
-                    android:id="@+id/textProg2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="-40dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_gravity="center|bottom"
-                    android:text="breath"
-                    style="@style/TextColor" />
-                <TextView
-                    android:id="@+id/textProg22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_gravity="center|bottom"
-                    android:text="fatigue"
-                    style="@style/TextColor" />
-                <TextView
-                    android:id="@+id/textProg3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_gravity="start|bottom"
-                    android:text="energy"
-                    style="@style/TextColor" />
-
-                <com.budiyev.android.circularprogressbar.CircularProgressBar
-                    android:id="@+id/progress_bar"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="25dp"
-                    app:animateProgress="true"
-                    app:backgroundStrokeColor="#ff3f51b5"
-                    app:backgroundStrokeWidth="2dp"
-                    app:drawBackgroundStroke="true"
-                    app:foregroundStrokeCap="butt"
-                    app:foregroundStrokeColor="#ffff4081"
-                    app:foregroundStrokeWidth="7dp"
-                    app:indeterminate="false"
-                    app:indeterminateMinimumAngle="45"
-                    app:indeterminateRotationAnimationDuration="1200"
-                    app:indeterminateSweepAnimationDuration="600"
-                    app:maximum="100"
-                    app:progress="50"
-                    app:progressAnimationDuration="100"
-                    app:startAngle="270" />
-                <!--app:wlv_borderWidth="3dp"-->
-
-            <com.budiyev.android.circularprogressbar.CircularProgressBar
-                android:id="@+id/progress_bar2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center|center_vertical"
-                android:layout_marginRight="-40dp"
-                app:animateProgress="true"
-                app:backgroundStrokeColor="#ff3f51b5"
-                app:backgroundStrokeWidth="2dp"
-                app:drawBackgroundStroke="true"
-                app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#ffff4081"
-                app:foregroundStrokeWidth="7dp"
-                app:indeterminate="false"
-                app:indeterminateMinimumAngle="45"
-                app:indeterminateRotationAnimationDuration="1200"
-                app:indeterminateSweepAnimationDuration="600"
-                app:maximum="100"
-                app:progress="50"
-                app:progressAnimationDuration="100"
-                app:startAngle="270" />
-            <!--app:wlv_borderWidth="3dp"-->
-
-                <com.budiyev.android.circularprogressbar.CircularProgressBar
-                    android:id="@+id/progress_bar22"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center|center_vertical"
-                    android:layout_marginRight="40dp"
-                    app:animateProgress="true"
-                    app:backgroundStrokeColor="#ff3f51b5"
-                    app:backgroundStrokeWidth="2dp"
-                    app:drawBackgroundStroke="true"
-                    app:foregroundStrokeCap="butt"
-                    app:foregroundStrokeColor="#ffff4081"
-                    app:foregroundStrokeWidth="7dp"
-                    app:indeterminate="false"
-                    app:indeterminateMinimumAngle="45"
-                    app:indeterminateRotationAnimationDuration="1200"
-                    app:indeterminateSweepAnimationDuration="600"
-                    app:maximum="100"
-                    app:progress="50"
-                    app:progressAnimationDuration="100"
-                    app:startAngle="270" />
-                <com.budiyev.android.circularprogressbar.CircularProgressBar
-                    android:id="@+id/progress_bar3"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginRight="25dp"
-                    app:animateProgress="true"
-                    app:backgroundStrokeColor="#ff3f51b5"
-                    app:backgroundStrokeWidth="2dp"
-                    app:drawBackgroundStroke="true"
-                    app:foregroundStrokeCap="butt"
-                    app:foregroundStrokeColor="#ffff4081"
-                    app:foregroundStrokeWidth="7dp"
-                    app:indeterminate="false"
-                    app:indeterminateMinimumAngle="45"
-                    app:indeterminateRotationAnimationDuration="1200"
-                    app:indeterminateSweepAnimationDuration="600"
-                    app:maximum="100"
-                    app:progress="50"
-                    app:progressAnimationDuration="100"
-                    app:startAngle="270" />
-                <!--app:wlv_borderWidth="3dp"-->
-            </android.support.v7.widget.CardView>
-        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/frameCardIdYourProgress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/frameCardIdStatistics">
+            android:layout_height="wrap_content">
+            <!--android:layout_below="@id/frameCardIdStatistics"-->
 
             <android.support.v7.widget.CardView
                 android:id="@+id/YourProgressCardId"
@@ -238,8 +44,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:alpha="0.8"
-                    android:background="@drawable/cardlowerl" />
+                    android:background="@color/grey_200"/>
 
                 <ImageView
                     android:id="@+id/YourProgressImgId"
@@ -247,12 +52,12 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:background="@mipmap/plant" />
+                    android:background="@mipmap/achievement" />
                 <!--android:layout_marginTop="30dp"-->
 
                 <TextView
                     android:id="@+id/YourProgressId"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
@@ -262,9 +67,10 @@
                     android:text="Your entire progress" />
 
                 <TextView
+                    android:id="@+id/YourProgressIda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="35dp"
                     android:layout_marginEnd="20dp"
@@ -272,9 +78,10 @@
                     android:text="cigarates not smoked = 3 x days"/>
 
                 <TextView
+                    android:id="@+id/YourProgressIdb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="55dp"
                     android:layout_marginEnd="20dp"
@@ -282,9 +89,10 @@
                     android:text="rank: PRO"/>
 
                 <TextView
+                    android:id="@+id/YourProgressIdc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="75dp"
                     android:layout_marginEnd="20dp"
@@ -292,9 +100,10 @@
                     android:text="Life regained: 20 hours"/>
 
                 <TextView
+                    android:id="@+id/YourProgressIdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="95dp"
                     android:layout_marginEnd="20dp"
@@ -314,21 +123,20 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/YourAchievmentsCardId"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="120dp"
                     app:cardCornerRadius="8dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:alpha="0.8"
-                        android:background="@drawable/cardlowerl" />
+                        android:background="@color/grey_200" />
 
                     <TextView
                         android:id="@+id/YourAchievmentsId"
-                        style="@style/TextColor"
+                        style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:text="Your latest achievments" />
@@ -339,7 +147,7 @@
                         android:layout_height="45dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
-                        android:background="@mipmap/success" />
+                        android:background="@mipmap/badge" />
 
                     <ImageView
                         android:id="@+id/rankOneId"
@@ -373,26 +181,25 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardId2"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="120dp"
                 app:cardCornerRadius="8dp">
-
+                <!--android:alpha="0.8"-->
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0.8"
-                    android:background="@drawable/cardlowerl" />
+                    android:layout_height="120dp"
+                    android:background="@color/grey_200" />
 
                 <ImageView
                     android:id="@+id/savingsImgId"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:background="@mipmap/savemoney" />
+                    android:layout_marginLeft="5dp"
+                    android:background="@mipmap/investment" />
                 <!--android:layout_marginTop="30dp"-->
                 <TextView
                     android:id="@+id/moneyortimeId"
-                    style="@style/TextColor"
+                    style="@style/TextColorBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
@@ -421,20 +228,19 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:alpha="0.8"
-                    android:background="@drawable/cardlowerl" />
+                    android:background="@color/grey_200" />
 
                 <ImageView
                     android:id="@+id/logsImgId"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:background="@mipmap/logs" />
+                    android:background="@mipmap/archives" />
 
                 <TextView
-                    android:id="@+id/moneyortimeId2"
-                    style="@style/TextColor"
+                    android:id="@+id/logsTxtId"
+                    style="@style/TextColorBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
