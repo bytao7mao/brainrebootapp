@@ -3,11 +3,8 @@ package com.taozen.quithabit;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -18,7 +15,6 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -31,7 +27,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,10 +75,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.YourAchievmentsCardId) CardView achievmentCard;
     //text views
     @BindView(R.id.counterTextId) TextView counterText;
-    @BindView(R.id.txtProgressId) TextView txtProgress;
-    @BindView(R.id.txtProgressId2) TextView txtProgress2;
-    @BindView(R.id.txtProgressId22) TextView txtProgress22;
-    @BindView(R.id.txtProgressId3) TextView txtProgress3;
+    @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
+    @BindView(R.id.txtProgressIdForBreath) TextView txtProgressForBreath;
+    @BindView(R.id.txtProgressIdForFatigue) TextView txtProgressForFatigue;
+    @BindView(R.id.txtProgressIdForEnergy) TextView txtProgressForEnergyLevels;
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
     @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
@@ -132,8 +127,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    CircularProgressBar progressBarCardMini, progressBarCardMain;
-//    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
+    CircularProgressBar progressBarEnergyLevel, progressBarRemainingDays, progressBarGumsLevel, progressBarFatigueLevel, progressBarBreathlevel;
+    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
 //    SeekBar seekBar;
 
     //OnCreate
@@ -194,9 +189,13 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //        waveLoadingViewBigger.setAnimDuration(2300);
 
         //progress for percent - this is a circular bar
-        progressBarCardMini = findViewById(R.id.progress_bar);
-        progressBarCardMain = findViewById(R.id.progress_bar_outer);
-        progressBarCardMini.setProgress(10f);
+        progressBarEnergyLevel = findViewById(R.id.progress_bar_energy);
+        progressBarFatigueLevel = findViewById(R.id.progress_bar_fatigue);
+        progressBarBreathlevel = findViewById(R.id.progress_bar_breath);
+        progressBarGumsLevel = findViewById(R.id.progress_bar_gums);
+
+        progressBarRemainingDays = findViewById(R.id.progress_bar_outer);
+
         //format string of MAX target txt view
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
         //add font to counter number
@@ -210,10 +209,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
         counterText.setTypeface(montSerratBoldTypeface);
         targetTxtViewId.setTypeface(montSerratMediumTypeface);
         tipofthedayTxtViewId.setTypeface(montSerratItallicTypeface);
-        txtProgress.setTypeface(montSerratMediumTypeface);
-        txtProgress2.setTypeface(montSerratMediumTypeface);
-        txtProgress22.setTypeface(montSerratMediumTypeface);
-        txtProgress3.setTypeface(montSerratMediumTypeface);
+        txtProgressForEnergyLevels.setTypeface(montSerratMediumTypeface);
+        txtProgressForFatigue.setTypeface(montSerratMediumTypeface);
+        txtProgressForBreath.setTypeface(montSerratMediumTypeface);
+        txtProgressForGums.setTypeface(montSerratMediumTypeface);
         moneyOrTimeTextView.setTypeface(montSerratLightTypeface);
         remainingDaysTxt.setTypeface(montSerratMediumTypeface);
         progressActivityId.setTypeface(montSerratMediumTypeface);
@@ -223,8 +222,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         textProg2.setTypeface(montSerratMediumTypeface);
         textProg22.setTypeface(montSerratMediumTypeface);
         textProg3.setTypeface(montSerratMediumTypeface);
-        yourAchievmentTxt.setTypeface(montSerratLightTypeface);
-        yourProgressTxt.setTypeface(montSerratLightTypeface);
+        yourAchievmentTxt.setTypeface(montSerratMediumTypeface);
+        yourProgressTxt.setTypeface(montSerratMediumTypeface);
         yourProgressTxta.setTypeface(montSerratLightTypeface);
         yourProgressTxtb.setTypeface(montSerratLightTypeface);
         yourProgressTxtc.setTypeface(montSerratLightTypeface);
@@ -238,6 +237,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             setImagesForAchievmentCard();
             counter = preferences.getInt("counter", 0);
             updatePercent();
+            setImprovementProgressLevels();
             Log.d("counterval", "try { on creat " + counter);
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -304,8 +304,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
             buttonClickedToday = preferences.getBoolean("clicked", false);
             progressPercent = preferences.getInt("progressPercent", 0);
             updatePercent();
-            progressBarCardMini.setProgress(progressPercent);
-            progressBarCardMain.setProgress(progressPercent);
+            setImprovementProgressLevels();
+            progressBarRemainingDays.setProgress(progressPercent);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
@@ -508,6 +508,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
                 setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
                 editor.putInt("savings", savings);
                 Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                setImprovementProgressLevels();
+                setImagesForAchievmentCard();
                 counterText.setText(String.valueOf(counter));
                 editor.putInt("counter", counter);
                 editor.apply();
@@ -542,7 +544,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     private void getTargetDays() {
         //remaining days -- + "  " for space between number of days and text
-        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "  ";
+        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
         String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
@@ -583,17 +585,18 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @SideEffect
     public void startTheEngine() {
         try {
-//            setImagesForAchievmentCard();
+
             updatePercent();
+            setImprovementProgressLevels();
             Log.d("TAGG", "try { counterText = " + counter);
-//            setTheMarginOfCounter();
+
             resetProgressBar(progressPercent);
             counter = preferences.getInt("counter", 0);
             Log.d("TAGG", "resetProgressBar = " + counter);
             counterText.setText(String.valueOf(counter));
             Log.d("TAGG", "counter = preferences.getInt(\"counter\", 0); = " + counter);
-            progressBarCardMini.setProgress(progressPercent);
-            progressBarCardMain.setProgress(progressPercent);
+
+            progressBarRemainingDays.setProgress(progressPercent);
             DAY_OF_CLICK = preferences.getInt("presentday", 0);
             buttonClickedToday = preferences.getBoolean("clicked", false);
             //[calendar area]
@@ -678,6 +681,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     //i have in mind to use this when user FAIL to keep his promise on not abstaining on his habit
     private void resetProgressBar(Integer progressBar){
         updatePercent();
+        setImprovementProgressLevels();
         if (progressBar == 100) {
             //to do: if press yes go counter = 1
             progressPercent = 0;
@@ -772,28 +776,85 @@ implements NavigationView.OnNavigationItemSelectedListener{
             editor.putInt("counter", counter);
             editor.apply();
             Log.d("TAGG2", "counter == userMaxCountForHabit = " + counter);
-//            handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    progressPercent = 100;
-//                    editor.putInt("progressPercent", progressPercent);
-//                    txtProgress.setText(progressPercent + " %");
-//                }
-//            }, 5000);
         }
         Log.d("TAGG2", "counter in %%% = " + counter);
-        txtProgress.setText(progressPercent + "%");
-        txtProgress2.setText(progressPercent + "%");
-        txtProgress22.setText(progressPercent + "%");
-        txtProgress3.setText(progressPercent + "%");
         editor.putInt("counter", counter);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
         Log.d("TAGG", progressPercent+" progressPercent");
 //        waveLoadingViewBigger.setProgressValue(progressPercent);
-        progressBarCardMain.setProgress(progressPercent);
-        progressBarCardMini.setProgress(progressPercent);
+        progressBarRemainingDays.setProgress(progressPercent);
+    }
+
+    @SideEffect
+    private void setImprovementProgressLevels(){
+
+        //energy levels
+        if (counter > 4 && counter < 15) {
+            txtProgressForEnergyLevels.setText(25 + "%");
+            progressBarEnergyLevel.setProgress(25);
+        } else if (counter > 14 && counter < 21) {
+            txtProgressForEnergyLevels.setText(50 + "%");
+            progressBarEnergyLevel.setProgress(50);
+        } else if (counter > 20 && counter < 26) {
+            txtProgressForEnergyLevels.setText(75 + "%");
+            progressBarEnergyLevel.setProgress(75);
+        } else if (counter > 25) {
+            txtProgressForEnergyLevels.setText(100 + "%");
+            progressBarEnergyLevel.setProgress(100);
+        } else {
+            txtProgressForEnergyLevels.setText(10 + "%");
+            progressBarEnergyLevel.setProgress(10);
+        }
+
+        //fatigue levels
+        if (counter > 25 && counter < 31) {
+            txtProgressForFatigue.setText(25+"%");
+            progressBarFatigueLevel.setProgress(25);
+        } else if (counter > 30 && counter < 40) {
+            txtProgressForFatigue.setText(50+"%");
+            progressBarFatigueLevel.setProgress(50);
+        } else if (counter > 39 && counter < 50) {
+            txtProgressForFatigue.setText(75+"%");
+            progressBarFatigueLevel.setProgress(75);
+        } else if (counter > 49) {
+            txtProgressForFatigue.setText(100+"%");
+            progressBarFatigueLevel.setProgress(100);
+        } else {
+            txtProgressForFatigue.setText(10+"%");
+            progressBarFatigueLevel.setProgress(10);
+        }
+
+        //gums level
+        if (counter > 0 && counter < 5) {
+            txtProgressForGums.setText(25 + "%");
+            progressBarGumsLevel.setProgress(25);
+        } else if (counter > 4 && counter < 8) {
+            txtProgressForGums.setText(50 + "%");
+            progressBarGumsLevel.setProgress(50);
+        } else if (counter > 7 && counter < 11) {
+            txtProgressForGums.setText(75 + "%");
+            progressBarGumsLevel.setProgress(75);
+        } else if (counter > 13) {
+            txtProgressForGums.setText(100 + "%");
+            progressBarGumsLevel.setProgress(100);
+        }
+
+        //breath levels
+        if (counter > 0 && counter < 3) {
+            txtProgressForBreath.setText(25 + "%");
+            progressBarBreathlevel.setProgress(25);
+        } else if (counter > 2 && counter < 6) {
+            txtProgressForBreath.setText(50 + "%");
+            progressBarBreathlevel.setProgress(50);
+        } else if (counter > 5 && counter < 8) {
+            txtProgressForBreath.setText(75 + "%");
+            progressBarBreathlevel.setProgress(75);
+        } else if (counter > 8) {
+            txtProgressForBreath.setText(100 + "%");
+            progressBarBreathlevel.setProgress(100);
+        }
+
     }
 
 
@@ -833,6 +894,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             editor.putInt("counter", counter);
             editor.apply();
             updatePercent();
+            setImprovementProgressLevels();
             return true;
         } else if (id == R.id.action_about) {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
@@ -1084,7 +1146,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @SideEffect
     private void setImagesForAchievmentCard(){
         counter = preferences.getInt("counter", counter);
-        if (counter>1&&counter<8){//user have between a day and a week
+        if (counter>0&&counter<8){//user have between a day and a week
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
             rankTwoImg.setAlpha(0.2f);

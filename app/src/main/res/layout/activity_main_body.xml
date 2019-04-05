@@ -52,7 +52,7 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:background="@mipmap/achievement" />
+                    android:background="@mipmap/marketing" />
                 <!--android:layout_marginTop="30dp"-->
 
                 <TextView
@@ -147,23 +147,23 @@
                         android:layout_height="45dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
-                        android:background="@mipmap/badge" />
+                        android:background="@mipmap/medal" />
 
                     <ImageView
                         android:id="@+id/rankOneId"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_gravity="start|center_vertical"
                         android:layout_marginLeft="65dp" />
                     <ImageView
                         android:id="@+id/rankTwoId"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_gravity="center|center_vertical" />
                     <ImageView
                         android:id="@+id/rankThreeId"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_marginRight="65dp"
                         android:layout_gravity="end|center_vertical" />
 
@@ -195,7 +195,7 @@
                     android:layout_height="55dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:background="@mipmap/investment" />
+                    android:background="@mipmap/piggybank" />
                 <!--android:layout_marginTop="30dp"-->
                 <TextView
                     android:id="@+id/moneyortimeId"

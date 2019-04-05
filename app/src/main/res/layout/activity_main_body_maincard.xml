@@ -20,12 +20,13 @@
                 android:id="@+id/backgroundImgViewId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/grey_200" />
-            <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:alpha="0.6"-->
-            <!--android:background="@drawable/brozsb" />-->
+                android:background="@color/grey_50" />
+            <!--android:background="@color/grey_200"-->
+            <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.2"
+            android:background="@drawable/brozsb" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,6 +89,36 @@
                     android:layout_centerInParent="true"
                     android:visibility="invisible" />
 
+                <!--<me.itangqi.waveloadingview.WaveLoadingView-->
+                <!--android:id="@+id/waveLoadingIdBigger"-->
+                <!--android:layout_width="163dp"-->
+                <!--android:layout_height="163dp"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+
+                <!--app:wlv_borderColor="@color/colorPrimary"-->
+                <!--app:wlv_round_rectangle="true"-->
+                <!--app:wlv_shapeType="circle"-->
+                <!--app:wlv_titleBottomColor="@color/white"-->
+                <!--app:wlv_titleBottomSize="24dp"-->
+                <!--app:wlv_titleBottomStrokeColor="@android:color/holo_blue_dark"-->
+                <!--app:wlv_titleBottomStrokeWidth="3dp"-->
+                <!--app:wlv_titleCenterColor="@color/white"-->
+
+                <!--app:wlv_titleCenterSize="24dp"-->
+                <!--app:wlv_titleCenterStrokeColor="@android:color/holo_blue_dark"-->
+                <!--app:wlv_titleCenterStrokeWidth="3dp"-->
+                <!--app:wlv_titleTopColor="@color/white"-->
+
+                <!--app:wlv_titleTopSize="24dp"-->
+                <!--app:wlv_titleTopStrokeColor="@android:color/holo_blue_dark"-->
+                <!--app:wlv_titleTopStrokeWidth="3dp"-->
+                <!--app:wlv_triangle_direction="north"-->
+
+                <!--app:wlv_waveAmplitude="70"-->
+                <!--android:alpha="0.9"-->
+                <!--app:wlv_waveColor="@color/colorAccent" />-->
+
                 <ImageView
                     android:id="@+id/counterImageId"
                     android:layout_width="163dp"
@@ -143,7 +174,7 @@
                     android:id="@+id/targetTxtViewId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12.5dp"
+                    android:layout_marginTop="13dp"
                     android:layout_toRightOf="@id/targetImageId"
                     style="@style/TextColorBlack"
                     android:text="Current target: " />
@@ -152,7 +183,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="60dp"
                     app:animateProgress="true"
                     app:backgroundStrokeColor="#ff3f51b5"
                     app:backgroundStrokeWidth="2dp"
@@ -173,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-25dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="13dp"
                     style="@style/TextColorBlack"
                     android:layout_toRightOf="@id/progress_bar_outer"
                     android:text="@string/remaining_days" />
@@ -209,11 +240,11 @@
                 android:layout_height="match_parent"
                 android:background="@color/grey_200" />
 
-            <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:alpha="0.2"-->
-            <!--android:background="@drawable/brozsb" />-->
+            <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.4"
+            android:background="@drawable/brozsb" />
 
             <TextView
                 android:id="@+id/progressActivityId"
@@ -226,16 +257,16 @@
                 android:text="@string/progressactivity_get_started" />
 
             <TextView
-                android:id="@+id/txtProgressId"
+                android:id="@+id/txtProgressIdForGums"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="36dp"
+                android:layout_marginRight="33dp"
                 android:layout_gravity="end|center_vertical"
                 android:text="0"
                 android:textSize="17sp"
                 style="@style/TextColor2" />
             <TextView
-                android:id="@+id/txtProgressId2"
+                android:id="@+id/txtProgressIdForBreath"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="-40dp"
@@ -244,7 +275,7 @@
                 android:textSize="17sp"
                 style="@style/TextColor2" />
             <TextView
-                android:id="@+id/txtProgressId22"
+                android:id="@+id/txtProgressIdForFatigue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
@@ -253,10 +284,10 @@
                 android:textSize="17sp"
                 style="@style/TextColor2" />
             <TextView
-                android:id="@+id/txtProgressId3"
+                android:id="@+id/txtProgressIdForEnergy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="39dp"
                 android:layout_gravity="start|center_vertical"
                 android:text="0"
                 android:textSize="17sp"
@@ -301,7 +332,7 @@
                 style="@style/TextColorBlack" />
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
-                android:id="@+id/progress_bar"
+                android:id="@+id/progress_bar_energy"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="start|center_vertical"
@@ -324,7 +355,7 @@
             <!--app:wlv_borderWidth="3dp"-->
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
-                android:id="@+id/progress_bar2"
+                android:id="@+id/progress_bar_breath"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center|center_vertical"
@@ -347,7 +378,7 @@
             <!--app:wlv_borderWidth="3dp"-->
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
-                android:id="@+id/progress_bar22"
+                android:id="@+id/progress_bar_fatigue"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center|center_vertical"
@@ -368,7 +399,7 @@
                 app:progressAnimationDuration="100"
                 app:startAngle="270" />
             <com.budiyev.android.circularprogressbar.CircularProgressBar
-                android:id="@+id/progress_bar3"
+                android:id="@+id/progress_bar_gums"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="end|center_vertical"
