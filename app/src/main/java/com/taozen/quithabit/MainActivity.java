@@ -1078,7 +1078,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
                 //using MyHttpManager getData static method
 //              String content = MyHttpManager.getData(params[0]);
-                Thread.sleep(3000);
+                Thread.sleep(1000);
                 //using MyHttpCoreAndroid
                 String content = MyHttpCoreAndroid.getData(params[0]);
                 JsonElement rootNode = parser.parse(content);

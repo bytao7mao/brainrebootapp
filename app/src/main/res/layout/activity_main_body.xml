@@ -38,13 +38,18 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/YourProgressCardId"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="120dp"
                 app:cardCornerRadius="8dp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_200"/>
+                <!--<ImageView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:alpha="0.1"-->
+                    <!--android:background="@drawable/p1" />-->
 
                 <ImageView
                     android:id="@+id/YourProgressImgId"
@@ -130,6 +135,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/grey_200" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:alpha="0.1"-->
+                        <!--android:background="@drawable/p2" />-->
 
                     <TextView
                         android:id="@+id/YourAchievmentsId"
@@ -188,6 +198,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:background="@color/grey_200" />
+                <!--<ImageView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:alpha="0.1"-->
+                    <!--android:background="@drawable/p3" />-->
 
                 <ImageView
                     android:id="@+id/savingsImgId"
@@ -229,6 +244,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_200" />
+
+                <!--<ImageView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:alpha="0.1"-->
+                    <!--android:background="@drawable/p4" />-->
 
                 <ImageView
                     android:id="@+id/logsImgId"
