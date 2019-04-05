@@ -542,7 +542,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     private void getTargetDays() {
         //remaining days -- + "  " for space between number of days and text
-        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "    ";
+        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "  ";
         String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
