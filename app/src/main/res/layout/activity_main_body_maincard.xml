@@ -152,7 +152,7 @@
                 android:layout_below="@id/rltvlayout"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:alpha="0.7"
+                android:alpha="0.8"
                 android:text="non-smoker since"
                 android:textSize="18sp" />
             <!--android:text="Since i've quit smoking"android:text="Non-smoker since"-->

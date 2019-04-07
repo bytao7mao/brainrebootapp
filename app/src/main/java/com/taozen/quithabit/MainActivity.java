@@ -1,6 +1,7 @@
 package com.taozen.quithabit;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -18,6 +19,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +46,8 @@ import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 import java.util.TimeZone;
@@ -113,7 +117,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     //user input from start dialog
     String habitString = "userHabit";//smoke, porn or alcohool
     int savings = 0;
-    int progressPercent = 0, DAY_OF_CLICK = 0, DAY_OF_PRESENT = 0;
+    int progressPercent = 0, DAY_OF_CLICK = 0, DAY_OF_PRESENT = 0, HOUR_OF_TODAY = 0;
     //wil start from 1 to 3 to 7 to 14 to 21 to 30
     int userMaxCountForHabit = 35;
     boolean buttonClickedToday;
@@ -217,7 +221,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         remainingDaysTxt.setTypeface(montSerratMediumTypeface);
         progressActivityId.setTypeface(montSerratMediumTypeface);
         failLogsTxtView.setTypeface(montSerratLightTypeface);
-        tilliquitsmokingTxtView.setTypeface(montSerratExtraBoldTypeface);
+        tilliquitsmokingTxtView.setTypeface(montSerratBoldTypeface);
         textProg.setTypeface(montSerratMediumTypeface);
         textProg2.setTypeface(montSerratMediumTypeface);
         textProg22.setTypeface(montSerratMediumTypeface);
@@ -503,20 +507,82 @@ implements NavigationView.OnNavigationItemSelectedListener{
                 editor.putInt("presentday", DAY_OF_CLICK);
                 editor.putInt("progressPercent", progressPercent);
                 editor.apply();
-                counter++;
-                savings = setTheSavingsPerDay(counter);
-                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                editor.putInt("savings", savings);
-                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                setImprovementProgressLevels();
-                setImagesForAchievmentCard();
-                counterText.setText(String.valueOf(counter));
-                editor.putInt("counter", counter);
-                editor.apply();
+//                counter++;
+//                savings = setTheSavingsPerDay(counter);
+//                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+//                editor.putInt("savings", savings);
+//                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+//                setImprovementProgressLevels();
+//                setImagesForAchievmentCard();
+//                counterText.setText(String.valueOf(counter));
+//                editor.putInt("counter", counter);
+//                editor.apply();
                 Log.d("taolenX", "counter from onclick = " + counter);
+//                final Snackbar snackbar = Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG);
+//                snackbar.setAction("yes", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        //when user abtained smoking
+//                    }
+//                });
+////                snackbar.setAction("no", new View.OnClickListener() {
+////                    @Override
+////                    public void onClick(View v) {
+////                        //when user failed
+////                        //reset counter, progressbars
+////                    }
+////                });
+//                snackbar.show();
+                //snackbar doesn work
 
-                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("NoSmoke dialog");
+                alertDialog.setMessage("Did you abtained to smoke today ?");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG);
+//                                alertDialog.dismiss();
+                                Log.d("taolenX", "yes button clicked");
+                                counter++;
+                                editor.putInt("counter", counter);
+                                editor.apply();
+                                counter = preferences.getInt("counter", 0);
+                                savings = setTheSavingsPerDay(counter);
+                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                                editor.putInt("savings", savings);
+                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                                setImprovementProgressLevels();
+                                setImagesForAchievmentCard();
+                                counterText.setText(String.valueOf(counter));
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+//                                alertDialog.dismiss();
+                                Log.d("taolenX", "no button clicked");
+                                Log.d("taolenX", "[before asigning] counter is = " + counter);
+                                counter=0;
+                                editor.putInt("counter", counter);
+                                editor.apply();
+                                Log.d("taolenX", "[after asigning] counter is = " + counter);
+                                counter = preferences.getInt("counter", 0);
+                                Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
+                                savings = setTheSavingsPerDay(counter);
+                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                                editor.putInt("savings", savings);
+                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                                setImprovementProgressLevels();
+                                setImagesForAchievmentCard();
+                                counterText.setText(String.valueOf(counter));
+                            }
+                        });
+
+                alertDialog.show();
+
                 getTargetDays();
                 fab.hide();
             }
@@ -585,7 +651,6 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @SideEffect
     public void startTheEngine() {
         try {
-
             updatePercent();
             setImprovementProgressLevels();
             Log.d("TAGG", "try { counterText = " + counter);
@@ -602,7 +667,14 @@ implements NavigationView.OnNavigationItemSelectedListener{
             //[calendar area]
             calendarForProgress = Calendar.getInstance();
             calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-          DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+            DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+
+            //testing area
+            Date date = new Date();
+            Calendar calendar = GregorianCalendar.getInstance();
+            calendar.setTime(date);
+            HOUR_OF_TODAY = calendar.get(Calendar.HOUR);
+            Log.d("taolenZ", "hour of now: " + HOUR_OF_TODAY);
 //            DAY_OF_PRESENT = calendarForProgress.get(Calendar.MINUTE);
             Log.d("taolenZ", "DAY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
             if (counter >= userMaxCountForHabit){
@@ -717,7 +789,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     }
     @SideEffect
     public void greenCodition(){
-        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday) {
+        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && HOUR_OF_TODAY > 2) {
             //to do
             //show the activate button
             Log.d("taolenX", "greenCodition WORKINGGGGG");
@@ -788,6 +860,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     @SideEffect
     private void setImprovementProgressLevels(){
+        counter = preferences.getInt("counter", 0);
+        Log.d("taolenX", "[setImprovementProgressLevels] counter is = " + counter);
 
         //energy levels
         if (counter > 4 && counter < 15) {
@@ -803,8 +877,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
             txtProgressForEnergyLevels.setText(100 + "%");
             progressBarEnergyLevel.setProgress(100);
         } else {
-            txtProgressForEnergyLevels.setText(10 + "%");
-            progressBarEnergyLevel.setProgress(10);
+            txtProgressForEnergyLevels.setText(5 + "%");
+            progressBarEnergyLevel.setProgress(5);
         }
 
         //fatigue levels
@@ -821,8 +895,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
             txtProgressForFatigue.setText(100+"%");
             progressBarFatigueLevel.setProgress(100);
         } else {
-            txtProgressForFatigue.setText(10+"%");
-            progressBarFatigueLevel.setProgress(10);
+            txtProgressForFatigue.setText(5+"%");
+            progressBarFatigueLevel.setProgress(5);
         }
 
         //gums level
@@ -838,6 +912,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
         } else if (counter > 13) {
             txtProgressForGums.setText(100 + "%");
             progressBarGumsLevel.setProgress(100);
+        } else {
+            txtProgressForGums.setText(5 + "%");
+            progressBarGumsLevel.setProgress(5);
         }
 
         //breath levels
@@ -853,6 +930,9 @@ implements NavigationView.OnNavigationItemSelectedListener{
         } else if (counter > 8) {
             txtProgressForBreath.setText(100 + "%");
             progressBarBreathlevel.setProgress(100);
+        }else {
+            txtProgressForBreath.setText(5 + "%");
+            progressBarBreathlevel.setProgress(5);
         }
 
     }
