@@ -20,13 +20,15 @@
         android:id="@+id/delimitationBarId"
         style="@style/Divider"
         android:layout_below="@id/body_maincardId"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/delimitationBarId">
 
         <FrameLayout
@@ -72,7 +74,7 @@
                     android:text="Your entire progress" />
 
                 <TextView
-                    android:id="@+id/YourProgressIda"
+                    android:id="@+id/YourProgressIdCigaretes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextColorBlack"
@@ -83,7 +85,7 @@
                     android:text="cigarates not smoked = 3 x days"/>
 
                 <TextView
-                    android:id="@+id/YourProgressIdb"
+                    android:id="@+id/YourProgressIdRank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextColorBlack"
@@ -94,7 +96,7 @@
                     android:text="rank: PRO"/>
 
                 <TextView
-                    android:id="@+id/YourProgressIdc"
+                    android:id="@+id/YourProgressIdHours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextColorBlack"
@@ -105,7 +107,7 @@
                     android:text="Life regained: 20 hours"/>
 
                 <TextView
-                    android:id="@+id/YourProgressIdd"
+                    android:id="@+id/YourProgressIdCravings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextColorBlack"

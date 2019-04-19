@@ -9,7 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="380dp"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:elevation="3dp"
         app:cardCornerRadius="8dp">
 
@@ -233,7 +236,7 @@
             android:id="@+id/progressCardId"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             app:cardCornerRadius="8dp">
@@ -243,11 +246,11 @@
                 android:layout_height="match_parent"
                 android:background="@color/grey_200" />
 
-            <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0.4"
-            android:background="@drawable/brozsb" />
+            <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:alpha="0.4"-->
+            <!--android:background="@drawable/brozsb" />-->
 
             <TextView
                 android:id="@+id/progressActivityId"
@@ -263,7 +266,7 @@
                 android:id="@+id/txtProgressIdForGums"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="33dp"
+                android:layout_marginRight="40dp"
                 android:layout_gravity="end|center_vertical"
                 android:text="0"
                 android:textSize="17sp"
@@ -290,7 +293,7 @@
                 android:id="@+id/txtProgressIdForEnergy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="39dp"
+                android:layout_marginStart="42dp"
                 android:layout_gravity="start|center_vertical"
                 android:text="0"
                 android:textSize="17sp"
@@ -336,8 +339,8 @@
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar_energy"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="25dp"
                 app:animateProgress="true"
@@ -359,8 +362,8 @@
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar_breath"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_gravity="center|center_vertical"
                 android:layout_marginRight="-40dp"
                 app:animateProgress="true"
@@ -382,8 +385,8 @@
 
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar_fatigue"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_gravity="center|center_vertical"
                 android:layout_marginRight="40dp"
                 app:animateProgress="true"
@@ -403,8 +406,8 @@
                 app:startAngle="270" />
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar_gums"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginRight="25dp"
                 app:animateProgress="true"

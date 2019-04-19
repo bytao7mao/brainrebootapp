@@ -23,7 +23,7 @@
             android:fillViewport="true">
 
             <include
-                layout="@layout/activity_main_body"
+                layout="@layout/activity_main_lower_body"
                 tools:context=".MainActivity" />
 
         </ScrollView>

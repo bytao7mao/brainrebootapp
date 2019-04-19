@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:elevation="0dp"
         android:background="@color/white"
-        android:paddingBottom="5dp"
+        android:paddingBottom="10dp"
         android:translationZ="0.1dp"
         android:theme="@style/MaterialTheme.NoActionBar">
         <!--android:background="?attr/colorPrimary"-->

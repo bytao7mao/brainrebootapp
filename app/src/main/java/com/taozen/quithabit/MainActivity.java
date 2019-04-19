@@ -37,6 +37,8 @@ import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
@@ -66,6 +68,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
     List<MainActivity.MyAsyncTask> tasks;
     Handler handler;
     Timer timer;
+    int cigaretesPerDay = 2;
+    int minutesPerDayResisted = 30 * cigaretesPerDay;
 
     //view
     @BindView(android.R.id.content) View parentLayout;
@@ -97,10 +101,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.textProg3) TextView textProg3;
     @BindView(R.id.YourAchievmentsId) TextView yourAchievmentTxt;
     @BindView(R.id.YourProgressId) TextView yourProgressTxt;
-    @BindView(R.id.YourProgressIda) TextView yourProgressTxta;
-    @BindView(R.id.YourProgressIdb) TextView yourProgressTxtb;
-    @BindView(R.id.YourProgressIdc) TextView yourProgressTxtc;
-    @BindView(R.id.YourProgressIdd) TextView yourProgressTxtd;
+    @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
+    @BindView(R.id.YourProgressIdRank) TextView userRankProgressTxt;
+    @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
+    @BindView(R.id.YourProgressIdCravings) TextView userCravingsProgressTxt;
     //progressbar
     @BindView(R.id.loadingProgressId)
     ProgressBar progressBarLoading;
@@ -182,6 +186,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //set margin for counter
 //        setTheMarginOfCounter();
 
+        //settting progress card
+        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
 
         //wave loading
 //        seekBar = findViewById(R.id.seekbarId);
@@ -228,10 +234,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
         textProg3.setTypeface(montSerratMediumTypeface);
         yourAchievmentTxt.setTypeface(montSerratMediumTypeface);
         yourProgressTxt.setTypeface(montSerratMediumTypeface);
-        yourProgressTxta.setTypeface(montSerratLightTypeface);
-        yourProgressTxtb.setTypeface(montSerratLightTypeface);
-        yourProgressTxtc.setTypeface(montSerratLightTypeface);
-        yourProgressTxtd.setTypeface(montSerratLightTypeface);
+        userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
+        userRankProgressTxt.setTypeface(montSerratLightTypeface);
+        userHoursProgressTxt.setTypeface(montSerratLightTypeface);
+        userCravingsProgressTxt.setTypeface(montSerratLightTypeface);
 
 
 
@@ -535,53 +541,110 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //                snackbar.show();
                 //snackbar doesn work
 
-                final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                alertDialog.setTitle("NoSmoke dialog");
-                alertDialog.setMessage("Did you abtained to smoke today ?");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG);
-//                                alertDialog.dismiss();
-                                Log.d("taolenX", "yes button clicked");
-                                counter++;
-                                editor.putInt("counter", counter);
-                                editor.apply();
-                                counter = preferences.getInt("counter", 0);
-                                savings = setTheSavingsPerDay(counter);
-                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                editor.putInt("savings", savings);
-                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                setImprovementProgressLevels();
-                                setImagesForAchievmentCard();
-                                counterText.setText(String.valueOf(counter));
-                            }
-                        });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-//                                alertDialog.dismiss();
-                                Log.d("taolenX", "no button clicked");
-                                Log.d("taolenX", "[before asigning] counter is = " + counter);
-                                counter=0;
-                                editor.putInt("counter", counter);
-                                editor.apply();
-                                Log.d("taolenX", "[after asigning] counter is = " + counter);
-                                counter = preferences.getInt("counter", 0);
-                                Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
-                                savings = setTheSavingsPerDay(counter);
-                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                editor.putInt("savings", savings);
-                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                setImprovementProgressLevels();
-                                setImagesForAchievmentCard();
-                                counterText.setText(String.valueOf(counter));
-                            }
-                        });
 
-                alertDialog.show();
+
+        new FancyGifDialog.Builder(MainActivity.this)
+                .setTitle("Granny eating chocolate dialog box")
+                .setMessage("This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog.")
+                .setNegativeBtnText("Cancel")
+                .setPositiveBtnBackground("#FF4081")
+                .setPositiveBtnText("Ok")
+                .setNegativeBtnBackground("#FFA9A7A8")
+                .setGifResource(R.drawable.source)   //Pass your Gif here
+                .isCancellable(true)
+                .OnPositiveClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                        counter++;
+                        editor.putInt("counter", counter);
+                        editor.apply();
+                        counter = preferences.getInt("counter", 0);
+                        savings = setTheSavingsPerDay(counter);
+                        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                        editor.putInt("savings", savings);
+                        Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                        setImprovementProgressLevels();
+                        setImagesForAchievmentCard();
+                        counterText.setText(String.valueOf(counter));
+                        getTargetDays();
+                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                        Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                        counter=0;
+                        editor.putInt("counter", counter);
+                        editor.apply();
+                        Log.d("taolenX", "[after asigning] counter is = " + counter);
+                        counter = preferences.getInt("counter", 0);
+                        Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
+                        savings = setTheSavingsPerDay(counter);
+                        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                        editor.putInt("savings", savings);
+                        Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                        setImprovementProgressLevels();
+                        setImagesForAchievmentCard();
+                        counterText.setText(String.valueOf(counter));
+                        getTargetDays();
+                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                        Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build();
+
+                //clasic dialog for asking user if he failed today or not
+//                final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+//                alertDialog.setTitle("NoSmoke dialog");
+//                alertDialog.setMessage("Did you abtained to smoke today ?");
+//                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES",
+//                        new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG);
+////                                alertDialog.dismiss();
+//                                Log.d("taolenX", "yes button clicked");
+//                                counter++;
+//                                editor.putInt("counter", counter);
+//                                editor.apply();
+//                                counter = preferences.getInt("counter", 0);
+//                                savings = setTheSavingsPerDay(counter);
+//                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+//                                editor.putInt("savings", savings);
+//                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+//                                setImprovementProgressLevels();
+//                                setImagesForAchievmentCard();
+//                                counterText.setText(String.valueOf(counter));
+//                                getTargetDays();
+//                                showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+//                            }
+//                        });
+//                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO",
+//                        new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+////                                alertDialog.dismiss();
+//                                Log.d("taolenX", "no button clicked");
+//                                Log.d("taolenX", "[before asigning] counter is = " + counter);
+//                                counter=0;
+//                                editor.putInt("counter", counter);
+//                                editor.apply();
+//                                Log.d("taolenX", "[after asigning] counter is = " + counter);
+//                                counter = preferences.getInt("counter", 0);
+//                                Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
+//                                savings = setTheSavingsPerDay(counter);
+//                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+//                                editor.putInt("savings", savings);
+//                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+//                                setImprovementProgressLevels();
+//                                setImagesForAchievmentCard();
+//                                counterText.setText(String.valueOf(counter));
+//                                showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+//                            }
+//                        });
+//
+//                alertDialog.show();
 
                 getTargetDays();
                 fab.hide();
@@ -736,7 +799,6 @@ implements NavigationView.OnNavigationItemSelectedListener{
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
         Log.d("taolenX", "onPause SIMPLE>> AND counter is " + counter);
-
     }
 
     //onDestroy
@@ -789,13 +851,13 @@ implements NavigationView.OnNavigationItemSelectedListener{
     }
     @SideEffect
     public void greenCodition(){
-        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && HOUR_OF_TODAY > 2) {
+        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && HOUR_OF_TODAY >= 1) {
             //to do
             //show the activate button
-            Log.d("taolenX", "greenCodition WORKINGGGGG");
+            Log.d("taolenX777", "greenCodition WORKINGGGGG");
             fab.show();
             //instead of counter add dialog to ask user if he did his habit
-            Log.i("taolenX", "counter from greenCodition in async is " + counter);
+            Log.i("taolenX777", "counter from greenCodition in async is " + counter);
             //NEED SOME CHECKS/TESTS FOR THIS---TO SEE IF I NEED THIS BOOLEAN TO GET
 //            buttonClickedToday = preferences.getBoolean("clicked", false);
             Log.d("taolenX", "buttonClickedToday from async is " + buttonClickedToday);
@@ -968,8 +1030,10 @@ implements NavigationView.OnNavigationItemSelectedListener{
         if (id == R.id.action_settings) {
             counter++;
             Calendar calendar = Calendar.getInstance();
-            int zet = calendar.get(Calendar.MINUTE);
-            editor.putInt("presentday", zet);
+            int zet2 = calendar.get(Calendar.MINUTE);
+            int zet = preferences.getInt("presentday", 0);
+            editor.putInt("presentday", zet2);
+            Log.d("taolenZ777", "zet = " + zet2);
             counterText.setText(String.valueOf(counter));
             editor.putInt("counter", counter);
             editor.apply();
@@ -1253,7 +1317,22 @@ implements NavigationView.OnNavigationItemSelectedListener{
             rankTwoImg.setAlpha(0.2f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
             rankThreeImg.setAlpha(0.2f);
+            editor.putString("rank", "PRO");
         }
+    }
+
+    private void showEntireProgressForUserCard(TextView userCigaretesProgressTxt, TextView userRankProgressTxt, TextView userHoursProgressTxt, TextView userCravingsProgressTxt){
+        counter = preferences.getInt("counter", 0);
+        int cigaretess = cigaretesPerDay * counter;
+        String theLatestRank = preferences.getString("rank", "null");
+        String lifeRegained = Integer.toString((minutesPerDayResisted / 60)*counter);
+        //todo: cravings
+        String cravingsTotal = Integer.toString(0);
+        //setting textview with the assigned text
+        userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + String.valueOf(cigaretess));
+        userRankProgressTxt.setText("Rank: " + String.valueOf(theLatestRank));
+        userHoursProgressTxt.setText("Life regained: " + String.valueOf(lifeRegained) + " hours");
+        userCravingsProgressTxt.setText("Cravings resisted: " + String.valueOf(cravingsTotal));
     }
 
 }
