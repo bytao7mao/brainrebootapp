@@ -544,8 +544,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 
         new FancyGifDialog.Builder(MainActivity.this)
-                .setTitle("Granny eating chocolate dialog box")
-                .setMessage("This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog.")
+                .setTitle("No smoke dialog!")
+                .setMessage("Did you abtained to smoke today ?")
                 .setNegativeBtnText("Cancel")
                 .setPositiveBtnBackground("#FF4081")
                 .setPositiveBtnText("Ok")
@@ -851,7 +851,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     }
     @SideEffect
     public void greenCodition(){
-        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && HOUR_OF_TODAY >= 1) {
+        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_TODAY >= 1)) {
             //to do
             //show the activate button
             Log.d("taolenX777", "greenCodition WORKINGGGGG");
