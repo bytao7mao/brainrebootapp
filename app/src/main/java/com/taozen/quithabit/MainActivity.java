@@ -849,6 +849,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             fab.hide();
         }
     }
+
     @SideEffect
     public void greenCodition(){
         if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_TODAY >= 1)) {
@@ -884,7 +885,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     public void updatePercent(){
         if (counter < userMaxCountForHabit*9/100){
             progressPercent = 10;
-        } else if (counter < userMaxCountForHabit*19/100){
+        }else if (counter < userMaxCountForHabit*19/100){
             progressPercent = 15;
         }else if (counter < userMaxCountForHabit*25/100){
             progressPercent = 20;
@@ -944,7 +945,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         }
 
         //fatigue levels
-        if (counter > 25 && counter < 31) {
+        if (counter >= 25 && counter < 31) {
             txtProgressForFatigue.setText(25+"%");
             progressBarFatigueLevel.setProgress(25);
         } else if (counter > 30 && counter < 40) {
@@ -961,26 +962,23 @@ implements NavigationView.OnNavigationItemSelectedListener{
             progressBarFatigueLevel.setProgress(5);
         }
 
-        //gums level
-        if (counter > 0 && counter < 5) {
+        //gums levels
+        if (counter >= 0 && counter < 5) {
             txtProgressForGums.setText(25 + "%");
             progressBarGumsLevel.setProgress(25);
         } else if (counter > 4 && counter < 8) {
             txtProgressForGums.setText(50 + "%");
             progressBarGumsLevel.setProgress(50);
-        } else if (counter > 7 && counter < 11) {
+        } else if (counter > 7 && counter < 13) {
             txtProgressForGums.setText(75 + "%");
             progressBarGumsLevel.setProgress(75);
-        } else if (counter > 13) {
+        } else if (counter > 12) {
             txtProgressForGums.setText(100 + "%");
             progressBarGumsLevel.setProgress(100);
-        } else {
-            txtProgressForGums.setText(5 + "%");
-            progressBarGumsLevel.setProgress(5);
         }
 
         //breath levels
-        if (counter > 0 && counter < 3) {
+        if (counter >= 0 && counter < 3) {
             txtProgressForBreath.setText(25 + "%");
             progressBarBreathlevel.setProgress(25);
         } else if (counter > 2 && counter < 6) {
@@ -989,16 +987,12 @@ implements NavigationView.OnNavigationItemSelectedListener{
         } else if (counter > 5 && counter < 8) {
             txtProgressForBreath.setText(75 + "%");
             progressBarBreathlevel.setProgress(75);
-        } else if (counter > 8) {
+        } else if (counter > 7) {
             txtProgressForBreath.setText(100 + "%");
             progressBarBreathlevel.setProgress(100);
-        }else {
-            txtProgressForBreath.setText(5 + "%");
-            progressBarBreathlevel.setProgress(5);
         }
 
     }
-
 
 
     //MENU DRAWER
