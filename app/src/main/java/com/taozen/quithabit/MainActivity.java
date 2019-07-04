@@ -1181,7 +1181,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
         //for this to work i have to provide 366 quotes
         if (isOnline()) {
             //int i = ran.nextInt(366)+1; to add 1000 quotes or so
-            int i = 5;
+            int i = 18;
             requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, i);
         } else {
             errorText.setVisibility(View.VISIBLE);
