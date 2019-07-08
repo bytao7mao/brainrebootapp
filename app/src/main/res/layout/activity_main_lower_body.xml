@@ -171,12 +171,20 @@
                         android:id="@+id/rankTwoId"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
+                        android:layout_marginRight="15dp"
                         android:layout_gravity="center|center_vertical" />
                     <ImageView
                         android:id="@+id/rankThreeId"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
-                        android:layout_marginRight="65dp"
+                        android:layout_marginLeft="45dp"
+                        android:layout_gravity="center|center_vertical" />
+
+                    <ImageView
+                        android:id="@+id/rankFourId"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_marginRight="35dp"
                         android:layout_gravity="end|center_vertical" />
 
                 </android.support.v7.widget.CardView>

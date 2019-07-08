@@ -115,6 +115,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
     @BindView(R.id.rankThreeId) ImageView rankThreeImg;
+    @BindView(R.id.rankFourId) ImageView rankFourImg;
 
     //counter for user
     int counter;
@@ -244,8 +245,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
         try {
             //setting the achievments images for user
-            setImagesForAchievmentCard();
             counter = preferences.getInt("counter", 0);
+            setImagesForAchievmentCard();
             updatePercent();
             setImprovementProgressLevels();
             Log.d("counterval", "try { on creat " + counter);
@@ -519,7 +520,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 //                editor.putInt("savings", savings);
 //                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
 //                setImprovementProgressLevels();
-//                setImagesForAchievmentCard();
+                setImagesForAchievmentCard();
 //                counterText.setText(String.valueOf(counter));
 //                editor.putInt("counter", counter);
 //                editor.apply();
@@ -585,7 +586,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
                         editor.putInt("savings", savings);
                         Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
                         setImprovementProgressLevels();
-                        setImagesForAchievmentCard();
+//                        setImagesForAchievmentCard();
                         counterText.setText(String.valueOf(counter));
                         getTargetDays();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
@@ -715,11 +716,12 @@ implements NavigationView.OnNavigationItemSelectedListener{
     public void startTheEngine() {
         try {
             updatePercent();
+            counter = preferences.getInt("counter", 0);
+            setImagesForAchievmentCard();
             setImprovementProgressLevels();
             Log.d("TAGG", "try { counterText = " + counter);
 
             resetProgressBar(progressPercent);
-            counter = preferences.getInt("counter", 0);
             Log.d("TAGG", "resetProgressBar = " + counter);
             counterText.setText(String.valueOf(counter));
             Log.d("TAGG", "counter = preferences.getInt(\"counter\", 0); = " + counter);
@@ -775,6 +777,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
     protected void onResume() {
         super.onResume();
         updateButton();
+        setImagesForAchievmentCard();
         runningInBackground();
         Log.d("taolenX", "onResume SIMPLE>> AND counter is " + counter);
         try {
@@ -1284,25 +1287,65 @@ implements NavigationView.OnNavigationItemSelectedListener{
     @SideEffect
     private void setImagesForAchievmentCard(){
         counter = preferences.getInt("counter", counter);
-        if (counter>0&&counter<8){//user have between a day and a week
+        Log.d("taoAchiev", "counter from achiev = " + counter);
+        if (counter>0&&counter<4) {//user have between a day and a week
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
             rankTwoImg.setAlpha(0.2f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
             rankThreeImg.setAlpha(0.2f);
-        } else if (counter>7&&counter<14) {//when user pass 1 week
+            rankFourImg.setBackgroundResource(R.mipmap.chevron11);
+            rankFourImg.setAlpha(0.2f);
+            Log.d("taoAchiev", "i am counter 0 && 8 working");
+        } else if (counter>3&&counter<7){
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankTwoImg.setAlpha(1.0f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
             rankThreeImg.setAlpha(0.2f);
-        } else if (counter==14){//when user reach 2 weeks
+            rankFourImg.setBackgroundResource(R.mipmap.chevron11);
+            rankFourImg.setAlpha(0.2f);
+        } else if (counter>6&&counter<10){
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankTwoImg.setAlpha(1.0f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-        } else if (counter==15){//user receive the great blue badge for those 2 weeks
-            rankOneImg.setBackgroundResource(R.mipmap.chevron11);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+            rankThreeImg.setAlpha(1.0f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron11);
+            rankFourImg.setAlpha(1.0f);
+        } else if (counter>9&&counter<13) {//when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+            rankTwoImg.setAlpha(0.2f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+            rankThreeImg.setAlpha(0.2f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+            rankFourImg.setAlpha(0.2f);
+            Log.d("taoAchiev", "i am counter 7 && 13 working");
+        } else if (counter>12&&counter<16) {//when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+            rankTwoImg.setAlpha(1.0f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+            rankThreeImg.setAlpha(0.2f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+            rankFourImg.setAlpha(0.2f);
+            Log.d("taoAchiev", "i am counter 7 && 13 working");
+        } else if (counter>15&&counter<19) {//when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+            rankTwoImg.setAlpha(1.0f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+            rankThreeImg.setAlpha(1.0f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+            rankFourImg.setAlpha(1.0f);
+            Log.d("taoAchiev", "i am counter 7 && 13 working");
         }//TODO the rest of badges to receive
             else {
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
