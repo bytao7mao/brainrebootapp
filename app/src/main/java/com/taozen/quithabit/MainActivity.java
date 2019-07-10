@@ -1,5 +1,6 @@
 package com.taozen.quithabit;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,8 +28,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +65,7 @@ import butterknife.ButterKnife;
 import me.itangqi.waveloadingview.WaveLoadingView;
 
 public class MainActivity extends AppCompatActivity
-implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener{
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     static final int REQUEST_TAKE_PHOTO = 123;
     Random ran;
@@ -184,9 +188,6 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
         //check online state
         checkActivityOnline();
-        //set margin for counter
-//        setTheMarginOfCounter();
-
         //settting progress card
         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
 
@@ -246,6 +247,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         try {
             //setting the achievments images for user
             counter = preferences.getInt("counter", 0);
+            //set margin for counter
+            setTheMarginOfCounter();
             setImagesForAchievmentCard();
             updatePercent();
             setImprovementProgressLevels();
@@ -502,7 +505,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             @Override
             public void onClick(View v) {
                 //set margin for counter
-//                setTheMarginOfCounter();
+                setTheMarginOfCounter();
                 buttonClickedToday = true;
                 editor.putBoolean("clicked", buttonClickedToday);
                 resetProgressBar(progressPercent);
@@ -544,56 +547,62 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
 
 
-        new FancyGifDialog.Builder(MainActivity.this)
-                .setTitle("No smoke dialog!")
-                .setMessage("Did you abtained to smoke today ?")
-                .setNegativeBtnText("Cancel")
-                .setPositiveBtnBackground("#FF4081")
-                .setPositiveBtnText("Ok")
-                .setNegativeBtnBackground("#FFA9A7A8")
-                .setGifResource(R.drawable.source)   //Pass your Gif here
-                .isCancellable(true)
-                .OnPositiveClicked(new FancyGifDialogListener() {
-                    @Override
-                    public void OnClick() {
-                        counter++;
-                        editor.putInt("counter", counter);
-                        editor.apply();
-                        counter = preferences.getInt("counter", 0);
-                        savings = setTheSavingsPerDay(counter);
-                        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                        editor.putInt("savings", savings);
-                        Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                        setImprovementProgressLevels();
-                        setImagesForAchievmentCard();
-                        counterText.setText(String.valueOf(counter));
-                        getTargetDays();
-                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-                        Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .OnNegativeClicked(new FancyGifDialogListener() {
-                    @Override
-                    public void OnClick() {
-                        counter=0;
-                        editor.putInt("counter", counter);
-                        editor.apply();
-                        Log.d("taolenX", "[after asigning] counter is = " + counter);
-                        counter = preferences.getInt("counter", 0);
-                        Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
-                        savings = setTheSavingsPerDay(counter);
-                        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                        editor.putInt("savings", savings);
-                        Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                        setImprovementProgressLevels();
+                new FancyGifDialog.Builder(MainActivity.this)
+                        .setTitle("No smoke dialog!")
+                        .setMessage("Did you abtained to smoke today ?")
+                        .setNegativeBtnText("Cancel")
+                        .setPositiveBtnBackground("#FF4081")
+                        .setPositiveBtnText("Ok")
+                        .setNegativeBtnBackground("#FFA9A7A8")
+                        .setGifResource(R.drawable.source)   //Pass your Gif here
+                        .isCancellable(true)
+                        .OnPositiveClicked(new FancyGifDialogListener() {
+                            @Override
+                            public void OnClick() {
+                                counter++;
+                                editor.putInt("counter", counter);
+                                editor.apply();
+                                checkActivityOnline();
+                                counter = preferences.getInt("counter", 0);
+                                //set margin for counter
+                                setTheMarginOfCounter();
+                                savings = setTheSavingsPerDay(counter);
+                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                                editor.putInt("savings", savings);
+                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                                setImprovementProgressLevels();
+                                setImagesForAchievmentCard();
+                                counterText.setText(String.valueOf(counter));
+                                getTargetDays();
+                                showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                                Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .OnNegativeClicked(new FancyGifDialogListener() {
+                            @Override
+                            public void OnClick() {
+                                counter=0;
+                                editor.putInt("counter", counter);
+                                editor.apply();
+                                checkActivityOnline();
+                                Log.d("taolenX", "[after asigning] counter is = " + counter);
+                                counter = preferences.getInt("counter", 0);
+                                Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
+                                savings = setTheSavingsPerDay(counter);
+                                //set margin for counter
+                                setTheMarginOfCounter();
+                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                                editor.putInt("savings", savings);
+                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                                setImprovementProgressLevels();
 //                        setImagesForAchievmentCard();
-                        counterText.setText(String.valueOf(counter));
-                        getTargetDays();
-                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-                        Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build();
+                                counterText.setText(String.valueOf(counter));
+                                getTargetDays();
+                                showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                                Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .build();
 
                 //clasic dialog for asking user if he failed today or not
 //                final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -673,8 +682,15 @@ implements NavigationView.OnNavigationItemSelectedListener{
     }
 
     private void getTargetDays() {
+        counter = preferences.getInt("counter", 0);
+        Log.d("TARGET", "counter: " + String.valueOf(userMaxCountForHabit-counter));
         //remaining days -- + "  " for space between number of days and text
-        String calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
+        String calcDaysTarget = "";
+        if (userMaxCountForHabit-counter < 10) {
+            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "     ";
+        } else {
+            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
+        }
         String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
@@ -720,7 +736,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
             setImagesForAchievmentCard();
             setImprovementProgressLevels();
             Log.d("TAGG", "try { counterText = " + counter);
-
+            //set margin for counter
+            setTheMarginOfCounter();
             resetProgressBar(progressPercent);
             Log.d("TAGG", "resetProgressBar = " + counter);
             counterText.setText(String.valueOf(counter));
@@ -1185,6 +1202,8 @@ implements NavigationView.OnNavigationItemSelectedListener{
         if (isOnline()) {
             //int i = ran.nextInt(366)+1; to add 1000 quotes or so
             int i = 18;
+            counter = preferences.getInt("counter", 0);
+            i = counter;
             requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, i);
         } else {
             errorText.setVisibility(View.VISIBLE);
@@ -1257,24 +1276,21 @@ implements NavigationView.OnNavigationItemSelectedListener{
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
 
-//    private void setTheMarginOfCounter(){
-//        // Get the TextView current LayoutParams
-//        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) counterText.getLayoutParams();
-////        int val = Integer.parseInt(String.valueOf(counterText));
-//        if (counter < 10) {
-//            // Set TextView layout margin 25 pixels to all side
-//            // Left Top Right Bottom Margin
-//            lp.setMargins(DptoPxConvertion(110),0,0,0);
-//            // Apply the updated layout parameters to TextView
-//            counterText.setLayoutParams(lp);
-//        } else if (counter > 10 || counter <= userMaxCountForHabit){
-//            lp.setMargins(DptoPxConvertion(95),0,0,0);
-//            counterText.setLayoutParams(lp);
-//        }
-//    }
-//    private int DptoPxConvertion(int dpValue) {
-//        return (int)((dpValue * getApplicationContext().getResources().getDisplayMetrics().density) + 0.5);
-//    }
+    private void setTheMarginOfCounter(){
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        counter = preferences.getInt("counter", 0);
+        Log.d("MARGIN", "counter is in margin: " + counter);
+        //IF ONE DECIMAL
+        if ((35-counter) < 10) {
+            params.setMargins(-85, 50, 30, 0);//IF TWO DECIMALS
+        } else {
+            params.setMargins(-100, 50, 30, 0);
+        }
+        remainingDaysTxt.setLayoutParams(params);
+    }
 
 //    private void setDrawableLeft(){
 //        Drawable drawable = getResources().getDrawable(R.mipmap.savings);
@@ -1286,7 +1302,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
 
     @SideEffect
     private void setImagesForAchievmentCard(){
-        counter = preferences.getInt("counter", counter);
+        counter = preferences.getInt("counter", 0);
         Log.d("taoAchiev", "counter from achiev = " + counter);
         if (counter>0&&counter<4) {//user have between a day and a week
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
@@ -1297,6 +1313,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
             rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "NOOB");
             Log.d("taoAchiev", "i am counter 0 && 8 working");
         } else if (counter>3&&counter<7){
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
@@ -1307,6 +1324,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
             rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "NOOB");
         } else if (counter>6&&counter<10){
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
             rankOneImg.setAlpha(1.0f);
@@ -1316,6 +1334,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
             rankFourImg.setAlpha(1.0f);
+            editor.putString("rank", "NOOB");
         } else if (counter>9&&counter<13) {//when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
             rankOneImg.setAlpha(1.0f);
@@ -1325,6 +1344,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "SOLDIER");
             Log.d("taoAchiev", "i am counter 7 && 13 working");
         } else if (counter>12&&counter<16) {//when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
@@ -1335,6 +1355,7 @@ implements NavigationView.OnNavigationItemSelectedListener{
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "SOLDIER");
             Log.d("taoAchiev", "i am counter 7 && 13 working");
         } else if (counter>15&&counter<19) {//when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
@@ -1345,15 +1366,49 @@ implements NavigationView.OnNavigationItemSelectedListener{
             rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(1.0f);
+            editor.putString("rank", "SOLDIER");
             Log.d("taoAchiev", "i am counter 7 && 13 working");
-        }//TODO the rest of badges to receive
-            else {
-            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-            rankOneImg.setAlpha(0.2f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+        } else if (counter>18&&counter<22) {//when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
             rankTwoImg.setAlpha(0.2f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
             rankThreeImg.setAlpha(0.2f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
+            rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "CAPTAIN");
+            Log.d("taoAchiev", "i am counter 7 && 13 working");
+        } else if (counter>21&&counter<25) {//when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
+            rankTwoImg.setAlpha(1.0f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
+            rankThreeImg.setAlpha(0.2f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
+            rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "CAPTAIN");
+            Log.d("taoAchiev", "i am counter 7 && 13 working");
+        } else if (counter>24&&counter<28) {//when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
+            rankTwoImg.setAlpha(1.0f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
+            rankThreeImg.setAlpha(1.0f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
+            rankFourImg.setAlpha(1.0f);
+            editor.putString("rank", "CAPTAIN");
+            Log.d("taoAchiev", "i am counter 7 && 13 working");}
+        //TODO the rest of badges to receive
+        else {
+            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankOneImg.setAlpha(0.1f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankTwoImg.setAlpha(0.1f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+            rankThreeImg.setAlpha(0.1f);
             editor.putString("rank", "PRO");
         }
     }
