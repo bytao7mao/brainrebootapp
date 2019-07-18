@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -1283,11 +1284,38 @@ public class MainActivity extends AppCompatActivity
         );
         counter = preferences.getInt("counter", 0);
         Log.d("MARGIN", "counter is in margin: " + counter);
-        //IF ONE DECIMAL
-        if ((35-counter) < 10) {
-            params.setMargins(-85, 50, 30, 0);//IF TWO DECIMALS
+        if (Build.VERSION.SDK_INT == 25 ){
+            //IF ONE DECIMAL
+            if ((35-counter) < 10) {
+                params.setMargins(-60, 30, 30, 0);
+                //IF TWO DECIMALS
+            } else {
+                params.setMargins(-70, 30, 30, 0);
+            }
+        } else if (Build.VERSION.SDK_INT == 23) {
+            //IF ONE DECIMAL
+            if ((35 - counter) < 10) {
+                params.setMargins(-70, 30, 30, 0);
+                //IF TWO DECIMALS
+            } else {
+                params.setMargins(-78, 35, 30, 0);
+            }
+        } else if (Build.VERSION.SDK_INT == 24){
+                //IF ONE DECIMAL
+                if ((35-counter) < 10) {
+                    params.setMargins(-80, 40, 30, 0);
+                    //IF TWO DECIMALS
+                } else {
+                    params.setMargins(-90, 40, 30, 0);
+                }
         } else {
-            params.setMargins(-100, 50, 30, 0);
+            //IF ONE DECIMAL
+            if ((35-counter) < 10) {
+                params.setMargins(-85, 50, 30, 0);
+                //IF TWO DECIMALS
+            } else {
+                params.setMargins(-100, 50, 30, 0);
+            }
         }
         remainingDaysTxt.setLayoutParams(params);
     }
