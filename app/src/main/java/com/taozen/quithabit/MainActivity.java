@@ -111,12 +111,10 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
     @BindView(R.id.YourProgressIdCravings) TextView userCravingsProgressTxt;
     //progressbar
-    @BindView(R.id.loadingProgressId)
-    ProgressBar progressBarLoading;
+    @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressId2) ProgressBar progressBarLoading2;
     //image view
-    @BindView(R.id.counterImageId)
-    ImageView counterImgView;
+    @BindView(R.id.counterImageId) ImageView counterImgView;
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
     @BindView(R.id.rankThreeId) ImageView rankThreeImg;
@@ -129,7 +127,7 @@ public class MainActivity extends AppCompatActivity
     int savings = 0;
     int progressPercent = 0, DAY_OF_CLICK = 0, DAY_OF_PRESENT = 0, HOUR_OF_TODAY = 0;
     //wil start from 1 to 3 to 7 to 14 to 21 to 30
-    int userMaxCountForHabit = 35;
+    int userMaxCountForHabit = 30;
     boolean buttonClickedToday;
 
     //Toolbar
@@ -210,6 +208,13 @@ public class MainActivity extends AppCompatActivity
         progressBarRemainingDays = findViewById(R.id.progress_bar_outer);
 
         //format string of MAX target txt view
+        counter = preferences.getInt("counter", 0);
+        if (counter>=30){
+            userMaxCountForHabit = 60;
+            editor.putInt("maxCounter", userMaxCountForHabit);
+            editor.apply();
+        }
+        userMaxCountForHabit = preferences.getInt("maxCounter", -1);
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
         //add font to counter number
         Typeface montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -248,6 +253,11 @@ public class MainActivity extends AppCompatActivity
         try {
             //setting the achievments images for user
             counter = preferences.getInt("counter", 0);
+            if (counter>=30){
+                userMaxCountForHabit = 60;
+                editor.putInt("maxCounter", userMaxCountForHabit);
+                editor.apply();
+            }
             //set margin for counter
             setTheMarginOfCounter();
             setImagesForAchievmentCard();
@@ -311,6 +321,12 @@ public class MainActivity extends AppCompatActivity
 
         //retrieving the counter, progressPercent and minute values
         try {
+            counter = preferences.getInt("counter", 0);
+            if (counter>=30){
+                userMaxCountForHabit = 60;
+                editor.putInt("maxCounter", userMaxCountForHabit);
+                editor.apply();
+            }
             getTargetDays();
             savings = setTheSavingsPerDay(counter);
             Log.d("LOGG", "in oncreate "+"savings = " + savings + " counter = " + counter);
@@ -497,6 +513,19 @@ public class MainActivity extends AppCompatActivity
         });
         threadForSlider.start();//end of INTRO
     }
+
+    private void startCheckForMaxActivity() {
+        //intro
+        //code for INTRO
+                boolean is30MaxCounter = preferences.getBoolean("ismaxcounter", true);
+                //  If the activity has never started before...
+                if (is30MaxCounter){
+                    checkTheMaxCounter();
+                    SharedPreferences.Editor i = preferences.edit();
+                    i.putBoolean("ismaxcounter", false);
+                    i.apply();
+                }
+    }
     @SideEffect
     private void counterFabButtonInitializer() {
         //active when user passed a day
@@ -574,6 +603,11 @@ public class MainActivity extends AppCompatActivity
                                 setImprovementProgressLevels();
                                 setImagesForAchievmentCard();
                                 counterText.setText(String.valueOf(counter));
+                                if (counter>=30){
+                                    userMaxCountForHabit = 60;
+                                    editor.putInt("maxCounter", userMaxCountForHabit);
+                                    editor.apply();
+                                }
                                 getTargetDays();
                                 showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
                                 Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
@@ -596,8 +630,12 @@ public class MainActivity extends AppCompatActivity
                                 editor.putInt("savings", savings);
                                 Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
                                 setImprovementProgressLevels();
-//                        setImagesForAchievmentCard();
                                 counterText.setText(String.valueOf(counter));
+                                if (counter>=30){
+                                    userMaxCountForHabit = 60;
+                                    editor.putInt("maxCounter", userMaxCountForHabit);
+                                    editor.apply();
+                                }
                                 getTargetDays();
                                 showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
                                 Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
@@ -684,7 +722,9 @@ public class MainActivity extends AppCompatActivity
 
     private void getTargetDays() {
         counter = preferences.getInt("counter", 0);
-        Log.d("TARGET", "counter: " + String.valueOf(userMaxCountForHabit-counter));
+        userMaxCountForHabit = preferences.getInt("maxCounter", 0);
+        int tempMax = preferences.getInt("maxCounter", 0);
+        Log.d("MAX", "maxCounter from getTargetDays method is: " + tempMax);
         //remaining days -- + "  " for space between number of days and text
         String calcDaysTarget = "";
         if (userMaxCountForHabit-counter < 10) {
@@ -759,14 +799,15 @@ public class MainActivity extends AppCompatActivity
             HOUR_OF_TODAY = calendar.get(Calendar.HOUR);
             Log.d("taolenZ", "hour of now: " + HOUR_OF_TODAY);
 //            DAY_OF_PRESENT = calendarForProgress.get(Calendar.MINUTE);
-            Log.d("taolenZ", "DAY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
-            if (counter >= userMaxCountForHabit){
-                counter = 1;
-                progressPercent=0;
-            }
+            Log.d("taolenZ", "Dhe counter to 1\n" +
+                    "                counter = 1;AY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
+
+
+            //check both intro and maxcounter
+            startCheckForMaxActivity();
+
             editor.putInt("counter", counter);
             editor.apply();
-
 //                                    Log.d("taozen", calendarForProgress.getTime().getHours() + " " + "\n" +
 //                                            Calendar.HOUR);
             //if the button/check in is already clicked today,
@@ -789,6 +830,84 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+    public void checkTheMaxCounter(){
+        if (counter >= userMaxCountForHabit) {
+            //to add dialog and ask user if he wants to continue to 60 days
+            //if not we will reset
+//                progressPercent=0;
+//                editor.putInt("counter", counter);
+//                editor.apply();
+
+
+            //dialog for ask user if he wants to go further with his progress
+            new FancyGifDialog.Builder(MainActivity.this)
+                    .setTitle("Target reached!!!")
+                    .setMessage("Do you want to go further and set target to 60 ?")
+                    .setNegativeBtnText("Cancel")
+                    .setPositiveBtnBackground("#FF4081")
+                    .setPositiveBtnText("Ok")
+                    .setNegativeBtnBackground("#FFA9A7A8")
+                    .setGifResource(R.drawable.source)   //Pass your Gif here
+                    .isCancellable(true)
+                    .OnPositiveClicked(new FancyGifDialogListener() {
+                        @Override
+                        public void OnClick() {
+                            userMaxCountForHabit = 60;
+                            editor.putInt("maxCounter", userMaxCountForHabit);
+                            editor.apply();
+                                checkActivityOnline();
+                                counter = preferences.getInt("counter", 0);
+                                //set margin for counter
+                                setTheMarginOfCounter();
+                                savings = setTheSavingsPerDay(counter);
+                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                                editor.putInt("savings", savings);
+                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                                setImprovementProgressLevels();
+                                setImagesForAchievmentCard();
+                                counterText.setText(String.valueOf(counter));
+                            if (counter>=30){
+                                userMaxCountForHabit = 60;
+                                editor.putInt("maxCounter", userMaxCountForHabit);
+                                editor.apply();
+                            }
+                                getTargetDays();
+                                showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                                Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .OnNegativeClicked(new FancyGifDialogListener() {
+                        @Override
+                        public void OnClick() {
+                            counter = 0;
+                            editor.putInt("counter", counter);
+                            editor.apply();
+                            checkActivityOnline();
+                            Log.d("taolenX", "[after asigning] counter is = " + counter);
+                            counter = preferences.getInt("counter", 0);
+                            Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
+                            savings = setTheSavingsPerDay(counter);
+                            //set margin for counter
+                            setTheMarginOfCounter();
+                            setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                            editor.putInt("savings", savings);
+                            Log.d("LOGG", "in fab " + "savings = " + savings + " counter = " + counter);
+                            setImprovementProgressLevels();
+                            counterText.setText(String.valueOf(counter));
+                            if (counter>=30){
+                                userMaxCountForHabit = 60;
+                                editor.putInt("maxCounter", userMaxCountForHabit);
+                                editor.apply();
+                            }
+                            getTargetDays();
+                            showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                            Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .build();
+            }//end of if
+        }//enf of MaxCounter method
 
     //onResume
     @Override
@@ -826,6 +945,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        editor.putInt("maxCounter", userMaxCountForHabit);
         editor.putInt("counter", counter);
         Log.d("counterval", "onDestroy " + counter);
         editor.putInt("progressPercent", progressPercent);
