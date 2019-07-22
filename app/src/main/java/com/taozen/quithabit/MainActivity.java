@@ -1,8 +1,6 @@
 package com.taozen.quithabit;
 
-import android.app.ActionBar;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -21,7 +19,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -29,11 +26,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -127,7 +122,7 @@ public class MainActivity extends AppCompatActivity
     int savings = 0;
     int progressPercent = 0, DAY_OF_CLICK = 0, DAY_OF_PRESENT = 0, HOUR_OF_TODAY = 0;
     //wil start from 1 to 3 to 7 to 14 to 21 to 30
-    int userMaxCountForHabit = 30;
+    int userMaxCountForHabit = -1;
     boolean buttonClickedToday;
 
     //Toolbar
@@ -156,29 +151,33 @@ public class MainActivity extends AppCompatActivity
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
 
-//        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.grey_800));
+
+        if (counter == 0){
+            counter = 1;
+            editor.putInt("counter", counter);
+            editor.apply();
+        }
+        if (userMaxCountForHabit == -1){
+            userMaxCountForHabit = 30;
+            editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+            editor.apply();
+        }
+
+//        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.grey_800)); -TESTING PURPOSE
 
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
 
-//        setDrawableLeft();
-
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setElevation(0); //remove shadow
+//        getSupportActionBar().setElevation(0); //remove shadow - but now it is already removed in xml file
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-
         progressCardView.setCardElevation(0);
         savingsCardView.setCardElevation(0);
         timeStampLogsCardview.setCardElevation(0);
@@ -190,31 +189,34 @@ public class MainActivity extends AppCompatActivity
         //settting progress card
         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
 
-        //wave loading
-//        seekBar = findViewById(R.id.seekbarId);
-
-//        waveLoadingViewBigger = findViewById(R.id.waveLoadingIdBigger);
-//        waveLoadingViewBigger.setProgressValue(30);
-////
-////        //animation speed :/
-//        waveLoadingViewBigger.setAnimDuration(2300);
-
         //progress for percent - this is a circular bar
         progressBarEnergyLevel = findViewById(R.id.progress_bar_energy);
         progressBarFatigueLevel = findViewById(R.id.progress_bar_fatigue);
         progressBarBreathlevel = findViewById(R.id.progress_bar_breath);
         progressBarGumsLevel = findViewById(R.id.progress_bar_gums);
-
         progressBarRemainingDays = findViewById(R.id.progress_bar_outer);
 
-        //format string of MAX target txt view
-        counter = preferences.getInt("counter", 0);
-        if (counter>=30){
-            userMaxCountForHabit = 60;
-            editor.putInt("maxCounter", userMaxCountForHabit);
-            editor.apply();
+        try{
+            //format string of MAX target txt view
+            counter = preferences.getInt("counter", 0);
+            if (counter>=60){
+                userMaxCountForHabit = 90;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= 30){
+                userMaxCountForHabit = 60;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else {
+                userMaxCountForHabit = 30;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            }
+            userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
+        } catch (NullPointerException e){
+            e.printStackTrace();
         }
-        userMaxCountForHabit = preferences.getInt("maxCounter", -1);
+
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
         //add font to counter number
         Typeface montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -247,15 +249,20 @@ public class MainActivity extends AppCompatActivity
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
         userCravingsProgressTxt.setTypeface(montSerratLightTypeface);
 
-
-
-
         try {
             //setting the achievments images for user
             counter = preferences.getInt("counter", 0);
-            if (counter>=30){
+            if (counter>=60){
+                userMaxCountForHabit = 90;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= 30){
                 userMaxCountForHabit = 60;
-                editor.putInt("maxCounter", userMaxCountForHabit);
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else {
+                userMaxCountForHabit = 30;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             }
             //set margin for counter
@@ -284,16 +291,12 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 try {
                     progressPercent = preferences.getInt("progressPercent", progressPercent);
-//                    Intent intent = new Intent(MainActivity.this, ProgressActivity.class);
-//                    Intent intent = new Intent(MainActivity.this, ProgressKotlinActivity.class);
                     Intent intent = new Intent(MainActivity.this, ProgressActivity_HerokuStyleFetching.class);
-//                    Intent intent = new Intent(MainActivity.this, Test.class);
                     intent.putExtra("pro", progressPercent);
                     startActivity(intent);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
-
             }
         });//progressCardView[END]
         timeStampLogsCardview.setOnClickListener(new View.OnClickListener() {
@@ -322,9 +325,17 @@ public class MainActivity extends AppCompatActivity
         //retrieving the counter, progressPercent and minute values
         try {
             counter = preferences.getInt("counter", 0);
-            if (counter>=30){
+            if (counter>=60){
+                userMaxCountForHabit = 90;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= 30){
                 userMaxCountForHabit = 60;
-                editor.putInt("maxCounter", userMaxCountForHabit);
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else {
+                userMaxCountForHabit = 30;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             }
             getTargetDays();
@@ -473,15 +484,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-
-
-
-
-
-
-
-
     @SideEffect
     private void startIntroActivity() {
         //intro
@@ -494,6 +496,9 @@ public class MainActivity extends AppCompatActivity
                 boolean isFirstStart = preferences.getBoolean("firstStart", true);
                 //  If the activity has never started before...
                 if (isFirstStart) {
+                    counter = 1;
+                    editor.putInt("counter", counter);
+                    editor.apply();
                     //  Launch app intro
                     final Intent i = new Intent(MainActivity.this, IntroActivity.class);
                     runOnUiThread(new Runnable() {
@@ -515,22 +520,26 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void startCheckForMaxActivity() {
+        SharedPreferences.Editor i = preferences.edit();
         //intro
         //code for INTRO
-                boolean is30MaxCounter = preferences.getBoolean("ismaxcounter", true);
-                //  If the activity has never started before...
-                if (is30MaxCounter){
-                    checkTheMaxCounter();
-                    SharedPreferences.Editor i = preferences.edit();
-                    i.putBoolean("ismaxcounter", false);
-                    i.apply();
-                }
+        boolean is30MaxCounter = preferences.getBoolean("ismaxcounter30", true);
+        boolean is60MaxCounter = preferences.getBoolean("ismaxcounter60", true);
+        //  If the activity has never started before...
+        if (is30MaxCounter){
+            checkTheMaxCounterSixty();
+            i.putBoolean("ismaxcounter30", false);
+            i.apply();
+        } else if (is60MaxCounter){
+            checkTheMaxCounterNinety();
+            i.putBoolean("ismaxcounter60", false);
+            i.apply();
+        }
     }
     @SideEffect
     private void counterFabButtonInitializer() {
         //active when user passed a day
         //inactive when user wait
-        //counter++;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -543,39 +552,12 @@ public class MainActivity extends AppCompatActivity
                 calendarOnClick = Calendar.getInstance();
                 calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
                 DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
-//                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);
+//                DAY_OF_CLICK = calendarOnClick.get(Calendar.MINUTE);  --TESTING PURPOSE
                 editor.putInt("presentday", DAY_OF_CLICK);
                 editor.putInt("progressPercent", progressPercent);
                 editor.apply();
-//                counter++;
-//                savings = setTheSavingsPerDay(counter);
-//                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-//                editor.putInt("savings", savings);
-//                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-//                setImprovementProgressLevels();
                 setImagesForAchievmentCard();
-//                counterText.setText(String.valueOf(counter));
-//                editor.putInt("counter", counter);
-//                editor.apply();
                 Log.d("taolenX", "counter from onclick = " + counter);
-//                final Snackbar snackbar = Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG);
-//                snackbar.setAction("yes", new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        //when user abtained smoking
-//                    }
-//                });
-////                snackbar.setAction("no", new View.OnClickListener() {
-////                    @Override
-////                    public void onClick(View v) {
-////                        //when user failed
-////                        //reset counter, progressbars
-////                    }
-////                });
-//                snackbar.show();
-                //snackbar doesn work
-
-
 
                 new FancyGifDialog.Builder(MainActivity.this)
                         .setTitle("No smoke dialog!")
@@ -593,7 +575,6 @@ public class MainActivity extends AppCompatActivity
                                 editor.putInt("counter", counter);
                                 editor.apply();
                                 checkActivityOnline();
-                                counter = preferences.getInt("counter", 0);
                                 //set margin for counter
                                 setTheMarginOfCounter();
                                 savings = setTheSavingsPerDay(counter);
@@ -603,14 +584,29 @@ public class MainActivity extends AppCompatActivity
                                 setImprovementProgressLevels();
                                 setImagesForAchievmentCard();
                                 counterText.setText(String.valueOf(counter));
-                                if (counter>=30){
-                                    userMaxCountForHabit = 60;
-                                    editor.putInt("maxCounter", userMaxCountForHabit);
-                                    editor.apply();
-                                }
                                 getTargetDays();
                                 showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
                                 Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                                try{
+                                    //format string of MAX target txt view
+                                    counter = preferences.getInt("counter", 0);
+                                    if (counter>=60){
+                                        userMaxCountForHabit = 90;
+                                        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                        editor.apply();
+                                    } else if (counter >= 30){
+                                        userMaxCountForHabit = 60;
+                                        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                        editor.apply();
+                                    } else {
+                                        userMaxCountForHabit = 30;
+                                        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                        editor.apply();
+                                    }
+                                    userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
+                                } catch (NullPointerException e){
+                                    e.printStackTrace();
+                                }
                             }
                         })
                         .OnNegativeClicked(new FancyGifDialogListener() {
@@ -621,7 +617,9 @@ public class MainActivity extends AppCompatActivity
                                 editor.apply();
                                 checkActivityOnline();
                                 Log.d("taolenX", "[after asigning] counter is = " + counter);
-                                counter = preferences.getInt("counter", 0);
+                                try {
+                                    counter = preferences.getInt("counter", 0);
+                                } catch (NullPointerException e){e.printStackTrace();}
                                 Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
                                 savings = setTheSavingsPerDay(counter);
                                 //set margin for counter
@@ -631,69 +629,32 @@ public class MainActivity extends AppCompatActivity
                                 Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
                                 setImprovementProgressLevels();
                                 counterText.setText(String.valueOf(counter));
-                                if (counter>=30){
-                                    userMaxCountForHabit = 60;
-                                    editor.putInt("maxCounter", userMaxCountForHabit);
-                                    editor.apply();
+                                try{
+                                    //format string of MAX target txt view
+                                    counter = preferences.getInt("counter", 0);
+                                    if (counter>=60){
+                                        userMaxCountForHabit = 90;
+                                        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                        editor.apply();
+                                    } else if (counter >= 30){
+                                        userMaxCountForHabit = 60;
+                                        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                        editor.apply();
+                                    } else {
+                                        userMaxCountForHabit = 30;
+                                        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                        editor.apply();
+                                    }
+                                    userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
+                                } catch (NullPointerException e){
+                                    e.printStackTrace();
                                 }
                                 getTargetDays();
                                 showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
                                 Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .build();
-
-                //clasic dialog for asking user if he failed today or not
-//                final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-//                alertDialog.setTitle("NoSmoke dialog");
-//                alertDialog.setMessage("Did you abtained to smoke today ?");
-//                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES",
-//                        new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                Snackbar.make(parentLayout, "Replace with your own action", Snackbar.LENGTH_LONG);
-////                                alertDialog.dismiss();
-//                                Log.d("taolenX", "yes button clicked");
-//                                counter++;
-//                                editor.putInt("counter", counter);
-//                                editor.apply();
-//                                counter = preferences.getInt("counter", 0);
-//                                savings = setTheSavingsPerDay(counter);
-//                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-//                                editor.putInt("savings", savings);
-//                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-//                                setImprovementProgressLevels();
-//                                setImagesForAchievmentCard();
-//                                counterText.setText(String.valueOf(counter));
-//                                getTargetDays();
-//                                showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-//                            }
-//                        });
-//                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO",
-//                        new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-////                                alertDialog.dismiss();
-//                                Log.d("taolenX", "no button clicked");
-//                                Log.d("taolenX", "[before asigning] counter is = " + counter);
-//                                counter=0;
-//                                editor.putInt("counter", counter);
-//                                editor.apply();
-//                                Log.d("taolenX", "[after asigning] counter is = " + counter);
-//                                counter = preferences.getInt("counter", 0);
-//                                Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
-//                                savings = setTheSavingsPerDay(counter);
-//                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-//                                editor.putInt("savings", savings);
-//                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-//                                setImprovementProgressLevels();
-//                                setImagesForAchievmentCard();
-//                                counterText.setText(String.valueOf(counter));
-//                                showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-//                            }
-//                        });
-//
-//                alertDialog.show();
+                        .build();//[END of DIALOG]
 
                 getTargetDays();
                 fab.hide();
@@ -721,10 +682,28 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getTargetDays() {
-        counter = preferences.getInt("counter", 0);
-        userMaxCountForHabit = preferences.getInt("maxCounter", 0);
-        int tempMax = preferences.getInt("maxCounter", 0);
-        Log.d("MAX", "maxCounter from getTargetDays method is: " + tempMax);
+        try{
+            //format string of MAX target txt view
+            counter = preferences.getInt("counter", 0);
+            if (counter>=60){
+                userMaxCountForHabit = 90;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= 30){
+                userMaxCountForHabit = 60;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else {
+                userMaxCountForHabit = 30;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            }
+            userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
+            int tempMax = preferences.getInt(getString(R.string.maxCounter), 0);
+            Log.d("MAX", "maxCounter from getTargetDays method is: " + tempMax);
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
         //remaining days -- + "  " for space between number of days and text
         String calcDaysTarget = "";
         if (userMaxCountForHabit-counter < 10) {
@@ -749,12 +728,12 @@ public class MainActivity extends AppCompatActivity
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-//                Log.d("targaryen", "this AsyncTask running on: " + Thread.currentThread().getName());
+                Log.d("targaryen", "this AsyncTask running on: " + Thread.currentThread().getName());
                 timer = new Timer();
                 timer.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
-//                        Log.d("targaryen", "this scheduleAtFixedRate running on: " + Thread.currentThread().getName());
+                        Log.d("targaryen", "this scheduleAtFixedRate running on: " + Thread.currentThread().getName());
                         //run till status bar is 100%
                         runOnUiThread(new Runnable() {
                             @Override
@@ -773,7 +752,10 @@ public class MainActivity extends AppCompatActivity
     public void startTheEngine() {
         try {
             updatePercent();
-            counter = preferences.getInt("counter", 0);
+            try {
+                counter = preferences.getInt("counter", 0);
+            } catch (NullPointerException e){e.printStackTrace();}
+
             setImagesForAchievmentCard();
             setImprovementProgressLevels();
             Log.d("TAGG", "try { counterText = " + counter);
@@ -802,12 +784,25 @@ public class MainActivity extends AppCompatActivity
             Log.d("taolenZ", "Dhe counter to 1\n" +
                     "                counter = 1;AY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
 
-
             //check both intro and maxcounter
             startCheckForMaxActivity();
 
             editor.putInt("counter", counter);
-            editor.apply();
+            if (counter>=60){
+                userMaxCountForHabit = 90;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= 30){
+                userMaxCountForHabit = 60;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else {
+                userMaxCountForHabit = 30;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            }
+            userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
+            setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
 //                                    Log.d("taozen", calendarForProgress.getTime().getHours() + " " + "\n" +
 //                                            Calendar.HOUR);
             //if the button/check in is already clicked today,
@@ -831,14 +826,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void checkTheMaxCounter(){
+    public void checkTheMaxCounterSixty(){
         if (counter >= userMaxCountForHabit) {
             //to add dialog and ask user if he wants to continue to 60 days
             //if not we will reset
-//                progressPercent=0;
-//                editor.putInt("counter", counter);
-//                editor.apply();
-
 
             //dialog for ask user if he wants to go further with his progress
             new FancyGifDialog.Builder(MainActivity.this)
@@ -854,38 +845,43 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void OnClick() {
                             userMaxCountForHabit = 60;
-                            editor.putInt("maxCounter", userMaxCountForHabit);
+                            editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                             editor.apply();
-                                checkActivityOnline();
+                            checkActivityOnline();
+                            try {
                                 counter = preferences.getInt("counter", 0);
-                                //set margin for counter
-                                setTheMarginOfCounter();
-                                savings = setTheSavingsPerDay(counter);
-                                setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                editor.putInt("savings", savings);
-                                Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                setImprovementProgressLevels();
-                                setImagesForAchievmentCard();
-                                counterText.setText(String.valueOf(counter));
+                            } catch (NullPointerException e){e.printStackTrace();}
+
+                            //set margin for counter
+                            setTheMarginOfCounter();
+                            savings = setTheSavingsPerDay(counter);
+                            setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                            editor.putInt("savings", savings);
+                            Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                            setImprovementProgressLevels();
+                            setImagesForAchievmentCard();
+                            counterText.setText(String.valueOf(counter));
                             if (counter>=30){
                                 userMaxCountForHabit = 60;
-                                editor.putInt("maxCounter", userMaxCountForHabit);
+                                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                                 editor.apply();
                             }
-                                getTargetDays();
-                                showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-                                Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                            getTargetDays();
+                            showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                            Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
                         }
                     })
                     .OnNegativeClicked(new FancyGifDialogListener() {
                         @Override
                         public void OnClick() {
-                            counter = 0;
+                            counter = 1;
                             editor.putInt("counter", counter);
                             editor.apply();
                             checkActivityOnline();
                             Log.d("taolenX", "[after asigning] counter is = " + counter);
-                            counter = preferences.getInt("counter", 0);
+                            try {
+                                counter = preferences.getInt("counter", 0);
+                            } catch (NullPointerException e){e.printStackTrace();}
                             Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
                             savings = setTheSavingsPerDay(counter);
                             //set margin for counter
@@ -897,7 +893,7 @@ public class MainActivity extends AppCompatActivity
                             counterText.setText(String.valueOf(counter));
                             if (counter>=30){
                                 userMaxCountForHabit = 60;
-                                editor.putInt("maxCounter", userMaxCountForHabit);
+                                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                                 editor.apply();
                             }
                             getTargetDays();
@@ -906,8 +902,102 @@ public class MainActivity extends AppCompatActivity
                         }
                     })
                     .build();
-            }//end of if
-        }//enf of MaxCounter method
+        }//end of if
+    }//enf of MaxCounter method
+
+    public void checkTheMaxCounterNinety(){
+        if (counter >= userMaxCountForHabit) {
+            //to add dialog and ask user if he wants to continue to 60 days
+            //if not we will reset
+
+            //dialog for ask user if he wants to go further with his progress
+            new FancyGifDialog.Builder(MainActivity.this)
+                    .setTitle("Target reached!!!")
+                    .setMessage("Do you want to go further and set target to 60 ?")
+                    .setNegativeBtnText("Cancel")
+                    .setPositiveBtnBackground("#FF4081")
+                    .setPositiveBtnText("Ok")
+                    .setNegativeBtnBackground("#FFA9A7A8")
+                    .setGifResource(R.drawable.source)   //Pass your Gif here
+                    .isCancellable(true)
+                    .OnPositiveClicked(new FancyGifDialogListener() {
+                        @Override
+                        public void OnClick() {
+                            userMaxCountForHabit = 90;
+                            editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                            editor.apply();
+                            checkActivityOnline();
+                            try {
+                                counter = preferences.getInt("counter", 0);
+                            } catch (NullPointerException e){e.printStackTrace();}
+                            //set margin for counter
+                            setTheMarginOfCounter();
+                            savings = setTheSavingsPerDay(counter);
+                            setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                            editor.putInt("savings", savings);
+                            Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
+                            setImprovementProgressLevels();
+                            setImagesForAchievmentCard();
+                            counterText.setText(String.valueOf(counter));
+                            if (counter>=60){
+                                userMaxCountForHabit = 90;
+                                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                editor.apply();
+                            } else if (counter >= 30){
+                                userMaxCountForHabit = 60;
+                                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                editor.apply();
+                            } else {
+                                userMaxCountForHabit = 30;
+                                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                editor.apply();
+                            }
+                            getTargetDays();
+                            showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                            Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .OnNegativeClicked(new FancyGifDialogListener() {
+                        @Override
+                        public void OnClick() {
+                            counter = 1;
+                            editor.putInt("counter", counter);
+                            editor.apply();
+                            checkActivityOnline();
+                            Log.d("taolenX", "[after asigning] counter is = " + counter);
+                            try {
+                                counter = preferences.getInt("counter", 0);
+                            } catch (NullPointerException e){e.printStackTrace();}
+                            Log.d("taolenX", "[after getting from preferences] counter is = " + counter);
+                            savings = setTheSavingsPerDay(counter);
+                            //set margin for counter
+                            setTheMarginOfCounter();
+                            setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                            editor.putInt("savings", savings);
+                            Log.d("LOGG", "in fab " + "savings = " + savings + " counter = " + counter);
+                            setImprovementProgressLevels();
+                            counterText.setText(String.valueOf(counter));
+                            if (counter>=60){
+                                userMaxCountForHabit = 90;
+                                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                editor.apply();
+                            } else if (counter >= 30){
+                                userMaxCountForHabit = 60;
+                                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                editor.apply();
+                            } else {
+                                userMaxCountForHabit = 30;
+                                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                                editor.apply();
+                            }
+                            getTargetDays();
+                            showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                            Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .build();
+        }//end of if
+    }//enf of MaxCounter method
 
     //onResume
     @Override
@@ -945,7 +1035,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        editor.putInt("maxCounter", userMaxCountForHabit);
+        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
         editor.putInt("counter", counter);
         Log.d("counterval", "onDestroy " + counter);
         editor.putInt("progressPercent", progressPercent);
@@ -960,9 +1050,9 @@ public class MainActivity extends AppCompatActivity
         if (progressBar == 100) {
             //to do: if press yes go counter = 1
             progressPercent = 0;
-            counter = 1;
-            counterText.setText(counter);
-            editor.putInt("counter", counter);
+//            counter = 1;
+//            counterText.setText(counter);
+//            editor.putInt("counter", counter);
             editor.putInt("progressPercent", progressPercent);
             editor.apply();
         }
@@ -1064,7 +1154,9 @@ public class MainActivity extends AppCompatActivity
 
     @SideEffect
     private void setImprovementProgressLevels(){
-        counter = preferences.getInt("counter", 0);
+        try {
+            counter = preferences.getInt("counter", 0);
+        } catch (NullPointerException e){e.printStackTrace();}
         Log.d("taolenX", "[setImprovementProgressLevels] counter is = " + counter);
 
         //energy levels
@@ -1132,9 +1224,7 @@ public class MainActivity extends AppCompatActivity
             txtProgressForBreath.setText(100 + "%");
             progressBarBreathlevel.setProgress(100);
         }
-
     }
-
 
     //MENU DRAWER
     @Override
@@ -1180,7 +1270,6 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -1322,10 +1411,11 @@ public class MainActivity extends AppCompatActivity
         //for this to work i have to provide 366 quotes
         if (isOnline()) {
             //int i = ran.nextInt(366)+1; to add 1000 quotes or so
-            int i = 18;
-            counter = preferences.getInt("counter", 0);
-            i = counter;
-            requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, i);
+            try {
+                counter = preferences.getInt("counter", 0);
+            } catch (NullPointerException e){e.printStackTrace();}
+            Log.d("COUNTER777", "counter: " +counter);
+            requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, counter);
         } else {
             errorText.setVisibility(View.VISIBLE);
             tipofthedayTxtViewId.setText("ERROR fortyfour :(");
@@ -1356,7 +1446,6 @@ public class MainActivity extends AppCompatActivity
             try {
                 //using GSON
                 JsonParser parser = new JsonParser();
-
                 //using MyHttpManager getData static method
 //              String content = MyHttpManager.getData(params[0]);
                 Thread.sleep(1000);
@@ -1402,7 +1491,9 @@ public class MainActivity extends AppCompatActivity
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        counter = preferences.getInt("counter", 0);
+        try {
+            counter = preferences.getInt("counter", 0);
+        } catch (NullPointerException e){e.printStackTrace();}
         Log.d("MARGIN", "counter is in margin: " + counter);
         if (Build.VERSION.SDK_INT == 25 ){
             //IF ONE DECIMAL
@@ -1421,13 +1512,13 @@ public class MainActivity extends AppCompatActivity
                 params.setMargins(-78, 35, 30, 0);
             }
         } else if (Build.VERSION.SDK_INT == 24){
-                //IF ONE DECIMAL
-                if ((35-counter) < 10) {
-                    params.setMargins(-80, 40, 30, 0);
-                    //IF TWO DECIMALS
-                } else {
-                    params.setMargins(-90, 40, 30, 0);
-                }
+            //IF ONE DECIMAL
+            if ((35-counter) < 10) {
+                params.setMargins(-80, 40, 30, 0);
+                //IF TWO DECIMALS
+            } else {
+                params.setMargins(-90, 40, 30, 0);
+            }
         } else {
             //IF ONE DECIMAL
             if ((35-counter) < 10) {
@@ -1440,17 +1531,11 @@ public class MainActivity extends AppCompatActivity
         remainingDaysTxt.setLayoutParams(params);
     }
 
-//    private void setDrawableLeft(){
-//        Drawable drawable = getResources().getDrawable(R.mipmap.savings);
-//        drawable.setBounds(0, 0, (int) (drawable.getIntrinsicWidth() * 0.6),
-//                (int) (drawable.getIntrinsicHeight() * 0.6));
-//        ScaleDrawable sd = new ScaleDrawable(drawable, 0, 40, 40);
-//        moneyOrTimeTextView.setCompoundDrawables(sd.getDrawable(), null, null, null);
-//    }
-
     @SideEffect
     private void setImagesForAchievmentCard(){
-        counter = preferences.getInt("counter", 0);
+        try {
+            counter = preferences.getInt("counter", 0);
+        } catch (NullPointerException e){e.printStackTrace();}
         Log.d("taoAchiev", "counter from achiev = " + counter);
         if (counter>0&&counter<4) {//user have between a day and a week
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
@@ -1562,17 +1647,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showEntireProgressForUserCard(TextView userCigaretesProgressTxt, TextView userRankProgressTxt, TextView userHoursProgressTxt, TextView userCravingsProgressTxt){
-        counter = preferences.getInt("counter", 0);
-        int cigaretess = cigaretesPerDay * counter;
-        String theLatestRank = preferences.getString("rank", "null");
-        String lifeRegained = Integer.toString((minutesPerDayResisted / 60)*counter);
-        //todo: cravings
-        String cravingsTotal = Integer.toString(0);
-        //setting textview with the assigned text
-        userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + String.valueOf(cigaretess));
-        userRankProgressTxt.setText("Rank: " + String.valueOf(theLatestRank));
-        userHoursProgressTxt.setText("Life regained: " + String.valueOf(lifeRegained) + " hours");
-        userCravingsProgressTxt.setText("Cravings resisted: " + String.valueOf(cravingsTotal));
+        try {
+            counter = preferences.getInt("counter", 0);
+            int cigaretess = cigaretesPerDay * counter;
+            String theLatestRank = preferences.getString("rank", "null");
+            String lifeRegained = Integer.toString((minutesPerDayResisted / 60)*counter);
+            //todo: cravings
+            String cravingsTotal = Integer.toString(0);
+            //setting textview with the assigned text
+            userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + String.valueOf(cigaretess));
+            userRankProgressTxt.setText("Rank: " + String.valueOf(theLatestRank));
+            userHoursProgressTxt.setText("Life regained: " + String.valueOf(lifeRegained) + " hours");
+            userCravingsProgressTxt.setText("Cravings resisted: " + String.valueOf(cravingsTotal));
+        } catch (NullPointerException e){e.printStackTrace();}
     }
-
 }

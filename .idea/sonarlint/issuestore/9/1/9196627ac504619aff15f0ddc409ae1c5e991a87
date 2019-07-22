@@ -1,0 +1,145 @@
+
+ksquid:S1192Î"LDefine a constant instead of duplicating this literal " counter = " 9 times.(¸ôìã8 Ò™×Á-
+Psquid:S1153Ø"1Directly append the argument of String.valueOf().(¦Ÿ–Ş8îâÖÁ-
+osquid:CommentedOutCodeLineÔ"<This block of commented-out lines of code should be removed.(é£Æ›úÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLineÖ"<This block of commented-out lines of code should be removed.(§Ø‡øÿÿÿÿ8 Ò™×Á-
+osquid:S1192ˆ"KDefine a constant instead of duplicating this literal "counterval" 3 times.(¼İ½ùÿÿÿÿ8 Ò™×Á-
+jsquid:CommentedOutCodeLine¼
+"<This block of commented-out lines of code should be removed.(òë‘õ8 Ò™×Á-
+msquid:S1192¤"IDefine a constant instead of duplicating this literal "taolenX" 17 times.(ŠŞïÓùÿÿÿÿ8 Ò™×Á-
+isquid:CommentedOutCodeLine’
+"<This block of commented-out lines of code should be removed.(äªÊp8 Ò™×Á-
+Gsquid:S1148Ë"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+“squid:S1192ã"oDefine a constant instead of duplicating this literal "[after getting from preferences] counter is = " 3 times.(¹ÏÛüÿÿÿÿ8 Ò™×Á-
+vsquid:S3776Û"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(†ÉúÃøÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+Ysquid:S1659‰"5Declare "progressBarFatigueLevel" on a separate line.(Ã””¸ÿÿÿÿÿ8ş×„ÒÁ-
+Ssquid:S1905ë	"/Remove this unnecessary cast to "DrawerLayout".(ĞÍè¨şÿÿÿÿ8óŠ¯×Á-
+Isquid:S00108ã	")Either remove or fill this block of code.(õœšÿ8 Ò™×Á-
+osquid:CommentedOutCodeLine™"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8 Ò™×Á-
+jsquid:CommentedOutCodeLineÌ"<This block of commented-out lines of code should be removed.(›å…8 Ò™×Á-
+lsquid:S1192³"HDefine a constant instead of duplicating this literal "savings" 9 times.(Ğµš¯ıÿÿÿÿ8ÛÉ”ÖÁ-
+Gsquid:S1148¡"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+msquid:S1192›"IDefine a constant instead of duplicating this literal "counter" 31 times.(çÏíûÿÿÿÿ8 Ò™×Á-
+Ysquid:S1141Ê"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ø‚ÑËúÿÿÿÿ8 Ò™×Á-
+lsquid:S1192»"HDefine a constant instead of duplicating this literal "in fab " 6 times.(î‚…íûÿÿÿÿ8 Ò™×Á-
+squid:S1192ˆ"]Define a constant instead of duplicating this literal "i am counter 7 && 13 working" 6 times.(ƒÜ³üÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLine‹"<This block of commented-out lines of code should be removed.(˜¸Åñıÿÿÿÿ8ş×„ÒÁ-
+osquid:CommentedOutCodeLine¼"<This block of commented-out lines of code should be removed.(ˆ²òËúÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLine®"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148Ô"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+esquid:S1192¹"FDefine a constant instead of duplicating this literal "MONEY" 6 times.(˜·Š¹8 Ò™×Á-
+jsquid:CommentedOutCodeLineÿ	"<This block of commented-out lines of code should be removed.(³¿á•8 Ò™×Á-
+Gsquid:S1148Ì"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+Zsquid:S1659‰"6Declare "progressBarRemainingDays" on a separate line.(Ã””¸ÿÿÿÿÿ8ş×„ÒÁ-
+jsquid:CommentedOutCodeLine
+"<This block of commented-out lines of code should be removed.(ÕİÚÚ8 Ò™×Á-
+jsquid:CommentedOutCodeLineª
+"<This block of commented-out lines of code should be removed.(™¶—ı8 Ò™×Á-
+Gsquid:S1148İ"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLineˆ"<This block of commented-out lines of code should be removed.(ïÏÄÒùÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLineÒ"<This block of commented-out lines of code should be removed.(úŸê—üÿÿÿÿ8 Ò™×Á-
+gsquid:S1192¨"HDefine a constant instead of duplicating this literal "CAPTAIN" 3 times.(¡ù‚î8 Ò™×Á-
+jsquid:S1192 "KDefine a constant instead of duplicating this literal "presentday" 4 times.(í£Ç‰8 Ò™×Á-
+Psquid:S1153Ö"1Directly append the argument of String.valueOf().(âÛ‡¿8ß®ÚÖÁ-
+usquid:S1450"VRemove the "toolbar" field and declare it as a local variable in the relevant methods.(ş®º—8ş×„ÒÁ-
+jsquid:CommentedOutCodeLineŸ
+"<This block of commented-out lines of code should be removed.(ÕİÚÚ8 Ò™×Á-
+vsquid:S3776Ú"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(„™Ìùÿÿÿÿ8 Ò™×Á-
+jsquid:S1192Î"KDefine a constant instead of duplicating this literal "savings = " 8 times.(¸ôìã8 Ò™×Á-
+osquid:CommentedOutCodeLine©"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8 Ò™×Á-
+[squid:S1854Ã	"7Remove this useless assignment to local variable "zet".(ª¸·íşÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148â"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+jsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(°Œ¤¶8 Ò™×Á-
+]squid:S1155ô
+">Use isEmpty() to check whether the collection is empty or not.(¬‘ş«8 Ò™×Á-
+jsquid:CommentedOutCodeLine¨
+"<This block of commented-out lines of code should be removed.(»ÎÊ8 Ò™×Á-
+osquid:S1192œ"PDefine a constant instead of duplicating this literal "progressPercent" 8 times.(¡î…8 Ò™×Á-
+Vsquid:S1135Ó"2Complete the task associated to this TODO comment.(®ÊÁ»üÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148Š"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLine¾
+"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8 Ò™×Á-
+qsquid:S3776ã"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(«Ø‡ø8 Ò™×Á-
+Lsquid:S1481Ã	"(Remove this unused "zet" local variable.(ª¸·íşÿÿÿÿ8ß®ÚÖÁ-
+Gsquid:S1148×"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Õ˜ƒ®ùÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLine”"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8 Ò™×Á-
+isquid:CommentedOutCodeLineş"<This block of commented-out lines of code should be removed.(üÛáJ8 Ò™×Á-
+dsquid:S2147"ECombine this catch with the one at line 780, which has the same body.(”ı¾8 Ò™×Á-
+Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+Wsquid:S1659Š"3Declare "waveLoadingViewBigger" on a separate line.(¨×èÁüÿÿÿÿ8ş×„ÒÁ-
+osquid:CommentedOutCodeLineØ"<This block of commented-out lines of code should be removed.(Â™†úÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148Ş"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLineÎ"<This block of commented-out lines of code should be removed.(é£Æ›úÿÿÿÿ8 Ò™×Á-
+]squid:S1155š">Use isEmpty() to check whether the collection is empty or not.(¬‘ş«8 Ò™×Á-
+Osquid:S1659{",Declare "DAY_OF_PRESENT" on a separate line.(ŞÜœ…úÿÿÿÿ8ş×„ÒÁ-
+Gsquid:S1148¬"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+}squid:S1192ß"_Define a constant instead of duplicating this literal "[after asigning] counter is = " 3 times.(½¯…n8 Ò™×Á-
+osquid:CommentedOutCodeLineÚ
+"<This block of commented-out lines of code should be removed.( ÄÅÌúÿÿÿÿ8 Ò™×Á-
+Isquid:S00108á	")Either remove or fill this block of code.(ó´®8 Ò™×Á-
+ssquid:S1854Ú"ORemove this useless assignment to local variable "montSerratExtraBoldTypeface".(´‹Ğ»şÿÿÿÿ8 Ò™×Á-
+osquid:CommentedOutCodeLine…"<This block of commented-out lines of code should be removed.(†»¥Æøÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148Ï"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148¡"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+Gsquid:S1148â
+"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+Isquid:S00108ß	")Either remove or fill this block of code.(æÎà 8 Ò™×Á-
+Gsquid:S1148˜"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+jsquid:CommentedOutCodeLine½"<This block of commented-out lines of code should be removed.(ƒ¤–°8 Ò™×Á-
+Xsquid:S1659‰"4Declare "progressBarBreathlevel" on a separate line.(Ã””¸ÿÿÿÿÿ8ş×„ÒÁ-
+lsquid:S1192Ñ"HDefine a constant instead of duplicating this literal "clicked" 8 times.(ÃÒç¿ÿÿÿÿÿ8 Ò™×Á-
+esquid:S1126Í
+"AReplace this if-then-else statement by a single return statement.(ÉİØüÿÿÿÿ8 Ò™×Á-
+dsquid:S1481Ú"@Remove this unused "montSerratExtraBoldTypeface" local variable.(´‹Ğ»şÿÿÿÿ8 Ò™×Á-
+Nsquid:S00108ç	")Either remove or fill this block of code.(ê±›Ñüÿÿÿÿ8 Ò™×Á-
+{squid:S00116{"WRename this field "DAY_OF_CLICK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÜœ…úÿÿÿÿ8ş×„ÒÁ-
+osquid:CommentedOutCodeLine©"<This block of commented-out lines of code should be removed.(»ÊÊÿıÿÿÿÿ8 Ò™×Á-
+jsquid:CommentedOutCodeLine‚
+"<This block of commented-out lines of code should be removed.(ÏËÓ8 Ò™×Á-
+osquid:CommentedOutCodeLine¾"<This block of commented-out lines of code should be removed.(®üğÿùÿÿÿÿ8 Ò™×Á-
+]squid:UnusedPrivateMethodğ	"0Remove this unused private "takePicture" method.(—òÖ¤8 Ò™×Á-
+hsquid:S1192¬"JDefine a constant instead of duplicating this literal "#FFA9A7A8" 3 times.(Õ “}8 Ò™×Á-
+csquid:S1481Ù"?Remove this unused "montSerratSemiBoldTypeface" local variable.(¯ĞÉÙøÿÿÿÿ8ÛÉ”ÖÁ-
+ksquid:S1192©"GDefine a constant instead of duplicating this literal "Cancel" 6 times.(øÜÄ”úÿÿÿÿ8ÛÉ”ÖÁ-
+gsquid:S1192ª"HDefine a constant instead of duplicating this literal "#FF4081" 3 times.(´¼ı8 Ò™×Á-
+Tsquid:S1854ß
+"5Remove this useless assignment to local variable "i".(­·Ÿó8 Ò™×Á-
+Gsquid:S1148³"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+jsquid:CommentedOutCodeLineñ"<This block of commented-out lines of code should be removed.(§¯Ü–8 Ò™×Á-
+jsquid:CommentedOutCodeLineó"<This block of commented-out lines of code should be removed.(ûĞ›¸8 Ò™×Á-
+Nsquid:S00108å	")Either remove or fill this block of code.(Õó³÷úÿÿÿÿ8 Ò™×Á-
+}squid:S00116{"YRename this field "DAY_OF_PRESENT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÜœ…úÿÿÿÿ8ş×„ÒÁ-
+jsquid:CommentedOutCodeLine¢
+"<This block of commented-out lines of code should be removed.(ÕİÚÚ8 Ò™×Á-
+Qsquid:S1172î"2Remove this unused method parameter "progressBar".(ëƒ’®8 Ò™×Á-
+Gsquid:S1148Ñ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+gsquid:S1192‡"HDefine a constant instead of duplicating this literal "SOLDIER" 3 times.(×À— 8îâÖÁ-
+nsquid:S1192Ş"JDefine a constant instead of duplicating this literal "taoAchiev" 8 times.(İ›À¹úÿÿÿÿ8 Ò™×Á-
+Qsquid:S1135À"2Complete the task associated to this TODO comment.(¿£÷±8 Ò™×Á-
+Vsquid:S1659‰"2Declare "progressBarGumsLevel" on a separate line.(Ã””¸ÿÿÿÿÿ8ş×„ÒÁ-
+Gsquid:S1148Ğ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 Ò™×Á-
+esquid:S1192©"FDefine a constant instead of duplicating this literal "GMT+2" 3 times.(½ˆ÷É8 Ò™×Á-
+Msquid:S1659{"*Declare "DAY_OF_CLICK" on a separate line.(ŞÜœ…úÿÿÿÿ8ş×„ÒÁ-
+Ssquid:S1905¨	"/Remove this unnecessary cast to "DrawerLayout".(ĞÍè¨şÿÿÿÿ8óŠ¯×Á-
+Psquid:S1659„"1Declare "calendarForProgress" on a separate line.(›¶±Ê8ş×„ÒÁ-
+jsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(·ÄÜö8 Ò™×Á-
+jsquid:CommentedOutCodeLineù	"<This block of commented-out lines of code should be removed.(ÿ—Ò¼8 Ò™×Á-
+osquid:CommentedOutCodeLineæ"<This block of commented-out lines of code should be removed.(Òš­¯ÿÿÿÿÿ8 Ò™×Á-
+Qsquid:S1135Ù
+"2Complete the task associated to this TODO comment.(ÈèÂğ8 Ò™×Á-
+vsquid:S3776¬"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÿı¦ıÿÿÿÿ8 Ò™×Á-
+Psquid:S1153×"1Directly append the argument of String.valueOf().(ğ±áÙ8´çôÕÁ-
+Gsquid:S1148û"#Use a logger to log this exception.(Ÿø˜úÿÿÿÿ8 Ò™×Á-
+jsquid:CommentedOutCodeLineÁ
+"<This block of commented-out lines of code should be removed.(İ´¯ô8 Ò™×Á-
+Nsquid:S1659{"+Declare "HOUR_OF_TODAY" on a separate line.(ŞÜœ…úÿÿÿÿ8ş×„ÒÁ-
+Osquid:S1153Ù"1Directly append the argument of String.valueOf().(®Š³B8 Ò™×Á-
+|squid:S00116{"XRename this field "HOUR_OF_TODAY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÜœ…úÿÿÿÿ8ş×„ÒÁ-
+osquid:CommentedOutCodeLineÃ
+"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8 Ò™×Á-
+rsquid:S1854Ù"NRemove this useless assignment to local variable "montSerratSemiBoldTypeface".(¯ĞÉÙøÿÿÿÿ8ÛÉ”ÖÁ-
+jsquid:CommentedOutCodeLine¦"<This block of commented-out lines of code should be removed.(‰±ÌÔ8 Ò™×Á-
