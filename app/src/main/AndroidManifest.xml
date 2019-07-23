@@ -49,6 +49,8 @@
             android:label="app_intro" />
         <activity android:name=".Test" />
         <activity android:name=".ProgressCard.SavingsActivity" />
+
+        <service android:name=".Notif.MyFirebaseMessagingService" />
     </application>
 
 </manifest>

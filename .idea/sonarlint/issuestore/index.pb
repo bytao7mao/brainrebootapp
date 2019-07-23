@@ -13,3 +13,7 @@ s
 Capp/src/main/java/com/taozen/quithabit/Utils/MyHttpCoreAndroid.java,9\6\964b8bb3fca02bd38796f6aea1ae81727eec7906
 h
 8app/src/main/java/com/taozen/quithabit/MainActivity.java,9\1\9196627ac504619aff15f0ddc409ae1c5e991a87
+o
+?app/src/main/java/com/taozen/quithabit/Utils/MyHttpManager.java,d\0\d0f9a8f8dfbea5bc337796ae1b6c3b102d63a5d9
+ç
+]app/src/main/java/com/taozen/quithabit/ProgressCard/ProgressActivity_HerokuStyleFetching.java,2\b\2b78047ee194dd5b1443966faa7627a48950085c

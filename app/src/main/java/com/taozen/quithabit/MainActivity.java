@@ -71,17 +71,17 @@ public class MainActivity extends AppCompatActivity
     int cigaretesPerDay = 2;
     int minutesPerDayResisted = 30 * cigaretesPerDay;
 
-    //view
+    //Views
     @BindView(android.R.id.content) View parentLayout;
-    //fab
+    //Fab
     @BindView(R.id.fab) FloatingActionButton fab;
-    //card views
+    //CardViews
     @BindView(R.id.progressCardId) CardView progressCardView;
     @BindView(R.id.progressCardId2) CardView savingsCardView;
     @BindView(R.id.progressCardId3) CardView timeStampLogsCardview;
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
     @BindView(R.id.YourAchievmentsCardId) CardView achievmentCard;
-    //text views
+    //TextViews
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
     @BindView(R.id.txtProgressIdForBreath) TextView txtProgressForBreath;
@@ -105,10 +105,10 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.YourProgressIdRank) TextView userRankProgressTxt;
     @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
     @BindView(R.id.YourProgressIdCravings) TextView userCravingsProgressTxt;
-    //progressbar
+    //ProgressBar
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressId2) ProgressBar progressBarLoading2;
-    //image view
+    //ImageViews
     @BindView(R.id.counterImageId) ImageView counterImgView;
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
@@ -120,7 +120,10 @@ public class MainActivity extends AppCompatActivity
     //user input from start dialog
     String habitString = "userHabit";//smoke, porn or alcohool
     int savings = 0;
-    int progressPercent = 0, DAY_OF_CLICK = 0, DAY_OF_PRESENT = 0, HOUR_OF_TODAY = 0;
+    int progressPercent = 0,
+            DAY_OF_CLICK = 0,
+            DAY_OF_PRESENT = 0,
+            HOUR_OF_TODAY = 0;
     //wil start from 1 to 3 to 7 to 14 to 21 to 30
     int userMaxCountForHabit = -1;
     boolean buttonClickedToday;
@@ -129,14 +132,17 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
 
     //Calendar
-    Calendar calendarOnClick, calendarForProgress;
+    Calendar calendarOnClick,
+            calendarForProgress;
     //shared pref
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    CircularProgressBar progressBarEnergyLevel, progressBarRemainingDays, progressBarGumsLevel, progressBarFatigueLevel, progressBarBreathlevel;
-    WaveLoadingView waveLoadingView, waveLoadingViewBigger;
-//    SeekBar seekBar;
+    CircularProgressBar progressBarEnergyLevel,
+            progressBarRemainingDays,
+            progressBarGumsLevel,
+            progressBarFatigueLevel,
+            progressBarBreathlevel;
 
     //OnCreate
     @Override
@@ -154,22 +160,9 @@ public class MainActivity extends AppCompatActivity
         Log.d("LETSEE", "counter before: " + counter);
         getTargetDays();
 
-        if (counter == 0){
-            counter = 1;
-            editor.putInt("counter", counter);
-            editor.apply();
-        } else {
-            counter = preferences.getInt("counter", 0);
-        }
-        if (userMaxCountForHabit == -1){
-            userMaxCountForHabit = 30;
-            editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
-            editor.apply();
-        } else {
-            userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
-        }
+        firstCheckForCounterAndMax();
 
-//        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.grey_800)); -TESTING PURPOSE
+//      getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.grey_800)); -TESTING PURPOSE
 
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
@@ -178,7 +171,7 @@ public class MainActivity extends AppCompatActivity
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setElevation(0); //remove shadow - but now it is already removed in xml file
+//      getSupportActionBar().setElevation(0); //remove shadow - but now it is already removed in xml file
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -320,43 +313,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //milestone dialog ------------
 //        AlertDialog.Builder milestoneAlert = new AlertDialog.Builder(this);
 //        final EditText editTextForMilestone = new EditText(MainActivity.this);
@@ -441,7 +397,22 @@ public class MainActivity extends AppCompatActivity
 //                .build();
     }//[END OF ONCREATE]
 
-
+    private void firstCheckForCounterAndMax() {
+        if (counter == 0){
+            counter = 1;
+            editor.putInt("counter", counter);
+            editor.apply();
+        } else {
+            counter = preferences.getInt("counter", 0);
+        }
+        if (userMaxCountForHabit == -1){
+            userMaxCountForHabit = 30;
+            editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+            editor.apply();
+        } else {
+            userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
+        }
+    }
 
 
     @SideEffect
@@ -670,7 +641,7 @@ public class MainActivity extends AppCompatActivity
     }//runningInBackground
 
     @SideEffect
-    public void startTheEngine() {
+    private void startTheEngine() {
         try {
             updatePercent();
             try {
@@ -733,7 +704,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void checkTheMaxCounterSixty(){
+    private void checkTheMaxCounterSixty(){
         if (counter >= userMaxCountForHabit) {
             //to add dialog and ask user if he wants to continue to 60 days
             //if not we will reset
@@ -812,7 +783,7 @@ public class MainActivity extends AppCompatActivity
         }//end of if
     }//enf of MaxCounter method
 
-    public void checkTheMaxCounterNinety(){
+    private void checkTheMaxCounterNinety(){
         if (counter >= userMaxCountForHabit) {
             //to add dialog and ask user if he wants to continue to 60 days
             //if not we will reset
@@ -939,14 +910,14 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void updateButton(){
+    private void updateButton(){
         if (buttonClickedToday){
             fab.hide();
         }
     }
 
     @SideEffect
-    public void updateConditionGreenState() {
+    private void updateConditionGreenState() {
         //when click day is lower than today (present) && button was already clicked
         //we make the boolean false (in order for greenCondition to work) and for enabling button
         if (DAY_OF_PRESENT > DAY_OF_CLICK && buttonClickedToday) {
@@ -963,7 +934,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @SideEffect
-    public void greenCodition(){
+    private void greenCodition(){
         if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_TODAY >= 1)) {
             //to do
             //show the activate button
@@ -980,7 +951,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @SideEffect
-    public void endOfTheYearCondition(){
+    private void endOfTheYearCondition(){
         if ((DAY_OF_CLICK >= 365 && DAY_OF_PRESENT > 0) && (!buttonClickedToday)) {
             fab.show();
             //instead of counter add dialog to ask user if he did his habit
@@ -994,7 +965,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @SideEffect
-    public void updatePercent(){
+    private void updatePercent(){
         if (counter < userMaxCountForHabit*9/100){
             progressPercent = 10;
         }else if (counter < userMaxCountForHabit*19/100){
@@ -1176,7 +1147,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

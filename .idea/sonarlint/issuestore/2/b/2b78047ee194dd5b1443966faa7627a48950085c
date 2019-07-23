@@ -1,0 +1,24 @@
+
+gsquid:CommentedOutCodeLineA"<This block of commented-out lines of code should be removed.(â€ïµÿÿÿÿÿ
+gsquid:CommentedOutCodeLines"<This block of commented-out lines of code should be removed.(Ÿ‚¾•ûÿÿÿÿ
+gsquid:CommentedOutCodeLinev"<This block of commented-out lines of code should be removed.(¾ÌÂîüÿÿÿÿ
+csquid:CommentedOutCodeLine¨"<This block of commented-out lines of code should be removed.(¬±Üý
+hsquid:CommentedOutCodeLineÊ"<This block of commented-out lines of code should be removed.(Ÿ‚¾•ûÿÿÿÿ
+hsquid:CommentedOutCodeLine×"<This block of commented-out lines of code should be removed.(†»¥Æøÿÿÿÿ
+csquid:CommentedOutCodeLineá"<This block of commented-out lines of code should be removed.(°Œ¤¶
+csquid:CommentedOutCodeLineó"<This block of commented-out lines of code should be removed.(—äü
+hsquid:CommentedOutCodeLine•"<This block of commented-out lines of code should be removed.(þŒ…Ôýÿÿÿÿ
+^squid:S1126‹"AReplace this if-then-else statement by a single return statement.(ÉÝØüÿÿÿÿ
+jsquid:S00101-"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ë˜×Öýÿÿÿÿ
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ýŽ§ª
+rsquid:UselessImportCheck"IRemove this unused import 'com.taozen.quithabit.Retrofit.MessageService'.(¶ÑÜþÿÿÿÿ
+Ssquid:UselessImportCheck+"/Remove this unused import 'retrofit2.Response'.(¾éçï
+rsquid:UselessImportCheck"IRemove this unused import 'com.taozen.quithabit.Retrofit.ServiceBuilder'.(’˜¤¸ÿÿÿÿÿ
+dsquid:UselessImportCheck";Remove this unused import 'com.taozen.quithabit.Obj.Books'.(¥ÅÅ¹üÿÿÿÿ
+Rsquid:UselessImportCheck*"/Remove this unused import 'retrofit2.Callback'.(ž›¨,
+Osquid:UselessImportCheck)"+Remove this unused import 'retrofit2.Call'.(Çö÷›
+@squid:S1148¸"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+@squid:S1148ã"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+5squid:S2119g"Save and re-use this "Random".(É•½ö
+Vsquid:S1155Å">Use isEmpty() to check whether the collection is empty or not.(¬‘þ«
+Vsquid:S1155î">Use isEmpty() to check whether the collection is empty or not.(¬‘þ«

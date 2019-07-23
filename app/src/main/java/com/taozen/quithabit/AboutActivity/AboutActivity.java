@@ -12,7 +12,6 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
         FancyAboutPage fancyAboutPage=findViewById(R.id.fancyaboutpage);
         //fancyAboutPage.setCoverTintColor(Color.BLUE);  //Optional
         fancyAboutPage.setCover(R.drawable.dayshd); //Pass your cover image
@@ -29,8 +28,5 @@ public class AboutActivity extends AppCompatActivity {
 //        fancyAboutPage.addTwitterLink("https://twitter.com/shashank020597");
         fancyAboutPage.addLinkedinLink("https://www.linkedin.com/in/shashank-singhal-a87729b5/");
         fancyAboutPage.addGitHubLink("https://github.com/Shashank02051997");
-
     }
-
-
 }
