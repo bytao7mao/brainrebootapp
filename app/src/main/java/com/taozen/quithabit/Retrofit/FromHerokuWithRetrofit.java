@@ -13,7 +13,7 @@ public class FromHerokuWithRetrofit {
     static StringBuilder stringBuilder = new StringBuilder();
 
     public static String returnStringFromServerWithRetrofit(int id) {
-        MessageService taskService = ServiceBuilder.builderService(MessageService.class);
+        iMessageService taskService = ServiceBuilder.builderService(iMessageService.class);
         Call<Books> call = taskService.getFirstBook(id);
         call.enqueue(new Callback<Books>() {
             @Override
@@ -41,7 +41,7 @@ public class FromHerokuWithRetrofit {
 
 
     public void getValueFromHerokuServer() {
-        MessageService taskService = ServiceBuilder.builderService(MessageService.class);
+        iMessageService taskService = ServiceBuilder.builderService(iMessageService.class);
         Call<Books> call = taskService.getFirstBook(1);
         call.enqueue(new Callback<Books>() {
             @Override
@@ -67,7 +67,7 @@ public class FromHerokuWithRetrofit {
 
 //    public static void getValueFromHerokuServer(){
 //        //RETROFIT
-//        MessageService taskService = ServiceBuilder.builderService(MessageService.class);
+//        iMessageService taskService = ServiceBuilder.builderService(iMessageService.class);
 //        //we get id of book from heroku server
 //        Call<Books> call = taskService.getFirstBook(1);
 //        call.enqueue(new Callback<Books>() {

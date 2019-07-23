@@ -24,11 +24,8 @@ import android.widget.Toast;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.taozen.quithabit.Obj.Books;
 import com.taozen.quithabit.R;
 import com.taozen.quithabit.Retrofit.FromHerokuWithRetrofit;
-import com.taozen.quithabit.Retrofit.MessageService;
-import com.taozen.quithabit.Retrofit.ServiceBuilder;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
 
 import java.util.ArrayList;
@@ -38,9 +35,6 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ProgressActivity_HerokuStyleFetching extends AppCompatActivity {
     String res = "";
