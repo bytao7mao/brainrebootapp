@@ -1,0 +1,365 @@
+{
+  "books":
+  [
+    {
+      "id":1,
+      "name": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. ― Roy T. Bennett"
+    },
+    {
+      "id":2,
+      "name": "A Room Without Books Is Like A Body Without A Soul. – Marcus Tullius Cicero"
+    },
+    {
+      "id":3,
+      "name": "Things Work Out Best For Those Who Make The Best Of How Things Work Out. – Positive Quote By John Wooden"
+    },
+    {
+      "id":4,
+      "name": "For Every Reason It’s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. – Jack Canfield"
+    },
+    {
+      "id":5,
+      "name": "The secret of change is to focus all of your energy, not on fighting the old, but on building the new - Socrates"
+    },
+    {
+      "id":6,
+      "name": "The Future Belongs To The Competent. Get Good, Get Better, Be The Best! – Success Quote By Brian Tracy"
+    },
+    {
+      "id":7,
+      "name": "Fake It Until You Make It! Act As If You Had All The Confidence You Require Until It Becomes Your Reality. – Brian Tracy"
+    },
+    {
+      "id":8,
+      "name": "Reading Is To The Mind, As Exercise Is To The Body. – Brian Tracy"
+    },
+    {
+      "id":9,
+      "name": "To See What Is Right And Not Do It Is A Lack Of Courage. – Confucius"
+    },
+    {
+      "id":10,
+      "name": "The Way Get Started Is To Quit Talking And Begin Doing. – Walt Disney"
+    },
+    {
+      "id":11,
+      "name": "The Pessimist Sees Difficulty In Every Opportunity. The Optimist Sees Opportunity In Every Difficulty. – Winston Churchill"
+    },
+    {
+      "id":12,
+      "name": "Don’t Let Yesterday Take Up Too Much Of Today. – Will Rogers"
+    },
+    {
+      "id":13,
+      "name": "You Learn More From Failure Than From Success. Don’t Let It Stop You. Failure Builds Character. – Unknown"
+    },
+    {
+      "id":14,
+      "name": "It’s Not Whether You Get Knocked Down, It’s Whether You Get Up. – Inspirational Quote By Vince Lombardi"
+    },
+    {
+      "id":15,
+      "name": "If You Are Working On Something That You Really Care About, You Don’t Have To Be Pushed. The Vision Pulls You. – Steve Jobs"
+    },
+    {
+      "id":16,
+      "name": "People Who Are Crazy Enough To Think They Can Change The World, Are The Ones Who Do. – Rob Siltanen"
+    },
+    {
+      "id":17,
+      "name": "Failure Will Never Overtake Me If My Determination To Succeed Is Strong Enough. – Og Mandino"
+    },
+    {
+      "id":18,
+      "name": "Entrepreneurs Are Great At Dealing With Uncertainty And Also Very Good At Minimizing Risk. That’s The Classic Entrepreneur. – Mohnish Pabrai"
+    },
+    {
+      "id":19,
+      "name": "Knowing Is Not Enough; We Must Apply. Wishing Is Not Enough; We Must Do. – Johann Wolfgang Von Goethe"
+    },
+    {
+      "id":20,
+      "name": "We May Encounter Many Defeats But We Must Not Be Defeated. – Maya Angelou"
+    },
+    {
+      "id":21,
+      "name": "Imagine Your Life Is Perfect In Every Respect; What Would It Look Like? – Brian Tracy"
+    },
+    {
+      "id":22,
+      "name": "Whether You Think You Can Or Think You Can’t, You’re Right. – Quote By Henry Ford"
+    },
+    {
+      "id":23,
+      "name": "Security Is Mostly A Superstition. Life Is Either A Daring Adventure Or Nothing. – Life Quote By Helen Keller"
+    },
+    {
+      "id":24,
+      "name": "The Man Who Has Confidence In Himself Gains The Confidence Of Others. – Hasidic Proverb"
+    },
+    {
+      "id":25,
+      "name": "The Only Limit To Our Realization Of Tomorrow Will Be Our Doubts Of Today. – Motivational Quote By Franklin D. Roosevelt"
+    },
+    {
+      "id":26,
+      "name": "Creativity Is Intelligence Having Fun. – Albert Einstein"
+    },
+    {
+      "id":27,
+      "name": "What You Lack In Talent Can Be Made Up With Desire, Hustle And Giving 110% All The Time. – Don Zimmer"
+    },
+    {
+      "id":28,
+      "name": "Do What You Can With All You Have, Wherever You Are. – Theodore Roosevelt"
+    },
+    {
+      "id":29,
+      "name": "Develop An ‘Attitude Of Gratitude’. Say Thank You To Everyone You Meet For Everything They Do For You. – Encouraging Quote By Brian Tracy"
+    },
+    {
+      "id":30,
+      "name": "You Are Never Too Old To Set Another Goal Or To Dream A New Dream. – C.S. Lewis"
+    },
+    {
+      "id":31,
+      "name": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. ― Roy T. Bennett"
+    },
+    {
+      "id":32,
+      "name": "A Room Without Books Is Like A Body Without A Soul. – Marcus Tullius Cicero"
+    },
+    {
+      "id":33,
+      "name": "Things Work Out Best For Those Who Make The Best Of How Things Work Out. – Positive Quote By John Wooden"
+    },
+    {
+      "id":34,
+      "name": "For Every Reason It’s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. – Jack Canfield"
+    },
+    {
+      "id":35,
+      "name": "The secret of change is to focus all of your energy, not on fighting the old, but on building the new - Socrates"
+    },
+    {
+      "id":36,
+      "name": "The Future Belongs To The Competent. Get Good, Get Better, Be The Best! – Success Quote By Brian Tracy"
+    },
+    {
+      "id":37,
+      "name": "Fake It Until You Make It! Act As If You Had All The Confidence You Require Until It Becomes Your Reality. – Brian Tracy"
+    },
+    {
+      "id":38,
+      "name": "Reading Is To The Mind, As Exercise Is To The Body. – Brian Tracy"
+    },
+    {
+      "id":39,
+      "name": "To See What Is Right And Not Do It Is A Lack Of Courage. – Confucius"
+    },
+    {
+      "id":40,
+      "name": "The Way Get Started Is To Quit Talking And Begin Doing. – Walt Disney"
+    },
+    {
+      "id":41,
+      "name": "The Pessimist Sees Difficulty In Every Opportunity. The Optimist Sees Opportunity In Every Difficulty. – Winston Churchill"
+    },
+    {
+      "id":42,
+      "name": "Don’t Let Yesterday Take Up Too Much Of Today. – Will Rogers"
+    },
+    {
+      "id":43,
+      "name": "You Learn More From Failure Than From Success. Don’t Let It Stop You. Failure Builds Character. – Unknown"
+    },
+    {
+      "id":44,
+      "name": "It’s Not Whether You Get Knocked Down, It’s Whether You Get Up. – Inspirational Quote By Vince Lombardi"
+    },
+    {
+      "id":45,
+      "name": "If You Are Working On Something That You Really Care About, You Don’t Have To Be Pushed. The Vision Pulls You. – Steve Jobs"
+    },
+    {
+      "id":46,
+      "name": "People Who Are Crazy Enough To Think They Can Change The World, Are The Ones Who Do. – Rob Siltanen"
+    },
+    {
+      "id":47,
+      "name": "Failure Will Never Overtake Me If My Determination To Succeed Is Strong Enough. – Og Mandino"
+    },
+    {
+      "id":48,
+      "name": "Entrepreneurs Are Great At Dealing With Uncertainty And Also Very Good At Minimizing Risk. That’s The Classic Entrepreneur. – Mohnish Pabrai"
+    },
+    {
+      "id":49,
+      "name": "Knowing Is Not Enough; We Must Apply. Wishing Is Not Enough; We Must Do. – Johann Wolfgang Von Goethe"
+    },
+    {
+      "id":50,
+      "name": "We May Encounter Many Defeats But We Must Not Be Defeated. – Maya Angelou"
+    },
+    {
+      "id":51,
+      "name": "Imagine Your Life Is Perfect In Every Respect; What Would It Look Like? – Brian Tracy"
+    },
+    {
+      "id":52,
+      "name": "Whether You Think You Can Or Think You Can’t, You’re Right. – Quote By Henry Ford"
+    },
+    {
+      "id":53,
+      "name": "Security Is Mostly A Superstition. Life Is Either A Daring Adventure Or Nothing. – Life Quote By Helen Keller"
+    },
+    {
+      "id":54,
+      "name": "The Man Who Has Confidence In Himself Gains The Confidence Of Others. – Hasidic Proverb"
+    },
+    {
+      "id":55,
+      "name": "The Only Limit To Our Realization Of Tomorrow Will Be Our Doubts Of Today. – Motivational Quote By Franklin D. Roosevelt"
+    },
+    {
+      "id":56,
+      "name": "Creativity Is Intelligence Having Fun. – Albert Einstein"
+    },
+    {
+      "id":57,
+      "name": "What You Lack In Talent Can Be Made Up With Desire, Hustle And Giving 110% All The Time. – Don Zimmer"
+    },
+    {
+      "id":58,
+      "name": "Do What You Can With All You Have, Wherever You Are. – Theodore Roosevelt"
+    },
+    {
+      "id":59,
+      "name": "Develop An ‘Attitude Of Gratitude’. Say Thank You To Everyone You Meet For Everything They Do For You. – Encouraging Quote By Brian Tracy"
+    },
+    {
+      "id":60,
+      "name": "You Are Never Too Old To Set Another Goal Or To Dream A New Dream. – C.S. Lewis"
+    },
+    {
+      "id":61,
+      "name": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. ― Roy T. Bennett"
+    },
+    {
+      "id":62,
+      "name": "A Room Without Books Is Like A Body Without A Soul. – Marcus Tullius Cicero"
+    },
+    {
+      "id":63,
+      "name": "Things Work Out Best For Those Who Make The Best Of How Things Work Out. – Positive Quote By John Wooden"
+    },
+    {
+      "id":64,
+      "name": "For Every Reason It’s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. – Jack Canfield"
+    },
+    {
+      "id":65,
+      "name": "The secret of change is to focus all of your energy, not on fighting the old, but on building the new - Socrates"
+    },
+    {
+      "id":66,
+      "name": "The Future Belongs To The Competent. Get Good, Get Better, Be The Best! – Success Quote By Brian Tracy"
+    },
+    {
+      "id":67,
+      "name": "Fake It Until You Make It! Act As If You Had All The Confidence You Require Until It Becomes Your Reality. – Brian Tracy"
+    },
+    {
+      "id":68,
+      "name": "Reading Is To The Mind, As Exercise Is To The Body. – Brian Tracy"
+    },
+    {
+      "id":69,
+      "name": "To See What Is Right And Not Do It Is A Lack Of Courage. – Confucius"
+    },
+    {
+      "id":70,
+      "name": "The Way Get Started Is To Quit Talking And Begin Doing. – Walt Disney"
+    },
+    {
+      "id":71,
+      "name": "The Pessimist Sees Difficulty In Every Opportunity. The Optimist Sees Opportunity In Every Difficulty. – Winston Churchill"
+    },
+    {
+      "id":72,
+      "name": "Don’t Let Yesterday Take Up Too Much Of Today. – Will Rogers"
+    },
+    {
+      "id":73,
+      "name": "You Learn More From Failure Than From Success. Don’t Let It Stop You. Failure Builds Character. – Unknown"
+    },
+    {
+      "id":74,
+      "name": "It’s Not Whether You Get Knocked Down, It’s Whether You Get Up. – Inspirational Quote By Vince Lombardi"
+    },
+    {
+      "id":75,
+      "name": "If You Are Working On Something That You Really Care About, You Don’t Have To Be Pushed. The Vision Pulls You. – Steve Jobs"
+    },
+    {
+      "id":76,
+      "name": "People Who Are Crazy Enough To Think They Can Change The World, Are The Ones Who Do. – Rob Siltanen"
+    },
+    {
+      "id":77,
+      "name": "Failure Will Never Overtake Me If My Determination To Succeed Is Strong Enough. – Og Mandino"
+    },
+    {
+      "id":78,
+      "name": "Entrepreneurs Are Great At Dealing With Uncertainty And Also Very Good At Minimizing Risk. That’s The Classic Entrepreneur. – Mohnish Pabrai"
+    },
+    {
+      "id":79,
+      "name": "Knowing Is Not Enough; We Must Apply. Wishing Is Not Enough; We Must Do. – Johann Wolfgang Von Goethe"
+    },
+    {
+      "id":80,
+      "name": "We May Encounter Many Defeats But We Must Not Be Defeated. – Maya Angelou"
+    },
+    {
+      "id":81,
+      "name": "Imagine Your Life Is Perfect In Every Respect; What Would It Look Like? – Brian Tracy"
+    },
+    {
+      "id":82,
+      "name": "Whether You Think You Can Or Think You Can’t, You’re Right. – Quote By Henry Ford"
+    },
+    {
+      "id":83,
+      "name": "Security Is Mostly A Superstition. Life Is Either A Daring Adventure Or Nothing. – Life Quote By Helen Keller"
+    },
+    {
+      "id":84,
+      "name": "The Man Who Has Confidence In Himself Gains The Confidence Of Others. – Hasidic Proverb"
+    },
+    {
+      "id":85,
+      "name": "The Only Limit To Our Realization Of Tomorrow Will Be Our Doubts Of Today. – Motivational Quote By Franklin D. Roosevelt"
+    },
+    {
+      "id":86,
+      "name": "Creativity Is Intelligence Having Fun. – Albert Einstein"
+    },
+    {
+      "id":87,
+      "name": "What You Lack In Talent Can Be Made Up With Desire, Hustle And Giving 110% All The Time. – Don Zimmer"
+    },
+    {
+      "id":88,
+      "name": "Do What You Can With All You Have, Wherever You Are. – Theodore Roosevelt"
+    },
+    {
+      "id":89,
+      "name": "Develop An ‘Attitude Of Gratitude’. Say Thank You To Everyone You Meet For Everything They Do For You. – Encouraging Quote By Brian Tracy"
+    },
+    {
+      "id":90,
+      "name": "You Are Never Too Old To Set Another Goal Or To Dream A New Dream. – C.S. Lewis"
+    }
+  ]
+}
