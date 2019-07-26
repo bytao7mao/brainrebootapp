@@ -34,12 +34,12 @@ import android.widget.Toast;
 
 import com.anupcowkur.herebedragons.SideEffect;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
+import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
-import com.shashank.sony.fancytoastlib.FancyToast;
 import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
@@ -56,6 +56,7 @@ import java.util.Random;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity
     int progressPercent = 0,
             DAY_OF_CLICK = 0,
             DAY_OF_PRESENT = 0,
-            HOUR_OF_DAY = 0;
+            HOUR_OF_DAYLIGHT = 0;
     //wil start from 1 to 3 to 7 to 14 to 21 to 30
     int userMaxCountForHabit = -1;
     boolean buttonClickedToday;
@@ -352,7 +353,7 @@ public class MainActivity extends AppCompatActivity
 //        habitAlert.show();
 
 
-        //dialog ------------
+//        //dialog ------------
 //        new BottomDialog.Builder(this)
 //                .setTitle("Awesome!")
 //                .setContent("What can we improve? Your feedback is always welcome.")
@@ -407,6 +408,25 @@ public class MainActivity extends AppCompatActivity
         } else {
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
         }
+    }
+
+    //dialog when user pass a day
+    private void userPassDayDialogShow(){
+        //dialog ------------
+        new BottomDialog.Builder(this)
+                .setTitle("Awesome!")
+                .setContent("What can we improve? Your feedback is always welcome.")
+                .setPositiveText("OK")
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        Log.d("BottomDialogs", "Do something!");
+                    }
+                }).show();
     }
 
     @SideEffect
@@ -472,198 +492,87 @@ public class MainActivity extends AppCompatActivity
                 } catch (NullPointerException e){e.printStackTrace();}
                 //between 1 and 29
                 if (counter < 29) {
-                    new FancyGifDialog.Builder(MainActivity.this)
-                            .setTitle("No smoke dialog!")
-                            .setMessage("Did you abtained to smoke today ?")
-                            .setNegativeBtnText("Cancel")
-                            .setPositiveBtnBackground("#FF4081")
-                            .setPositiveBtnText("Ok")
-                            .setNegativeBtnBackground("#FFA9A7A8")
-                            .setGifResource(R.drawable.source)   //Pass your Gif here
-                            .isCancellable(true)
-                            .OnPositiveClicked(new FancyGifDialogListener() {
-                                @Override
-                                public void OnClick() {
-                                    counter++;
-                                    editor.putInt("counter", counter);
-                                    editor.apply();
-                                    checkActivityOnline();
-                                    //set margin for counter
-                                    setTheMarginOfCounter();
-                                    savings = setTheSavingsPerDay(counter);
-                                    setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                    editor.putInt("savings", savings);
-                                    Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                    setImprovementProgressLevels();
-                                    setImagesForAchievmentCard();
-                                    try {
-                                        counter = preferences.getInt("counter", -1);
-                                    } catch (NullPointerException e){e.printStackTrace();}
-                                    counterText.setText(String.valueOf(counter));
-                                    setTargetDays();
-                                    showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-//                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
-                                    FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-                                            20, FancyToast.SUCCESS, true).show();
-                                }
-                            })
-                            .OnNegativeClicked(new FancyGifDialogListener() {
-                                @Override
-                                public void OnClick() {
-                                    counter = 1;
-                                    editor.putInt("counter", counter);
-                                    editor.apply();
-                                    checkActivityOnline();
-                                    savings = setTheSavingsPerDay(counter);
-                                    //set margin for counter
-                                    setTheMarginOfCounter();
-                                    setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                    editor.putInt("savings", savings);
-                                    Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                    setImprovementProgressLevels();
-                                    try {
-                                        counter = preferences.getInt("counter", -1);
-                                    } catch (NullPointerException e){e.printStackTrace();}
-                                    counterText.setText(String.valueOf(counter));
-                                    setTargetDays();
-                                    showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-                                    Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .build();//[END of NORMAL DIALOG]
+                    normalFancyDialog("No smoke dialog!");
                     //between 29(to show up in 30) and 60
                 } else if (counter > 28 && counter < 59) {
-                    new FancyGifDialog.Builder(MainActivity.this)
-                            .setTitle("MILESTONE 30 DAYS REACHED!!")
-                            .setMessage("Did you abtained to smoke today ?")
-                            .setNegativeBtnText("Cancel")
-                            .setPositiveBtnBackground("#FF4081")
-                            .setPositiveBtnText("Ok")
-                            .setNegativeBtnBackground("#FFA9A7A8")
-                            .setGifResource(R.drawable.source)   //Pass your Gif here
-                            .isCancellable(true)
-                            .OnPositiveClicked(new FancyGifDialogListener() {
-                                @Override
-                                public void OnClick() {
-                                    counter++;
-                                    editor.putInt("counter", counter);
-                                    editor.apply();
-                                    checkActivityOnline();
-                                    //set margin for counter
-                                    setTheMarginOfCounter();
-                                    savings = setTheSavingsPerDay(counter);
-                                    setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                    editor.putInt("savings", savings);
-                                    Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                    setImprovementProgressLevels();
-                                    setImagesForAchievmentCard();
-                                    try {
-                                        counter = preferences.getInt("counter", -1);
-                                    } catch (NullPointerException e){e.printStackTrace();}
-                                    counterText.setText(String.valueOf(counter));
-                                    setTargetDays();
-                                    showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-//                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
-                                    FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-                                            20, FancyToast.SUCCESS, true).show();
-                                }
-                            })
-                            .OnNegativeClicked(new FancyGifDialogListener() {
-                                @Override
-                                public void OnClick() {
-                                    counter = 1;
-                                    editor.putInt("counter", counter);
-                                    editor.apply();
-                                    checkActivityOnline();
-                                    savings = setTheSavingsPerDay(counter);
-                                    //set margin for counter
-                                    setTheMarginOfCounter();
-                                    setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                    editor.putInt("savings", savings);
-                                    Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                    setImprovementProgressLevels();
-                                    try {
-                                        counter = preferences.getInt("counter", -1);
-                                    } catch (NullPointerException e){e.printStackTrace();}
-                                    counterText.setText(String.valueOf(counter));
-                                    setTargetDays();
-                                    showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-                                    Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .build();//[END of DIALOG]
+                    normalFancyDialog("MILESTONE 30 DAYS REACHED!!");
                     //between 59(to show up in 60) and 90
                 } else if (counter > 58 && counter < 91) {
-                    new FancyGifDialog.Builder(MainActivity.this)
-                            .setTitle("MILESTONE 60 DAYS REACHED!!!")
-                            .setMessage("Did you abtained to smoke today ?")
-                            .setNegativeBtnText("Cancel")
-                            .setPositiveBtnBackground("#FF4081")
-                            .setPositiveBtnText("Ok")
-                            .setNegativeBtnBackground("#FFA9A7A8")
-                            .setGifResource(R.drawable.source)   //Pass your Gif here
-                            .isCancellable(true)
-                            .OnPositiveClicked(new FancyGifDialogListener() {
-                                @Override
-                                public void OnClick() {
-                                    counter++;
-                                    editor.putInt("counter", counter);
-                                    editor.apply();
-                                    checkActivityOnline();
-                                    //set margin for counter
-                                    setTheMarginOfCounter();
-                                    savings = setTheSavingsPerDay(counter);
-                                    setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                    editor.putInt("savings", savings);
-                                    Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                    setImprovementProgressLevels();
-                                    setImagesForAchievmentCard();
-                                    try {
-                                        counter = preferences.getInt("counter", -1);
-                                    } catch (NullPointerException e){e.printStackTrace();}
-                                    counterText.setText(String.valueOf(counter));
-                                    setTargetDays();
-                                    showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-//                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
-                                    FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-                                            20, FancyToast.SUCCESS, true).show();
-                                }
-                            })
-                            .OnNegativeClicked(new FancyGifDialogListener() {
-                                @Override
-                                public void OnClick() {
-                                    counter = 1;
-                                    editor.putInt("counter", counter);
-                                    editor.apply();
-                                    checkActivityOnline();
-                                    savings = setTheSavingsPerDay(counter);
-                                    //set margin for counter
-                                    setTheMarginOfCounter();
-                                    setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                                    editor.putInt("savings", savings);
-                                    Log.d("LOGG", "in fab "+"savings = " + savings + " counter = " + counter);
-                                    setImprovementProgressLevels();
-                                    try {
-                                        counter = preferences.getInt("counter", -1);
-                                    } catch (NullPointerException e){e.printStackTrace();}
-                                    counterText.setText(String.valueOf(counter));
-                                    setTargetDays();
-                                    showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
-                                    Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .build();//[END of DIALOG]
+                    normalFancyDialog("MILESTONE 60 DAYS REACHED!!!");
                     //SHOW FANCY TOAST WITH CONGRATS
-//                    FancyToast.makeText(MainActivity.this, "I'm a custom Toast",
-//                            FancyToast.LENGTH_LONG, FancyToast.SUCCESS,
-//                            R.drawable.organ, true).show();
                 }//[END OF ELSE IFS DIALOGS]
-
 
 //                setTargetDays();
                 fab.hide();
             }
         });
+    }
+
+    private void normalFancyDialog(String s) {
+        new FancyGifDialog.Builder(MainActivity.this)
+                .setTitle(s)
+                .setMessage("Did you abtained to smoke today ?")
+                .setNegativeBtnText("Cancel")
+                .setPositiveBtnBackground("#FF4081")
+                .setPositiveBtnText("Ok")
+                .setNegativeBtnBackground("#FFA9A7A8")
+                .setGifResource(R.drawable.source)   //Pass your Gif here
+                .isCancellable(true)
+                .OnPositiveClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                        counter++;
+                        editor.putInt("counter", counter);
+                        editor.apply();
+                        checkActivityOnline();
+                        //set margin for counter
+                        setTheMarginOfCounter();
+                        savings = setTheSavingsPerDay(counter);
+                        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                        editor.putInt("savings", savings);
+                        Log.d("LOGG", "in fab " + "savings = " + savings + " counter = " + counter);
+                        setImprovementProgressLevels();
+                        setImagesForAchievmentCard();
+                        try {
+                            counter = preferences.getInt("counter", -1);
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
+                        counterText.setText(String.valueOf(counter));
+                        setTargetDays();
+                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+//                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+//                                    FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
+//                                            20, FancyToast.SUCCESS, true).show();
+                        userPassDayDialogShow();
+                    }
+                })
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                        counter = 1;
+                        editor.putInt("counter", counter);
+                        editor.apply();
+                        checkActivityOnline();
+                        savings = setTheSavingsPerDay(counter);
+                        //set margin for counter
+                        setTheMarginOfCounter();
+                        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
+                        editor.putInt("savings", savings);
+                        Log.d("LOGG", "in fab " + "savings = " + savings + " counter = " + counter);
+                        setImprovementProgressLevels();
+                        try {
+                            counter = preferences.getInt("counter", -1);
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
+                        counterText.setText(String.valueOf(counter));
+                        setTargetDays();
+                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                        Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build();//[END of NORMAL DIALOG]
     }
 
     private void setTxtViewForUserSavingValueOfMoneyOrTime(String string, int androiId, TextView textview, String secondString) {
@@ -746,7 +655,7 @@ public class MainActivity extends AppCompatActivity
                             }//run from runonuithread
                         });//runonuithread
                     }//run from Timertask
-                }, 0, 10000);//Timertask
+                }, 0, 10_000);//Timertask 10 SECONDS
             }//run from async
         });//async
     }//runningInBackground
@@ -781,8 +690,8 @@ public class MainActivity extends AppCompatActivity
             Date date = new Date();
             Calendar calendar = GregorianCalendar.getInstance();
             calendar.setTime(date);
-            HOUR_OF_DAY = calendar.get(Calendar.HOUR_OF_DAY);
-            Log.d("taolenZ", "hour of now: " + HOUR_OF_DAY);
+            HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
+            Log.d("taolenZ", "hour of now: " + HOUR_OF_DAYLIGHT);
 //            DAY_OF_PRESENT = calendarForProgress.get(Calendar.MINUTE);
 //            Log.d("taolenZ", "Dhe counter to 1\n" +
 //                    "                counter = 1;AY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
@@ -898,7 +807,7 @@ public class MainActivity extends AppCompatActivity
     //[ENABLE BUTTON]
     @SideEffect
     private void greenCodition(){
-        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAY >= 13)) {
+        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAYLIGHT >= 13)) {
             //to do
             //show the activate button
             Log.d("taolenX777", "greenCodition WORKINGGGGG");
@@ -1282,7 +1191,6 @@ public class MainActivity extends AppCompatActivity
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
             rankFourImg.setAlpha(0.2f);
             editor.putString("rank", "NOOB");
-            Log.d("taoAchiev", "i am counter 0 && 8 working");
         } else if (counter>9&&counter<20){
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
             rankOneImg.setAlpha(1.0f);
@@ -1313,7 +1221,6 @@ public class MainActivity extends AppCompatActivity
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(0.2f);
             editor.putString("rank", "SOLDIER");
-            Log.d("taoAchiev", "i am counter 7 && 13 working");
         } else if (counter>39&&counter<50) {//when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
             rankOneImg.setAlpha(1.0f);
@@ -1324,7 +1231,6 @@ public class MainActivity extends AppCompatActivity
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(0.2f);
             editor.putString("rank", "SOLDIER");
-            Log.d("taoAchiev", "i am counter 7 && 13 working");
         } else if (counter>49&&counter<60) {//when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
             rankOneImg.setAlpha(1.0f);
@@ -1335,7 +1241,6 @@ public class MainActivity extends AppCompatActivity
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(1.0f);
             editor.putString("rank", "SOLDIER");
-            Log.d("taoAchiev", "i am counter 7 && 13 working");
         } else if (counter>59&&counter<70) {//when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron3);
             rankOneImg.setAlpha(1.0f);
@@ -1346,7 +1251,6 @@ public class MainActivity extends AppCompatActivity
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(0.2f);
             editor.putString("rank", "CAPTAIN");
-            Log.d("taoAchiev", "i am counter 7 && 13 working");
         } else if (counter>69&&counter<80) {//when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron3);
             rankOneImg.setAlpha(1.0f);
@@ -1357,7 +1261,6 @@ public class MainActivity extends AppCompatActivity
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(0.2f);
             editor.putString("rank", "CAPTAIN");
-            Log.d("taoAchiev", "i am counter 7 && 13 working");
         } else if (counter>79&&counter<90) {//when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron3);
             rankOneImg.setAlpha(1.0f);
@@ -1368,16 +1271,17 @@ public class MainActivity extends AppCompatActivity
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(1.0f);
             editor.putString("rank", "CAPTAIN");
-            Log.d("taoAchiev", "i am counter 7 && 13 working");}
-        //TODO the rest of badges to receive
-        else {
-            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-            rankOneImg.setAlpha(0.1f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-            rankTwoImg.setAlpha(0.1f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-            rankThreeImg.setAlpha(0.1f);
-            editor.putString("rank", "PRO");
+            //WHEN USER REACH DAY 90 - GREATEST MILESTONE
+        } else if (counter == 90){
+            rankOneImg.setBackgroundResource(R.mipmap.chevron13);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron14);
+            rankTwoImg.setAlpha(1.0f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron15);
+            rankThreeImg.setAlpha(1.0f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron19);
+            rankFourImg.setAlpha(1.0f);
+            editor.putString("rank", "GODLIKE");
         }
     }
 

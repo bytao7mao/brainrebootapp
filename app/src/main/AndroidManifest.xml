@@ -36,7 +36,7 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
-            android:label="dashboard"
+            android:label="quit smoking"
             android:theme="@style/MaterialTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
