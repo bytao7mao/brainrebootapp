@@ -3,6 +3,7 @@ package com.taozen.quithabit;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
@@ -22,6 +23,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,7 +58,6 @@ import java.util.Random;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -145,6 +146,9 @@ public class MainActivity extends AppCompatActivity
             progressBarFatigueLevel,
             progressBarBreathlevel;
 
+    DisplayMetrics metrics = new DisplayMetrics();
+    Configuration config;
+
     //OnCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,11 +158,15 @@ public class MainActivity extends AppCompatActivity
         parentLayout = findViewById(R.id.drawer_layout);
         tasks = new ArrayList<>();
         ran = new Random();
+        config = getResources().getConfiguration();
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
         //color of the FAB - NOW IS already changed in XML
 //        fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
 
         Log.d("LETSEE", "counter before: " + counter);
         setTargetDays();
@@ -235,7 +243,7 @@ public class MainActivity extends AppCompatActivity
 
         try {
             //set margin for counter
-            setTheMarginOfCounter();
+            setProgramaticallyMarginOf_RemainingDaysText();
             //setting the achievments images for user
             setImagesForAchievmentCard();
             updatePercent();
@@ -472,7 +480,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 //set margin for counter
-                setTheMarginOfCounter();
+                setProgramaticallyMarginOf_RemainingDaysText();
                 buttonClickedToday = true;
                 editor.putBoolean("clicked", buttonClickedToday);
                 resetProgressBar(progressPercent);
@@ -526,7 +534,7 @@ public class MainActivity extends AppCompatActivity
                         editor.apply();
                         checkActivityOnline();
                         //set margin for counter
-                        setTheMarginOfCounter();
+                        setProgramaticallyMarginOf_RemainingDaysText();
                         savings = setTheSavingsPerDay(counter);
                         setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
                         editor.putInt("savings", savings);
@@ -556,7 +564,7 @@ public class MainActivity extends AppCompatActivity
                         checkActivityOnline();
                         savings = setTheSavingsPerDay(counter);
                         //set margin for counter
-                        setTheMarginOfCounter();
+                        setProgramaticallyMarginOf_RemainingDaysText();
                         setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
                         editor.putInt("savings", savings);
                         Log.d("LOGG", "in fab " + "savings = " + savings + " counter = " + counter);
@@ -618,8 +626,15 @@ public class MainActivity extends AppCompatActivity
         }
         //remaining days -- + "  " for space between number of days and text
         String calcDaysTarget = "";
-        if (userMaxCountForHabit-counter < 10) {
+        if (userMaxCountForHabit-counter < 10 && !(config.densityDpi == 320)) {
+            Log.d("DAYS", "i am here ... < 10 ONLY ");
             calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "     ";
+        } else if (userMaxCountForHabit-counter < 10 && config.densityDpi == 320) {
+            Log.d("DAYS", "i am here ... < 10 and 320 dpi ");
+            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
+        } else if (userMaxCountForHabit-counter >= 10 && config.densityDpi == 320) {
+            Log.d("DAYS", "i am here ... >= 10 and 320 dpi ");
+            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "  ";
         } else {
             calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
         }
@@ -672,7 +687,7 @@ public class MainActivity extends AppCompatActivity
             setImprovementProgressLevels();
             Log.d("TAGG", "try { counterText = " + counter);
             //set margin for counter
-            setTheMarginOfCounter();
+            setProgramaticallyMarginOf_RemainingDaysText();
             resetProgressBar(progressPercent);
             Log.d("TAGG", "resetProgressBar = " + counter);
             counterText.setText(String.valueOf(counter));
@@ -1130,50 +1145,88 @@ public class MainActivity extends AppCompatActivity
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
 
-    private void setTheMarginOfCounter(){
+    //[START - setProgramaticallyMarginOf_RemainingDaysText]
+    private void setProgramaticallyMarginOf_RemainingDaysText(){
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        Log.d("LETSEE", "usermAX before: " + userMaxCountForHabit);
+                LinearLayout.LayoutParams.WRAP_CONTENT);
         setTargetDays();
-        Log.d("LETSEE", "usermAX after: " + userMaxCountForHabit);
-        Log.d("MARGIN", "counter is in margin: " + counter);
         if (Build.VERSION.SDK_INT == 25 ){
+            Log.d("DAYS", "Hello days! == 25");
             //IF ONE DECIMAL
             if ((userMaxCountForHabit-counter) < 10) {
-                params.setMargins(-60, 30, 30, 0);
+                params.setMargins(-60, 20, 30, 0);
                 //IF TWO DECIMALS
             } else {
-                params.setMargins(-70, 30, 30, 0);
+                params.setMargins(-70, 20, 30, 0);
             }
-        } else if (Build.VERSION.SDK_INT == 23) {
+        } else if (Build.VERSION.SDK_INT == 23){
+            Log.d("DAYS", "Hello days! == 23");
             //IF ONE DECIMAL
             if ((userMaxCountForHabit - counter) < 10) {
-                params.setMargins(-70, 30, 30, 0);
+                params.setMargins(-70, 15, 30, 0);
                 //IF TWO DECIMALS
             } else {
-                params.setMargins(-78, 35, 30, 0);
+                params.setMargins(-78, 20, 30, 0);
             }
         } else if (Build.VERSION.SDK_INT == 24){
+            Log.d("DAYS", "Hello days! == 24");
             //IF ONE DECIMAL
             if ((userMaxCountForHabit-counter) < 10) {
-                params.setMargins(-80, 40, 30, 0);
+                params.setMargins(-75, 25, 30, 0);
                 //IF TWO DECIMALS
             } else {
-                params.setMargins(-90, 40, 30, 0);
+                params.setMargins(-95, 25, 30, 0);
             }
-        } else {
+        } else if (Build.VERSION.SDK_INT == 19){
+            Log.d("DAYS", "Hello days! == 19");
             //IF ONE DECIMAL
             if ((userMaxCountForHabit-counter) < 10) {
-                params.setMargins(-85, 50, 30, 0);
+                params.setMargins(-80, 20, 30, 0);
+            //IF TWO DECIMALS
+            } else {
+                params.setMargins(-80, 25, 30, 0);
+            }
+        } else if (Build.VERSION.SDK_INT == 28 &&
+                !(config.densityDpi >= 200 && config.densityDpi <= 330)){
+            Log.d("DAYS", "Hello days! == 28 + " + metrics);
+            //IF ONE DECIMAL
+            if ((userMaxCountForHabit - counter) < 10) {
+                params.setMargins(-85, 30, 30, 0);
                 //IF TWO DECIMALS
             } else {
-                params.setMargins(-100, 50, 30, 0);
+                params.setMargins(-100, 30, 30, 0);
+            }
+        } else if (config.densityDpi >= 200 && config.densityDpi <= 300){
+            Log.d("DAYS", "Hello days! == config.densityDpi");
+            //IF ONE DECIMAL
+            if ((userMaxCountForHabit - counter) < 10) {
+                params.setMargins(-40, 10, 30, 0);
+                //IF TWO DECIMALS
+            } else {
+                params.setMargins(-48, 10, 30, 0);
+            }
+        } else if (config.densityDpi == 320){
+                Log.d("DAYS", "Hello days! == config.densityDpi 320 + " +  metrics);
+                //IF ONE DECIMAL
+                if ((userMaxCountForHabit - counter) < 10) {
+                    params.setMargins(-45, 15, 30, 0);
+                    //IF TWO DECIMALS
+                } else {
+                    params.setMargins(-53, 15, 30, 0);
+                }
+        } else {
+            Log.d("DAYS", "Hello days! == ELSE");
+            //IF ONE DECIMAL
+            if ((userMaxCountForHabit-counter) < 10) {
+                params.setMargins(-85, 30, 30, 0);
+                //IF TWO DECIMALS
+            } else {
+                params.setMargins(-100, 30, 30, 0);
             }
         }
         remainingDaysTxt.setLayoutParams(params);
-    }
+    }//[END -> setProgramaticallyMarginOf_RemainingDaysText]
 
     @SideEffect
     private void setImagesForAchievmentCard(){
