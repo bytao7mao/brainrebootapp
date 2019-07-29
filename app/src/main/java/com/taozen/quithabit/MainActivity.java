@@ -167,8 +167,8 @@ public class MainActivity extends AppCompatActivity
 
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
+        retrieveSavingMoney();
 
-        Log.d("LETSEE", "counter before: " + counter);
         setTargetDays();
 
         firstCheckForCounterAndMax();
@@ -290,8 +290,9 @@ public class MainActivity extends AppCompatActivity
         savingsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setTheSavingsPerDay();
                 Intent intent = new Intent(MainActivity.this, SavingsActivity.class);
-                intent.putExtra("savings", savings);
+                intent.putExtra("savingsFinal", savings);
                 startActivity(intent);
             }
         });//savingsCardView[END]
@@ -303,10 +304,8 @@ public class MainActivity extends AppCompatActivity
             //counter on click for fab button
             counterFabButtonInitializer();
             setTargetDays();
-            savings = setTheSavingsPerDay(counter);
-            Log.d("LOGG", "in oncreate "+"savings = " + savings + " counter = " + counter);
+            setTheSavingsPerDay();
             moneyOrTimeAndGetValueOfItFromSharedPreferences();
-            Log.d("counterval", "counter value = " + counter);
             buttonClickedToday = preferences.getBoolean("clicked", false);
             progressPercent = preferences.getInt("progressPercent", 0);
             updatePercent();
@@ -401,6 +400,19 @@ public class MainActivity extends AppCompatActivity
 //                .build();
     }//[END OF ONCREATE]
 
+    private void retrieveSavingMoney() {
+        savings = preferences.getInt("savingsFinal", -1);
+        if (savings == 0 || savings == -1) {
+            savings = 10;
+            editor.putInt("savingsFinal", savings);
+            editor.apply();
+        } else {
+            savings = preferences.getInt("savingsFinal", -1);
+            editor.putInt("savingsFinal", savings);
+            editor.apply();
+        }
+    }
+
     private void firstCheckForCounterAndMax() {
         if (counter == 0){
             counter = 1;
@@ -494,7 +506,6 @@ public class MainActivity extends AppCompatActivity
                 editor.apply();
                 setImagesForAchievmentCard();
                 Log.d("taolenX", "counter from onclick = " + counter);
-
                 try {
                     counter = preferences.getInt("counter", -1);
                 } catch (NullPointerException e){e.printStackTrace();}
@@ -533,12 +544,13 @@ public class MainActivity extends AppCompatActivity
                         editor.putInt("counter", counter);
                         editor.apply();
                         checkActivityOnline();
+                        savings = preferences.getInt("savingsFinal", -1)+10;
+                        editor.putInt("savingsFinal", savings);
+                        editor.apply();
                         //set margin for counter
                         setProgramaticallyMarginOf_RemainingDaysText();
-                        savings = setTheSavingsPerDay(counter);
-                        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                        editor.putInt("savings", savings);
-                        Log.d("LOGG", "in fab " + "savings = " + savings + " counter = " + counter);
+                        setTheSavingsPerDay();
+                        moneyOrTimeAndGetValueOfItFromSharedPreferences();
                         setImprovementProgressLevels();
                         setImagesForAchievmentCard();
                         try {
@@ -562,12 +574,13 @@ public class MainActivity extends AppCompatActivity
                         editor.putInt("counter", counter);
                         editor.apply();
                         checkActivityOnline();
-                        savings = setTheSavingsPerDay(counter);
+                        savings = preferences.getInt("savingsFinal", -1)+10;
+                        editor.putInt("savingsFinal", savings);
+                        editor.apply();
                         //set margin for counter
                         setProgramaticallyMarginOf_RemainingDaysText();
-                        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("MONEY"));
-                        editor.putInt("savings", savings);
-                        Log.d("LOGG", "in fab " + "savings = " + savings + " counter = " + counter);
+                        setTheSavingsPerDay();
+                        moneyOrTimeAndGetValueOfItFromSharedPreferences();
                         setImprovementProgressLevels();
                         try {
                             counter = preferences.getInt("counter", -1);
@@ -597,8 +610,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void moneyOrTimeAndGetValueOfItFromSharedPreferences() {
-        savings = preferences.getInt("savings", 0);
-        Log.d("LOGG", "in moneyOrTimeAndGetValueOfItFromSharedPreferences "+"savings = " + savings + " counter = " + counter);
+        int id = preferences.getInt("savingsFinal", -1);
+        Log.d("LOGGTAO", "id: " + id);
+        if (id != -1){
+            savings = id;
+        } else {
+            savings = preferences.getInt("savingsFinal", -1);
+        }
         setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("money"));
     }
 
@@ -642,11 +660,18 @@ public class MainActivity extends AppCompatActivity
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
 
-    private int setTheSavingsPerDay(int c){
-        savings = c * 10;//dollars per day
-        editor.putInt("savings", savings);
-        editor.apply();
-        return savings;
+    private void setTheSavingsPerDay(){
+        counter = preferences.getInt("counter", 0);
+        int id = preferences.getInt("savingsFinal", -1);
+        Log.d("LOGGTAO", "id: " + id);
+        if (id != -1) {
+            editor.putInt("savingsFinal", savings);
+            editor.apply();
+        } else {
+            savings = counter * 10;//dollars per day
+            editor.putInt("savingsFinal", savings);
+            editor.apply();
+        }
     }
 
     //running task
@@ -744,6 +769,7 @@ public class MainActivity extends AppCompatActivity
         updateButton();
         setImagesForAchievmentCard();
         runningInBackground();
+        moneyOrTimeAndGetValueOfItFromSharedPreferences();
         Log.d("taolenX", "onResume SIMPLE>> AND counter is " + counter);
         try {
             //only retrieve and save in onpause
@@ -822,7 +848,7 @@ public class MainActivity extends AppCompatActivity
     //[ENABLE BUTTON]
     @SideEffect
     private void greenCodition(){
-        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAYLIGHT >= 13)) {
+        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAYLIGHT >= 12)) {
             //to do
             //show the activate button
             Log.d("taolenX777", "greenCodition WORKINGGGGG");
