@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -106,7 +107,6 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
     @BindView(R.id.YourProgressIdRank) TextView userRankProgressTxt;
     @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
-    @BindView(R.id.YourProgressIdCravings) TextView userCravingsProgressTxt;
     //ProgressBar
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressId2) ProgressBar progressBarLoading2;
@@ -148,6 +148,8 @@ public class MainActivity extends AppCompatActivity
 
     DisplayMetrics metrics = new DisplayMetrics();
     Configuration config;
+    private boolean energyTrue;
+    private boolean gumsTrue;
 
     //OnCreate
     @Override
@@ -166,15 +168,11 @@ public class MainActivity extends AppCompatActivity
 //        fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
 
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
         retrieveSavingMoney();
-
+        //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
         setTargetDays();
-
         firstCheckForCounterAndMax();
-
 //      getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.grey_800)); -TESTING PURPOSE
-
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
@@ -188,27 +186,27 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
         progressCardView.setCardElevation(0);
         savingsCardView.setCardElevation(0);
         timeStampLogsCardview.setCardElevation(0);
         cardViewMain.setCardElevation(0);
         achievmentCard.setCardElevation(0);
 
-        //check online state
-        checkActivityOnline();
+
         //settting progress card
-        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
 
         //progress for percent - this is a circular bar
         progressBarEnergyLevel = findViewById(R.id.progress_bar_energy);
         progressBarFatigueLevel = findViewById(R.id.progress_bar_fatigue);
         progressBarBreathlevel = findViewById(R.id.progress_bar_breath);
         progressBarGumsLevel = findViewById(R.id.progress_bar_gums);
-        progressBarRemainingDays = findViewById(R.id.progress_bar_outer);
-
-        //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
-        setTargetDays();
-
+//        progressBarRemainingDays = findViewById(R.id.progress_bar_outer);
+        Log.d("TAOGEN", "progress gums: " + progressBarGumsLevel.getProgress());
+        setProgramaticallyMarginOf_RemainingDaysText();
+        //check online state
+        checkActivityOnline();
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
         //add font to counter number
         Typeface montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -239,9 +237,9 @@ public class MainActivity extends AppCompatActivity
         userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
         userRankProgressTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
-        userCravingsProgressTxt.setTypeface(montSerratLightTypeface);
 
         try {
+            Log.d("TAOGEN", "gums true ? " + gumsTrue);
             //set margin for counter
             setProgramaticallyMarginOf_RemainingDaysText();
             //setting the achievments images for user
@@ -310,7 +308,7 @@ public class MainActivity extends AppCompatActivity
             progressPercent = preferences.getInt("progressPercent", 0);
             updatePercent();
             setImprovementProgressLevels();
-            progressBarRemainingDays.setProgress(progressPercent);
+//            progressBarRemainingDays.setProgress(progressPercent);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
@@ -492,7 +490,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 //set margin for counter
-                setProgramaticallyMarginOf_RemainingDaysText();
+//                setProgramaticallyMarginOf_RemainingDaysText();
                 buttonClickedToday = true;
                 editor.putBoolean("clicked", buttonClickedToday);
                 resetProgressBar(progressPercent);
@@ -548,7 +546,7 @@ public class MainActivity extends AppCompatActivity
                         editor.putInt("savingsFinal", savings);
                         editor.apply();
                         //set margin for counter
-                        setProgramaticallyMarginOf_RemainingDaysText();
+//                        setProgramaticallyMarginOf_RemainingDaysText();
                         setTheSavingsPerDay();
                         moneyOrTimeAndGetValueOfItFromSharedPreferences();
                         setImprovementProgressLevels();
@@ -560,7 +558,7 @@ public class MainActivity extends AppCompatActivity
                         }
                         counterText.setText(String.valueOf(counter));
                         setTargetDays();
-                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
 //                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
 //                                    FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
 //                                            20, FancyToast.SUCCESS, true).show();
@@ -578,7 +576,7 @@ public class MainActivity extends AppCompatActivity
                         editor.putInt("savingsFinal", savings);
                         editor.apply();
                         //set margin for counter
-                        setProgramaticallyMarginOf_RemainingDaysText();
+//                        setProgramaticallyMarginOf_RemainingDaysText();
                         setTheSavingsPerDay();
                         moneyOrTimeAndGetValueOfItFromSharedPreferences();
                         setImprovementProgressLevels();
@@ -589,7 +587,7 @@ public class MainActivity extends AppCompatActivity
                         }
                         counterText.setText(String.valueOf(counter));
                         setTargetDays();
-                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt, userCravingsProgressTxt);
+                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
                         Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -644,18 +642,22 @@ public class MainActivity extends AppCompatActivity
         }
         //remaining days -- + "  " for space between number of days and text
         String calcDaysTarget = "";
-        if (userMaxCountForHabit-counter < 10 && !(config.densityDpi == 320)) {
-            Log.d("DAYS", "i am here ... < 10 ONLY ");
-            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "     ";
-        } else if (userMaxCountForHabit-counter < 10 && config.densityDpi == 320) {
-            Log.d("DAYS", "i am here ... < 10 and 320 dpi ");
-            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
-        } else if (userMaxCountForHabit-counter >= 10 && config.densityDpi == 320) {
-            Log.d("DAYS", "i am here ... >= 10 and 320 dpi ");
-            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "  ";
-        } else {
-            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
-        }
+//        if (userMaxCountForHabit-counter < 10 && !(config.densityDpi == 320)) {
+//            Log.d("DAYS", "i am hFere ... < 10 ONLY ");
+//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "     ";
+//        } else if (userMaxCountForHabit-counter < 10 && config.densityDpi == 320) {
+//            Log.d("DAYS", "i am here ... < 10 and 320 dpi ");
+//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
+//        } else if (userMaxCountForHabit-counter >= 10 && config.densityDpi == 320) {
+//            Log.d("DAYS", "i am here ... >= 10 and 320 dpi ");
+//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "  ";
+//        } else if (userMaxCountForHabit-counter >= 10 && config.densityDpi == 640) {
+//            Log.d("DAYS", "i am here ... >= 10 and 640 dpi ");
+//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "  ";
+//        } else {
+//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
+//        }
+        calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "";
         String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
@@ -718,7 +720,7 @@ public class MainActivity extends AppCompatActivity
             counterText.setText(String.valueOf(counter));
             Log.d("TAGG", "counter = preferences.getInt(\"counter\", 0); = " + counter);
 
-            progressBarRemainingDays.setProgress(progressPercent);
+//            progressBarRemainingDays.setProgress(progressPercent);
             DAY_OF_CLICK = preferences.getInt("presentday", 0);
             buttonClickedToday = preferences.getBoolean("clicked", false);
             //[calendar area]
@@ -912,7 +914,7 @@ public class MainActivity extends AppCompatActivity
         editor.putInt("counter", counter);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
-        progressBarRemainingDays.setProgress(progressPercent);
+//        progressBarRemainingDays.setProgress(progressPercent);
     }
 
     @SideEffect
@@ -940,6 +942,7 @@ public class MainActivity extends AppCompatActivity
         } else if (counter > 55) {
             txtProgressForEnergyLevels.setText(100 + "%");
             progressBarEnergyLevel.setProgress(100);
+            energyTrue = true;
         }
 
         //fatigue levels
@@ -973,6 +976,7 @@ public class MainActivity extends AppCompatActivity
         } else if (counter > 59) {
             txtProgressForGums.setText(100 + "%");
             progressBarGumsLevel.setProgress(100);
+            gumsTrue = true;
         }
 
         //breath levels
@@ -1176,82 +1180,111 @@ public class MainActivity extends AppCompatActivity
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        setTargetDays();
-        if (Build.VERSION.SDK_INT == 25 ){
-            Log.d("DAYS", "Hello days! == 25");
-            //IF ONE DECIMAL
-            if ((userMaxCountForHabit-counter) < 10) {
-                params.setMargins(-60, 20, 30, 0);
-                //IF TWO DECIMALS
-            } else {
-                params.setMargins(-70, 20, 30, 0);
-            }
-        } else if (Build.VERSION.SDK_INT == 23){
-            Log.d("DAYS", "Hello days! == 23");
-            //IF ONE DECIMAL
-            if ((userMaxCountForHabit - counter) < 10) {
-                params.setMargins(-70, 15, 30, 0);
-                //IF TWO DECIMALS
-            } else {
-                params.setMargins(-78, 20, 30, 0);
-            }
-        } else if (Build.VERSION.SDK_INT == 24){
-            Log.d("DAYS", "Hello days! == 24");
-            //IF ONE DECIMAL
-            if ((userMaxCountForHabit-counter) < 10) {
-                params.setMargins(-75, 25, 30, 0);
-                //IF TWO DECIMALS
-            } else {
-                params.setMargins(-95, 25, 30, 0);
-            }
-        } else if (Build.VERSION.SDK_INT == 19){
-            Log.d("DAYS", "Hello days! == 19");
-            //IF ONE DECIMAL
-            if ((userMaxCountForHabit-counter) < 10) {
-                params.setMargins(-80, 20, 30, 0);
-            //IF TWO DECIMALS
-            } else {
-                params.setMargins(-80, 25, 30, 0);
-            }
-        } else if (Build.VERSION.SDK_INT == 28 &&
-                !(config.densityDpi >= 200 && config.densityDpi <= 330)){
-            Log.d("DAYS", "Hello days! == 28 + " + metrics);
-            //IF ONE DECIMAL
-            if ((userMaxCountForHabit - counter) < 10) {
-                params.setMargins(-85, 30, 30, 0);
-                //IF TWO DECIMALS
-            } else {
-                params.setMargins(-100, 30, 30, 0);
-            }
-        } else if (config.densityDpi >= 200 && config.densityDpi <= 300){
-            Log.d("DAYS", "Hello days! == config.densityDpi");
-            //IF ONE DECIMAL
-            if ((userMaxCountForHabit - counter) < 10) {
-                params.setMargins(-40, 10, 30, 0);
-                //IF TWO DECIMALS
-            } else {
-                params.setMargins(-48, 10, 30, 0);
-            }
-        } else if (config.densityDpi == 320){
-                Log.d("DAYS", "Hello days! == config.densityDpi 320 + " +  metrics);
-                //IF ONE DECIMAL
-                if ((userMaxCountForHabit - counter) < 10) {
-                    params.setMargins(-45, 15, 30, 0);
-                    //IF TWO DECIMALS
-                } else {
-                    params.setMargins(-53, 15, 30, 0);
-                }
-        } else {
-            Log.d("DAYS", "Hello days! == ELSE");
-            //IF ONE DECIMAL
-            if ((userMaxCountForHabit-counter) < 10) {
-                params.setMargins(-85, 30, 30, 0);
-                //IF TWO DECIMALS
-            } else {
-                params.setMargins(-100, 30, 30, 0);
-            }
+        FrameLayout.LayoutParams paramsGums = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT);
+        FrameLayout.LayoutParams paramsEnergy = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT);
+//        setTargetDays();
+//        if (Build.VERSION.SDK_INT == 25 ){
+//            Log.d("DAYS", "Hello days! == 25");
+//            //IF ONE DECIMAL
+//            if ((userMaxCountForHabit-counter) < 10) {
+//                params.setMargins(-60, 20, 30, 0);
+//                //IF TWO DECIMALS
+//            } else {
+//                params.setMargins(-70, 20, 30, 0);
+//            }
+//        } else if (Build.VERSION.SDK_INT == 23){
+//            Log.d("DAYS", "Hello days! == 23");
+//            //IF ONE DECIMAL
+//            if ((userMaxCountForHabit - counter) < 10) {
+//                params.setMargins(-70, 15, 30, 0);
+//                //IF TWO DECIMALS
+//            } else {
+//                params.setMargins(-78, 20, 30, 0);
+//            }
+//        } else if (Build.VERSION.SDK_INT == 24){
+//            Log.d("DAYS", "Hello days! == 24");
+//            //IF ONE DECIMAL
+//            if ((userMaxCountForHabit-counter) < 10) {
+//                params.setMargins(-75, 25, 30, 0);
+//                //IF TWO DECIMALS
+//            } else {
+//                params.setMargins(-95, 25, 30, 0);
+//            }
+//        } else if (Build.VERSION.SDK_INT == 19){
+//            Log.d("DAYS", "Hello days! == 19");
+//            //IF ONE DECIMAL
+//            if ((userMaxCountForHabit-counter) < 10) {
+//                params.setMargins(-80, 20, 30, 0);
+//            //IF TWO DECIMALS
+//            } else {
+//                params.setMargins(-80, 25, 30, 0);
+//            }
+////        } else if (Build.VERSION.SDK_INT == 28 &&
+////                !(config.densityDpi >= 200 && config.densityDpi <= 330)){
+////            Log.d("DAYS", "Hello days! == 28 + " + metrics.densityDpi);
+////            //IF ONE DECIMAL
+////            if ((userMaxCountForHabit - counter) < 10) {
+////                params.setMargins(-85, 30, 30, 0);
+////                //IF TWO DECIMALS
+////            } else {
+////                params.setMargins(-100, 30, 30, 0);
+////            }
+//        } else if (Build.VERSION.SDK_INT == 28 &&
+//                (config.densityDpi == 640 )){
+//            Log.d("DAYS", "API 28 AND DPI 640 + " + metrics.densityDpi+ "DPI");
+//            //IF ONE DECIMAL
+//            if ((userMaxCountForHabit - counter) < 10) {
+//                params.setMargins(-85, 30, 30, 0);
+//                //IF TWO DECIMALS
+//            } else {
+//                params.setMargins(-105, 25, 30, 0);
+//            }
+//        } else if (config.densityDpi >= 200 && config.densityDpi <= 300){
+//            Log.d("DAYS", "Hello days! == config.densityDpi");
+//            //IF ONE DECIMAL
+//            if ((userMaxCountForHabit - counter) < 10) {
+//                params.setMargins(-40, 10, 30, 0);
+//                //IF TWO DECIMALS
+//            } else {
+//                params.setMargins(-48, 10, 30, 0);
+//            }
+//        } else if (config.densityDpi == 320){
+//                Log.d("DAYS", "Hello days! == config.densityDpi 320 + " +  metrics);
+//                //IF ONE DECIMAL
+//                if ((userMaxCountForHabit - counter) < 10) {
+//                    params.setMargins(-45, 15, 30, 0);
+//                    //IF TWO DECIMALS
+//                } else {
+//                    params.setMargins(-53, 15, 30, 0);
+//                }
+//        } else {
+//            Log.d("DAYS", "Hello days! == ELSE");
+//            //IF ONE DECIMAL
+//            if ((userMaxCountForHabit-counter) < 10) {
+//                params.setMargins(-85, 30, 30, 0);
+//                //IF TWO DECIMALS
+//            } else {
+//                params.setMargins(-100, 30, 30, 0);
+//            }
+//        }
+
+        if (progressBarGumsLevel.getProgress() == 100 || progressBarGumsLevel.getProgress() >= 50){
+            Log.d("TAOGEN", "I AM IN PROGRESS BAR GUMS");
+            paramsGums.setMargins(1060, 285, 0, 120);
+            txtProgressForGums.setLayoutParams(paramsGums);
         }
-        remainingDaysTxt.setLayoutParams(params);
+        if (progressBarEnergyLevel.getProgress() == 100) {
+            paramsEnergy.setMargins(160, 285, 0, 120);
+            txtProgressForEnergyLevels.setLayoutParams(paramsEnergy);
+        }
+
+//        remainingDaysTxt.setLayoutParams(params);
+//        txtProgressForEnergyLevels.setLayoutParams(params);
+
     }//[END -> setProgramaticallyMarginOf_RemainingDaysText]
 
     @SideEffect
@@ -1364,7 +1397,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void showEntireProgressForUserCard(TextView userCigaretesProgressTxt, TextView userRankProgressTxt, TextView userHoursProgressTxt, TextView userCravingsProgressTxt){
+    private void showEntireProgressForUserCard(TextView userCigaretesProgressTxt, TextView userRankProgressTxt, TextView userHoursProgressTxt){
         try {
             counter = preferences.getInt("counter", 0);
             int cigaretess = cigaretesPerDay * counter;
@@ -1376,7 +1409,6 @@ public class MainActivity extends AppCompatActivity
             userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + String.valueOf(cigaretess));
             userRankProgressTxt.setText("Rank: " + String.valueOf(theLatestRank));
             userHoursProgressTxt.setText("Life regained: " + String.valueOf(lifeRegained) + " hours");
-            userCravingsProgressTxt.setText("Cravings resisted: " + String.valueOf(cravingsTotal));
         } catch (NullPointerException e){e.printStackTrace();}
     }
 }

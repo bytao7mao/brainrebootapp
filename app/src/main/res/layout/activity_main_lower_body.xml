@@ -50,15 +50,16 @@
                 <!--<ImageView-->
                     <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="match_parent"-->
-                    <!--android:alpha="0.1"-->
-                    <!--android:background="@drawable/p1" />-->
+                    <!--android:alpha="0.9"-->
+                    <!--android:background="@drawable/p2" />-->
 
                 <ImageView
                     android:id="@+id/YourProgressImgId"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="personal progress"
                     android:background="@mipmap/marketing" />
                 <!--android:layout_marginTop="30dp"-->
 
@@ -67,9 +68,10 @@
                     style="@style/TextColorBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="70dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
+                    android:textSize="14sp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Your entire progress" />
 
@@ -78,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextColorBlack"
+                    android:textSize="12sp"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="35dp"
                     android:layout_marginEnd="20dp"
@@ -91,6 +94,7 @@
                     style="@style/TextColorBlack"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="55dp"
+                    android:textSize="12sp"
                     android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="rank: PRO"/>
@@ -99,23 +103,13 @@
                     android:id="@+id/YourProgressIdHours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     style="@style/TextColorBlack"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="75dp"
                     android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Life regained: 20 hours"/>
-
-                <TextView
-                    android:id="@+id/YourProgressIdCravings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextColorBlack"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="95dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toRightOf="@id/savingsImgId"
-                    android:text="Cravings resisted: 0"/>
 
             </android.support.v7.widget.CardView>
         </FrameLayout>
@@ -140,8 +134,8 @@
                     <!--<ImageView-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="match_parent"-->
-                        <!--android:alpha="0.1"-->
-                        <!--android:background="@drawable/p2" />-->
+                        <!--android:alpha="0.2"-->
+                        <!--android:background="@drawable/p3" />-->
 
                     <TextView
                         android:id="@+id/YourAchievmentsId"
@@ -211,8 +205,8 @@
                 <!--<ImageView-->
                     <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="match_parent"-->
-                    <!--android:alpha="0.1"-->
-                    <!--android:background="@drawable/p3" />-->
+                    <!--android:alpha="0.2"-->
+                    <!--android:background="@drawable/p4" />-->
 
                 <ImageView
                     android:id="@+id/savingsImgId"

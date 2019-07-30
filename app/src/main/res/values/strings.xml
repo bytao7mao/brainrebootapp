@@ -6,7 +6,7 @@
     <string name="add">add</string>
     <string name="target_string">target: %s</string>
     <string name="money_time">Save this ammount of %s per day = %s$</string>
-    <string name="remaining_days">%s days remaining</string>
+    <string name="remaining_days">remaining: %s</string>
     <string name="total_savings">This is your total savings: %s $</string>
 
     <string name="copy_right" translatable="false">Copyrights © %1$d</string>
