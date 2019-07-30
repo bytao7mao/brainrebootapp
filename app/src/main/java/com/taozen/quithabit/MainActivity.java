@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     static final int REQUEST_TAKE_PHOTO = 123;
+    public static final String SAVINGS_FINAL = "savingsFinal";
     Random ran;
     List<MainActivity.MyAsyncTask> tasks;
     Handler handler;
@@ -290,7 +291,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 setTheSavingsPerDay();
                 Intent intent = new Intent(MainActivity.this, SavingsActivity.class);
-                intent.putExtra("savingsFinal", savings);
+                intent.putExtra(SAVINGS_FINAL, savings);
                 startActivity(intent);
             }
         });//savingsCardView[END]

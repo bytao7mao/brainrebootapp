@@ -24,11 +24,12 @@ import butterknife.ButterKnife;
 
 public class SavingsActivity extends AppCompatActivity {
 
+    public static final String SAVINGS_FINAL = "savingsFinal";
     @BindView(R.id.savingsTxt) TextView savingsTxt;
     @BindView(R.id.addSavingsBtnId) Button otherSavingsBtn;
     @BindView(R.id.editTxtSavingsId) EditText editTxtSavings;
-    String savingsString = null;
     int otherIntSavings;
+    int finalSum;
     //shared pref
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -51,51 +52,52 @@ public class SavingsActivity extends AppCompatActivity {
 //        Log.d("RETROFIT", "response: " + FromHerokuWithRetrofit.resp);
 
         editTxtSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
+        getIntentOrPrefsAndStore();
 
         otherSavingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 otherIntSavings = Integer.parseInt(String.valueOf(editTxtSavings.getText()));
-                addOtherSavingsMethod();
-            }
-        });
-        getValueOfSavings();
-    }
-
-    private void addOtherSavingsMethod() {
-        try {
-            Intent intent = getIntent();
-            if (intent != null) {
-                savingsString = String.valueOf(
-                        intent.getIntExtra("savingsFinal", 0));
-                int finalSum = Integer.parseInt(savingsString)+otherIntSavings;
+                finalSum = finalSum + otherIntSavings;
                 savingsTxt.setText("Your total savings: " + finalSum + " $");
-                Log.d("LOGGTAO", "savings: " + finalSum);
-                editor.putInt("savingsFinal", finalSum);
+                Log.d("LOGGTAO", "savings from onClick: " + finalSum);
+                editor.putInt(SAVINGS_FINAL, finalSum);
                 editor.apply();
             }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-    }
+    });
+}
 
     //fetching value from MainActivity
-    private void getValueOfSavings() {
-        try {
-            Intent intent = getIntent();
-            if (intent != null) {
-                savingsString = String.valueOf(
-                                intent.getIntExtra("savingsFinal", 0));
-                savingsTxt.setText("Your total savings: " + savingsString + " $");
+        private void getIntentOrPrefsAndStore() {
+            try {
+                Intent intent = getIntent();
+                if (intent != null) {
+                    //retrieve by intent(outside activity)
+                    finalSum = intent.getIntExtra(SAVINGS_FINAL, -1);
+                    Log.d("LOGGTAO", "get from intent ? = " + finalSum);
+                    savingsTxt.setText("Your total savings: " + finalSum + " $");
+                } else {
+                    //retrieve by prefs (inside activity)
+                    finalSum = preferences.getInt(SAVINGS_FINAL, -1);
+                    Log.d("LOGGTAO", "get from preferences ? = " + finalSum);
+                    savingsTxt.setText("Your total savings: " + finalSum + " $");
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-    }//fetching value from main activity[END]
+        }//fetching value from main activity[END]
+
 
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("LOGGTAO", "hello onResume!");
+        getIntentOrPrefsAndStore();
     }
 }
