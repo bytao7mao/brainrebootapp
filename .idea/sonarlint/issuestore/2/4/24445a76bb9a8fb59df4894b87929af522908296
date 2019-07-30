@@ -1,14 +1,0 @@
-
-hsquid:S1192"LDefine a constant instead of duplicating this literal "response = " 5 times.(ÿ†Ì‚ÿÿÿÿÿ
-bsquid:CommentedOutCodeLineF"<This block of commented-out lines of code should be removed.(²Å¦ð
-asquid:CommentedOutCodeLineH"<This block of commented-out lines of code should be removed.(²±þ
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¶ßÅôüÿÿÿÿ
-esquid:S1192"IDefine a constant instead of duplicating this literal "RETROFIT" 5 times.(ÿ†Ì‚ÿÿÿÿÿ
-bsquid:CommentedOutCodeLineD"<This block of commented-out lines of code should be removed.(¡ðÍ¤
-squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ì„ÄÞøÿÿÿÿ
-gsquid:CommentedOutCodeLineX"<This block of commented-out lines of code should be removed.(ÉãÜ’úÿÿÿÿ
-bsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(øÜË†
-gsquid:CommentedOutCodeLineK"<This block of commented-out lines of code should be removed.(ÕÖ¥ìýÿÿÿÿ
-gsquid:CommentedOutCodeLineQ"<This block of commented-out lines of code should be removed.(Îîúûÿÿÿÿ
-bsquid:CommentedOutCodeLineN"<This block of commented-out lines of code should be removed.(ùÃòã
-squid:S1186>"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ì„ÄÞøÿÿÿÿ

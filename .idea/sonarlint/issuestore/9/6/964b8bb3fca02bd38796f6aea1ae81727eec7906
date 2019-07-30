@@ -1,9 +1,0 @@
-
-?squid:S1148&"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-Gsquid:S1481"+Remove this unused "status" local variable.(ìÛ²ˆøÿÿÿÿ
-Fsquid:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜ ãó
-dsquid:S2259"HA "NullPointerException" could be thrown; "connection" is nullable here.(ìÛ²ˆøÿÿÿÿ
-Vsquid:S1118	":Add a private constructor to hide the implicit public one.(ß›ºıÿÿÿÿ
-?squid:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
-?squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ

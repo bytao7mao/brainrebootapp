@@ -222,11 +222,13 @@
                 android:id="@+id/txtProgressIdForGums"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="45dp"
+                android:layout_marginRight="43dp"
                 android:layout_gravity="end|center_vertical"
                 android:text="0"
                 android:textSize="13sp"
+                android:textStyle="bold"
                 style="@style/TextColor2" />
+
             <TextView
                 android:id="@+id/txtProgressIdForBreath"
                 android:layout_width="wrap_content"
@@ -235,6 +237,7 @@
                 android:layout_gravity="center|center_vertical"
                 android:text="0"
                 android:textSize="13sp"
+                android:textStyle="bold"
                 style="@style/TextColor2" />
             <TextView
                 android:id="@+id/txtProgressIdForFatigue"
@@ -244,6 +247,7 @@
                 android:layout_gravity="center|center_vertical"
                 android:text="0"
                 android:textSize="13sp"
+                android:textStyle="bold"
                 style="@style/TextColor2" />
             <TextView
                 android:id="@+id/txtProgressIdForEnergy"
@@ -253,8 +257,8 @@
                 android:layout_gravity="start|center_vertical"
                 android:text="0"
                 android:textSize="13sp"
+                android:textStyle="bold"
                 style="@style/TextColor2" />
-
 
             <TextView
                 android:id="@+id/textProg"
@@ -389,7 +393,8 @@
                 app:progress="50"
                 app:progressAnimationDuration="100"
                 app:startAngle="270" />
-            <!--app:wlv_borderWidth="3dp"-->
+            <!--app:wlv_borderWidth="3dp"76FF03
+            app:foregroundStrokeColor="#ffff4081"-->
         </android.support.v7.widget.CardView>
     </FrameLayout>
 

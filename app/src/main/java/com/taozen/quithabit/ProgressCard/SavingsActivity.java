@@ -22,9 +22,11 @@ import java.util.prefs.Preferences;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.taozen.quithabit.MainActivity.SAVINGS_FINAL;
+
 public class SavingsActivity extends AppCompatActivity {
 
-    public static final String SAVINGS_FINAL = "savingsFinal";
+//    public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
     @BindView(R.id.savingsTxt) TextView savingsTxt;
     @BindView(R.id.addSavingsBtnId) Button otherSavingsBtn;
     @BindView(R.id.editTxtSavingsId) EditText editTxtSavings;

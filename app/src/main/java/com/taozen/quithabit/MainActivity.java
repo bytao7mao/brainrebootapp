@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     static final int REQUEST_TAKE_PHOTO = 123;
-    public static final String SAVINGS_FINAL = "savingsFinal";
+    public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
     Random ran;
     List<MainActivity.MyAsyncTask> tasks;
     Handler handler;
@@ -127,8 +127,9 @@ public class MainActivity extends AppCompatActivity
             DAY_OF_CLICK = 0,
             DAY_OF_PRESENT = 0,
             HOUR_OF_DAYLIGHT = 0;
-    //wil start from 1 to 3 to 7 to 14 to 21 to 30
+    //wil start from 30 to 60 to 90
     int userMaxCountForHabit = -1;
+    //default false
     boolean buttonClickedToday;
 
     //Toolbar
@@ -149,8 +150,6 @@ public class MainActivity extends AppCompatActivity
 
     DisplayMetrics metrics = new DisplayMetrics();
     Configuration config;
-    private boolean energyTrue;
-    private boolean gumsTrue;
 
     //OnCreate
     @Override
@@ -240,7 +239,6 @@ public class MainActivity extends AppCompatActivity
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
 
         try {
-            Log.d("TAOGEN", "gums true ? " + gumsTrue);
             //set margin for counter
             setProgramaticallyMarginOf_RemainingDaysText();
             //setting the achievments images for user
@@ -400,14 +398,14 @@ public class MainActivity extends AppCompatActivity
     }//[END OF ONCREATE]
 
     private void retrieveSavingMoney() {
-        savings = preferences.getInt("savingsFinal", -1);
+        savings = preferences.getInt(SAVINGS_FINAL, -1);
         if (savings == 0 || savings == -1) {
             savings = 10;
-            editor.putInt("savingsFinal", savings);
+            editor.putInt(SAVINGS_FINAL, savings);
             editor.apply();
         } else {
-            savings = preferences.getInt("savingsFinal", -1);
-            editor.putInt("savingsFinal", savings);
+            savings = preferences.getInt(SAVINGS_FINAL, -1);
+            editor.putInt(SAVINGS_FINAL, savings);
             editor.apply();
         }
     }
@@ -543,8 +541,8 @@ public class MainActivity extends AppCompatActivity
                         editor.putInt("counter", counter);
                         editor.apply();
                         checkActivityOnline();
-                        savings = preferences.getInt("savingsFinal", -1)+10;
-                        editor.putInt("savingsFinal", savings);
+                        savings = preferences.getInt(SAVINGS_FINAL, -1)+10;
+                        editor.putInt(SAVINGS_FINAL, savings);
                         editor.apply();
                         //set margin for counter
 //                        setProgramaticallyMarginOf_RemainingDaysText();
@@ -563,6 +561,7 @@ public class MainActivity extends AppCompatActivity
 //                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
 //                                    FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
 //                                            20, FancyToast.SUCCESS, true).show();
+                        setProgramaticallyMarginOf_RemainingDaysText();
                         userPassDayDialogShow();
                     }
                 })
@@ -573,8 +572,8 @@ public class MainActivity extends AppCompatActivity
                         editor.putInt("counter", counter);
                         editor.apply();
                         checkActivityOnline();
-                        savings = preferences.getInt("savingsFinal", -1)+10;
-                        editor.putInt("savingsFinal", savings);
+                        savings = preferences.getInt(SAVINGS_FINAL, -1)+10;
+                        editor.putInt(SAVINGS_FINAL, savings);
                         editor.apply();
                         //set margin for counter
 //                        setProgramaticallyMarginOf_RemainingDaysText();
@@ -589,6 +588,7 @@ public class MainActivity extends AppCompatActivity
                         counterText.setText(String.valueOf(counter));
                         setTargetDays();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
+                        setProgramaticallyMarginOf_RemainingDaysText();
                         Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -609,12 +609,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void moneyOrTimeAndGetValueOfItFromSharedPreferences() {
-        int id = preferences.getInt("savingsFinal", -1);
+        int id = preferences.getInt(SAVINGS_FINAL, -1);
         Log.d("LOGGTAO", "id: " + id);
         if (id != -1){
             savings = id;
         } else {
-            savings = preferences.getInt("savingsFinal", -1);
+            savings = preferences.getInt(SAVINGS_FINAL, -1);
         }
         setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("money"));
     }
@@ -665,14 +665,14 @@ public class MainActivity extends AppCompatActivity
 
     private void setTheSavingsPerDay(){
         counter = preferences.getInt("counter", 0);
-        int id = preferences.getInt("savingsFinal", -1);
+        int id = preferences.getInt(SAVINGS_FINAL, -1);
         Log.d("LOGGTAO", "id: " + id);
         if (id != -1) {
-            editor.putInt("savingsFinal", savings);
+            editor.putInt(SAVINGS_FINAL, savings);
             editor.apply();
         } else {
             savings = counter * 10;//dollars per day
-            editor.putInt("savingsFinal", savings);
+            editor.putInt(SAVINGS_FINAL, savings);
             editor.apply();
         }
     }
@@ -943,7 +943,6 @@ public class MainActivity extends AppCompatActivity
         } else if (counter > 55) {
             txtProgressForEnergyLevels.setText(100 + "%");
             progressBarEnergyLevel.setProgress(100);
-            energyTrue = true;
         }
 
         //fatigue levels
@@ -977,7 +976,6 @@ public class MainActivity extends AppCompatActivity
         } else if (counter > 59) {
             txtProgressForGums.setText(100 + "%");
             progressBarGumsLevel.setProgress(100);
-            gumsTrue = true;
         }
 
         //breath levels
@@ -1176,6 +1174,7 @@ public class MainActivity extends AppCompatActivity
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
 
+    /**this particularly is meant for test purpose*/
     //[START - setProgramaticallyMarginOf_RemainingDaysText]
     private void setProgramaticallyMarginOf_RemainingDaysText(){
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -1273,18 +1272,24 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        }
 
-        if (progressBarGumsLevel.getProgress() == 100 || progressBarGumsLevel.getProgress() >= 50){
-            Log.d("TAOGEN", "I AM IN PROGRESS BAR GUMS");
-            paramsGums.setMargins(1060, 285, 0, 120);
-            txtProgressForGums.setLayoutParams(paramsGums);
-        }
-        if (progressBarEnergyLevel.getProgress() == 100) {
-            paramsEnergy.setMargins(160, 285, 0, 120);
-            txtProgressForEnergyLevels.setLayoutParams(paramsEnergy);
-        }
+//        if (progressBarGumsLevel.getProgress() == 100){
+//            Log.d("TAOGEN", "I AM IN PROGRESS BAR GUMS");
+//            paramsGums.setMargins(1050, 280, 0, 120);
+//            txtProgressForGums.setLayoutParams(paramsGums);
+//        } else {
+//            paramsGums.setMargins(1080, 280, 0, 120);
+//            txtProgressForGums.setLayoutParams(paramsGums);
+//        }
+//
+//        if (progressBarEnergyLevel.getProgress() == 100) {
+//            paramsEnergy.setMargins(150, 280, 0, 120);
+//            txtProgressForEnergyLevels.setLayoutParams(paramsEnergy);
+//        } else {
+//            paramsEnergy.setMargins(180, 280, 0, 120);
+//            txtProgressForEnergyLevels.setLayoutParams(paramsEnergy);
+//        }
 
 //        remainingDaysTxt.setLayoutParams(params);
-//        txtProgressForEnergyLevels.setLayoutParams(params);
 
     }//[END -> setProgramaticallyMarginOf_RemainingDaysText]
 

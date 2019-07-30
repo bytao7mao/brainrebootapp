@@ -47,6 +47,9 @@
     <style name="TextColor2">
         <item name="android:textColor">#C21753</item>
     </style>
+    <style name="TextColorGreen">
+        <item name="android:textColor">#76FF03</item>
+    </style>
     <style name="TextColorErr">
         <item name="android:textColor">#FF0000</item>
     </style>
