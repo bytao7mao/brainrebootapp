@@ -59,6 +59,9 @@
     <style name="TextColorWhite">
         <item name="android:textColor">#FFFAF1</item>
     </style>
+    <style name="TextColorVanilla">
+        <item name="android:textColor">#FFFAD1</item>
+    </style>
 
     <style name="MaterialTheme.NoActionBar">
         <item name="windowNoTitle">true</item>

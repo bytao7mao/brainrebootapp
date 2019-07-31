@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
@@ -63,6 +64,8 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.taozen.quithabit.R.color.vanilla;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
@@ -117,6 +120,8 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
     @BindView(R.id.rankThreeId) ImageView rankThreeImg;
     @BindView(R.id.rankFourId) ImageView rankFourImg;
+    @BindView(R.id.backgroundId) ImageView backgroundImgWall;
+//    @BindView(R.id.imageViewMiddleId) ImageView imageViewMiddle;
 
     //counter for user
     int counter;
@@ -158,6 +163,29 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
         parentLayout = findViewById(R.id.drawer_layout);
+        //testing area
+        Date date = new Date();
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTime(date);
+        HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
+        //night
+        if (HOUR_OF_DAYLIGHT >= 20){
+            backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
+//            imageViewMiddle.setBackgroundResource(R.drawable.p4);
+            backgroundImgWall.setAlpha(0.2f);
+//            imageViewMiddle.setAlpha(0.1f);
+//            tipofthedayTxtViewId.setTextAppearance(this, R.style.TextColorVanilla);
+//            counterText.setTextAppearance(this, R.style.TextColorVanilla);
+        } else {
+            //daytime
+            backgroundImgWall.setBackgroundResource(R.drawable.brozsb);
+//            imageViewMiddle.setBackgroundResource(R.drawable.brozsb);
+            backgroundImgWall.setAlpha(0.2f);
+//            imageViewMiddle.setAlpha(0.1f);
+//            tipofthedayTxtViewId.setTextAppearance(this, R.style.TextColorBlack);
+//            counterText.setTextAppearance(this, R.style.TextColorBlack);
+
+        }
         tasks = new ArrayList<>();
         ran = new Random();
         config = getResources().getConfiguration();

@@ -143,6 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:text="Your latest achievments" />
@@ -155,9 +156,10 @@
                         android:layout_marginLeft="10dp"
                         android:background="@mipmap/medal" />
                     <LinearLayout
-                        android:layout_width="250dp"
+                        android:layout_width="230dp"
                         android:layout_height="60dp"
-                        android:layout_gravity="center"
+                        android:layout_marginTop="40dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="10dp">
 
@@ -254,6 +256,7 @@
                     android:layout_marginStart="70dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="20dp"
+                    android:textSize="12sp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Savings Total = 50$ or 50 hours" />
 
@@ -267,11 +270,12 @@
             android:layout_marginTop="5dp"
             android:layout_below="@id/frameCardIdMoneySaved">
 
+            <!--last item in screen-->
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardId3"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginBottom="120dp"
+                android:layout_marginBottom="70dp"
                 app:cardCornerRadius="8dp">
 
                 <ImageView
@@ -300,6 +304,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="25dp"
+                    android:textSize="12sp"
                     android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/logsImgId"
                     android:text="See your Personal logs - failures" />
