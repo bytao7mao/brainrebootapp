@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuitHabit</string>
+    <string name="exit">iesire</string>
+    <string name="about">despre</string>
+    <string name="reset">resetare</string>
+    <string name="add">adaugare</string>
+    <string name="target_string">Scop: %s</string>
+    <string name="money_time">Salvati suma de %s pe zi:  %s</string>
+    <string name="remaining_days">Zile ramase: %s</string>
+    <string name="total_savings">Bani economisiti: %s $</string>
+    <string name="hello_world">Salutare!</string>
+    <string name="action_settings">Setari</string>
+    <string name="title">Titlu</string>
+    <string name="description">Descriptie</string>
+    <string name="drawer_open">Deschidere</string>
+    <string name="drawer_close">Inchidere</string>
+    <string name="delete_image">stergereImagine</string>
+    <string name="thumbnail">block</string>
+    <string name="add_image">adaugareImagine</string>
+    <string name="delete">Stergere</string>
+    <string name="search">cautare</string>
+    <string name="settings">setari</string>
+    <string name="edit">editare</string>
+    <string name="title_activity_main2">activitatea2</string>
+    <string name="navigation_drawer_open">deschidere dulap</string>
+    <string name="navigation_drawer_close">inchidere dulap</string>
+    <string name="nav_header_title">titlu</string>
+    <string name="nav_header_subtitle">subtitlu</string>
+    <string name="nav_header_desc">sus</string>
+    <string name="progressactivity_get_started">Sa incepem o noua viata!</string>
+    <string name="maxCounter">calculare</string>
+</resources>
