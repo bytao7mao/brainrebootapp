@@ -26,13 +26,10 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AchievmentsActivity"></activity>
+        <activity android:name=".AchievmentsRanksActivity"></activity>
         <activity android:name=".AboutActivity.AboutActivity" />
         <activity
             android:name=".ProgressCard.FailLogsActivity"
-            tools:ignore="InnerclassSeparator" />
-        <activity
-            android:name=".ProgressCard.ProgressActivity_HerokuStyleFetching"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
@@ -47,7 +44,6 @@
         <activity
             android:name=".Intro.IntroActivity"
             android:label="app_intro" />
-        <activity android:name=".Test" />
         <activity android:name=".ProgressCard.SavingsActivity" />
 
         <service android:name=".Notif.MyFirebaseMessagingService" />

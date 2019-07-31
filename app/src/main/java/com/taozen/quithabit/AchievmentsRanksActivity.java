@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AchievmentsActivity extends AppCompatActivity {
+public class AchievmentsRanksActivity extends AppCompatActivity {
 
     // Array of strings for ListView Title
     String[] listviewTitle = new String[]{

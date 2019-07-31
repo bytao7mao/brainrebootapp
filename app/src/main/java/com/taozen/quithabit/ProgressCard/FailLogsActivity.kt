@@ -39,7 +39,6 @@ class FailLogsActivity : AppCompatActivity() {
         } catch (e: NullPointerException) {
             e.printStackTrace()
         }
-
     }//fetching value from main activity[END]
 
     override fun onSupportNavigateUp(): Boolean {

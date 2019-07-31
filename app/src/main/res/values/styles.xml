@@ -29,7 +29,7 @@
 
     <style name="TitleBarTextAppearance2" parent="android:TextAppearance">
         <item name="android:fontFamily">@assets/@fonts/Montserrat-Black.ttf</item>
-        <item name="android:textSize">23sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/grey_800</item>
     </style>

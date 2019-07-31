@@ -4,23 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -47,7 +40,6 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
-import com.taozen.quithabit.ProgressCard.ProgressActivity_HerokuStyleFetching;
 import com.taozen.quithabit.ProgressCard.SavingsActivity;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
 
@@ -64,12 +56,9 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.taozen.quithabit.R.color.vanilla;
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
-    static final int REQUEST_TAKE_PHOTO = 123;
     public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
     Random ran;
     List<MainActivity.MyAsyncTask> tasks;
@@ -87,7 +76,7 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.progressCardId2) CardView savingsCardView;
     @BindView(R.id.progressCardId3) CardView timeStampLogsCardview;
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
-    @BindView(R.id.YourAchievmentsCardId) CardView achievmentCard;
+    @BindView(R.id.YourAchievmentsCardId) CardView achievmentRanksCard;
     //TextViews
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
@@ -108,6 +97,8 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.textProg3) TextView textProg3;
     @BindView(R.id.YourAchievmentsId) TextView yourAchievmentTxt;
     @BindView(R.id.YourProgressId) TextView yourProgressTxt;
+    @BindView(R.id.YourSavingsId) TextView yourSavingsTxt;
+    @BindView(R.id.YourLogsId) TextView yourLogsTxt;
     @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
     @BindView(R.id.YourProgressIdRank) TextView userRankProgressTxt;
     @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
@@ -148,7 +139,6 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences.Editor editor;
 
     CircularProgressBar progressBarEnergyLevel,
-            progressBarRemainingDays,
             progressBarGumsLevel,
             progressBarFatigueLevel,
             progressBarBreathlevel;
@@ -162,13 +152,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
-        parentLayout = findViewById(R.id.drawer_layout);
         //testing area
         Date date = new Date();
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.setTime(date);
         HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
-        //night
+        //change wallpaper during nighttime
         if (HOUR_OF_DAYLIGHT >= 20){
             backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
 //            imageViewMiddle.setBackgroundResource(R.drawable.p4);
@@ -177,7 +166,7 @@ public class MainActivity extends AppCompatActivity
 //            tipofthedayTxtViewId.setTextAppearance(this, R.style.TextColorVanilla);
 //            counterText.setTextAppearance(this, R.style.TextColorVanilla);
         } else {
-            //daytime
+            //change wallpaper during daytime
             backgroundImgWall.setBackgroundResource(R.drawable.brozsb);
 //            imageViewMiddle.setBackgroundResource(R.drawable.brozsb);
             backgroundImgWall.setAlpha(0.2f);
@@ -209,17 +198,12 @@ public class MainActivity extends AppCompatActivity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //      getSupportActionBar().setElevation(0); //remove shadow - but now it is already removed in xml file
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
         progressCardView.setCardElevation(0);
         savingsCardView.setCardElevation(0);
         timeStampLogsCardview.setCardElevation(0);
         cardViewMain.setCardElevation(0);
-        achievmentCard.setCardElevation(0);
+        achievmentRanksCard.setCardElevation(0);
 
 
         //settting progress card
@@ -262,6 +246,8 @@ public class MainActivity extends AppCompatActivity
         textProg3.setTypeface(montSerratMediumTypeface);
         yourAchievmentTxt.setTypeface(montSerratMediumTypeface);
         yourProgressTxt.setTypeface(montSerratMediumTypeface);
+        yourSavingsTxt.setTypeface(montSerratMediumTypeface);
+        yourLogsTxt.setTypeface(montSerratMediumTypeface);
         userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
         userRankProgressTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
@@ -281,27 +267,28 @@ public class MainActivity extends AppCompatActivity
         //intro activity check in a separate thread
         startIntroActivity();
 
-        achievmentCard.setOnClickListener(new View.OnClickListener() {
+        achievmentRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AchievmentsActivity.class);
+                Intent intent = new Intent(MainActivity.this, AchievmentsRanksActivity.class);
                 startActivity(intent);
             }
         });
+        //TO DELETE
         //GOTO percent Activity
-        progressCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    progressPercent = preferences.getInt("progressPercent", progressPercent);
-                    Intent intent = new Intent(MainActivity.this, ProgressActivity_HerokuStyleFetching.class);
-                    intent.putExtra("pro", progressPercent);
-                    startActivity(intent);
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            }
-        });//progressCardView[END]
+//        progressCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    progressPercent = preferences.getInt("progressPercent", progressPercent);
+//                    Intent intent = new Intent(MainActivity.this, ProgressActivity_HerokuStyleFetching.class);
+//                    intent.putExtra("pro", progressPercent);
+//                    startActivity(intent);
+//                } catch (NullPointerException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });//progressCardView[END]
         timeStampLogsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -456,10 +443,28 @@ public class MainActivity extends AppCompatActivity
     }
 
     //dialog when user pass a day
-    private void userPassDayDialogShow(){
+    private void positiveDialogAfterPassDay(){
         //dialog ------------
         new BottomDialog.Builder(this)
                 .setTitle("Awesome!")
+                .setContent("What can we improve? Your feedback is always welcome.")
+                .setPositiveText("OK")
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        Log.d("BottomDialogs", "Do something!");
+                    }
+                }).show();
+    }
+    //dialog when user pass a day
+    private void negativeDialogAfterRelapse(){
+        //dialog ------------
+        new BottomDialog.Builder(this)
+                .setTitle("It's ok to fail!")
                 .setContent("What can we improve? Your feedback is always welcome.")
                 .setPositiveText("OK")
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
@@ -587,24 +592,24 @@ public class MainActivity extends AppCompatActivity
                         setTargetDays();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
 //                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
-//                                    FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-//                                            20, FancyToast.SUCCESS, true).show();
                         setProgramaticallyMarginOf_RemainingDaysText();
-                        userPassDayDialogShow();
+                        //var 1 - dialog after answer
+                        positiveDialogAfterPassDay();
+                        //var 2 - custom toast after answer
+//                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
+//                                    20, FancyToast.SUCCESS, true).show();
+
                     }
                 })
                 .OnNegativeClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
                         counter = 1;
+                        savings = 10;
+                        editor.putInt(SAVINGS_FINAL, savings);
                         editor.putInt("counter", counter);
                         editor.apply();
                         checkActivityOnline();
-                        savings = preferences.getInt(SAVINGS_FINAL, -1)+10;
-                        editor.putInt(SAVINGS_FINAL, savings);
-                        editor.apply();
-                        //set margin for counter
-//                        setProgramaticallyMarginOf_RemainingDaysText();
                         setTheSavingsPerDay();
                         moneyOrTimeAndGetValueOfItFromSharedPreferences();
                         setImprovementProgressLevels();
@@ -617,7 +622,8 @@ public class MainActivity extends AppCompatActivity
                         setTargetDays();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
                         setProgramaticallyMarginOf_RemainingDaysText();
-                        Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                        negativeDialogAfterRelapse();
                     }
                 })
                 .build();//[END of NORMAL DIALOG]
@@ -1025,12 +1031,7 @@ public class MainActivity extends AppCompatActivity
     //MENU DRAWER
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     //[MENU]
@@ -1069,40 +1070,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
     //END OF -> [MENU]
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraIntent, REQUEST_TAKE_PHOTO);
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    private void takePicture() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-        }
-    }
 
     @SideEffect
     protected boolean isOnline() {
