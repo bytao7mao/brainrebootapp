@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuitHabit</string>
+    <string name="app_name">Quit Habit</string>
     <string name="exit">exit</string>
     <string name="about">about</string>
     <string name="reset">reset</string>

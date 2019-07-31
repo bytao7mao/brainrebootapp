@@ -33,7 +33,7 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
-            android:label="quit smoking"
+            android:label="Quit Smoking Habit"
             android:theme="@style/MaterialTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
