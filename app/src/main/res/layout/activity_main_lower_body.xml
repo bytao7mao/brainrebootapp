@@ -164,23 +164,23 @@
                         android:layout_marginRight="10dp">
                         <ImageView
                             android:id="@+id/rankOneId"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
                         <ImageView
                             android:id="@+id/rankTwoId"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
                         <ImageView
                             android:id="@+id/rankThreeId"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
 
                         <ImageView
                             android:id="@+id/rankFourId"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
 

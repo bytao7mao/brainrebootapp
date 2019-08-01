@@ -1,5 +1,6 @@
 package com.taozen.quithabit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
     Configuration config;
 
     //OnCreate
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         calendar.setTime(date);
         HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
         //change wallpaper during nighttime
-        if (HOUR_OF_DAYLIGHT >= 20){
+        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20){
             backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
 //            imageViewMiddle.setBackgroundResource(R.drawable.p4);
             backgroundImgWall.setAlpha(0.2f);
@@ -173,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
 //            imageViewMiddle.setAlpha(0.1f);
 //            tipofthedayTxtViewId.setTextAppearance(this, R.style.TextColorBlack);
 //            counterText.setTextAppearance(this, R.style.TextColorBlack);
-
         }
         tasks = new ArrayList<>();
         ran = new Random();
