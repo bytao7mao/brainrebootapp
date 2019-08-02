@@ -113,7 +113,7 @@
                     android:alpha="0.9"
                     style="@style/TextColorBlack"
                     android:textSize="58sp" />
-                <!--style="@style/TextColorBlack"-->
+
             </RelativeLayout>
             <!--end of days counter-->
             <TextView

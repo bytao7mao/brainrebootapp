@@ -26,7 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AchievmentsRanksActivity"></activity>
+        <activity android:name=".ProgressCard.ChallengeActivity"></activity>
+        <activity android:name=".AchievmentsRanksActivity" />
         <activity android:name=".AboutActivity.AboutActivity" />
         <activity
             android:name=".ProgressCard.FailLogsActivity"

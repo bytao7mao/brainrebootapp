@@ -40,6 +40,7 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
+import com.taozen.quithabit.ProgressCard.ChallengeActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
 import com.taozen.quithabit.ProgressCard.SavingsActivity;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
@@ -49,6 +50,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.TimeZone;
 import java.util.Timer;
@@ -57,10 +59,14 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.taozen.quithabit.ProgressCard.ChallengeActivity.BUTTON_CHALLENGE_PREFS;
+import static com.taozen.quithabit.ProgressCard.ChallengeActivity.DAY_OF_START_CHALL_PREFS;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
+    public static final String CHALLENGES_STRING = "CHALLENGES_FINAL";
     Random ran;
     List<MainActivity.MyAsyncTask> tasks;
     Handler handler;
@@ -73,11 +79,12 @@ public class MainActivity extends AppCompatActivity {
     //Fab
     @BindView(R.id.fab) FloatingActionButton fab;
     //CardViews
-    @BindView(R.id.progressCardId) CardView progressCardView;
-    @BindView(R.id.progressCardId2) CardView savingsCardView;
-    @BindView(R.id.progressCardId3) CardView timeStampLogsCardview;
+    @BindView(R.id.progressCardIdProgress) CardView progressCardView;
+    @BindView(R.id.progressCardIdSavings) CardView savingsCardView;
+    @BindView(R.id.progressCardIdChallenge) CardView challengeCardView;
+    @BindView(R.id.progressCardIdLogs) CardView timeStampLogsCardview;
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
-    @BindView(R.id.YourAchievmentsCardId) CardView achievmentRanksCard;
+    @BindView(R.id.progressCardIdAchievments) CardView achievmentRanksCard;
     //TextViews
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
@@ -90,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtViewId;
     @BindView(R.id.progressActivityId) TextView progressActivityId;
     @BindView(R.id.logsTxtId) TextView failLogsTxtView;
+    @BindView(R.id.challengeTxtIdTitleId) TextView challengeTextViewTitle;
+    @BindView(R.id.challengeTextId) TextView challengeTextViewSubtitle;
     @BindView(R.id.tvErrorId) TextView errorText;
     @BindView(R.id.TxttilliquitsmokingId) TextView tilliquitsmokingTxtView;
     @BindView(R.id.textProg) TextView textProg;
@@ -128,6 +137,10 @@ public class MainActivity extends AppCompatActivity {
     int userMaxCountForHabit = -1;
     //default false
     boolean buttonClickedToday;
+    //values for challenge
+    int DAY_OF_START_CHALLENGE;
+    boolean falsetruebtn;
+    boolean firstStartChall;
 
     //Toolbar
     private Toolbar toolbar;
@@ -146,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
     DisplayMetrics metrics = new DisplayMetrics();
     Configuration config;
+    private String challs;
 
     //OnCreate
     @SuppressLint("CommitPrefEdits")
@@ -205,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
         timeStampLogsCardview.setCardElevation(0);
         cardViewMain.setCardElevation(0);
         achievmentRanksCard.setCardElevation(0);
+        challengeCardView.setCardElevation(0);
 
 
         //settting progress card
@@ -220,7 +235,8 @@ public class MainActivity extends AppCompatActivity {
         setProgramaticallyMarginOf_RemainingDaysText();
         //check online state
         checkActivityOnline();
-        setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
+        setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit),
+                R.string.target_string, targetTxtViewId);
         //add font to counter number
         Typeface montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
         Typeface montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
@@ -237,6 +253,8 @@ public class MainActivity extends AppCompatActivity {
         txtProgressForBreath.setTypeface(montSerratMediumTypeface);
         txtProgressForGums.setTypeface(montSerratMediumTypeface);
         moneyOrTimeTextView.setTypeface(montSerratLightTypeface);
+        challengeTextViewTitle.setTypeface(montSerratMediumTypeface);
+        challengeTextViewSubtitle.setTypeface(montSerratLightTypeface);
         remainingDaysTxt.setTypeface(montSerratMediumTypeface);
         progressActivityId.setTypeface(montSerratMediumTypeface);
         failLogsTxtView.setTypeface(montSerratLightTypeface);
@@ -254,6 +272,11 @@ public class MainActivity extends AppCompatActivity {
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
 
         try {
+//            editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
+//            editor.putBoolean(BUTTON_CHALLENGE_PREFS, false);
+            DAY_OF_START_CHALLENGE = preferences.getInt(DAY_OF_START_CHALL_PREFS, -1 );
+            falsetruebtn = preferences.getBoolean(BUTTON_CHALLENGE_PREFS, false);
+
             //set margin for counter
             setProgramaticallyMarginOf_RemainingDaysText();
             //setting the achievments images for user
@@ -309,6 +332,35 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });//savingsCardView[END]
+
+        challengeCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (preferences.contains("firstStartBoolean")){
+                    try {
+                        firstStartChall = false;
+                        Log.d("taozenXY", "mainactivity contains firstStart: " + firstStartChall);
+                    } catch (NullPointerException e){
+                        e.printStackTrace();
+                    }
+                } else {
+                    Log.d("taozenXY", "mainactivity does not contains this value in shared prefs: firststartboolean");
+                    firstStartChall = true;
+                }
+                calendarForProgress = Calendar.getInstance();
+                calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+                Log.d("taozenXY", "mainactivity value of firstStart: " + firstStartChall);
+                Intent intent = new Intent(MainActivity.this, ChallengeActivity.class);
+                editor.putBoolean("firstStartBoolean", firstStartChall);
+                editor.putInt("dayofpresent", DAY_OF_PRESENT);
+                editor.putBoolean(BUTTON_CHALLENGE_PREFS, falsetruebtn);
+                editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
+                editor.apply();
+                startActivity(intent);
+
+            }
+        });
 
         //retrieving the counter, progressPercent and minute values
         try {
@@ -630,17 +682,18 @@ public class MainActivity extends AppCompatActivity {
                 .build();//[END of NORMAL DIALOG]
     }
 
-    private void setTxtViewForUserSavingValueOfMoneyOrTime(String string, int androiId, TextView textview, String secondString) {
+    private void setTxtViewForUserSavingValueOfMoneyOrTime(String string, int androiId,
+                                                           TextView textview, String secondString) {
         //target counter string
-        String userMax = string;
-        String target = getString(androiId, secondString, userMax);
-        textview.setText(target);
+        textview.setText(getString(androiId, secondString, string));
     }
-    private void setTxtViewForUserMaxCountDaysOnStringVersion(String string, int androiId, TextView textview) {
+    private void setTxtViewForUserMaxCountDaysOnStringVersion(String string,
+                                                              int androiId, TextView textview) {
         //target counter string
-        String userMaxString = string;
-        String target = getString(androiId, userMaxString);
-        textview.setText(target);
+        textview.setText(getString(androiId, string));
+    }
+    private void setTxtForChallenge(String string, int androidId, TextView textView){
+        textView.setText(getString(androidId, string));
     }
 
     private void moneyOrTimeAndGetValueOfItFromSharedPreferences() {
@@ -651,7 +704,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             savings = preferences.getInt(SAVINGS_FINAL, -1);
         }
-        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView, String.valueOf("money"));
+        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings),
+                R.string.money_time, moneyOrTimeTextView, String.valueOf("money"));
     }
 
     private void setTargetDays() {
@@ -672,7 +726,19 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
-            setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit), R.string.target_string, targetTxtViewId);
+            setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit),
+                    R.string.target_string, targetTxtViewId);
+            try {
+                challs = preferences.getString(CHALLENGES_STRING, "none");
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+            if (Objects.requireNonNull(challs).equalsIgnoreCase("none")){
+                challengeTextViewSubtitle.setText("Tap to start a challenge!");
+            } else {
+                setTxtForChallenge(String.valueOf(challs), R.string.challengeString, challengeTextViewSubtitle);
+            }
+
         } catch (NullPointerException e){
             e.printStackTrace();
         }
@@ -763,6 +829,8 @@ public class MainActivity extends AppCompatActivity {
             calendarForProgress = Calendar.getInstance();
             calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
             DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+            editor.putInt("dayofpresent", DAY_OF_PRESENT);
+            editor.apply();
 
             //testing area
             Date date = new Date();

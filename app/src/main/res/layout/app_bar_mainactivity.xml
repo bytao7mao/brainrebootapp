@@ -25,6 +25,7 @@
         <View
             android:id="@+id/delimitationBarId"
             style="@style/Divider"
+            android:alpha="0.5"
             android:layout_height="0.2dp"
             android:background="@android:color/darker_gray" />
     </android.support.design.widget.AppBarLayout>
