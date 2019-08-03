@@ -46,6 +46,7 @@
             android:name=".Intro.IntroActivity"
             android:label="app_intro" />
         <activity android:name=".ProgressCard.SavingsActivity" />
+        <activity android:name=".ProgressCard.ChallengeActivity2" />
 
         <service android:name=".Notif.MyFirebaseMessagingService" />
     </application>

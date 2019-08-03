@@ -41,6 +41,7 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.ProgressCard.ChallengeActivity;
+import com.taozen.quithabit.ProgressCard.ChallengeActivity2;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
 import com.taozen.quithabit.ProgressCard.SavingsActivity;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
@@ -59,8 +60,8 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.taozen.quithabit.ProgressCard.ChallengeActivity.BUTTON_CHALLENGE_PREFS;
-import static com.taozen.quithabit.ProgressCard.ChallengeActivity.DAY_OF_START_CHALL_PREFS;
+//import static com.taozen.quithabit.ProgressCard.ChallengeActivity.BUTTON_CHALLENGE_PREFS;
+//import static com.taozen.quithabit.ProgressCard.ChallengeActivity.DAY_OF_START_CHALL_PREFS;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -274,8 +275,8 @@ public class MainActivity extends AppCompatActivity {
         try {
 //            editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
 //            editor.putBoolean(BUTTON_CHALLENGE_PREFS, false);
-            DAY_OF_START_CHALLENGE = preferences.getInt(DAY_OF_START_CHALL_PREFS, -1 );
-            falsetruebtn = preferences.getBoolean(BUTTON_CHALLENGE_PREFS, false);
+//            DAY_OF_START_CHALLENGE = preferences.getInt(DAY_OF_START_CHALL_PREFS, -1 );
+//            falsetruebtn = preferences.getBoolean(BUTTON_CHALLENGE_PREFS, false);
 
             //set margin for counter
             setProgramaticallyMarginOf_RemainingDaysText();
@@ -351,13 +352,14 @@ public class MainActivity extends AppCompatActivity {
                 calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
                 DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
                 Log.d("taozenXY", "mainactivity value of firstStart: " + firstStartChall);
-                Intent intent = new Intent(MainActivity.this, ChallengeActivity.class);
+                Intent intent = new Intent(MainActivity.this, ChallengeActivity2.class);
                 editor.putBoolean("firstStartBoolean", firstStartChall);
                 editor.putInt("dayofpresent", DAY_OF_PRESENT);
-                editor.putBoolean(BUTTON_CHALLENGE_PREFS, falsetruebtn);
-                editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
+//                editor.putBoolean(BUTTON_CHALLENGE_PREFS, falsetruebtn);
+//                editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
                 editor.apply();
                 startActivity(intent);
+                startService(intent);
 
             }
         });
