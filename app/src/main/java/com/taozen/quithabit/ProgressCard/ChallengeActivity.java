@@ -22,10 +22,10 @@ import java.util.Locale;
 
 public class ChallengeActivity extends AppCompatActivity {
     private static final long MILLIS_IN_MONTH = (24 * 60 * 60 * 1000L) * 30L;
-//    private static final long MILLIS_IN_WEEK = (24 * 60 * 60 * 1000L) * 7L;
-//    private static final long MILLIS_IN_DAY = 24 * (60 * 60 * 1000L);
-    private static final long MILLIS_IN_WEEK = (60 * 1000L) * 4L;
-    private static final long MILLIS_IN_DAY = (60 * 1000L) * 3L;
+//    private static final long MILLIS_IN_WEEK = (24 * 60 * 60 * 1000L) * 7L; --> CORRECT
+//    private static final long MILLIS_IN_DAY = 24 * (60 * 60 * 1000L); --> CORRECT
+    private static final long MILLIS_IN_WEEK = (60 * 1000L) * 4L; // TEST 4minutes
+    private static final long MILLIS_IN_DAY = (60 * 1000L) * 3L;// TEST 3minutes
     private static final long MILLIS_IN_HOUR = 60 * (60 * 1000L);
     private static final long MILLIS_IN_TEN_MINUTES = (60 * 1000L) * 10L;
     private static final long MILLIS_IN_MINUTE = 60 * 1000L;
