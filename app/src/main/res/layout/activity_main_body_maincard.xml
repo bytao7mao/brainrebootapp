@@ -61,7 +61,7 @@
                     android:paddingRight="10dp"
                     android:layout_marginTop="1dp"
                     android:layout_toRightOf="@id/tipImageId"
-                    android:alpha="0.7"
+
                     style="@style/TextColorBlack"
                     android:textSize="12sp"
                     android:text="Today you can be whatever you want!" />
