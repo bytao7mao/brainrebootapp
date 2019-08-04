@@ -1,6 +1,7 @@
 package com.taozen.quithabit.ProgressCard
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -18,6 +19,8 @@ class FailLogsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fail_logs)
         ButterKnife.bind(this@FailLogsActivity)
 
+
+
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         Objects.requireNonNull<ActionBar>(supportActionBar).setDisplayHomeAsUpEnabled(true)
@@ -25,6 +28,7 @@ class FailLogsActivity : AppCompatActivity() {
 
         logtxtVwId.text
         getValueOfPercent()
+        window.statusBarColor = ContextCompat.getColor(this@FailLogsActivity, R.color.white)
     }
 
     //fetching value from MainActivity

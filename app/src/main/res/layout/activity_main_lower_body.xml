@@ -13,7 +13,7 @@
 
     <include
         android:id="@+id/body_maincardId"
-        layout="@layout/activity_main_body_maincard"
+        layout="@layout/activity_main_upper_body"
         tools:context=".MainActivity"/>
 
     <View

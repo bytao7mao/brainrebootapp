@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -42,6 +43,7 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
+import com.taozen.quithabit.ProgressCard.AchievmentsActivity;
 import com.taozen.quithabit.ProgressCard.ChallengeActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
 import com.taozen.quithabit.ProgressCard.SavingsActivity;
@@ -208,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
         setTargetDays();
         firstCheckForCounterAndMax();
-//      getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.grey_800)); -TESTING PURPOSE
+        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
                 getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
@@ -299,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
         achievmentRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AchievmentsRanksActivity.class);
+                Intent intent = new Intent(MainActivity.this, AchievmentsActivity.class);
                 startActivity(intent);
             }
         });

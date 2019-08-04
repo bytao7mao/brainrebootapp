@@ -5,7 +5,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
@@ -22,6 +22,7 @@
 
     <style name="MaterialTheme.NoActionBar">
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/white</item>
         <item name="android:popupBackground">@drawable/popup_menu_round</item>
     </style>
 
@@ -29,7 +30,7 @@
         <item name="android:fontFamily">@assets/@fonts/Montserrat-Black.ttf</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/black</item>
-
+        <item name="android:statusBarColor">@color/white</item>
     </style>
 
     <style name="Divider">

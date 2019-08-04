@@ -1,17 +1,18 @@
-package com.taozen.quithabit;
+package com.taozen.quithabit.ProgressCard;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import com.taozen.quithabit.Obj.Product;
+import com.taozen.quithabit.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AchievmentsRanksActivity extends AppCompatActivity {
+public class AchievmentsActivity extends AppCompatActivity {
 
     // Array of strings for ListView Title
     String[] listviewTitle = new String[]{
@@ -36,6 +37,8 @@ public class AchievmentsRanksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievments);
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(AchievmentsActivity.this, R.color.white));
 
         List<HashMap<String, String>> aList = new ArrayList<>();
 

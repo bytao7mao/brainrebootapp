@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -15,13 +16,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
 import java.util.Locale;
 
 public class ChallengeActivity extends AppCompatActivity {
     private static final long MILLIS_IN_MONTH = (24 * 60 * 60 * 1000L) * 30L;
-    private static final long MILLIS_IN_WEEK = (24 * 60 * 60 * 1000L) * 7L;
-    private static final long MILLIS_IN_DAY = 24 * (60 * 60 * 1000L);
+//    private static final long MILLIS_IN_WEEK = (24 * 60 * 60 * 1000L) * 7L;
+//    private static final long MILLIS_IN_DAY = 24 * (60 * 60 * 1000L);
+    private static final long MILLIS_IN_WEEK = (60 * 1000L) * 4L;
+    private static final long MILLIS_IN_DAY = (60 * 1000L) * 3L;
     private static final long MILLIS_IN_HOUR = 60 * (60 * 1000L);
     private static final long MILLIS_IN_TEN_MINUTES = (60 * 1000L) * 10L;
     private static final long MILLIS_IN_MINUTE = 60 * 1000L;
@@ -45,7 +49,7 @@ public class ChallengeActivity extends AppCompatActivity {
 
     String THREEHOURS, ONEDAY, ONEWEEK, firstDialog;
 
-    //    //shared pref
+    //shared pref
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -55,7 +59,9 @@ public class ChallengeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_challenge);
 
         relativeLayout = findViewById(R.id.rltvlayout);
-        //        //shared pref
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(ChallengeActivity.this, R.color.white));
+        //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(ChallengeActivity.this);
         editor = preferences.edit();
 
@@ -106,7 +112,7 @@ public class ChallengeActivity extends AppCompatActivity {
                 resetTimer();
             }
         });
-    }
+    }//[ON CREATE]
 
     @Override
     protected void onDestroy() {
@@ -147,7 +153,6 @@ public class ChallengeActivity extends AppCompatActivity {
     }
 
     private void resetTimer() {
-        Log.d("TAOLENXY", "resetTimer->>ENUMS IS: " + firstDialog);
         try {
             if (firstDialog.equals(THREEHOURS)){
                 firstDialog = ONEDAY;
@@ -170,7 +175,9 @@ public class ChallengeActivity extends AppCompatActivity {
                 editor.apply();
                 START_TIME_IN_MILLIS = MILLIS_IN_DAY;
             }
-        } catch (NullPointerException e) {e.printStackTrace();}
+        } catch (NullPointerException e) {e.printStackTrace();
+            Log.d("TAOLENXY", "NullPointerException: " + firstDialog);}
+        Log.d("TAOLENXY", "resetTimer->>ENUMS IS: " + firstDialog);
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         challengeBack.setImageResource(R.drawable.on);
         updateCountDownText();
