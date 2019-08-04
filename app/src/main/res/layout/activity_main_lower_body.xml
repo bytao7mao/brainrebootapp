@@ -73,6 +73,7 @@
                     android:layout_marginEnd="80dp"
                     android:layout_marginTop="5dp"
                     android:textSize="14sp"
+                    android:alpha="0.8"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Your entire progress" />
 
@@ -148,6 +149,7 @@
                         android:layout_marginBottom="5dp"
                         android:layout_marginStart="60dp"
                         android:layout_marginEnd="80dp"
+                        android:alpha="0.8"
                         android:text="Your latest achievments" />
 
                     <ImageView
@@ -225,6 +227,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginStart="60dp"
                     android:layout_marginEnd="80dp"
+                    android:alpha="0.8"
                     android:text="Your savings" />
 
                 <ImageView
@@ -279,6 +282,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginStart="60dp"
                     android:layout_marginEnd="80dp"
+                    android:alpha="0.8"
                     android:text="Your challenge" />
 
                 <ImageView
@@ -340,6 +344,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginStart="60dp"
                     android:layout_marginEnd="80dp"
+                    android:alpha="0.8"
                     android:text="Your logs" />
 
                 <ImageView

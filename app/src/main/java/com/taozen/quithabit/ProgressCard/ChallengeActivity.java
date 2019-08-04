@@ -1,186 +1,314 @@
 package com.taozen.quithabit.ProgressCard;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.taozen.quithabit.MainActivity;
+import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.taozen.quithabit.R;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
+import java.util.Locale;
 
 public class ChallengeActivity extends AppCompatActivity {
-//    public static final String BUTTON_CHALLENGE_PREFS = "buttonchallenge";
-//    public static final String DAY_OF_START_CHALL_PREFS = "DAY_OF_START_CHALLENGE";
-    TextView challengeTextViewHello;
-    Button goBtn, resetBtn;
-//    int DAY_OF_START_CHALLENGE;
-//    boolean falsetruebtn = true;
-//    int DAY_OF_PRESENT;
-//    int numberofdaysCh;
-//    boolean firstStart;
-//    //shared pref
-//    SharedPreferences preferences;
-//    SharedPreferences.Editor editor;
+    private static final long MILLIS_IN_MONTH = (24 * 60 * 60 * 1000L) * 30L;
+    private static final long MILLIS_IN_WEEK = (24 * 60 * 60 * 1000L) * 7L;
+    private static final long MILLIS_IN_DAY = 24 * (60 * 60 * 1000L);
+    private static final long MILLIS_IN_HOUR = 60 * (60 * 1000L);
+    private static final long MILLIS_IN_TEN_MINUTES = (60 * 1000L) * 10L;
+    private static final long MILLIS_IN_MINUTE = 60 * 1000L;
+    private static final int COUNT_DOWN_INTERVAL = 1_000;
 
-    private CountDownTimer countDownTimer;
-    private long timeLeft = 600_000L;
-    private boolean timerRunning;
+    private long START_TIME_IN_MILLIS = MILLIS_IN_MINUTE;
+    private TextView mTextViewCountDown;
+    private Button mButtonStartPause;
+    private Button mButtonReset;
+    private CountDownTimer mCountDownTimer;
+    private boolean mTimerRunning;
+    private long mTimeLeftInMillis;
+    private long mEndTime;
+
+    //ImageView
+    ImageView challengeBack;
+    //ProgressCard
+    CardView cardView;
+
+    RelativeLayout relativeLayout;
+
+    String THREEHOURS, ONEDAY, ONEWEEK, firstDialog;
+
+    //    //shared pref
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
 
-//        //shared pref
-//        preferences = PreferenceManager.getDefaultSharedPreferences(ChallengeActivity.this);
-//        editor = preferences.edit();
-//
-        challengeTextViewHello = findViewById(R.id.challengeTxtFromActivityId);
-        goBtn = findViewById(R.id.btnGoId);
-//        resetBtn = findViewById(R.id.btnResetId);
-//        firstStart = preferences.getBoolean("firstStartBoolean", false);
-//        Log.d("taozenXY", "value of firstStart = " + firstStart);
-//        if (firstStart) {
-//            //if first start then enable the button
-//            falsetruebtn = true;
-//            editor.putBoolean(BUTTON_CHALLENGE_PREFS, falsetruebtn);
-//            goBtn.setEnabled(falsetruebtn);
-//        } else {
-//            falsetruebtn = preferences.getBoolean(BUTTON_CHALLENGE_PREFS, false);
-//        }
-//        editor.apply();
-//        if (preferences.contains("dayofpresent")){
-//            DAY_OF_PRESENT = preferences.getInt("dayofpresent", -1);
-//            Log.d("taolenXY", "if (preferences.contains(\"dayofpresent\")){ dayofpresent: " + DAY_OF_PRESENT + "\nDayofstartchallenge: " + DAY_OF_START_CHALLENGE);
-//        } else {
-//            DAY_OF_PRESENT = -1;
-//        }
-//
-//        if (preferences.contains(DAY_OF_START_CHALL_PREFS)){
-//            DAY_OF_START_CHALLENGE = preferences.getInt(DAY_OF_START_CHALL_PREFS, -1);
-//            Log.d("taolenXY", "if (preferences.contains(DAY_OF_START_CHALL_PREFS)){ dayofpresent: " + DAY_OF_PRESENT + "\nDayofstartchallenge: " + DAY_OF_START_CHALLENGE);
-//        } else {
-//            DAY_OF_START_CHALLENGE = DAY_OF_PRESENT;
-//        }
-//
-//        Log.d("taolenZX", "day of pres after shared prefs: " + DAY_OF_PRESENT);
-//        goBtn.setEnabled(falsetruebtn);
-//
-//        if (DAY_OF_START_CHALLENGE == DAY_OF_PRESENT + numberofdaysCh){
-//            int ends = DAY_OF_PRESENT + numberofdaysCh;
-//            challengeTextViewHello.setText("CHALLENGE FINISHED!!!");
-//            goBtn.setEnabled(true);
-//            editor.putBoolean(BUTTON_CHALLENGE_PREFS, true);
-//            editor.apply();
-//            goBtn.setText("started on:" + DAY_OF_START_CHALLENGE + "\nstart " + numberofdaysCh + " days challenge"
-//            +"\nends on: " + ends);
-//        } else {
-//            Log.d("taolenXY", "if (DAY_OF_START_CHALLENGE == DAY_OF_PRESENT + numberofdaysCh){ ELSE\n dayofpresent: " + DAY_OF_PRESENT + "\nDayofstartchallenge: " + DAY_OF_START_CHALLENGE);
-//            int ends = DAY_OF_PRESENT + numberofdaysCh;
-//            challengeTextViewHello.setText("started on:" + DAY_OF_START_CHALLENGE + "\nstart " + numberofdaysCh + " days challenge"
-//                    +"\nends on: " + ends);
-//            goBtn.setEnabled(falsetruebtn);
-//            editor.putBoolean(BUTTON_CHALLENGE_PREFS, falsetruebtn);
-//            editor.apply();
-//            goBtn.setText("started on:" + DAY_OF_START_CHALLENGE + "\nstart " + numberofdaysCh + " days challenge"
-//                    +"\nends on: " + ends);
-//        }
-        goBtn.setOnClickListener(new View.OnClickListener() {
+        relativeLayout = findViewById(R.id.rltvlayout);
+        //        //shared pref
+        preferences = PreferenceManager.getDefaultSharedPreferences(ChallengeActivity.this);
+        editor = preferences.edit();
+
+        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+        mButtonStartPause = findViewById(R.id.button_start_pause);
+        mButtonReset = findViewById(R.id.button_reset);
+        challengeBack = findViewById(R.id.challBackgroundId);
+        cardView = findViewById(R.id.progressCardIdChallengeInside);
+
+        THREEHOURS = "THREEHOURS";ONEDAY="ONEDAY";ONEWEEK="ONEWEEK";
+        try {
+            if (preferences.contains("way")){
+                //if we have "way" value stored in shared prefs it means that this is not
+                //the first challenge so we retrieve anything beside THREEHOURS value or
+                //the THREEHOURS value
+                firstDialog = preferences.getString("way", null);
+            } else {
+                //ONLY IN THE FIRST LAUNCH
+                firstDialog = THREEHOURS;
+                editor.putString("way", firstDialog);
+                editor.apply();
+            }
+            Log.d("TAOLENXY", "oncreate try catch->>ENUMS IS: " + firstDialog);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        cardView.setCardElevation(0);
+        //API 21 REQUIRES
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mButtonStartPause.setElevation(0);
+            mButtonReset.setElevation(0);
+        }
+
+        mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startStop();
-
-
-
-
-
-
-
-
-//                numberofdaysCh+=3;
-//                DAY_OF_PRESENT = preferences.getInt("dayofpresent", -1);
-//                Log.d("taolenZX", "day of pres on click: " + DAY_OF_PRESENT);
-//                DAY_OF_START_CHALLENGE = DAY_OF_PRESENT;
-//                Log.d("taolenZX", "day of start on click: " + DAY_OF_START_CHALLENGE);
-//                int ends = DAY_OF_PRESENT + numberofdaysCh;
-//                challengeTextViewHello.setText("started on:" + DAY_OF_START_CHALLENGE + "\nstart " + numberofdaysCh + " days challenge"
-//                        +"\nends on: " + ends);
-//                goBtn.setEnabled(false);
-//                editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
-//                editor.putBoolean(BUTTON_CHALLENGE_PREFS, false);
-//                editor.putBoolean("firstStartBoolean", false);
-//                editor.apply();
+                if (mTimerRunning) {
+                    pauseTimer();
+                } else {
+                    startTimer();
+                }
             }
         });
-//        Log.d("taolenZX", "day of challenge: " + DAY_OF_START_CHALLENGE);
-//
-//        resetBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                DAY_OF_PRESENT=DAY_OF_START_CHALLENGE;
-//                Log.d("taolenXY", "dayofpresent: " + DAY_OF_PRESENT + "\nDayofstartchallenge: " + DAY_OF_START_CHALLENGE);
-//                int ends = DAY_OF_PRESENT + numberofdaysCh;
-//                editor.putInt("dayofpresent", DAY_OF_PRESENT);
-//                editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
-//                goBtn.setEnabled(true);
-//                editor.apply();
-//                challengeTextViewHello.setText("started on:" + DAY_OF_START_CHALLENGE + "\nstart " + numberofdaysCh + " days challenge"
-//                        +"\nends on: " + ends + "\nDAYOFPRESENT: " + DAY_OF_PRESENT);
-//            }
-//        });
+        mButtonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetTimer();
+            }
+        });
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        editor.putString("way", firstDialog);
+        editor.apply();
     }
-    private void startStop(){
-        if (timerRunning){
-            stopTimer();
-        } else { startTimer(); }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        firstDialog = preferences.getString("way", null);
+        Log.d("TAOLENXY", "onResume->>ENUMS IS: " + firstDialog);
     }
-    private void startTimer(){
-        countDownTimer = new CountDownTimer(timeLeft, 1_000) {
+
+    private void startTimer() {
+        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, COUNT_DOWN_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeLeft = millisUntilFinished;
-                updateTimer();
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
             }
-
             @Override
             public void onFinish() {
-                //TODO
+                mTimerRunning = false;
+                updateButtons();
             }
         }.start();
-        goBtn.setText("PAUSE");
-        timerRunning = true;
+        mTimerRunning = true;
+        updateButtons();
     }
 
-    private void updateTimer() {
-        int minutes = (int) (timeLeft / 60_000);
-        int seconds = (int) (timeLeft % 60_000 / 1_000);
-        String timeLeftText;
-        timeLeftText = "" + minutes;
-        timeLeftText += ":";
-        if (seconds < 10) timeLeftText += "0";
-        timeLeftText += seconds;
-        challengeTextViewHello.setText(timeLeftText);
+    private void pauseTimer() {
+        mCountDownTimer.cancel();
+        mTimerRunning = false;
+        updateButtons();
     }
 
-    private void stopTimer(){
-        countDownTimer.cancel();
-        goBtn.setText("START");
-        timerRunning = false;
+    private void resetTimer() {
+        Log.d("TAOLENXY", "resetTimer->>ENUMS IS: " + firstDialog);
+        try {
+            if (firstDialog.equals(THREEHOURS)){
+                firstDialog = ONEDAY;
+                editor.putString("way", firstDialog);
+                editor.apply();
+                START_TIME_IN_MILLIS = MILLIS_IN_DAY;
+                //show dialog with ONE DAY
+            } else if (firstDialog.equals(ONEDAY)){
+                firstDialog = ONEWEEK;
+                editor.putString("way", firstDialog);
+                editor.apply();
+                START_TIME_IN_MILLIS = MILLIS_IN_WEEK;
+                //show dialog with ONE WEEK
+            } else if (firstDialog.equals(ONEWEEK)){
+                //END CHALLENGE
+                //BYE BYE
+            } else {
+                firstDialog = ONEDAY;
+                editor.putString("way", firstDialog);
+                editor.apply();
+                START_TIME_IN_MILLIS = MILLIS_IN_DAY;
+            }
+        } catch (NullPointerException e) {e.printStackTrace();}
+        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        challengeBack.setImageResource(R.drawable.on);
+        updateCountDownText();
+        updateButtons();
     }
-}
+
+    private void updateCountDownText() {
+//        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1_000) % 60;
+        int months = (int) ((mTimeLeftInMillis / 1_000) / (86_400*7*4));
+        int weeks = (int) ((mTimeLeftInMillis / 1_000) / (86_400*7));
+        int days = (int) ((mTimeLeftInMillis / 1_000) / 86_400);
+        int hours = (int) ((mTimeLeftInMillis / 1_000) / 3_600);
+        int minutes = (int) ((mTimeLeftInMillis / 1_000) / 60) - hours * 60;
+        String timeLeftFormatted;
+        if (months == 1) {
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = months\n\n%02d = weeks\n\n%02d = days\n\n%02d:%02d:%02d", months,
+//                    weeks, days, hours, minutes, seconds);
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = months", months);
+        } else if (weeks >= 1) {
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = weeks\n\n%02d = days\n\n%02d:%02d:%02d", weeks,
+//                    days, hours, minutes, seconds);
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = weeks", weeks);
+        } else if (days >= 1) {
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = days\n\n%02d:%02d:%02d", days,
+//                    hours, minutes, seconds);
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = days", days);
+        } else if (hours >= 1) {
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = hours\n\n%02d:%02d:%02d", hours,
+//                    hours, minutes, seconds);
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = hours", hours);
+        } else if (minutes >= 1) {
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = minutes\n\n%02d:%02d:%02d", minutes,
+//                    hours, minutes, seconds);
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = minutes", minutes);
+        } else {
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = seconds\n\n%02d:%02d:%02d", seconds,
+//                    hours, minutes, seconds);
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = seconds", seconds);
+        }
+        mTextViewCountDown.setText(timeLeftFormatted);
+    }
+
+    private void updateButtons() {
+        if (mTimerRunning) {
+            mButtonReset.setVisibility(View.INVISIBLE);
+            mButtonStartPause.setText("Pause");
+        } else {
+            mButtonStartPause.setText("Start");
+            if (mTimeLeftInMillis <= 1000) {
+                mButtonStartPause.setVisibility(View.INVISIBLE);
+                mTextViewCountDown.setText("CONGRATULATIONS!!!");
+                challengeBack.setImageResource(R.drawable.congratsbk);
+                congratsDialog();
+            } else {
+                mButtonStartPause.setVisibility(View.VISIBLE);
+                challengeBack.setImageResource(R.drawable.on);
+            }
+            if (mTimeLeftInMillis < START_TIME_IN_MILLIS) {
+                mButtonReset.setVisibility(View.VISIBLE);
+            } else {
+                mButtonReset.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong("millisLeft", mTimeLeftInMillis);
+        editor.putBoolean("timerRunning", mTimerRunning);
+        editor.putLong("endTime", mEndTime);
+        editor.apply();
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        mTimeLeftInMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
+        mTimerRunning = prefs.getBoolean("timerRunning", false);
+        updateCountDownText();
+        updateButtons();
+        if (mTimerRunning) {
+            mEndTime = prefs.getLong("endTime", 0);
+            mTimeLeftInMillis = mEndTime - System.currentTimeMillis();
+            if (mTimeLeftInMillis < 0) {
+                mTimeLeftInMillis = 0;
+                mTimerRunning = false;
+                updateCountDownText();
+                updateButtons();
+            } else {
+                startTimer();
+            }
+        }
+    }
+
+    //dialog when user pass a day
+    private void welcomeDialog(){
+        //dialog ------------
+        new BottomDialog.Builder(this)
+                .setTitle("Challenge!")
+                .setContent("Can you pass " + firstDialog + " ?")
+                .setPositiveText("GO")
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        Log.d("BottomDialogs", "Do something!");
+                    }
+                }).show();
+    }
+
+    //dialog when user pass a day
+    private void congratsDialog(){
+        //dialog ------------
+        new BottomDialog.Builder(this)
+                .setTitle("Challenge!")
+                .setContent("CONGRATS!! BYE")
+                .setPositiveText("GO")
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        Log.d("BottomDialogs", "Do something!");
+                    }
+                }).show();
+    }
+
+}//[END OF CLASS]

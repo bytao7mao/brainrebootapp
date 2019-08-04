@@ -1,7 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Quit Habit</string>
     <string name="exit">exit</string>
-    <string name="about">about</string>
+    <string name="about" tools:ignore="ExtraTranslation">about</string>
     <string name="reset">reset</string>
     <string name="add">add</string>
     <string name="target_string">Goal: %s</string>
@@ -44,5 +44,6 @@
     <string name="progressactivity_get_started">Get started on the life you want</string>
     <string name="maxCounter">maxCounter</string>
     <string name="challengeString">Your current record is: %s</string>
+    <string name="help">help</string>
 
 </resources>

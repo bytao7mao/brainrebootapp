@@ -26,7 +26,6 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ProgressCard.ChallengeActivity"></activity>
         <activity android:name=".AchievmentsRanksActivity" />
         <activity android:name=".AboutActivity.AboutActivity" />
         <activity
@@ -34,7 +33,7 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
-            android:label="Quit Smoking Habit"
+            android:label="Quit Habit"
             android:theme="@style/MaterialTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,7 +45,7 @@
             android:name=".Intro.IntroActivity"
             android:label="app_intro" />
         <activity android:name=".ProgressCard.SavingsActivity" />
-        <activity android:name=".ProgressCard.ChallengeActivity2" />
+        <activity android:name=".ProgressCard.ChallengeActivity" />
 
         <service android:name=".Notif.MyFirebaseMessagingService" />
     </application>

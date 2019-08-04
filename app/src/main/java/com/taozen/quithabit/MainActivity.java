@@ -20,12 +20,14 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +43,6 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.ProgressCard.ChallengeActivity;
-import com.taozen.quithabit.ProgressCard.ChallengeActivity2;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
 import com.taozen.quithabit.ProgressCard.SavingsActivity;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
@@ -59,9 +60,6 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-//import static com.taozen.quithabit.ProgressCard.ChallengeActivity.BUTTON_CHALLENGE_PREFS;
-//import static com.taozen.quithabit.ProgressCard.ChallengeActivity.DAY_OF_START_CHALL_PREFS;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
     @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtViewId;
-    @BindView(R.id.progressActivityId) TextView progressActivityId;
+    @BindView(R.id.progressActivityId) TextView progressBarsTxt;
     @BindView(R.id.logsTxtId) TextView failLogsTxtView;
     @BindView(R.id.challengeTxtIdTitleId) TextView challengeTextViewTitle;
     @BindView(R.id.challengeTextId) TextView challengeTextViewSubtitle;
@@ -169,6 +167,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
+
+        //popupmenu
+        Context wrapper = new ContextThemeWrapper(this, R.style.PopupMenu);
+        PopupMenu popup = new PopupMenu(wrapper, this.getWindow().getDecorView().findViewById(R.id.main_layout));
+
         //testing area
         Date date = new Date();
         Calendar calendar = GregorianCalendar.getInstance();
@@ -245,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
         Typeface montSerratMediumTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Medium.ttf");
         Typeface montSerratSemiBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.ttf");
         Typeface montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
+        Typeface montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
 
         counterText.setTypeface(montSerratBoldTypeface);
         targetTxtViewId.setTypeface(montSerratMediumTypeface);
@@ -254,20 +258,20 @@ public class MainActivity extends AppCompatActivity {
         txtProgressForBreath.setTypeface(montSerratMediumTypeface);
         txtProgressForGums.setTypeface(montSerratMediumTypeface);
         moneyOrTimeTextView.setTypeface(montSerratLightTypeface);
-        challengeTextViewTitle.setTypeface(montSerratMediumTypeface);
+        challengeTextViewTitle.setTypeface(montSerratSimpleBoldTypeface);
         challengeTextViewSubtitle.setTypeface(montSerratLightTypeface);
         remainingDaysTxt.setTypeface(montSerratMediumTypeface);
-        progressActivityId.setTypeface(montSerratMediumTypeface);
+        progressBarsTxt.setTypeface(montSerratBoldTypeface);
         failLogsTxtView.setTypeface(montSerratLightTypeface);
         tilliquitsmokingTxtView.setTypeface(montSerratBoldTypeface);
         textProg.setTypeface(montSerratMediumTypeface);
         textProg2.setTypeface(montSerratMediumTypeface);
         textProg22.setTypeface(montSerratMediumTypeface);
         textProg3.setTypeface(montSerratMediumTypeface);
-        yourAchievmentTxt.setTypeface(montSerratMediumTypeface);
-        yourProgressTxt.setTypeface(montSerratMediumTypeface);
-        yourSavingsTxt.setTypeface(montSerratMediumTypeface);
-        yourLogsTxt.setTypeface(montSerratMediumTypeface);
+        yourAchievmentTxt.setTypeface(montSerratSimpleBoldTypeface);
+        yourProgressTxt.setTypeface(montSerratSimpleBoldTypeface);
+        yourSavingsTxt.setTypeface(montSerratSimpleBoldTypeface);
+        yourLogsTxt.setTypeface(montSerratSimpleBoldTypeface);
         userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
         userRankProgressTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
@@ -352,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
                 calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
                 DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
                 Log.d("taozenXY", "mainactivity value of firstStart: " + firstStartChall);
-                Intent intent = new Intent(MainActivity.this, ChallengeActivity2.class);
+                Intent intent = new Intent(MainActivity.this, ChallengeActivity.class);
                 editor.putBoolean("firstStartBoolean", firstStartChall);
                 editor.putInt("dayofpresent", DAY_OF_PRESENT);
 //                editor.putBoolean(BUTTON_CHALLENGE_PREFS, falsetruebtn);
@@ -1109,7 +1113,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main2, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
