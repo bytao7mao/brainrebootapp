@@ -8,42 +8,16 @@
     <string name="money_time">Save this ammount of %s \nper day: %s$</string>
     <string name="remaining_days">Remaining: %s</string>
     <string name="total_savings">This is your total savings: %s $</string>
-
     <string name="copy_right" translatable="false">Copyrights © %1$d</string>
-
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">settings</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="add_image">addImage</string>
     <string name="delete_image">deleteImage</string>
     <string name="thumbnail">thumbnail</string>
-
-    <string-array name="nav_drawer_labels">
-        <item>Birds</item>
-        <item>Animal</item>
-        <item>Forest</item>
-        <item>Ocean</item>
-        <item>Planets</item>
-        <item>Landscape</item>
-    </string-array>
-
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
-
-    <string name="delete">Delete</string>
-    <string name="search">Search</string>
-    <string name="settings">settings</string>
-    <string name="edit">Edit</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
     <string name="progressactivity_get_started">Get started on the life you want</string>
     <string name="maxCounter">maxCounter</string>
     <string name="challengeString">Your current record is: %s</string>
     <string name="help">help</string>
-
 </resources>

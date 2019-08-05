@@ -27,7 +27,7 @@
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ProgressCard.AchievmentsActivity" />
-        <activity android:name=".AboutActivity.AboutActivity" />
+        <activity android:name=".OptionsMenuActivities.AboutActivity" />
         <activity
             android:name=".ProgressCard.FailLogsActivity"
             tools:ignore="InnerclassSeparator" />

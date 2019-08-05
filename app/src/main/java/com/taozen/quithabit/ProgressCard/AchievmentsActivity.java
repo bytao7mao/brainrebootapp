@@ -3,6 +3,7 @@ package com.taozen.quithabit.ProgressCard;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -11,6 +12,7 @@ import com.taozen.quithabit.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class AchievmentsActivity extends AppCompatActivity {
 
@@ -39,6 +41,11 @@ public class AchievmentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_achievments);
 
         getWindow().setStatusBarColor(ContextCompat.getColor(AchievmentsActivity.this, R.color.white));
+        //TOOLBAR
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         List<HashMap<String, String>> aList = new ArrayList<>();
 
@@ -57,5 +64,10 @@ public class AchievmentsActivity extends AppCompatActivity {
         ListView androidListView = (ListView) findViewById(R.id.list_view);
         androidListView.setAdapter(simpleAdapter);
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

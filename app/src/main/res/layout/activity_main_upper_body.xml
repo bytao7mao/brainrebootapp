@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <android.support.v7.widget.CardView
         android:id="@+id/card_view_mainID"
         android:layout_width="match_parent"
@@ -15,7 +15,6 @@
         android:layout_marginBottom="5dp"
         android:elevation="3dp"
         app:cardCornerRadius="8dp">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="380dp">
@@ -30,13 +29,11 @@
                 android:layout_height="match_parent"
                 android:alpha="0.2"
                 android:background="@drawable/backsee2" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp">
-
                 <ImageView
                     android:id="@+id/tipImageId"
                     android:layout_width="30dp"
@@ -44,7 +41,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:src="@drawable/lightbulb" />
-
                 <ProgressBar
                     android:id="@+id/loadingProgressId2"
                     style="?android:attr/progressBarStyle"
@@ -52,7 +48,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="100dp"
                     android:visibility="gone" />
-
                 <TextView
                     android:id="@+id/tipofthedayTxtViewId"
                     android:layout_width="wrap_content"
@@ -62,7 +57,6 @@
                     android:layout_marginTop="1dp"
                     android:alpha="0.7"
                     android:layout_toRightOf="@id/tipImageId"
-
                     style="@style/TextColorBlack"
                     android:textSize="12sp"
                     android:text="Today you can be whatever you want!" />
@@ -77,16 +71,13 @@
                     style="@style/TextColorErr"
                     android:visibility="invisible"
                     android:text="Error loading data from api"/>
-
             </LinearLayout>
-
             <RelativeLayout
                 android:id="@+id/rltvlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="90dp">
-
                 <ProgressBar
                     android:id="@+id/loadingProgressId"
                     style="?android:attr/progressBarStyle"
@@ -103,7 +94,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
                 <!--android:layout_marginLeft="95dp"-->
-
                 <TextView
                     android:id="@+id/counterTextId"
                     android:layout_width="wrap_content"
@@ -114,7 +104,6 @@
                     android:alpha="0.9"
                     style="@style/TextColorBlack"
                     android:textSize="58sp" />
-
             </RelativeLayout>
             <!--end of days counter-->
             <TextView
@@ -129,7 +118,6 @@
                 android:text="Non-smoker since"
                 android:textSize="20sp" />
             <!--android:text="Since i've quit smoking"android:text="Non-smoker since"-->
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -176,20 +164,17 @@
                 </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
-
     <View
         android:id="@+id/delimitationBarId"
         style="@style/Divider"
         android:layout_below="@id/card_view_mainID"
         android:background="@android:color/darker_gray" />
-
     <FrameLayout
         android:id="@+id/frameCardIdStatistics"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/delimitationBarId">
         <!--android:layout_margin="10dp"-->
-
         <android.support.v7.widget.CardView
             android:id="@+id/progressCardId"
             android:layout_width="match_parent"
@@ -198,19 +183,16 @@
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             app:cardCornerRadius="8dp">
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/grey_200" />
-
             <!--<ImageView-->
                 <!--android:id="@+id/imageViewMiddleId"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent"-->
             <!--android:alpha="0.1"-->
             <!--android:background="@drawable/brozsb" />-->
-
             <TextView
                 android:id="@+id/progressActivityId"
                 style="@style/TextColorBlack"
@@ -222,7 +204,6 @@
                 android:layout_marginTop="10dp"
                 android:textSize="14sp"
                 android:text="@string/progressactivity_get_started" />
-
             <TextView
                 android:id="@+id/txtProgressIdForGums"
                 android:layout_width="wrap_content"
@@ -233,7 +214,6 @@
                 android:textSize="13sp"
                 android:textStyle="bold"
                 style="@style/TextColor2" />
-
             <TextView
                 android:id="@+id/txtProgressIdForBreath"
                 android:layout_width="wrap_content"
@@ -264,7 +244,6 @@
                 android:textSize="13sp"
                 android:textStyle="bold"
                 style="@style/TextColor2" />
-
             <TextView
                 android:id="@+id/textProg"
                 android:layout_width="wrap_content"
@@ -305,7 +284,6 @@
                 android:textSize="12sp"
                 android:text="energy"
                 style="@style/TextColorBlack" />
-
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar_energy"
                 android:layout_width="65dp"
@@ -329,7 +307,6 @@
                 android:tooltipText="energy levels"
                 app:startAngle="270" />
             <!--app:wlv_borderWidth="3dp"-->
-
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar_breath"
                 android:layout_width="65dp"
@@ -353,7 +330,6 @@
                 app:progressAnimationDuration="100"
                 app:startAngle="270" />
             <!--app:wlv_borderWidth="3dp"-->
-
             <com.budiyev.android.circularprogressbar.CircularProgressBar
                 android:id="@+id/progress_bar_fatigue"
                 android:layout_width="65dp"
@@ -402,5 +378,4 @@
             app:foregroundStrokeColor="#ffff4081"-->
         </android.support.v7.widget.CardView>
     </FrameLayout>
-
 </RelativeLayout>

@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--start of days counter-->
-    <!--android:layout_height="380dp"-->
 <RelativeLayout
     android:id="@+id/activity_main_body"
     android:layout_width="match_parent"
@@ -10,19 +8,16 @@
     android:layout_marginTop="60dp"
     tools:context=".MainActivity"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
     <include
         android:id="@+id/body_maincardId"
         layout="@layout/activity_main_upper_body"
         tools:context=".MainActivity"/>
-
     <View
         android:id="@+id/delimitationBarId"
         style="@style/Divider"
         android:layout_below="@id/body_maincardId"
         android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,20 +25,17 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_below="@id/delimitationBarId">
-
         <!--progress area-->
         <FrameLayout
             android:id="@+id/frameCardIdYourProgress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <!--android:layout_below="@id/frameCardIdStatistics"-->
-
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardIdProgress"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 app:cardCornerRadius="8dp">
-
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -53,7 +45,6 @@
                     <!--android:layout_height="match_parent"-->
                     <!--android:alpha="0.9"-->
                     <!--android:background="@drawable/p2" />-->
-
                 <ImageView
                     android:id="@+id/YourProgressImgId"
                     android:layout_width="40dp"
@@ -63,7 +54,6 @@
                     android:contentDescription="personal progress"
                     android:background="@mipmap/marketing" />
                 <!--android:layout_marginTop="30dp"-->
-
                 <TextView
                     android:id="@+id/YourProgressId"
                     style="@style/TextColorBlack"
@@ -76,7 +66,6 @@
                     android:alpha="0.8"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Your entire progress" />
-
                 <TextView
                     android:id="@+id/YourProgressIdCigaretes"
                     android:layout_width="wrap_content"
@@ -88,7 +77,6 @@
                     android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="cigarates not smoked = 3 x days"/>
-
                 <TextView
                     android:id="@+id/YourProgressIdRank"
                     android:layout_width="wrap_content"
@@ -100,7 +88,6 @@
                     android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="rank: PRO"/>
-
                 <TextView
                     android:id="@+id/YourProgressIdHours"
                     android:layout_width="wrap_content"
@@ -112,10 +99,8 @@
                     android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Life regained: 20 hours"/>
-
             </android.support.v7.widget.CardView>
         </FrameLayout>
-
         <!--achievments area-->
         <FrameLayout
             android:id="@+id/frameCardIdYourAchievments"
@@ -123,13 +108,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_below="@id/frameCardIdYourProgress">
-
                 <android.support.v7.widget.CardView
                     android:id="@+id/progressCardIdAchievments"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     app:cardCornerRadius="8dp">
-
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -139,7 +122,6 @@
                         <!--android:layout_height="match_parent"-->
                         <!--android:alpha="0.2"-->
                         <!--android:background="@drawable/p3" />-->
-
                     <TextView
                         android:id="@+id/YourAchievmentsId"
                         style="@style/TextColorBlack"
@@ -151,7 +133,6 @@
                         android:layout_marginEnd="80dp"
                         android:alpha="0.8"
                         android:text="Your latest achievments" />
-
                     <ImageView
                         android:id="@+id/achievmentImgId"
                         android:layout_width="40dp"
@@ -187,11 +168,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
         </FrameLayout>
-
         <!--savings area-->
         <FrameLayout
             android:id="@+id/frameCardIdMoneySaved"
@@ -199,15 +178,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_below="@id/frameCardIdYourAchievments">
-
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardIdSavings"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 app:cardCornerRadius="8dp">
                 <!--android:alpha="0.8"-->
-
-
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
@@ -217,7 +193,6 @@
                     <!--android:layout_height="match_parent"-->
                     <!--android:alpha="0.2"-->
                     <!--android:background="@drawable/p4" />-->
-
                 <TextView
                     android:id="@+id/YourSavingsId"
                     style="@style/TextColorBlack"
@@ -229,7 +204,6 @@
                     android:layout_marginEnd="80dp"
                     android:alpha="0.8"
                     android:text="Your savings" />
-
                 <ImageView
                     android:id="@+id/savingsImgId"
                     android:layout_width="55dp"
@@ -249,10 +223,8 @@
                     android:textSize="12sp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Savings Total = 50$ or 50 hours" />
-
             </android.support.v7.widget.CardView>
         </FrameLayout>
-
         <!--challenge area-->
         <FrameLayout
             android:id="@+id/frameCardIdChallenge"
@@ -260,19 +232,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_below="@id/frameCardIdMoneySaved">
-
             <!--last item in screen-->
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardIdChallenge"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 app:cardCornerRadius="8dp">
-
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_200" />
-
                 <TextView
                     android:id="@+id/challengeTxtIdTitleId"
                     style="@style/TextColorBlack"
@@ -284,7 +253,6 @@
                     android:layout_marginEnd="80dp"
                     android:alpha="0.8"
                     android:text="Your challenge" />
-
                 <ImageView
                     android:id="@+id/challengeImgId"
                     android:layout_width="45dp"
@@ -292,7 +260,6 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="7dp"
                     android:background="@mipmap/winner" />
-
                 <TextView
                     android:id="@+id/challengeTextId"
                     style="@style/TextColorBlack"
@@ -304,10 +271,8 @@
                     android:textSize="12sp"
                     android:layout_toEndOf="@id/challengeImgId"
                     android:text="@string/challengeString" />
-
             </android.support.v7.widget.CardView>
         </FrameLayout>
-
         <!--logs area-->
         <FrameLayout
             android:id="@+id/frameCardIdpersonalLogs"
@@ -315,7 +280,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_below="@id/frameCardIdChallenge">
-
             <!--last item in screen-->
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardIdLogs"
@@ -323,18 +287,15 @@
                 android:layout_height="100dp"
                 android:layout_marginBottom="70dp"
                 app:cardCornerRadius="8dp">
-
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_200" />
-
                 <!--<ImageView-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="match_parent"-->
                 <!--android:alpha="0.1"-->
                 <!--android:background="@drawable/p4" />-->
-
                 <TextView
                     android:id="@+id/YourLogsId"
                     style="@style/TextColorBlack"
@@ -346,7 +307,6 @@
                     android:layout_marginEnd="80dp"
                     android:alpha="0.8"
                     android:text="Your logs" />
-
                 <ImageView
                     android:id="@+id/logsImgId"
                     android:layout_width="40dp"
@@ -354,7 +314,6 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:background="@mipmap/archives" />
-
                 <TextView
                     android:id="@+id/logsTxtId"
                     style="@style/TextColorBlack"
@@ -366,9 +325,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/logsImgId"
                     android:text="See your Personal logs - failures" />
-
             </android.support.v7.widget.CardView>
         </FrameLayout>
     </RelativeLayout>
-
 </RelativeLayout>

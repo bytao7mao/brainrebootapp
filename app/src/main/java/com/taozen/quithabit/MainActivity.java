@@ -11,7 +11,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,14 +20,10 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,8 +36,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
-import com.taozen.quithabit.AboutActivity.AboutActivity;
 import com.taozen.quithabit.Intro.IntroActivity;
+import com.taozen.quithabit.OptionsMenuActivities.AboutActivity;
 import com.taozen.quithabit.ProgressCard.AchievmentsActivity;
 import com.taozen.quithabit.ProgressCard.ChallengeActivity;
 import com.taozen.quithabit.ProgressCard.FailLogsActivity;
@@ -65,15 +60,19 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
+    private static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
     public static final String CHALLENGES_STRING = "CHALLENGES_FINAL";
-    Random ran;
-    List<MainActivity.MyAsyncTask> tasks;
-    Handler handler;
-    Timer timer;
-    int cigaretesPerDay = 2;
-    int minutesPerDayResisted = 30 * cigaretesPerDay;
+    private Random ran;
+    private List<MainActivity.MyAsyncTask> tasks;
+    private Timer timer;
+
+    //TODO - ask user how many cigarettes smokes per day with dialog
+    private int cigarettesPerDay = 2;
+    //TODO - ask user how much to save
+    private int moneyToSave = 10;
+
+    private int lifeRegainedInteger = 30 * cigarettesPerDay;
 
     //Views
     @BindView(android.R.id.content) View parentLayout;
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.progressCardIdChallenge) CardView challengeCardView;
     @BindView(R.id.progressCardIdLogs) CardView timeStampLogsCardview;
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
-    @BindView(R.id.progressCardIdAchievments) CardView achievmentRanksCard;
+    @BindView(R.id.progressCardIdAchievments) CardView achievementRanksCard;
     //TextViews
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
@@ -123,46 +122,36 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rankThreeId) ImageView rankThreeImg;
     @BindView(R.id.rankFourId) ImageView rankFourImg;
     @BindView(R.id.backgroundId) ImageView backgroundImgWall;
-//    @BindView(R.id.imageViewMiddleId) ImageView imageViewMiddle;
+//  @BindView(R.id.imageViewMiddleId) ImageView imageViewMiddle;
 
     //counter for user
-    int counter;
-    //user input from start dialog
-    String habitString = "userHabit";//smoke, porn or alcohool
-    int savings = 0;
-    int progressPercent = 0,
+    private int counter;
+    private int savings=0,
+            progressPercent = 0,
             DAY_OF_CLICK = 0,
             DAY_OF_PRESENT = 0,
             HOUR_OF_DAYLIGHT = 0;
     //wil start from 30 to 60 to 90
-    int userMaxCountForHabit = -1;
+    private int userMaxCountForHabit = -1;
     //default false
-    boolean buttonClickedToday;
-    //values for challenge
-    int DAY_OF_START_CHALLENGE;
-    boolean falsetruebtn;
-    boolean firstStartChall;
-
+    private boolean buttonClickedToday;
     //Toolbar
     private Toolbar toolbar;
-
     //Calendar
-    Calendar calendarOnClick,
-            calendarForProgress;
+    private Calendar calendarOnClick, calendarForProgress;
     //shared pref
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
-
-    CircularProgressBar progressBarEnergyLevel,
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    //circular progressbar
+    private CircularProgressBar progressBarEnergyLevel,
             progressBarGumsLevel,
             progressBarFatigueLevel,
             progressBarBreathlevel;
-
-    DisplayMetrics metrics = new DisplayMetrics();
-    Configuration config;
+    private DisplayMetrics metrics = new DisplayMetrics();
+    private Configuration config;
     private String challs;
 
-    //OnCreate
+    //OnCreate [START]
     @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,31 +159,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
 
-        //popupmenu
-        Context wrapper = new ContextThemeWrapper(this, R.style.PopupMenu);
-        PopupMenu popup = new PopupMenu(wrapper, this.getWindow().getDecorView().findViewById(R.id.main_layout));
-
         //testing area
         Date date = new Date();
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.setTime(date);
         HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
-        //change wallpaper during nighttime
+            //change wallpaper during nighttime
         if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20){
             backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
-//            imageViewMiddle.setBackgroundResource(R.drawable.p4);
             backgroundImgWall.setAlpha(0.2f);
-//            imageViewMiddle.setAlpha(0.1f);
-//            tipofthedayTxtViewId.setTextAppearance(this, R.style.TextColorVanilla);
-//            counterText.setTextAppearance(this, R.style.TextColorVanilla);
         } else {
             //change wallpaper during daytime
             backgroundImgWall.setBackgroundResource(R.drawable.brozsb);
-//            imageViewMiddle.setBackgroundResource(R.drawable.brozsb);
             backgroundImgWall.setAlpha(0.2f);
-//            imageViewMiddle.setAlpha(0.1f);
-//            tipofthedayTxtViewId.setTextAppearance(this, R.style.TextColorBlack);
-//            counterText.setTextAppearance(this, R.style.TextColorBlack);
         }
         tasks = new ArrayList<>();
         ran = new Random();
@@ -224,9 +201,8 @@ public class MainActivity extends AppCompatActivity {
         savingsCardView.setCardElevation(0);
         timeStampLogsCardview.setCardElevation(0);
         cardViewMain.setCardElevation(0);
-        achievmentRanksCard.setCardElevation(0);
+        achievementRanksCard.setCardElevation(0);
         challengeCardView.setCardElevation(0);
-
 
         //settting progress card
         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
@@ -236,9 +212,6 @@ public class MainActivity extends AppCompatActivity {
         progressBarFatigueLevel = findViewById(R.id.progress_bar_fatigue);
         progressBarBreathlevel = findViewById(R.id.progress_bar_breath);
         progressBarGumsLevel = findViewById(R.id.progress_bar_gums);
-//        progressBarRemainingDays = findViewById(R.id.progress_bar_outer);
-        Log.d("TAOGEN", "progress gums: " + progressBarGumsLevel.getProgress());
-        setProgramaticallyMarginOf_RemainingDaysText();
         //check online state
         checkActivityOnline();
         setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit),
@@ -279,13 +252,6 @@ public class MainActivity extends AppCompatActivity {
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
 
         try {
-//            editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
-//            editor.putBoolean(BUTTON_CHALLENGE_PREFS, false);
-//            DAY_OF_START_CHALLENGE = preferences.getInt(DAY_OF_START_CHALL_PREFS, -1 );
-//            falsetruebtn = preferences.getBoolean(BUTTON_CHALLENGE_PREFS, false);
-
-            //set margin for counter
-            setProgramaticallyMarginOf_RemainingDaysText();
             //setting the achievments images for user
             setImagesForAchievmentCard();
             updatePercent();
@@ -298,28 +264,13 @@ public class MainActivity extends AppCompatActivity {
         //intro activity check in a separate thread
         startIntroActivity();
 
-        achievmentRanksCard.setOnClickListener(new View.OnClickListener() {
+        achievementRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AchievmentsActivity.class);
                 startActivity(intent);
             }
-        });
-        //TO DELETE
-        //GOTO percent Activity
-//        progressCardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                try {
-//                    progressPercent = preferences.getInt("progressPercent", progressPercent);
-//                    Intent intent = new Intent(MainActivity.this, ProgressActivity_HerokuStyleFetching.class);
-//                    intent.putExtra("pro", progressPercent);
-//                    startActivity(intent);
-//                } catch (NullPointerException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });//progressCardView[END]
+        });//achievementRanksCard[END]
         timeStampLogsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -343,32 +294,10 @@ public class MainActivity extends AppCompatActivity {
         challengeCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (preferences.contains("firstStartBoolean")){
-                    try {
-                        firstStartChall = false;
-                        Log.d("taozenXY", "mainactivity contains firstStart: " + firstStartChall);
-                    } catch (NullPointerException e){
-                        e.printStackTrace();
-                    }
-                } else {
-                    Log.d("taozenXY", "mainactivity does not contains this value in shared prefs: firststartboolean");
-                    firstStartChall = true;
-                }
-                calendarForProgress = Calendar.getInstance();
-                calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-                DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
-                Log.d("taozenXY", "mainactivity value of firstStart: " + firstStartChall);
                 Intent intent = new Intent(MainActivity.this, ChallengeActivity.class);
-                editor.putBoolean("firstStartBoolean", firstStartChall);
-                editor.putInt("dayofpresent", DAY_OF_PRESENT);
-//                editor.putBoolean(BUTTON_CHALLENGE_PREFS, falsetruebtn);
-//                editor.putInt(DAY_OF_START_CHALL_PREFS, DAY_OF_START_CHALLENGE);
-                editor.apply();
                 startActivity(intent);
-                startService(intent);
-
             }
-        });
+        });//challengeCardView[END]
 
         //retrieving the counter, progressPercent and minute values
         try {
@@ -387,7 +316,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
-
 
         //milestone dialog ------------
 //        AlertDialog.Builder milestoneAlert = new AlertDialog.Builder(this);
@@ -432,7 +360,6 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //        habitAlert.show();
 
-
 //        //dialog ------------
 //        new BottomDialog.Builder(this)
 //                .setTitle("Awesome!")
@@ -476,7 +403,7 @@ public class MainActivity extends AppCompatActivity {
     private void retrieveSavingMoney() {
         savings = preferences.getInt(SAVINGS_FINAL, -1);
         if (savings == 0 || savings == -1) {
-            savings = 10;
+            savings = moneyToSave;
             editor.putInt(SAVINGS_FINAL, savings);
             editor.apply();
         } else {
@@ -583,7 +510,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //set margin for counter
-//                setProgramaticallyMarginOf_RemainingDaysText();
                 buttonClickedToday = true;
                 editor.putBoolean("clicked", buttonClickedToday);
                 resetProgressBar(progressPercent);
@@ -638,8 +564,6 @@ public class MainActivity extends AppCompatActivity {
                         savings = preferences.getInt(SAVINGS_FINAL, -1)+10;
                         editor.putInt(SAVINGS_FINAL, savings);
                         editor.apply();
-                        //set margin for counter
-//                        setProgramaticallyMarginOf_RemainingDaysText();
                         setTheSavingsPerDay();
                         moneyOrTimeAndGetValueOfItFromSharedPreferences();
                         setImprovementProgressLevels();
@@ -653,7 +577,6 @@ public class MainActivity extends AppCompatActivity {
                         setTargetDays();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
 //                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
-                        setProgramaticallyMarginOf_RemainingDaysText();
                         //var 1 - dialog after answer
                         positiveDialogAfterPassDay();
                         //var 2 - custom toast after answer
@@ -682,7 +605,6 @@ public class MainActivity extends AppCompatActivity {
                         counterText.setText(String.valueOf(counter));
                         setTargetDays();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
-                        setProgramaticallyMarginOf_RemainingDaysText();
 //                        Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
                         negativeDialogAfterRelapse();
                     }
@@ -752,27 +674,12 @@ public class MainActivity extends AppCompatActivity {
         }
         //remaining days -- + "  " for space between number of days and text
         String calcDaysTarget = "";
-//        if (userMaxCountForHabit-counter < 10 && !(config.densityDpi == 320)) {
-//            Log.d("DAYS", "i am hFere ... < 10 ONLY ");
-//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "     ";
-//        } else if (userMaxCountForHabit-counter < 10 && config.densityDpi == 320) {
-//            Log.d("DAYS", "i am here ... < 10 and 320 dpi ");
-//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
-//        } else if (userMaxCountForHabit-counter >= 10 && config.densityDpi == 320) {
-//            Log.d("DAYS", "i am here ... >= 10 and 320 dpi ");
-//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "  ";
-//        } else if (userMaxCountForHabit-counter >= 10 && config.densityDpi == 640) {
-//            Log.d("DAYS", "i am here ... >= 10 and 640 dpi ");
-//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "  ";
-//        } else {
-//            calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "   ";
-//        }
         calcDaysTarget = String.valueOf(userMaxCountForHabit-counter) + "";
         String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
         remainingDaysTxt.setText(targetCalcDaysTarget);
     }
 
-    private void setTheSavingsPerDay(){
+    private void setTheSavingsPerDay() {
         counter = preferences.getInt("counter", 0);
         int id = preferences.getInt(SAVINGS_FINAL, -1);
         Log.d("LOGGTAO", "id: " + id);
@@ -788,7 +695,7 @@ public class MainActivity extends AppCompatActivity {
 
     //running task
     @SideEffect
-    private void runningInBackground(){
+    private void runningInBackground() {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -807,7 +714,7 @@ public class MainActivity extends AppCompatActivity {
                             }//run from runonuithread
                         });//runonuithread
                     }//run from Timertask
-                }, 0, 10_000);//Timertask 10 SECONDS
+                }, 0, 1_000);//Timertask once per 1 SECONDS
             }//run from async
         });//async
     }//runningInBackground
@@ -819,18 +726,13 @@ public class MainActivity extends AppCompatActivity {
             try {
                 counter = preferences.getInt("counter", -1);
             } catch (NullPointerException e){e.printStackTrace();}
-
             setImagesForAchievmentCard();
             setImprovementProgressLevels();
             Log.d("TAGG", "try { counterText = " + counter);
-            //set margin for counter
-            setProgramaticallyMarginOf_RemainingDaysText();
             resetProgressBar(progressPercent);
             Log.d("TAGG", "resetProgressBar = " + counter);
             counterText.setText(String.valueOf(counter));
             Log.d("TAGG", "counter = preferences.getInt(\"counter\", 0); = " + counter);
-
-//            progressBarRemainingDays.setProgress(progressPercent);
             DAY_OF_CLICK = preferences.getInt("presentday", 0);
             buttonClickedToday = preferences.getBoolean("clicked", false);
             //[calendar area]
@@ -839,7 +741,6 @@ public class MainActivity extends AppCompatActivity {
             DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
             editor.putInt("dayofpresent", DAY_OF_PRESENT);
             editor.apply();
-
             //testing area
             Date date = new Date();
             Calendar calendar = GregorianCalendar.getInstance();
@@ -867,13 +768,11 @@ public class MainActivity extends AppCompatActivity {
             greenCodition();
             editor.putInt("progressPercent", progressPercent);
             editor.apply();
-
         } catch (NullPointerException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     //onResume
@@ -928,7 +827,7 @@ public class MainActivity extends AppCompatActivity {
         updatePercent();
         setImprovementProgressLevels();
         if (progressBar == 100) {
-            //to do: if press yes go counter = 1
+            //TODO: if press yes go counter = 1
 //            progressPercent = 0;
 //            editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
 //            editor.putInt("progressPercent", progressPercent);
@@ -936,8 +835,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateButton(){
-        if (buttonClickedToday){
+    private void updateButton() {
+        if (buttonClickedToday) {
             fab.hide();
         }
     }
@@ -961,7 +860,7 @@ public class MainActivity extends AppCompatActivity {
 
     //[ENABLE BUTTON]
     @SideEffect
-    private void greenCodition(){
+    private void greenCodition() {
         if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAYLIGHT >= 12)) {
             //to do
             //show the activate button
@@ -979,7 +878,7 @@ public class MainActivity extends AppCompatActivity {
     //END OF -> [ENABLE BUTTON]
 
     @SideEffect
-    private void endOfTheYearCondition(){
+    private void endOfTheYearCondition() {
         if ((DAY_OF_CLICK >= 365 && DAY_OF_PRESENT > 0) && (!buttonClickedToday)) {
             fab.show();
             //instead of counter add dialog to ask user if he did his habit
@@ -993,7 +892,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SideEffect
-    private void updatePercent(){
+    private void updatePercent() {
         userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
         if (counter < userMaxCountForHabit*9/100){
             progressPercent = 10;
@@ -1026,7 +925,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("counter", counter);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
-//        progressBarRemainingDays.setProgress(progressPercent);
     }
 
     @SideEffect
@@ -1164,7 +1062,7 @@ public class MainActivity extends AppCompatActivity {
         task.execute(url + "/" + id);
     }
     @SideEffect
-    private void checkActivityOnline(){
+    private void checkActivityOnline() {
         //TODO replace ran.next with int i to be equal to the present day
         //ex: DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
         //int i = DAY_OF_PRESENT;
@@ -1182,7 +1080,7 @@ public class MainActivity extends AppCompatActivity {
             Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG).show();
         }
     }
-    protected void updateDisplayString(String message) {
+    private void updateDisplayString(String message) {
         tipofthedayTxtViewId.setText(message + "\n");
     }
     private class MyAsyncTask extends AsyncTask<String, String, String> {
@@ -1200,7 +1098,6 @@ public class MainActivity extends AppCompatActivity {
             //if we click we add a task
             tasks.add(this);
         }//onPreExecute[END]
-
         @Override
         protected String doInBackground(String... params) {
             try {
@@ -1221,7 +1118,6 @@ public class MainActivity extends AppCompatActivity {
                 return null;
             }//using GSON[END]
         }//doInBackground[END]
-
         @Override
         protected void onPostExecute(String result) {
             //using raw JSON PARSER
@@ -1246,127 +1142,8 @@ public class MainActivity extends AppCompatActivity {
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
 
-    /**this particularly is meant for test purpose*/
-    //[START - setProgramaticallyMarginOf_RemainingDaysText]
-    private void setProgramaticallyMarginOf_RemainingDaysText(){
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        FrameLayout.LayoutParams paramsGums = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT);
-        FrameLayout.LayoutParams paramsEnergy = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT);
-//        setTargetDays();
-//        if (Build.VERSION.SDK_INT == 25 ){
-//            Log.d("DAYS", "Hello days! == 25");
-//            //IF ONE DECIMAL
-//            if ((userMaxCountForHabit-counter) < 10) {
-//                params.setMargins(-60, 20, 30, 0);
-//                //IF TWO DECIMALS
-//            } else {
-//                params.setMargins(-70, 20, 30, 0);
-//            }
-//        } else if (Build.VERSION.SDK_INT == 23){
-//            Log.d("DAYS", "Hello days! == 23");
-//            //IF ONE DECIMAL
-//            if ((userMaxCountForHabit - counter) < 10) {
-//                params.setMargins(-70, 15, 30, 0);
-//                //IF TWO DECIMALS
-//            } else {
-//                params.setMargins(-78, 20, 30, 0);
-//            }
-//        } else if (Build.VERSION.SDK_INT == 24){
-//            Log.d("DAYS", "Hello days! == 24");
-//            //IF ONE DECIMAL
-//            if ((userMaxCountForHabit-counter) < 10) {
-//                params.setMargins(-75, 25, 30, 0);
-//                //IF TWO DECIMALS
-//            } else {
-//                params.setMargins(-95, 25, 30, 0);
-//            }
-//        } else if (Build.VERSION.SDK_INT == 19){
-//            Log.d("DAYS", "Hello days! == 19");
-//            //IF ONE DECIMAL
-//            if ((userMaxCountForHabit-counter) < 10) {
-//                params.setMargins(-80, 20, 30, 0);
-//            //IF TWO DECIMALS
-//            } else {
-//                params.setMargins(-80, 25, 30, 0);
-//            }
-////        } else if (Build.VERSION.SDK_INT == 28 &&
-////                !(config.densityDpi >= 200 && config.densityDpi <= 330)){
-////            Log.d("DAYS", "Hello days! == 28 + " + metrics.densityDpi);
-////            //IF ONE DECIMAL
-////            if ((userMaxCountForHabit - counter) < 10) {
-////                params.setMargins(-85, 30, 30, 0);
-////                //IF TWO DECIMALS
-////            } else {
-////                params.setMargins(-100, 30, 30, 0);
-////            }
-//        } else if (Build.VERSION.SDK_INT == 28 &&
-//                (config.densityDpi == 640 )){
-//            Log.d("DAYS", "API 28 AND DPI 640 + " + metrics.densityDpi+ "DPI");
-//            //IF ONE DECIMAL
-//            if ((userMaxCountForHabit - counter) < 10) {
-//                params.setMargins(-85, 30, 30, 0);
-//                //IF TWO DECIMALS
-//            } else {
-//                params.setMargins(-105, 25, 30, 0);
-//            }
-//        } else if (config.densityDpi >= 200 && config.densityDpi <= 300){
-//            Log.d("DAYS", "Hello days! == config.densityDpi");
-//            //IF ONE DECIMAL
-//            if ((userMaxCountForHabit - counter) < 10) {
-//                params.setMargins(-40, 10, 30, 0);
-//                //IF TWO DECIMALS
-//            } else {
-//                params.setMargins(-48, 10, 30, 0);
-//            }
-//        } else if (config.densityDpi == 320){
-//                Log.d("DAYS", "Hello days! == config.densityDpi 320 + " +  metrics);
-//                //IF ONE DECIMAL
-//                if ((userMaxCountForHabit - counter) < 10) {
-//                    params.setMargins(-45, 15, 30, 0);
-//                    //IF TWO DECIMALS
-//                } else {
-//                    params.setMargins(-53, 15, 30, 0);
-//                }
-//        } else {
-//            Log.d("DAYS", "Hello days! == ELSE");
-//            //IF ONE DECIMAL
-//            if ((userMaxCountForHabit-counter) < 10) {
-//                params.setMargins(-85, 30, 30, 0);
-//                //IF TWO DECIMALS
-//            } else {
-//                params.setMargins(-100, 30, 30, 0);
-//            }
-//        }
-
-//        if (progressBarGumsLevel.getProgress() == 100){
-//            Log.d("TAOGEN", "I AM IN PROGRESS BAR GUMS");
-//            paramsGums.setMargins(1050, 280, 0, 120);
-//            txtProgressForGums.setLayoutParams(paramsGums);
-//        } else {
-//            paramsGums.setMargins(1080, 280, 0, 120);
-//            txtProgressForGums.setLayoutParams(paramsGums);
-//        }
-//
-//        if (progressBarEnergyLevel.getProgress() == 100) {
-//            paramsEnergy.setMargins(150, 280, 0, 120);
-//            txtProgressForEnergyLevels.setLayoutParams(paramsEnergy);
-//        } else {
-//            paramsEnergy.setMargins(180, 280, 0, 120);
-//            txtProgressForEnergyLevels.setLayoutParams(paramsEnergy);
-//        }
-
-//        remainingDaysTxt.setLayoutParams(params);
-
-    }//[END -> setProgramaticallyMarginOf_RemainingDaysText]
-
     @SideEffect
-    private void setImagesForAchievmentCard(){
+    private void setImagesForAchievmentCard() {
         try {
             counter = preferences.getInt("counter", 0);
         } catch (NullPointerException e){e.printStackTrace();}
@@ -1381,7 +1158,7 @@ public class MainActivity extends AppCompatActivity {
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
             rankFourImg.setAlpha(0.2f);
             editor.putString("rank", "NOOB");
-        } else if (counter>9&&counter<20){
+        } else if (counter>9&&counter<20) {
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
@@ -1391,7 +1168,7 @@ public class MainActivity extends AppCompatActivity {
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
             rankFourImg.setAlpha(0.2f);
             editor.putString("rank", "NOOB");
-        } else if (counter>19&&counter<30){
+        } else if (counter>19&&counter<30) {
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
@@ -1462,7 +1239,7 @@ public class MainActivity extends AppCompatActivity {
             rankFourImg.setAlpha(1.0f);
             editor.putString("rank", "CAPTAIN");
             //WHEN USER REACH DAY 90 - GREATEST MILESTONE
-        } else if (counter == 90){
+        } else if (counter == 90) {
             rankOneImg.setBackgroundResource(R.mipmap.chevron13);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron14);
@@ -1475,14 +1252,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showEntireProgressForUserCard(TextView userCigaretesProgressTxt, TextView userRankProgressTxt, TextView userHoursProgressTxt){
+    private void showEntireProgressForUserCard(TextView userCigaretesProgressTxt,
+                                               TextView userRankProgressTxt,
+                                               TextView userHoursProgressTxt) {
         try {
             counter = preferences.getInt("counter", 0);
-            int cigaretess = cigaretesPerDay * counter;
+            int cigaretess = cigarettesPerDay * counter;
             String theLatestRank = preferences.getString("rank", "null");
-            String lifeRegained = Integer.toString((minutesPerDayResisted / 60)*counter);
-            //todo: cravings
-            String cravingsTotal = Integer.toString(0);
+            String lifeRegained = Integer.toString((lifeRegainedInteger / 60)*counter);
             //setting textview with the assigned text
             userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + String.valueOf(cigaretess));
             userRankProgressTxt.setText("Rank: " + String.valueOf(theLatestRank));

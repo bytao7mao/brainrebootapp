@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    <!--android:alpha="0.9"-->
-    <!--android:background="@color/white"
-    android:paddingBottom="10dp"-->
+    android:layout_height="match_parent">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp"
-        android:translationZ="0.1dp"
         android:background="@color/white"
+        android:paddingBottom="5dp"
+        android:translationZ="0.1dp"
         android:theme="@style/MaterialTheme.NoActionBar">
         <!--android:background="?attr/colorPrimary"-->
         <android.support.v7.widget.Toolbar
@@ -26,9 +22,16 @@
         <View
             android:id="@+id/delimitationBarId"
             style="@style/Divider"
-            android:alpha="0.5"
             android:layout_height="0.2dp"
             android:background="@android:color/darker_gray" />
     </android.support.design.widget.AppBarLayout>
-    <include layout="@layout/activity_main_fab" />
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="60dp">
+        <include layout="@layout/contentfaillogs" />
+    </ScrollView>
 </RelativeLayout>
