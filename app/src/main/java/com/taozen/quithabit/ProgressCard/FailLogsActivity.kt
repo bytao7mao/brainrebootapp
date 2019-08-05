@@ -19,8 +19,6 @@ class FailLogsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fail_logs)
         ButterKnife.bind(this@FailLogsActivity)
 
-
-
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         Objects.requireNonNull<ActionBar>(supportActionBar).setDisplayHomeAsUpEnabled(true)
