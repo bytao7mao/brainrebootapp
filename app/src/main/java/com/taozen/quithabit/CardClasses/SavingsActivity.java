@@ -1,4 +1,4 @@
-package com.taozen.quithabit.ProgressCard;
+package com.taozen.quithabit.CardClasses;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,11 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
 
 import java.util.Objects;
-import java.util.prefs.Preferences;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -14,14 +14,10 @@ import com.taozen.quithabit.R;
 
 public class IntroActivity extends AppIntro {
 
-    Intent i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        try {
-            i = new Intent(IntroActivity.this, MainActivity.class);
-        } catch (NullPointerException e) {e.printStackTrace();}
 
         // Instead of fragments, you can also use our default slide.
         // Just create a `SliderPage` and provide title, description, background and image.
@@ -43,12 +39,14 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
+        Intent i = new Intent(IntroActivity.this, MainActivity.class);
         startActivity(i);
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
+        Intent i = new Intent(IntroActivity.this, MainActivity.class);
         startActivity(i);
     }
 

@@ -1,4 +1,4 @@
-package com.taozen.quithabit.ProgressCard
+package com.taozen.quithabit.CardClasses
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat

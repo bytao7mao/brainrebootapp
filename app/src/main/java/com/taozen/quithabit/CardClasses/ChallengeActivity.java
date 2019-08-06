@@ -1,4 +1,4 @@
-package com.taozen.quithabit.ProgressCard;
+package com.taozen.quithabit.CardClasses;
 
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -17,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.javiersantos.bottomdialogs.BottomDialog;
-import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
 import java.util.Locale;
 import java.util.Objects;

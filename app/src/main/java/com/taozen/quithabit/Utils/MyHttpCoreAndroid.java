@@ -11,7 +11,7 @@ public class MyHttpCoreAndroid {
         BufferedReader reader = null;
         HttpURLConnection connection = null;
         try {
-            URL url =new URL(uri);
+            URL url = new URL(uri);
             connection = (HttpURLConnection) url.openConnection();
             StringBuilder stringBuilder = new StringBuilder();
             reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));

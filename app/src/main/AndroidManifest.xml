@@ -4,18 +4,8 @@
     package="com.taozen.quithabit">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- <uses-permission android:name="android.permission.CAMERA"/> -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-feature
-        android:name="android.hardware.camera.any"
-        android:required="true" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -26,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ProgressCard.AchievmentsActivity" />
+        <activity android:name=".CardClasses.AchievmentsActivity" />
         <activity android:name=".OptionsMenuActivities.AboutActivity" />
         <activity
-            android:name=".ProgressCard.FailLogsActivity"
+            android:name=".CardClasses.FailLogsActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
@@ -37,16 +27,14 @@
             android:theme="@style/MaterialTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Intro.IntroActivity"
             android:label="app_intro" />
-        <activity android:name=".ProgressCard.SavingsActivity" />
-        <activity android:name=".ProgressCard.ChallengeActivity" />
-
+        <activity android:name=".CardClasses.SavingsActivity" />
+        <activity android:name=".CardClasses.ChallengeActivity" />
         <service android:name=".Notif.MyFirebaseMessagingService" />
     </application>
 

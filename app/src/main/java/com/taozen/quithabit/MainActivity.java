@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
@@ -38,10 +39,10 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.Intro.IntroActivity;
 import com.taozen.quithabit.OptionsMenuActivities.AboutActivity;
-import com.taozen.quithabit.ProgressCard.AchievmentsActivity;
-import com.taozen.quithabit.ProgressCard.ChallengeActivity;
-import com.taozen.quithabit.ProgressCard.FailLogsActivity;
-import com.taozen.quithabit.ProgressCard.SavingsActivity;
+import com.taozen.quithabit.CardClasses.AchievmentsActivity;
+import com.taozen.quithabit.CardClasses.ChallengeActivity;
+import com.taozen.quithabit.CardClasses.FailLogsActivity;
+import com.taozen.quithabit.CardClasses.SavingsActivity;
 import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
 
 import java.util.ArrayList;
@@ -124,13 +125,16 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.backgroundId) ImageView backgroundImgWall;
 //  @BindView(R.id.imageViewMiddleId) ImageView imageViewMiddle;
 
+    //firstStart bool
+    boolean isFirstStart;
     //counter for user
     private int counter;
     private int savings=0,
             progressPercent = 0,
             DAY_OF_CLICK = 0,
             DAY_OF_PRESENT = 0,
-            HOUR_OF_DAYLIGHT = 0;
+            HOUR_OF_DAYLIGHT = 0,
+            HOUR_OF_FIRSTLAUNCH = 0;
     //wil start from 30 to 60 to 90
     private int userMaxCountForHabit = -1;
     //default false
@@ -159,11 +163,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
 
+        Log.d("taolenX1", "ON CREATE AND counter is ");
+        //shared pref
+        preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        editor = preferences.edit();
+
         //testing area
         Date date = new Date();
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.setTime(date);
         HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
+        //my personal method to save a value and keep it every time i launch on create :)
+        if (preferences.contains("firsthour")){
+            HOUR_OF_FIRSTLAUNCH = preferences.getInt("firsthour", -1);
+            Log.d("TAOZEN1", "share prefs contains: firsthour = " + HOUR_OF_FIRSTLAUNCH);
+        } else {
+            Log.d("TAOZEN1", "share prefs DOES NOT contains: firsthour");
+            HOUR_OF_FIRSTLAUNCH = calendar.get(Calendar.HOUR_OF_DAY);
+            editor.putInt("firsthour", HOUR_OF_FIRSTLAUNCH);
+            editor.apply();
+            String str = String.format("You will check-in everyday at %d:00\n" +
+                    "We will start tutorial now.", HOUR_OF_FIRSTLAUNCH);
+            showCustomDialogOnFirstLaunch("Welcome", str);
+        }
             //change wallpaper during nighttime
         if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20){
             backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
@@ -176,9 +198,7 @@ public class MainActivity extends AppCompatActivity {
         tasks = new ArrayList<>();
         ran = new Random();
         config = getResources().getConfiguration();
-        //shared pref
-        preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        editor = preferences.edit();
+
         //color of the FAB - NOW IS already changed in XML
 //        fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
 
@@ -260,9 +280,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-
-        //intro activity check in a separate thread
-        startIntroActivity();
 
         achievementRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -449,6 +466,27 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
     //dialog when user pass a day
+    private void showCustomDialogOnFirstLaunch(String title, String content){
+        //dialog ------------
+        new BottomDialog.Builder(this)
+                .setTitle(title)
+                .setContent(content)
+                .setPositiveText("OK")
+                .setCancelable(false)
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        Log.d("BottomDialogs", "Do something!");
+                        //intro activity check in a separate thread
+                        startIntroActivity();
+                    }
+                }).show();
+    }
+    //dialog when user pass a day
     private void negativeDialogAfterRelapse(){
         //dialog ------------
         new BottomDialog.Builder(this)
@@ -471,12 +509,19 @@ public class MainActivity extends AppCompatActivity {
     private void startIntroActivity() {
         //intro
         //code for INTRO
-        Thread threadForSlider = new Thread(new Runnable() {
-            @Override
-            public void run() {
+//        Thread threadForSlider = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
                 //  Create a new boolean and preference and set it to true
                 Log.d("taozenD", "thread separat: " + Thread.currentThread().getName());
-                boolean isFirstStart = preferences.getBoolean("firstStart", true);
+                if (preferences.contains("firstStart")){
+                    isFirstStart = preferences.getBoolean("firstStart", false);
+                } else {
+                    //on first launch this will trigger
+                    isFirstStart = true;
+                    editor.putBoolean("firstStart", false);
+                    editor.apply();
+                }
                 //  If the activity has never started before...
                 if (isFirstStart) {
                     counter = 1;
@@ -484,22 +529,22 @@ public class MainActivity extends AppCompatActivity {
                     editor.apply();
                     //  Launch app intro
                     final Intent i = new Intent(MainActivity.this, IntroActivity.class);
-                    runOnUiThread(new Runnable() {
-                        @Override public void run() {
+//                    runOnUiThread(new Runnable() {
+//                        @Override public void run() {
                             Log.d("taozenD", "thread din ui: " + Thread.currentThread().getName());
                             startActivity(i);
-                        }
-                    });
-                    //  Make a new preferences editor
-                    SharedPreferences.Editor e = preferences.edit();
-                    //  Edit preference to make it false because we don'threadForSlider want this to run again
-                    e.putBoolean("firstStart", false);
-                    //  Apply changes
-                    e.apply();
+//                        }
+//                    });
+//                    //  Make a new preferences editor
+//                    SharedPreferences.Editor e = preferences.edit();
+//                    //  Edit preference to make it false because we don'threadForSlider want this to run again
+//                    e.putBoolean("firstStart", false);
+//                    //  Apply changes
+//                    e.apply();
                 }
-            }
-        });
-        threadForSlider.start();//end of INTRO
+//            }
+//        });
+//        threadForSlider.start();//end of INTRO
     }
 
     @SideEffect
@@ -710,11 +755,10 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 startTheEngine();
-//                                updatePercent();
                             }//run from runonuithread
                         });//runonuithread
                     }//run from Timertask
-                }, 0, 1_000);//Timertask once per 1 SECONDS
+                }, 0, 3_000);//Timertask once per 1 SECONDS
             }//run from async
         });//async
     }//runningInBackground
@@ -779,11 +823,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        checkActivityOnline();
         updateButton();
         setImagesForAchievmentCard();
         runningInBackground();
         moneyOrTimeAndGetValueOfItFromSharedPreferences();
-        Log.d("taolenX", "onResume SIMPLE>> AND counter is " + counter);
+        Log.d("taolenX1", "ON RESUMEE AND counter is " + counter);
         try {
             //only retrieve and save in onpause
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
@@ -861,7 +906,7 @@ public class MainActivity extends AppCompatActivity {
     //[ENABLE BUTTON]
     @SideEffect
     private void greenCodition() {
-        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAYLIGHT >= 12)) {
+        if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH)) {
             //to do
             //show the activate button
             Log.d("taolenX777", "greenCodition WORKINGGGGG");
@@ -1072,12 +1117,16 @@ public class MainActivity extends AppCompatActivity {
             try {
                 counter = preferences.getInt("counter", 0);
             } catch (NullPointerException e){e.printStackTrace();}
-            Log.d("COUNTER777", "counter: " +counter);
+            Log.d("COUNTER777", "counter: " + counter);
             requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, counter);
         } else {
             errorText.setVisibility(View.VISIBLE);
             tipofthedayTxtViewId.setText("ERROR 404");
-            Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG).show();
+            Snackbar snackbar;
+            snackbar = Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG);
+            View snackBarView = snackbar.getView();
+            snackBarView.setBackgroundColor(Color.RED);
+            snackbar.show();
         }
     }
     private void updateDisplayString(String message) {
@@ -1105,14 +1154,13 @@ public class MainActivity extends AppCompatActivity {
                 JsonParser parser = new JsonParser();
                 //using MyHttpManager getData static method
 //              String content = MyHttpManager.getData(params[0]);
-                Thread.sleep(1000);
+//                Thread.sleep(1000);
                 //using MyHttpCoreAndroid
                 String content = MyHttpCoreAndroid.getData(params[0]);
                 JsonElement rootNode = parser.parse(content);
                 JsonObject details = rootNode.getAsJsonObject();
                 JsonElement nameNode = details.get("name");
                 return nameNode.getAsString();
-//                return res;
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
