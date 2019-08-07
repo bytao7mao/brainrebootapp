@@ -36,6 +36,7 @@
         <activity android:name=".CardClasses.SavingsActivity" />
         <activity android:name=".CardClasses.ChallengeActivity" />
         <service android:name=".Notif.MyFirebaseMessagingService" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
 
 </manifest>

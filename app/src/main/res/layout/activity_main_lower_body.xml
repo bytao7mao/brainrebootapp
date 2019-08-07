@@ -269,8 +269,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="20dp"
                     android:textSize="12sp"
-                    android:layout_toEndOf="@id/challengeImgId"
-                    android:text="@string/challengeString" />
+                    android:layout_toEndOf="@id/challengeImgId" />
             </android.support.v7.widget.CardView>
         </FrameLayout>
         <!--logs area-->

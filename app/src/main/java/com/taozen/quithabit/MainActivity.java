@@ -43,7 +43,7 @@ import com.taozen.quithabit.CardClasses.AchievmentsActivity;
 import com.taozen.quithabit.CardClasses.ChallengeActivity;
 import com.taozen.quithabit.CardClasses.FailLogsActivity;
 import com.taozen.quithabit.CardClasses.SavingsActivity;
-import com.taozen.quithabit.Utils.MyHttpCoreAndroid;
+import com.taozen.quithabit.Utils.MyHttpManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,14 +64,19 @@ public class MainActivity extends AppCompatActivity {
     private static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
     public static final String CHALLENGES_STRING = "CHALLENGES_FINAL";
-    private Random ran;
+    public static final String CLICKED = "CLICKED";
+    public static final String COUNTER = "COUNTER";
     private List<MainActivity.MyAsyncTask> tasks;
     private Timer timer;
+    //dialogs for fabs - messages
+    private String normalMessageForDialog = "\"Did you abtained to smoke today ?\"";
+    private String firstMessageDialog = "Hello, this is your first day!\nSince you're here " +
+            "it means that you made the first step in order to get rid of your habit";
 
     //TODO - ask user how many cigarettes smokes per day with dialog
     private int cigarettesPerDay = 2;
     //TODO - ask user how much to save
-    private int moneyToSave = 10;
+    private int moneyToSave = 0;
 
     private int lifeRegainedInteger = 30 * cigarettesPerDay;
 
@@ -142,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
     //Toolbar
     private Toolbar toolbar;
     //Calendar
-    private Calendar calendarOnClick, calendarForProgress;
+    private Calendar calendarOnClick,
+            calendarForProgress;
     //shared pref
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
@@ -154,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
     private DisplayMetrics metrics = new DisplayMetrics();
     private Configuration config;
     private String challs;
+    private StringBuilder strBuilder = new StringBuilder();
 
     //OnCreate [START]
     @SuppressLint("CommitPrefEdits")
@@ -163,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
 
-        Log.d("taolenX1", "ON CREATE AND counter is ");
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
@@ -173,30 +179,9 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.setTime(date);
         HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
-        //my personal method to save a value and keep it every time i launch on create :)
-        if (preferences.contains("firsthour")){
-            HOUR_OF_FIRSTLAUNCH = preferences.getInt("firsthour", -1);
-            Log.d("TAOZEN1", "share prefs contains: firsthour = " + HOUR_OF_FIRSTLAUNCH);
-        } else {
-            Log.d("TAOZEN1", "share prefs DOES NOT contains: firsthour");
-            HOUR_OF_FIRSTLAUNCH = calendar.get(Calendar.HOUR_OF_DAY);
-            editor.putInt("firsthour", HOUR_OF_FIRSTLAUNCH);
-            editor.apply();
-            String str = String.format("You will check-in everyday at %d:00\n" +
-                    "We will start tutorial now.", HOUR_OF_FIRSTLAUNCH);
-            showCustomDialogOnFirstLaunch("Welcome", str);
-        }
-            //change wallpaper during nighttime
-        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20){
-            backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
-            backgroundImgWall.setAlpha(0.2f);
-        } else {
-            //change wallpaper during daytime
-            backgroundImgWall.setBackgroundResource(R.drawable.brozsb);
-            backgroundImgWall.setAlpha(0.2f);
-        }
+        setTheHourOfFirstLaunch(calendar);
+        setBackgroundForDaylightOrNight();
         tasks = new ArrayList<>();
-        ran = new Random();
         config = getResources().getConfiguration();
 
         //color of the FAB - NOW IS already changed in XML
@@ -209,9 +194,9 @@ public class MainActivity extends AppCompatActivity {
         firstCheckForCounterAndMax();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
+                getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.blue), PorterDuff.Mode.SRC_IN);
+                getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -273,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //setting the achievments images for user
-            setImagesForAchievmentCard();
+            setImagesForAchievementCard();
             updatePercent();
             setImprovementProgressLevels();
             Log.d("counterval", "try { on creat " + counter);
@@ -307,12 +292,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });//savingsCardView[END]
-
         challengeCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ChallengeActivity.class);
                 startActivity(intent);
+                challs = "Tap to see your progress for your challenge!";
+                editor.putString(CHALLENGES_STRING, challs);
+                editor.apply();
+
             }
         });//challengeCardView[END]
 
@@ -325,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
             setTargetDays();
             setTheSavingsPerDay();
             moneyOrTimeAndGetValueOfItFromSharedPreferences();
-            buttonClickedToday = preferences.getBoolean("clicked", false);
+            buttonClickedToday = preferences.getBoolean(CLICKED, false);
             progressPercent = preferences.getInt("progressPercent", 0);
             updatePercent();
             setImprovementProgressLevels();
@@ -417,6 +405,34 @@ public class MainActivity extends AppCompatActivity {
 //                .build();
     }//[END OF ONCREATE]
 
+    private void setTheHourOfFirstLaunch(Calendar calendar) {
+        //my personal method to save a value and keep it every time i launch on create :)
+        if (preferences.contains("firsthour")) {
+            HOUR_OF_FIRSTLAUNCH = preferences.getInt("firsthour", -1);
+            Log.d("TAOZEN1", "share prefs contains: firsthour = " + HOUR_OF_FIRSTLAUNCH);
+        } else {
+            Log.d("TAOZEN1", "share prefs DOES NOT contains: firsthour");
+            HOUR_OF_FIRSTLAUNCH = calendar.get(Calendar.HOUR_OF_DAY);
+            editor.putInt("firsthour", HOUR_OF_FIRSTLAUNCH);
+            editor.apply();
+            strBuilder.append(String.format(getString(R.string.checkinStr), HOUR_OF_FIRSTLAUNCH));
+            strBuilder.append("\nWe will start tutorial now.");
+            showCustomDialogOnFirstLaunch("Welcome", strBuilder);
+        }
+    }
+
+    private void setBackgroundForDaylightOrNight() {
+        //change wallpaper during nighttime
+        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20){
+            backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
+            backgroundImgWall.setAlpha(0.2f);
+        } else {
+            //change wallpaper during daytime
+            backgroundImgWall.setBackgroundResource(R.drawable.brozsb);
+            backgroundImgWall.setAlpha(0.2f);
+        }
+    }
+
     private void retrieveSavingMoney() {
         savings = preferences.getInt(SAVINGS_FINAL, -1);
         if (savings == 0 || savings == -1) {
@@ -431,13 +447,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void firstCheckForCounterAndMax() {
-        if (counter == 0){
-            counter = 1;
-            editor.putInt("counter", counter);
-            editor.apply();
-        } else {
-            counter = preferences.getInt("counter", 0);
-        }
+//        if (counter == 0){moneyToSave
+//            counter = 1;
+//            editor.putInt(COUNTER, counter);
+//            editor.apply();
+//        } else {
+//            counter = preferences.getInt(COUNTER, 0);
+//        }
         if (userMaxCountForHabit == -1){
             userMaxCountForHabit = 30;
             editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
@@ -466,7 +482,7 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
     //dialog when user pass a day
-    private void showCustomDialogOnFirstLaunch(String title, String content){
+    private void showCustomDialogOnFirstLaunch(String title, StringBuilder content){
         //dialog ------------
         new BottomDialog.Builder(this)
                 .setTitle(title)
@@ -524,8 +540,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //  If the activity has never started before...
                 if (isFirstStart) {
-                    counter = 1;
-                    editor.putInt("counter", counter);
+                    counter = 0;
+                    editor.putInt(COUNTER, counter);
                     editor.apply();
                     //  Launch app intro
                     final Intent i = new Intent(MainActivity.this, IntroActivity.class);
@@ -556,7 +572,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //set margin for counter
                 buttonClickedToday = true;
-                editor.putBoolean("clicked", buttonClickedToday);
+                editor.putBoolean(CLICKED, buttonClickedToday);
                 resetProgressBar(progressPercent);
                 //[calendar area]
                 calendarOnClick = Calendar.getInstance();
@@ -566,36 +582,40 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt("presentday", DAY_OF_CLICK);
                 editor.putInt("progressPercent", progressPercent);
                 editor.apply();
-                setImagesForAchievmentCard();
+                setImagesForAchievementCard();
                 Log.d("taolenX", "counter from onclick = " + counter);
                 try {
-                    counter = preferences.getInt("counter", -1);
-                } catch (NullPointerException e){e.printStackTrace();}
+                    if (preferences.contains(COUNTER)){
+                        counter = preferences.getInt(COUNTER, -1);
+                    }
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
                 //between 1 and 29
-                if (counter < 29) {
-                    normalFancyDialog("No smoke dialog!");
+                if (counter == 0) {
+                    normalFancyDialog("WELCOME TO QUIT HABIT!", firstMessageDialog);
+                } else if (counter > 0 && counter < 29) {
+                    normalFancyDialog("BEAT YOUR MILESTONE - 30 DAYS!", normalMessageForDialog);
                     //between 29(to show up in 30) and 60
                 } else if (counter > 28 && counter < 59) {
-                    normalFancyDialog("MILESTONE 30 DAYS REACHED!!");
+                    normalFancyDialog("MILESTONE 30 DAYS REACHED!!", normalMessageForDialog);
                     //between 59(to show up in 60) and 90
                 } else if (counter > 58 && counter < 91) {
-                    normalFancyDialog("MILESTONE 60 DAYS REACHED!!!");
+                    normalFancyDialog("MILESTONE 60 DAYS REACHED!!!", normalMessageForDialog);
                     //SHOW FANCY TOAST WITH CONGRATS
                 }//[END OF ELSE IFS DIALOGS]
-
-//                setTargetDays();
                 fab.hide();
             }
         });
     }
 
-    private void normalFancyDialog(String s) {
+    private void normalFancyDialog(String title, String message) {
         new FancyGifDialog.Builder(MainActivity.this)
-                .setTitle(s)
-                .setMessage("Did you abtained to smoke today ?")
-                .setNegativeBtnText("Cancel")
+                .setTitle(title)
+                .setMessage(message)
+                .setNegativeBtnText("NO")
                 .setPositiveBtnBackground("#FF4081")
-                .setPositiveBtnText("Ok")
+                .setPositiveBtnText("YES")
                 .setNegativeBtnBackground("#FFA9A7A8")
                 .setGifResource(R.drawable.source)   //Pass your Gif here
                 .isCancellable(true)
@@ -603,7 +623,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void OnClick() {
                         counter++;
-                        editor.putInt("counter", counter);
+                        editor.putInt(COUNTER, counter);
                         editor.apply();
                         checkActivityOnline();
                         savings = preferences.getInt(SAVINGS_FINAL, -1)+10;
@@ -612,9 +632,9 @@ public class MainActivity extends AppCompatActivity {
                         setTheSavingsPerDay();
                         moneyOrTimeAndGetValueOfItFromSharedPreferences();
                         setImprovementProgressLevels();
-                        setImagesForAchievmentCard();
+                        setImagesForAchievementCard();
                         try {
-                            counter = preferences.getInt("counter", -1);
+                            counter = preferences.getInt(COUNTER, -1);
                         } catch (NullPointerException e) {
                             e.printStackTrace();
                         }
@@ -633,17 +653,17 @@ public class MainActivity extends AppCompatActivity {
                 .OnNegativeClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
-                        counter = 1;
-                        savings = 10;
+                        counter = 0;
+                        savings = 0;
                         editor.putInt(SAVINGS_FINAL, savings);
-                        editor.putInt("counter", counter);
+                        editor.putInt(COUNTER, counter);
                         editor.apply();
                         checkActivityOnline();
                         setTheSavingsPerDay();
                         moneyOrTimeAndGetValueOfItFromSharedPreferences();
                         setImprovementProgressLevels();
                         try {
-                            counter = preferences.getInt("counter", -1);
+                            counter = preferences.getInt(COUNTER, -1);
                         } catch (NullPointerException e) {
                             e.printStackTrace();
                         }
@@ -667,26 +687,27 @@ public class MainActivity extends AppCompatActivity {
         //target counter string
         textview.setText(getString(androiId, string));
     }
-    private void setTxtForChallenge(String string, int androidId, TextView textView){
-        textView.setText(getString(androidId, string));
-    }
 
     private void moneyOrTimeAndGetValueOfItFromSharedPreferences() {
-        int id = preferences.getInt(SAVINGS_FINAL, -1);
-        Log.d("LOGGTAO", "id: " + id);
-        if (id != -1){
-            savings = id;
-        } else {
+        if (preferences.contains(SAVINGS_FINAL)){
             savings = preferences.getInt(SAVINGS_FINAL, -1);
+        } else {
+            savings = 0;
+            editor.putInt(SAVINGS_FINAL, savings);
+            editor.apply();
         }
         setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings),
                 R.string.money_time, moneyOrTimeTextView, String.valueOf("money"));
     }
 
+    @SideEffect
     private void setTargetDays() {
         try{
             //format string of MAX target txt view
-            counter = preferences.getInt("counter", 0);
+            if (preferences.contains(COUNTER)){
+                counter = preferences.getInt(COUNTER, 0);
+            }
+
             if (counter>=60){
                 userMaxCountForHabit = 90;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
@@ -703,15 +724,13 @@ public class MainActivity extends AppCompatActivity {
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
             setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit),
                     R.string.target_string, targetTxtViewId);
-            try {
-                challs = preferences.getString(CHALLENGES_STRING, "none");
-            } catch (NullPointerException e){
-                e.printStackTrace();
-            }
-            if (Objects.requireNonNull(challs).equalsIgnoreCase("none")){
-                challengeTextViewSubtitle.setText("Tap to start a challenge!");
+
+            if (!preferences.contains(CHALLENGES_STRING)){
+                challs = "Tap to start a challenge!";
+                challengeTextViewSubtitle.setText(challs);
             } else {
-                setTxtForChallenge(String.valueOf(challs), R.string.challengeString, challengeTextViewSubtitle);
+                challs = preferences.getString(CHALLENGES_STRING, challs);
+                challengeTextViewSubtitle.setText(challs);
             }
 
         } catch (NullPointerException e){
@@ -725,12 +744,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTheSavingsPerDay() {
-        counter = preferences.getInt("counter", 0);
-        int id = preferences.getInt(SAVINGS_FINAL, -1);
-        Log.d("LOGGTAO", "id: " + id);
-        if (id != -1) {
-            editor.putInt(SAVINGS_FINAL, savings);
-            editor.apply();
+        if (preferences.contains(COUNTER)){
+            counter = preferences.getInt(COUNTER, 0);
+        }
+        if (preferences.contains(SAVINGS_FINAL)){
+            savings = preferences.getInt(SAVINGS_FINAL, -1);
         } else {
             savings = counter * 10;//dollars per day
             editor.putInt(SAVINGS_FINAL, savings);
@@ -768,17 +786,17 @@ public class MainActivity extends AppCompatActivity {
         try {
             updatePercent();
             try {
-                counter = preferences.getInt("counter", -1);
+                counter = preferences.getInt(COUNTER, -1);
             } catch (NullPointerException e){e.printStackTrace();}
-            setImagesForAchievmentCard();
+            setImagesForAchievementCard();
             setImprovementProgressLevels();
             Log.d("TAGG", "try { counterText = " + counter);
             resetProgressBar(progressPercent);
             Log.d("TAGG", "resetProgressBar = " + counter);
             counterText.setText(String.valueOf(counter));
-            Log.d("TAGG", "counter = preferences.getInt(\"counter\", 0); = " + counter);
+            Log.d("TAGG", "startTheEngine, counter = " + counter);
             DAY_OF_CLICK = preferences.getInt("presentday", 0);
-            buttonClickedToday = preferences.getBoolean("clicked", false);
+            buttonClickedToday = preferences.getBoolean(CLICKED, false);
             //[calendar area]
             calendarForProgress = Calendar.getInstance();
             calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
@@ -795,7 +813,7 @@ public class MainActivity extends AppCompatActivity {
 //            Log.d("taolenZ", "Dhe counter to 1\n" +
 //                    "                counter = 1;AY_OF_CLICK is " + DAY_OF_CLICK + " presentDAY_today is " + DAY_OF_PRESENT);
 
-            editor.putInt("counter", counter);
+            editor.putInt(COUNTER, counter);
             editor.apply();
             setTargetDays();
 //                                    Log.d("taozen", calendarForProgress.getTime().getHours() + " " + "\n" +
@@ -809,7 +827,7 @@ public class MainActivity extends AppCompatActivity {
             endOfTheYearCondition();
             //green condition is when present day is higher than click day
             //in order to run our condition = to enable our button, our check in for user
-            greenCodition();
+            greenCondition();
             editor.putInt("progressPercent", progressPercent);
             editor.apply();
         } catch (NullPointerException e) {
@@ -825,18 +843,18 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         checkActivityOnline();
         updateButton();
-        setImagesForAchievmentCard();
+        setImagesForAchievementCard();
         runningInBackground();
         moneyOrTimeAndGetValueOfItFromSharedPreferences();
-        Log.d("taolenX1", "ON RESUMEE AND counter is " + counter);
+        setTargetDays();
         try {
-            //only retrieve and save in onpause
+            //Only retrieve and save in onpause
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
-            counter = preferences.getInt("counter", 0);
-            buttonClickedToday = preferences.getBoolean("clicked", false);
+            if (preferences.contains(COUNTER)){
+                counter = preferences.getInt(COUNTER, 0);
+            }
+            buttonClickedToday = preferences.getBoolean(CLICKED, false);
             progressPercent = preferences.getInt("progressPercent", progressPercent);
-            Log.i("taolenX", "[onResume]progressPercent is = " + progressPercent);
-            Log.i("taolenX", "NotClicked is : " + buttonClickedToday);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -848,11 +866,10 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         //save in onpause
         editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
-        editor.putInt("counter", counter);
-        editor.putBoolean("clicked", buttonClickedToday);
+        editor.putInt(COUNTER, counter);
+        editor.putBoolean(CLICKED, buttonClickedToday);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
-        Log.d("taolenX", "onPause SIMPLE>> AND counter is " + counter);
     }
 
     //onDestroy
@@ -860,14 +877,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
-        editor.putInt("counter", counter);
-        Log.d("counterval", "onDestroy " + counter);
+        editor.putInt(COUNTER, counter);
         editor.putInt("progressPercent", progressPercent);
-        editor.putBoolean("clicked", buttonClickedToday);
+        editor.putBoolean(CLICKED, buttonClickedToday);
         editor.apply();
     }
 
-    //i have in mind to use this when user FAIL to keep his promise on not abstaining on his habit
+    //I have in mind to use this when user FAIL to keep his promise on not abstaining on his habit
     private void resetProgressBar(Integer progressBar){
         updatePercent();
         setImprovementProgressLevels();
@@ -885,18 +901,16 @@ public class MainActivity extends AppCompatActivity {
             fab.hide();
         }
     }
-
+    //[ENABLE BOOLEAN FOR DAY PASSED]
     @SideEffect
     private void updateConditionGreenState() {
         //when click day is lower than today (present) && button was already clicked
         //we make the boolean false (in order for greenCondition to work) and for enabling button
         if (DAY_OF_PRESENT > DAY_OF_CLICK && buttonClickedToday) {
             buttonClickedToday = false;
-            editor.putBoolean("clicked", buttonClickedToday);
+            editor.putBoolean(CLICKED, buttonClickedToday);
             editor.apply();
             fab.hide();
-            Log.d("taolenX", "buttonClickedToday from !=favoriteUserHourAM is " + buttonClickedToday);
-            Log.d("taolenX", " counter = " + counter);
             //when days are the same and user already clicked
         } else if (DAY_OF_PRESENT == DAY_OF_CLICK && buttonClickedToday) {
             fab.hide();
@@ -905,18 +919,10 @@ public class MainActivity extends AppCompatActivity {
 
     //[ENABLE BUTTON]
     @SideEffect
-    private void greenCodition() {
+    private void greenCondition() {
         if ((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH)) {
-            //to do
-            //show the activate button
-            Log.d("taolenX777", "greenCodition WORKINGGGGG");
             fab.show();
-            //instead of counter add dialog to ask user if he did his habit
-            Log.i("taolenX777", "counter from greenCodition in async is " + counter);
-            //NEED SOME CHECKS/TESTS FOR THIS---TO SEE IF I NEED THIS BOOLEAN TO GET
-//            buttonClickedToday = preferences.getBoolean("clicked", false);
-            Log.d("taolenX", "buttonClickedToday from async is " + buttonClickedToday);
-            editor.putInt("counter", counter);
+            editor.putInt(COUNTER, counter);
             editor.apply();
         }
     }
@@ -928,10 +934,8 @@ public class MainActivity extends AppCompatActivity {
             fab.show();
             //instead of counter add dialog to ask user if he did his habit
             //dialog and onclick counter++;
-            Log.i("taolenX", "counter from endOfTheYearCondition in async is " + counter);
-            buttonClickedToday = preferences.getBoolean("clicked", false);
-            Log.d("taolenX", "buttonClickedToday from async is " + buttonClickedToday);
-            editor.putInt("counter", counter);
+            buttonClickedToday = preferences.getBoolean(CLICKED, false);
+            editor.putInt(COUNTER, counter);
             editor.apply();
         }
     }
@@ -967,7 +971,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("USERMAX", "i am here: "+ progressPercent);
             progressPercent = 100;
         }
-        editor.putInt("counter", counter);
+        editor.putInt(COUNTER, counter);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
     }
@@ -975,7 +979,9 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void setImprovementProgressLevels() {
         try {
-            counter = preferences.getInt("counter", 0);
+            if (preferences.contains(COUNTER)){
+                counter = preferences.getInt(COUNTER, 0);
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -1077,7 +1083,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("presentday", zet2);
             Log.d("taolenZ777", "zet = " + zet2);
             counterText.setText(String.valueOf(counter));
-            editor.putInt("counter", counter);
+            editor.putInt(COUNTER, counter);
             editor.apply();
             updatePercent();
             setImprovementProgressLevels();
@@ -1102,9 +1108,9 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }//isOnline[END]
-    private void requestDataById(String url, int id) {
+    private void requestDataById(int id) {
         MainActivity.MyAsyncTask task = new MainActivity.MyAsyncTask();
-        task.execute(url + "/" + id);
+        task.execute(MainActivity.HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS + "/" + id);
     }
     @SideEffect
     private void checkActivityOnline() {
@@ -1115,10 +1121,17 @@ public class MainActivity extends AppCompatActivity {
         if (isOnline()) {
             //int i = ran.nextInt(366)+1; to add 1000 quotes or so
             try {
-                counter = preferences.getInt("counter", 0);
+                if (preferences.contains(COUNTER)){
+                    counter = preferences.getInt(COUNTER, 0);
+                }
             } catch (NullPointerException e){e.printStackTrace();}
             Log.d("COUNTER777", "counter: " + counter);
-            requestDataById(HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS, counter);
+            if (counter == 0){
+                requestDataById(1);
+            } else {
+                requestDataById(counter);
+            }
+
         } else {
             errorText.setVisibility(View.VISIBLE);
             tipofthedayTxtViewId.setText("ERROR 404");
@@ -1130,12 +1143,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void updateDisplayString(String message) {
-        tipofthedayTxtViewId.setText(message + "\n");
+        tipofthedayTxtViewId.setText(new StringBuilder().append(message).append("\n").toString());
     }
+
+    @SuppressLint("StaticFieldLeak")
     private class MyAsyncTask extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
-            counter = preferences.getInt("counter", counter);
+            counter = preferences.getInt(COUNTER, counter);
             counterText.setText(String.valueOf(counter));
             updateDisplayString("Starting to fetch data from heroku ...");
             if (tasks.size() == 0) {
@@ -1153,10 +1168,11 @@ public class MainActivity extends AppCompatActivity {
                 //using GSON
                 JsonParser parser = new JsonParser();
                 //using MyHttpManager getData static method
-//              String content = MyHttpManager.getData(params[0]);
+              String content = MyHttpManager.getData(params[0]);
 //                Thread.sleep(1000);
                 //using MyHttpCoreAndroid
-                String content = MyHttpCoreAndroid.getData(params[0]);
+//                String content = MyHttpCoreAndroid.getData(params[0]);
+                assert content != null;
                 JsonElement rootNode = parser.parse(content);
                 JsonObject details = rootNode.getAsJsonObject();
                 JsonElement nameNode = details.get("name");
@@ -1191,9 +1207,12 @@ public class MainActivity extends AppCompatActivity {
     }//MyAsyncTask[END]
 
     @SideEffect
-    private void setImagesForAchievmentCard() {
+    private void setImagesForAchievementCard() {
         try {
-            counter = preferences.getInt("counter", 0);
+            if (preferences.contains(COUNTER)){
+                counter = preferences.getInt(COUNTER, 0);
+            }
+
         } catch (NullPointerException e){e.printStackTrace();}
         Log.d("taoAchiev", "counter from achiev = " + counter);
         if (counter>0&&counter<10) {//user have between a day and a week
@@ -1300,18 +1319,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showEntireProgressForUserCard(TextView userCigaretesProgressTxt,
+    private void showEntireProgressForUserCard(TextView userCigarettesProgressTat,
                                                TextView userRankProgressTxt,
                                                TextView userHoursProgressTxt) {
         try {
-            counter = preferences.getInt("counter", 0);
-            int cigaretess = cigarettesPerDay * counter;
+            if (preferences.contains(COUNTER)){
+                counter = preferences.getInt(COUNTER, 0);
+            }
+            int cigarettes = cigarettesPerDay * counter;
             String theLatestRank = preferences.getString("rank", "null");
             String lifeRegained = Integer.toString((lifeRegainedInteger / 60)*counter);
             //setting textview with the assigned text
-            userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + String.valueOf(cigaretess));
+            userCigarettesProgressTat.setText("Ciggaretes not smoked: " + String.valueOf(cigarettes));
             userRankProgressTxt.setText("Rank: " + String.valueOf(theLatestRank));
             userHoursProgressTxt.setText("Life regained: " + String.valueOf(lifeRegained) + " hours");
         } catch (NullPointerException e){e.printStackTrace();}
     }
-}
+}//[END OF MAIN CLASS]

@@ -18,6 +18,6 @@
     <string name="thumbnail">thumbnail</string>
     <string name="progressactivity_get_started">Get started on the life you want</string>
     <string name="maxCounter">maxCounter</string>
-    <string name="challengeString">Your current record is: %s</string>
     <string name="help">help</string>
+    <string name="checkinStr">You will check-in everyday at %d:00</string>
 </resources>

@@ -17,8 +17,6 @@ public class MyHttpManager {
             //return the response into string type chars (Human readable characters)
             return EntityUtils.toString(response.getEntity());
         } catch (Exception e) {
-            //if something goes wrong we don't return anything
-            //but print the error
             e.printStackTrace();
             return null;
         } finally {
