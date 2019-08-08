@@ -16,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".CardClasses.AchievmentsActivity" />
-        <activity android:name=".OptionsMenuActivities.AboutActivity" />
+        <activity android:name=".cardClasses.AchievmentsActivity" />
+        <activity android:name=".optionsMenuActivities.AboutActivity" />
         <activity
-            android:name=".CardClasses.FailLogsActivity"
+            android:name=".cardClasses.FailLogsActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
@@ -31,11 +31,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Intro.IntroActivity"
+            android:name=".intro.IntroActivity"
             android:label="app_intro" />
-        <activity android:name=".CardClasses.SavingsActivity" />
-        <activity android:name=".CardClasses.ChallengeActivity" />
-        <service android:name=".Notif.MyFirebaseMessagingService" />
+        <activity android:name=".cardClasses.SavingsActivity" />
+        <activity android:name=".cardClasses.ChallengeActivity" />
+        <service android:name=".notif.MyFirebaseMessagingService" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
 

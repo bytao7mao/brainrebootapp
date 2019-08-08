@@ -1,4 +1,4 @@
-package com.taozen.quithabit.Utils;
+package com.taozen.quithabit.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

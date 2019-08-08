@@ -1,4 +1,4 @@
-package com.taozen.quithabit.OptionsMenuActivities;
+package com.taozen.quithabit.optionsMenuActivities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.taozen.quithabit.Notif;
+package com.taozen.quithabit.notif;
 
 import android.app.NotificationManager;
 import android.content.Context;

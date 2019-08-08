@@ -1,4 +1,4 @@
-package com.taozen.quithabit.CardClasses
+package com.taozen.quithabit.cardClasses
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -19,7 +19,7 @@ class FailLogsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fail_logs)
         ButterKnife.bind(this@FailLogsActivity)
 
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         Objects.requireNonNull<ActionBar>(supportActionBar).setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -36,7 +36,7 @@ class FailLogsActivity : AppCompatActivity() {
             if (intent != null) {
                 val getTimeStampString = intent.getStringExtra("log").toString()
                 Log.d("progress", "value of percent $getTimeStampString")
-                logtxtVwId.setText("time of failure: " + getTimeStampString)
+                logtxtVwId.text = "time of failure: " + getTimeStampString
             }
         } catch (e: NullPointerException) {
             e.printStackTrace()

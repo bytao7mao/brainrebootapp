@@ -1,10 +1,17 @@
-package com.taozen.quithabit.Intro;
+package com.taozen.quithabit.intro;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.util.Log;
+import android.widget.EditText;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -14,10 +21,18 @@ import com.taozen.quithabit.R;
 
 public class IntroActivity extends AppIntro {
 
+    public static final String MONEYPERDAY = "moneyperday";
+    //shared pref
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //shared pref
+        preferences = PreferenceManager.getDefaultSharedPreferences(IntroActivity.this);
+        editor = preferences.edit();
 
         // Instead of fragments, you can also use our default slide.
         // Just create a `SliderPage` and provide title, description, background and image.
@@ -31,9 +46,37 @@ public class IntroActivity extends AppIntro {
         sliderPage2.setTitle("Bla bla title");
         sliderPage2.setDescription("description");
         sliderPage2.setImageDrawable(R.drawable.common_google_signin_btn_icon_dark_focused);
-        sliderPage2.setBgColor(Color.GREEN);
+        sliderPage2.setBgColor(Color.BLUE);
+        SliderPage sliderPage3 = new SliderPage();
+        sliderPage3.setTitle("Bla bla title");
+        sliderPage3.setDescription("description");
+        sliderPage3.setImageDrawable(R.drawable.common_google_signin_btn_icon_dark_focused);
+        sliderPage3.setBgColor(Color.RED);
         addSlide(AppIntroFragment.newInstance(sliderPage));
         addSlide(AppIntroFragment.newInstance(sliderPage2));
+        showDialog();
+        addSlide(AppIntroFragment.newInstance(sliderPage3));
+    }
+
+    private void showDialog(){
+        //choose your habit ------------
+        AlertDialog.Builder habitAlert = new AlertDialog.Builder(this);
+        final EditText editTextForChoosingHabit = new EditText(IntroActivity.this);
+        habitAlert.setMessage("How much money do you spend per day ?");
+        habitAlert.setTitle("MONEY!");
+        habitAlert.setView(editTextForChoosingHabit);
+        habitAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //What ever you want to do with the value
+                Editable editM = editTextForChoosingHabit.getText();
+                int moneyInt = Integer.parseInt(editM.toString());
+                editor.putInt(MONEYPERDAY, moneyInt);
+                editor.apply();
+                Log.d("INTROTAO", "money saved in INTROACTIVITY ? :  " + editM);
+            }
+        });
+
+        habitAlert.show();
     }
 
     @Override

@@ -37,27 +37,27 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
-import com.taozen.quithabit.Intro.IntroActivity;
-import com.taozen.quithabit.OptionsMenuActivities.AboutActivity;
-import com.taozen.quithabit.CardClasses.AchievmentsActivity;
-import com.taozen.quithabit.CardClasses.ChallengeActivity;
-import com.taozen.quithabit.CardClasses.FailLogsActivity;
-import com.taozen.quithabit.CardClasses.SavingsActivity;
-import com.taozen.quithabit.Utils.MyHttpManager;
+import com.taozen.quithabit.intro.IntroActivity;
+import com.taozen.quithabit.optionsMenuActivities.AboutActivity;
+import com.taozen.quithabit.cardClasses.AchievmentsActivity;
+import com.taozen.quithabit.cardClasses.ChallengeActivity;
+import com.taozen.quithabit.cardClasses.FailLogsActivity;
+import com.taozen.quithabit.cardClasses.SavingsActivity;
+import com.taozen.quithabit.utils.MyHttpManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.taozen.quithabit.intro.IntroActivity.MONEYPERDAY;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
     private Configuration config;
     private String challs;
     private StringBuilder strBuilder = new StringBuilder();
+    int getSpentMoneyFromIntro;
 
     //OnCreate [START]
     @SuppressLint("CommitPrefEdits")
@@ -194,9 +195,9 @@ public class MainActivity extends AppCompatActivity {
         firstCheckForCounterAndMax();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+                getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -255,6 +256,14 @@ public class MainActivity extends AppCompatActivity {
         userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
         userRankProgressTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
+
+
+        if (preferences.contains(MONEYPERDAY)){
+            getSpentMoneyFromIntro = preferences.getInt(MONEYPERDAY, 0);
+        } else {
+            getSpentMoneyFromIntro = -1;
+        }
+        Log.d("INTROTAO", "money saved in MAINACTIVITY ? :  " + getSpentMoneyFromIntro);
 
         try {
             //setting the achievments images for user
@@ -436,7 +445,7 @@ public class MainActivity extends AppCompatActivity {
     private void retrieveSavingMoney() {
         savings = preferences.getInt(SAVINGS_FINAL, -1);
         if (savings == 0 || savings == -1) {
-            savings = moneyToSave;
+            savings = getSpentMoneyFromIntro;
             editor.putInt(SAVINGS_FINAL, savings);
             editor.apply();
         } else {
@@ -626,7 +635,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.putInt(COUNTER, counter);
                         editor.apply();
                         checkActivityOnline();
-                        savings = preferences.getInt(SAVINGS_FINAL, -1)+10;
+                        savings = preferences.getInt(SAVINGS_FINAL, -1)+getSpentMoneyFromIntro;
                         editor.putInt(SAVINGS_FINAL, savings);
                         editor.apply();
                         setTheSavingsPerDay();
@@ -697,7 +706,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
         setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings),
-                R.string.money_time, moneyOrTimeTextView, String.valueOf("money"));
+                R.string.money_time, moneyOrTimeTextView, "money");
     }
 
     @SideEffect
@@ -750,7 +759,8 @@ public class MainActivity extends AppCompatActivity {
         if (preferences.contains(SAVINGS_FINAL)){
             savings = preferences.getInt(SAVINGS_FINAL, -1);
         } else {
-            savings = counter * 10;//dollars per day
+            Log.d("INTROTAO", "money saved in private void setTheSavingsPerDay() { ? :  " + getSpentMoneyFromIntro);
+            savings = counter * getSpentMoneyFromIntro;//dollars per day
             editor.putInt(SAVINGS_FINAL, savings);
             editor.apply();
         }
@@ -1215,7 +1225,7 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (NullPointerException e){e.printStackTrace();}
         Log.d("taoAchiev", "counter from achiev = " + counter);
-        if (counter>0&&counter<10) {//user have between a day and a week
+        if (counter>=0&&counter<10) {//user have between a day and a week
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
@@ -1327,7 +1337,7 @@ public class MainActivity extends AppCompatActivity {
                 counter = preferences.getInt(COUNTER, 0);
             }
             int cigarettes = cigarettesPerDay * counter;
-            String theLatestRank = preferences.getString("rank", "null");
+            String theLatestRank = preferences.getString("rank", "unranked");
             String lifeRegained = Integer.toString((lifeRegainedInteger / 60)*counter);
             //setting textview with the assigned text
             userCigarettesProgressTat.setText("Ciggaretes not smoked: " + String.valueOf(cigarettes));
