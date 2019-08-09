@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.anupcowkur.herebedragons.SideEffect;
 import com.taozen.quithabit.R;
 
 import java.util.Objects;
@@ -21,16 +22,15 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.taozen.quithabit.MainActivity.COUNTER;
 import static com.taozen.quithabit.MainActivity.SAVINGS_FINAL;
 
 public class SavingsActivity extends AppCompatActivity {
-
-//    public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
     @BindView(R.id.savingsTxt) TextView savingsTxt;
     @BindView(R.id.addSavingsBtnId) Button otherSavingsBtn;
     @BindView(R.id.editTxtSavingsId) EditText editTxtSavings;
-    int otherIntSavings;
-    int finalSum;
+    long otherIntSavings;
+    long finalSum;
     //shared pref
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -51,8 +51,7 @@ public class SavingsActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
 
-//        FromHerokuWithRetrofit.resp = FromHerokuWithRetrofit.returnStringFromServerWithRetrofit(2);
-//        Log.d("RETROFIT", "response: " + FromHerokuWithRetrofit.resp);
+        getCounterFromMain();
 
         editTxtSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
         getIntentOrPrefsAndStore();
@@ -60,15 +59,33 @@ public class SavingsActivity extends AppCompatActivity {
         otherSavingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                otherIntSavings = Integer.parseInt(String.valueOf(editTxtSavings.getText()));
-                finalSum = finalSum + otherIntSavings;
-                savingsTxt.setText("Your total savings: " + finalSum + " $");
-                Log.d("LOGGTAO", "savings from onClick: " + finalSum);
-                editor.putInt(SAVINGS_FINAL, finalSum);
-                editor.apply();
+                try {
+                    otherIntSavings = Integer.parseInt(String.valueOf(editTxtSavings.getText()));
+                    finalSum = finalSum + otherIntSavings;
+                    savingsTxt.setText("Your total savings: " + finalSum + " $");
+                    Log.d("LOGGTAO", "savings from onClick: " + finalSum);
+                    editor.putLong(SAVINGS_FINAL, finalSum);
+                    editor.apply();
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+
             }
     });
 }
+
+    @SideEffect
+    private void getCounterFromMain() {
+        int co;
+        if (preferences.contains(COUNTER)){
+            co = preferences.getInt(COUNTER, 0);
+        } else {
+            co = 0;
+        }
+        Log.d("SAVINGSA", "counter in savings is: " + co);
+        editor.putInt(COUNTER, co);
+        editor.apply();
+    }
 
     //fetching value from MainActivity
         private void getIntentOrPrefsAndStore() {
@@ -76,12 +93,12 @@ public class SavingsActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 if (intent != null) {
                     //retrieve by intent(outside activity)
-                    finalSum = intent.getIntExtra(SAVINGS_FINAL, -1);
+                    finalSum = intent.getLongExtra(SAVINGS_FINAL, -1);
                     Log.d("LOGGTAO", "get from intent ? = " + finalSum);
                     savingsTxt.setText("Your total savings: " + finalSum + " $");
                 } else {
                     //retrieve by prefs (inside activity)
-                    finalSum = preferences.getInt(SAVINGS_FINAL, -1);
+                    finalSum = preferences.getLong(SAVINGS_FINAL, -1);
                     Log.d("LOGGTAO", "get from preferences ? = " + finalSum);
                     savingsTxt.setText("Your total savings: " + finalSum + " $");
                 }

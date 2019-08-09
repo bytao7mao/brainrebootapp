@@ -1,7 +1,9 @@
 package com.taozen.quithabit;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -19,11 +21,15 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -57,8 +63,6 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.taozen.quithabit.intro.IntroActivity.MONEYPERDAY;
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String CHALLENGES_STRING = "CHALLENGES_FINAL";
     public static final String CLICKED = "CLICKED";
     public static final String COUNTER = "COUNTER";
+    public static final String CIGGPERDAY = "cigperday";
     private List<MainActivity.MyAsyncTask> tasks;
     private Timer timer;
     //dialogs for fabs - messages
@@ -74,11 +79,8 @@ public class MainActivity extends AppCompatActivity {
             "it means that you made the first step in order to get rid of your habit";
 
     //TODO - ask user how many cigarettes smokes per day with dialog
-    private int cigarettesPerDay = 2;
-    //TODO - ask user how much to save
-    private int moneyToSave = 0;
-
-    private int lifeRegainedInteger = 30 * cigarettesPerDay;
+    private int cigarettesPerDay;
+    private int lifeRegainedInteger;
 
     //Views
     @BindView(android.R.id.content) View parentLayout;
@@ -134,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
     boolean isFirstStart;
     //counter for user
     private int counter;
-    private int savings=0,
-            progressPercent = 0,
+    private long savings = 0;
+    private int progressPercent = 0,
             DAY_OF_CLICK = 0,
             DAY_OF_PRESENT = 0,
             HOUR_OF_DAYLIGHT = 0,
@@ -161,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
     private Configuration config;
     private String challs;
     private StringBuilder strBuilder = new StringBuilder();
-    int getSpentMoneyFromIntro;
+    long getSpentMoneyFromIntro;
 
     //OnCreate [START]
     @SuppressLint("CommitPrefEdits")
@@ -210,9 +212,6 @@ public class MainActivity extends AppCompatActivity {
         achievementRanksCard.setCardElevation(0);
         challengeCardView.setCardElevation(0);
 
-        //settting progress card
-        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
-
         //progress for percent - this is a circular bar
         progressBarEnergyLevel = findViewById(R.id.progress_bar_energy);
         progressBarFatigueLevel = findViewById(R.id.progress_bar_fatigue);
@@ -256,14 +255,6 @@ public class MainActivity extends AppCompatActivity {
         userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
         userRankProgressTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
-
-
-        if (preferences.contains(MONEYPERDAY)){
-            getSpentMoneyFromIntro = preferences.getInt(MONEYPERDAY, 0);
-        } else {
-            getSpentMoneyFromIntro = -1;
-        }
-        Log.d("INTROTAO", "money saved in MAINACTIVITY ? :  " + getSpentMoneyFromIntro);
 
         try {
             //setting the achievments images for user
@@ -432,7 +423,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setBackgroundForDaylightOrNight() {
         //change wallpaper during nighttime
-        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20){
+        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20) {
             backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
             backgroundImgWall.setAlpha(0.2f);
         } else {
@@ -443,26 +434,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void retrieveSavingMoney() {
-        savings = preferences.getInt(SAVINGS_FINAL, -1);
-        if (savings == 0 || savings == -1) {
-            savings = getSpentMoneyFromIntro;
-            editor.putInt(SAVINGS_FINAL, savings);
-            editor.apply();
-        } else {
-            savings = preferences.getInt(SAVINGS_FINAL, -1);
-            editor.putInt(SAVINGS_FINAL, savings);
-            editor.apply();
+        try {
+            savings = preferences.getLong(SAVINGS_FINAL, 1);
+            if (savings == 0 || savings == 1) {
+                savings = getSpentMoneyFromIntro;
+                editor.putLong(SAVINGS_FINAL, savings);
+                editor.apply();
+            } else {
+                savings = preferences.getLong(SAVINGS_FINAL, 1);
+                editor.putLong(SAVINGS_FINAL, savings);
+                editor.apply();
+            }
+        } catch (ClassCastException e){
+            e.printStackTrace();
         }
+
     }
 
     private void firstCheckForCounterAndMax() {
-//        if (counter == 0){moneyToSave
-//            counter = 1;
-//            editor.putInt(COUNTER, counter);
-//            editor.apply();
-//        } else {
-//            counter = preferences.getInt(COUNTER, 0);
-//        }
+        if (!preferences.contains(COUNTER)){
+            counter = 0;
+            editor.putInt(COUNTER, counter);
+            editor.apply();
+        } else {
+            counter = preferences.getInt(COUNTER, 0);
+        }
         if (userMaxCountForHabit == -1){
             userMaxCountForHabit = 30;
             editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
@@ -507,7 +503,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(BottomDialog dialog) {
                         Log.d("BottomDialogs", "Do something!");
                         //intro activity check in a separate thread
-                        startIntroActivity();
+//                        startIntroActivity();
+                        showDialogForSavingSum();
                     }
                 }).show();
     }
@@ -583,6 +580,7 @@ public class MainActivity extends AppCompatActivity {
                 buttonClickedToday = true;
                 editor.putBoolean(CLICKED, buttonClickedToday);
                 resetProgressBar(progressPercent);
+                cigarettesPerDay = preferences.getInt(CIGGPERDAY, 0);
                 //[calendar area]
                 calendarOnClick = Calendar.getInstance();
                 calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
@@ -633,10 +631,16 @@ public class MainActivity extends AppCompatActivity {
                     public void OnClick() {
                         counter++;
                         editor.putInt(COUNTER, counter);
+                        editor.putInt(CIGGPERDAY, cigarettesPerDay);
                         editor.apply();
                         checkActivityOnline();
-                        savings = preferences.getInt(SAVINGS_FINAL, -1)+getSpentMoneyFromIntro;
-                        editor.putInt(SAVINGS_FINAL, savings);
+
+                        try {
+                            savings = preferences.getLong(SAVINGS_FINAL, 1) + getSpentMoneyFromIntro;
+                        } catch (ClassCastException e) {
+                            e.printStackTrace();
+                        }
+                        editor.putLong(SAVINGS_FINAL, savings);
                         editor.apply();
                         setTheSavingsPerDay();
                         moneyOrTimeAndGetValueOfItFromSharedPreferences();
@@ -664,7 +668,7 @@ public class MainActivity extends AppCompatActivity {
                     public void OnClick() {
                         counter = 0;
                         savings = 0;
-                        editor.putInt(SAVINGS_FINAL, savings);
+                        editor.putLong(SAVINGS_FINAL, savings);
                         editor.putInt(COUNTER, counter);
                         editor.apply();
                         checkActivityOnline();
@@ -699,10 +703,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void moneyOrTimeAndGetValueOfItFromSharedPreferences() {
         if (preferences.contains(SAVINGS_FINAL)){
-            savings = preferences.getInt(SAVINGS_FINAL, -1);
+            try {
+                savings = preferences.getLong(SAVINGS_FINAL, 1);
+            } catch (ClassCastException e) {
+                e.printStackTrace();
+            }
+
         } else {
             savings = 0;
-            editor.putInt(SAVINGS_FINAL, savings);
+            editor.putLong(SAVINGS_FINAL, savings);
             editor.apply();
         }
         setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings),
@@ -716,7 +725,6 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)){
                 counter = preferences.getInt(COUNTER, 0);
             }
-
             if (counter>=60){
                 userMaxCountForHabit = 90;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
@@ -757,11 +765,13 @@ public class MainActivity extends AppCompatActivity {
             counter = preferences.getInt(COUNTER, 0);
         }
         if (preferences.contains(SAVINGS_FINAL)){
-            savings = preferences.getInt(SAVINGS_FINAL, -1);
+            try {
+                savings = preferences.getLong(SAVINGS_FINAL, 1);
+            } catch (ClassCastException e) {e.printStackTrace();}
         } else {
             Log.d("INTROTAO", "money saved in private void setTheSavingsPerDay() { ? :  " + getSpentMoneyFromIntro);
-            savings = counter * getSpentMoneyFromIntro;//dollars per day
-            editor.putInt(SAVINGS_FINAL, savings);
+            savings = (long) counter *  getSpentMoneyFromIntro;//dollars per day
+            editor.putLong(SAVINGS_FINAL, savings);
             editor.apply();
         }
     }
@@ -860,27 +870,33 @@ public class MainActivity extends AppCompatActivity {
         try {
             //Only retrieve and save in onpause
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
-            if (preferences.contains(COUNTER)){
-                counter = preferences.getInt(COUNTER, 0);
-            }
+            if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, 0); }
+            if (preferences.contains(CIGGPERDAY)){cigarettesPerDay = preferences.getInt(CIGGPERDAY, 0);}
+            if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, 0); }
             buttonClickedToday = preferences.getBoolean(CLICKED, false);
             progressPercent = preferences.getInt("progressPercent", progressPercent);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-    }
+        Log.d("INTROTAO", "values in onResume: " + "cigperday " + cigarettesPerDay+ " savings: " + savings);
+    }//[END of ONRESUME]
 
     //onPause
     @Override
     protected void onPause() {
         super.onPause();
         //save in onpause
+        cigarettesPerDay = preferences.getInt(CIGGPERDAY, 0);
+        savings = preferences.getLong(SAVINGS_FINAL, 0);
         editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
         editor.putInt(COUNTER, counter);
         editor.putBoolean(CLICKED, buttonClickedToday);
+        editor.putInt(CIGGPERDAY, cigarettesPerDay);
+        editor.putLong(SAVINGS_FINAL, savings);
         editor.putInt("progressPercent", progressPercent);
         editor.apply();
-    }
+        Log.d("INTROTAO", "values in onPause: " + "cigperday " + cigarettesPerDay+ " savings: " + savings);
+    }//[END of ONPAUSE]
 
     //onDestroy
     @Override
@@ -888,10 +904,13 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
         editor.putInt(COUNTER, counter);
-        editor.putInt("progressPercent", progressPercent);
         editor.putBoolean(CLICKED, buttonClickedToday);
+        editor.putInt(CIGGPERDAY, cigarettesPerDay);
+        editor.putLong(SAVINGS_FINAL, savings);
+        editor.putInt("progressPercent", progressPercent);
         editor.apply();
-    }
+        Log.d("INTROTAO", "values in onDestroy: " + "cigperday " + cigarettesPerDay+ " savings: " + savings);
+    }//[END of ONDESTROY]
 
     //I have in mind to use this when user FAIL to keep his promise on not abstaining on his habit
     private void resetProgressBar(Integer progressBar){
@@ -1124,24 +1143,18 @@ public class MainActivity extends AppCompatActivity {
     }
     @SideEffect
     private void checkActivityOnline() {
-        //TODO replace ran.next with int i to be equal to the present day
-        //ex: DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
-        //int i = DAY_OF_PRESENT;
-        //for this to work i have to provide 366 quotes
         if (isOnline()) {
-            //int i = ran.nextInt(366)+1; to add 1000 quotes or so
             try {
                 if (preferences.contains(COUNTER)){
                     counter = preferences.getInt(COUNTER, 0);
                 }
             } catch (NullPointerException e){e.printStackTrace();}
-            Log.d("COUNTER777", "counter: " + counter);
             if (counter == 0){
                 requestDataById(1);
             } else {
                 requestDataById(counter);
             }
-
+//            requestDataById(DAY_OF_PRESENT);
         } else {
             errorText.setVisibility(View.VISIBLE);
             tipofthedayTxtViewId.setText("ERROR 404");
@@ -1329,6 +1342,64 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showDialogForSavingSum() {
+        final EditText editTextForChoosingHabit =
+                new EditText(MainActivity.this);
+        editTextForChoosingHabit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        //impl bottom dialog instead of normal dialog
+        new BottomDialog.Builder(this)
+                .setTitle("MONEY TO SAVE!")
+                .setContent("How much money do you spend per day ?")
+                .setPositiveText("OK")
+                .setCustomView(editTextForChoosingHabit)
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        //What ever you want to do with the value
+                        //What ever you want to do with the value
+                        Editable editM = editTextForChoosingHabit.getText();
+                        long moneyInt = (long) Integer.parseInt(editM.toString());
+                        editor.putLong(SAVINGS_FINAL, moneyInt);
+                        editor.apply();
+                        Log.d("INTROTAO", "money saved in INTROACTIVITY ? :  " + moneyInt);
+                        showDialogForSavingCiggarettesNumber();
+                    }
+                }).show();
+    }
+    private void showDialogForSavingCiggarettesNumber() {
+        final EditText editTextForChoosingHabit =
+                new EditText(MainActivity.this);
+        editTextForChoosingHabit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        //impl bottom dialog instead of normal dialog
+        new BottomDialog.Builder(this)
+                .setTitle("CIGGARETTES!")
+                .setContent("How much ciggarettes do you smoke per day ?")
+                .setPositiveText("OK")
+                .setCustomView(editTextForChoosingHabit)
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        //What ever you want to do with the value
+                        Editable editM = editTextForChoosingHabit.getText();
+                        int cigInt = (int) Integer.parseInt(editM.toString());
+                        editor.putInt(CIGGPERDAY, cigInt);
+                        editor.apply();
+                        Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);
+                        startIntroActivity();
+                    }
+                }).show();
+    }
+
+
+
     private void showEntireProgressForUserCard(TextView userCigarettesProgressTat,
                                                TextView userRankProgressTxt,
                                                TextView userHoursProgressTxt) {
@@ -1336,9 +1407,22 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)){
                 counter = preferences.getInt(COUNTER, 0);
             }
-            int cigarettes = cigarettesPerDay * counter;
+            int cigarettes = 0;
+            if (preferences.contains(CIGGPERDAY)){
+                cigarettesPerDay = preferences.getInt(CIGGPERDAY, 0);
+                if (counter > 0){
+                    cigarettes = cigarettesPerDay * counter;
+                    editor.putInt(CIGGPERDAY, cigarettes);
+                    editor.apply();
+                } else {
+                    cigarettes = cigarettesPerDay;
+                    editor.putInt(CIGGPERDAY, cigarettes);
+                    editor.apply();
+                }
+            }
             String theLatestRank = preferences.getString("rank", "unranked");
-            String lifeRegained = Integer.toString((lifeRegainedInteger / 60)*counter);
+            lifeRegainedInteger = 30 * cigarettesPerDay;
+            String lifeRegained = Integer.toString((lifeRegainedInteger / 60) * counter);
             //setting textview with the assigned text
             userCigarettesProgressTat.setText("Ciggaretes not smoked: " + String.valueOf(cigarettes));
             userRankProgressTxt.setText("Rank: " + String.valueOf(theLatestRank));
