@@ -197,9 +197,9 @@ public class MainActivity extends AppCompatActivity {
         firstCheckForCounterAndMax();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
+                getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.white), PorterDuff.Mode.SRC_IN);
+                getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
