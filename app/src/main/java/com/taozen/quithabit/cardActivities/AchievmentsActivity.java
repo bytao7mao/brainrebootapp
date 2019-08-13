@@ -1,4 +1,4 @@
-package com.taozen.quithabit.cardClasses;
+package com.taozen.quithabit.cardActivities;
 
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;

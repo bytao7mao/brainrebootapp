@@ -40,11 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_200"/>
-                <!--<ImageView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:alpha="0.9"-->
-                    <!--android:background="@drawable/p2" />-->
+
                 <ImageView
                     android:id="@+id/YourProgressImgId"
                     android:layout_width="40dp"

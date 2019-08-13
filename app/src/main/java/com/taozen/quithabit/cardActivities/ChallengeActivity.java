@@ -1,4 +1,4 @@
-package com.taozen.quithabit.cardClasses;
+package com.taozen.quithabit.cardActivities;
 
 import android.content.SharedPreferences;
 import android.os.Build;

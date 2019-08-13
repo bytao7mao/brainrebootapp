@@ -28,4 +28,3 @@
         layout="@layout/app_bar_mainactivity"
         tools:context=".MainActivity" />
 </RelativeLayout>
-

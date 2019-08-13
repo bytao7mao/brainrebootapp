@@ -16,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".cardClasses.AchievmentsActivity" />
+        <activity android:name=".cardActivities.AchievmentsActivity" />
         <activity android:name=".optionsMenuActivities.AboutActivity" />
         <activity
-            android:name=".cardClasses.FailLogsActivity"
+            android:name=".cardActivities.FailLogsActivity"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
@@ -33,8 +33,8 @@
         <activity
             android:name=".intro.IntroActivity"
             android:label="app_intro" />
-        <activity android:name=".cardClasses.SavingsActivity" />
-        <activity android:name=".cardClasses.ChallengeActivity" />
+        <activity android:name=".cardActivities.SavingsActivity" />
+        <activity android:name=".cardActivities.ChallengeActivity" />
         <service android:name=".notif.MyFirebaseMessagingService" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>

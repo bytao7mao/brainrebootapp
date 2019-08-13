@@ -1,4 +1,4 @@
-package com.taozen.quithabit.cardClasses;
+package com.taozen.quithabit.cardActivities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,8 +51,6 @@ public class SavingsActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
 
-        getCounterFromMain();
-
         editTxtSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
         getIntentOrPrefsAndStore();
 
@@ -73,19 +71,6 @@ public class SavingsActivity extends AppCompatActivity {
             }
     });
 }
-
-    @SideEffect
-    private void getCounterFromMain() {
-        int co;
-        if (preferences.contains(COUNTER)){
-            co = preferences.getInt(COUNTER, 0);
-        } else {
-            co = 0;
-        }
-        Log.d("SAVINGSA", "counter in savings is: " + co);
-        editor.putInt(COUNTER, co);
-        editor.apply();
-    }
 
     //fetching value from MainActivity
         private void getIntentOrPrefsAndStore() {

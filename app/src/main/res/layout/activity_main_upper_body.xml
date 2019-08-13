@@ -57,7 +57,7 @@
                     android:layout_marginTop="1dp"
                     android:alpha="0.7"
                     android:layout_toRightOf="@id/tipImageId"
-                    style="@style/TextColorBlack"
+                    style="@style/TextColorVanilla"
                     android:textSize="12sp"
                     android:text="Today you can be whatever you want!" />
                 <!--style="@style/TextColorBlack"-->
@@ -102,13 +102,13 @@
                     android:layout_centerHorizontal="true"
                     android:text="1"
                     android:alpha="0.9"
-                    style="@style/TextColorBlack"
+                    style="@style/TextColorWhite"
                     android:textSize="58sp" />
             </RelativeLayout>
             <!--end of days counter-->
             <TextView
                 android:id="@+id/TxttilliquitsmokingId"
-                style="@style/TextColorBlack"
+                style="@style/TextColorWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rltvlayout"
@@ -118,50 +118,50 @@
                 android:text="Non-smoker since"
                 android:textSize="20sp" />
             <!--android:text="Since i've quit smoking"android:text="Non-smoker since"-->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="345dp">
-                    <ImageView
-                        android:id="@+id/milestoneImageId"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_width="20dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="3dp"
-                        android:src="@drawable/sandclock" />
-                    <TextView
-                        android:id="@+id/remaining_days_Id"
-                        android:layout_toEndOf="@id/milestoneImageId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.7"
-                        android:layout_marginTop="3dp"
-                        style="@style/TextColorBlack"
-                        android:layout_marginBottom="0dp"
-                        android:paddingEnd="30dp"
-                        android:paddingStart="1dp"
-                        android:textSize="12sp"
-                        android:text="@string/remaining_days" />
-                    <ImageView
-                        android:id="@+id/targetImageId"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_toEndOf="@id/remaining_days_Id"
-                        android:src="@drawable/target" />
-                    <TextView
-                        android:id="@+id/targetTxtViewId"
-                        android:layout_toEndOf="@id/targetImageId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginEnd="10dp"
-                        android:alpha="0.7"
-                        style="@style/TextColorBlack"
-                        android:textSize="12sp"
-                        android:text="Goal: " />
-                </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="345dp">
+                <ImageView
+                    android:id="@+id/milestoneImageId"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_width="20dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/sandclock" />
+                <TextView
+                    android:id="@+id/remaining_days_Id"
+                    android:layout_toEndOf="@id/milestoneImageId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:layout_marginTop="3dp"
+                    style="@style/TextColorWhite"
+                    android:layout_marginBottom="0dp"
+                    android:paddingEnd="30dp"
+                    android:paddingStart="1dp"
+                    android:textSize="12sp"
+                    android:text="@string/remaining_days" />
+                <ImageView
+                    android:id="@+id/targetImageId"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@id/remaining_days_Id"
+                    android:src="@drawable/target" />
+                <TextView
+                    android:id="@+id/targetTxtViewId"
+                    android:layout_toEndOf="@id/targetImageId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="10dp"
+                    android:alpha="0.7"
+                    style="@style/TextColorWhite"
+                    android:textSize="12sp"
+                    android:text="Goal: " />
+            </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
     <View
@@ -188,7 +188,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/grey_200" />
             <!--<ImageView-->
-                <!--android:id="@+id/imageViewMiddleId"-->
+            <!--android:id="@+id/imageViewMiddleId"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent"-->
             <!--android:alpha="0.1"-->
