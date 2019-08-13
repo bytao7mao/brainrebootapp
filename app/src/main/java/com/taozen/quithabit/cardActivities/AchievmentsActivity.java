@@ -16,6 +16,10 @@ import java.util.Objects;
 
 public class AchievmentsActivity extends AppCompatActivity {
 
+    public static void main(String[] args) {
+
+    }
+
     // Array of strings for ListView Title
     String[] listviewTitle = new String[]{
             "ListView Title 1", "ListView Title 2", "ListView Title 3", "ListView Title 4",

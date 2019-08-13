@@ -107,7 +107,7 @@
             </RelativeLayout>
             <!--end of days counter-->
             <TextView
-                android:id="@+id/TxttilliquitsmokingId"
+                android:id="@+id/textNonSmokerId"
                 style="@style/TextColorWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,6 +118,17 @@
                 android:text="Non-smoker since"
                 android:textSize="20sp" />
             <!--android:text="Since i've quit smoking"android:text="Non-smoker since"-->
+            <TextView
+                android:id="@+id/subTextSmokeId"
+                style="@style/TextColorWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textNonSmokerId"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:alpha="0.7"
+                android:text="Check-in: ? hours"
+                android:textSize="14sp" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

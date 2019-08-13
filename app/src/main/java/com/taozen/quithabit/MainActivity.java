@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.anupcowkur.herebedragons.SideEffect;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.google.android.gms.dynamic.IFragmentWrapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -67,11 +68,12 @@ public class MainActivity extends AppCompatActivity {
     public static final String CHALLENGES_STRING = "CHALLENGES_FINAL";
     public static final String CLICKED = "CLICKED";
     public static final String COUNTER = "COUNTER";
-    public static final String CIGG_PER_DAY = "CIGARETTES";
-    public static final String CIGG_PER_DAY2 = "CIGARETTES2";
+    public static final String INITIAL_CIGG_PER_DAY = "CIGARETTES_INITIAL";
+    public static final String MODIFIED_CIGG_PER_DAY = "CIGARETTES_MODIFIED";
     public static final String LIFEREGAINED = "LIFEREGAINED";
     public static final String DAYOFPRESENT = "DAYOFPRESENT";
     public static final String PRESENTDAY = "PRESENTDAY";
+    public static final String HOUR_OF_FIRSLAUNCH_SP = "FIRSTHOUR";
     private List<MainActivity.MyAsyncTask> tasks;
     private Timer timer;
     Float lifeRegained;
@@ -110,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.challengeTxtIdTitleId) TextView challengeTextViewTitle;
     @BindView(R.id.challengeTextId) TextView challengeTextViewSubtitle;
     @BindView(R.id.tvErrorId) TextView errorText;
-    @BindView(R.id.TxttilliquitsmokingId) TextView tilliquitsmokingTxtView;
+    @BindView(R.id.textNonSmokerId) TextView textNonSmoker;
+    @BindView(R.id.subTextSmokeId) TextView subTextNonSmoker;
     @BindView(R.id.textProg) TextView textProg;
     @BindView(R.id.textProg2) TextView textProg2;
     @BindView(R.id.textProg22) TextView textProg22;
@@ -187,6 +190,8 @@ public class MainActivity extends AppCompatActivity {
         setBackgroundForDaylightOrNight();
         tasks = new ArrayList<>();
         config = getResources().getConfiguration();
+        //set text for checkin
+        setCheckInText();
 
         //color of the FAB - NOW IS already changed in XML
 //        fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
@@ -195,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
         if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1); }
-        if (preferences.contains(CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(CIGG_PER_DAY, 0);}
+        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
         if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
         setTargetDays();
         firstCheckMax();
@@ -250,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         remainingDaysTxt.setTypeface(montSerratMediumTypeface);
         progressBarsTxt.setTypeface(montSerratBoldTypeface);
         failLogsTxtView.setTypeface(montSerratLightTypeface);
-        tilliquitsmokingTxtView.setTypeface(montSerratBoldTypeface);
+        textNonSmoker.setTypeface(montSerratBoldTypeface);
         textProg.setTypeface(montSerratMediumTypeface);
         textProg2.setTypeface(montSerratMediumTypeface);
         textProg22.setTypeface(montSerratMediumTypeface);
@@ -262,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
         userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
         userRankProgressTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
+        subTextNonSmoker.setTypeface(montSerratLightTypeface);
 
         try {
             if (preferences.contains(COUNTER)){
@@ -421,13 +427,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTheHourOfFirstLaunch(Calendar calendar) {
         //my personal method to save a value and keep it every time i launch on create :)
-        if (preferences.contains("firsthour")) {
-            HOUR_OF_FIRSTLAUNCH = preferences.getInt("firsthour", -1);
+        if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
+            HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, -1);
             Log.d("TAOZEN1", "share prefs contains: firsthour = " + HOUR_OF_FIRSTLAUNCH);
         } else {
             Log.d("TAOZEN1", "share prefs DOES NOT contains: firsthour");
             HOUR_OF_FIRSTLAUNCH = calendar.get(Calendar.HOUR_OF_DAY);
-            editor.putInt("firsthour", HOUR_OF_FIRSTLAUNCH);
+            editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
             editor.apply();
             strBuilder.append(String.format(getString(R.string.checkinStr), HOUR_OF_FIRSTLAUNCH));
             strBuilder.append("\nWe will start tutorial now.");
@@ -435,26 +441,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SideEffect
     private void setBackgroundForDaylightOrNight() {
         //change wallpaper during nighttime
-        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20) {
-//        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 18) {
+//        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20) {
+        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= 20) {
             backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
             tipofthedayTxtViewId.setTextColor(getResources().getColor(R.color.white));
             counterText.setTextColor(getResources().getColor(R.color.white));
-            tilliquitsmokingTxtView.setTextColor(getResources().getColor(R.color.white));
+            textNonSmoker.setTextColor(getResources().getColor(R.color.white));
             remainingDaysTxt.setTextColor(getResources().getColor(R.color.white));
             targetTxtViewId.setTextColor(getResources().getColor(R.color.white));
+            subTextNonSmoker.setTextColor(getResources().getColor(R.color.white));
             backgroundImgWall.setAlpha(0.8f);
         } else {
             //change wallpaper during daytime
             backgroundImgWall.setBackgroundResource(R.drawable.brozsb);
             tipofthedayTxtViewId.setTextColor(getResources().getColor(R.color.greish));
             counterText.setTextColor(getResources().getColor(R.color.greish));
-            tilliquitsmokingTxtView.setTextColor(getResources().getColor(R.color.greish));
+            textNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             remainingDaysTxt.setTextColor(getResources().getColor(R.color.greish));
             targetTxtViewId.setTextColor(getResources().getColor(R.color.greish));
-            backgroundImgWall.setAlpha(0.2f);
+            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+            backgroundImgWall.setAlpha(0.08f);
         }
     }
 
@@ -585,7 +594,7 @@ public class MainActivity extends AppCompatActivity {
                 buttonClickedToday = true;
                 editor.putBoolean(CLICKED, buttonClickedToday);
                 editor.apply();
-                cigarettesPerDay = preferences.getInt(CIGG_PER_DAY, 0);
+                cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
                 //[calendar area]
                 calendarOnClick = Calendar.getInstance();
                 calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
@@ -629,7 +638,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.putInt(COUNTER, counter);
                         int tempCigarettes = cigarettesPerDay * counter;
                         userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + tempCigarettes);
-                        editor.putInt(CIGG_PER_DAY2, tempCigarettes);
+                        editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
                         lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
                         userHoursProgressTxt.setText("Life regained: " + lifeRegained + " hours");
                         editor.putFloat(LIFEREGAINED, lifeRegained);
@@ -665,9 +674,9 @@ public class MainActivity extends AppCompatActivity {
                         editor.putLong(SAVINGS_FINAL, savings);
                         editor.putInt(COUNTER, counter);
                         //new edit
-                        int tempCigarettes = preferences.getInt(CIGG_PER_DAY, 0);
+                        int tempCigarettes = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
                         userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + tempCigarettes);
-                        editor.putInt(CIGG_PER_DAY2, tempCigarettes);
+                        editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
                         lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
                         userHoursProgressTxt.setText("Life regained: " + lifeRegained + " hours");
                         editor.putFloat(LIFEREGAINED, lifeRegained);
@@ -733,9 +742,9 @@ public class MainActivity extends AppCompatActivity {
                 counter = preferences.getInt(COUNTER, 0);
             }
             if (counter == 0) {
-                tilliquitsmokingTxtView.setText("Press on the leaf to begin");
+                textNonSmoker.setText("Press on the leaf to begin");
             } else {
-                tilliquitsmokingTxtView.setText("Non-smoker since");
+                textNonSmoker.setText("Non-smoker since");
             }
             if (counter>=60) {
                 userMaxCountForHabit = 90;
@@ -799,6 +808,9 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void startTheEngine() {
         try {
+            //set text for checkin
+            setCheckInText();
+
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);editor.putInt(COUNTER, counter);
                 editor.apply();
@@ -839,6 +851,88 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SideEffect
+    private void setCheckInText() {
+        if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)){
+            HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, 0);
+        }
+        //temporarily integer
+        int hoursTillCheckIn = 24 - (HOUR_OF_DAYLIGHT - HOUR_OF_FIRSTLAUNCH);
+        Log.d("TAOZEN10", "hours of now: " + HOUR_OF_DAYLIGHT + "\nhour of firstlaunch: "
+                + HOUR_OF_FIRSTLAUNCH + "\nbuttonclicked must be false and it is: " + buttonClickedToday);
+        //if fab was already pressed
+        if ((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH || HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH)) { //&& buttonClickedToday
+            if (HOUR_OF_DAYLIGHT == 0) {
+                if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT){
+                    hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
+                    subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                } else {
+                    hoursTillCheckIn = HOUR_OF_DAYLIGHT - HOUR_OF_FIRSTLAUNCH;
+                    subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                }
+            } else if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
+                hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
+                subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+            } else {
+                if (hoursTillCheckIn == 25){
+                    subTextNonSmoker.setText("Check-in: " + 1 + " hour");
+                } else if (hoursTillCheckIn == 26){
+                    subTextNonSmoker.setText("Check-in: " + 2 + " hours");
+                } else if (hoursTillCheckIn == 27) {
+                    subTextNonSmoker.setText("Check-in: " + 3 + " hours");
+                }  else if (hoursTillCheckIn == 28){
+                    subTextNonSmoker.setText("Check-in: " + 4 + " hours");
+                }  else if (hoursTillCheckIn == 29){
+                    subTextNonSmoker.setText("Check-in: " + 5 + " hours");
+                }  else if (hoursTillCheckIn == 30){
+                    subTextNonSmoker.setText("Check-in: " + 6 + " hours");
+                }  else if (hoursTillCheckIn == 31){
+                    subTextNonSmoker.setText("Check-in: " + 7 + " hours");
+                }  else if (hoursTillCheckIn == 32){
+                    subTextNonSmoker.setText("Check-in: " + 8 + " hours");
+                }  else if (hoursTillCheckIn == 33){
+                    subTextNonSmoker.setText("Check-in: " + 9 + " hours");
+                }  else if (hoursTillCheckIn == 34){
+                    subTextNonSmoker.setText("Check-in: " + 10 + " hours");
+                }  else if (hoursTillCheckIn == 35){
+                    subTextNonSmoker.setText("Check-in: " + 11 + " hours");
+                }  else if (hoursTillCheckIn == 36){
+                    subTextNonSmoker.setText("Check-in: " + 12 + " hours");
+                }  else if (hoursTillCheckIn == 37){
+                    subTextNonSmoker.setText("Check-in: " + 13 + " hours");
+                }  else if (hoursTillCheckIn == 38){
+                    subTextNonSmoker.setText("Check-in: " + 14 + " hours");
+                }  else if (hoursTillCheckIn == 39){
+                    subTextNonSmoker.setText("Check-in: " + 15 + " hours");
+                }  else if (hoursTillCheckIn == 40){
+                    subTextNonSmoker.setText("Check-in: " + 16 + " hours");
+                }  else if (hoursTillCheckIn == 41){
+                    subTextNonSmoker.setText("Check-in: " + 17 + " hours");
+                }  else if (hoursTillCheckIn == 42){
+                    subTextNonSmoker.setText("Check-in: " + 18 + " hours");
+                }  else if (hoursTillCheckIn == 43){
+                    subTextNonSmoker.setText("Check-in: " + 19 + " hours");
+                }  else if (hoursTillCheckIn == 44){
+                    subTextNonSmoker.setText("Check-in: " + 20 + " hours");
+                }  else if (hoursTillCheckIn == 45){
+                    subTextNonSmoker.setText("Check-in: " + 21 + " hours");
+                }  else if (hoursTillCheckIn == 46){
+                    subTextNonSmoker.setText("Check-in: " + 22 + " hours");
+                } else {
+                    subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                }
+            }
+
+            //if fab was NOT pressed
+//        } else if ((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH || HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
+//            subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+        } else if ((HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
+            subTextNonSmoker.setText("Check-in now!");
+        } else if (HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH && buttonClickedToday){
+            subTextNonSmoker.setText("Check-in: tommorow");
+        }
+    }
+
     //onResume
     @Override
     protected void onResume() {
@@ -848,7 +942,7 @@ public class MainActivity extends AppCompatActivity {
             //-3 default values
             if (preferences.contains(getString(R.string.maxCounter))){userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -3);}
             if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -3);}
-            if (preferences.contains(CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(CIGG_PER_DAY, -3);}
+            if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -3);}
             if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -3); }
             if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -3); }
 //            if (preferences.contains(CLICKED)){buttonClickedToday = preferences.getBoolean(CLICKED, false);}
@@ -861,6 +955,8 @@ public class MainActivity extends AppCompatActivity {
         runningInBackground();
         moneyOrTimeAndGetAndSetValue();
         setTargetDays();
+        //set text for checkin
+        setCheckInText();
         Log.d("INTROTAO", "values in onResume: " + "cigperday " + cigarettesPerDay+ " savings: " + savings + " counter: " + counter);
     }//[END of ONRESUME]
 
@@ -869,13 +965,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //-5 default
-        cigarettesPerDay = preferences.getInt(CIGG_PER_DAY, -5);
+        cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -5);
         savings = preferences.getLong(SAVINGS_FINAL, -5);
         counter = preferences.getInt(COUNTER, -5);
         lifeRegained = preferences.getFloat(LIFEREGAINED, -5);
         editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
         editor.putInt(COUNTER, counter);
-        editor.putInt(CIGG_PER_DAY, cigarettesPerDay);
+        editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
         editor.putFloat(LIFEREGAINED, lifeRegained);
         editor.putLong(SAVINGS_FINAL, savings);
         editor.apply();
@@ -889,7 +985,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
         editor.putInt(COUNTER, counter);
         editor.putBoolean(CLICKED, buttonClickedToday);
-        editor.putInt(CIGG_PER_DAY, cigarettesPerDay);
+        editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
         editor.putFloat(LIFEREGAINED, lifeRegained);
         editor.putLong(SAVINGS_FINAL, savings);
         editor.apply();
@@ -1336,7 +1432,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(BottomDialog dialog) {
                         Editable editM = editTextForChoosingHabit.getText();
                         int cigInt = Integer.parseInt(editM.toString());
-                        editor.putInt(CIGG_PER_DAY, cigInt);
+                        editor.putInt(INITIAL_CIGG_PER_DAY, cigInt);
                         editor.apply();
                         Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);
                         startIntroActivity();
@@ -1358,9 +1454,9 @@ public class MainActivity extends AppCompatActivity {
                 if (preferences.contains(LIFEREGAINED)) {
                     lifeRegained = preferences.getFloat(LIFEREGAINED, -1);
                 } else {
-                    lifeRegained = Float.valueOf((5f * Float.valueOf(preferences.getInt(CIGG_PER_DAY2, 0))) / 60f);
+                    lifeRegained = Float.valueOf((5f * Float.valueOf(preferences.getInt(MODIFIED_CIGG_PER_DAY, 0))) / 60f);
                 }
-                userCigarettesProgressTat.setText("Ciggaretes not smoked: " + preferences.getInt(CIGG_PER_DAY2, 0));
+                userCigarettesProgressTat.setText("Ciggaretes not smoked: " + preferences.getInt(MODIFIED_CIGG_PER_DAY, 0));
                 userHoursProgressTxt.setText("Life regained: " + lifeRegained + " hours");
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.apply();
