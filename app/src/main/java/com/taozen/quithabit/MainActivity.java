@@ -444,8 +444,8 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void setBackgroundForDaylightOrNight() {
         //change wallpaper during nighttime
-//        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20) {
-        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= 20) {
+        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20) {
+//        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= 20) {
             backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
             tipofthedayTxtViewId.setTextColor(getResources().getColor(R.color.white));
             counterText.setTextColor(getResources().getColor(R.color.white));
@@ -1019,8 +1019,11 @@ public class MainActivity extends AppCompatActivity {
         if (preferences.contains(COUNTER)) {
             counter = preferences.getInt(COUNTER, 0);
         }
-        if (((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday && (HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH)) || counter == 0) {
-//            Log.d("TAOZEN9", "green condition true and counter == " + counter + buttonClickedToday + "dayofpresent="+DAY_OF_PRESENT + " dayofclick="+DAY_OF_CLICK);
+        if (((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday
+                && (HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH)) || counter == 0) {
+            Log.d("TAOZEN9", "green condition true and counter == "
+                    + counter + buttonClickedToday + "dayofpresent="
+                    + DAY_OF_PRESENT + " dayofclick="+DAY_OF_CLICK);
             fab.show();
             editor.putInt(COUNTER, counter);
             editor.apply();
