@@ -56,7 +56,7 @@
                     android:layout_marginTop="1dp"
                     android:alpha="0.7"
                     android:layout_toRightOf="@id/tipImageId"
-                    style="@style/TextColorVanilla"
+                    style="@style/TextColorBlack"
                     android:textSize="12sp"
                     android:text="Today you can be whatever you want!" />
                 <!--style="@style/TextColorBlack"-->
@@ -101,13 +101,13 @@
                     android:layout_centerHorizontal="true"
                     android:text="1"
                     android:alpha="0.9"
-                    style="@style/TextColorWhite"
+                    style="@style/TextColorBlack"
                     android:textSize="58sp" />
             </RelativeLayout>
             <!--end of days counter-->
             <TextView
                 android:id="@+id/textNonSmokerId"
-                style="@style/TextColorWhite"
+                style="@style/TextColorBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rltvlayout"
@@ -119,7 +119,7 @@
             <!--android:text="Since i've quit smoking"android:text="Non-smoker since"-->
             <TextView
                 android:id="@+id/subTextSmokeId"
-                style="@style/TextColorWhite"
+                style="@style/TextColorBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textNonSmokerId"
@@ -135,16 +135,18 @@
             <!--android:alpha="0.7"-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_marginTop="345dp">
+                <!--android:layout_marginStart="25dp"-->
                 <ImageView
                     android:id="@+id/milestoneImageId"
                     android:layout_gravity="start|center_vertical"
                     android:layout_width="20dp"
-                    android:layout_marginStart="35dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/sandclock" />
+                <!--android:layout_marginTop="3dp"-->
                 <TextView
                     android:id="@+id/remaining_days_Id"
                     android:layout_toEndOf="@id/milestoneImageId"
@@ -152,17 +154,19 @@
                     android:layout_height="wrap_content"
                     android:alpha="0.7"
                     android:layout_marginTop="3dp"
-                    style="@style/TextColorWhite"
-                    android:layout_marginBottom="0dp"
-                    android:paddingEnd="30dp"
+                    style="@style/TextColorBlack"
                     android:paddingStart="1dp"
-                    android:textSize="12sp"
+                    android:paddingEnd="1dp"
+                    android:textSize="13sp"
+                    android:layout_centerVertical="true"
                     android:text="@string/remaining_days" />
+                <!--android:layout_marginBottom="10dp"-->
                 <ImageView
                     android:id="@+id/targetImageId"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/remaining_days_Id"
                     android:src="@drawable/target" />
                 <TextView
@@ -173,8 +177,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="10dp"
                     android:alpha="0.7"
-                    style="@style/TextColorWhite"
-                    android:textSize="12sp"
+                    android:layout_centerVertical="true"
+                    style="@style/TextColorBlack"
+                    android:textSize="13sp"
                     android:text="Goal: " />
             </RelativeLayout>
         </RelativeLayout>
@@ -202,12 +207,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/grey_200" />
-            <!--<ImageView-->
-            <!--android:id="@+id/imageViewMiddleId"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:alpha="0.1"-->
-            <!--android:background="@drawable/brozsb" />-->
+
             <TextView
                 android:id="@+id/progressActivityId"
                 style="@style/TextColorBlack"
@@ -223,7 +223,7 @@
                 android:id="@+id/txtProgressIdForGums"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="43dp"
+                android:layout_marginRight="41dp"
                 android:layout_gravity="end|center_vertical"
                 android:text="0%"
                 android:alpha="0.7"
@@ -256,7 +256,7 @@
                 android:id="@+id/txtProgressIdForEnergy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="45dp"
+                android:layout_marginStart="43dp"
                 android:layout_gravity="start|center_vertical"
                 android:text="0%"
                 android:alpha="0.7"
@@ -335,7 +335,7 @@
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_gravity="center|center_vertical"
-                android:layout_marginRight="-40dp"
+                android:layout_marginRight="-38dp"
                 android:tooltipText="breath levels"
                 app:animateProgress="true"
                 app:backgroundStrokeColor="@color/grey_300"

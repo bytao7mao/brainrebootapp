@@ -49,6 +49,7 @@ import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.utils.MyHttpManager;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -178,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
     Typeface montSerratExtraBoldTypeface;
     Typeface montSerratSimpleBoldTypeface;
 
+    DecimalFormat numberFormat = new DecimalFormat("#.##");
+
 
     //OnCreate [START]
     @SuppressLint("CommitPrefEdits")
@@ -186,6 +189,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
+
+        numberFormat = new DecimalFormat("#.00");
 
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
@@ -482,6 +487,7 @@ public class MainActivity extends AppCompatActivity {
             textNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             textNonSmoker.setAlpha(0.8f);
             subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+            subTextNonSmoker.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
             subTextNonSmoker.setAlpha(0.7f);
             backgroundImgWall.setAlpha(0.05f);
         }
@@ -660,7 +666,7 @@ public class MainActivity extends AppCompatActivity {
                         userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + tempCigarettes);
                         editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
                         lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
-                        userHoursProgressTxt.setText("Life regained: " + lifeRegained + " hours");
+                        userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
                         editor.putFloat(LIFEREGAINED, lifeRegained);
                         try {
                             savings = preferences.getLong(SAVINGS_FINAL, 1);
@@ -698,7 +704,7 @@ public class MainActivity extends AppCompatActivity {
                         userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + tempCigarettes);
                         editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
                         lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
-                        userHoursProgressTxt.setText("Life regained: " + lifeRegained + " hours");
+                        userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
                         editor.putFloat(LIFEREGAINED, lifeRegained);
                         editor.apply();
                         checkActivityOnline();
@@ -1442,7 +1448,7 @@ public class MainActivity extends AppCompatActivity {
                         long moneyInt = (long) Integer.parseInt(editM.toString());
                         editor.putLong(SAVINGS_FINAL, moneyInt);
                         editor.apply();
-                        Log.d("INTROTAO", "money saved in INTROACTIVITY ? :  " + moneyInt);
+                        Log.d("INTROTAO", "money saved in INTROACTIVITY ? :  " + numberFormat.format(moneyInt));
                         showDialogForSavingCiggarettesNumber();
                     }
                 }).show();
@@ -1488,11 +1494,13 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 if (preferences.contains(LIFEREGAINED)) {
                     lifeRegained = preferences.getFloat(LIFEREGAINED, -1);
+                    numberFormat.format(lifeRegained);
                 } else {
                     lifeRegained = Float.valueOf((5f * Float.valueOf(preferences.getInt(MODIFIED_CIGG_PER_DAY, 0))) / 60f);
+                    numberFormat.format(lifeRegained);
                 }
                 userCigarettesProgressTat.setText("Ciggaretes not smoked: " + preferences.getInt(MODIFIED_CIGG_PER_DAY, 0));
-                userHoursProgressTxt.setText("Life regained: " + lifeRegained + " hours");
+                userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.apply();
             }
