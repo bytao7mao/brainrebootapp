@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
 
-        numberFormat = new DecimalFormat("#.00");
+        numberFormat = new DecimalFormat("#.##");
 
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
