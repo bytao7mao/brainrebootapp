@@ -27,8 +27,7 @@
                 android:id="@+id/backgroundId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.2"
-                android:background="@drawable/backsee2" />
+                android:alpha="0.2" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,9 +125,14 @@
                 android:layout_below="@id/textNonSmokerId"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
                 android:alpha="0.7"
                 android:text="Check-in: ? hours"
                 android:textSize="14sp" />
+            <!--android:alpha="0.7"-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -314,7 +318,7 @@
                 app:backgroundStrokeWidth="3dp"
                 app:drawBackgroundStroke="true"
                 app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#00BFFF"
+                app:foregroundStrokeColor="#66F9B0"
                 app:foregroundStrokeWidth="8dp"
                 app:indeterminate="false"
                 app:indeterminateMinimumAngle="45"
@@ -338,7 +342,7 @@
                 app:backgroundStrokeWidth="3dp"
                 app:drawBackgroundStroke="true"
                 app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#00BFFF"
+                app:foregroundStrokeColor="#66F9B0"
                 app:foregroundStrokeWidth="8dp"
                 app:indeterminate="false"
                 app:indeterminateMinimumAngle="45"
@@ -361,7 +365,7 @@
                 app:backgroundStrokeWidth="3dp"
                 app:drawBackgroundStroke="true"
                 app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#00BFFF"
+                app:foregroundStrokeColor="#66F9B0"
                 app:foregroundStrokeWidth="8dp"
                 app:indeterminate="false"
                 app:indeterminateMinimumAngle="45"
@@ -383,7 +387,7 @@
                 app:backgroundStrokeWidth="3dp"
                 app:drawBackgroundStroke="true"
                 app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#00BFFF"
+                app:foregroundStrokeColor="#66F9B0"
                 app:foregroundStrokeWidth="8dp"
                 app:indeterminate="false"
                 app:indeterminateMinimumAngle="45"
@@ -394,7 +398,7 @@
                 app:progressAnimationDuration="100"
                 app:startAngle="270" />
             <!--app:foregroundStrokeColor="#66F9B0"-->
-            <!--app:wlv_borderWidth="3dp"76FF03
+            <!--app:wlv_borderWidth="3dp"76FF03 #00BFFF
             app:foregroundStrokeColor="#ffff4081"-->
         </android.support.v7.widget.CardView>
     </FrameLayout>

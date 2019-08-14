@@ -169,6 +169,16 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder strBuilder = new StringBuilder();
 
 
+    //add font to counter number
+    Typeface montSerratBoldTypeface;
+    Typeface montSerratItallicTypeface;
+    Typeface montSerratLightTypeface;
+    Typeface montSerratMediumTypeface;
+    Typeface montSerratSemiBoldTypeface;
+    Typeface montSerratExtraBoldTypeface;
+    Typeface montSerratSimpleBoldTypeface;
+
+
     //OnCreate [START]
     @SuppressLint("CommitPrefEdits")
     @Override
@@ -233,17 +243,19 @@ public class MainActivity extends AppCompatActivity {
                 String.valueOf(userMaxCountForHabit),
                 R.string.target_string, targetTxtViewId);
 
-        //add font to counter number
-        Typeface montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
-        Typeface montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
-        Typeface montSerratLightTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.ttf");
-        Typeface montSerratMediumTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Medium.ttf");
-        Typeface montSerratSemiBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.ttf");
-        Typeface montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
-        Typeface montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
+        montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
+        montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
+        montSerratLightTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.ttf");
+        montSerratMediumTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Medium.ttf");
+        montSerratSemiBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.ttf");
+        montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
+        montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
 
         counterText.setTypeface(montSerratBoldTypeface);
-        targetTxtViewId.setTypeface(montSerratMediumTypeface);
+//        targetTxtViewId.setTypeface(montSerratMediumTypeface);
+//        remainingDaysTxt.setTypeface(montSerratMediumTypeface);
+        remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
+        targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
         tipofthedayTxtViewId.setTypeface(montSerratItallicTypeface);
         txtProgressForEnergyLevels.setTypeface(montSerratMediumTypeface);
         txtProgressForFatigue.setTypeface(montSerratMediumTypeface);
@@ -252,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
         moneyOrTimeTextView.setTypeface(montSerratLightTypeface);
         challengeTextViewTitle.setTypeface(montSerratSimpleBoldTypeface);
         challengeTextViewSubtitle.setTypeface(montSerratLightTypeface);
-        remainingDaysTxt.setTypeface(montSerratMediumTypeface);
         progressBarsTxt.setTypeface(montSerratBoldTypeface);
         failLogsTxtView.setTypeface(montSerratLightTypeface);
         textNonSmoker.setTypeface(montSerratBoldTypeface);
@@ -267,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
         userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
         userRankProgressTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
-        subTextNonSmoker.setTypeface(montSerratLightTypeface);
+        subTextNonSmoker.setTypeface(montSerratMediumTypeface);
 
         try {
             if (preferences.contains(COUNTER)){
@@ -444,26 +455,35 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void setBackgroundForDaylightOrNight() {
         //change wallpaper during nighttime
-        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 20) {
+        if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 22) {
 //        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= 20) {
-            backgroundImgWall.setBackgroundResource(R.drawable.backsee2);
+            backgroundImgWall.setBackgroundResource(R.drawable.ppp);
             tipofthedayTxtViewId.setTextColor(getResources().getColor(R.color.white));
+            tipofthedayTxtViewId.setAlpha(0.8f);
             counterText.setTextColor(getResources().getColor(R.color.white));
-            textNonSmoker.setTextColor(getResources().getColor(R.color.white));
+            counterText.setAlpha(1.0f);
             remainingDaysTxt.setTextColor(getResources().getColor(R.color.white));
+            remainingDaysTxt.setAlpha(0.8f);
             targetTxtViewId.setTextColor(getResources().getColor(R.color.white));
-            subTextNonSmoker.setTextColor(getResources().getColor(R.color.white));
-            backgroundImgWall.setAlpha(0.8f);
+            targetTxtViewId.setAlpha(0.8f);
+            textNonSmoker.setTextColor(getResources().getColor(R.color.white));
+            textNonSmoker.setAlpha(1.0f);
+            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+            subTextNonSmoker.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
+            subTextNonSmoker.setAlpha(1.0f);
+            backgroundImgWall.setAlpha(1.0f);
         } else {
             //change wallpaper during daytime
-            backgroundImgWall.setBackgroundResource(R.drawable.brozsb);
+            backgroundImgWall.setBackgroundResource(R.drawable.bgday);
             tipofthedayTxtViewId.setTextColor(getResources().getColor(R.color.greish));
             counterText.setTextColor(getResources().getColor(R.color.greish));
-            textNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             remainingDaysTxt.setTextColor(getResources().getColor(R.color.greish));
             targetTxtViewId.setTextColor(getResources().getColor(R.color.greish));
+            textNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+            textNonSmoker.setAlpha(0.8f);
             subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
-            backgroundImgWall.setAlpha(0.04f);
+            subTextNonSmoker.setAlpha(0.7f);
+            backgroundImgWall.setAlpha(0.05f);
         }
     }
 
