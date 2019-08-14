@@ -221,7 +221,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="43dp"
                 android:layout_gravity="end|center_vertical"
-                android:text="0"
+                android:text="0%"
+                android:alpha="0.7"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 style="@style/TextColor2" />
@@ -231,7 +232,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="-40dp"
                 android:layout_gravity="center|center_vertical"
-                android:text="0"
+                android:text="0%"
+                android:alpha="0.7"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 style="@style/TextColor2" />
@@ -241,7 +243,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:layout_gravity="center|center_vertical"
-                android:text="0"
+                android:text="0%"
+                android:alpha="0.7"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 style="@style/TextColor2" />
@@ -251,7 +254,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="45dp"
                 android:layout_gravity="start|center_vertical"
-                android:text="0"
+                android:text="0%"
+                android:alpha="0.7"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 style="@style/TextColor2" />
@@ -262,6 +266,7 @@
                 android:layout_marginBottom="30dp"
                 android:layout_marginEnd="38dp"
                 android:textSize="12sp"
+                android:alpha="0.7"
                 android:layout_gravity="end|bottom"
                 android:text="gums"
                 style="@style/TextColorBlack" />
@@ -273,6 +278,7 @@
                 android:layout_marginBottom="30dp"
                 android:layout_gravity="center|bottom"
                 android:textSize="12sp"
+                android:alpha="0.7"
                 android:text="breath"
                 style="@style/TextColorBlack" />
             <TextView
@@ -283,6 +289,7 @@
                 android:layout_marginBottom="30dp"
                 android:layout_gravity="center|bottom"
                 android:textSize="12sp"
+                android:alpha="0.7"
                 android:text="fatigue"
                 style="@style/TextColorBlack" />
             <TextView
@@ -293,6 +300,7 @@
                 android:layout_marginBottom="30dp"
                 android:layout_gravity="start|bottom"
                 android:textSize="12sp"
+                android:alpha="0.7"
                 android:text="energy"
                 style="@style/TextColorBlack" />
             <com.budiyev.android.circularprogressbar.CircularProgressBar
