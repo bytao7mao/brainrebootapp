@@ -858,79 +858,84 @@ public class MainActivity extends AppCompatActivity {
         }
         //temporarily integer
         int hoursTillCheckIn = 24 - (HOUR_OF_DAYLIGHT - HOUR_OF_FIRSTLAUNCH);
+//        int tempHourOfDayLight = HOUR_OF_DAYLIGHT == 0 ? 24 : HOUR_OF_DAYLIGHT;
         Log.d("TAOZEN10", "hours of now: " + HOUR_OF_DAYLIGHT + "\nhour of firstlaunch: "
-                + HOUR_OF_FIRSTLAUNCH + "\nbuttonclicked must be false and it is: " + buttonClickedToday);
-        //if fab was already pressed
-        if ((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH || HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH)) { //&& buttonClickedToday
-            if (HOUR_OF_DAYLIGHT == 0) {
-                if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT){
+                + HOUR_OF_FIRSTLAUNCH + "\nbutton clicked today ? " + buttonClickedToday);
+        if (DAY_OF_PRESENT>=DAY_OF_CLICK+2){
+            subTextNonSmoker.setText("Check-in now! (+1 days)");
+            Log.d("TAOZEN10", "I AM HERE OKKOKKO: " + "presetnday: " + DAY_OF_PRESENT + " clickday: " + DAY_OF_CLICK);
+        } else {
+            //if fab was already pressed
+            if ((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH || HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH)) { //&& buttonClickedToday
+                if (HOUR_OF_DAYLIGHT == 0 || HOUR_OF_DAYLIGHT == 24) {
+                    if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT){
+                        hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
+                        subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                    } else {
+                        hoursTillCheckIn = HOUR_OF_DAYLIGHT - HOUR_OF_FIRSTLAUNCH;
+                        subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                    }
+                } else if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
                     hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
                     subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
                 } else {
-                    hoursTillCheckIn = HOUR_OF_DAYLIGHT - HOUR_OF_FIRSTLAUNCH;
-                    subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                    if (hoursTillCheckIn == 25){
+                        subTextNonSmoker.setText("Check-in: " + 1 + " hour");
+                    } else if (hoursTillCheckIn == 26){
+                        subTextNonSmoker.setText("Check-in: " + 2 + " hours");
+                    } else if (hoursTillCheckIn == 27) {
+                        subTextNonSmoker.setText("Check-in: " + 3 + " hours");
+                    }  else if (hoursTillCheckIn == 28){
+                        subTextNonSmoker.setText("Check-in: " + 4 + " hours");
+                    }  else if (hoursTillCheckIn == 29){
+                        subTextNonSmoker.setText("Check-in: " + 5 + " hours");
+                    }  else if (hoursTillCheckIn == 30){
+                        subTextNonSmoker.setText("Check-in: " + 6 + " hours");
+                    }  else if (hoursTillCheckIn == 31){
+                        subTextNonSmoker.setText("Check-in: " + 7 + " hours");
+                    }  else if (hoursTillCheckIn == 32){
+                        subTextNonSmoker.setText("Check-in: " + 8 + " hours");
+                    }  else if (hoursTillCheckIn == 33){
+                        subTextNonSmoker.setText("Check-in: " + 9 + " hours");
+                    }  else if (hoursTillCheckIn == 34){
+                        subTextNonSmoker.setText("Check-in: " + 10 + " hours");
+                    }  else if (hoursTillCheckIn == 35){
+                        subTextNonSmoker.setText("Check-in: " + 11 + " hours");
+                    }  else if (hoursTillCheckIn == 36){
+                        subTextNonSmoker.setText("Check-in: " + 12 + " hours");
+                    }  else if (hoursTillCheckIn == 37){
+                        subTextNonSmoker.setText("Check-in: " + 13 + " hours");
+                    }  else if (hoursTillCheckIn == 38){
+                        subTextNonSmoker.setText("Check-in: " + 14 + " hours");
+                    }  else if (hoursTillCheckIn == 39){
+                        subTextNonSmoker.setText("Check-in: " + 15 + " hours");
+                    }  else if (hoursTillCheckIn == 40){
+                        subTextNonSmoker.setText("Check-in: " + 16 + " hours");
+                    }  else if (hoursTillCheckIn == 41){
+                        subTextNonSmoker.setText("Check-in: " + 17 + " hours");
+                    }  else if (hoursTillCheckIn == 42){
+                        subTextNonSmoker.setText("Check-in: " + 18 + " hours");
+                    }  else if (hoursTillCheckIn == 43){
+                        subTextNonSmoker.setText("Check-in: " + 19 + " hours");
+                    }  else if (hoursTillCheckIn == 44){
+                        subTextNonSmoker.setText("Check-in: " + 20 + " hours");
+                    }  else if (hoursTillCheckIn == 45){
+                        subTextNonSmoker.setText("Check-in: " + 21 + " hours");
+                    }  else if (hoursTillCheckIn == 46){
+                        subTextNonSmoker.setText("Check-in: " + 22 + " hours");
+                    } else {
+                        subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                    }
                 }
-            } else if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
-                hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
-                subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-            } else {
-                if (hoursTillCheckIn == 25){
-                    subTextNonSmoker.setText("Check-in: " + 1 + " hour");
-                } else if (hoursTillCheckIn == 26){
-                    subTextNonSmoker.setText("Check-in: " + 2 + " hours");
-                } else if (hoursTillCheckIn == 27) {
-                    subTextNonSmoker.setText("Check-in: " + 3 + " hours");
-                }  else if (hoursTillCheckIn == 28){
-                    subTextNonSmoker.setText("Check-in: " + 4 + " hours");
-                }  else if (hoursTillCheckIn == 29){
-                    subTextNonSmoker.setText("Check-in: " + 5 + " hours");
-                }  else if (hoursTillCheckIn == 30){
-                    subTextNonSmoker.setText("Check-in: " + 6 + " hours");
-                }  else if (hoursTillCheckIn == 31){
-                    subTextNonSmoker.setText("Check-in: " + 7 + " hours");
-                }  else if (hoursTillCheckIn == 32){
-                    subTextNonSmoker.setText("Check-in: " + 8 + " hours");
-                }  else if (hoursTillCheckIn == 33){
-                    subTextNonSmoker.setText("Check-in: " + 9 + " hours");
-                }  else if (hoursTillCheckIn == 34){
-                    subTextNonSmoker.setText("Check-in: " + 10 + " hours");
-                }  else if (hoursTillCheckIn == 35){
-                    subTextNonSmoker.setText("Check-in: " + 11 + " hours");
-                }  else if (hoursTillCheckIn == 36){
-                    subTextNonSmoker.setText("Check-in: " + 12 + " hours");
-                }  else if (hoursTillCheckIn == 37){
-                    subTextNonSmoker.setText("Check-in: " + 13 + " hours");
-                }  else if (hoursTillCheckIn == 38){
-                    subTextNonSmoker.setText("Check-in: " + 14 + " hours");
-                }  else if (hoursTillCheckIn == 39){
-                    subTextNonSmoker.setText("Check-in: " + 15 + " hours");
-                }  else if (hoursTillCheckIn == 40){
-                    subTextNonSmoker.setText("Check-in: " + 16 + " hours");
-                }  else if (hoursTillCheckIn == 41){
-                    subTextNonSmoker.setText("Check-in: " + 17 + " hours");
-                }  else if (hoursTillCheckIn == 42){
-                    subTextNonSmoker.setText("Check-in: " + 18 + " hours");
-                }  else if (hoursTillCheckIn == 43){
-                    subTextNonSmoker.setText("Check-in: " + 19 + " hours");
-                }  else if (hoursTillCheckIn == 44){
-                    subTextNonSmoker.setText("Check-in: " + 20 + " hours");
-                }  else if (hoursTillCheckIn == 45){
-                    subTextNonSmoker.setText("Check-in: " + 21 + " hours");
-                }  else if (hoursTillCheckIn == 46){
-                    subTextNonSmoker.setText("Check-in: " + 22 + " hours");
-                } else {
-                    subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-                }
+                //if fab was NOT pressed
+            } else if ((HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
+                subTextNonSmoker.setText("Check-in now!");
+                //if fab was pressed and hour is present hour equal with today hour
+            } else if (HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH && buttonClickedToday){
+                subTextNonSmoker.setText("Check-in: tommorow!");
             }
-
-            //if fab was NOT pressed
-//        } else if ((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH || HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
-//            subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-        } else if ((HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
-            subTextNonSmoker.setText("Check-in now!");
-        } else if (HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH && buttonClickedToday){
-            subTextNonSmoker.setText("Check-in: tommorow");
         }
+
     }
 
     //onResume
@@ -1019,14 +1024,21 @@ public class MainActivity extends AppCompatActivity {
         if (preferences.contains(COUNTER)) {
             counter = preferences.getInt(COUNTER, 0);
         }
-        if (((DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday
-                && (HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH)) || counter == 0) {
+        int tempHourOfDayLight = HOUR_OF_DAYLIGHT == 0 ? 24 : HOUR_OF_DAYLIGHT;
+        Log.d("TAOZEN9", "tempHour: " + tempHourOfDayLight);
+        if ((   (DAY_OF_PRESENT > DAY_OF_CLICK)
+                && !buttonClickedToday)
+                || counter == 0) {
+            //higher than 2 days or hour of now higher than higher of launch
+            if ((tempHourOfDayLight >= HOUR_OF_FIRSTLAUNCH)
+                    || (DAY_OF_PRESENT >= DAY_OF_CLICK+2)){
+                fab.show();
+                editor.putInt(COUNTER, counter);
+                editor.apply();
+            }
             Log.d("TAOZEN9", "green condition true and counter == "
                     + counter + buttonClickedToday + "dayofpresent="
                     + DAY_OF_PRESENT + " dayofclick="+DAY_OF_CLICK);
-            fab.show();
-            editor.putInt(COUNTER, counter);
-            editor.apply();
         }
     }//END OF -> [ENABLE BUTTON]
 
