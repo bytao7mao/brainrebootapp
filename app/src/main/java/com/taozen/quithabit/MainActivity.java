@@ -463,7 +463,7 @@ public class MainActivity extends AppCompatActivity {
             remainingDaysTxt.setTextColor(getResources().getColor(R.color.greish));
             targetTxtViewId.setTextColor(getResources().getColor(R.color.greish));
             subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
-            backgroundImgWall.setAlpha(0.08f);
+            backgroundImgWall.setAlpha(0.04f);
         }
     }
 

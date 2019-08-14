@@ -306,7 +306,7 @@
                 app:backgroundStrokeWidth="3dp"
                 app:drawBackgroundStroke="true"
                 app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#66F9B0"
+                app:foregroundStrokeColor="#00BFFF"
                 app:foregroundStrokeWidth="8dp"
                 app:indeterminate="false"
                 app:indeterminateMinimumAngle="45"
@@ -330,7 +330,7 @@
                 app:backgroundStrokeWidth="3dp"
                 app:drawBackgroundStroke="true"
                 app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#66F9B0"
+                app:foregroundStrokeColor="#00BFFF"
                 app:foregroundStrokeWidth="8dp"
                 app:indeterminate="false"
                 app:indeterminateMinimumAngle="45"
@@ -353,7 +353,7 @@
                 app:backgroundStrokeWidth="3dp"
                 app:drawBackgroundStroke="true"
                 app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#66F9B0"
+                app:foregroundStrokeColor="#00BFFF"
                 app:foregroundStrokeWidth="8dp"
                 app:indeterminate="false"
                 app:indeterminateMinimumAngle="45"
@@ -375,7 +375,7 @@
                 app:backgroundStrokeWidth="3dp"
                 app:drawBackgroundStroke="true"
                 app:foregroundStrokeCap="butt"
-                app:foregroundStrokeColor="#66F9B0"
+                app:foregroundStrokeColor="#00BFFF"
                 app:foregroundStrokeWidth="8dp"
                 app:indeterminate="false"
                 app:indeterminateMinimumAngle="45"
@@ -385,6 +385,7 @@
                 app:progress="50"
                 app:progressAnimationDuration="100"
                 app:startAngle="270" />
+            <!--app:foregroundStrokeColor="#66F9B0"-->
             <!--app:wlv_borderWidth="3dp"76FF03
             app:foregroundStrokeColor="#ffff4081"-->
         </android.support.v7.widget.CardView>
