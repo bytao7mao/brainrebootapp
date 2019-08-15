@@ -23,6 +23,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.taozen.quithabit.intro.IntroActivity;
+
 import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -122,7 +124,7 @@ public class FirstScreenActivity extends AppCompatActivity {
                 setCiggsPerDay();
                 setSavings();
                 if (go && go2){
-                    Intent i = new Intent(FirstScreenActivity.this, MainActivity.class);
+                    Intent i = new Intent(FirstScreenActivity.this, IntroActivity.class);
                     startActivity(i);
                 }
             }

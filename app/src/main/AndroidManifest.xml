@@ -18,11 +18,6 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".FirstScreenActivity"
             android:theme="@style/MaterialTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".cardActivities.AchievmentsActivity" />
         <activity android:name=".optionsMenuActivities.AboutActivity" />
@@ -33,11 +28,11 @@
             android:name=".MainActivity"
             android:label="brainreboot"
             android:theme="@style/MaterialTheme.NoActionBar">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".intro.IntroActivity"

@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
     @BindView(R.id.progressCardIdAchievments) CardView achievementRanksCard;
     //TextViews
+    @BindView(R.id.toolbar_subtitle) TextView subTextToolbar;
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
     @BindView(R.id.txtProgressIdForBreath) TextView txtProgressForBreath;
@@ -192,12 +193,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
-
-        numberFormat = new DecimalFormat("#.##");
-
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
+        startFirstActivity();
+
+        numberFormat = new DecimalFormat("#.##");
+
+
 
         //testing area
         Date date = new Date();
@@ -287,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
         userRankProgressTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
         subTextNonSmoker.setTypeface(montSerratMediumTypeface);
+        subTextToolbar.setTypeface(montSerratSemiBoldTypeface);
 
         try {
             if (preferences.contains(COUNTER)){
@@ -456,7 +460,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             strBuilder.append(String.format(getString(R.string.checkinStr), HOUR_OF_FIRSTLAUNCH));
             strBuilder.append("\nWe will start tutorial now.");
-            showCustomDialogOnFirstLaunch("Welcome", strBuilder);
+//            showCustomDialogOnFirstLaunch("Welcome", strBuilder);
         }
     }
 
@@ -526,28 +530,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).show();
     }
-    //dialog when user pass a day
-    private void showCustomDialogOnFirstLaunch(String title, StringBuilder content){
-        //dialog ------------
-        new BottomDialog.Builder(this)
-                .setTitle(title)
-                .setContent(content)
-                .setPositiveText("OK")
-                .setCancelable(false)
-                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-                .setPositiveTextColorResource(android.R.color.white)
-                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-                .onPositive(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(BottomDialog dialog) {
-                        Log.d("BottomDialogs", "Do something!");
-                        //intro activity check in a separate thread
-//                        startIntroActivity();
-                        showDialogForSavingSum();
-                    }
-                }).show();
-    }
+//    //dialog when user pass a day
+//    private void showCustomDialogOnFirstLaunch(String title, StringBuilder content){
+//        //dialog ------------
+//        new BottomDialog.Builder(this)
+//                .setTitle(title)
+//                .setContent(content)
+//                .setPositiveText("OK")
+//                .setCancelable(false)
+//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+//                .setPositiveTextColorResource(android.R.color.white)
+//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+//                .onPositive(new BottomDialog.ButtonCallback() {
+//                    @Override
+//                    public void onClick(BottomDialog dialog) {
+//                        Log.d("BottomDialogs", "Do something!");
+//                        //intro activity check in a separate thread
+////                        startIntroActivity();
+////                        showDialogForSavingSum();
+//                    }
+//                }).show();
+//    }
     //dialog when user pass a day
     private void negativeDialogAfterRelapse(){
         //dialog ------------
@@ -568,8 +572,46 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
+//    @SideEffect
+//    private void startIntroActivity() {
+//        //intro
+//        //code for INTRO
+//        Thread threadForSlider = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+////                //  Create a new boolean and preference and set it to true
+////                Log.d("taozenD", "thread separat: " + Thread.currentThread().getName());
+////                if (preferences.contains("firstStart")) {
+////                    isFirstStart = preferences.getBoolean("firstStart", false);
+////                } else {
+////                    //on first launch this will trigger
+////                    isFirstStart = true;
+////                    editor.putBoolean("firstStart", false);
+////                    editor.apply();
+////                }
+////                //  If the activity has never started before...
+//                if (isFirstStart) {
+////                    if (preferences.contains(COUNTER)) {
+////                        counter = preferences.getInt(COUNTER, -1);
+////                        editor.putInt(COUNTER, counter);
+////                        editor.apply();
+////                    }
+//                    //  Launch app intro
+//                    final Intent i = new Intent(MainActivity.this, IntroActivity.class);
+//                    runOnUiThread(new Runnable() {
+//                        @Override public void run() {
+//                            Log.d("taozenD", "thread din ui: " + Thread.currentThread().getName());
+//                            startActivity(i);
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//        threadForSlider.start();
+//    }//end of INTRO
+
     @SideEffect
-    private void startIntroActivity() {
+    private void startFirstActivity() {
         //intro
         //code for INTRO
         Thread threadForSlider = new Thread(new Runnable() {
@@ -593,18 +635,19 @@ public class MainActivity extends AppCompatActivity {
                         editor.apply();
                     }
                     //  Launch app intro
-                    final Intent i = new Intent(MainActivity.this, IntroActivity.class);
+                    final Intent i = new Intent(MainActivity.this, FirstScreenActivity.class);
                     runOnUiThread(new Runnable() {
                         @Override public void run() {
                             Log.d("taozenD", "thread din ui: " + Thread.currentThread().getName());
                             startActivity(i);
+//                            startIntroActivity();
                         }
                     });
                 }
             }
         });
-        threadForSlider.start();//end of INTRO
-    }
+        threadForSlider.start();
+    }//end of INTRO
 
     @SideEffect
     private void counterFabButtonInitializer() {
@@ -998,10 +1041,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //-5 default
-        cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -5);
-        savings = preferences.getLong(SAVINGS_FINAL, -5);
-        counter = preferences.getInt(COUNTER, -5);
-        lifeRegained = preferences.getFloat(LIFEREGAINED, -5);
+        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -5);}
+        if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -5); }
+        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -5);}
+        if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -5); }
         editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
         editor.putInt(COUNTER, counter);
         editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
@@ -1163,7 +1206,7 @@ public class MainActivity extends AppCompatActivity {
     //MENU DRAWER
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+//        super.onBackPressed();
     }
 
     //[MENU]
@@ -1428,66 +1471,66 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showDialogForSavingSum() {
-        final EditText editTextForChoosingSavings =
-                new EditText(MainActivity.this);
-        editTextForChoosingSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
-        //impl bottom dialog instead of normal dialog
-        new BottomDialog.Builder(this)
-                .setTitle("MONEY TO SAVE!")
-                .setContent("How much money do you spend per day ?")
-                .setPositiveText("OK")
-                .setCancelable(false)
-                .setCustomView(editTextForChoosingSavings)
-                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-                .setPositiveTextColorResource(android.R.color.white)
-                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-                .onPositive(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(BottomDialog dialog) {
-                        Editable editM = editTextForChoosingSavings.getText();
-                        if (TextUtils.isEmpty(editM)){
-                            editTextForChoosingSavings.setError("Please input numbers!");
-                            return;
-                        }
-                        long moneyInt = (long) Integer.parseInt(editM.toString());
-                        editor.putLong(SAVINGS_FINAL, moneyInt);
-                        editor.apply();
-                        Log.d("INTROTAO", "money saved in INTROACTIVITY ? :  " + numberFormat.format(moneyInt));
-                        showDialogForSavingCiggarettesNumber();
-                    }
-                }).show();
-    }
-    private void showDialogForSavingCiggarettesNumber() {
-        final EditText editTextForChoosingCiggs = new EditText(MainActivity.this);
-        editTextForChoosingCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
-        //impl bottom dialog instead of normal dialog
-        new BottomDialog.Builder(this)
-                .setTitle("CIGGARETTES!")
-                .setContent("How much ciggarettes do you smoke per day ?")
-                .setPositiveText("OK")
-                .setCustomView(editTextForChoosingCiggs)
-                .setCancelable(false)
-                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-                .setPositiveTextColorResource(android.R.color.white)
-                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-                .onPositive(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(BottomDialog dialog) {
-                            Editable editM = editTextForChoosingCiggs.getText();
-                            int cigInt = Integer.parseInt(editM.toString());
-                            editor.putInt(INITIAL_CIGG_PER_DAY, cigInt);
-                            editor.apply();
-                            Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);
-                            startIntroActivity();
-                    }
-                }).show();
-
-
-
-    }
+//    private void showDialogForSavingSum() {
+//        final EditText editTextForChoosingSavings =
+//                new EditText(MainActivity.this);
+//        editTextForChoosingSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
+//        //impl bottom dialog instead of normal dialog
+//        new BottomDialog.Builder(this)
+//                .setTitle("MONEY TO SAVE!")
+//                .setContent("How much money do you spend per day ?")
+//                .setPositiveText("OK")
+//                .setCancelable(false)
+//                .setCustomView(editTextForChoosingSavings)
+//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+//                .setPositiveTextColorResource(android.R.color.white)
+//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+//                .onPositive(new BottomDialog.ButtonCallback() {
+//                    @Override
+//                    public void onClick(BottomDialog dialog) {
+//                        Editable editM = editTextForChoosingSavings.getText();
+//                        if (TextUtils.isEmpty(editM)){
+//                            editTextForChoosingSavings.setError("Please input numbers!");
+//                            return;
+//                        }
+//                        long moneyInt = (long) Integer.parseInt(editM.toString());
+//                        editor.putLong(SAVINGS_FINAL, moneyInt);
+//                        editor.apply();
+//                        Log.d("INTROTAO", "money saved in INTROACTIVITY ? :  " + numberFormat.format(moneyInt));
+//                        showDialogForSavingCiggarettesNumber();
+//                    }
+//                }).show();
+//    }
+//    private void showDialogForSavingCiggarettesNumber() {
+//        final EditText editTextForChoosingCiggs = new EditText(MainActivity.this);
+//        editTextForChoosingCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
+//        //impl bottom dialog instead of normal dialog
+//        new BottomDialog.Builder(this)
+//                .setTitle("CIGGARETTES!")
+//                .setContent("How much ciggarettes do you smoke per day ?")
+//                .setPositiveText("OK")
+//                .setCustomView(editTextForChoosingCiggs)
+//                .setCancelable(false)
+//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+//                .setPositiveTextColorResource(android.R.color.white)
+//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+//                .onPositive(new BottomDialog.ButtonCallback() {
+//                    @Override
+//                    public void onClick(BottomDialog dialog) {
+//                            Editable editM = editTextForChoosingCiggs.getText();
+//                            int cigInt = Integer.parseInt(editM.toString());
+//                            editor.putInt(INITIAL_CIGG_PER_DAY, cigInt);
+//                            editor.apply();
+//                            Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);
+////                            startIntroActivity();
+//                    }
+//                }).show();
+//
+//
+//
+//    }
 
 
 
