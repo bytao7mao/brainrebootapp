@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -26,12 +27,15 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -250,6 +254,9 @@ public class MainActivity extends AppCompatActivity {
         progressBarBreathlevel = findViewById(R.id.progress_bar_breath);
         progressBarGumsLevel = findViewById(R.id.progress_bar_gums);
 
+        //setMargin
+        setMarginForProgress();
+
         //check online state
 //        checkActivityOnline();
         setTxtViewForUserMaxCountDaysOnStringVersion(
@@ -270,10 +277,10 @@ public class MainActivity extends AppCompatActivity {
         remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
         targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
         tipofthedayTxtViewId.setTypeface(montSerratItallicTypeface);
-        txtProgressForEnergyLevels.setTypeface(montSerratMediumTypeface);
-        txtProgressForFatigue.setTypeface(montSerratMediumTypeface);
-        txtProgressForBreath.setTypeface(montSerratMediumTypeface);
-        txtProgressForGums.setTypeface(montSerratMediumTypeface);
+        txtProgressForEnergyLevels.setTypeface(montSerratBoldTypeface);
+        txtProgressForFatigue.setTypeface(montSerratBoldTypeface);
+        txtProgressForBreath.setTypeface(montSerratBoldTypeface);
+        txtProgressForGums.setTypeface(montSerratBoldTypeface);
         moneyOrTimeTextView.setTypeface(montSerratLightTypeface);
         challengeTextViewTitle.setTypeface(montSerratSimpleBoldTypeface);
         challengeTextViewSubtitle.setTypeface(montSerratLightTypeface);
@@ -1156,6 +1163,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (counter > 55) {
             txtProgressForEnergyLevels.setText(100 + "%");
             progressBarEnergyLevel.setProgress(100);
+//            setMargins (txtProgressForEnergyLevels, 0, 0, -15, 0);
         }
 
         //fatigue levels
@@ -1245,6 +1253,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
             return true;
+        } else if (id == R.id.action_help) {
+            counter = 80;
+            counterText.setText(String.valueOf(counter));
+            editor.putInt(COUNTER, counter);
+            editor.apply();
         }
         return super.onOptionsItemSelected(item);
     }//END OF -> [MENU]
@@ -1568,4 +1581,27 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch(NullPointerException e){ e.printStackTrace(); }
     }
+    private void setMarginForProgress(){
+        Resources r = this.getResources();
+        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, r.getDisplayMetrics());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(px, 0, 0, 0);
+        Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
+        if (progressBarEnergyLevel.getProgress() == 100) {
+//            txtProgressForEnergyLevels.setLayoutParams(params);
+            setMargins(txtProgressForEnergyLevels, px, 0 , 0, 0);
+            Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
+        }
+
+    }
+    private void setMargins (View view, int left, int top, int right, int bottom) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(left, top, right, bottom);
+            view.requestLayout();
+        }
+    }
+
 }//[END OF MAIN CLASS]
