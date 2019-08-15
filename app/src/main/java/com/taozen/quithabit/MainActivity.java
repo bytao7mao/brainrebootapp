@@ -1031,7 +1031,6 @@ public class MainActivity extends AppCompatActivity {
         runningInBackground();
         moneyOrTimeAndGetAndSetValue();
         setTargetDays();
-        //set text for checkin
         setCheckInText();
         Log.d("INTROTAO", "values in onResume: " + "cigperday " + cigarettesPerDay+ " savings: " + savings + " counter: " + counter);
     }//[END of ONRESUME]
@@ -1041,16 +1040,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //-5 default
-        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -5);}
-        if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -5); }
-        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -5);}
-        if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -5); }
-        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
-        editor.putInt(COUNTER, counter);
-        editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
-        editor.putFloat(LIFEREGAINED, lifeRegained);
-        editor.putLong(SAVINGS_FINAL, savings);
-        editor.apply();
+        try {
+        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -5);editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);editor.apply();}
+        if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -5); editor.putLong(SAVINGS_FINAL, savings);editor.apply();}
+        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -5);editor.putInt(COUNTER, counter);editor.apply();}
+        if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -5);editor.putFloat(LIFEREGAINED, lifeRegained);editor.apply(); }
+        if (preferences.contains(getString(R.string.maxCounter))){userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -5);editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);editor.apply();}
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         Log.d("INTROTAO", "values in onPause: " + "cigperday " + cigarettesPerDay+ " savings: " + savings+ " counter: " + counter);
     }//[END of ONPAUSE]
 
@@ -1058,13 +1056,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
-        editor.putInt(COUNTER, counter);
-        editor.putBoolean(CLICKED, buttonClickedToday);
-        editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
-        editor.putFloat(LIFEREGAINED, lifeRegained);
-        editor.putLong(SAVINGS_FINAL, savings);
-        editor.apply();
+        try {
+            editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+            editor.putInt(COUNTER, counter);
+            editor.putBoolean(CLICKED, buttonClickedToday);
+            editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
+            editor.putFloat(LIFEREGAINED, lifeRegained);
+            editor.putLong(SAVINGS_FINAL, savings);
+            editor.apply();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         Log.d("INTROTAO", "values in onDestroy: " + "cigperday " + cigarettesPerDay+ " savings: " + savings+ " counter: " + counter);
     }//[END of ONDESTROY]
 
