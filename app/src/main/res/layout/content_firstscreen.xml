@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".FirstScreenActivity"
+    android:id="@+id/transitions_container"
     android:background="@color/white"
     android:layout_marginTop="50dp">
 

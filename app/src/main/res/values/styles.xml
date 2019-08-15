@@ -19,6 +19,7 @@
         <item name="windowNoTitle">true</item>
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
         <item name="android:popupBackground">@drawable/popup_menu_round</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 
     <style name="MaterialTheme.NoActionBar">
@@ -39,6 +40,18 @@
         <item name="colorControlActivated">@color/greenColorLed</item>
         <item name="colorControlHighlight">@color/greenColorLed</item>
     </style>
+
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@transition/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@transition/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@transition/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@transition/slide_out_right</item>
+    </style>
+
+    <!--<style name="Fade">-->
+        <!--<item name="android:windowEnterAnimation">@transition/slide_in_right</item>-->
+        <!--<item name="android:windowExitAnimation">@transition/slide_out_left</item>-->
+    <!--</style>-->
 
 
     <style name="Divider">

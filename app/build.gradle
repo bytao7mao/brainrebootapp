@@ -103,6 +103,9 @@ dependencies {
 
     //here be dragons - a plugin for seeing the methods used
     implementation 'com.anupcowkur:here-be-dragons-annotation:1.0.1'
+
+    //transitions
+    implementation "com.andkulikov:transitionseverywhere:1.8.1"
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android-extensions'

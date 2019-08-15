@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,11 +21,15 @@ import android.text.TextUtils;
 import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.taozen.quithabit.intro.IntroActivity;
+import com.transitionseverywhere.ArcMotion;
+import com.transitionseverywhere.ChangeBounds;
+import com.transitionseverywhere.TransitionManager;
 
 import java.util.Objects;
 import butterknife.BindView;
@@ -61,12 +67,15 @@ public class FirstScreenActivity extends AppCompatActivity {
     static Typeface montSerratSimpleBoldTypeface;
 
     boolean go,go2;
+    Handler mHandler = new Handler();
 
+    boolean visible;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
 //        ButterKnife.bind(FirstScreenActivity.this);
         go = false;go2 = false;
+        final ViewGroup transitionsContainer = (ViewGroup) findViewById(R.id.transitions_container);
 
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
         montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
@@ -93,7 +102,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(FirstScreenActivity.this);
         editor = preferences.edit();
-
+//        getWindow().getAttributes().windowAnimations = R.style.Fade;
 
         textView = findViewById(R.id.fsTitleId);
         editTxtForSavings = findViewById(R.id.edtTxtForSavingsId);
@@ -117,16 +126,34 @@ public class FirstScreenActivity extends AppCompatActivity {
 
 
 
+
         //set cigg
         btnCigg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setCiggsPerDay();
                 setSavings();
+//                overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
+//                TransitionManager.beginDelayedTransition(transitionsContainer);
+                TransitionManager.beginDelayedTransition(transitionsContainer,
+                        new ChangeBounds().setPathMotion(new ArcMotion()).setDuration(800));
                 if (go && go2){
-                    Intent i = new Intent(FirstScreenActivity.this, IntroActivity.class);
-                    startActivity(i);
-                }
+
+//                    mHandler.postDelayed(new Runnable() {
+//
+//                        @Override
+//                        public void run() {
+                            visible = !visible;
+                            editTxtForSavings.setVisibility(visible ? View.VISIBLE : View.GONE);
+                            editTxtForCiggs.setVisibility(visible ? View.VISIBLE : View.GONE);
+                            Intent i = new Intent(FirstScreenActivity.this, IntroActivity.class);
+//                            overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
+                            startActivity(i);
+//                            finish();
+                        }
+//                    }, 2000);
+
+//                }
             }
         });
 
