@@ -1,7 +1,9 @@
 package com.taozen.quithabit;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -21,11 +23,13 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -35,7 +39,6 @@ import android.widget.Toast;
 import com.anupcowkur.herebedragons.SideEffect;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
-import com.google.android.gms.dynamic.IFragmentWrapper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -171,15 +174,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     //add font to counter number
-    Typeface montSerratBoldTypeface;
-    Typeface montSerratItallicTypeface;
-    Typeface montSerratLightTypeface;
-    Typeface montSerratMediumTypeface;
-    Typeface montSerratSemiBoldTypeface;
-    Typeface montSerratExtraBoldTypeface;
-    Typeface montSerratSimpleBoldTypeface;
+    static Typeface montSerratBoldTypeface;
+    static Typeface montSerratItallicTypeface;
+    static Typeface montSerratLightTypeface;
+    static Typeface montSerratMediumTypeface;
+    static Typeface montSerratSemiBoldTypeface;
+    static Typeface montSerratExtraBoldTypeface;
+    static Typeface montSerratSimpleBoldTypeface;
 
-    DecimalFormat numberFormat = new DecimalFormat("#.##");
+    DecimalFormat numberFormat;
 
 
     //OnCreate [START]
@@ -636,10 +639,10 @@ public class MainActivity extends AppCompatActivity {
                     normalFancyDialog("BEAT YOUR MILESTONE - 30 DAYS!", normalMessageForDialog);
                     //between 29(to show up in 30) and 60
                 } else if (counter > 28 && counter < 59) {
-                    normalFancyDialog("MILESTONE 30 DAYS REACHED!!", normalMessageForDialog);
+                    normalFancyDialog("BEAT YOUR MILESTONE - 60 DAYS!", normalMessageForDialog);
                     //between 59(to show up in 60) and 90
                 } else if (counter > 58 && counter < 91) {
-                    normalFancyDialog("MILESTONE 60 DAYS REACHED!!!", normalMessageForDialog);
+                    normalFancyDialog("BEAT YOUR MILESTONE - 90 DAYS!", normalMessageForDialog);
                     //SHOW FANCY TOAST WITH CONGRATS
                 }//[END OF ELSE IFS DIALOGS]
                 fab.hide();
@@ -750,7 +753,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (ClassCastException e) {
                 e.printStackTrace();
             }
-
         } else {
             savings = 0;
             editor.putLong(SAVINGS_FINAL, savings);
@@ -1427,16 +1429,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDialogForSavingSum() {
-        final EditText editTextForChoosingHabit =
+        final EditText editTextForChoosingSavings =
                 new EditText(MainActivity.this);
-        editTextForChoosingHabit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        editTextForChoosingSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
         //impl bottom dialog instead of normal dialog
         new BottomDialog.Builder(this)
                 .setTitle("MONEY TO SAVE!")
                 .setContent("How much money do you spend per day ?")
                 .setPositiveText("OK")
                 .setCancelable(false)
-                .setCustomView(editTextForChoosingHabit)
+                .setCustomView(editTextForChoosingSavings)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
@@ -1444,7 +1446,11 @@ public class MainActivity extends AppCompatActivity {
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(BottomDialog dialog) {
-                        Editable editM = editTextForChoosingHabit.getText();
+                        Editable editM = editTextForChoosingSavings.getText();
+                        if (TextUtils.isEmpty(editM)){
+                            editTextForChoosingSavings.setError("Please input numbers!");
+                            return;
+                        }
                         long moneyInt = (long) Integer.parseInt(editM.toString());
                         editor.putLong(SAVINGS_FINAL, moneyInt);
                         editor.apply();
@@ -1454,15 +1460,14 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
     private void showDialogForSavingCiggarettesNumber() {
-        final EditText editTextForChoosingHabit =
-                new EditText(MainActivity.this);
-        editTextForChoosingHabit.setInputType(InputType.TYPE_CLASS_NUMBER);
+        final EditText editTextForChoosingCiggs = new EditText(MainActivity.this);
+        editTextForChoosingCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
         //impl bottom dialog instead of normal dialog
         new BottomDialog.Builder(this)
                 .setTitle("CIGGARETTES!")
                 .setContent("How much ciggarettes do you smoke per day ?")
                 .setPositiveText("OK")
-                .setCustomView(editTextForChoosingHabit)
+                .setCustomView(editTextForChoosingCiggs)
                 .setCancelable(false)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
@@ -1471,15 +1476,23 @@ public class MainActivity extends AppCompatActivity {
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(BottomDialog dialog) {
-                        Editable editM = editTextForChoosingHabit.getText();
-                        int cigInt = Integer.parseInt(editM.toString());
-                        editor.putInt(INITIAL_CIGG_PER_DAY, cigInt);
-                        editor.apply();
-                        Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);
-                        startIntroActivity();
+                            Editable editM = editTextForChoosingCiggs.getText();
+                            int cigInt = Integer.parseInt(editM.toString());
+                            editor.putInt(INITIAL_CIGG_PER_DAY, cigInt);
+                            editor.apply();
+                            Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);
+                            startIntroActivity();
                     }
                 }).show();
+
+
+
     }
+
+
+
+
+
 
     @SideEffect
     private void showEntireProgressForUserCard(TextView userCigarettesProgressTat,

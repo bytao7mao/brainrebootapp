@@ -20,7 +20,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextAppearance="@style/TitleBarTextAppearance2"
+            app:titleTextAppearance="@style/TitleBarStyle"
             app:popupTheme="@style/MaterialTheme.NoActionBar" />
         <!--android:layout_marginTop="?attr/actionBarSize"-->
         <View

@@ -16,6 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".FirstScreenActivity"
+            android:theme="@style/MaterialTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".cardActivities.AchievmentsActivity" />
         <activity android:name=".optionsMenuActivities.AboutActivity" />
         <activity
@@ -23,20 +31,25 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
-            android:label="Quit Habit"
+            android:label="brainreboot"
             android:theme="@style/MaterialTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".intro.IntroActivity"
             android:label="app_intro" />
         <activity android:name=".cardActivities.SavingsActivity" />
         <activity android:name=".cardActivities.ChallengeActivity" />
+
         <service android:name=".notif.MyFirebaseMessagingService" />
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FirstScreenActivity"
+    android:background="@color/white"
+    android:layout_marginTop="50dp">
+
+    <!--style="@style/Widget.AppCompat.EditText"-->
+
+    <TextView
+        android:id="@+id/fsTitleId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="break your habit"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentTop="true"
+        android:alpha="0.8"
+        android:textSize="28sp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edtTxtForCiggarettedId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="how many cigarettes per day ?"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/fsTitleId"
+        android:textSize="14sp"
+        android:backgroundTint="@color/greenColorLed"/>
+
+    <!--<EditText-->
+        <!--android:id="@+id/edtTxtForCiggarettedId"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/fsTitleId"-->
+        <!--android:textSize="14sp"-->
+        <!--android:background="@android:color/white"-->
+        <!--android:hint="how many cigarettes per day ?" />-->
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edtTxtForSavingsId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="how much do you spend per day ?"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/edtTxtForCiggarettedId"
+        android:textSize="14sp"
+        android:backgroundTint="@color/greenColorLed"/>
+
+    <Button
+        android:id="@+id/ciggBtnId"
+        android:background="@drawable/custom_button"
+        android:textAllCaps="true"
+        android:text="confirm"
+        android:alpha="0.8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/edtTxtForSavingsId"
+        android:layout_marginEnd="57dp"
+        android:layout_marginRight="57dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center" />
+
+    <!--<EditText-->
+        <!--android:id="@+id/edtTxtForSavingsId"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="50dp"-->
+        <!--style="@style/MyEditTextTheme"-->
+        <!--android:textSize="14sp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/ciggBtnId"-->
+        <!--android:background="@android:color/white"-->
+        <!--android:hint="how much do you spend per day ?" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/savBtnId"-->
+        <!--android:background="@drawable/custom_button"-->
+        <!--android:text="choose"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_below="@id/edtTxtForSavingsId"-->
+        <!--android:layout_marginEnd="57dp"-->
+        <!--android:layout_marginRight="57dp"-->
+        <!--android:layout_marginBottom="60dp"-->
+        <!--android:gravity="center" />-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp"
+        android:text="@string/thanks_for_downloading_this_app" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="@string/enjoy" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:textStyle="italic"
+        android:textSize="12sp"
+        android:text="@string/all_rights_reserved_to_bytao7mao" />
+
+</RelativeLayout>
