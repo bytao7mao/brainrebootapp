@@ -67,7 +67,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
+    public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
     public static final String CHALLENGES_STRING = "CHALLENGES_FINAL";
     public static final String CLICKED = "CLICKED";
@@ -197,10 +197,11 @@ public class MainActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
         startFirstActivity();
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("data");
+        tipofthedayTxtViewId.setText(name);
 
         numberFormat = new DecimalFormat("#.##");
-
-
 
         //testing area
         Date date = new Date();
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
-        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1); }
+        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
         if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
         if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
         setTargetDays();
@@ -233,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //      getSupportActionBar().setElevation(0); //remove shadow - but now it is already removed in xml file
 
         progressCardView.setCardElevation(0);
@@ -249,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
         progressBarGumsLevel = findViewById(R.id.progress_bar_gums);
 
         //check online state
-        checkActivityOnline();
+//        checkActivityOnline();
         setTxtViewForUserMaxCountDaysOnStringVersion(
                 String.valueOf(userMaxCountForHabit),
                 R.string.target_string, targetTxtViewId);
@@ -1025,7 +1027,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        checkActivityOnline();
+//        checkActivityOnline();
         updateButton();
         setImagesForAchievementCard();
         runningInBackground();
@@ -1307,6 +1309,8 @@ public class MainActivity extends AppCompatActivity {
                 progressBarLoading2.setVisibility(View.VISIBLE);
                 counterImgView.setVisibility(View.INVISIBLE);
                 counterText.setVisibility(View.INVISIBLE);
+
+
             }
             //if we click we add a task
             tasks.add(this);

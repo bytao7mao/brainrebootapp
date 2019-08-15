@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -19,6 +20,7 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
+import com.taozen.quithabit.SplashActivity;
 
 public class IntroActivity extends AppIntro {
     //shared pref
@@ -33,6 +35,8 @@ public class IntroActivity extends AppIntro {
         preferences = PreferenceManager.getDefaultSharedPreferences(IntroActivity.this);
         editor = preferences.edit();
 
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(IntroActivity.this, R.color.white));
         // Instead of fragments, you can also use our default slide.
         // Just create a `SliderPage` and provide title, description, background and image.
         // AppIntro will do the rest.
@@ -79,14 +83,14 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        Intent i = new Intent(IntroActivity.this, MainActivity.class);
+        Intent i = new Intent(IntroActivity.this, SplashActivity.class);
         startActivity(i);
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        Intent i = new Intent(IntroActivity.this, MainActivity.class);
+        Intent i = new Intent(IntroActivity.this, SplashActivity.class);
         startActivity(i);
     }
 

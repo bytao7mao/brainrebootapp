@@ -19,13 +19,14 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="?attr/actionBarSize"
             app:titleTextAppearance="@style/TitleBarStyle"
             app:popupTheme="@style/MaterialTheme.NoActionBar" />
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="-56dp"
+            android:layout_height="?attr/actionBarSize"
             android:padding="10dp">
             <ImageView
                 android:id="@+id/media_image"
