@@ -232,16 +232,16 @@
                 android:layout_width="320dp"
                 android:layout_height="150dp">
             <TextView
-                android:id="@+id/textProg"
+                android:id="@+id/subTextEnergyId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:alpha="0.7"
-                android:text="gums"
+                android:text="energy"
                 style="@style/TextColorBlack" />
             <TextView
-                android:id="@+id/textProg2"
+                android:id="@+id/subTextBreathId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -250,7 +250,7 @@
                 android:text="breath"
                 style="@style/TextColorBlack" />
             <TextView
-                android:id="@+id/textProg22"
+                android:id="@+id/subTextFatigueId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -259,13 +259,13 @@
                 android:text="fatigue"
                 style="@style/TextColorBlack" />
             <TextView
-                android:id="@+id/textProg3"
+                android:id="@+id/subTextGumsId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:alpha="0.7"
-                android:text="energy"
+                android:text="gums"
                 style="@style/TextColorBlack" />
             </LinearLayout>
             <LinearLayout
@@ -395,10 +395,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="0%"
-                        android:alpha="0.7"
-                        android:textSize="13sp"
+                        android:alpha="0.8"
+                        android:textSize="12sp"
                         android:textStyle="bold"
-                        style="@style/TextColor2" />
+                        style="@style/TextColorBlack" />
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_marginStart="45dp"-->
@@ -410,10 +410,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="0%"
-                        android:alpha="0.7"
-                        android:textSize="13sp"
+                        android:alpha="0.8"
+                        android:textSize="12sp"
                         android:textStyle="bold"
-                        style="@style/TextColor2" />
+                        style="@style/TextColorBlack" />
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_marginRight="-40dp"-->
@@ -425,10 +425,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="0%"
-                        android:alpha="0.7"
-                        android:textSize="13sp"
+                        android:alpha="0.8"
+                        android:textSize="12sp"
                         android:textStyle="bold"
-                        style="@style/TextColor2" />
+                        style="@style/TextColorBlack" />
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_marginRight="40dp"-->
@@ -440,10 +440,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="0%"
-                        android:alpha="0.7"
-                        android:textSize="13sp"
+                        android:alpha="0.8"
+                        android:textSize="12sp"
                         android:textStyle="bold"
-                        style="@style/TextColor2" />
+                        style="@style/TextColorBlack" />
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_marginRight="43dp"-->

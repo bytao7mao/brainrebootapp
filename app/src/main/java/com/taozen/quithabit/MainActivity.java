@@ -48,6 +48,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
+import com.taozen.quithabit.cardActivities.FailLogsActivity2;
 import com.taozen.quithabit.intro.IntroActivity;
 import com.taozen.quithabit.optionsMenuActivities.AboutActivity;
 import com.taozen.quithabit.cardActivities.AchievmentsActivity;
@@ -70,6 +71,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<String> arr = new ArrayList<>();
 
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
@@ -115,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
     @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
-    @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtViewId;
+    @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtView;
     @BindView(R.id.progressActivityId) TextView progressBarsTxt;
     @BindView(R.id.logsTxtId) TextView failLogsTxtView;
     @BindView(R.id.challengeTxtIdTitleId) TextView challengeTextViewTitle;
@@ -123,10 +126,10 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tvErrorId) TextView errorText;
     @BindView(R.id.textNonSmokerId) TextView textNonSmoker;
     @BindView(R.id.subTextSmokeId) TextView subTextNonSmoker;
-    @BindView(R.id.textProg) TextView textProg;
-    @BindView(R.id.textProg2) TextView textProg2;
-    @BindView(R.id.textProg22) TextView textProg22;
-    @BindView(R.id.textProg3) TextView textProg3;
+    @BindView(R.id.subTextEnergyId) TextView subTextEnergy;
+    @BindView(R.id.subTextBreathId) TextView subTextBreath;
+    @BindView(R.id.subTextFatigueId) TextView subTextFatigue;
+    @BindView(R.id.subTextGumsId) TextView subTextGums;
     @BindView(R.id.YourAchievmentsId) TextView yourAchievmentTxt;
     @BindView(R.id.YourProgressId) TextView yourProgressTxt;
     @BindView(R.id.YourSavingsId) TextView yourSavingsTxt;
@@ -203,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         startFirstActivity();
         Intent intent = getIntent();
         String name = intent.getStringExtra("data");
-        tipofthedayTxtViewId.setText(name);
+        tipofthedayTxtView.setText(name);
 
         numberFormat = new DecimalFormat("#.##");
 
@@ -276,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
 //        remainingDaysTxt.setTypeface(montSerratMediumTypeface);
         remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
         targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
-        tipofthedayTxtViewId.setTypeface(montSerratItallicTypeface);
+        tipofthedayTxtView.setTypeface(montSerratItallicTypeface);
         txtProgressForEnergyLevels.setTypeface(montSerratBoldTypeface);
         txtProgressForFatigue.setTypeface(montSerratBoldTypeface);
         txtProgressForBreath.setTypeface(montSerratBoldTypeface);
@@ -287,10 +290,10 @@ public class MainActivity extends AppCompatActivity {
         progressBarsTxt.setTypeface(montSerratBoldTypeface);
         failLogsTxtView.setTypeface(montSerratLightTypeface);
         textNonSmoker.setTypeface(montSerratBoldTypeface);
-        textProg.setTypeface(montSerratMediumTypeface);
-        textProg2.setTypeface(montSerratMediumTypeface);
-        textProg22.setTypeface(montSerratMediumTypeface);
-        textProg3.setTypeface(montSerratMediumTypeface);
+        subTextEnergy.setTypeface(montSerratMediumTypeface);
+        subTextBreath.setTypeface(montSerratMediumTypeface);
+        subTextFatigue.setTypeface(montSerratMediumTypeface);
+        subTextGums.setTypeface(montSerratMediumTypeface);
         yourAchievmentTxt.setTypeface(montSerratSimpleBoldTypeface);
         yourProgressTxt.setTypeface(montSerratSimpleBoldTypeface);
         yourSavingsTxt.setTypeface(montSerratSimpleBoldTypeface);
@@ -326,11 +329,11 @@ public class MainActivity extends AppCompatActivity {
         timeStampLogsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendarOnClick2 = Calendar.getInstance();
-                calendarOnClick2.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-                Intent intent = new Intent(MainActivity.this, FailLogsActivity.class);
                 //TODO: finish logs activity
-                intent.putExtra("log", calendarOnClick2.getTime().toString());
+                Intent intent = new Intent(MainActivity.this, FailLogsActivity2.class);
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("arr", arr);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });//timeStampCardView[END]
@@ -479,8 +482,8 @@ public class MainActivity extends AppCompatActivity {
         if (HOUR_OF_DAYLIGHT <= 6 || HOUR_OF_DAYLIGHT >= 22) {
 //        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= 20) {
             backgroundImgWall.setBackgroundResource(R.drawable.ppp);
-            tipofthedayTxtViewId.setTextColor(getResources().getColor(R.color.white));
-            tipofthedayTxtViewId.setAlpha(0.8f);
+            tipofthedayTxtView.setTextColor(getResources().getColor(R.color.white));
+            tipofthedayTxtView.setAlpha(0.8f);
             counterText.setTextColor(getResources().getColor(R.color.white));
             counterText.setAlpha(1.0f);
             remainingDaysTxt.setTextColor(getResources().getColor(R.color.white));
@@ -496,7 +499,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //change wallpaper during daytime
             backgroundImgWall.setBackgroundResource(R.drawable.bgday);
-            tipofthedayTxtViewId.setTextColor(getResources().getColor(R.color.greish));
+            tipofthedayTxtView.setTextColor(getResources().getColor(R.color.greish));
             counterText.setTextColor(getResources().getColor(R.color.greish));
             remainingDaysTxt.setTextColor(getResources().getColor(R.color.greish));
             targetTxtViewId.setTextColor(getResources().getColor(R.color.greish));
@@ -715,6 +718,11 @@ public class MainActivity extends AppCompatActivity {
                 .OnPositiveClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
+                        if (counter == 0){
+                            savings = preferences.getLong("taoz10", -10);
+                        } else {
+                            savings = savings + preferences.getLong("taoz10", 0);
+                        }
                         counter++;
                         editor.putInt(COUNTER, counter);
                         int tempCigarettes = cigarettesPerDay * counter;
@@ -723,11 +731,11 @@ public class MainActivity extends AppCompatActivity {
                         lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
                         userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
                         editor.putFloat(LIFEREGAINED, lifeRegained);
-                        try {
-                            savings = preferences.getLong(SAVINGS_FINAL, 1);
-                        } catch (ClassCastException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            savings = preferences.getLong(SAVINGS_FINAL, 1);
+//                        } catch (ClassCastException e) {
+//                            e.printStackTrace();
+//                        }
                         editor.putLong(SAVINGS_FINAL, savings);
                         editor.apply();
                         checkActivityOnline();
@@ -750,9 +758,15 @@ public class MainActivity extends AppCompatActivity {
                 .OnNegativeClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
+                        //get time of relapse and put it into arraylist to send in logs activity
+                        Calendar calendarOnClick2 = Calendar.getInstance();
+                        calendarOnClick2.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                        arr.add(calendarOnClick2.getTime().toString() + " ole");
                         counter = 0;
                         savings = 0;
-                        editor.putLong(SAVINGS_FINAL, savings);
+                        //to see
+                        editor.putLong(SAVINGS_FINAL, savings);//off
+                        //maybe
                         editor.putInt(COUNTER, counter);
                         //new edit
                         int tempCigarettes = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
@@ -1293,7 +1307,7 @@ public class MainActivity extends AppCompatActivity {
 //            requestDataById(DAY_OF_PRESENT);
         } else {
             errorText.setVisibility(View.VISIBLE);
-            tipofthedayTxtViewId.setText("ERROR 404");
+            tipofthedayTxtView.setText("ERROR 404");
             Snackbar snackbar;
             snackbar = Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG);
             View snackBarView = snackbar.getView();
@@ -1303,7 +1317,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplayString(String message) {
-        tipofthedayTxtViewId.setText(new StringBuilder()
+        tipofthedayTxtView.setText(new StringBuilder()
                         .append(message)
                         .append("\n")
                         .toString()

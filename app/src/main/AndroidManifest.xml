@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".cardActivities.FailLogsActivity2"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +26,7 @@
         </activity>
         <activity
             android:name=".FirstScreenActivity"
-            android:excludeFromRecents="true"></activity>
+            android:excludeFromRecents="true" />
         <activity android:name=".cardActivities.AchievmentsActivity" />
         <activity android:name=".optionsMenuActivities.AboutActivity" />
         <activity
@@ -33,14 +34,15 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MainActivity"
-
             android:theme="@style/MaterialTheme.NoActionBar">
-            <!--android:label="brainreboot"-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- android:label="brainreboot" -->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".intro.IntroActivity"

@@ -238,6 +238,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         }
         long moneyInt = (long) Integer.parseInt(editM.toString());
         editor.putLong(SAVINGS_FINAL, moneyInt);
+        editor.putLong("taoz10", moneyInt);
         editor.apply();
         Log.d("INTROTAO", "moneyInt saved in INTROACTIVITY ? :  " + moneyInt);
     }
