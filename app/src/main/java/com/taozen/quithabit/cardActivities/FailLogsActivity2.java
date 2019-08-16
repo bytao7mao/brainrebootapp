@@ -24,10 +24,11 @@ public class FailLogsActivity2 extends AppCompatActivity {
     //shared pref
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
-    StringBuilder b = new StringBuilder();
+//    StringBuilder b = new StringBuilder();
 
     @BindView(R.id.logtxtVwId) TextView logTxt;
-    String temp = "";
+//    String temp = "";
+    StringBuilder temp = new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,29 +46,15 @@ public class FailLogsActivity2 extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        if (preferences.contains("oka")){
-            temp = preferences.getString("oka", "null");
-        }
-        logTxt.setText(temp + "\n");
         getArrayListFromMain();
 
-        Log.d("ZAZEN", "let's see: shared? " + preferences.getString("oka", "null")
-        + "strinb" + b.toString());
-        editor.putString("oka", logTxt.getText().toString());
-        editor.apply();
     }
 
     private void getArrayListFromMain(){
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        ArrayList<String> s = new ArrayList<>();
-        if (bundle!= null){
-            s = bundle.getStringArrayList("arr");
-            for (int i=0;i<s.size();i++){
-                b.append(s.get(i) + "\n");
-            }
-            editor.putString("oka" ,b.toString());
-            editor.apply();
+        if (preferences.contains("arr")){
+            logTxt.append(preferences.getString("arr", "no value"));
+        } else {
+            logTxt.setText("mortii mei");
         }
 
     }

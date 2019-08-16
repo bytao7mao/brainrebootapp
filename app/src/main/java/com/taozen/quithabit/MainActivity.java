@@ -72,7 +72,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<String> arr = new ArrayList<>();
+    String arr = "";
 
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
     public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
@@ -331,9 +331,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO: finish logs activity
                 Intent intent = new Intent(MainActivity.this, FailLogsActivity2.class);
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList("arr", arr);
-                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });//timeStampCardView[END]
@@ -761,7 +758,14 @@ public class MainActivity extends AppCompatActivity {
                         //get time of relapse and put it into arraylist to send in logs activity
                         Calendar calendarOnClick2 = Calendar.getInstance();
                         calendarOnClick2.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-                        arr.add(calendarOnClick2.getTime().toString() + " ole");
+                        String tem = calendarOnClick2.getTime().toString() + " ole\n";
+                        if (preferences.contains("arr")){
+                            arr = tem + preferences.getString("arr", "no value");
+                        } else {
+                            arr = tem;
+                        }
+                        editor.putString("arr", arr);
+                        editor.apply();
                         counter = 0;
                         savings = 0;
                         //to see
