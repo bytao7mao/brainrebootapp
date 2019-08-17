@@ -1,46 +1,41 @@
 package com.taozen.quithabit.cardActivities;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.TextView;
 
-import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FailLogsActivity2 extends AppCompatActivity {
+public class FailLogsActivity extends AppCompatActivity {
 
     //shared pref
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
-//    StringBuilder b = new StringBuilder();
-
     @BindView(R.id.logtxtVwId) TextView logTxt;
-//    String temp = "";
     StringBuilder temp = new StringBuilder();
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fail_logs);
-        ButterKnife.bind(FailLogsActivity2.this);
+        ButterKnife.bind(FailLogsActivity.this);
 
         //shared pref
-        preferences = PreferenceManager.getDefaultSharedPreferences(FailLogsActivity2.this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(FailLogsActivity.this);
         editor = preferences.edit();
 
-        getWindow().setStatusBarColor(ContextCompat.getColor(FailLogsActivity2.this, R.color.white));
+        getWindow().setStatusBarColor(ContextCompat.getColor(FailLogsActivity.this, R.color.white));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -56,7 +51,6 @@ public class FailLogsActivity2 extends AppCompatActivity {
         } else {
             logTxt.setText("mortii mei");
         }
-
     }
     @Override
     public boolean onSupportNavigateUp() {

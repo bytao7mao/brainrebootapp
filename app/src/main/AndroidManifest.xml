@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".cardActivities.FailLogsActivity2"></activity>
+        <activity android:name=".cardActivities.FailLogsActivity"
+            tools:ignore="InnerclassSeparator"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,9 +30,7 @@
             android:excludeFromRecents="true" />
         <activity android:name=".cardActivities.AchievmentsActivity" />
         <activity android:name=".optionsMenuActivities.AboutActivity" />
-        <activity
-            android:name=".cardActivities.FailLogsActivity"
-            tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/MaterialTheme.NoActionBar">

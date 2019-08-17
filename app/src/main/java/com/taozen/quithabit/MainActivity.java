@@ -1,9 +1,7 @@
 package com.taozen.quithabit;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -22,9 +20,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -32,8 +27,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -48,12 +41,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
-import com.taozen.quithabit.cardActivities.FailLogsActivity2;
-import com.taozen.quithabit.intro.IntroActivity;
+import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.optionsMenuActivities.AboutActivity;
 import com.taozen.quithabit.cardActivities.AchievmentsActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
-import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.utils.MyHttpManager;
 
@@ -109,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
     @BindView(R.id.progressCardIdAchievments) CardView achievementRanksCard;
     //TextViews
+    @BindView(R.id.rankFourIdText) TextView rankFourTxt;
+    @BindView(R.id.rankThreeIdText) TextView rankThreeTxt;
+    @BindView(R.id.rankTwoIdText) TextView rankTwoTxt;
+    @BindView(R.id.rankOneIdText) TextView rankOneTxt;
     @BindView(R.id.toolbar_subtitle) TextView subTextToolbar;
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
@@ -303,6 +298,10 @@ public class MainActivity extends AppCompatActivity {
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
         subTextNonSmoker.setTypeface(montSerratMediumTypeface);
         subTextToolbar.setTypeface(montSerratSemiBoldTypeface);
+        rankFourTxt.setTypeface(montSerratMediumTypeface);
+        rankThreeTxt.setTypeface(montSerratMediumTypeface);
+        rankTwoTxt.setTypeface(montSerratMediumTypeface);
+        rankOneTxt.setTypeface(montSerratMediumTypeface);
 
         try {
             if (preferences.contains(COUNTER)){
@@ -330,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: finish logs activity
-                Intent intent = new Intent(MainActivity.this, FailLogsActivity2.class);
+                Intent intent = new Intent(MainActivity.this, FailLogsActivity.class);
                 startActivity(intent);
             }
         });//timeStampCardView[END]
@@ -1126,16 +1125,24 @@ public class MainActivity extends AppCompatActivity {
         }
         int tempHourOfDayLight = HOUR_OF_DAYLIGHT == 0 ? 24 : HOUR_OF_DAYLIGHT;
         Log.d("TAOZEN9", "tempHour: " + tempHourOfDayLight);
-        if ((   (DAY_OF_PRESENT > DAY_OF_CLICK)
-                && !buttonClickedToday)
-                || counter == 0) {
-            //higher than 2 days or hour of now higher than higher of launch
-            if ((tempHourOfDayLight >= HOUR_OF_FIRSTLAUNCH)
-                    || (DAY_OF_PRESENT >= DAY_OF_CLICK+2)){
-                fab.show();
-                editor.putInt(COUNTER, counter);
-                editor.apply();
+        if ((   (DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday) || counter == 0) {
+            if (HOUR_OF_FIRSTLAUNCH < 24) {
+                tempHourOfDayLight = HOUR_OF_DAYLIGHT == 0 ? 23 : HOUR_OF_DAYLIGHT;
+                //higher than 2 days or hour of now higher than higher of launch
+                //in this way we assure that we cannot pass the day and have the hour higher in the same time
+                if ((tempHourOfDayLight >= HOUR_OF_FIRSTLAUNCH) || (DAY_OF_PRESENT >= DAY_OF_CLICK+2)){
+                    fab.show();
+                    editor.putInt(COUNTER, counter);
+                    editor.apply();
+                }
+            } else if (HOUR_OF_FIRSTLAUNCH == 24 || (DAY_OF_PRESENT >= DAY_OF_CLICK+2)) {
+                if (tempHourOfDayLight == HOUR_OF_DAYLIGHT){
+                    fab.show();
+                    editor.putInt(COUNTER, counter);
+                    editor.apply();
+                }
             }
+
             Log.d("TAOZEN9", "green condition true and counter == "
                     + counter + buttonClickedToday + "dayofpresent="
                     + DAY_OF_PRESENT + " dayofclick="+DAY_OF_CLICK);
@@ -1400,14 +1407,22 @@ public class MainActivity extends AppCompatActivity {
         if (counter>=0&&counter<10) {
             //user have between a day and a week
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankOneTxt.setText("recruit");
+            rankOneTxt.setAlpha(0.0f);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankTwoTxt.setText("bronzeII");
+            rankTwoTxt.setAlpha(0.0f);
             rankTwoImg.setAlpha(0.2f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+            rankThreeTxt.setText("bronzeIII");
+            rankThreeTxt.setAlpha(0.0f);
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
+            rankFourTxt.setText("recruit");
+            rankFourTxt.setAlpha(0.2f);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "NOOB");
+            editor.putString("rank", "recruit");
         } else if (counter>9&&counter<20) {
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
             rankOneImg.setAlpha(1.0f);
@@ -1420,14 +1435,22 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("rank", "NOOB");
         } else if (counter>19&&counter<30) {
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+            rankOneTxt.setText("bronzeI");
+            rankOneTxt.setAlpha(0.0f);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+            rankTwoTxt.setText("bronzeII");
+            rankTwoTxt.setAlpha(0.0f);
             rankTwoImg.setAlpha(1.0f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+            rankThreeTxt.setText("bronzeIII");
+            rankThreeTxt.setAlpha(0.0f);
             rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
+            rankFourTxt.setText("recruit");
+            rankFourTxt.setAlpha(0.7f);
             rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "NOOB");
+            editor.putString("rank", "recruit");
         } else if (counter>29&&counter<40) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
