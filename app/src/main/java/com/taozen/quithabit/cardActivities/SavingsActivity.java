@@ -22,8 +22,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.taozen.quithabit.MainActivity.COUNTER;
-import static com.taozen.quithabit.MainActivity.SAVINGS_FINAL;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
 public class SavingsActivity extends AppCompatActivity {
     @BindView(R.id.savingsTxt) TextView savingsTxt;

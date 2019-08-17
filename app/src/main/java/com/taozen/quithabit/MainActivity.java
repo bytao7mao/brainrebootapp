@@ -20,6 +20,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -27,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -41,11 +45,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
+import com.taozen.quithabit.cardActivities.AchievmentsActivity2;
 import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.optionsMenuActivities.AboutActivity;
 import com.taozen.quithabit.cardActivities.AchievmentsActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
+import com.taozen.quithabit.utils.Constants;
 import com.taozen.quithabit.utils.MyHttpManager;
 
 import java.text.DecimalFormat;
@@ -61,21 +67,23 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.CHALLENGES_STRING;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKED;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.DAYOFPRESENT;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.HOUR_OF_FIRSLAUNCH_SP;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINED;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.PRESENTDAY;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
+
 public class MainActivity extends AppCompatActivity {
 
     String arr = "";
 
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
-    public static final String SAVINGS_FINAL = "SAVINGS_FINAL";
-    public static final String CHALLENGES_STRING = "CHALLENGES_FINAL";
-    public static final String CLICKED = "CLICKED";
-    public static final String COUNTER = "COUNTER";
-    public static final String INITIAL_CIGG_PER_DAY = "CIGARETTES_INITIAL";
-    public static final String MODIFIED_CIGG_PER_DAY = "CIGARETTES_MODIFIED";
-    public static final String LIFEREGAINED = "LIFEREGAINED";
-    public static final String DAYOFPRESENT = "DAYOFPRESENT";
-    public static final String PRESENTDAY = "PRESENTDAY";
-    public static final String HOUR_OF_FIRSLAUNCH_SP = "FIRSTHOUR";
+
     private List<MainActivity.MyAsyncTask> tasks;
     private Timer timer;
     Float lifeRegained;
@@ -100,10 +108,10 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
     @BindView(R.id.progressCardIdAchievments) CardView achievementRanksCard;
     //TextViews
-    @BindView(R.id.rankFourIdText) TextView rankFourTxt;
-    @BindView(R.id.rankThreeIdText) TextView rankThreeTxt;
-    @BindView(R.id.rankTwoIdText) TextView rankTwoTxt;
-    @BindView(R.id.rankOneIdText) TextView rankOneTxt;
+//    @BindView(R.id.rankFourIdText) TextView rankFourTxt;
+//    @BindView(R.id.rankThreeIdText) TextView rankThreeTxt;
+//    @BindView(R.id.rankTwoIdText) TextView rankTwoTxt;
+//    @BindView(R.id.rankOneIdText) TextView rankOneTxt;
     @BindView(R.id.toolbar_subtitle) TextView subTextToolbar;
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
@@ -298,10 +306,10 @@ public class MainActivity extends AppCompatActivity {
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
         subTextNonSmoker.setTypeface(montSerratMediumTypeface);
         subTextToolbar.setTypeface(montSerratSemiBoldTypeface);
-        rankFourTxt.setTypeface(montSerratMediumTypeface);
-        rankThreeTxt.setTypeface(montSerratMediumTypeface);
-        rankTwoTxt.setTypeface(montSerratMediumTypeface);
-        rankOneTxt.setTypeface(montSerratMediumTypeface);
+//        rankFourTxt.setTypeface(montSerratMediumTypeface);
+//        rankThreeTxt.setTypeface(montSerratMediumTypeface);
+//        rankTwoTxt.setTypeface(montSerratMediumTypeface);
+//        rankOneTxt.setTypeface(montSerratMediumTypeface);
 
         try {
             if (preferences.contains(COUNTER)){
@@ -321,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
         achievementRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AchievmentsActivity.class);
+                Intent intent = new Intent(MainActivity.this, AchievmentsActivity2.class);
                 startActivity(intent);
             }
         });//achievementRanksCard[END]
@@ -504,7 +512,8 @@ public class MainActivity extends AppCompatActivity {
             subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             subTextNonSmoker.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
             subTextNonSmoker.setAlpha(0.7f);
-            backgroundImgWall.setAlpha(0.05f);
+//            backgroundImgWall.setAlpha(0.05f);
+            backgroundImgWall.setAlpha(0f);
         }
     }
 
@@ -908,6 +917,8 @@ public class MainActivity extends AppCompatActivity {
             //set text for checkin
             setCheckInText();
 
+            showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
+
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);editor.putInt(COUNTER, counter);
                 editor.apply();
@@ -1283,6 +1294,8 @@ public class MainActivity extends AppCompatActivity {
             counterText.setText(String.valueOf(counter));
             editor.putInt(COUNTER, counter);
             editor.apply();
+        } else if (id == R.id.check_in_hour) {
+            showDialogForChangingCheckInDate();
         }
         return super.onOptionsItemSelected(item);
     }//END OF -> [MENU]
@@ -1407,22 +1420,14 @@ public class MainActivity extends AppCompatActivity {
         if (counter>=0&&counter<10) {
             //user have between a day and a week
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-            rankOneTxt.setText("recruit");
-            rankOneTxt.setAlpha(0.0f);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-            rankTwoTxt.setText("bronzeII");
-            rankTwoTxt.setAlpha(0.0f);
             rankTwoImg.setAlpha(0.2f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-            rankThreeTxt.setText("bronzeIII");
-            rankThreeTxt.setAlpha(0.0f);
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
-            rankFourTxt.setText("recruit");
-            rankFourTxt.setAlpha(0.2f);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "recruit");
+            editor.putString("rank", "Recruit");
         } else if (counter>9&&counter<20) {
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
             rankOneImg.setAlpha(1.0f);
@@ -1432,25 +1437,17 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "NOOB");
+            editor.putString("rank", "Recruit II");
         } else if (counter>19&&counter<30) {
             rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-            rankOneTxt.setText("bronzeI");
-            rankOneTxt.setAlpha(0.0f);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-            rankTwoTxt.setText("bronzeII");
-            rankTwoTxt.setAlpha(0.0f);
             rankTwoImg.setAlpha(1.0f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-            rankThreeTxt.setText("bronzeIII");
-            rankThreeTxt.setAlpha(0.0f);
             rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron11);
-            rankFourTxt.setText("recruit");
-            rankFourTxt.setAlpha(0.7f);
             rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "recruit");
+            editor.putString("rank", "Recruit III");
         } else if (counter>29&&counter<40) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
@@ -1461,7 +1458,7 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "SOLDIER");
+            editor.putString("rank", "Silver");
         } else if (counter>39&&counter<50) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
@@ -1472,7 +1469,7 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "SOLDIER");
+            editor.putString("rank", "Silver II");
         } else if (counter>49&&counter<60) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
@@ -1483,7 +1480,7 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron10);
             rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "SOLDIER");
+            editor.putString("rank", "Silver III");
         } else if (counter>59&&counter<70) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron3);
@@ -1494,7 +1491,7 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "CAPTAIN");
+            editor.putString("rank", "Gold");
         } else if (counter>69&&counter<80) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron3);
@@ -1505,7 +1502,7 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "CAPTAIN");
+            editor.putString("rank", "Gold II");
         } else if (counter>79&&counter<90) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron3);
@@ -1515,53 +1512,52 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
             rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
-            rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "CAPTAIN");
+            rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "Gold III");
             //WHEN USER REACH DAY 90 - GREATEST MILESTONE
         } else if (counter == 90) {
-            rankOneImg.setBackgroundResource(R.mipmap.chevron13);
+            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
             rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron14);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
             rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron15);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
             rankThreeImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron19);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "GODLIKE");
+            editor.putString("rank", "Gold nova master!");
         }
     }
 
-//    private void showDialogForSavingSum() {
-//        final EditText editTextForChoosingSavings =
-//                new EditText(MainActivity.this);
-//        editTextForChoosingSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
-//        //impl bottom dialog instead of normal dialog
-//        new BottomDialog.Builder(this)
-//                .setTitle("MONEY TO SAVE!")
-//                .setContent("How much money do you spend per day ?")
-//                .setPositiveText("OK")
-//                .setCancelable(false)
-//                .setCustomView(editTextForChoosingSavings)
-//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-//                .setPositiveTextColorResource(android.R.color.white)
-//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-//                .onPositive(new BottomDialog.ButtonCallback() {
-//                    @Override
-//                    public void onClick(BottomDialog dialog) {
-//                        Editable editM = editTextForChoosingSavings.getText();
-//                        if (TextUtils.isEmpty(editM)){
-//                            editTextForChoosingSavings.setError("Please input numbers!");
-//                            return;
-//                        }
-//                        long moneyInt = (long) Integer.parseInt(editM.toString());
-//                        editor.putLong(SAVINGS_FINAL, moneyInt);
-//                        editor.apply();
-//                        Log.d("INTROTAO", "money saved in INTROACTIVITY ? :  " + numberFormat.format(moneyInt));
-//                        showDialogForSavingCiggarettesNumber();
-//                    }
-//                }).show();
-//    }
+    private void showDialogForChangingCheckInDate() {
+        final EditText editTextForChoosingSavings =
+                new EditText(MainActivity.this);
+        editTextForChoosingSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
+        //impl bottom dialog instead of normal dialog
+        new BottomDialog.Builder(this)
+                .setTitle("Check in customization!")
+                .setContent("Type in what time is suitable for you to check in.")
+                .setPositiveText("SET")
+                .setCancelable(false)
+                .setCustomView(editTextForChoosingSavings)
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(BottomDialog dialog) {
+                        Editable editM = editTextForChoosingSavings.getText();
+                        if (TextUtils.isEmpty(editM)){
+                            editTextForChoosingSavings.setError("Please input numbers!");
+                            return;
+                        }
+                        HOUR_OF_FIRSTLAUNCH = Integer.parseInt(editM.toString());
+                        editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
+                        editor.apply();
+                        Log.d("INTROTAO", "money saved in INTROACTIVITY ? :  " + HOUR_OF_FIRSTLAUNCH);
+                    }
+                }).show();
+    }
 //    private void showDialogForSavingCiggarettesNumber() {
 //        final EditText editTextForChoosingCiggs = new EditText(MainActivity.this);
 //        editTextForChoosingCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -1622,7 +1618,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch(NullPointerException e){ e.printStackTrace(); }
     }
-    private void setMarginForProgress(){
+    private void setMarginForProgress() {
         Resources r = this.getResources();
         int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, r.getDisplayMetrics());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

@@ -37,8 +37,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Optional;
 
-import static com.taozen.quithabit.MainActivity.INITIAL_CIGG_PER_DAY;
-import static com.taozen.quithabit.MainActivity.SAVINGS_FINAL;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
+
 
 public class FirstScreenActivity extends AppCompatActivity {
 //    @Nullable

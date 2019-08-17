@@ -5,14 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rltvlayout">
-    <TextView
-        android:id="@+id/savingsTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="100dp"
-        android:textSize="20sp"
-        android:text="@string/total_savings"/>
     <EditText
         android:id="@+id/editTxtSavingsId"
         android:layout_width="wrap_content"
@@ -24,4 +16,5 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="150dp"
         android:text="add"/>
+
 </RelativeLayout>

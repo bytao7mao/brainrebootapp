@@ -21,7 +21,7 @@ import com.taozen.quithabit.utils.MyHttpManager;
 
 import java.util.Random;
 
-import static com.taozen.quithabit.MainActivity.COUNTER;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 
 public class SplashActivity extends AppCompatActivity {
 

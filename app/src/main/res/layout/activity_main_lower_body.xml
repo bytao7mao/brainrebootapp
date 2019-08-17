@@ -107,7 +107,7 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/progressCardIdAchievments"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="100dp"
                     app:cardCornerRadius="8dp">
                     <ImageView
                         android:layout_width="match_parent"
@@ -137,7 +137,7 @@
                         android:layout_marginLeft="10dp"
                         android:background="@mipmap/medal" />
                     <LinearLayout
-                        android:layout_width="230dp"
+                        android:layout_width="225dp"
                         android:layout_height="55dp"
                         android:layout_marginTop="35dp"
                         android:layout_gravity="center_horizontal"
@@ -168,54 +168,54 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="250dp"
-                        android:layout_height="55dp"
-                        android:layout_marginTop="90dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="22dp"
-                        android:layout_marginRight="10dp">
-                        <TextView
-                            android:id="@+id/rankOneIdText"
-                            android:layout_width="wrap_content"
-                            android:text="two"
-                            style="@style/TextColorBlack"
-                            android:layout_margin="1dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="12sp"
-                            android:alpha="0.7"/>
-                        <TextView
-                            android:id="@+id/rankTwoIdText"
-                            android:layout_width="wrap_content"
-                            android:text="two"
-                            style="@style/TextColorBlack"
-                            android:layout_margin="1dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="12sp"
-                            android:alpha="0.7"/>
-                        <TextView
-                            android:id="@+id/rankThreeIdText"
-                            android:layout_width="wrap_content"
-                            android:text="two"
-                            style="@style/TextColorBlack"
-                            android:layout_margin="1dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="12sp"
-                            android:alpha="0.7"/>
-                        <TextView
-                            android:id="@+id/rankFourIdText"
-                            android:layout_width="wrap_content"
-                            android:text="two"
-                            style="@style/TextColorBlack"
-                            android:layout_margin="1dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textSize="12sp"
-                            android:alpha="0.7"/>
-                    </LinearLayout>
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="250dp"-->
+                        <!--android:layout_height="55dp"-->
+                        <!--android:layout_marginTop="90dp"-->
+                        <!--android:layout_gravity="center_horizontal"-->
+                        <!--android:layout_marginLeft="22dp"-->
+                        <!--android:layout_marginRight="10dp">-->
+                        <!--<TextView-->
+                            <!--android:id="@+id/rankOneIdText"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:text="two"-->
+                            <!--style="@style/TextColorBlack"-->
+                            <!--android:layout_margin="1dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:alpha="0.7"/>-->
+                        <!--<TextView-->
+                            <!--android:id="@+id/rankTwoIdText"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:text="two"-->
+                            <!--style="@style/TextColorBlack"-->
+                            <!--android:layout_margin="1dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:alpha="0.7"/>-->
+                        <!--<TextView-->
+                            <!--android:id="@+id/rankThreeIdText"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:text="two"-->
+                            <!--style="@style/TextColorBlack"-->
+                            <!--android:layout_margin="1dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:alpha="0.7"/>-->
+                        <!--<TextView-->
+                            <!--android:id="@+id/rankFourIdText"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:text="two"-->
+                            <!--style="@style/TextColorBlack"-->
+                            <!--android:layout_margin="1dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:textSize="12sp"-->
+                            <!--android:alpha="0.7"/>-->
+                    <!--</LinearLayout>-->
                 </android.support.v7.widget.CardView>
         </FrameLayout>
         <!--savings area-->
@@ -228,7 +228,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardIdSavings"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 app:cardCornerRadius="8dp">
                 <!--android:alpha="0.8"-->
                 <ImageView
