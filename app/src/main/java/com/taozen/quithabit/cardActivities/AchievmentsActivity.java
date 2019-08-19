@@ -2,6 +2,7 @@ package com.taozen.quithabit.cardActivities;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -84,11 +85,21 @@ public class AchievmentsActivity extends AppCompatActivity {
         CustomAdapterListView customAdapterListView = new CustomAdapterListView();
         mListView.setAdapter(customAdapterListView);
 
-//        if (preferences.contains("rank")){
-//            if (Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Recruit")){
-//
-//            }
-//        }
+
+        if (preferences.contains("rank")){
+            if (Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Recruit")){
+                updateView(0);
+            }
+        }
+    }
+
+    private void updateView(int index){
+        View v = mListView.getChildAt(index-mListView.getFirstVisiblePosition());
+        if (v==null){
+            return;
+        }
+        ImageView imageView = v.findViewById(R.id.listview_image);
+        imageView.setAlpha(0.2f);
     }
 
     @Override
@@ -118,13 +129,6 @@ public class AchievmentsActivity extends AppCompatActivity {
             TextView mTxtView = view.findViewById(R.id.listview_item_title);
             mImageView.setImageResource(images[position]);
             mTxtView.setText(titles[position]);
-
-                    if (preferences.contains("rank")){
-            if (Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Recruit")){
-                mImageView.setAlpha(0.2f);
-                mTxtView.setAlpha(0.2f);
-            }
-        }
 
             return view;
         }
