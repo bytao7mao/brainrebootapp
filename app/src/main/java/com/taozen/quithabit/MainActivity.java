@@ -45,6 +45,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
+import com.taozen.quithabit.cardActivities.AchievmentsActivity;
 import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.optionsMenuActivities.AboutActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
@@ -72,7 +73,7 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.HOUR_OF_FIR
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINED;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
-import static com.taozen.quithabit.utils.Constants.SharedPreferences.PRESENTDAY;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
 public class MainActivity extends AppCompatActivity {
@@ -326,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
         achievementRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AchievmentsActivity2.class);
+                Intent intent = new Intent(MainActivity.this, AchievmentsActivity.class);
                 startActivity(intent);
             }
         });//achievementRanksCard[END]
@@ -685,7 +686,7 @@ public class MainActivity extends AppCompatActivity {
                 calendarOnClick = Calendar.getInstance();
                 calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
                 DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
-                editor.putInt(PRESENTDAY, DAY_OF_CLICK);
+                editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
                 editor.apply();
                 setImagesForAchievementCard();
                 Log.d("INTROTAO", "counter from onclick = " + counter + buttonClickedToday);
@@ -922,7 +923,7 @@ public class MainActivity extends AppCompatActivity {
             }
             setImagesForAchievementCard();
             setImprovementProgressLevels();
-            DAY_OF_CLICK = preferences.getInt(PRESENTDAY, 0);
+            DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, 0);
             buttonClickedToday = preferences.getBoolean(CLICKED, false);
             Log.d("INTROTAO", "value for boolean clicked = " + buttonClickedToday);
             //[calendar area]
@@ -1290,8 +1291,8 @@ public class MainActivity extends AppCompatActivity {
             counter++;
             Calendar calendar = Calendar.getInstance();
             int zet2 = calendar.get(Calendar.MINUTE);
-            int zet = preferences.getInt(PRESENTDAY, 0);
-            editor.putInt(PRESENTDAY, zet2);
+            int zet = preferences.getInt(CLICKDAY_SP, 0);
+            editor.putInt(CLICKDAY_SP, zet2);
             Log.d("taolenZ777", "zet = " + zet2);
             counterText.setText(String.valueOf(counter));
             editor.putInt(COUNTER, counter);
@@ -1501,8 +1502,6 @@ public class MainActivity extends AppCompatActivity {
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
             rankTwoImg.setAlpha(0.2f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
-            rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(0.2f);
             editor.putString("rank", "Gold");
@@ -1512,34 +1511,30 @@ public class MainActivity extends AppCompatActivity {
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
             rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
-            rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold II");
-        } else if (counter>79&&counter<90) {
+            editor.putString("rank", "Gold nova");
+        } else if (counter>79&&counter<91) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron3);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
             rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
-            rankThreeImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold III");
-            //WHEN USER REACH DAY 90 - GREATEST MILESTONE
-        } else if (counter == 90) {
-            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
-            rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
-            rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.chevron12);
             rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "Gold nova master!");
-        }
+            editor.putString("rank", "Gold nova master!");}
+            //WHEN USER REACH DAY 90 - GREATEST MILESTONE
+//        } else if (counter == 90) {
+//            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
+//            rankOneImg.setAlpha(1.0f);
+//            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
+//            rankTwoImg.setAlpha(1.0f);
+//            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
+//            rankThreeImg.setAlpha(1.0f);
+//            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
+//            rankFourImg.setAlpha(1.0f);
+//            editor.putString("rank", "Gold nova master!");
+//        }
     }
 
     private void showDialogForChangingCheckInDate() {

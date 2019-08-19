@@ -27,7 +27,7 @@ public class Constants {
         String MODIFIED_CIGG_PER_DAY = "CIGARETTES_MODIFIED";
         String LIFEREGAINED = "LIFEREGAINED";
         String DAYOFPRESENT = "DAYOFPRESENT";
-        String PRESENTDAY = "PRESENTDAY";
+        String CLICKDAY_SP = "CLICKDAY_SP";
         String HOUR_OF_FIRSLAUNCH_SP = "FIRSTHOUR";
     }
 

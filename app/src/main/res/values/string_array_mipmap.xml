@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="string_for_mipmap_images">
+        <item>chevron7</item>
+        <item>chevron8</item>
+        <item>chevron9</item>
+        <item>chevron11</item>
+        <item>chevron16</item>
+        <item>chevron17</item>
+        <item>chevron18</item>
+        <item>chevron10</item>
+        <item>chevron3</item>
+        <item>chevron4</item>
+        <item>chevron12</item>
+    </string-array>
+</resources>

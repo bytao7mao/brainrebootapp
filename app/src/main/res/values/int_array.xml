@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="images_arr_for_ranks">
+        <item>@mipmap/chevron7</item>
+        <item>@mipmap/chevron8</item>
+        <item>@mipmap/chevron9</item>
+        <item>@mipmap/chevron11</item>
+        <item>@mipmap/chevron16</item>
+        <item>@mipmap/chevron17</item>
+        <item>@mipmap/chevron18</item>
+        <item>@mipmap/chevron10</item>
+        <item>@mipmap/chevron3</item>
+        <item>@mipmap/chevron4</item>
+        <item>@mipmap/chevron12</item>
+    </integer-array>
+</resources>

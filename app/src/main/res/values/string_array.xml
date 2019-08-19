@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles_arr_for_ranks">
+        <item>"Recruit lvl I"</item>
+        <item>""Recruit lvl II""</item>
+        <item>""Recruit lvl III""</item>
+        <item>"Recruit Master"</item>
+        <item>"Silver lvl I"</item>
+        <item>"Silver lvl II"</item>
+        <item>"Silver lvl III"</item>
+        <item>"Silver Nova Master"</item>
+        <item>"Gold"</item>
+        <item>"Gold Nova"</item>
+        <item>"Gold Nova Master"</item>
+    </string-array>
+</resources>
