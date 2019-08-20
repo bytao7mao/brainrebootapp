@@ -76,7 +76,7 @@ public class AchievmentsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        
+
         mListView = findViewById(R.id.list_view);
         CustomAdapterListView customAdapterListView = new CustomAdapterListView(this, titles, images);
         mListView.setAdapter(customAdapterListView);
@@ -160,10 +160,14 @@ public class AchievmentsActivity extends AppCompatActivity {
                         holder.img.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold nova")) {
+                    if (position > 9){
+                        holder.img.setAlpha(0.2f);
+                    }
+                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold nova expert!")) {
                     if (position > 10){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold nova master!")) {
+                } else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold nova master!")) {
                     if (position > 11){
                         holder.img.setAlpha(0.2f);
                     }

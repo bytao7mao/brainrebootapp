@@ -1129,48 +1129,26 @@ public class MainActivity extends AppCompatActivity {
     //[ENABLE BUTTON]
     @SideEffect
     private void greenCondition() {
-//        if (preferences.contains(COUNTER)) {
-//            counter = preferences.getInt(COUNTER, 0);
-//        }
-//        int tempHourOfDayLight = HOUR_OF_DAYLIGHT == 0 ? 24 : HOUR_OF_DAYLIGHT;
-//        Log.d("TAOZEN9", "tempHour: " + tempHourOfDayLight);
-//        if ((   (DAY_OF_PRESENT > DAY_OF_CLICK) && !buttonClickedToday) || counter == 0) {
-//            if (HOUR_OF_FIRSTLAUNCH < 24) {
-//                tempHourOfDayLight = HOUR_OF_DAYLIGHT == 0 ? 23 : HOUR_OF_DAYLIGHT;
-//                //higher than 2 days or hour of now higher than higher of launch
-//                //in this way we assure that we cannot pass the day and have the hour higher in the same time
-//                if ((tempHourOfDayLight >= HOUR_OF_FIRSTLAUNCH) || (DAY_OF_PRESENT >= DAY_OF_CLICK+2)){
-//                    fab.show();
-//                    editor.putInt(COUNTER, counter);
-//                    editor.apply();
-//                }
-//            } else if (HOUR_OF_FIRSTLAUNCH == 24 || (DAY_OF_PRESENT >= DAY_OF_CLICK+2)) {
-//                if (tempHourOfDayLight == HOUR_OF_DAYLIGHT){
-//                    fab.show();
-//                    editor.putInt(COUNTER, counter);
-//                    editor.apply();
-//                }
-//            }
-//
-//            Log.d("TAOZEN9", "green condition true and counter == "
-//                    + counter + buttonClickedToday + "dayofpresent="
-//                    + DAY_OF_PRESENT + " dayofclick="+DAY_OF_CLICK);
-//        }
         if (preferences.contains(COUNTER)) {
             counter = preferences.getInt(COUNTER, 0);
         }
         Log.d("DAYZEN", "DAY OF CLICK " + DAY_OF_CLICK
                 + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
-                " HOURS OF CLICK " + HOUR_OF_FIRSTLAUNCH + " HOUR OF DAY " + HOUR_OF_DAYLIGHT);
+                " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
         if (DAY_OF_CLICK < DAY_OF_PRESENT ){
             if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {
                 fab.show();
                 editor.putInt(COUNTER, counter);
                 editor.apply();
+                Log.d("DAYZEN", "if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {" + " ACTIVATED");
             } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
                 fab.show();
                 editor.putInt(COUNTER, counter);
                 editor.apply();
+                Log.d("DAYZEN", "} else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {" + " ACTIVATED");
+            } else {
+                fab.hide();
+                Log.d("DAYZEN", "BIG ELSE FROM GREENCONDITION " + " ACTIVATED");
             }
         }
     }//END OF -> [ENABLE BUTTON]
@@ -1465,16 +1443,49 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("rank", "Recruit III");
         } else if (counter>29&&counter<40) {
             //when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+            rankTwoImg.setAlpha(0.2f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+            rankThreeImg.setAlpha(0.2f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+            rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "Silver");
+        } else if (counter>39&&counter<50) {
+            //when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+            rankTwoImg.setAlpha(1.0f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+            rankThreeImg.setAlpha(0.2f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+            rankFourImg.setAlpha(0.2f);
+            editor.putString("rank", "Silver II");
+        } else if (counter>49&&counter<60) {
+            //when user pass 1 week
+            rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+            rankTwoImg.setAlpha(1.0f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+            rankThreeImg.setAlpha(1.0f);
+            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+            rankFourImg.setAlpha(1.0f);
+            editor.putString("rank", "Silver III");
+        } else if (counter>59&&counter<70) {
+            //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
             rankOneImg.setAlpha(1.0f);
             rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
             rankTwoImg.setAlpha(0.2f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
             rankThreeImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+            rankFourImg.setBackgroundResource(R.mipmap.gnm);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Silver");
-        } else if (counter>39&&counter<50) {
+            editor.putString("rank", "Gold");
+        } else if (counter>69&&counter<80) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
             rankOneImg.setAlpha(1.0f);
@@ -1482,10 +1493,10 @@ public class MainActivity extends AppCompatActivity {
             rankTwoImg.setAlpha(1.0f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
             rankThreeImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+            rankFourImg.setBackgroundResource(R.mipmap.gnm);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Silver II");
-        } else if (counter>49&&counter<60) {
+            editor.putString("rank", "Gold nova");
+        } else if (counter>79&&counter<90) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
             rankOneImg.setAlpha(1.0f);
@@ -1493,48 +1504,21 @@ public class MainActivity extends AppCompatActivity {
             rankTwoImg.setAlpha(1.0f);
             rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
             rankThreeImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
-            rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "Silver III");
-        } else if (counter>59&&counter<70) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
-            rankTwoImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
+            rankFourImg.setBackgroundResource(R.mipmap.gnm);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold");
-        } else if (counter>69&&counter<80) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
-            rankTwoImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold nova");
-        } else if (counter>79&&counter<91) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
-            rankTwoImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
-            rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "Gold nova master!");}
+            editor.putString("rank", "Gold nova expert!");
             //WHEN USER REACH DAY 90 - GREATEST MILESTONE
-//        } else if (counter == 90) {
-//            rankOneImg.setBackgroundResource(R.mipmap.chevron3);
-//            rankOneImg.setAlpha(1.0f);
-//            rankTwoImg.setBackgroundResource(R.mipmap.chevron4);
-//            rankTwoImg.setAlpha(1.0f);
-//            rankThreeImg.setBackgroundResource(R.mipmap.chevron5);
-//            rankThreeImg.setAlpha(1.0f);
-//            rankFourImg.setBackgroundResource(R.mipmap.chevron12);
-//            rankFourImg.setAlpha(1.0f);
-//            editor.putString("rank", "Gold nova master!");
-//        }
+        } else if (counter == 90) {
+            rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+            rankOneImg.setAlpha(1.0f);
+            rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+            rankTwoImg.setAlpha(1.0f);
+            rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+            rankThreeImg.setAlpha(1.0f);
+            rankFourImg.setBackgroundResource(R.mipmap.gnm);
+            rankFourImg.setAlpha(1.0f);
+            editor.putString("rank", "Gold nova master!");
+        }
     }
 
     private void showDialogForChangingCheckInDate() {
