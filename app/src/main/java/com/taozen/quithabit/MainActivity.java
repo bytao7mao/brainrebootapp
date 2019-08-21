@@ -1,5 +1,9 @@
 package com.taozen.quithabit;
 
+import android.animation.Animator;
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -29,7 +33,10 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,6 +58,9 @@ import com.taozen.quithabit.optionsMenuActivities.AboutActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.utils.MyHttpManager;
+import com.transitionseverywhere.ArcMotion;
+import com.transitionseverywhere.ChangeBounds;
+import com.transitionseverywhere.TransitionManager;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -64,6 +74,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CHALLENGES_STRING;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKED;
@@ -105,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.progressCardIdLogs) CardView timeStampLogsCardview;
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
     @BindView(R.id.progressCardIdAchievments) CardView achievementRanksCard;
+    @BindView(R.id.progressCardId) CardView upperProgressPercentsCard;
+
     //TextViews
 //    @BindView(R.id.rankFourIdText) TextView rankFourTxt;
 //    @BindView(R.id.rankThreeIdText) TextView rankThreeTxt;
@@ -149,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rankFourId) ImageView rankFourImg;
     @BindView(R.id.backgroundId) ImageView backgroundImgWall;
 //  @BindView(R.id.imageViewMiddleId) ImageView imageViewMiddle;
+    @BindView(R.id.pulsator) PulsatorLayout pulsator;
 
     //firstStart bool
     boolean isFirstStart;
@@ -193,6 +207,9 @@ public class MainActivity extends AppCompatActivity {
 
     DecimalFormat numberFormat;
 
+    ObjectAnimator anim,anim2;
+    int i = 1;
+
 
     //OnCreate [START]
     @SuppressLint("CommitPrefEdits")
@@ -210,6 +227,26 @@ public class MainActivity extends AppCompatActivity {
         tipofthedayTxtView.setText(name);
 
         numberFormat = new DecimalFormat("#.##");
+
+        //anim for subtext
+        anim = ObjectAnimator.ofInt(subTextNonSmoker,
+                "TextColor",
+                Color.WHITE, getResources().getColor(R.color.greish),
+                getResources().getColor(R.color.greish));
+        anim.setDuration(1200);
+        anim.setEvaluator(new ArgbEvaluator());
+        anim.setRepeatMode(ValueAnimator.RESTART);
+        anim.setRepeatCount(Animation.INFINITE);
+        //anim for counter
+        anim2 = ObjectAnimator.ofInt(counterText,
+                "TextColor",
+                Color.WHITE, getResources().getColor(R.color.colorPrimary),
+                Color.WHITE);
+        anim2.setDuration(1500);
+        anim2.setEvaluator(new ArgbEvaluator());
+        anim2.setRepeatMode(ValueAnimator.REVERSE);
+        anim2.setRepeatCount(Animation.INFINITE);
+
 
         //testing area
         Date date = new Date();
@@ -251,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
         cardViewMain.setCardElevation(0);
         achievementRanksCard.setCardElevation(0);
         challengeCardView.setCardElevation(0);
+        upperProgressPercentsCard.setCardElevation(0);
 
         //progress for percent - this is a circular bar
         progressBarEnergyLevel = findViewById(R.id.progress_bar_energy);
@@ -309,16 +347,21 @@ public class MainActivity extends AppCompatActivity {
 //        rankTwoTxt.setTypeface(montSerratMediumTypeface);
 //        rankOneTxt.setTypeface(montSerratMediumTypeface);
 
+        int tvWidth = subTextNonSmoker.getWidth();
+        int tvHeight = subTextNonSmoker.getHeight();
+
+        float density = getResources().getDisplayMetrics().density;
+        float densityWidth = tvWidth / density;
+        float densityHeight = tvHeight / density;
+        Log.d("DENS", "widht: " + densityWidth + " height: " + densityHeight + density);
+
         try {
             if (preferences.contains(COUNTER)){
                 counter = preferences.getInt(COUNTER, -1);
             }
-
             //setting the achievments images for user
             showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
-
             setImagesForAchievementCard();
-
             setImprovementProgressLevels();
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -704,6 +747,8 @@ public class MainActivity extends AppCompatActivity {
                     //SHOW FANCY TOAST WITH CONGRATS
                 }//[END OF ELSE IFS DIALOGS]
                 fab.hide();
+                anim.cancel();
+                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             }
         });
     }
@@ -721,12 +766,14 @@ public class MainActivity extends AppCompatActivity {
                 .OnPositiveClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
+                        setCheckInText();
                         if (counter == 0){
                             savings = preferences.getLong("taoz10", -10);
                         } else {
                             savings = savings + preferences.getLong("taoz10", 0);
                         }
                         counter++;
+                        i = 1;
                         editor.putInt(COUNTER, counter);
                         int tempCigarettes = cigarettesPerDay * counter;
                         userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + tempCigarettes);
@@ -761,6 +808,7 @@ public class MainActivity extends AppCompatActivity {
                 .OnNegativeClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
+                        i = 1;
                         //get time of relapse and put it into arraylist to send in logs activity
                         Calendar calendarOnClick2 = Calendar.getInstance();
                         calendarOnClick2.setTimeZone(TimeZone.getTimeZone("GMT+2"));
@@ -904,7 +952,7 @@ public class MainActivity extends AppCompatActivity {
                             }//run from runonuithread
                         });//runonuithread
                     }//run from Timertask
-                }, 0, 3_000);//Timertask once per 1 SECONDS
+                }, 100, 10_000);//Timertask once per 10 SECONDS
             }//run from async
         });//async
     }//runningInBackground
@@ -1129,29 +1177,61 @@ public class MainActivity extends AppCompatActivity {
     //[ENABLE BUTTON]
     @SideEffect
     private void greenCondition() {
+//        pulsator.start();
+//        startAnimatorForUpperCard();
         if (preferences.contains(COUNTER)) {
             counter = preferences.getInt(COUNTER, 0);
         }
         Log.d("DAYZEN", "DAY OF CLICK " + DAY_OF_CLICK
                 + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
                 " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
-        if (DAY_OF_CLICK < DAY_OF_PRESENT ){
+        if (DAY_OF_CLICK < DAY_OF_PRESENT ) {
             if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {
                 fab.show();
+                setCheckInText();
+                if (i == 1)
+                    startAnimatorForUpperCard();
+                anim.start();
                 editor.putInt(COUNTER, counter);
                 editor.apply();
                 Log.d("DAYZEN", "if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {" + " ACTIVATED");
             } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
                 fab.show();
+                setCheckInText();
+                if (i == 1)
+                    startAnimatorForUpperCard();
+                anim.start();
                 editor.putInt(COUNTER, counter);
                 editor.apply();
                 Log.d("DAYZEN", "} else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {" + " ACTIVATED");
             } else {
+                anim.cancel();
+                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
                 fab.hide();
                 Log.d("DAYZEN", "BIG ELSE FROM GREENCONDITION " + " ACTIVATED");
             }
         }
     }//END OF -> [ENABLE BUTTON]
+
+    private void startAnimatorForUpperCard() {
+        View myView = findViewById(R.id.card_view_mainID);
+        // get the center for the clipping circle
+        int cx = (myView.getLeft() + myView.getRight()) / 2;
+        int cy = (myView.getTop() + myView.getBottom()) / 2;
+
+        // get the final radius for the clipping circle
+        int dx = Math.max(cx, myView.getWidth() - cx);
+        int dy = Math.max(cy, myView.getHeight() - cy);
+        float finalRadius = (float) Math.hypot(dx, dy);
+
+        // Android native animator
+        Animator animator =
+                ViewAnimationUtils.createCircularReveal(myView, cx, cy, 0, finalRadius);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.setDuration(1500);
+        animator.start();
+        i = 2;
+    }
 
     @SideEffect
     private void endOfTheYearCondition() {
@@ -1353,8 +1433,6 @@ public class MainActivity extends AppCompatActivity {
                 progressBarLoading2.setVisibility(View.VISIBLE);
                 counterImgView.setVisibility(View.INVISIBLE);
                 counterText.setVisibility(View.INVISIBLE);
-
-
             }
             //if we click we add a task
             tasks.add(this);

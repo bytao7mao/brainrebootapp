@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.anupcowkur.herebedragons.SideEffect;
 import com.taozen.quithabit.R;
 
 import java.util.Objects;
@@ -59,7 +58,7 @@ public class SavingsActivity extends AppCompatActivity {
                 try {
                     otherIntSavings = Integer.parseInt(String.valueOf(editTxtSavings.getText()));
                     finalSum = finalSum + otherIntSavings;
-                    savingsTxt.setText("Your total savings: " + finalSum + " $");
+                    savingsTxt.setText("Total savings: " + finalSum + " $");
                     Log.d("LOGGTAO", "savings from onClick: " + finalSum);
                     editor.putLong(SAVINGS_FINAL, finalSum);
                     editor.apply();

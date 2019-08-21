@@ -30,7 +30,7 @@ import java.util.Objects;
 
 public class AchievmentsActivity extends AppCompatActivity {
 
-//    public static void main(String[] args) { }
+    public static void main(String[] args) { }
 
     // Array of strings for ListView Title
     String[] titles;

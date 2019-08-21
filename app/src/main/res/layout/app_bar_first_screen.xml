@@ -49,7 +49,5 @@
             android:layout_height="0.2dp"
             android:background="@android:color/darker_gray" />
     </android.support.design.widget.AppBarLayout>
-
         <include layout="@layout/content_firstscreen" />
-
 </RelativeLayout>

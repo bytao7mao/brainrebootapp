@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/grey_200" />
+
             <ImageView
                 android:id="@+id/backgroundId"
                 android:layout_width="match_parent"
@@ -125,13 +126,31 @@
                 android:layout_below="@id/textNonSmokerId"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
                 android:paddingTop="3dp"
-                android:paddingBottom="3dp"
+                android:paddingBottom="4dp"
                 android:alpha="0.7"
                 android:text="Check-in: ? hours"
                 android:textSize="14sp" />
+            <pl.bclogic.pulsator4droid.library.PulsatorLayout
+            android:id="@+id/pulsator"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/textNonSmokerId"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            app:pulse_count="8"
+            app:pulse_duration="8000"
+            app:pulse_repeat="0"
+            app:pulse_color="@color/colorAccent"
+            app:pulse_startFromScratch="false"
+            app:pulse_interpolator="Decelerate">
+            </pl.bclogic.pulsator4droid.library.PulsatorLayout>
             <!--android:alpha="0.7"-->
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -187,6 +206,8 @@
     <View
         android:id="@+id/delimitationBarId"
         style="@style/Divider"
+        android:alpha="0.5"
+        android:layout_height="0.2dp"
         android:layout_below="@id/card_view_mainID"
         android:background="@android:color/darker_gray" />
     <FrameLayout

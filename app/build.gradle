@@ -36,7 +36,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.google.firebase:firebase-messaging:17.4.0'
 
-    //    implementation 'com.google.firebase:firebase-database:16.0.6'
+    //implementation 'com.google.firebase:firebase-database:16.0.6'
 
     //google
     implementation 'com.google.android.gms:play-services-location:16.0.0'
@@ -106,6 +106,9 @@ dependencies {
 
     //transitions
     implementation "com.andkulikov:transitionseverywhere:1.8.1"
+
+    //animation
+    implementation 'com.github.ozodrukh:CircularReveal:2.0.1@aar'
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android-extensions'
