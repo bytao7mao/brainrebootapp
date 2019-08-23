@@ -25,6 +25,8 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 
 public class SplashActivity extends AppCompatActivity {
 
+    SplashActivity.MyAsyncTask task;
+
     Handler mHandler = new Handler();
     int a = 3000;
     //shared pref
@@ -60,6 +62,12 @@ public class SplashActivity extends AppCompatActivity {
 //                a = 0;
 //            }
 //        }, a);
+    }//[END] ON CREATE
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (task != null && !task.isCancelled()) { task.cancel(true); }
     }
 
     @SideEffect
@@ -101,7 +109,7 @@ public class SplashActivity extends AppCompatActivity {
     }//isOnline[END]
 
     private void requestDataById(int id) {
-        SplashActivity.MyAsyncTask task = new SplashActivity.MyAsyncTask();
+        task = new SplashActivity.MyAsyncTask();
         task.execute(MainActivity.HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS + "/" + id);
     }
     @SuppressLint("StaticFieldLeak")

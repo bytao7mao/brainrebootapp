@@ -195,8 +195,7 @@ public class MainActivity extends AppCompatActivity {
     private String challs;
     private StringBuilder strBuilder = new StringBuilder();
 
-
-    //add font to counter number
+    //fonts
     static Typeface montSerratBoldTypeface;
     static Typeface montSerratItallicTypeface;
     static Typeface montSerratLightTypeface;
@@ -206,9 +205,17 @@ public class MainActivity extends AppCompatActivity {
     static Typeface montSerratSimpleBoldTypeface;
 
     DecimalFormat numberFormat;
-
     ObjectAnimator anim,anim2;
     int i = 1;
+
+    MainActivity.MyAsyncTask task;
+
+//    public static void main(String[] args) {
+//        DecimalFormat a = new DecimalFormat("#.##");
+//        if (a instanceof DecimalFormat) {
+//            System.out.println("yes it is object animator");
+//        }
+//    }
 
 
     //OnCreate [START]
@@ -261,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
         setCheckInText();
 
         //color of the FAB - NOW IS already changed in XML
-//        fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+        //fab.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
 
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
@@ -559,7 +566,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void firstCheckMax() {
-        if (userMaxCountForHabit == -1){
+        if (userMaxCountForHabit == -1) {
             userMaxCountForHabit = 30;
             editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
             editor.apply();
@@ -569,7 +576,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //dialog when user pass a day
-    private void positiveDialogAfterPassDay(){
+    private void positiveDialogAfterPassDay() {
         //dialog ------------
         new BottomDialog.Builder(this)
                 .setTitle("Awesome!")
@@ -611,7 +618,7 @@ public class MainActivity extends AppCompatActivity {
 //                }).show();
 //    }
     //dialog when user pass a day
-    private void negativeDialogAfterRelapse(){
+    private void negativeDialogAfterRelapse() {
         //dialog ------------
         new BottomDialog.Builder(this)
                 .setTitle("It's ok to fail!")
@@ -767,7 +774,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void OnClick() {
                         setCheckInText();
-                        if (counter == 0){
+                        if (counter == 0) {
                             savings = preferences.getLong("taoz10", -10);
                         } else {
                             savings = savings + preferences.getLong("taoz10", 0);
@@ -871,7 +878,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void moneyOrTimeAndGetAndSetValue() {
-        if (preferences.contains(SAVINGS_FINAL)){
+        if (preferences.contains(SAVINGS_FINAL)) {
             try {
                 savings = preferences.getLong(SAVINGS_FINAL, 1);
             } catch (ClassCastException e) {
@@ -914,7 +921,6 @@ public class MainActivity extends AppCompatActivity {
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
             setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit),
                     R.string.target_string, targetTxtViewId);
-
             if (!preferences.contains(CHALLENGES_STRING)) {
                 challs = "Tap to start a challenge!";
                 challengeTextViewSubtitle.setText(challs);
@@ -922,7 +928,6 @@ public class MainActivity extends AppCompatActivity {
                 challs = preferences.getString(CHALLENGES_STRING, challs);
                 challengeTextViewSubtitle.setText(challs);
             }
-
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -962,9 +967,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             //set text for checkin
             setCheckInText();
-
             showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
-
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);editor.putInt(COUNTER, counter);
                 editor.apply();
@@ -1007,7 +1010,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SideEffect
     private void setCheckInText() {
-        if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)){
+        if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
             HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, 0);
         }
         //temporarily integer
@@ -1015,14 +1018,14 @@ public class MainActivity extends AppCompatActivity {
 //        int tempHourOfDayLight = HOUR_OF_DAYLIGHT == 0 ? 24 : HOUR_OF_DAYLIGHT;
         Log.d("TAOZEN10", "hours of now: " + HOUR_OF_DAYLIGHT + "\nhour of firstlaunch: "
                 + HOUR_OF_FIRSTLAUNCH + "\nbutton clicked today ? " + buttonClickedToday);
-        if (DAY_OF_PRESENT>=DAY_OF_CLICK+2){
+        if (DAY_OF_PRESENT>=DAY_OF_CLICK+2) {
             subTextNonSmoker.setText("Check-in now! (+1 days)");
             Log.d("TAOZEN10", "I AM HERE OKKOKKO: " + "presetnday: " + DAY_OF_PRESENT + " clickday: " + DAY_OF_CLICK);
         } else {
-            //if fab was already pressed
-            if ((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH || HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH)) { //&& buttonClickedToday
+            //if fab was already pressed (buttonClickedToday == true)
+            if (((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH && buttonClickedToday) || (HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && buttonClickedToday)) { //&& buttonClickedToday
                 if (HOUR_OF_DAYLIGHT == 0 || HOUR_OF_DAYLIGHT == 24) {
-                    if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT){
+                    if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
                         hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
                         subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
                     } else {
@@ -1037,7 +1040,7 @@ public class MainActivity extends AppCompatActivity {
                         subTextNonSmoker.setText("Check-in: " + 1 + " hour");
                     } else if (hoursTillCheckIn == 26){
                         subTextNonSmoker.setText("Check-in: " + 2 + " hours");
-                    } else if (hoursTillCheckIn == 27) {
+                    } else if (hoursTillCheckIn == 27){
                         subTextNonSmoker.setText("Check-in: " + 3 + " hours");
                     }  else if (hoursTillCheckIn == 28){
                         subTextNonSmoker.setText("Check-in: " + 4 + " hours");
@@ -1085,11 +1088,10 @@ public class MainActivity extends AppCompatActivity {
             } else if ((HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
                 subTextNonSmoker.setText("Check-in now!");
                 //if fab was pressed and hour is present hour equal with today hour
-            } else if (HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH && buttonClickedToday){
+            } else if (HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH && buttonClickedToday) {
                 subTextNonSmoker.setText("Check-in: tommorow!");
             }
         }
-
     }
 
     //onResume
@@ -1151,6 +1153,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.d("INTROTAO", "values in onDestroy: " + "cigperday " + cigarettesPerDay+ " savings: " + savings+ " counter: " + counter);
+        if (task != null && !task.isCancelled()) { task.cancel(true); }
     }//[END of ONDESTROY]
 
     private void updateButton() {
@@ -1248,7 +1251,7 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void setImprovementProgressLevels() {
         try {
-            if (preferences.contains(COUNTER)){
+            if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, 0);
             }
         } catch (NullPointerException e) {
@@ -1327,7 +1330,7 @@ public class MainActivity extends AppCompatActivity {
     //MENU DRAWER
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
+        super.onBackPressed();
     }
 
     //[MENU]
@@ -1355,7 +1358,6 @@ public class MainActivity extends AppCompatActivity {
             counterText.setText(String.valueOf(counter));
             editor.putInt(COUNTER, counter);
             editor.apply();
-
             setImprovementProgressLevels();
             return true;
         } else if (id == R.id.action_about) {
@@ -1383,7 +1385,7 @@ public class MainActivity extends AppCompatActivity {
         return networkInfo != null && networkInfo.isConnected();
     }//isOnline[END]
     private void requestDataById(int id) {
-        MainActivity.MyAsyncTask task = new MainActivity.MyAsyncTask();
+        task = new MainActivity.MyAsyncTask();
         task.execute(MainActivity.HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS + "/" + id);
     }
     @SideEffect
@@ -1422,7 +1424,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private class MyAsyncTask extends AsyncTask<String, String, String> {
+    public class MyAsyncTask extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
             counter = preferences.getInt(COUNTER, counter);
@@ -1443,7 +1445,7 @@ public class MainActivity extends AppCompatActivity {
                 //using GSON
                 JsonParser parser = new JsonParser();
                 //using MyHttpManager getData static method
-              String content = MyHttpManager.getData(params[0]);
+                String content = MyHttpManager.getData(params[0]);
 //                Thread.sleep(1000);
                 //using MyHttpCoreAndroid
 //                String content = MyHttpCoreAndroid.getData(params[0]);
@@ -1661,9 +1663,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
     @SideEffect
     private void showEntireProgressForUserCard(TextView userCigarettesProgressTat,
                                                TextView userRankProgressTxt,
@@ -1687,7 +1686,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.apply();
             }
-        } catch(NullPointerException e){ e.printStackTrace(); }
+        } catch(NullPointerException e){ e.printStackTrace(); } catch (Exception e) {e.printStackTrace();}
     }
     private void setMarginForProgress() {
         Resources r = this.getResources();
@@ -1702,8 +1701,8 @@ public class MainActivity extends AppCompatActivity {
             setMargins(txtProgressForEnergyLevels, px, 0 , 0, 0);
             Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
         }
-
     }
+
     private void setMargins (View view, int left, int top, int right, int bottom) {
         if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();

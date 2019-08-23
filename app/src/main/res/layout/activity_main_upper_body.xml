@@ -87,13 +87,13 @@
                     android:visibility="invisible" />
                 <ImageView
                     android:id="@+id/counterImageId"
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:src="@drawable/dayshd"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/counterwhite"
                     android:layout_marginLeft="-20dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
-                <!--android:layout_marginLeft="95dp"-->
+                <!--android:layout_marginLeft="95dp"170 cu 170 default-->
                 <TextView
                     android:id="@+id/counterTextId"
                     android:layout_width="wrap_content"
