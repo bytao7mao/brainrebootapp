@@ -150,7 +150,7 @@ public class FirstScreenActivity extends AppCompatActivity {
                             Intent i = new Intent(FirstScreenActivity.this, IntroActivity.class);
 //                            overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
                             startActivity(i);
-//                            finish();
+                            finish();
                         }
 //                    }, 2000);
 

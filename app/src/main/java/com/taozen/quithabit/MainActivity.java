@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
 
+    boolean higherThanOne;
     private List<MainActivity.MyAsyncTask> tasks;
     private Timer timer;
     Float lifeRegained;
@@ -209,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
     int i = 1;
 
     MainActivity.MyAsyncTask task;
+    private boolean moreThanOneDay;
+    private boolean twodayscounter;
 
 //    public static void main(String[] args) {
 //        DecimalFormat a = new DecimalFormat("#.##");
@@ -544,7 +547,7 @@ public class MainActivity extends AppCompatActivity {
             targetTxtViewId.setAlpha(0.8f);
             textNonSmoker.setTextColor(getResources().getColor(R.color.white));
             textNonSmoker.setAlpha(1.0f);
-            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+//            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             subTextNonSmoker.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
             subTextNonSmoker.setAlpha(1.0f);
             backgroundImgWall.setAlpha(1.0f);
@@ -557,7 +560,7 @@ public class MainActivity extends AppCompatActivity {
             targetTxtViewId.setTextColor(getResources().getColor(R.color.greish));
             textNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             textNonSmoker.setAlpha(0.8f);
-            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+//            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             subTextNonSmoker.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
             subTextNonSmoker.setAlpha(0.7f);
 //            backgroundImgWall.setAlpha(0.05f);
@@ -755,7 +758,7 @@ public class MainActivity extends AppCompatActivity {
                 }//[END OF ELSE IFS DIALOGS]
                 fab.hide();
                 anim.cancel();
-                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+//                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             }
         });
     }
@@ -779,7 +782,17 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             savings = savings + preferences.getLong("taoz10", 0);
                         }
-                        counter++;
+                        if (preferences.contains("diff") && higherThanOne){
+                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
+                            counter = counter + preferences.getInt("diff", -100);
+                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
+                            higherThanOne = false;
+                        } else {
+                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
+                            counter++;
+                            higherThanOne = false;
+                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
+                        }
                         i = 1;
                         editor.putInt(COUNTER, counter);
                         int tempCigarettes = cigarettesPerDay * counter;
@@ -1021,6 +1034,8 @@ public class MainActivity extends AppCompatActivity {
         if (DAY_OF_PRESENT>=DAY_OF_CLICK+2) {
             subTextNonSmoker.setText("Check-in now! (+1 days)");
             Log.d("TAOZEN10", "I AM HERE OKKOKKO: " + "presetnday: " + DAY_OF_PRESENT + " clickday: " + DAY_OF_CLICK);
+//        } else if (DAY_OF_CLICK == DAY_OF_PRESENT && buttonClickedToday) {
+//            subTextNonSmoker.setText("Check-in tommorow!");
         } else {
             //if fab was already pressed (buttonClickedToday == true)
             if (((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH && buttonClickedToday) || (HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && buttonClickedToday)) { //&& buttonClickedToday
@@ -1035,54 +1050,55 @@ public class MainActivity extends AppCompatActivity {
                 } else if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
                     hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
                     subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-                } else {
-                    if (hoursTillCheckIn == 25){
-                        subTextNonSmoker.setText("Check-in: " + 1 + " hour");
-                    } else if (hoursTillCheckIn == 26){
-                        subTextNonSmoker.setText("Check-in: " + 2 + " hours");
-                    } else if (hoursTillCheckIn == 27){
-                        subTextNonSmoker.setText("Check-in: " + 3 + " hours");
-                    }  else if (hoursTillCheckIn == 28){
-                        subTextNonSmoker.setText("Check-in: " + 4 + " hours");
-                    }  else if (hoursTillCheckIn == 29){
-                        subTextNonSmoker.setText("Check-in: " + 5 + " hours");
-                    }  else if (hoursTillCheckIn == 30){
-                        subTextNonSmoker.setText("Check-in: " + 6 + " hours");
-                    }  else if (hoursTillCheckIn == 31){
-                        subTextNonSmoker.setText("Check-in: " + 7 + " hours");
-                    }  else if (hoursTillCheckIn == 32){
-                        subTextNonSmoker.setText("Check-in: " + 8 + " hours");
-                    }  else if (hoursTillCheckIn == 33){
-                        subTextNonSmoker.setText("Check-in: " + 9 + " hours");
-                    }  else if (hoursTillCheckIn == 34){
-                        subTextNonSmoker.setText("Check-in: " + 10 + " hours");
-                    }  else if (hoursTillCheckIn == 35){
-                        subTextNonSmoker.setText("Check-in: " + 11 + " hours");
-                    }  else if (hoursTillCheckIn == 36){
-                        subTextNonSmoker.setText("Check-in: " + 12 + " hours");
-                    }  else if (hoursTillCheckIn == 37){
-                        subTextNonSmoker.setText("Check-in: " + 13 + " hours");
-                    }  else if (hoursTillCheckIn == 38){
-                        subTextNonSmoker.setText("Check-in: " + 14 + " hours");
-                    }  else if (hoursTillCheckIn == 39){
-                        subTextNonSmoker.setText("Check-in: " + 15 + " hours");
-                    }  else if (hoursTillCheckIn == 40){
-                        subTextNonSmoker.setText("Check-in: " + 16 + " hours");
-                    }  else if (hoursTillCheckIn == 41){
-                        subTextNonSmoker.setText("Check-in: " + 17 + " hours");
-                    }  else if (hoursTillCheckIn == 42){
-                        subTextNonSmoker.setText("Check-in: " + 18 + " hours");
-                    }  else if (hoursTillCheckIn == 43){
-                        subTextNonSmoker.setText("Check-in: " + 19 + " hours");
-                    }  else if (hoursTillCheckIn == 44){
-                        subTextNonSmoker.setText("Check-in: " + 20 + " hours");
-                    }  else if (hoursTillCheckIn == 45){
-                        subTextNonSmoker.setText("Check-in: " + 21 + " hours");
-                    }  else if (hoursTillCheckIn == 46){
-                        subTextNonSmoker.setText("Check-in: " + 22 + " hours");
+//                } else {
+//                    if (hoursTillCheckIn == 25){
+//                        subTextNonSmoker.setText("Check-in: " + 1 + " hour");
+//                    } else if (hoursTillCheckIn == 26){
+//                        subTextNonSmoker.setText("Check-in: " + 2 + " hours");
+//                    } else if (hoursTillCheckIn == 27){
+//                        subTextNonSmoker.setText("Check-in: " + 3 + " hours");
+//                    }  else if (hoursTillCheckIn == 28){
+//                        subTextNonSmoker.setText("Check-in: " + 4 + " hours");
+//                    }  else if (hoursTillCheckIn == 29){
+//                        subTextNonSmoker.setText("Check-in: " + 5 + " hours");
+//                    }  else if (hoursTillCheckIn == 30){
+//                        subTextNonSmoker.setText("Check-in: " + 6 + " hours");
+//                    }  else if (hoursTillCheckIn == 31){
+//                        subTextNonSmoker.setText("Check-in: " + 7 + " hours");
+//                    }  else if (hoursTillCheckIn == 32){
+//                        subTextNonSmoker.setText("Check-in: " + 8 + " hours");
+//                    }  else if (hoursTillCheckIn == 33){
+//                        subTextNonSmoker.setText("Check-in: " + 9 + " hours");
+//                    }  else if (hoursTillCheckIn == 34){
+//                        subTextNonSmoker.setText("Check-in: " + 10 + " hours");
+//                    }  else if (hoursTillCheckIn == 35){
+//                        subTextNonSmoker.setText("Check-in: " + 11 + " hours");
+//                    }  else if (hoursTillCheckIn == 36){
+//                        subTextNonSmoker.setText("Check-in: " + 12 + " hours");
+//                    }  else if (hoursTillCheckIn == 37){
+//                        subTextNonSmoker.setText("Check-in: " + 13 + " hours");
+//                    }  else if (hoursTillCheckIn == 38){
+//                        subTextNonSmoker.setText("Check-in: " + 14 + " hours");
+//                    }  else if (hoursTillCheckIn == 39){
+//                        subTextNonSmoker.setText("Check-in: " + 15 + " hours");
+//                    }  else if (hoursTillCheckIn == 40){
+//                        subTextNonSmoker.setText("Check-in: " + 16 + " hours");
+//                    }  else if (hoursTillCheckIn == 41){
+//                        subTextNonSmoker.setText("Check-in: " + 17 + " hours");
+//                    }  else if (hoursTillCheckIn == 42){
+//                        subTextNonSmoker.setText("Check-in: " + 18 + " hours");
+//                    }  else if (hoursTillCheckIn == 43){
+//                        subTextNonSmoker.setText("Check-in: " + 19 + " hours");
+//                    }  else if (hoursTillCheckIn == 44){
+//                        subTextNonSmoker.setText("Check-in: " + 20 + " hours");
+//                    }  else if (hoursTillCheckIn == 45){
+//                        subTextNonSmoker.setText("Check-in: " + 21 + " hours");
+//                    }  else if (hoursTillCheckIn == 46){
+//                        subTextNonSmoker.setText("Check-in: " + 22 + " hours");
                     } else {
                         subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-                    }
+//                    }
+//                    subTextNonSmoker.setText("Check-in " + hoursTillCheckIn % 24 + " hour");
                 }
                 //if fab was NOT pressed
             } else if ((HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
@@ -1090,6 +1106,11 @@ public class MainActivity extends AppCompatActivity {
                 //if fab was pressed and hour is present hour equal with today hour
             } else if (HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH && buttonClickedToday) {
                 subTextNonSmoker.setText("Check-in: tommorow!");
+            } else if ((HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
+                Log.d("CHECKTEXT", "  + } else if ((HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {");
+                subTextNonSmoker.setText("Check-in now!");
+            } else {
+                subTextNonSmoker.setText("Check-in now! from else ... ");
             }
         }
     }
@@ -1098,6 +1119,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        setCheckInText();
         try {
             //Only retrieve and save in onpause
             //-3 default values
@@ -1180,15 +1202,13 @@ public class MainActivity extends AppCompatActivity {
     //[ENABLE BUTTON]
     @SideEffect
     private void greenCondition() {
-//        pulsator.start();
-//        startAnimatorForUpperCard();
         if (preferences.contains(COUNTER)) {
             counter = preferences.getInt(COUNTER, 0);
         }
         Log.d("DAYZEN", "DAY OF CLICK " + DAY_OF_CLICK
                 + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
                 " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
-        if (DAY_OF_CLICK < DAY_OF_PRESENT ) {
+        if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
             if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {
                 fab.show();
                 setCheckInText();
@@ -1198,7 +1218,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt(COUNTER, counter);
                 editor.apply();
                 Log.d("DAYZEN", "if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {" + " ACTIVATED");
-            } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
+            } else if ((HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) && !buttonClickedToday) {
                 fab.show();
                 setCheckInText();
                 if (i == 1)
@@ -1206,13 +1226,24 @@ public class MainActivity extends AppCompatActivity {
                 anim.start();
                 editor.putInt(COUNTER, counter);
                 editor.apply();
-                Log.d("DAYZEN", "} else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {" + " ACTIVATED");
-            } else {
-                anim.cancel();
-                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
-                fab.hide();
-                Log.d("DAYZEN", "BIG ELSE FROM GREENCONDITION " + " ACTIVATED");
             }
+        } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
+            higherThanOne = true;
+            int diff = DAY_OF_PRESENT - DAY_OF_CLICK;
+            editor.putInt("diff", diff);
+            editor.apply();
+            fab.show();
+            setCheckInText();
+            if (i == 1)
+                startAnimatorForUpperCard();
+            anim.start();
+            Log.d("DAYZEN", "} else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {" + " ACTIVATED");
+        } else {
+            setCheckInText();
+            anim.cancel();
+//                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+            fab.hide();
+            Log.d("DAYZEN", "BIG ELSE FROM GREENCONDITION " + " ACTIVATED");
         }
     }//END OF -> [ENABLE BUTTON]
 
@@ -1258,7 +1289,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.d("taolenX", "[setImprovementProgressLevels] counter is = " + counter);
-
+        //TODO: setup the levels
         //energy levels
         if (counter > 0 && counter < 10) {
             txtProgressForEnergyLevels.setText(10 + "%");
