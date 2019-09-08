@@ -64,7 +64,7 @@ public class ChallengeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         getWindow().setStatusBarColor(ContextCompat.getColor(ChallengeActivity.this, R.color.white));
         //shared pref

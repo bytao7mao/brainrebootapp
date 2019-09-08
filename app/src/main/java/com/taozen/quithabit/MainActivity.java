@@ -68,6 +68,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -99,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
     Float lifeRegained;
 //    private int lifeRegainedInteger;
     //dialogs for fabs - messages
-    private String normalMessageForDialog = "\"Did you abtained to smoke today ?\"";
+    private String normalMessageForDialog = "\"Did you abstained to smoke today ?\"";
+    private String moreThanOneDayPassedMessageForDialog = "Did you abstained to smoke in the last days ?";
     private String firstMessageDialog = "Hello, this is your first day!\nSince you're here " +
             "it means that you made the first step in order to get rid of your habit";
 
@@ -210,8 +212,6 @@ public class MainActivity extends AppCompatActivity {
     int i = 1;
 
     MainActivity.MyAsyncTask task;
-    private boolean moreThanOneDay;
-    private boolean twodayscounter;
 
 //    public static void main(String[] args) {
 //        DecimalFormat a = new DecimalFormat("#.##");
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 //      getSupportActionBar().setElevation(0); //remove shadow - but now it is already removed in xml file
 
         progressCardView.setCardElevation(0);
@@ -694,6 +694,15 @@ public class MainActivity extends AppCompatActivity {
                     isFirstStart = true;
                     editor.putBoolean("firstStart", false);
                     editor.apply();
+                    //fake first day of user to be day of present -1 to enable him/her to check in for the first time
+                    //[calendar area]
+                    calendarForProgress = Calendar.getInstance();
+                    calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                    DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+                    DAY_OF_CLICK = DAY_OF_PRESENT - 1;
+                    editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
+                    editor.apply();
+                    Log.d("DAYOFTAOZEN", DAY_OF_CLICK + " ");
                 }
                 //  If the activity has never started before...
                 if (isFirstStart) {
@@ -743,22 +752,24 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
                 setImagesForAchievementCard();
                 Log.d("INTROTAO", "counter from onclick = " + counter + buttonClickedToday);
+                String messageForDialog = "";
+                messageForDialog = higherThanOne ? moreThanOneDayPassedMessageForDialog : normalMessageForDialog;
                 //between 1 and 29
                 if (counter == 0) {
                     normalFancyDialog("WELCOME TO QUIT HABIT!", firstMessageDialog);
                 } else if (counter > 0 && counter < 29) {
-                    normalFancyDialog("BEAT YOUR MILESTONE - 30 DAYS!", normalMessageForDialog);
+                    normalFancyDialog("BEAT YOUR MILESTONE - 30 DAYS!", messageForDialog);
                     //between 29(to show up in 30) and 60
                 } else if (counter > 28 && counter < 59) {
-                    normalFancyDialog("BEAT YOUR MILESTONE - 60 DAYS!", normalMessageForDialog);
+                    normalFancyDialog("BEAT YOUR MILESTONE - 60 DAYS!", messageForDialog);
                     //between 59(to show up in 60) and 90
                 } else if (counter > 58 && counter < 91) {
-                    normalFancyDialog("BEAT YOUR MILESTONE - 90 DAYS!", normalMessageForDialog);
+                    normalFancyDialog("BEAT YOUR MILESTONE - 90 DAYS!", messageForDialog);
                     //SHOW FANCY TOAST WITH CONGRATS
                 }//[END OF ELSE IFS DIALOGS]
                 fab.hide();
                 anim.cancel();
-//                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             }
         });
     }
@@ -801,11 +812,6 @@ public class MainActivity extends AppCompatActivity {
                         lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
                         userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
                         editor.putFloat(LIFEREGAINED, lifeRegained);
-//                        try {
-//                            savings = preferences.getLong(SAVINGS_FINAL, 1);
-//                        } catch (ClassCastException e) {
-//                            e.printStackTrace();
-//                        }
                         editor.putLong(SAVINGS_FINAL, savings);
                         editor.apply();
                         checkActivityOnline();
@@ -1036,82 +1042,31 @@ public class MainActivity extends AppCompatActivity {
             Log.d("TAOZEN10", "I AM HERE OKKOKKO: " + "presetnday: " + DAY_OF_PRESENT + " clickday: " + DAY_OF_CLICK);
 //        } else if (DAY_OF_CLICK == DAY_OF_PRESENT && buttonClickedToday) {
 //            subTextNonSmoker.setText("Check-in tommorow!");
-        } else {
+        } else if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
             //if fab was already pressed (buttonClickedToday == true)
-            if (((HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH && buttonClickedToday) || (HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && buttonClickedToday)) { //&& buttonClickedToday
-                if (HOUR_OF_DAYLIGHT == 0 || HOUR_OF_DAYLIGHT == 24) {
-                    if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
-                        hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
-                        subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-                    } else {
-                        hoursTillCheckIn = HOUR_OF_DAYLIGHT - HOUR_OF_FIRSTLAUNCH;
-                        subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-                    }
-                } else if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
+            if (HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH) { //&& buttonClickedToday
+                if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
                     hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
                     subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-//                } else {
-//                    if (hoursTillCheckIn == 25){
-//                        subTextNonSmoker.setText("Check-in: " + 1 + " hour");
-//                    } else if (hoursTillCheckIn == 26){
-//                        subTextNonSmoker.setText("Check-in: " + 2 + " hours");
-//                    } else if (hoursTillCheckIn == 27){
-//                        subTextNonSmoker.setText("Check-in: " + 3 + " hours");
-//                    }  else if (hoursTillCheckIn == 28){
-//                        subTextNonSmoker.setText("Check-in: " + 4 + " hours");
-//                    }  else if (hoursTillCheckIn == 29){
-//                        subTextNonSmoker.setText("Check-in: " + 5 + " hours");
-//                    }  else if (hoursTillCheckIn == 30){
-//                        subTextNonSmoker.setText("Check-in: " + 6 + " hours");
-//                    }  else if (hoursTillCheckIn == 31){
-//                        subTextNonSmoker.setText("Check-in: " + 7 + " hours");
-//                    }  else if (hoursTillCheckIn == 32){
-//                        subTextNonSmoker.setText("Check-in: " + 8 + " hours");
-//                    }  else if (hoursTillCheckIn == 33){
-//                        subTextNonSmoker.setText("Check-in: " + 9 + " hours");
-//                    }  else if (hoursTillCheckIn == 34){
-//                        subTextNonSmoker.setText("Check-in: " + 10 + " hours");
-//                    }  else if (hoursTillCheckIn == 35){
-//                        subTextNonSmoker.setText("Check-in: " + 11 + " hours");
-//                    }  else if (hoursTillCheckIn == 36){
-//                        subTextNonSmoker.setText("Check-in: " + 12 + " hours");
-//                    }  else if (hoursTillCheckIn == 37){
-//                        subTextNonSmoker.setText("Check-in: " + 13 + " hours");
-//                    }  else if (hoursTillCheckIn == 38){
-//                        subTextNonSmoker.setText("Check-in: " + 14 + " hours");
-//                    }  else if (hoursTillCheckIn == 39){
-//                        subTextNonSmoker.setText("Check-in: " + 15 + " hours");
-//                    }  else if (hoursTillCheckIn == 40){
-//                        subTextNonSmoker.setText("Check-in: " + 16 + " hours");
-//                    }  else if (hoursTillCheckIn == 41){
-//                        subTextNonSmoker.setText("Check-in: " + 17 + " hours");
-//                    }  else if (hoursTillCheckIn == 42){
-//                        subTextNonSmoker.setText("Check-in: " + 18 + " hours");
-//                    }  else if (hoursTillCheckIn == 43){
-//                        subTextNonSmoker.setText("Check-in: " + 19 + " hours");
-//                    }  else if (hoursTillCheckIn == 44){
-//                        subTextNonSmoker.setText("Check-in: " + 20 + " hours");
-//                    }  else if (hoursTillCheckIn == 45){
-//                        subTextNonSmoker.setText("Check-in: " + 21 + " hours");
-//                    }  else if (hoursTillCheckIn == 46){
-//                        subTextNonSmoker.setText("Check-in: " + 22 + " hours");
-                    } else {
-                        subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-//                    }
-//                    subTextNonSmoker.setText("Check-in " + hoursTillCheckIn % 24 + " hour");
+                } else if (HOUR_OF_DAYLIGHT == 0) {
+                    hoursTillCheckIn = 24 - HOUR_OF_FIRSTLAUNCH;
+                    subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                } else if ((HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
+                    subTextNonSmoker.setText("Check-in now!");
+                    //if fab was pressed and hour is present hour equal with today hour
+                } else if ((HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
+                    Log.d("CHECKTEXT", "  + } else if ((HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {");
+                    subTextNonSmoker.setText("Check-in now!");
+                } else {
+                    subTextNonSmoker.setText("Check-in now! from else ... ");
                 }
-                //if fab was NOT pressed
-            } else if ((HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
-                subTextNonSmoker.setText("Check-in now!");
-                //if fab was pressed and hour is present hour equal with today hour
-            } else if (HOUR_OF_DAYLIGHT == HOUR_OF_FIRSTLAUNCH && buttonClickedToday) {
-                subTextNonSmoker.setText("Check-in: tommorow!");
-            } else if ((HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
-                Log.d("CHECKTEXT", "  + } else if ((HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {");
+            } else if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
                 subTextNonSmoker.setText("Check-in now!");
             } else {
-                subTextNonSmoker.setText("Check-in now! from else ... ");
+                subTextNonSmoker.setText("Check-in now!");
             }
+        } else {
+        subTextNonSmoker.setText("Check-in: tommorow!");
         }
     }
 

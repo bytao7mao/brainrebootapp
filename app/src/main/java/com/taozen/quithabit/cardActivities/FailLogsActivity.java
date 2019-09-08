@@ -39,17 +39,17 @@ public class FailLogsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         getArrayListFromMain();
 
     }
 
-    private void getArrayListFromMain(){
-        if (preferences.contains("arr")){
+    private void getArrayListFromMain() {
+        if (preferences.contains("arr")) {
             logTxt.append(preferences.getString("arr", "no value"));
         } else {
-            logTxt.setText("mortii mei");
+            logTxt.setText("nothing yet");
         }
     }
     @Override

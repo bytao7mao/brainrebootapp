@@ -75,7 +75,7 @@ public class AchievmentsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mListView = findViewById(R.id.list_view);
         CustomAdapterListView customAdapterListView = new CustomAdapterListView(this, titles, images);
