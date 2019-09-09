@@ -1471,7 +1471,7 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void setImagesForAchievementCard() {
         try {
-            if (preferences.contains(COUNTER)){
+            if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, 0);
             }
         } catch (NullPointerException e){e.printStackTrace();}
@@ -1656,6 +1656,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             String theLatestRank = preferences.getString("rank", "unranked yet");
             userRankProgressTxt.setText("Your rank: " + theLatestRank);
+
             if (counter == 0) {
                 userCigarettesProgressTat.setText("Ciggaretes: press leaf to calculate");
                 userHoursProgressTxt.setText("Life regained: " + "press leaf to calculate" + " hours");
