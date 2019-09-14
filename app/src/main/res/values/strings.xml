@@ -5,7 +5,7 @@
     <string name="reset">reset</string>
     <string name="add">add</string>
     <string name="target_string">Goal: %s</string>
-    <string name="money_time">Save this ammount of %s \nper day: %s$</string>
+    <string name="money_time">per day: %s$</string>
     <string name="remaining_days">Remaining: %s</string>
     <string name="total_savings">This is your total savings: %s $</string>
     <string name="copy_right" translatable="false">Copyrights © %1$d</string>
@@ -23,4 +23,5 @@
     <string name="thanks_for_downloading_this_app">Thanks for downloading this app !</string>
     <string name="all_rights_reserved_to_bytao7mao"><![CDATA[All rights reserved to @bytao7mao]]> </string>
     <string name="enjoy">Enjoy !</string>
+    <string name="rank_master">Rank: %s</string>
 </resources>

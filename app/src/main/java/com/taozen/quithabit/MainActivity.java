@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
 //    @BindView(R.id.rankThreeIdText) TextView rankThreeTxt;
 //    @BindView(R.id.rankTwoIdText) TextView rankTwoTxt;
 //    @BindView(R.id.rankOneIdText) TextView rankOneTxt;
+    @BindView(R.id.rank_master) TextView rank_masterTxt;
     @BindView(R.id.toolbar_subtitle) TextView subTextToolbar;
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
@@ -333,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
         txtProgressForFatigue.setTypeface(montSerratBoldTypeface);
         txtProgressForBreath.setTypeface(montSerratBoldTypeface);
         txtProgressForGums.setTypeface(montSerratBoldTypeface);
-        moneyOrTimeTextView.setTypeface(montSerratLightTypeface);
+        moneyOrTimeTextView.setTypeface(montSerratSimpleBoldTypeface);
         challengeTextViewTitle.setTypeface(montSerratSimpleBoldTypeface);
         challengeTextViewSubtitle.setTypeface(montSerratLightTypeface);
         progressBarsTxt.setTypeface(montSerratBoldTypeface);
@@ -352,6 +353,7 @@ public class MainActivity extends AppCompatActivity {
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
         subTextNonSmoker.setTypeface(montSerratMediumTypeface);
         subTextToolbar.setTypeface(montSerratSemiBoldTypeface);
+        rank_masterTxt.setTypeface(montSerratMediumTypeface);
 //        rankFourTxt.setTypeface(montSerratMediumTypeface);
 //        rankThreeTxt.setTypeface(montSerratMediumTypeface);
 //        rankTwoTxt.setTypeface(montSerratMediumTypeface);
@@ -881,11 +883,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTxtViewForUserSavingValueOfMoneyOrTime(
             String string,
-            int androiId,
-            TextView textview,
-            String secondString) {
+            int androiId, TextView textView) {
+        DecimalFormat formatter = new DecimalFormat("###,###,##0.00");
+        String value = formatter.format(Integer.parseInt(string)*365);
         //target counter string
-        textview.setText(getString(androiId, secondString, string));
+        String finalS = getString(androiId, string) + "\nper year: " + value + "$";
+        textView.setText(finalS);
     }
 
     private void setTxtViewForUserMaxCountDaysOnStringVersion(
@@ -908,8 +911,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putLong(SAVINGS_FINAL, savings);
             editor.apply();
         }
-        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings),
-                R.string.money_time, moneyOrTimeTextView, "money");
+        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView);
     }
 
     @SideEffect
@@ -1656,6 +1658,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             String theLatestRank = preferences.getString("rank", "unranked yet");
             userRankProgressTxt.setText("Your rank: " + theLatestRank);
+
+            String rank_master = getString(R.string.rank_master, theLatestRank);
+            rank_masterTxt.setText(rank_master);
+            rank_masterTxt.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
 
             if (counter == 0) {
                 userCigarettesProgressTat.setText("Ciggaretes: press leaf to calculate");
