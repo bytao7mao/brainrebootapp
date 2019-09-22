@@ -7,6 +7,7 @@
 <br/>
 [![ForTheBadge built-by-developers](http://ForTheBadge.com/images/badges/built-by-developers.svg)](https://GitHub.com/Naereen/)
 [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4abaee95e33f48e3bc9322f6029b01bf)](https://www.codacy.com/manual/marius.a.nicolae/java_simple_algorithms?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bytao7mao/java_simple_algorithms&amp;utm_campaign=Badge_Grade)
 <br/>
 
 # Rebootway - the android app to overcome your personal habits

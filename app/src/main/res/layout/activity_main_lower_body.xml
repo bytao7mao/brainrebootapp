@@ -286,11 +286,14 @@
                     style="@style/TextColorBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorAccent"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="4dp"
+                    android:paddingRight="6dp"
+                    android:paddingLeft="6dp"
                     android:layout_marginStart="70dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="20dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_toRightOf="@id/savingsImgId"
                     android:text="Savings Total = 50$ or 50 hours" />
             </android.support.v7.widget.CardView>

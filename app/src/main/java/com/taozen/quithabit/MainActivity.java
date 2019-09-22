@@ -912,6 +912,7 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
         setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView);
+        moneyOrTimeTextView.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
     }
 
     @SideEffect
