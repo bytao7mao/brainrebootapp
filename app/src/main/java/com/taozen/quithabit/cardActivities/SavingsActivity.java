@@ -36,7 +36,7 @@ public class SavingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_savings);
+        setContentView(R.layout.app_bar_savings);
         ButterKnife.bind(SavingsActivity.this);
 
         getWindow().setStatusBarColor(ContextCompat.getColor(SavingsActivity.this, R.color.white));

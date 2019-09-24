@@ -312,6 +312,14 @@ public class MainActivity extends AppCompatActivity {
 
         //check online state
 //        checkActivityOnline();
+
+        if (preferences.contains("firstsave")){
+            firstSave = preferences.getLong("firstsave",0);
+            Log.d("taogenX", "firstsave: " + firstSave);
+        } else {
+            Log.d("taogenX", "firstsave: " + firstSave);
+        }
+
         setTxtViewForUserMaxCountDaysOnStringVersion(
                 String.valueOf(userMaxCountForHabit),
                 R.string.target_string, targetTxtViewId);
@@ -818,6 +826,8 @@ public class MainActivity extends AppCompatActivity {
                             if (counter == 1){
                                 if (preferences.contains(SAVINGS_FINAL)){
                                     firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    editor.putLong("firstsave", firstSave);
+                                    editor.apply();
                                     Log.d("taogenX", "firstsave is: " + firstSave);
                                 }
                             }
@@ -872,6 +882,8 @@ public class MainActivity extends AppCompatActivity {
                         if (counter == 1){
                             if (preferences.contains(SAVINGS_FINAL)){
                                 firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                editor.putLong("firstsave", firstSave);
+                                editor.apply();
                                 Log.d("taogenX", "firstsave is: " + firstSave);
                             }
                         }
@@ -927,6 +939,8 @@ public class MainActivity extends AppCompatActivity {
         if (counter == 1){
             if (preferences.contains(SAVINGS_FINAL)){
                 firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                editor.putLong("firstsave", firstSave);
+                editor.apply();
                 Log.d("taogenX", "firstsave is: " + firstSave);
             }
         }
@@ -958,13 +972,14 @@ public class MainActivity extends AppCompatActivity {
         negativeDialogAfterRelapse();
     }
 
-    private void setTxtViewForUserSavingValueOfMoneyOrTime(
-            String string,
+    private void setTxtViewForUserSavingValueOfMoneyOrTime(long savePerDay, String string,
             int androiId, TextView textView) {
         DecimalFormat formatter = new DecimalFormat("###,###,##0.00");
-        String value = formatter.format(Integer.parseInt(string)*365);
+        String valuePerYear = formatter.format(Integer.parseInt(String.valueOf(savePerDay))*365);
+        String totalSavings = formatter.format(Integer.parseInt(string));
         //target counter string
-        String finalS = getString(androiId, string) + "\nper year: " + value + "$";
+        String finalS = "per day: "  + savePerDay + "$\n"+
+                getString(androiId, totalSavings) + "\nper year: " + valuePerYear + "$";
         textView.setText(finalS);
     }
 
@@ -988,7 +1003,14 @@ public class MainActivity extends AppCompatActivity {
             editor.putLong(SAVINGS_FINAL, savings);
             editor.apply();
         }
-        setTxtViewForUserSavingValueOfMoneyOrTime(String.valueOf(savings), R.string.money_time, moneyOrTimeTextView);
+        if (preferences.contains("firstsave")){
+            firstSave = preferences.getLong("firstsave",0);
+            Log.d("taogenX", "firstsave: " + firstSave);
+        } else {
+            Log.d("taogenX", "firstsave: " + firstSave);
+        }
+        setTxtViewForUserSavingValueOfMoneyOrTime(firstSave,
+                String.valueOf(savings), R.string.money_time, moneyOrTimeTextView);
         moneyOrTimeTextView.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
     }
 
