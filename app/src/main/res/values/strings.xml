@@ -24,4 +24,5 @@
     <string name="all_rights_reserved_to_bytao7mao"><![CDATA[All rights reserved to @bytao7mao]]> </string>
     <string name="enjoy">Enjoy !</string>
     <string name="rank_master">Rank: %s</string>
+    <string name="streak_string">Highest streak: %d</string>
 </resources>

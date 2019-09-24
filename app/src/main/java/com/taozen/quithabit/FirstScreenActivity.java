@@ -1,24 +1,18 @@
 package com.taozen.quithabit;
 
-import android.app.ActionBar;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +25,6 @@ import com.transitionseverywhere.ArcMotion;
 import com.transitionseverywhere.ChangeBounds;
 import com.transitionseverywhere.TransitionManager;
 
-import java.util.Objects;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Optional;
-
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
@@ -46,12 +34,12 @@ public class FirstScreenActivity extends AppCompatActivity {
 //    @BindView(R.id.editTxtSavingsId) EditText editTxtForSavings;
 //    @Nullable
 //    @BindView(R.id.edtTxtForCiggarettedId) EditText editTxtForCiggs;
-//    @BindView(R.id.ciggBtnId) Button btnCigg;
+//    @BindView(R.id.ciggBtnId) Button confirmationButton;
 //    @BindView(R.id.savBtnId) Button btnSav;
 
     TextView textView;
     EditText editTxtForSavings, editTxtForCiggs;
-    Button btnCigg;
+    Button confirmationButton;
     String nameCigg, nameSav;
 
     //shared pref
@@ -71,12 +59,13 @@ public class FirstScreenActivity extends AppCompatActivity {
     Handler mHandler = new Handler();
 
     boolean visible;
+    @SuppressLint("CommitPrefEdits")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
 //        ButterKnife.bind(FirstScreenActivity.this);
         go = false;go2 = false;
-        final ViewGroup transitionsContainer = (ViewGroup) findViewById(R.id.transitions_container);
+        final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
 
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
         montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
@@ -92,7 +81,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(FirstScreenActivity.this, R.color.white));
         Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitle(s);
-        TextView mTitle = (TextView) findViewById(R.id.toolbar_subtitle);
+        TextView mTitle =  findViewById(R.id.toolbar_subtitle);
         mTitle.setTypeface(montSerratSemiBoldTypeface);
 //        mTitle.setTypeface(montSerratSemiBoldTypeface);
 //        getSupportActionBar().setLogo(R.drawable.logowalk);
@@ -108,13 +97,13 @@ public class FirstScreenActivity extends AppCompatActivity {
         textView = findViewById(R.id.fsTitleId);
         editTxtForSavings = findViewById(R.id.edtTxtForSavingsId);
         editTxtForCiggs = findViewById(R.id.edtTxtForCiggarettedId);
-        btnCigg = findViewById(R.id.ciggBtnId);
+        confirmationButton = findViewById(R.id.confirmBtn);
 //        btnSav = findViewById(R.id.savBtnId);
         //set ciggs
         textView.setTypeface(montSerratSemiBoldTypeface);
         editTxtForSavings.setTypeface(montSerratSemiBoldTypeface);
         editTxtForCiggs.setTypeface(montSerratSemiBoldTypeface);
-        btnCigg.setTypeface(montSerratSemiBoldTypeface);
+        confirmationButton.setTypeface(montSerratSemiBoldTypeface);
 
 //        editTxtForSavings.getBackground().mutate().setColorFilter(getResources().getColor(android.R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
 //        editTxtForCiggs.getBackground().mutate().setColorFilter(getResources().getColor(android.R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
@@ -129,7 +118,7 @@ public class FirstScreenActivity extends AppCompatActivity {
 
 
         //set cigg
-        btnCigg.setOnClickListener(new View.OnClickListener() {
+        confirmationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setCiggsPerDay();
@@ -147,8 +136,10 @@ public class FirstScreenActivity extends AppCompatActivity {
                             visible = !visible;
                             editTxtForSavings.setVisibility(visible ? View.VISIBLE : View.GONE);
                             editTxtForCiggs.setVisibility(visible ? View.VISIBLE : View.GONE);
-                            Intent i = new Intent(FirstScreenActivity.this, IntroActivity.class);
-//                            overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
+//                          Intent i = new Intent(FirstScreenActivity.this, IntroActivity.class);
+                            //skip Intro screens and go into main
+                            Intent i = new Intent(FirstScreenActivity.this, MainActivity.class);
+//                          overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
                             startActivity(i);
                             finish();
                         }
@@ -233,7 +224,7 @@ public class FirstScreenActivity extends AppCompatActivity {
             return;
         } else {
             if (go2){
-                btnCigg.setEnabled(false);
+                confirmationButton.setEnabled(false);
             }
             go = true;
         }
@@ -252,7 +243,7 @@ public class FirstScreenActivity extends AppCompatActivity {
             return;
         } else {
             if (go){
-                btnCigg.setEnabled(false);
+                confirmationButton.setEnabled(false);
             }
             go2 = true;
         }

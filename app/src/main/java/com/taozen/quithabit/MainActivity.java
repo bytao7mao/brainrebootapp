@@ -58,9 +58,6 @@ import com.taozen.quithabit.optionsMenuActivities.AboutActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.utils.MyHttpManager;
-import com.transitionseverywhere.ArcMotion;
-import com.transitionseverywhere.ChangeBounds;
-import com.transitionseverywhere.TransitionManager;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -105,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     private String firstMessageDialog = "Hello, this is your first day!\nSince you're here " +
             "it means that you made the first step in order to get rid of your habit";
 
-    //TODO - ask user how many cigarettes smokes per day with dialog
     private int cigarettesPerDay;
 
     //Views
@@ -126,7 +122,10 @@ public class MainActivity extends AppCompatActivity {
 //    @BindView(R.id.rankThreeIdText) TextView rankThreeTxt;
 //    @BindView(R.id.rankTwoIdText) TextView rankTwoTxt;
 //    @BindView(R.id.rankOneIdText) TextView rankOneTxt;
-    @BindView(R.id.rank_master) TextView rank_masterTxt;
+    @BindView(R.id.comingSoonTxtForChallenge2) TextView comingSoonTxtForChallenge2;
+    @BindView(R.id.comingSoonTxtForProgress) TextView comingSoonTxtForProgress;
+    @BindView(R.id.comingSoonTxtForChallenge) TextView comingSoonTxtForChallenge;
+    @BindView(R.id.rank_master) TextView rankMasterTxt;
     @BindView(R.id.toolbar_subtitle) TextView subTextToolbar;
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.YourSavingsId) TextView yourSavingsTxt;
     @BindView(R.id.YourLogsId) TextView yourLogsTxt;
     @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
-    @BindView(R.id.YourProgressIdRank) TextView userRankProgressTxt;
+    @BindView(R.id.YourHighestStreakId) TextView userHighestStreakTxt;
     @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
     //ProgressBar
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
@@ -349,11 +348,14 @@ public class MainActivity extends AppCompatActivity {
         yourSavingsTxt.setTypeface(montSerratSimpleBoldTypeface);
         yourLogsTxt.setTypeface(montSerratSimpleBoldTypeface);
         userCigaretesProgressTxt.setTypeface(montSerratLightTypeface);
-        userRankProgressTxt.setTypeface(montSerratLightTypeface);
+        userHighestStreakTxt.setTypeface(montSerratLightTypeface);
         userHoursProgressTxt.setTypeface(montSerratLightTypeface);
         subTextNonSmoker.setTypeface(montSerratMediumTypeface);
         subTextToolbar.setTypeface(montSerratSemiBoldTypeface);
-        rank_masterTxt.setTypeface(montSerratMediumTypeface);
+        rankMasterTxt.setTypeface(montSerratMediumTypeface);
+        comingSoonTxtForProgress.setTypeface(montSerratMediumTypeface);
+        comingSoonTxtForChallenge.setTypeface(montSerratMediumTypeface);
+        comingSoonTxtForChallenge2.setTypeface(montSerratMediumTypeface);
 //        rankFourTxt.setTypeface(montSerratMediumTypeface);
 //        rankThreeTxt.setTypeface(montSerratMediumTypeface);
 //        rankTwoTxt.setTypeface(montSerratMediumTypeface);
@@ -372,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
                 counter = preferences.getInt(COUNTER, -1);
             }
             //setting the achievments images for user
-            showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
+            showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
             setImagesForAchievementCard();
             setImprovementProgressLevels();
         } catch (NullPointerException e) {
@@ -412,6 +414,9 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
         });//challengeCardView[END]
+
+        //disable views for "coming soon area"
+        disableViewsForComingSoon();
 
         //retrieving the counter and minute values
         try {
@@ -823,7 +828,7 @@ public class MainActivity extends AppCompatActivity {
                         setImagesForAchievementCard();
                         counterText.setText(String.valueOf(counter));
                         setTargetDays();
-//                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
+//                        showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
 //                                    Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
                         //var 1 - dialog after answer
                         positiveDialogAfterPassDay();
@@ -847,6 +852,8 @@ public class MainActivity extends AppCompatActivity {
                             arr = tem;
                         }
                         editor.putString("arr", arr);
+                        editor.putInt("highest", counter);
+                        Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
                         editor.apply();
                         counter = 0;
                         savings = 0;
@@ -873,7 +880,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         counterText.setText(String.valueOf(counter));
                         setTargetDays();
-//                        showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
+//                        showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
 //                        Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
                         negativeDialogAfterRelapse();
                     }
@@ -989,7 +996,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             //set text for checkin
             setCheckInText();
-            showEntireProgressForUserCard(userCigaretesProgressTxt, userRankProgressTxt, userHoursProgressTxt);
+            showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);editor.putInt(COUNTER, counter);
                 editor.apply();
@@ -1176,15 +1183,16 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt(COUNTER, counter);
                 editor.apply();
                 Log.d("DAYZEN", "if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {" + " ACTIVATED");
-            } else if ((HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) && !buttonClickedToday) {
-                fab.show();
-                setCheckInText();
-                if (i == 1)
-                    startAnimatorForUpperCard();
-                anim.start();
-                editor.putInt(COUNTER, counter);
-                editor.apply();
             }
+//            } else if ((HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) && !buttonClickedToday) {
+//                fab.show();
+//                setCheckInText();
+//                if (i == 1)
+//                    startAnimatorForUpperCard();
+//                anim.start();
+//                editor.putInt(COUNTER, counter);
+//                editor.apply();
+//            }
         } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
             higherThanOne = true;
             int diff = DAY_OF_PRESENT - DAY_OF_CLICK;
@@ -1654,15 +1662,23 @@ public class MainActivity extends AppCompatActivity {
 
     @SideEffect
     private void showEntireProgressForUserCard(TextView userCigarettesProgressTat,
-                                               TextView userRankProgressTxt,
+                                               TextView userHighestStreakDays,
                                                TextView userHoursProgressTxt) {
         try {
+            //getting the highest streak and put it in progress card
+            int highestStreak;
+            if (preferences.contains("highest")){
+                highestStreak = preferences.getInt("highest", 0);
+            } else {
+                highestStreak = preferences.getInt(COUNTER, 0);
+            }
+            String tempStreak = getString(R.string.streak_string, highestStreak);
+            userHighestStreakDays.setText(tempStreak);
+            //getting highest rank and put it into ranks card
             String theLatestRank = preferences.getString("rank", "unranked yet");
-            userRankProgressTxt.setText("Your rank: " + theLatestRank);
-
             String rank_master = getString(R.string.rank_master, theLatestRank);
-            rank_masterTxt.setText(rank_master);
-            rank_masterTxt.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
+            rankMasterTxt.setText(rank_master);
+            rankMasterTxt.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
 
             if (counter == 0) {
                 userCigarettesProgressTat.setText("Ciggaretes: press leaf to calculate");
@@ -1703,6 +1719,11 @@ public class MainActivity extends AppCompatActivity {
             p.setMargins(left, top, right, bottom);
             view.requestLayout();
         }
+    }
+
+    private void disableViewsForComingSoon(){
+        challengeCardView.setClickable(false);
+        timeStampLogsCardview.setClickable(false);
     }
 
 }//[END OF MAIN CLASS]

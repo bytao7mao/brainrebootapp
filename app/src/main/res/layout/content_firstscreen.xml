@@ -57,7 +57,7 @@
         android:backgroundTint="@color/greenColorLed"/>
 
     <Button
-        android:id="@+id/ciggBtnId"
+        android:id="@+id/confirmBtn"
         android:background="@drawable/custom_button"
         android:textAllCaps="true"
         android:text="confirm"

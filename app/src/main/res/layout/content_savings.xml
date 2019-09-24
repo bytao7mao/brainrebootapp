@@ -1,81 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_view_mainID"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:elevation="3dp"
-        app:cardCornerRadius="8dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="600dp">
-            <ImageView
-                android:id="@+id/backgroundImgViewId"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/grey_100" />
-            <TextView
-                android:id="@+id/savings_TitleId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add your sum"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="80dp"
-                android:layout_alignParentTop="true"
-                android:alpha="0.8"
-                android:textSize="28sp" />
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/editTxtSavingsId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="how much did you saved ?"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/savings_TitleId"
-                android:textSize="18sp"
-                android:backgroundTint="@color/greenColorLed"/>
-            <Button
-                android:id="@+id/addSavingsBtnId"
-                android:background="@drawable/custom_button"
-                android:textAllCaps="true"
-                android:text="add"
-                android:alpha="0.8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/editTxtSavingsId"
-                android:layout_marginEnd="57dp"
-                android:layout_marginRight="57dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:gravity="center" />
-            <TextView
-                android:id="@+id/savingsTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/addSavingsBtnId"
-                android:layout_centerHorizontal="true"
-                android:alpha="0.8"
-                android:layout_margin="50dp"
-                android:textSize="20sp"
-                android:text="@string/total_savings"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/savingsTxt"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/profit"/>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-</RelativeLayout>
+        android:layout_height="600dp"
+        android:layout_marginBottom="131dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/savings_TitleId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="80dp"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:text="Add your sum"
+            android:textSize="28sp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/editTxtSavingsId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/savings_TitleId"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/greenColorLed"
+            android:gravity="center"
+            android:hint="how much more did you saved ?"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/addSavingsBtnId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTxtSavingsId"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginRight="57dp"
+            android:layout_marginBottom="30dp"
+            android:alpha="0.8"
+            android:background="@drawable/custom_button"
+            android:gravity="center"
+            android:text="add"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/savingsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addSavingsBtnId"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:alpha="0.8"
+            android:text="@string/total_savings"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/savingsTxt"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/profit" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

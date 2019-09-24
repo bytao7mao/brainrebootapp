@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
 
 //min api 21
 android {
@@ -84,9 +82,6 @@ dependencies {
     //a secondary nice fab option with menus in it
     implementation 'com.github.joaquimley:faboptions:1.2.0'
 
-    //kotlin lib
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
     //navigation drawer
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-rc01'
 
@@ -111,7 +106,7 @@ dependencies {
     implementation 'com.github.ozodrukh:CircularReveal:2.0.1@aar'
 }
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'kotlin-android-extensions'
+
 repositories {
     mavenCentral()
 }
