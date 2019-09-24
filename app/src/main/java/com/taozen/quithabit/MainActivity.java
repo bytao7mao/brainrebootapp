@@ -54,7 +54,7 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.cardActivities.AchievmentsActivity;
 import com.taozen.quithabit.cardActivities.FailLogsActivity;
-import com.taozen.quithabit.optionsMenuActivities.AboutActivity;
+import com.taozen.quithabit.about.AboutActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.utils.MyHttpManager;
@@ -88,6 +88,7 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FIN
 public class MainActivity extends AppCompatActivity {
 
     String arr = "";
+    long firstSave;
 
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
 
@@ -803,11 +804,23 @@ public class MainActivity extends AppCompatActivity {
                         if (preferences.contains("diff") && higherThanOne){
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                             counter = counter + preferences.getInt("diff", -100);
+                            if (counter == 1){
+                                if (preferences.contains(SAVINGS_FINAL)){
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    Log.d("taogenX", "firstsave is: " + firstSave);
+                                }
+                            }
                             Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
                             higherThanOne = false;
                         } else {
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                             counter++;
+                            if (counter == 1){
+                                if (preferences.contains(SAVINGS_FINAL)){
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    Log.d("taogenX", "firstsave is: " + firstSave);
+                                }
+                            }
                             higherThanOne = false;
                             Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
                         }
@@ -855,8 +868,15 @@ public class MainActivity extends AppCompatActivity {
                         editor.putInt("highest", counter);
                         Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
                         editor.apply();
-                        counter = 0;
-                        savings = 0;
+                        counter = 1;
+                        if (counter == 1){
+                            if (preferences.contains(SAVINGS_FINAL)){
+                                firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                Log.d("taogenX", "firstsave is: " + firstSave);
+                            }
+                        }
+                        savings = firstSave;
+                        Log.d("taogenX", "firstsave is: " + firstSave);
                         //to see
                         editor.putLong(SAVINGS_FINAL, savings);//off
                         //maybe
@@ -886,6 +906,56 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .build();//[END of NORMAL DIALOG]
+    }
+
+    private void resetWholeProgress(){
+        i = 1;
+        //get time of relapse and put it into arraylist to send in logs activity
+        Calendar calendarOnClick2 = Calendar.getInstance();
+        calendarOnClick2.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+        String tem = calendarOnClick2.getTime().toString() + " ole\n";
+        if (preferences.contains("arr")){
+            arr = tem + preferences.getString("arr", "no value");
+        } else {
+            arr = tem;
+        }
+        editor.putString("arr", arr);
+        editor.putInt("highest", counter);
+        Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
+        editor.apply();
+        counter = 1;
+        if (counter == 1){
+            if (preferences.contains(SAVINGS_FINAL)){
+                firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                Log.d("taogenX", "firstsave is: " + firstSave);
+            }
+        }
+        savings = firstSave;
+        Log.d("taogenX", "firstsave is: " + firstSave);
+        //to see
+        editor.putLong(SAVINGS_FINAL, savings);//off
+        //maybe
+        editor.putInt(COUNTER, counter);
+        //new edit
+        int tempCigarettes = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
+        userCigaretesProgressTxt.setText("Ciggaretes not smoked: " + tempCigarettes);
+        editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
+        lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
+        userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
+        editor.putFloat(LIFEREGAINED, lifeRegained);
+        editor.apply();
+        checkActivityOnline();
+//                        setTheSavingsPerDay();
+        moneyOrTimeAndGetAndSetValue();
+        setImprovementProgressLevels();
+        try {
+            counter = preferences.getInt(COUNTER, -1);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        counterText.setText(String.valueOf(counter));
+        setTargetDays();
+        negativeDialogAfterRelapse();
     }
 
     private void setTxtViewForUserSavingValueOfMoneyOrTime(
@@ -1257,7 +1327,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("taolenX", "[setImprovementProgressLevels] counter is = " + counter);
         //TODO: setup the levels
         //energy levels
-        if (counter > 0 && counter < 10) {
+        if (counter >= 0 && counter < 6) {
+            txtProgressForEnergyLevels.setText(5 + "%");
+            progressBarEnergyLevel.setProgress(5);
+        } else if (counter > 5 && counter < 10) {
             txtProgressForEnergyLevels.setText(10 + "%");
             progressBarEnergyLevel.setProgress(10);
         } else if (counter > 9 && counter < 25) {
@@ -1276,7 +1349,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //fatigue levels
-        if (counter > 0 && counter < 15) {
+        if (counter >= 0 && counter < 6) {
+            txtProgressForFatigue.setText(5 + "%");
+            progressBarFatigueLevel.setProgress(5);
+        } else if (counter > 5 && counter < 15) {
             txtProgressForFatigue.setText(10 + "%");
             progressBarFatigueLevel.setProgress(10);
         } else if (counter > 14 && counter < 30) {
@@ -1294,7 +1370,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //gums levels
-        if (counter > 0 && counter < 20) {
+        if (counter >= 0 && counter < 6) {
+            txtProgressForGums.setText(15 + "%");
+            progressBarGumsLevel.setProgress(15);
+        } else if (counter > 5 && counter < 20) {
             txtProgressForGums.setText(25 + "%");
             progressBarGumsLevel.setProgress(25);
         } else if (counter > 19 && counter < 40) {
@@ -1309,7 +1388,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //breath levels
-        if (counter > 0 && counter < 10) {
+        if (counter >= 0 && counter < 6) {
+            txtProgressForBreath.setText(15 + "%");
+            progressBarBreathlevel.setProgress(15);
+        } else if (counter > 0 && counter < 10) {
             txtProgressForBreath.setText(25 + "%");
             progressBarBreathlevel.setProgress(25);
         } else if (counter > 9 && counter < 20) {
@@ -1367,10 +1449,27 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt(COUNTER, counter);
             editor.apply();
         } else if (id == R.id.check_in_hour) {
-            showDialogForChangingCheckInDate();
+            //do nothing for now
+            //TODO: think about we want to let user change the check in hour or not
+//            showDialogForChangingCheckInDate();
+        } else if (id == R.id.reset_button){
+            //TODO: reset progress
+            resetWholeProgress();
         }
         return super.onOptionsItemSelected(item);
     }//END OF -> [MENU]
+
+
+    //hide the rest of the menu
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        menu.findItem(R.id.check_in_hour).setVisible(false);
+        menu.findItem(R.id.action_settings).setVisible(false);
+        menu.findItem(R.id.action_help).setVisible(false);
+
+        return true;
+    }
 
     @SideEffect
     protected boolean isOnline() {
@@ -1572,7 +1671,7 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(0.2f);
             rankFourImg.setBackgroundResource(R.mipmap.gnm);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold nova");
+            editor.putString("rank", "Gold I");
         } else if (counter>79&&counter<90) {
             //when user pass 1 week
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
@@ -1583,7 +1682,7 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.gnm);
             rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold nova expert!");
+            editor.putString("rank", "Gold II");
             //WHEN USER REACH DAY 90 - GREATEST MILESTONE
         } else if (counter == 90) {
             rankOneImg.setBackgroundResource(R.mipmap.chevron16);
@@ -1594,7 +1693,7 @@ public class MainActivity extends AppCompatActivity {
             rankThreeImg.setAlpha(1.0f);
             rankFourImg.setBackgroundResource(R.mipmap.gnm);
             rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "Gold nova master!");
+            editor.putString("rank", "Gold III");
         }
     }
 

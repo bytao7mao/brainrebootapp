@@ -12,15 +12,16 @@
             android:layout_height="match_parent"
             android:id="@+id/fancyaboutpage">
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="140dp"
-                android:layout_height="140dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="180dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/logowalk"
-                app:civ_border_color="#40FFFFFF"
+                android:src="@mipmap/ic_launcher_foreground"
+                app:civ_border_color="#FFF"
                 app:civ_border_width="10dp"
                 android:id="@+id/circularImageView" />
+<!--            app:civ_border_color="#40FFFFFF"-->
         </com.shashank.sony.fancyaboutpagelib.FancyAboutPage>
     </RelativeLayout>
 </ScrollView>

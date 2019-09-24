@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">brainreboot</string>
+    <string name="app_name">NoSmoke Tracker</string>
     <string name="exit">exit</string>
     <string name="about" tools:ignore="ExtraTranslation">about</string>
     <string name="reset">reset</string>
@@ -25,4 +25,5 @@
     <string name="enjoy">Enjoy !</string>
     <string name="rank_master">Rank: %s</string>
     <string name="streak_string">Highest streak: %d</string>
+    <string name="reset_progress">reset progress</string>
 </resources>

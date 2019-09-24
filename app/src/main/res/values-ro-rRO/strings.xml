@@ -20,6 +20,5 @@
 
     <string name="progressactivity_get_started">Sa incepem o noua viata!</string>
     <string name="maxCounter">calculare</string>
-    <string name="challengeString">provocare</string>
     <string name="help">ajutor</string>
 </resources>

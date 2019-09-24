@@ -108,7 +108,6 @@ public class FirstScreenActivity extends AppCompatActivity {
 //        editTxtForSavings.getBackground().mutate().setColorFilter(getResources().getColor(android.R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
 //        editTxtForCiggs.getBackground().mutate().setColorFilter(getResources().getColor(android.R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
 
-
         assert editTxtForCiggs != null;
         editTxtForCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
         assert editTxtForSavings != null;

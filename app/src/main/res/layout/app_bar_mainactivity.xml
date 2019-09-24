@@ -43,7 +43,7 @@
                 android:textSize="14sp"
                 android:layout_gravity="center"
                 android:alpha="0.8"
-                android:text="brain reboot"
+                android:text="@string/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>

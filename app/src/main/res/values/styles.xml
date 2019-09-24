@@ -22,6 +22,12 @@
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 
+    <style name="AboutPageTheme" parent="ParentMaterialTheme">
+        <item name="android:fontFamily">@fonts/Montserrat-Medium.ttf</item>
+        <item name="android:textSize">12sp</item>
+<!--        <item name="android:fontFamily">@assets/@fonts/Montserrat-Medium.ttf</item>-->
+    </style>
+
     <style name="MaterialTheme.NoActionBar">
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/white</item>

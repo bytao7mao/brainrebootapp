@@ -159,15 +159,15 @@ public class AchievmentsActivity extends AppCompatActivity {
                     if (position > 8){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold nova")) {
+                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold I")) {
                     if (position > 9){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold nova expert!")) {
+                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold II")) {
                     if (position > 10){
                         holder.img.setAlpha(0.2f);
                     }
-                } else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold nova master!")) {
+                } else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold III")) {
                     if (position > 11){
                         holder.img.setAlpha(0.2f);
                     }

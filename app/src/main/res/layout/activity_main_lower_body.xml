@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:textSize="38sp"
+            android:textSize="28sp"
             android:text="Coming Soon!" />
 
         <FrameLayout
@@ -265,7 +265,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="400dp"
-            android:textSize="38sp"
+            android:textSize="28sp"
             android:text="Coming Soon!" />
 
         <TextView
@@ -275,7 +275,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="500dp"
-            android:textSize="38sp"
+            android:textSize="28sp"
             android:text="Coming Soon!" />
 
         <FrameLayout

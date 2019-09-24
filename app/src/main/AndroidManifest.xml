@@ -29,7 +29,7 @@
             android:name=".FirstScreenActivity"
             android:excludeFromRecents="true" />
         <activity android:name=".cardActivities.AchievmentsActivity" />
-        <activity android:name=".optionsMenuActivities.AboutActivity" />
+        <activity android:name=".about.AboutActivity" />
 
         <activity
             android:name=".MainActivity"
