@@ -115,7 +115,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:alpha="0.8"
-                android:text="Non-smoker since"
+                android:text="@string/non_smoker_since"
                 android:textSize="20sp" />
             <!--android:text="Since i've quit smoking"android:text="Non-smoker since"-->
             <TextView

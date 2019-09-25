@@ -30,27 +30,26 @@
         android:layout_below="@id/delimitationBarId">
         <!--progress area-->
 
-        <TextView
-            android:id="@+id/comingSoonTxtForProgress"
-            style="@style/TextColorBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:textSize="28sp"
-            android:text="Coming Soon!" />
+<!--        <TextView-->
+<!--            android:id="@+id/comingSoonTxtForProgress"-->
+<!--            style="@style/TextColorBlack"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:textSize="28sp"-->
+<!--            android:text="@string/coming_soon"/>-->
 
         <FrameLayout
             android:id="@+id/frameCardIdYourProgress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:alpha="0.3">
+            android:layout_height="wrap_content">
             <!--android:layout_below="@id/frameCardIdStatistics"-->
 
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardIdProgress"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 app:cardCornerRadius="8dp">
 
                 <ImageView
@@ -78,40 +77,42 @@
                     android:textSize="14sp"
                     android:alpha="0.8"
                     android:layout_toRightOf="@id/savingsImgId"
-                    android:text="Your entire progress" />
+                    android:text="@string/your_entire_progress" />
+                <LinearLayout
+                    android:id="@+id/txtviewsprogrs"
+                    android:orientation="vertical"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="6dp"
+                    android:paddingEnd="6dp"
+                    android:paddingStart="6dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+<!--                    android:layout_marginTop="40dp"-->
+<!--                    android:layout_marginStart="70dp"-->
                 <TextView
                     android:id="@+id/YourProgressIdCigaretes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextColorBlack"
-                    android:textSize="12sp"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toRightOf="@id/savingsImgId"
-                    android:text="cigarates not smoked = 3 x days"/>
+                    android:textSize="14sp"
+                    android:layout_toRightOf="@id/savingsImgId" />
                 <TextView
                     android:id="@+id/YourHighestStreakId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextColorBlack"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="55dp"
-                    android:textSize="12sp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toRightOf="@id/savingsImgId"
-                    android:text="Highest streak"/>
+                    android:textSize="14sp"
+                    android:layout_toRightOf="@id/savingsImgId" />
                 <TextView
                     android:id="@+id/YourProgressIdHours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     style="@style/TextColorBlack"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="75dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toRightOf="@id/savingsImgId"
-                    android:text="Life regained: 20 hours"/>
+                    android:layout_toRightOf="@id/savingsImgId" />
+                </LinearLayout>
             </android.support.v7.widget.CardView>
         </FrameLayout>
         <!--achievments area-->
@@ -213,12 +214,12 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/progressCardIdSavings"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 app:cardCornerRadius="8dp">
                 <!--android:alpha="0.8"-->
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="match_parent"
                     android:background="@color/grey_200" />
                 <TextView
                     android:id="@+id/YourSavingsId"
@@ -233,11 +234,11 @@
                     android:text="Your savings" />
                 <ImageView
                     android:id="@+id/savingsImgId"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:background="@mipmap/piggybank" />
+                    android:background="@mipmap/piggybank"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <!--android:layout_marginTop="30dp"-->
                 <TextView
                     android:id="@+id/moneyortimeId"
@@ -248,13 +249,16 @@
                     android:paddingBottom="6dp"
                     android:paddingRight="6dp"
                     android:paddingLeft="6dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="70dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="20dp"
-                    android:textSize="16sp"
-                    android:layout_toRightOf="@id/savingsImgId"
-                    android:text="Savings Total = 50$ or 50 hours" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:layout_toRightOf="@id/savingsImgId" />
+
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginStart="70dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginEnd="20dp"-->
+
             </android.support.v7.widget.CardView>
         </FrameLayout>
         <!--challenge area-->
@@ -265,9 +269,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="450dp"
             android:textSize="28sp"
-            android:text="Coming Soon!" />
+            android:text="@string/coming_soon" />
 
         <TextView
             android:id="@+id/comingSoonTxtForChallenge2"
@@ -275,9 +279,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="500dp"
+            android:layout_marginTop="550dp"
             android:textSize="28sp"
-            android:text="Coming Soon!" />
+            android:text="@string/coming_soon" />
 
         <FrameLayout
             android:id="@+id/frameCardIdChallenge"

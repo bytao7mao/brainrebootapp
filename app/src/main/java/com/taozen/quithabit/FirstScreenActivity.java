@@ -1,6 +1,7 @@
 package com.taozen.quithabit;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -10,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -24,6 +26,9 @@ import com.taozen.quithabit.intro.IntroActivity;
 import com.transitionseverywhere.ArcMotion;
 import com.transitionseverywhere.ChangeBounds;
 import com.transitionseverywhere.TransitionManager;
+
+import java.util.Currency;
+import java.util.Locale;
 
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
@@ -41,6 +46,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     EditText editTxtForSavings, editTxtForCiggs;
     Button confirmationButton;
     String nameCigg, nameSav;
+    String currency;
 
     //shared pref
     SharedPreferences preferences;
@@ -97,12 +103,14 @@ public class FirstScreenActivity extends AppCompatActivity {
         textView = findViewById(R.id.fsTitleId);
         editTxtForSavings = findViewById(R.id.edtTxtForSavingsId);
         editTxtForCiggs = findViewById(R.id.edtTxtForCiggarettedId);
+//        editTxtForCurrency = findViewById(R.id.edtTxtForCurrencyId);
         confirmationButton = findViewById(R.id.confirmBtn);
 //        btnSav = findViewById(R.id.savBtnId);
         //set ciggs
         textView.setTypeface(montSerratSemiBoldTypeface);
         editTxtForSavings.setTypeface(montSerratSemiBoldTypeface);
         editTxtForCiggs.setTypeface(montSerratSemiBoldTypeface);
+//        editTxtForCurrency.setTypeface(montSerratSemiBoldTypeface);
         confirmationButton.setTypeface(montSerratSemiBoldTypeface);
 
 //        editTxtForSavings.getBackground().mutate().setColorFilter(getResources().getColor(android.R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
@@ -112,6 +120,8 @@ public class FirstScreenActivity extends AppCompatActivity {
         editTxtForCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
         assert editTxtForSavings != null;
         editTxtForSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
+//        assert editTxtForCurrency != null;
+//        editTxtForCurrency.setInputType(InputType.TYPE_CLASS_TEXT);
 
 
 
@@ -122,6 +132,7 @@ public class FirstScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setCiggsPerDay();
                 setSavings();
+//                setCurrency();
 //                overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
 //                TransitionManager.beginDelayedTransition(transitionsContainer);
                 TransitionManager.beginDelayedTransition(transitionsContainer,
@@ -139,6 +150,11 @@ public class FirstScreenActivity extends AppCompatActivity {
                             //skip Intro screens and go into main
                             Intent i = new Intent(FirstScreenActivity.this, MainActivity.class);
 //                          overridePendingTransition(R.transition.slide_in_right, R.transition.slide_out_left);
+                    TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                    currency = Currency.getInstance(new Locale("", telephonyManager.getNetworkCountryIso())).getCurrencyCode();
+                    Log.d("taogX", currency+"");
+                    editor.putString("currency", currency);
+                    editor.apply();
                             startActivity(i);
                             finish();
                         }
@@ -212,6 +228,34 @@ public class FirstScreenActivity extends AppCompatActivity {
 ////                Intent i = new Intent(FirstScreenActivity.this, MainActivity.class);
 ////                startActivity(i);
 //        } catch (NullPointerException e){e.printStackTrace();}
+//    }
+
+//    private void setCurrency(){
+//        currency = editTxtForCurrency.getText().toString();
+//        if (TextUtils.isEmpty(currency)) {
+//            go = false;
+//            editTxtForCurrency.setError("Please input a currency");
+//            confirmationButton.setEnabled(true);
+//            return;
+//        } else if (!TextUtils.equals("$", currency)) {
+//            go = false;
+//            editTxtForCurrency.setError("Please input a valid currency");
+//            confirmationButton.setEnabled(true);
+//            return;
+//        } else if (!TextUtils.equals("€", currency)) {
+//                go = false;
+//                editTxtForCurrency.setError("Please input a valid currency");
+//                confirmationButton.setEnabled(true);
+//                return;
+//        } else {
+//            if (go2){
+//                confirmationButton.setEnabled(false);
+//            }
+//            go = true;
+//        }
+//        editor.putString("currency", currency);
+//        editor.apply();
+//        Log.d("INTROTAO2", "currency saved in INTROACTIVITY ? :  " + currency);
 //    }
 
     private void setSavings(){

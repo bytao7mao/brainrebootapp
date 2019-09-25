@@ -6,7 +6,6 @@
     <string name="reset">resetare</string>
     <string name="add">adaugare</string>
     <string name="target_string">Scop: %s</string>
-    <string name="money_time">Salvati suma de %s pe zi:  %s</string>
     <string name="remaining_days">Zile ramase: %s</string>
     <string name="total_savings">Bani economisiti: %s $</string>
     <string name="hello_world">Salutare!</string>
@@ -21,4 +20,22 @@
     <string name="progressactivity_get_started">Sa incepem o noua viata!</string>
     <string name="maxCounter">calculare</string>
     <string name="help">ajutor</string>
+    <string name="all_rights_reserved_to_bytao7mao">Toate drepturile rezervate catre @bytao7mao</string>
+    <string name="checkinStr">In fiecare zi te vom verifica la ora %d:00</string>
+    <string name="enjoy">Sa te bucuri!</string>
+    <string name="rank_master">Rank: %s</string>
+    <string name="reset_progress">resetare progres</string>
+    <string name="savings">total: %s</string>
+    <string name="streak_string">Record: %d</string>
+    <string name="thanks_for_downloading_this_app">Multumesc pentru ca ati downloadat aplicatia !</string>
+    <string name="check_in_tommorow">Verificare maine!</string>
+    <string name="coming_soon">In Curand!</string>
+    <string name="non_smoker_since">Nefumator de</string>
+    <string name="check_in_now">Verifica acum!</string>
+    <string name="press_leaf">Apasa pe frunza pentru a incepe</string>
+    <string name="cig_not_smoked">Tigari nefumate:</string>
+    <string name="cig_press_leaf">Tigari nefumate: apasa frunza pentru a calcula</string>
+    <string name="your_entire_progress">Progresul tau</string>
+    <string name="life_press_leaf">Viata recuperata: apasa pe frunza pentru a calcula</string>
+    <string name="life_reg">viata recuperata: %s ore</string>
 </resources>

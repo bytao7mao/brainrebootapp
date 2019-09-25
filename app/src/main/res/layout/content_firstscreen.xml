@@ -56,6 +56,17 @@
         android:textSize="14sp"
         android:backgroundTint="@color/greenColorLed"/>
 
+<!--    <android.support.v7.widget.AppCompatEditText-->
+<!--        android:id="@+id/edtTxtForCurrencyId"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="please type your country currency"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@id/edtTxtForSavingsId"-->
+<!--        android:textSize="14sp"-->
+<!--        android:backgroundTint="@color/greenColorLed"/>-->
+
     <Button
         android:id="@+id/confirmBtn"
         android:background="@drawable/custom_button"

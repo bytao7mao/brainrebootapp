@@ -5,7 +5,7 @@
     <string name="reset">reset</string>
     <string name="add">add</string>
     <string name="target_string">Goal: %s</string>
-    <string name="money_time">total savings: %s$</string>
+    <string name="savings">per total: %s</string>
     <string name="remaining_days">Remaining: %s</string>
     <string name="total_savings">This is your total savings: %s $</string>
     <string name="copy_right" translatable="false">Copyrights © %1$d</string>
@@ -24,6 +24,16 @@
     <string name="all_rights_reserved_to_bytao7mao"><![CDATA[All rights reserved to @bytao7mao]]> </string>
     <string name="enjoy">Enjoy !</string>
     <string name="rank_master">Rank: %s</string>
-    <string name="streak_string">Highest streak: %d</string>
+    <string name="streak_string">highest days streak: %d</string>
     <string name="reset_progress">reset progress</string>
+    <string name="coming_soon">Coming Soon!</string>
+    <string name="non_smoker_since">Non-smoker since</string>
+    <string name="check_in_tommorow">Check-in: tommorow!</string>
+    <string name="press_leaf">Press on the leaf to begin</string>
+    <string name="check_in_now">Check-in now!</string>
+    <string name="your_entire_progress">Your entire progress</string>
+    <string name="cig_not_smoked">cigarettes not smoked:</string>
+    <string name="cig_press_leaf">cigarettes not smoked: press leaf to calculate</string>
+    <string name="life_press_leaf">life regained: press leaf to calculate hours"</string>
+    <string name="life_reg">life regained: %s hours</string>
 </resources>
