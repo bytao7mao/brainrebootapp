@@ -26,7 +26,7 @@ public class AboutActivity extends AppCompatActivity {
                 "Give feedback below.");
         fancyAboutPage.setAppIcon(R.drawable.android); //Pass your app icon image
         fancyAboutPage.setAppName("Brain Reboot App");
-        fancyAboutPage.setVersionNameAsAppSubTitle("0.2b");
+        fancyAboutPage.setVersionNameAsAppSubTitle("0.1a");
         fancyAboutPage.setAppDescription("Brain Reboot App is a motivational app that tracks your daily struggle to stop your habit.\n\n" +
                 "This app also tracks daily saved amount of money and have daily motivational quotes.\n"+
                 "I have to mention a special list of authors from which i borrowed design from:\n\n"+

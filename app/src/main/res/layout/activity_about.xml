@@ -12,8 +12,8 @@
             android:layout_height="match_parent"
             android:id="@+id/fancyaboutpage">
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="180dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"

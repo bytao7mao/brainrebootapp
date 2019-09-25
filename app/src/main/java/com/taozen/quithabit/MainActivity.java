@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.txtProgressIdForFatigue) TextView txtProgressForFatigue;
     @BindView(R.id.txtProgressIdForEnergy) TextView txtProgressForEnergyLevels;
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
-    @BindView(R.id.moneyortimeId) TextView moneyOrTimeTextView;
+    @BindView(R.id.savingsTxtId) TextView moneySavingsTxt;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
     @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtView;
     @BindView(R.id.progressActivityId) TextView progressBarsTxt;
@@ -259,7 +259,6 @@ public class MainActivity extends AppCompatActivity {
         anim2.setRepeatMode(ValueAnimator.REVERSE);
         anim2.setRepeatCount(Animation.INFINITE);
 
-
         //testing area
         Date date = new Date();
         Calendar calendar = GregorianCalendar.getInstance();
@@ -278,9 +277,16 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
+        if (!preferences.contains("taoz10")){
+            savings = 10;
+        }
         if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
         if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
+        else {
+            cigarettesPerDay = 10; //default value
+        }
         if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
+        Log.d("taozsa", savings + " savings" + " \nciggs" + cigarettesPerDay);
         setTargetDays();
         firstCheckMax();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
@@ -343,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
         txtProgressForFatigue.setTypeface(montSerratBoldTypeface);
         txtProgressForBreath.setTypeface(montSerratBoldTypeface);
         txtProgressForGums.setTypeface(montSerratBoldTypeface);
-        moneyOrTimeTextView.setTypeface(montSerratSimpleBoldTypeface);
+        moneySavingsTxt.setTypeface(montSerratMediumTypeface);
         challengeTextViewTitle.setTypeface(montSerratSimpleBoldTypeface);
         challengeTextViewSubtitle.setTypeface(montSerratLightTypeface);
         progressBarsTxt.setTypeface(montSerratBoldTypeface);
@@ -356,11 +362,10 @@ public class MainActivity extends AppCompatActivity {
         yourAchievmentTxt.setTypeface(montSerratSimpleBoldTypeface);
         yourProgressTxt.setTypeface(montSerratSimpleBoldTypeface);
         yourSavingsTxt.setTypeface(montSerratSimpleBoldTypeface);
-        //TODO: to add progresshours, highest, progresslife with simplebold
         yourLogsTxt.setTypeface(montSerratSimpleBoldTypeface);
-        userCigaretesProgressTxt.setTypeface(montSerratSimpleBoldTypeface);
-        userHighestStreakTxt.setTypeface(montSerratSimpleBoldTypeface);
-        userHoursProgressTxt.setTypeface(montSerratSimpleBoldTypeface);
+        userCigaretesProgressTxt.setTypeface(montSerratMediumTypeface);
+        userHighestStreakTxt.setTypeface(montSerratMediumTypeface);
+        userHoursProgressTxt.setTypeface(montSerratMediumTypeface);
         subTextNonSmoker.setTypeface(montSerratMediumTypeface);
         subTextToolbar.setTypeface(montSerratSemiBoldTypeface);
         rankMasterTxt.setTypeface(montSerratMediumTypeface);
@@ -757,7 +762,18 @@ public class MainActivity extends AppCompatActivity {
                 buttonClickedToday = true;
                 editor.putBoolean(CLICKED, buttonClickedToday);
                 editor.apply();
-                cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
+                if (preferences.contains(INITIAL_CIGG_PER_DAY)){
+                    cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
+                } else {
+                    cigarettesPerDay = 5;
+                    editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
+                    editor.apply();
+                }
+                if (!preferences.contains("taoz10")){
+                    savings = 10;
+                    editor.putLong("taoz10", savings);
+                    editor.apply();
+                }
                 //[calendar area]
                 calendarOnClick = Calendar.getInstance();
                 calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
@@ -805,6 +821,7 @@ public class MainActivity extends AppCompatActivity {
                         if (counter == 0) {
                             savings = preferences.getLong("taoz10", -10);
                         } else {
+                            savings = 10;
 //                            savings = savings + preferences.getLong("taoz10", 0);
                         }
                         if (preferences.contains("diff") && higherThanOne){
@@ -1037,8 +1054,8 @@ public class MainActivity extends AppCompatActivity {
             Log.d("taogenX", "firstsave: " + firstSave);
         }
         setTxtViewForUserSavings(firstSave,
-                String.valueOf(savings), R.string.savings, moneyOrTimeTextView);
-        moneyOrTimeTextView.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
+                String.valueOf(savings), R.string.savings, moneySavingsTxt);
+        moneySavingsTxt.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
         //TODO: to add textviews from progress and setBackground custombuttonround
         txtviewsprogrs.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
     }
