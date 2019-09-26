@@ -29,7 +29,6 @@
             android:layout_height="?attr/actionBarSize"
             android:padding="10dp">
             <ImageView
-                android:id="@+id/media_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:adjustViewBounds="true"

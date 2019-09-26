@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.v7.widget.CardView
         android:id="@+id/card_view_mainID"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
+        android:layout_height="420dp"
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -17,12 +18,11 @@
         app:cardCornerRadius="8dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="380dp">
+            android:layout_height="420dp">
             <ImageView
-                android:id="@+id/backgroundImgViewId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/grey_200" />
+                android:background="@color/grey_50" />
 
             <ImageView
                 android:id="@+id/backgroundId"
@@ -33,13 +33,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:paddingRight="10dp"
                 android:layout_marginTop="10dp">
                 <ImageView
-                    android:id="@+id/tipImageId"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:src="@drawable/lightbulb" />
                 <ProgressBar
                     android:id="@+id/loadingProgressId2"
@@ -52,32 +52,32 @@
                     android:id="@+id/tipofthedayTxtViewId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:paddingRight="10dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="2dp"
                     android:layout_marginTop="1dp"
-                    android:alpha="0.7"
-                    android:layout_toRightOf="@id/tipImageId"
                     style="@style/TextColorBlack"
-                    android:textSize="12sp"
-                    android:text="Today you can be whatever you want!" />
-                <!--style="@style/TextColorBlack"-->
+                    android:textSize="14sp"
+                    android:text="@string/example_of_tip_of_the_day"/>
+<!--                android:alpha="0.8"-->
+
                 <TextView
                     android:id="@+id/tvErrorId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@id/tipImageId"
                     style="@style/TextColorErr"
                     android:visibility="invisible"
-                    android:text="Error loading data from api"/>
+                    android:text="@string/error_loading_data_from_api"/>
             </LinearLayout>
             <RelativeLayout
                 android:id="@+id/rltvlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="90dp">
+                android:layout_marginTop="130dp">
                 <ProgressBar
                     android:id="@+id/loadingProgressId"
                     style="?android:attr/progressBarStyle"
@@ -90,7 +90,7 @@
                     android:layout_width="180dp"
                     android:layout_height="180dp"
                     android:src="@drawable/counterwhite"
-                    android:layout_marginLeft="-20dp"
+                    android:layout_marginStart="-20dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
                 <!--android:layout_marginLeft="95dp"170 cu 170 default-->
@@ -100,7 +100,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:text="1"
                     android:alpha="0.9"
                     style="@style/TextColorBlack"
                     android:textSize="58sp" />
@@ -131,7 +130,6 @@
                 android:paddingTop="3dp"
                 android:paddingBottom="4dp"
                 android:alpha="0.7"
-                android:text="Check-in: ? hours"
                 android:textSize="14sp" />
             <pl.bclogic.pulsator4droid.library.PulsatorLayout
             android:id="@+id/pulsator"
@@ -156,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginTop="345dp">
+                android:layout_marginTop="385dp">
                 <!--android:layout_marginStart="25dp"-->
                 <ImageView
                     android:id="@+id/milestoneImageId"
@@ -198,8 +196,7 @@
                     android:alpha="0.7"
                     android:layout_centerVertical="true"
                     style="@style/TextColorBlack"
-                    android:textSize="13sp"
-                    android:text="Goal: " />
+                    android:textSize="13sp" />
             </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -211,7 +208,6 @@
         android:layout_below="@id/card_view_mainID"
         android:background="@android:color/darker_gray" />
     <FrameLayout
-        android:id="@+id/frameCardIdStatistics"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/delimitationBarId">
@@ -227,13 +223,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/grey_200" />
-            <!--<ImageView-->
-            <!--android:id="@+id/imageViewMiddleId"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:alpha="0.1"-->
-            <!--android:background="@drawable/brozsb" />-->
+                android:background="@color/grey_50" />
+
             <TextView
                 android:id="@+id/progressActivityId"
                 style="@style/TextColorBlack"
@@ -248,7 +239,7 @@
             <LinearLayout
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="110dp"
                 android:layout_width="320dp"
                 android:layout_height="150dp">
@@ -259,7 +250,7 @@
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:alpha="0.7"
-                android:text="energy"
+                android:text="@string/energy"
                 style="@style/TextColorBlack" />
             <TextView
                 android:id="@+id/subTextBreathId"
@@ -268,7 +259,7 @@
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:alpha="0.7"
-                android:text="breath"
+                android:text="@string/breath"
                 style="@style/TextColorBlack" />
             <TextView
                 android:id="@+id/subTextFatigueId"
@@ -277,7 +268,7 @@
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:alpha="0.7"
-                android:text="fatigue"
+                android:text="@string/fatigue"
                 style="@style/TextColorBlack" />
             <TextView
                 android:id="@+id/subTextGumsId"
@@ -286,13 +277,13 @@
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:alpha="0.7"
-                android:text="gums"
+                android:text="@string/gums"
                 style="@style/TextColorBlack" />
             </LinearLayout>
             <LinearLayout
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="0dp"
+                android:layout_marginStart="0dp"
                 android:layout_width="320dp"
                 android:layout_height="150dp">
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
@@ -315,7 +306,8 @@
                     app:progress="50"
                     app:progressAnimationDuration="100"
                     android:tooltipText="energy levels"
-                    app:startAngle="270" />
+                    app:startAngle="270"
+                    tools:targetApi="o" />
                 <!--app:wlv_borderWidth="3dp"-->
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_breath"
@@ -337,7 +329,8 @@
                     app:maximum="100"
                     app:progress="50"
                     app:progressAnimationDuration="100"
-                    app:startAngle="270" />
+                    app:startAngle="270"
+                    tools:targetApi="o" />
                 <!--app:wlv_borderWidth="3dp"-->
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_fatigue"
@@ -359,7 +352,8 @@
                     app:maximum="100"
                     app:progress="50"
                     app:progressAnimationDuration="100"
-                    app:startAngle="270" />
+                    app:startAngle="270"
+                    tools:targetApi="o" />
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_gums"
                     android:tooltipText="gums levels"
@@ -380,95 +374,64 @@
                     app:startAngle="270"
                     android:layout_width="0dp"
                     android:layout_height="65dp"
-                    android:layout_weight="1"/>
-                <!--android:layout_width="65dp"-->
-                <!--android:layout_height="65dp"-->
-                <!--android:layout_gravity="end|center_vertical"-->
+                    android:layout_weight="1"
+                    tools:targetApi="o" />
             </LinearLayout>
-            <!--app:foregroundStrokeColor="#66F9B0"-->
-            <!--app:wlv_borderWidth="3dp"76FF03 #00BFFF
-            app:foregroundStrokeColor="#ffff4081"-->
             <FrameLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="12dp"
-                    android:paddingLeft="45dp"
-                    android:paddingRight="5dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="12dp"
+                    android:paddingStart="45dp"
+                    android:paddingEnd="5dp"
                     android:layout_width="370dp"
-                    android:layout_height="150dp">
-                    <!--<LinearLayout-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:layout_marginLeft="23dp"-->
-                    <!--android:layout_marginRight="30dp"-->
-                    <!--android:padding="15dp"-->
-                    <!--android:layout_width="350dp"-->
-                    <!--android:layout_height="150dp">-->
+                    android:layout_height="150dp"
+                    tools:ignore="UselessParent">
+
                     <TextView
                         android:id="@+id/txtProgressIdForEnergy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="0%"
                         android:alpha="0.8"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         style="@style/TextColorBlack" />
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginStart="45dp"-->
-                    <!--android:layout_gravity="start|center_vertical"-->
+
                     <TextView
                         android:id="@+id/txtProgressIdForBreath"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="0%"
                         android:alpha="0.8"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         style="@style/TextColorBlack" />
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="-40dp"-->
-                    <!--android:layout_gravity="center|center_vertical"-->
                     <TextView
                         android:id="@+id/txtProgressIdForFatigue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="0%"
                         android:alpha="0.8"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         style="@style/TextColorBlack" />
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="40dp"-->
-                    <!--android:layout_gravity="center|center_vertical"-->
                     <TextView
                         android:id="@+id/txtProgressIdForGums"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="0%"
                         android:alpha="0.8"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         style="@style/TextColorBlack" />
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginRight="43dp"-->
-                    <!--android:layout_gravity="end|center_vertical"-->
                 </LinearLayout>
             </FrameLayout>
         </android.support.v7.widget.CardView>

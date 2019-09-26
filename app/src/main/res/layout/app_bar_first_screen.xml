@@ -25,13 +25,12 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
             <ImageView
-                android:id="@+id/media_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:adjustViewBounds="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="20dp"
-                android:contentDescription="new post image"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="@string/new_post_image"
                 android:src="@mipmap/leaf"
                 android:visibility="visible" />
             <TextView

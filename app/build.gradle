@@ -104,6 +104,12 @@ dependencies {
 
     //animation
     implementation 'com.github.ozodrukh:CircularReveal:2.0.1@aar'
+
+    //percent layout
+    implementation 'com.android.support:percent:28.0.0'
+
+    //tt fancy dialog
+    implementation 'com.bestsoft32.tayyab:tt-fancy-gif-dialog:1.0.2'
 }
 apply plugin: 'com.google.gms.google-services'
 

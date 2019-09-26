@@ -15,9 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".cardActivities.FailLogsActivity"
-            tools:ignore="InnerclassSeparator"></activity>
+        tools:ignore="GoogleAppIndexingWarning"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity
+            android:name=".cardActivities.FailLogsActivity"
+            tools:ignore="InnerclassSeparator" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

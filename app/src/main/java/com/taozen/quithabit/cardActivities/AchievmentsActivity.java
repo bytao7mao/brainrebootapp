@@ -4,28 +4,21 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.media.Image;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 public class AchievmentsActivity extends AppCompatActivity {
@@ -36,10 +29,10 @@ public class AchievmentsActivity extends AppCompatActivity {
     String[] titles;
     int[] images;
 
-//    String[] descriptions = new String[] {
-//            "Android ListView Short Bronze LvL I", "Android ListView Short Bronze LvL II", "Android ListView Short Bronze LvL III", "Android ListView Short Bronze LvL IV",
-//            "Android ListView Short Silver LvL I", "Android ListView Short Silver LvL II", "Android ListView Short Silver LvL III", "Android ListView Short Silver LvL IV",
-//            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Only for those who are worthy!"};
+    String[] descriptions = new String[] {
+            "Android ListView Short Bronze LvL I", "Android ListView Short Bronze LvL II", "Android ListView Short Bronze LvL III", "Android ListView Short Bronze LvL IV",
+            "Android ListView Short Silver LvL I", "Android ListView Short Silver LvL II", "Android ListView Short Silver LvL III", "Android ListView Short Silver LvL IV",
+            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Only for those who are worthy!"};
 
     //shared pref
     private SharedPreferences preferences;
@@ -77,7 +70,7 @@ public class AchievmentsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mListView = findViewById(R.id.list_view);
-        CustomAdapterListView customAdapterListView = new CustomAdapterListView(this, titles, images);
+        CustomAdapterListView customAdapterListView = new CustomAdapterListView(this, titles, images, descriptions);
         mListView.setAdapter(customAdapterListView);
 
         if (preferences.contains("rank")){
@@ -93,13 +86,14 @@ public class AchievmentsActivity extends AppCompatActivity {
         return true;
     }
     class CustomAdapterListView extends BaseAdapter {
-        String [] result;
+        String [] titles, descriptions;
         Context context;
         int [] imageId;
         private LayoutInflater inflater=null;
-        public CustomAdapterListView(AchievmentsActivity mainActivity, String[] prgmNameList, int[] prgmImages) {
+        public CustomAdapterListView(AchievmentsActivity mainActivity, String[] prgmNameList, int[] prgmImages, String[] descriptions) {
             // TODO Auto-generated constructor stub
-            result=prgmNameList;
+            this.descriptions=descriptions;
+            titles=prgmNameList;
             context=mainActivity;
             imageId=prgmImages;
             inflater = ( LayoutInflater )context.
@@ -126,8 +120,10 @@ public class AchievmentsActivity extends AppCompatActivity {
             view = inflater.inflate(R.layout.list_item, null);
             holder.img = view.findViewById(R.id.listview_image);
             holder.tv = view.findViewById(R.id.listview_item_title);
+            holder.desc = view.findViewById(R.id.listview_item_short_description);
             holder.img.setImageResource(images[position]);
             holder.tv.setText(titles[position]);
+            holder.desc.setText(descriptions[position]);
 
             if (preferences.contains("rank")){
                 if (Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("recruit")) {
@@ -176,7 +172,7 @@ public class AchievmentsActivity extends AppCompatActivity {
         }
     }
     public class Holder {
-        TextView tv;
+        TextView tv, desc;
         ImageView img;
     }
 

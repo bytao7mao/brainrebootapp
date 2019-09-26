@@ -1,8 +1,6 @@
 package com.taozen.quithabit.intro;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -11,15 +9,10 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.Editable;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.widget.EditText;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
-import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
 import com.taozen.quithabit.SplashActivity;
 

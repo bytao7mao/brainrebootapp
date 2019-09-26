@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Renuntare la obiceiuri</string>
-    <string name="exit">iesire</string>
-    <string name="about">despre</string>
-    <string name="reset">resetare</string>
-    <string name="add">adaugare</string>
+    <string name="about">Despre</string>
     <string name="target_string">Scop: %s</string>
     <string name="remaining_days">Zile ramase: %s</string>
     <string name="total_savings">Bani economisiti: %s $</string>
-    <string name="hello_world">Salutare!</string>
     <string name="action_settings">Setari</string>
-    <string name="title">Titlu</string>
-    <string name="description">Descriptie</string>
-
-    <string name="delete_image">stergereImagine</string>
-    <string name="thumbnail">block</string>
-    <string name="add_image">adaugareImagine</string>
 
     <string name="progressactivity_get_started">Sa incepem o noua viata!</string>
-    <string name="maxCounter">calculare</string>
-    <string name="help">ajutor</string>
+    <string name="maxCounter">Calculare</string>
+    <string name="help">Ajutor</string>
     <string name="all_rights_reserved_to_bytao7mao">Toate drepturile rezervate catre @bytao7mao</string>
     <string name="checkinStr">In fiecare zi te vom verifica la ora %d:00</string>
-    <string name="enjoy">Sa te bucuri!</string>
     <string name="rank_master">Rank: %s</string>
-    <string name="reset_progress">resetare progres</string>
-    <string name="savings">total: %s</string>
+    <string name="reset_progress">Resetare progres</string>
+    <string name="savings">Total: %s</string>
     <string name="streak_string">Record: %d</string>
     <string name="thanks_for_downloading_this_app">Multumesc pentru ca ati downloadat aplicatia !</string>
     <string name="check_in_tommorow">Verificare maine!</string>
@@ -37,5 +26,23 @@
     <string name="cig_press_leaf">Tigari nefumate: apasa frunza pentru a calcula</string>
     <string name="your_entire_progress">Progresul tau</string>
     <string name="life_press_leaf">Viata recuperata: apasa pe frunza pentru a calcula</string>
-    <string name="life_reg">viata recuperata: %s ore</string>
+    <string name="life_reg">Viata recuperata: %s ore</string>
+    <string name="breath">Respiratia</string>
+    <string name="energy">Energie</string>
+    <string name="error_loading_data_from_api">Eroare la incarcarea datelor</string>
+    <string name="explore">Explorati</string>
+    <string name="fatigue">Oboseala</string>
+    <string name="gums">Gingii sanatoase</string>
+    <string name="personal_progress">Progresul personal</string>
+    <string name="see_your_personal_logs_failures">Vedeti lista de loguri personale</string>
+    <string name="your_challenge">Provocarea ta</string>
+    <string name="your_latest_achievments">Ultima ta realizare</string>
+    <string name="your_logs">Logurile tale</string>
+    <string name="your_savings">Economiile tale</string>
+    <string name="break_your_habit">Invinge obiceiul</string>
+    <string name="confirm">Confirmare</string>
+    <string name="example_of_tip_of_the_day">For Every Reason It’s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. – Jack Canfield</string>
+    <string name="how_many_cigarettes_per_day">Cate tigari fumezi pe zi ?</string>
+    <string name="how_much_do_you_spend_per_day">Cati bani cheltui pe zi ?</string>
+    <string name="new_post_image">O noua imagine</string>
 </resources>

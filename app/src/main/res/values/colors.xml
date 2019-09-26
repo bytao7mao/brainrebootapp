@@ -3,39 +3,18 @@
 
     <color name="colorPrimary">#66F9B0</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorPrimaryLight">#FBFEFF</color>
     <color name="colorAccent">#66F9B0</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
-    <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <color name="greish">#5C5C5C</color>
 
-    <color name="greenColor">#8BC34A</color>
     <color name="greenColorLed">#66F9B0</color>
-    <color name="darky">#43004E</color>
     <color name="white">#FFF</color>
-    <color name="black">#313131</color>
-    <color name="blue">#6095D5</color>
-    <color name="blueColorLed">#00BFFF</color>
-    <color name="vanilla">#FFFAD1</color>
-    <color name="rose">#C21753</color>
-
-    <color name="windowBackground">#FF0000</color>
-    <color name="navigationBarColor">#000000</color>
-    <color name="overflowMenuBg">#A6FF00</color>
 
     <!-- Grey Color Shades -->
-    <color name="grey_25">#FDFDFD</color>
     <color name="grey_50">#FAFAFA</color>
-    <color name="grey_100">#F5F5F5</color>
     <color name="grey_200">#EEEEEE</color>
     <color name="grey_300">#E0E0E0</color>
-    <color name="grey_400">#BDBDBD</color>
-    <color name="grey_500">#9E9E9E</color>
-    <color name="grey_600">#757575</color>
     <color name="grey_700">#616161</color>
-    <color name="grey_800">#424242</color>
 </resources>
 
 

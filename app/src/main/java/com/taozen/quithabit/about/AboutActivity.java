@@ -1,14 +1,11 @@
 package com.taozen.quithabit.about;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.shashank.sony.fancyaboutpagelib.FancyAboutPage;
-import com.taozen.quithabit.FirstScreenActivity;
 import com.taozen.quithabit.R;
 
 public class AboutActivity extends AppCompatActivity {
@@ -25,16 +22,17 @@ public class AboutActivity extends AppCompatActivity {
         fancyAboutPage.setDescription("Android Developer | Software Developer | Java Enthusiast.");
         fancyAboutPage.setAppIcon(R.drawable.android); //Pass your app icon image
         fancyAboutPage.setAppName("Brain Reboot App");
-        fancyAboutPage.setVersionNameAsAppSubTitle("0.2a");
+        fancyAboutPage.setVersionNameAsAppSubTitle("0.3a");
         fancyAboutPage.setAppDescription("Brain Reboot App is a motivational app that tracks your daily struggle to stop your habit.\n\n" +
                 "This app also tracks daily saved amount of money and have daily motivational quotes.\n"+
                 "I have to mention a special list of authors from which i borrowed design from:\n\n"+
-                "Plus icon made by @Flaticons from www.flaticon.com;\n" +
+
                 "App icon made by @Roundicons from www.flaticon.com;\n" +
+                "Savings icon made by @Eucalyp from www.flaticon.com;\n" +
                 "Rank icons made by @Dimitry Miroliubov/Smashicons from www.flaticon.com;\n" +
                 "Card icons made by @icongeek26 from www.flaticon.com;\n" +
                 "Counter icon made by @starline from www.flaticon.com but made some modifications by myself." +
-                "\nAs you can see, i did not added any advertising campaign because, i, myself, dislike ads."+
+                "\nAs you can see, i did not added any advertising campaign because, i, myself, dislike ads.\n"+
                 "\nIf you enjoy this app, this is where you can donate any amount of money:\n" +
                 "IBAN: RO06INGB0000999904709668\n\nThank you!");
         fancyAboutPage.addEmailLink("rebootway@outlook.com");     //Add your email id

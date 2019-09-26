@@ -10,6 +10,9 @@
     </style>
 
     <style name="ParentMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/montserratsemibold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/grey_700</item>
         <!-- Parent theme For all Pre - lollipop and lollipop above versions i.e. For all devices -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -39,12 +42,6 @@
         <item name="android:statusBarColor">@color/white</item>
     </style>
 
-    <style name="MyEditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorControlNormal">@color/black</item>
-        <item name="colorControlActivated">@color/greenColorLed</item>
-        <item name="colorControlHighlight">@color/greenColorLed</item>
-    </style>
-
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@transition/slide_in_right</item>
         <item name="android:activityOpenExitAnimation">@transition/slide_out_left</item>
@@ -65,39 +62,11 @@
         <item name="android:background">?android:attr/listDivider</item>
     </style>
 
-    <style name="TextColor">
-        <item name="android:textColor">#FFF</item>
-    </style>
-    <style name="TextColor2">
-        <item name="android:textColor">#ff3f51b5</item>
-        <!--<item name="android:textColor">#C21753</item>-->
-        <!--<item name="android:textColor">#00BFFF</item>-->
-    </style>
-    <style name="TextColorGreen">
-        <item name="android:textColor">#76FF03</item>
-    </style>
     <style name="TextColorErr">
         <item name="android:textColor">#FF0000</item>
     </style>
     <style name="TextColorBlack">
         <item name="android:textColor">#5C5C5C</item>
-    </style>
-    <style name="TextColorBlackForSubText">
-        <item name="android:fontFamily">@assets/@fonts/Montserrat-Medium.ttf</item>
-        <item name="android:textColor">#5C5C5C</item>
-    </style>
-    <style name="TextOutlineLed">
-        <item name="android:fontFamily">@assets/@fonts/Montserrat-Medium.ttf</item>
-        <item name="android:shadowColor">#222222</item>
-        <item name="android:shadowDx">2</item>
-        <item name="android:shadowDy">2</item>
-        <item name="android:shadowRadius">1</item>
-    </style>
-    <style name="TextColorWhite">
-        <item name="android:textColor">#FFFAF1</item>
-    </style>
-    <style name="TextColorVanilla">
-        <item name="android:textColor">#FFFAD1</item>
     </style>
 
     <style name="AlertDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
@@ -111,15 +80,6 @@
 
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">#00f</item>
-    </style>
-
-
-
-    <style name="BarLoading" parent="Widget.AppCompat.ProgressBar">
-        <item name="colorAccent">@color/white</item></style>
-
-    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
-        <item name="android:popupBackground">@drawable/popup_menu_round</item>
     </style>
 
 

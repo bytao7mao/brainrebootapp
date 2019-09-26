@@ -15,7 +15,7 @@
     <item
         android:id="@+id/check_in_hour"
         android:orderInCategory="3"
-        android:title="check in hour"
+        android:title="Check in hour"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_about"
