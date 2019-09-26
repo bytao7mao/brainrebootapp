@@ -442,7 +442,7 @@ public class MainActivity extends AppCompatActivity {
             counterFabButtonInitializer();
             setTargetDays();
 
-            moneyOrTimeAndGetAndSetValue();
+            savingsGetAndSetValue();
             if (preferences.contains(COUNTER)){
                 counter = preferences.getInt(COUNTER, -1);
             }
@@ -826,8 +826,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if (preferences.contains("diff") && higherThanOne){
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            counter = counter + preferences.getInt("diff", -100);
-                            savings = savings * counter;
+                            int dif = preferences.getInt("diff", -100);
+                            counter = counter + dif;
+                            savings = savings + (savings * dif);
                             editor.putLong(SAVINGS_FINAL, savings);
                             editor.apply();
                             if (counter == 1){
@@ -841,7 +842,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                             counter++;
-                            savings = savings * counter;
+                            savings = savings + (savings * counter);
                             editor.putLong(SAVINGS_FINAL, savings);
                             editor.apply();
                             if (counter == 1){
@@ -868,7 +869,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.apply();
                         checkActivityOnline();
 //                        setTheSavingsPerDay();
-                        moneyOrTimeAndGetAndSetValue();
+                        savingsGetAndSetValue();
                         setImprovementProgressLevels();
                         setImagesForAchievementCard();
                         counterText.setText(String.valueOf(counter));
@@ -880,6 +881,7 @@ public class MainActivity extends AppCompatActivity {
                         //var 2 - custom toast after answer
 //                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
 //                                    20, FancyToast.SUCCESS, true).show();
+                        estabilishHighestRecordForCounter();
 
                     }
                 })
@@ -926,7 +928,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.apply();
                         checkActivityOnline();
 //                        setTheSavingsPerDay();
-                        moneyOrTimeAndGetAndSetValue();
+                        savingsGetAndSetValue();
                         setImprovementProgressLevels();
                         try {
                             counter = preferences.getInt(COUNTER, -1);
@@ -938,6 +940,7 @@ public class MainActivity extends AppCompatActivity {
 //                        showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
 //                        Toast.makeText(MainActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
                         negativeDialogAfterRelapse();
+                        estabilishHighestRecordForCounter();
                     }
                 })
                 .build();//[END of NORMAL DIALOG]
@@ -957,7 +960,6 @@ public class MainActivity extends AppCompatActivity {
             arr = tem;
         }
         editor.putString("arr", arr);
-        estabilishHighestRecordForCounter();
         Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
         editor.apply();
         counter = 1;
@@ -986,7 +988,7 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
         checkActivityOnline();
 //                        setTheSavingsPerDay();
-        moneyOrTimeAndGetAndSetValue();
+        savingsGetAndSetValue();
         setImprovementProgressLevels();
         try {
             counter = preferences.getInt(COUNTER, -1);
@@ -1004,13 +1006,17 @@ public class MainActivity extends AppCompatActivity {
             int fh;
             int h = preferences.getInt("highest",0);
             if (counter > h) {
-                fh = counter - h;
+                fh = counter;
+            } else if (counter == h) {
+                fh = counter;
             } else {
-                fh = h - counter;
+                fh = h;
             }
             editor.putInt("highest", fh);
+            editor.apply();
         } else {
             editor.putInt("highest", preferences.getInt(COUNTER, 0));
+            editor.apply();
         }
     }
 
@@ -1035,7 +1041,7 @@ public class MainActivity extends AppCompatActivity {
         textview.setText(getString(androiId, string));
     }
 
-    private void moneyOrTimeAndGetAndSetValue() {
+    private void savingsGetAndSetValue() {
         if (preferences.contains(SAVINGS_FINAL)) {
             try {
                 savings = preferences.getLong(SAVINGS_FINAL, 1);
@@ -1136,7 +1142,8 @@ public class MainActivity extends AppCompatActivity {
             setCheckInText();
             showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
             if (preferences.contains(COUNTER)) {
-                counter = preferences.getInt(COUNTER, -1);editor.putInt(COUNTER, counter);
+                counter = preferences.getInt(COUNTER, -1);
+                editor.putInt(COUNTER, counter);
                 editor.apply();
             }
             setImagesForAchievementCard();
@@ -1239,7 +1246,7 @@ public class MainActivity extends AppCompatActivity {
         updateButton();
         setImagesForAchievementCard();
         runningInBackground();
-        moneyOrTimeAndGetAndSetValue();
+        savingsGetAndSetValue();
         setTargetDays();
         setCheckInText();
         Log.d("INTROTAO", "values in onResume: " + "cigperday " + cigarettesPerDay+ " savings: " + savings + " counter: " + counter);
