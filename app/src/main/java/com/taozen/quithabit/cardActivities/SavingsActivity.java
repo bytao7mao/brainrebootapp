@@ -81,6 +81,8 @@ public class SavingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    editor.putBoolean("saveimg", false);
+                    editor.apply();
                     otherIntSavings = Integer.parseInt(String.valueOf(editTxtSavings.getText()));
                     finalSum = finalSum + otherIntSavings;
                     savingsTxt.setText("Total savings: " + finalSum + " $");

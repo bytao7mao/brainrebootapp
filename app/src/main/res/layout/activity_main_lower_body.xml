@@ -258,6 +258,14 @@
                     android:textSize="14sp"
                     android:layout_toRightOf="@id/savingsImgId" />
 
+                <ImageView
+                    android:id="@+id/addSavingsSumImageId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_button"
+                    android:padding="16dp"
+                    android:layout_gravity="center_vertical|end" />
+
 <!--                android:layout_marginTop="10dp"-->
 <!--                android:layout_marginStart="70dp"-->
 <!--                android:layout_gravity="center_vertical"-->

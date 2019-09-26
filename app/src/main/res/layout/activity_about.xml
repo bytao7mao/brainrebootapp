@@ -6,10 +6,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:theme="@style/AboutPageStyle"
         android:background="#FFFFFF">
         <com.shashank.sony.fancyaboutpagelib.FancyAboutPage
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textAlignment="center"
             android:id="@+id/fancyaboutpage">
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:layout_width="100dp"

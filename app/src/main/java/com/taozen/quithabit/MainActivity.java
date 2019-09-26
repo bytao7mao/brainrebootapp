@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressId2) ProgressBar progressBarLoading2;
     //ImageViews
+    @BindView(R.id.addSavingsSumImageId) ImageView addSavingsSumImg;
     @BindView(R.id.counterImageId) ImageView counterImgView;
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
@@ -215,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
     int i = 1;
 
     MainActivity.MyAsyncTask task;
-    private boolean booleanFromSavingsActivity;
 
 //    public static void main(String[] args) {
 //        DecimalFormat a = new DecimalFormat("#.##");
@@ -409,7 +409,17 @@ public class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-
+        editor.putBoolean("saveimg", false);
+        editor.apply();
+        if (preferences.contains("saveimg")) {
+            if (!preferences.getBoolean("saveimg", false)) {
+                addSavingsSumImg.setVisibility(View.INVISIBLE);
+            } else {
+                addSavingsSumImg.setVisibility(View.VISIBLE);
+            }
+        } else {
+            addSavingsSumImg.setVisibility(View.VISIBLE);
+        }
         achievementRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -425,12 +435,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });//timeStampCardView[END]
-        savingsCardView.setOnClickListener(new View.OnClickListener() {
+        addSavingsSumImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SavingsActivity.class);
                 intent.putExtra(SAVINGS_FINAL, savings);
                 startActivity(intent);
+//                addSavingsSumImg.setVisibility(View.INVISIBLE);
+//                editor.putBoolean("saveimg", false);
+//                editor.apply();
             }
         });//savingsCardView[END]
         challengeCardView.setOnClickListener(new View.OnClickListener() {
@@ -829,18 +842,6 @@ public class MainActivity extends AppCompatActivity {
                         setCheckInText();
                         if (counter == 0) {
                             savings = preferences.getLong("taoz10", -10);
-                            if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
-                                    Log.d("taogenX", "firstsave is: " + firstSave);
-                                } else {
-                                firstSave = 10;
-//                            savings = savings + preferences.getLong("taoz10", 0);
-                            }
-//                            if (!preferences.contains(INITIAL_CIGG_PER_DAY)) {
-//                                cigarettesPerDay = 5;
-//                                editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
-//                                editor.apply();
-//                            }
                         }
                         if (preferences.contains("diff") && higherThanOne){
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
@@ -859,7 +860,7 @@ public class MainActivity extends AppCompatActivity {
                             +"\n savings = " + savings);
                             higherThanOne = false;
                         } else {
-                            if (counter == 1){
+                            if (counter == 1) {
                                 if (preferences.contains(SAVINGS_FINAL)){
                                     firstSave = preferences.getLong(SAVINGS_FINAL, 0);
                                     editor.putLong("firstsave", firstSave);
@@ -934,14 +935,14 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
                         editor.apply();
                         counter = 1;
-                        if (counter == 1){
-                            if (preferences.contains(SAVINGS_FINAL)){
-                                firstSave = preferences.getLong(SAVINGS_FINAL, 0);
-                                editor.putLong("firstsave", firstSave);
-                                editor.apply();
-                                Log.d("taogenX", "firstsave is: " + firstSave);
-                            }
-                        }
+//                        if (counter == 1){
+//                            if (preferences.contains(SAVINGS_FINAL)){
+//                                firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+//                                editor.putLong("firstsave", firstSave);
+//                                editor.apply();
+//                                Log.d("taogenX", "firstsave is: " + firstSave);
+//                            }
+//                        }
                         savings = firstSave;
                         Log.d("taogenX", "firstsave is: " + firstSave);
                         //to see
@@ -994,14 +995,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
         editor.apply();
         counter = 1;
-        if (counter == 1){
-            if (preferences.contains(SAVINGS_FINAL)){
-                firstSave = preferences.getLong(SAVINGS_FINAL, 0);
-                editor.putLong("firstsave", firstSave);
-                editor.apply();
-                Log.d("taogenX", "firstsave is: " + firstSave);
-            }
-        }
+//        if (counter == 1){
+//            if (preferences.contains(SAVINGS_FINAL)){
+//                firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+//                editor.putLong("firstsave", firstSave);
+//                editor.apply();
+//                Log.d("taogenX", "firstsave is: " + firstSave);
+//            }
+//        }
         savings = firstSave;
         Log.d("taogenX", "firstsave is: " + firstSave);
         //to see
@@ -1262,6 +1263,15 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         setCheckInText();
         try {
+            if (preferences.contains("saveimg")) {
+                if (!preferences.getBoolean("saveimg", false)) {
+                    addSavingsSumImg.setVisibility(View.INVISIBLE);
+                } else {
+                    addSavingsSumImg.setVisibility(View.VISIBLE);
+                }
+            } else {
+                addSavingsSumImg.setVisibility(View.VISIBLE);
+            }
             //Only retrieve and save in onpause
             //-3 default values
             if (preferences.contains(getString(R.string.maxCounter))){userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -3);}
@@ -1352,6 +1362,9 @@ public class MainActivity extends AppCompatActivity {
         if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
             if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {
                 fab.show();
+                addSavingsSumImg.setVisibility(View.VISIBLE);
+                editor.putBoolean("saveimg", true);
+                editor.apply();
                 setCheckInText();
                 if (i == 1)
                     startAnimatorForUpperCard();
@@ -1375,6 +1388,9 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("diff", diff);
             editor.apply();
             fab.show();
+            addSavingsSumImg.setVisibility(View.VISIBLE);
+            editor.putBoolean("saveimg", true);
+            editor.apply();
             setCheckInText();
             if (i == 1)
                 startAnimatorForUpperCard();
