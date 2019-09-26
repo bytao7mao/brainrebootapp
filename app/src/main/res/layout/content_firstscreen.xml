@@ -14,7 +14,7 @@
         android:id="@+id/fsTitleId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="break your habit"
+        android:text="Break your habit"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
@@ -31,19 +31,9 @@
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/fsTitleId"
+        android:alpha="0.7"
         android:textSize="14sp"
         android:backgroundTint="@color/greenColorLed"/>
-
-    <!--<EditText-->
-        <!--android:id="@+id/edtTxtForCiggarettedId"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:gravity="center"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_below="@id/fsTitleId"-->
-        <!--android:textSize="14sp"-->
-        <!--android:background="@android:color/white"-->
-        <!--android:hint="how many cigarettes per day ?" />-->
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/edtTxtForSavingsId"
@@ -54,18 +44,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/edtTxtForCiggarettedId"
         android:textSize="14sp"
+        android:alpha="0.7"
         android:backgroundTint="@color/greenColorLed"/>
-
-<!--    <android.support.v7.widget.AppCompatEditText-->
-<!--        android:id="@+id/edtTxtForCurrencyId"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:hint="please type your country currency"-->
-<!--        android:gravity="center"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_below="@id/edtTxtForSavingsId"-->
-<!--        android:textSize="14sp"-->
-<!--        android:backgroundTint="@color/greenColorLed"/>-->
 
     <Button
         android:id="@+id/confirmBtn"
@@ -83,48 +63,16 @@
         android:layout_marginBottom="10dp"
         android:gravity="center" />
 
-    <!--<EditText-->
-        <!--android:id="@+id/edtTxtForSavingsId"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="50dp"-->
-        <!--style="@style/MyEditTextTheme"-->
-        <!--android:textSize="14sp"-->
-        <!--android:gravity="center"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_below="@id/ciggBtnId"-->
-        <!--android:background="@android:color/white"-->
-        <!--android:hint="how much do you spend per day ?" />-->
-
-    <!--<Button-->
-        <!--android:id="@+id/savBtnId"-->
-        <!--android:background="@drawable/custom_button"-->
-        <!--android:text="choose"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_below="@id/edtTxtForSavingsId"-->
-        <!--android:layout_marginEnd="57dp"-->
-        <!--android:layout_marginRight="57dp"-->
-        <!--android:layout_marginBottom="60dp"-->
-        <!--android:gravity="center" />-->
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="50dp"
+        android:textAlignment="center"
+        android:textSize="12sp"
         android:text="@string/thanks_for_downloading_this_app" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="@string/enjoy" />
 
     <TextView
         android:id="@+id/textView3"
@@ -132,9 +80,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:textStyle="italic"
-        android:textSize="12sp"
+        android:alpha="0.7"
+        android:textSize="10sp"
         android:text="@string/all_rights_reserved_to_bytao7mao" />
 
 </RelativeLayout>

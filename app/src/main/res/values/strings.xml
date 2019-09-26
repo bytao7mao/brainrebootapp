@@ -20,9 +20,8 @@
     <string name="maxCounter">maxCounter</string>
     <string name="help">help</string>
     <string name="checkinStr">You will check-in everyday at %d:00</string>
-    <string name="thanks_for_downloading_this_app">Thanks for downloading this app !</string>
+    <string name="thanks_for_downloading_this_app">Thanks for downloading this app !\nEnjoy!</string>
     <string name="all_rights_reserved_to_bytao7mao"><![CDATA[All rights reserved to @bytao7mao]]> </string>
-    <string name="enjoy">Enjoy !</string>
     <string name="rank_master">Rank: %s</string>
     <string name="streak_string">highest days streak: %d</string>
     <string name="reset_progress">reset progress</string>

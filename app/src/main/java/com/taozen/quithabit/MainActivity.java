@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     String arr = "";
     long firstSave;
+    long longFromSavingActivity;
 
     public static final String HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS = "https://pyflasktao.herokuapp.com/books";
 
@@ -214,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
     int i = 1;
 
     MainActivity.MyAsyncTask task;
+    private boolean booleanFromSavingsActivity;
 
 //    public static void main(String[] args) {
 //        DecimalFormat a = new DecimalFormat("#.##");
@@ -233,6 +235,20 @@ public class MainActivity extends AppCompatActivity {
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
+        if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
+            isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+            //[calendar area]
+            calendarForProgress = Calendar.getInstance();
+            calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+            DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+            DAY_OF_CLICK = DAY_OF_PRESENT - 1;
+            editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
+            editor.apply();
+
+        } else {
+            isFirstStart = false;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+
+        }
         startFirstActivity();
         Intent intent = getIntent();
         String name = intent.getStringExtra("data");
@@ -282,9 +298,6 @@ public class MainActivity extends AppCompatActivity {
         }
         if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
         if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
-        else {
-            cigarettesPerDay = 10; //default value
-        }
         if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
         Log.d("taozsa", savings + " savings" + " \nciggs" + cigarettesPerDay);
         setTargetDays();
@@ -764,10 +777,6 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
                 if (preferences.contains(INITIAL_CIGG_PER_DAY)){
                     cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
-                } else {
-                    cigarettesPerDay = 5;
-                    editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
-                    editor.apply();
                 }
                 if (!preferences.contains("taoz10")){
                     savings = 10;
@@ -820,31 +829,36 @@ public class MainActivity extends AppCompatActivity {
                         setCheckInText();
                         if (counter == 0) {
                             savings = preferences.getLong("taoz10", -10);
-                        } else {
-                            savings = 10;
+                            if (preferences.contains(SAVINGS_FINAL)){
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    Log.d("taogenX", "firstsave is: " + firstSave);
+                                } else {
+                                firstSave = 10;
 //                            savings = savings + preferences.getLong("taoz10", 0);
+                            }
+//                            if (!preferences.contains(INITIAL_CIGG_PER_DAY)) {
+//                                cigarettesPerDay = 5;
+//                                editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);
+//                                editor.apply();
+//                            }
                         }
                         if (preferences.contains("diff") && higherThanOne){
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                             int dif = preferences.getInt("diff", -100);
                             counter = counter + dif;
-                            savings = savings + (savings * dif);
-                            editor.putLong(SAVINGS_FINAL, savings);
-                            editor.apply();
-                            if (counter == 1){
-                                if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
-                                    Log.d("taogenX", "firstsave is: " + firstSave);
+                                if (preferences.contains("tempLong")){
+                                    longFromSavingActivity = preferences.getLong("tempLong", 0);
+                                } else {
+                                    longFromSavingActivity = 0;
                                 }
-                            }
-                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
+                                savings = longFromSavingActivity + (firstSave * counter);
+                                editor.putLong(SAVINGS_FINAL, savings);
+                                editor.apply();
+
+                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter
+                            +"\n savings = " + savings);
                             higherThanOne = false;
                         } else {
-                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            counter++;
-                            savings = savings + (savings * counter);
-                            editor.putLong(SAVINGS_FINAL, savings);
-                            editor.apply();
                             if (counter == 1){
                                 if (preferences.contains(SAVINGS_FINAL)){
                                     firstSave = preferences.getLong(SAVINGS_FINAL, 0);
@@ -852,6 +866,23 @@ public class MainActivity extends AppCompatActivity {
                                     editor.apply();
                                     Log.d("taogenX", "firstsave is: " + firstSave);
                                 }
+                            }
+                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
+                            counter++;
+                            if (counter == 1){
+                                savings = preferences.getLong(SAVINGS_FINAL, 0);
+                                editor.putLong(SAVINGS_FINAL, savings);
+                                if (preferences.contains(SAVINGS_FINAL)){
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    editor.putLong("firstsave", firstSave);
+                                    editor.apply();
+                                    Log.d("taogenX", "firstsave is: " + firstSave);
+                                }
+                            } else {
+                                savings = preferences.getLong(SAVINGS_FINAL, 0) + firstSave;
+                                Log.d("taogenX", "savings from TAO = " + savings);
+                                editor.putLong(SAVINGS_FINAL, savings);
+                                editor.apply();
                             }
                             higherThanOne = false;
                             Log.d("COUNTERTAO", "after - counter is raised with: " + counter);

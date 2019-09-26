@@ -2,6 +2,7 @@ package com.taozen.quithabit.cardActivities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
@@ -27,11 +28,21 @@ public class SavingsActivity extends AppCompatActivity {
     @BindView(R.id.savingsTxt) TextView savingsTxt;
     @BindView(R.id.addSavingsBtnId) Button otherSavingsBtn;
     @BindView(R.id.editTxtSavingsId) EditText editTxtSavings;
+    @BindView(R.id.savings_TitleId) TextView titleTxt;
     long otherIntSavings;
     long finalSum;
     //shared pref
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
+    //add font to counter number
+    static Typeface montSerratBoldTypeface;
+    static Typeface montSerratItallicTypeface;
+    static Typeface montSerratLightTypeface;
+    static Typeface montSerratMediumTypeface;
+    static Typeface montSerratSemiBoldTypeface;
+    static Typeface montSerratExtraBoldTypeface;
+    static Typeface montSerratSimpleBoldTypeface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +57,23 @@ public class SavingsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //fonts
+        montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
+        montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
+        montSerratLightTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.ttf");
+        montSerratMediumTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Medium.ttf");
+        montSerratSemiBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.ttf");
+        montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
+        montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
+
+        savingsTxt.setTypeface(montSerratMediumTypeface);
+        editTxtSavings.setTypeface(montSerratMediumTypeface);
+        otherSavingsBtn.setTypeface(montSerratMediumTypeface);
+        titleTxt.setTypeface(montSerratMediumTypeface);
+
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
-
+        otherSavingsBtn.setEnabled(true);
         editTxtSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
         getIntentOrPrefsAndStore();
 
@@ -61,7 +86,15 @@ public class SavingsActivity extends AppCompatActivity {
                     savingsTxt.setText("Total savings: " + finalSum + " $");
                     Log.d("LOGGTAO", "savings from onClick: " + finalSum);
                     editor.putLong(SAVINGS_FINAL, finalSum);
+                    long tempLong = otherIntSavings;
+                    editor.putLong("tempLong", tempLong);
                     editor.apply();
+//                    otherSavingsBtn.setEnabled(false);
+//                    editTxtSavings.setEnabled(false);
+//                    editTxtSavings.setInputType(InputType.TYPE_NULL);
+                    otherSavingsBtn.setVisibility(View.GONE);
+                    editTxtSavings.setVisibility(View.GONE);
+                    titleTxt.setText("Well done!");
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }

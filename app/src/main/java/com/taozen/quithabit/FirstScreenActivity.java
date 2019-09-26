@@ -42,7 +42,7 @@ public class FirstScreenActivity extends AppCompatActivity {
 //    @BindView(R.id.ciggBtnId) Button confirmationButton;
 //    @BindView(R.id.savBtnId) Button btnSav;
 
-    TextView textView;
+    TextView textView, textView3, fsTitleId;
     EditText editTxtForSavings, editTxtForCiggs;
     Button confirmationButton;
     String nameCigg, nameSav;
@@ -100,14 +100,18 @@ public class FirstScreenActivity extends AppCompatActivity {
         editor = preferences.edit();
 //        getWindow().getAttributes().windowAnimations = R.style.Fade;
 
-        textView = findViewById(R.id.fsTitleId);
+        fsTitleId = findViewById(R.id.fsTitleId);
+        textView = findViewById(R.id.textView);
+        textView3 = findViewById(R.id.textView3);
         editTxtForSavings = findViewById(R.id.edtTxtForSavingsId);
         editTxtForCiggs = findViewById(R.id.edtTxtForCiggarettedId);
 //        editTxtForCurrency = findViewById(R.id.edtTxtForCurrencyId);
         confirmationButton = findViewById(R.id.confirmBtn);
 //        btnSav = findViewById(R.id.savBtnId);
         //set ciggs
-        textView.setTypeface(montSerratSemiBoldTypeface);
+        fsTitleId.setTypeface(montSerratSemiBoldTypeface);
+        textView3.setTypeface(montSerratLightTypeface);
+        textView.setTypeface(montSerratItallicTypeface);
         editTxtForSavings.setTypeface(montSerratSemiBoldTypeface);
         editTxtForCiggs.setTypeface(montSerratSemiBoldTypeface);
 //        editTxtForCurrency.setTypeface(montSerratSemiBoldTypeface);
