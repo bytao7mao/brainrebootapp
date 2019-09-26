@@ -258,11 +258,14 @@
                     android:textSize="14sp"
                     android:layout_toRightOf="@id/savingsImgId" />
 
-                <ImageView
+                <android.support.v7.widget.AppCompatImageButton
                     android:id="@+id/addSavingsSumImageId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_button"
+                    android:elevation="3dp"
+                    android:stateListAnimator="@null"
+                    style="?android:borderlessButtonStyle"
                     android:padding="16dp"
                     android:layout_gravity="center_vertical|end" />
 

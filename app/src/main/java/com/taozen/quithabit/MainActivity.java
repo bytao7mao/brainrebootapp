@@ -22,6 +22,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -161,7 +162,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressId2) ProgressBar progressBarLoading2;
     //ImageViews
-    @BindView(R.id.addSavingsSumImageId) ImageView addSavingsSumImg;
+    @BindView(R.id.addSavingsSumImageId)
+    AppCompatImageButton addSavingsSumImg;
     @BindView(R.id.counterImageId) ImageView counterImgView;
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
@@ -293,9 +295,6 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
-        if (!preferences.contains("taoz10")){
-            savings = 10;
-        }
         if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
         if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
         if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
@@ -409,16 +408,18 @@ public class MainActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        editor.putBoolean("saveimg", false);
-        editor.apply();
         if (preferences.contains("saveimg")) {
-            if (!preferences.getBoolean("saveimg", false)) {
+            if (!preferences.getBoolean("saveimg", true)) {
                 addSavingsSumImg.setVisibility(View.INVISIBLE);
             } else {
                 addSavingsSumImg.setVisibility(View.VISIBLE);
+                editor.putBoolean("saveimg", true);
+                editor.apply();
             }
         } else {
             addSavingsSumImg.setVisibility(View.VISIBLE);
+            editor.putBoolean("saveimg", true);
+            editor.apply();
         }
         achievementRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1264,7 +1265,7 @@ public class MainActivity extends AppCompatActivity {
         setCheckInText();
         try {
             if (preferences.contains("saveimg")) {
-                if (!preferences.getBoolean("saveimg", false)) {
+                if (!preferences.getBoolean("saveimg", true)) {
                     addSavingsSumImg.setVisibility(View.INVISIBLE);
                 } else {
                     addSavingsSumImg.setVisibility(View.VISIBLE);
