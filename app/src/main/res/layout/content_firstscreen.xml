@@ -23,7 +23,7 @@
         android:alpha="0.8"
         android:textSize="28sp" />
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edtTxtForCiggarettedId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:textSize="14sp"
         android:backgroundTint="@color/greenColorLed"/>
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edtTxtForSavingsId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

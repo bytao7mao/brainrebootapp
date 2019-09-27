@@ -9,8 +9,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.anupcowkur.herebedragons.SideEffect;

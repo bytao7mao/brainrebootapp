@@ -3,10 +3,10 @@ package com.taozen.quithabit.cardActivities;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
 
 import com.taozen.quithabit.R;
