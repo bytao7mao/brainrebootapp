@@ -33,13 +33,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingRight="10dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="10dp"
                 android:layout_marginTop="10dp">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginStart="5dp"
                     android:src="@drawable/lightbulb" />
                 <ProgressBar
                     android:id="@+id/loadingProgressId2"
@@ -60,7 +60,6 @@
                     style="@style/TextColorBlack"
                     android:textSize="14sp"
                     android:text="@string/example_of_tip_of_the_day"/>
-<!--                android:alpha="0.8"-->
 
                 <TextView
                     android:id="@+id/tvErrorId"
@@ -93,7 +92,6 @@
                     android:layout_marginStart="-20dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
-                <!--android:layout_marginLeft="95dp"170 cu 170 default-->
                 <TextView
                     android:id="@+id/counterTextId"
                     android:layout_width="wrap_content"
@@ -130,7 +128,7 @@
                 android:paddingTop="3dp"
                 android:paddingBottom="4dp"
                 android:alpha="0.7"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
             <pl.bclogic.pulsator4droid.library.PulsatorLayout
             android:id="@+id/pulsator"
             android:layout_width="150dp"

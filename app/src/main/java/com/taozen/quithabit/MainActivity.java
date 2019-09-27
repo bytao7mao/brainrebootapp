@@ -5,6 +5,8 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,6 +61,7 @@ import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.about.AboutActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
+import com.taozen.quithabit.notif.MyReceiver;
 import com.taozen.quithabit.utils.MyHttpManager;
 
 import java.text.DecimalFormat;
@@ -223,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
     static Typeface montSerratSemiBoldItalicTypeface;
 
     DecimalFormat numberFormat;
-    ObjectAnimator anim,anim2;
+    ObjectAnimator anim;
     int i = 1;
 
     MainActivity.MyAsyncTask task;
@@ -246,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
+
         if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
             isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
             //[calendar area]
@@ -271,21 +275,12 @@ public class MainActivity extends AppCompatActivity {
         //anim for subtext
         anim = ObjectAnimator.ofInt(subTextNonSmoker,
                 "TextColor",
-                Color.WHITE, getResources().getColor(R.color.greish),
-                getResources().getColor(R.color.greish));
+                Color.WHITE, ContextCompat.getColor(getApplicationContext(), R.color.greish),
+                ContextCompat.getColor(getApplicationContext(), R.color.greish));
         anim.setDuration(1200);
         anim.setEvaluator(new ArgbEvaluator());
         anim.setRepeatMode(ValueAnimator.RESTART);
         anim.setRepeatCount(Animation.INFINITE);
-        //anim for counter
-        anim2 = ObjectAnimator.ofInt(counterText,
-                "TextColor",
-                Color.WHITE, getResources().getColor(R.color.colorPrimary),
-                Color.WHITE);
-        anim2.setDuration(1500);
-        anim2.setEvaluator(new ArgbEvaluator());
-        anim2.setRepeatMode(ValueAnimator.REVERSE);
-        anim2.setRepeatCount(Animation.INFINITE);
 
         //testing area
         Date date = new Date();
@@ -293,6 +288,8 @@ public class MainActivity extends AppCompatActivity {
         calendar.setTime(date);
         HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
         setTheHourOfFirstLaunch(calendar);
+        //pn
+        triggerPushNotification(HOUR_OF_FIRSTLAUNCH);
         setBackgroundForDaylightOrNight();
         tasks = new ArrayList<>();
         config = getResources().getConfiguration();
@@ -313,9 +310,9 @@ public class MainActivity extends AppCompatActivity {
         firstCheckMax();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+                ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+                ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -365,9 +362,8 @@ public class MainActivity extends AppCompatActivity {
         montSerratSemiBoldItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBoldItalic.ttf");
 
         tipofthedayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
-//        tipofthedayTxtView.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
-
-        exploreAId.setTypeface(montSerratMediumTypeface);exploreSId.setTypeface(montSerratMediumTypeface);
+        exploreAId.setTypeface(montSerratMediumTypeface);
+        exploreSId.setTypeface(montSerratMediumTypeface);
         counterText.setTypeface(montSerratBoldTypeface);
         remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
         targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
@@ -377,9 +373,7 @@ public class MainActivity extends AppCompatActivity {
         txtProgressForGums.setTypeface(montSerratBoldTypeface);
         moneySavingsTxt.setTypeface(montSerratMediumTypeface);
         challengeTextViewTitle.setTypeface(montSerratBoldTypeface);
-//        challengeTextViewSubtitle.setTypeface(montSerratLightTypeface);
         progressBarsTxt.setTypeface(montSerratBoldTypeface);
-//        failLogsTxtView.setTypeface(montSerratLightTypeface);
         textNonSmoker.setTypeface(montSerratBoldTypeface);
         subTextEnergy.setTypeface(montSerratMediumTypeface);
         subTextBreath.setTypeface(montSerratMediumTypeface);
@@ -395,13 +389,8 @@ public class MainActivity extends AppCompatActivity {
         subTextNonSmoker.setTypeface(montSerratMediumTypeface);
         subTextToolbar.setTypeface(montSerratSemiBoldTypeface);
         rankMasterTxt.setTypeface(montSerratMediumTypeface);
-//        comingSoonTxtForProgress.setTypeface(montSerratMediumTypeface);
         comingSoonTxtForChallenge.setTypeface(montSerratMediumTypeface);
         comingSoonTxtForChallenge2.setTypeface(montSerratMediumTypeface);
-//        rankFourTxt.setTypeface(montSerratMediumTypeface);
-//        rankThreeTxt.setTypeface(montSerratMediumTypeface);
-//        rankTwoTxt.setTypeface(montSerratMediumTypeface);
-//        rankOneTxt.setTypeface(montSerratMediumTypeface);
 
         int tvWidth = subTextNonSmoker.getWidth();
         int tvHeight = subTextNonSmoker.getHeight();
@@ -579,6 +568,22 @@ public class MainActivity extends AppCompatActivity {
 //                .build();
     }//[END OF ONCREATE]
 
+    private void triggerPushNotification(int hourOfFirstLaunch) {
+        Calendar alarmFor = Calendar.getInstance();
+        alarmFor.set(Calendar.HOUR_OF_DAY, hourOfFirstLaunch);
+        Log.d("DAYZEN", " " + "hour of alarm" + hourOfFirstLaunch);
+        alarmFor.set(Calendar.MINUTE, 1);
+        alarmFor.set(Calendar.SECOND, 1);
+        Intent MyIntent = new Intent(getApplicationContext(), MyReceiver.class);
+        PendingIntent MyPendIntent = PendingIntent.getBroadcast(getApplicationContext(),
+                0, MyIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        AlarmManager MyAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Objects.requireNonNull(MyAlarm)
+                .setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+                        alarmFor.getTimeInMillis(), MyPendIntent);
+    }
+
     private void setTheHourOfFirstLaunch(Calendar calendar) {
         //my personal method to save a value and keep it every time i launch on create :)
         if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
@@ -601,30 +606,31 @@ public class MainActivity extends AppCompatActivity {
         if (HOUR_OF_DAYLIGHT <= 6 && HOUR_OF_DAYLIGHT >= 22) {
 //        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= 20) {
             backgroundImgWall.setBackgroundResource(R.drawable.ppp);
-            tipofthedayTxtView.setTextColor(getResources().getColor(R.color.white));
-            counterText.setTextColor(getResources().getColor(R.color.white));
+            tipofthedayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+            counterText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
             counterText.setAlpha(1.0f);
-            remainingDaysTxt.setTextColor(getResources().getColor(R.color.white));
+            remainingDaysTxt.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
             remainingDaysTxt.setAlpha(0.8f);
-            targetTxtViewId.setTextColor(getResources().getColor(R.color.white));
+            targetTxtViewId.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
             targetTxtViewId.setAlpha(0.8f);
-            textNonSmoker.setTextColor(getResources().getColor(R.color.white));
+            textNonSmoker.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
             textNonSmoker.setAlpha(1.0f);
-//            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
-            subTextNonSmoker.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
+            subTextNonSmoker.setBackground((ContextCompat.getDrawable(
+                    getApplicationContext(), R.drawable.custom_button_round)));
             subTextNonSmoker.setAlpha(1.0f);
             backgroundImgWall.setAlpha(1.0f);
         } else {
             //change wallpaper during daytime
             backgroundImgWall.setBackgroundResource(R.drawable.bgday);
-            tipofthedayTxtView.setTextColor(getResources().getColor(R.color.greish));
-            counterText.setTextColor(getResources().getColor(R.color.greish));
-            remainingDaysTxt.setTextColor(getResources().getColor(R.color.greish));
-            targetTxtViewId.setTextColor(getResources().getColor(R.color.greish));
-            textNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+            tipofthedayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
+            counterText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
+            remainingDaysTxt.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
+            targetTxtViewId.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
+            textNonSmoker.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
             textNonSmoker.setAlpha(0.8f);
 //            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
-            subTextNonSmoker.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
+            subTextNonSmoker.setBackground((ContextCompat.getDrawable(
+                    getApplicationContext(), R.drawable.custom_button_round)));
             subTextNonSmoker.setAlpha(0.7f);
 //            backgroundImgWall.setAlpha(0.05f);
             backgroundImgWall.setAlpha(0f);
@@ -835,7 +841,7 @@ public class MainActivity extends AppCompatActivity {
                 }//[END OF ELSE IFS DIALOGS]
                 fab.hide();
                 anim.cancel();
-                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
+                subTextNonSmoker.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
             }
         });
     }
@@ -1071,96 +1077,6 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();//[END of NORMAL DIALOG]
     }
-    private void normalFancyDialogForFirstLaunch(String title, String message) {
-        new FancyGifDialog.Builder(MainActivity.this)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveBtnBackground("#FF4081")
-                .setPositiveBtnText("OK")
-                .setGifResource(R.drawable.source)
-                .isCancellable(false)
-                .OnPositiveClicked(new FancyGifDialogListener() {
-                    @Override
-                    public void OnClick() {
-                        setCheckInText();
-                        if (counter == 0) {
-                            savings = preferences.getLong("taoz10", -10);
-                        }
-                        if (preferences.contains("diff") && higherThanOne){
-                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            int dif = preferences.getInt("diff", -100);
-                            counter = counter + dif;
-                            if (preferences.contains("tempLong")){
-                                longFromSavingActivity = preferences.getLong("tempLong", 0);
-                            } else {
-                                longFromSavingActivity = 0;
-                            }
-                            savings = longFromSavingActivity + (firstSave * counter);
-                            editor.putLong(SAVINGS_FINAL, savings);
-                            editor.apply();
-
-                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter
-                                    +"\n savings = " + savings);
-                            higherThanOne = false;
-                        } else {
-                            if (counter == 1) {
-                                if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
-                                    editor.putLong("firstsave", firstSave);
-                                    editor.apply();
-                                    Log.d("taogenX", "firstsave is: " + firstSave);
-                                }
-                            }
-                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            counter++;
-                            if (counter == 1){
-                                savings = preferences.getLong(SAVINGS_FINAL, 0);
-                                editor.putLong(SAVINGS_FINAL, savings);
-                                if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
-                                    editor.putLong("firstsave", firstSave);
-                                    editor.apply();
-                                    Log.d("taogenX", "firstsave is: " + firstSave);
-                                }
-                            } else {
-                                savings = preferences.getLong(SAVINGS_FINAL, 0) + firstSave;
-                                Log.d("taogenX", "savings from TAO = " + savings);
-                                editor.putLong(SAVINGS_FINAL, savings);
-                                editor.apply();
-                            }
-                            higherThanOne = false;
-                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
-                        }
-                        i = 1;
-                        editor.putInt(COUNTER, counter);
-                        int tempCigarettes = cigarettesPerDay * counter;
-                        String tempusrCig = getString(R.string.cig_not_smoked);
-                        userCigaretesProgressTxt.setText(tempusrCig +" "+ tempCigarettes);
-                        editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-                        lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
-                        userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
-                        editor.putFloat(LIFEREGAINED, lifeRegained);
-                        editor.putLong(SAVINGS_FINAL, savings);
-                        editor.apply();
-                        checkActivityOnline();
-//                        setTheSavingsPerDay();
-                        savingsGetAndSetValue();
-                        setImprovementProgressLevels();
-                        setImagesForAchievementCard();
-                        counterText.setText(String.valueOf(counter));
-                        setTargetDays();
-                        //var 1 - dialog after answer
-                        positiveDialogAfterPassDay();
-                        //var 2 - custom toast after answer
-//                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-//                                    20, FancyToast.SUCCESS, true).show();
-                        estabilishHighestRecordForCounter();
-                        showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
-
-                    }
-                })
-                .build();//[END of NORMAL DIALOG]
-    }
 
     private void resetWholeProgress(){
         estabilishHighestRecordForCounter();
@@ -1269,9 +1185,6 @@ public class MainActivity extends AppCompatActivity {
         }
         setTxtViewForUserSavings(firstSave,
                 String.valueOf(savings), R.string.savings, moneySavingsTxt);
-//        moneySavingsTxt.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
-        //TODO: to add textviews from progress and setBackground custombuttonround
-//        txtviewsprogrs.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
     }
 
     @SideEffect
@@ -1394,38 +1307,21 @@ public class MainActivity extends AppCompatActivity {
             HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, 0);
         }
         //temporarily integer
-        int hoursTillCheckIn = 24 - (HOUR_OF_DAYLIGHT - HOUR_OF_FIRSTLAUNCH);
-//        int tempHourOfDayLight = HOUR_OF_DAYLIGHT == 0 ? 24 : HOUR_OF_DAYLIGHT;
+        int hoursTillCheckIn;
         Log.d("TAOZEN10", "hours of now: " + HOUR_OF_DAYLIGHT + "\nhour of firstlaunch: "
                 + HOUR_OF_FIRSTLAUNCH + "\nbutton clicked today ? " + buttonClickedToday);
-        if (DAY_OF_PRESENT>=DAY_OF_CLICK+2) {
-            subTextNonSmoker.setText("Check-in now! (+1 days)");
-            Log.d("TAOZEN10", "I AM HERE OKKOKKO: " + "presetnday: " + DAY_OF_PRESENT + " clickday: " + DAY_OF_CLICK);
-//        } else if (DAY_OF_CLICK == DAY_OF_PRESENT && buttonClickedToday) {
-//            subTextNonSmoker.setText("Check-in tommorow!");
-        } else if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
-            //if fab was already pressed (buttonClickedToday == true)
-            if (HOUR_OF_DAYLIGHT > HOUR_OF_FIRSTLAUNCH) { //&& buttonClickedToday
-                if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
-                    hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
-                    subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-                } else if (HOUR_OF_DAYLIGHT == 0) {
-                    hoursTillCheckIn = 24 - HOUR_OF_FIRSTLAUNCH;
-                    subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
-                } else if ((HOUR_OF_DAYLIGHT >= HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
-                    subTextNonSmoker.setText(R.string.check_in_now);
-                    //if fab was pressed and hour is present hour equal with today hour
-                } else if ((HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {
-                    Log.d("CHECKTEXT", "  + } else if ((HOUR_OF_DAYLIGHT < HOUR_OF_FIRSTLAUNCH) && !buttonClickedToday) {");
-                    subTextNonSmoker.setText(R.string.check_in_now);
-                } else {
-                    subTextNonSmoker.setText(R.string.check_in_now);
-                }
-            } else if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
-                subTextNonSmoker.setText(R.string.check_in_now);
+        //if only one day passed
+        if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
+            if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
+                hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
+                subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+            //if user passed one day && hour is passed or equal to hour of first launch
             } else {
                 subTextNonSmoker.setText(R.string.check_in_now);
             }
+        //if more than one day passed
+        } else if (DAY_OF_PRESENT >= DAY_OF_CLICK+2) {
+            subTextNonSmoker.setText(R.string.check_in_now);
         } else {
         subTextNonSmoker.setText(R.string.check_in_tommorow);
         }
@@ -1534,35 +1430,26 @@ public class MainActivity extends AppCompatActivity {
                 + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
                 " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
         if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
-            if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {
+            if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
                 fab.show();
-//                addSavingsSumImg.setVisibility(View.VISIBLE);
                 editor.putBoolean("saveimg", true);
                 editor.apply();
                 setCheckInText();
                 if (i == 1)
                     startAnimatorForUpperCard();
                 anim.start();
-                editor.putInt(COUNTER, counter);
-                editor.apply();
                 Log.d("DAYZEN", "if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {" + " ACTIVATED");
+            } else {
+                setCheckInText();
+                anim.cancel();
+                fab.hide();
             }
-//            } else if ((HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) && !buttonClickedToday) {
-//                fab.show();
-//                setCheckInText();
-//                if (i == 1)
-//                    startAnimatorForUpperCard();
-//                anim.start();
-//                editor.putInt(COUNTER, counter);
-//                editor.apply();
-//            }
         } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
             higherThanOne = true;
             int diff = DAY_OF_PRESENT - DAY_OF_CLICK;
             editor.putInt("diff", diff);
             editor.apply();
             fab.show();
-//            addSavingsSumImg.setVisibility(View.VISIBLE);
             editor.putBoolean("saveimg", true);
             editor.apply();
             setCheckInText();
@@ -1573,7 +1460,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             setCheckInText();
             anim.cancel();
-//                subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             fab.hide();
             Log.d("DAYZEN", "BIG ELSE FROM GREENCONDITION " + " ACTIVATED");
         }
@@ -2022,37 +1908,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).show();
     }
-//    private void showDialogForSavingCiggarettesNumber() {
-//        final EditText editTextForChoosingCiggs = new EditText(MainActivity.this);
-//        editTextForChoosingCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
-//        //impl bottom dialog instead of normal dialog
-//        new BottomDialog.Builder(this)
-//                .setTitle("CIGGARETTES!")
-//                .setContent("How much ciggarettes do you smoke per day ?")
-//                .setPositiveText("OK")
-//                .setCustomView(editTextForChoosingCiggs)
-//                .setCancelable(false)
-//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-//                .setPositiveTextColorResource(android.R.color.white)
-//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-//                .onPositive(new BottomDialog.ButtonCallback() {
-//                    @Override
-//                    public void onClick(BottomDialog dialog) {
-//                            Editable editM = editTextForChoosingCiggs.getText();
-//                            int cigInt = Integer.parseInt(editM.toString());
-//                            editor.putInt(INITIAL_CIGG_PER_DAY, cigInt);
-//                            editor.apply();
-//                            Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);
-////                            startIntroActivity();
-//                    }
-//                }).show();
-//
-//
-//
-//    }
-
-
 
     @SideEffect
     private void showEntireProgressForUserCard(TextView userCigarettesProgressTxt,
@@ -2072,7 +1927,8 @@ public class MainActivity extends AppCompatActivity {
             String theLatestRank = preferences.getString("rank", "unranked yet");
             String rank_master = getString(R.string.rank_master, theLatestRank);
             rankMasterTxt.setText(rank_master);
-            rankMasterTxt.setBackground(getResources().getDrawable(R.drawable.custom_button_round));
+            rankMasterTxt.setBackground(ContextCompat.getDrawable(getApplicationContext(),
+                    R.drawable.custom_button_round));
 
             if (counter == 0) {
                 userCigarettesProgressTxt.setText(R.string.cig_press_leaf);

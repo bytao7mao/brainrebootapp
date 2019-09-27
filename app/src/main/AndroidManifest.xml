@@ -53,6 +53,13 @@
         <activity android:name=".cardActivities.ChallengeActivity" />
 
         <service android:name=".notif.MyFirebaseMessagingService" />
+        <service android:name=".notif.MyNewIntentService" />
+
+        <receiver
+            android:name="notif.MyReceiver"
+            android:enabled="true"
+            android:exported="false" >
+        </receiver>
 
         <uses-library
             android:name="org.apache.http.legacy"
