@@ -184,6 +184,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.backgroundId) ImageView backgroundImgWall;
 //  @BindView(R.id.imageViewMiddleId) ImageView imageViewMiddle;
     @BindView(R.id.pulsator) PulsatorLayout pulsator;
+    //CircularProgressBar
+    //progress for percent - this is a circular bar
+    @BindView(R.id.progress_bar_energy) CircularProgressBar progressBarEnergyLevel;
+    @BindView(R.id.progress_bar_gums) CircularProgressBar progressBarGumsLevel;
+    @BindView(R.id.progress_bar_fatigue) CircularProgressBar progressBarFatigueLevel;
+    @BindView(R.id.progress_bar_breath) CircularProgressBar progressBarBreathlevel;
 
     //firstStart bool
     boolean isFirstStart;
@@ -206,11 +212,6 @@ public class MainActivity extends AppCompatActivity {
     //shared pref
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
-    //circular progressbar
-    private CircularProgressBar progressBarEnergyLevel,
-            progressBarGumsLevel,
-            progressBarFatigueLevel,
-            progressBarBreathlevel;
     private DisplayMetrics metrics = new DisplayMetrics();
     private Configuration config;
     private String challs;
@@ -234,14 +235,6 @@ public class MainActivity extends AppCompatActivity {
 
     MainActivity.MyAsyncTask task;
 
-//    public static void main(String[] args) {
-//        DecimalFormat a = new DecimalFormat("#.##");
-//        if (a instanceof DecimalFormat) {
-//            System.out.println("yes it is object animator");
-//        }
-//    }
-
-
     //OnCreate [START]
     @SuppressLint("CommitPrefEdits")
     @Override
@@ -254,20 +247,7 @@ public class MainActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
 
-        if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
-            isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
-            //[calendar area]
-            calendarForProgress = Calendar.getInstance();
-            calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-            DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
-            DAY_OF_CLICK = DAY_OF_PRESENT - 1;
-            editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
-            editor.apply();
-
-        } else {
-            isFirstStart = false;editor.putBoolean("firstStart",isFirstStart);editor.apply();
-
-        }
+        firstCheckForInitialCiggarettesPerDay();
         startFirstActivity();
         Intent intent = getIntent();
         String name = intent.getStringExtra("data");
@@ -306,14 +286,7 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
-        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
-        //test
-        if (!preferences.contains(COUNTER)){counterText.setText("0");
-        } else {
-            counterText.setText(String.valueOf(counter));
-        }
-        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
-        if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
+        setTargetAfterCheckingCounter();
         long TempSavings = preferences.getLong(SAVINGS_FINAL, -100);
         Log.d(TAGoncreate, stringBuffer.append(TempSavings).append(" TempSavings").append(" ciggs").append(cigarettesPerDay).toString());
         setTargetDays();
@@ -336,12 +309,6 @@ public class MainActivity extends AppCompatActivity {
         achievementRanksCard.setCardElevation(0);
         challengeCardView.setCardElevation(0);
         upperProgressPercentsCard.setCardElevation(0);
-
-        //progress for percent - this is a circular bar
-        progressBarEnergyLevel = findViewById(R.id.progress_bar_energy);
-        progressBarFatigueLevel = findViewById(R.id.progress_bar_fatigue);
-        progressBarBreathlevel = findViewById(R.id.progress_bar_breath);
-        progressBarGumsLevel = findViewById(R.id.progress_bar_gums);
 
         //setMargin
         setMarginForProgress();
@@ -577,6 +544,32 @@ public class MainActivity extends AppCompatActivity {
 //                })
 //                .build();
     }//[END OF ONCREATE]
+
+    private void setTargetAfterCheckingCounter() {
+        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
+        //test
+        if (!preferences.contains(COUNTER)){counterText.setText("0");
+        } else {
+            counterText.setText(String.valueOf(counter));
+        }
+        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
+        if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
+    }
+
+    private void firstCheckForInitialCiggarettesPerDay() {
+        if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
+            isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+            //[calendar area]
+            calendarForProgress = Calendar.getInstance();
+            calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+            DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+            DAY_OF_CLICK = DAY_OF_PRESENT - 1;
+            editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
+            editor.apply();
+        } else {
+            isFirstStart = false;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+        }
+    }
 
     private void triggerPushNotification(int hourOfFirstLaunch) {
         Calendar alarmFor = Calendar.getInstance();
