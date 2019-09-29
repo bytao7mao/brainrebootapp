@@ -72,12 +72,6 @@ public class AchievmentsActivity extends AppCompatActivity {
         mListView = findViewById(R.id.list_view);
         CustomAdapterListView customAdapterListView = new CustomAdapterListView(this, titles, images, descriptions);
         mListView.setAdapter(customAdapterListView);
-
-        if (preferences.contains("rank")){
-            if (Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Recruit")) {
-
-            }
-        }
     }
 
     @Override
@@ -90,7 +84,7 @@ public class AchievmentsActivity extends AppCompatActivity {
         Context context;
         int [] imageId;
         private LayoutInflater inflater=null;
-        public CustomAdapterListView(AchievmentsActivity mainActivity, String[] prgmNameList, int[] prgmImages, String[] descriptions) {
+        CustomAdapterListView(AchievmentsActivity mainActivity, String[] prgmNameList, int[] prgmImages, String[] descriptions) {
             // TODO Auto-generated constructor stub
             this.descriptions=descriptions;
             titles=prgmNameList;

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 
 public class MyHttpCoreAndroid {
     public static String getData(String uri) {
@@ -18,14 +19,14 @@ public class MyHttpCoreAndroid {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line + "\n");
+                stringBuilder.append(line).append("\n");
             }
             return stringBuilder.toString();
         } catch (Exception e) {
             e.printStackTrace();
             try {
                 //to use in the future for authentification
-                int status = connection.getResponseCode();
+                int status = Objects.requireNonNull(connection).getResponseCode();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

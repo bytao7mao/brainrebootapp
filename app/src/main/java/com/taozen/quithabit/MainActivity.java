@@ -62,6 +62,7 @@ import com.taozen.quithabit.about.AboutActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.notif.MyReceiver;
+import com.taozen.quithabit.utils.MyHttpCoreAndroid;
 import com.taozen.quithabit.utils.MyHttpManager;
 
 import java.text.DecimalFormat;
@@ -91,6 +92,8 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAGoncreate = MainActivity.class.getSimpleName() + "oncreate";
 
     String arr = "";
     long firstSave;
@@ -186,11 +189,11 @@ public class MainActivity extends AppCompatActivity {
     boolean isFirstStart;
     //counter for user
     private int counter;
-    private long savings = 0;
-    private int DAY_OF_CLICK = 0,
-            DAY_OF_PRESENT = 0,
-            HOUR_OF_DAYLIGHT = 0,
-            HOUR_OF_FIRSTLAUNCH = 0;
+    private long savings;
+    private int DAY_OF_CLICK,
+            DAY_OF_PRESENT,
+            HOUR_OF_DAYLIGHT,
+            HOUR_OF_FIRSTLAUNCH;
     //wil start from 30 to 60 to 90
     private int userMaxCountForHabit = -1;
     //default false
@@ -246,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
+        StringBuffer stringBuffer = new StringBuffer();
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
@@ -303,9 +307,15 @@ public class MainActivity extends AppCompatActivity {
 
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
         if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
+        //test
+        if (!preferences.contains(COUNTER)){counterText.setText("0");
+        } else {
+            counterText.setText(String.valueOf(counter));
+        }
         if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
         if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
-        Log.d("taozsa", savings + " savings" + " \nciggs" + cigarettesPerDay);
+        long TempSavings = preferences.getLong(SAVINGS_FINAL, -100);
+        Log.d(TAGoncreate, stringBuffer.append(TempSavings).append(" TempSavings").append(" ciggs").append(cigarettesPerDay).toString());
         setTargetDays();
         firstCheckMax();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
@@ -413,7 +423,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (preferences.contains("saveimg")) {
             if (!preferences.getBoolean("saveimg", true)) {
-//                addSavingsSumImg.setVisibility(View.INVISIBLE);
+//                TODO: addSavingsSumImg.setVisibility(View.INVISIBLE);
             } else {
 //                addSavingsSumImg.setVisibility(View.VISIBLE);
                 editor.putBoolean("saveimg", true);
@@ -824,7 +834,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
                 setImagesForAchievementCard();
                 Log.d("INTROTAO", "counter from onclick = " + counter + buttonClickedToday);
-                String messageForDialog = "";
+                String messageForDialog;
                 messageForDialog = higherThanOne ? moreThanOneDayPassedMessageForDialog : normalMessageForDialog;
                 //between 1 and 29
                 if (counter == 0) {
@@ -1152,9 +1162,13 @@ public class MainActivity extends AppCompatActivity {
         String valuePerDay = formatter.format(Integer.parseInt(String.valueOf(savePerDay)));
         String currency = preferences.getString("currency", "$");
         //target counter string
-        String finalS = "Per day: "  + valuePerDay + " "+currency + "\n"+
-                getString(androiId, totalSavings) + " "+currency + "\nPer year: " + valuePerYear + " " + currency;
-        textView.setText(finalS);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder = stringBuilder.append(getString(R.string.perday)).append(" ").append(valuePerDay).append(" ").append(currency).append("\n")
+                .append(getString(androiId, totalSavings)).append(" ").append(currency).append("\n")
+                .append(getString(R.string.peryear)).append(" ").append(valuePerYear).append(" ").append(currency);
+//        String finalS = R.string.perday + " "  + valuePerDay + " "+currency + "\n"+
+//                getString(androiId, totalSavings) + " "+currency + "\nPer year: " + valuePerYear + " " + currency;
+        textView.setText(stringBuilder);
     }
 
     private void setTxtViewForUserMaxCountDaysOnStringVersion(
@@ -1335,12 +1349,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (preferences.contains("saveimg")) {
                 if (!preferences.getBoolean("saveimg", true)) {
-//                    addSavingsSumImg.setVisibility(View.INVISIBLE);
+//                    TODO: addSavingsSumImg.setVisibility(View.INVISIBLE);
                 } else {
-//                    addSavingsSumImg.setVisibility(View.VISIBLE);
+//                    TODO: addSavingsSumImg.setVisibility(View.VISIBLE);
                 }
             } else {
-//                addSavingsSumImg.setVisibility(View.VISIBLE);
+//                TODO: addSavingsSumImg.setVisibility(View.VISIBLE);
             }
             //Only retrieve and save in onpause
             //-3 default values
@@ -1636,6 +1650,11 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.reset_button){
             //TODO: reset progress
             dialogForReset();
+//            HOUR_OF_FIRSTLAUNCH = 3;
+//            editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
+//            editor.apply();
+//            triggerPushNotification(HOUR_OF_FIRSTLAUNCH);
+
         }
         return super.onOptionsItemSelected(item);
     }//END OF -> [MENU]
@@ -1658,7 +1677,7 @@ public class MainActivity extends AppCompatActivity {
                 (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo =
-                connManager.getActiveNetworkInfo();
+                Objects.requireNonNull(connManager).getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }//isOnline[END]
     private void requestDataById(int id) {
@@ -1705,7 +1724,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             counter = preferences.getInt(COUNTER, counter);
-            counterText.setText(String.valueOf(counter));
+            if (!preferences.contains(COUNTER)){counterText.setText(0);}else {
+                counterText.setText(String.valueOf(counter));
+            }
             updateDisplayString("Starting to fetch data from heroku ...");
             if (tasks.size() == 0) {
                 progressBarLoading.setVisibility(View.VISIBLE);
@@ -1722,10 +1743,10 @@ public class MainActivity extends AppCompatActivity {
                 //using GSON
                 JsonParser parser = new JsonParser();
                 //using MyHttpManager getData static method
-                String content = MyHttpManager.getData(params[0]);
+//                String content = MyHttpManager.getData(params[0]);
 //                Thread.sleep(1000);
                 //using MyHttpCoreAndroid
-//                String content = MyHttpCoreAndroid.getData(params[0]);
+                String content = MyHttpCoreAndroid.getData(params[0]);
                 assert content != null;
                 JsonElement rootNode = parser.parse(content);
                 JsonObject details = rootNode.getAsJsonObject();

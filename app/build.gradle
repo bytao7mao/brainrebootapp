@@ -70,7 +70,7 @@ dependencies {
     //gifs library
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'
 
-    //to keep it here as a secondary pulsator effect[now im not using it]
+    //to keep it here as a secondary pulsator effect
     implementation 'pl.bclogic:pulsator4droid:1.0.3'
 
     //using it for percent view
@@ -82,16 +82,8 @@ dependencies {
     //a secondary nice fab option with menus in it
     implementation 'com.github.joaquimley:faboptions:1.2.0'
 
-    //navigation drawer
-    implementation 'androidx.navigation:navigation-fragment:2.0.0-rc02'
-
     //parsing json data
     implementation 'com.google.code.gson:gson:2.8.2'
-
-    //retrofit library to fetch data from server
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 
     //about page library
     implementation 'com.github.Shashank02051997:FancyAboutPage-Android:2.6'
@@ -104,9 +96,6 @@ dependencies {
 
     //animation
     implementation 'com.github.ozodrukh:CircularReveal:2.0.1@aar'
-
-    //percent layout
-    implementation 'androidx.percentlayout:percentlayout:1.0.0'
 
     //tt fancy dialog
     implementation 'com.bestsoft32.tayyab:tt-fancy-gif-dialog:1.0.2'

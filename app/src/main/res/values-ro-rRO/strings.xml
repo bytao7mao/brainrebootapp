@@ -16,16 +16,16 @@
     <string name="reset_progress">Resetare progres</string>
     <string name="savings">Total: %s</string>
     <string name="streak_string">Record: %d</string>
-    <string name="thanks_for_downloading_this_app">Multumesc pentru ca ati downloadat aplicatia !</string>
+    <string name="thanks_for_downloading_this_app">Multumesc pentru download !</string>
     <string name="check_in_tommorow">Verificare maine!</string>
     <string name="coming_soon">In Curand!</string>
     <string name="non_smoker_since">Nefumator de</string>
     <string name="check_in_now">Verifica acum!</string>
-    <string name="press_leaf">Apasa pe frunza pentru a incepe</string>
+    <string name="press_leaf">Apasa pe frunza</string>
     <string name="cig_not_smoked">Tigari nefumate:</string>
-    <string name="cig_press_leaf">Tigari nefumate: apasa frunza pentru a calcula</string>
+    <string name="cig_press_leaf">Tigari nefumate: Apasati frunza</string>
     <string name="your_entire_progress">Progresul tau</string>
-    <string name="life_press_leaf">Viata recuperata: apasa pe frunza pentru a calcula</string>
+    <string name="life_press_leaf">Viata recuperata: Apasati frunza</string>
     <string name="life_reg">Viata recuperata: %s ore</string>
     <string name="breath">Respiratia</string>
     <string name="energy">Energie</string>
@@ -45,4 +45,7 @@
     <string name="how_many_cigarettes_per_day">Cate tigari fumezi pe zi ?</string>
     <string name="how_much_do_you_spend_per_day">Cati bani cheltui pe zi ?</string>
     <string name="new_post_image">O noua imagine</string>
+    <string name="check_in_soon">Verificati in curand!</string>
+    <string name="perday">"Pe zi: "</string>
+    <string name="peryear">"Pe an: "</string>
 </resources>

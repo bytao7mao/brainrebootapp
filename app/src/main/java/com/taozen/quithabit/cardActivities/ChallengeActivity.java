@@ -179,7 +179,7 @@ public class ChallengeActivity extends AppCompatActivity {
                 START_TIME_IN_MILLIS = MILLIS_IN_WEEK;
                 //show dialog with ONE WEEK
             } else if (firstDialog.equals(ONEWEEK)){
-                //END CHALLENGE
+                //TODO: END CHALLENGE
                 //BYE BYE
             } else {
                 firstDialog = ONEDAY;

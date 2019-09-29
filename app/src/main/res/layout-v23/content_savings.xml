@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/savings_TitleId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
+            android:padding="5dp"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:text="Add your today's extra savings!"
+            android:textSize="24sp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTxtSavingsId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/savings_TitleId"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/greenColorLed"
+            android:gravity="center"
+            android:padding="4dp"
+            android:hint="how much ?"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/addSavingsBtnId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTxtSavingsId"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="57dp"
+            android:layout_marginRight="57dp"
+            android:layout_marginBottom="30dp"
+            android:alpha="0.8"
+            android:background="@drawable/custom_button"
+            android:gravity="center"
+            android:text="add"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/savingsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addSavingsBtnId"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:alpha="0.8"
+            android:padding="6dp"
+            android:text="@string/total_savings"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/savingsTxt"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/profit" />
+    </RelativeLayout>
+</LinearLayout>

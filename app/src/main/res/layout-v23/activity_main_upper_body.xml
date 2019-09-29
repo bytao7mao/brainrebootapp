@@ -98,7 +98,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:text="0"
                     android:alpha="0.9"
                     style="@style/TextColorBlack"
                     android:textSize="58sp" />

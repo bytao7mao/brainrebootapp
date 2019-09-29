@@ -13,6 +13,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.taozen.quithabit.R;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -23,7 +24,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
         Log.d(TAG, "From: " + remoteMessage.getFrom());
-        Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
+        Log.d(TAG, "Notification Message Body: " + Objects.requireNonNull(remoteMessage.getNotification()).getBody());
         notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         //Setting up Notification channels for android O and above
@@ -43,6 +44,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        assert notificationManager != null;
         notificationManager.notify(notificationId /* ID of notification */, notificationBuilder.build());
     }
     @RequiresApi(api = Build.VERSION_CODES.O)

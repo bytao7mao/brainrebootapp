@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.taozen.quithabit.utils.MyHttpManager;
 
+import java.util.Objects;
 import java.util.Random;
 
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
@@ -88,6 +89,7 @@ public class SplashActivity extends AppCompatActivity {
             }
 //            requestDataById(DAY_OF_PRESENT);
         } else {
+//            TODO:
 //            errorText.setVisibility(View.VISIBLE);
 //            tipofthedayTxtViewId.setText("ERROR 404");
 //            Snackbar snackbar;
@@ -104,7 +106,7 @@ public class SplashActivity extends AppCompatActivity {
                 (ConnectivityManager)
                         getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo =
-                connManager.getActiveNetworkInfo();
+                Objects.requireNonNull(connManager).getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }//isOnline[END]
 
