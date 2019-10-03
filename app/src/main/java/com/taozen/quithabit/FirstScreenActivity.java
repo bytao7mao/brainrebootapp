@@ -54,16 +54,16 @@ public class FirstScreenActivity extends AppCompatActivity {
 
 
     //firstStart bool
-    boolean isFirstStart;
+    private boolean isFirstStart;
     private Calendar calendarForProgress;
-    int DAY_OF_PRESENT, DAY_OF_CLICK;
+    private int DAY_OF_PRESENT, DAY_OF_CLICK;
 
-    String nameCigg, nameSav;
-    String currency;
+    private String nameCigg, nameSav;
+    private String currency;
 
     //shared pref
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     //add font to counter number
     static Typeface montSerratBoldTypeface;
@@ -74,9 +74,9 @@ public class FirstScreenActivity extends AppCompatActivity {
     static Typeface montSerratExtraBoldTypeface;
     static Typeface montSerratSimpleBoldTypeface;
 
-    boolean go,go2;
+    private boolean go,go2;
 
-    boolean visible;
+    private boolean visible;
     @SuppressLint("CommitPrefEdits")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
