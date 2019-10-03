@@ -320,6 +320,9 @@ public class MainActivity extends AppCompatActivity {
             firstSave = preferences.getLong("firstsave",0);
             Log.d("taogenX", "firstsave: " + firstSave);
         } else {
+            DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, 0);
+            ttfancyDialogForFirstTimeLaunch("WELCOME TO QUIT HABIT!", firstMessageDialog);
+            greenCondition();
             Log.d("taogenX", "firstsave: " + firstSave);
         }
 
@@ -378,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("DENS", "widht: " + densityWidth + " height: " + densityHeight + density);
 
         try {
-            if (preferences.contains(COUNTER)){
+            if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);
             }
             //setting the achievments images for user
@@ -774,6 +777,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //  If the activity has never started before...
                 if (isFirstStart) {
+                    DAY_OF_CLICK = DAY_OF_PRESENT - 1;
+                    editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
+                    editor.apply();
                     if (preferences.contains(COUNTER)) {
                         counter = preferences.getInt(COUNTER, -1);
                         editor.putInt(COUNTER, counter);
@@ -801,32 +807,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    if (preferences.contains(COUNTER)){
-                        counter = preferences.getInt(COUNTER, -1);
-                    }
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-                buttonClickedToday = true;
-                editor.putBoolean(CLICKED, buttonClickedToday);
-                editor.apply();
-                if (preferences.contains(INITIAL_CIGG_PER_DAY)){
-                    cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
-                }
-                if (!preferences.contains("taoz10")){
-                    savings = 10;
-                    editor.putLong("taoz10", savings);
-                    editor.apply();
-                }
-                //[calendar area]
-                calendarOnClick = Calendar.getInstance();
-                calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-                DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
-                editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
-                editor.apply();
-                setImagesForAchievementCard();
-                Log.d("INTROTAO", "counter from onclick = " + counter + buttonClickedToday);
+                setTodayToClickDay();
                 String messageForDialog;
                 messageForDialog = higherThanOne ? moreThanOneDayPassedMessageForDialog : normalMessageForDialog;
                 //between 1 and 29
@@ -847,6 +828,35 @@ public class MainActivity extends AppCompatActivity {
                 subTextNonSmoker.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
             }
         });
+    }
+
+    private void setTodayToClickDay() {
+        try {
+            if (preferences.contains(COUNTER)){
+                counter = preferences.getInt(COUNTER, -1);
+            }
+            buttonClickedToday = true;
+            editor.putBoolean(CLICKED, buttonClickedToday);
+            editor.apply();
+            if (preferences.contains(INITIAL_CIGG_PER_DAY)){
+                cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
+            }
+            if (!preferences.contains("taoz10")){
+                savings = 10;
+                editor.putLong("taoz10", savings);
+                editor.apply();
+            }
+            //[calendar area]
+            calendarOnClick = Calendar.getInstance();
+            calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+            DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
+            editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
+            editor.apply();
+            setImagesForAchievementCard();
+            Log.d("INTROTAO", "counter from onclick = " + counter + buttonClickedToday);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     private void normalFancyDialog(String title, String message) {
@@ -1001,6 +1011,8 @@ public class MainActivity extends AppCompatActivity {
                 .OnPositiveClicked(new TTFancyGifDialogListener() {
                     @Override
                     public void OnClick() {
+                        setTodayToClickDay();
+                        firstCheckForInitialCiggarettesPerDay();
                         setCheckInText();
                         if (counter == 0) {
                             savings = preferences.getLong("taoz10", -10);
@@ -1075,10 +1087,20 @@ public class MainActivity extends AppCompatActivity {
 //                                    20, FancyToast.SUCCESS, true).show();
                         estabilishHighestRecordForCounter();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
-
+                        cleanUpAfterFirstCounter();
                     }
                 })
                 .build();//[END of NORMAL DIALOG]
+    }
+
+    private void cleanUpAfterFirstCounter() {
+        fab.hide();
+        anim.cancel();
+        subTextNonSmoker.setBackground((ContextCompat.getDrawable(
+                getApplicationContext(), R.drawable.custom_button_round)));
+        subTextNonSmoker.setTextColor(ContextCompat.getColor(
+                getApplicationContext(), R.color.greish));
+        subTextNonSmoker.setAlpha(0.7f);
     }
 
     private void resetWholeProgress(){
@@ -1338,6 +1360,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        counterText.setText(String.valueOf(counter));
         setCheckInText();
         try {
             if (preferences.contains("saveimg")) {
@@ -1595,10 +1618,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //MENU DRAWER
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        counterText.setText(String.valueOf(counter));
+        finish();
     }
 
     //[MENU]

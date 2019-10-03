@@ -11,6 +11,7 @@ import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,18 +23,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.transitionseverywhere.ArcMotion;
 import com.transitionseverywhere.ChangeBounds;
 import com.transitionseverywhere.TransitionManager;
 
+import java.util.Calendar;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Optional;
 
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
@@ -44,6 +51,12 @@ public class FirstScreenActivity extends AppCompatActivity {
     @BindView(R.id.edtTxtForSavingsId) EditText editTxtForSavings;
     @BindView(R.id.edtTxtForCiggarettedId) EditText editTxtForCiggs;
     @BindView(R.id.confirmBtn) Button confirmationButton;
+
+
+    //firstStart bool
+    boolean isFirstStart;
+    private Calendar calendarForProgress;
+    int DAY_OF_PRESENT, DAY_OF_CLICK;
 
     String nameCigg, nameSav;
     String currency;
@@ -81,6 +94,11 @@ public class FirstScreenActivity extends AppCompatActivity {
         montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
         montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
 
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        currency = Currency.getInstance(new Locale("",
+                Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
+        Log.d("taogX", currency+"");
+
         getWindow().setStatusBarColor(ContextCompat.getColor(FirstScreenActivity.this, R.color.white));
         Toolbar toolbar = findViewById(R.id.toolbar);
         TextView mTitle =  findViewById(R.id.toolbar_subtitle);
@@ -105,6 +123,24 @@ public class FirstScreenActivity extends AppCompatActivity {
         assert editTxtForSavings != null;
         editTxtForSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
 
+        editTxtForSavings.setHint("How much do you spend ? (" + currency +")");
+
+        editTxtForSavings.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editTxtForSavings.append(currency);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                editTxtForSavings.append(currency);
+            }
+        });
+
         //set cigg
         confirmationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,12 +154,15 @@ public class FirstScreenActivity extends AppCompatActivity {
                     editTxtForSavings.setVisibility(visible ? View.VISIBLE : View.GONE);
                     editTxtForCiggs.setVisibility(visible ? View.VISIBLE : View.GONE);
                     Intent i = new Intent(FirstScreenActivity.this, MainActivity.class);
-                    TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-                    currency = Currency.getInstance(new Locale("",
-                            Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
+//                    TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//                    currency = Currency.getInstance(new Locale("",
+//                            Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
                     Log.d("taogX", currency+"");
                     editor.putString("currency", currency);
                     editor.apply();
+                    editor.putInt("splash", 1);
+                    editor.apply();
+                    firstCheckForInitialCiggarettesPerDay();
                     startActivity(i);
                     finish();
                 }
@@ -132,8 +171,29 @@ public class FirstScreenActivity extends AppCompatActivity {
 
     }
 
+    private void firstCheckForInitialCiggarettesPerDay() {
+        if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
+            isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+            //[calendar area]
+            calendarForProgress = Calendar.getInstance();
+            calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+            DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+            DAY_OF_CLICK = DAY_OF_PRESENT - 1;
+            editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
+            editor.apply();
+        } else {
+            isFirstStart = false;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Optional
-    private void setSavings(){
+    private void setSavings() {
         Editable editM = editTxtForSavings.getText();
         nameSav = editTxtForSavings.getText().toString();
         if (TextUtils.isEmpty(nameSav)) {

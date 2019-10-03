@@ -19,14 +19,23 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.taozen.quithabit.utils.MyHttpManager;
 
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.Random;
+import java.util.TimeZone;
 
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
 
 public class SplashActivity extends AppCompatActivity {
 
     SplashActivity.MyAsyncTask task;
+
+    //firstStart bool
+    boolean isFirstStart;
+    private Calendar calendarForProgress;
+    int DAY_OF_PRESENT, DAY_OF_CLICK;
 
     Handler mHandler = new Handler();
     int a = 3000;
@@ -54,7 +63,7 @@ public class SplashActivity extends AppCompatActivity {
 //        if (isOnline()) {
 //            requestDataById(random.nextInt(90));
 //        }
-        checkActivityOnlineandGetData();
+        checkActivityOnlineAndGetData();
 
 //        mHandler.postDelayed(new Runnable() {
 //            @Override
@@ -71,8 +80,14 @@ public class SplashActivity extends AppCompatActivity {
         if (task != null && !task.isCancelled()) { task.cancel(true); }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @SideEffect
-    private void checkActivityOnlineandGetData() {
+    private void checkActivityOnlineAndGetData() {
         int c = 0;
         if (isOnline()) {
             try {
@@ -142,11 +157,34 @@ public class SplashActivity extends AppCompatActivity {
         }//doInBackground[END]
         @Override
         protected void onPostExecute(String result) {
-            Intent i = new Intent(SplashActivity.this, MainActivity.class);
-            i.putExtra("data", result);
-            startActivity(i);
+            if (preferences.contains("splash")){
+                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                i.putExtra("data", result);
+                startActivity(i);
+            } else {
+                Intent i = new Intent(SplashActivity.this, FirstScreenActivity.class);
+                i.putExtra("data", result);
+                firstCheckForInitialCiggarettesPerDay();
+                startActivity(i);
+            }
             finish();
         }//onPostExecute[END]
+
+        private void firstCheckForInitialCiggarettesPerDay() {
+            if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
+                isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+                //[calendar area]
+                calendarForProgress = Calendar.getInstance();
+                calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
+                DAY_OF_CLICK = DAY_OF_PRESENT - 1;
+                editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
+                editor.apply();
+            } else {
+                isFirstStart = false;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+            }
+        }
+
         @Override
         protected void onProgressUpdate(String... values) {
 

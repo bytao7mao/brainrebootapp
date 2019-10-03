@@ -8,6 +8,7 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
+<!--    Theme.AppCompat.Light.NoActionBar-->
 
     <style name="ParentMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:fontFamily">@font/montserratsemibold</item>

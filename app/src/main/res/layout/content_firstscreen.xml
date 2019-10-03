@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FirstScreenActivity"
     android:id="@+id/transitions_container"
     android:background="@color/white"
@@ -35,17 +36,35 @@
         android:textSize="14sp"
         android:backgroundTint="@color/greenColorLed"/>
 
-    <androidx.appcompat.widget.AppCompatEditText
+<!--    <androidx.appcompat.widget.AppCompatEditText-->
+<!--        android:id="@+id/edtTxtForSavingsId"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="@string/how_much_do_you_spend_per_day"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@id/edtTxtForCiggarettedId"-->
+<!--        android:textSize="14sp"-->
+<!--        android:alpha="0.7"-->
+<!--        android:backgroundTint="@color/greenColorLed"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtTxtForSavingsId"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="@string/how_much_do_you_spend_per_day"
-        android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/edtTxtForCiggarettedId"
-        android:textSize="14sp"
         android:alpha="0.7"
-        android:backgroundTint="@color/greenColorLed"/>
+        android:layout_below="@id/edtTxtForCiggarettedId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/how_much_do_you_spend_per_day"
+            android:backgroundTint="@color/greenColorLed"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/confirmBtn"
