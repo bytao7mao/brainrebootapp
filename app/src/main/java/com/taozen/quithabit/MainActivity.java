@@ -597,7 +597,8 @@ public class MainActivity extends AppCompatActivity {
             Log.d("TAOZEN1", "share prefs contains: firsthour = " + HOUR_OF_FIRSTLAUNCH);
         } else {
             Log.d("TAOZEN1", "share prefs DOES NOT contains: firsthour");
-            HOUR_OF_FIRSTLAUNCH = calendar.get(Calendar.HOUR_OF_DAY);
+            //recent refactor that works fine
+            HOUR_OF_FIRSTLAUNCH = (calendar.get(Calendar.HOUR_OF_DAY)==0) ? 24 : calendar.get(Calendar.HOUR_OF_DAY);
             editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
             editor.apply();
             strBuilder.append(String.format(getString(R.string.checkinStr), HOUR_OF_FIRSTLAUNCH));
@@ -1460,6 +1461,7 @@ public class MainActivity extends AppCompatActivity {
                 + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
                 " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
         if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
+            HOUR_OF_DAYLIGHT=(HOUR_OF_FIRSTLAUNCH==24)?24:HOUR_OF_DAYLIGHT;
             if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
                 fab.show();
                 editor.putBoolean("saveimg", true);
