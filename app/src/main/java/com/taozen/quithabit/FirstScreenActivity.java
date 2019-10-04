@@ -48,8 +48,10 @@ public class FirstScreenActivity extends AppCompatActivity {
     @BindView(R.id.textView) TextView textView;
     @BindView(R.id.textView3) TextView textView3;
     @BindView(R.id.fsTitleId) TextView fsTitleId;
-    @BindView(R.id.edtTxtForSavingsId) EditText editTxtForSavings;
-    @BindView(R.id.edtTxtForCiggarettedId) EditText editTxtForCiggs;
+    @BindView(R.id.edtTxtForSavingsId) TextInputLayout editTxtForSavings;
+    @BindView(R.id.editText) TextInputEditText editText;
+    @BindView(R.id.edtTxtLayoutForCiggsId) TextInputLayout editTxtLayoutCiggs;
+    @BindView(R.id.edtTxtForCiggarettedId) TextInputEditText editTxtForCiggs;
     @BindView(R.id.confirmBtn) Button confirmationButton;
 
 
@@ -115,24 +117,24 @@ public class FirstScreenActivity extends AppCompatActivity {
         textView3.setTypeface(montSerratLightTypeface);
         textView.setTypeface(montSerratItallicTypeface);
         editTxtForSavings.setTypeface(montSerratSemiBoldTypeface);
-        editTxtForCiggs.setTypeface(montSerratSemiBoldTypeface);
+        editTxtLayoutCiggs.setTypeface(montSerratSemiBoldTypeface);
         confirmationButton.setTypeface(montSerratSemiBoldTypeface);
 
         assert editTxtForCiggs != null;
         editTxtForCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
         assert editTxtForSavings != null;
-        editTxtForSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         editTxtForSavings.setHint("How much do you spend ? (" + currency +")");
 
-        editTxtForSavings.addTextChangedListener(new TextWatcher() {
+        editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                editTxtForSavings.append(currency);
+                editText.append(currency);
             }
 
             @Override
@@ -194,11 +196,11 @@ public class FirstScreenActivity extends AppCompatActivity {
 
     @Optional
     private void setSavings() {
-        Editable editM = editTxtForSavings.getText();
-        nameSav = editTxtForSavings.getText().toString();
+        Editable editM = editText.getText();
+        nameSav = editText.getText().toString();
         if (TextUtils.isEmpty(nameSav)) {
             go = false;
-            editTxtForSavings.setError("Please input a sum");
+            editText.setError("Please input a sum");
             return;
         } else {
             if (go2){
