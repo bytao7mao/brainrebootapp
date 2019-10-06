@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -12,8 +14,11 @@ import android.preference.PreferenceManager;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import com.anupcowkur.herebedragons.SideEffect;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -23,6 +28,8 @@ import java.util.Calendar;
 import java.util.Objects;
 import java.util.Random;
 import java.util.TimeZone;
+
+import butterknife.BindView;
 
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
@@ -43,6 +50,9 @@ public class SplashActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
+    //Views
+    @BindView(android.R.id.content) View parentLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,20 +68,7 @@ public class SplashActivity extends AppCompatActivity {
             editor.putInt(COUNTER, c);
             editor.apply();
         }
-
-        Random random = new Random();
-//        if (isOnline()) {
-//            requestDataById(random.nextInt(90));
-//        }
         checkActivityOnlineAndGetData();
-
-//        mHandler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                finish();
-//                a = 0;
-//            }
-//        }, a);
     }//[END] ON CREATE
 
     @Override
@@ -88,30 +85,29 @@ public class SplashActivity extends AppCompatActivity {
 
     @SideEffect
     private void checkActivityOnlineAndGetData() {
-        int c = 0;
-        if (isOnline()) {
-            try {
+        try {
+            int counter = 0;
+            if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
-                    c = preferences.getInt(COUNTER, 0);
+                    counter = preferences.getInt(COUNTER, 0);
                 }
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-            if (c == 0) {
-                requestDataById(1);
+                if (counter == 0) {
+                    requestDataById(1);
+                } else {
+                    requestDataById(counter);
+                }
+                //requestDataById(DAY_OF_PRESENT);
             } else {
-                requestDataById(c);
+//                errorText.setVisibility(View.VISIBLE);
+//                tipofthedayTxtView.setText(R.string.error_fourtyfour);
+                Snackbar snackbar;
+                snackbar = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
+                View snackBarView = snackbar.getView();
+                snackBarView.setBackgroundColor(Color.RED);
+                snackbar.show();
             }
-//            requestDataById(DAY_OF_PRESENT);
-        } else {
-//            TODO:
-//            errorText.setVisibility(View.VISIBLE);
-//            tipofthedayTxtViewId.setText("ERROR 404");
-//            Snackbar snackbar;
-//            snackbar = Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG);
-//            View snackBarView = snackbar.getView();
-//            snackBarView.setBackgroundColor(Color.RED);
-//            snackbar.show();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
@@ -148,7 +144,16 @@ public class SplashActivity extends AppCompatActivity {
                 assert content != null;
                 JsonElement rootNode = parser.parse(content);
                 JsonObject details = rootNode.getAsJsonObject();
-                JsonElement nameNode = details.get("name");
+                JsonElement nameNode;
+                //Log.d(TAGoncreate, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
+                //get initials like: ro
+                String lang = Resources.getSystem().getConfiguration().locale.getLanguage();
+                if (lang.equalsIgnoreCase("ro")) {
+                    nameNode = details.get("nameRO");
+                } else {
+                    nameNode = details.get("name");
+                }
+//                JsonElement nameNode = details.get("name");
                 return nameNode.getAsString();
             } catch (Exception e) {
                 e.printStackTrace();

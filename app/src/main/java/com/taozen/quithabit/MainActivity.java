@@ -20,13 +20,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
+import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -46,24 +41,31 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.UiThread;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+
 import com.anupcowkur.herebedragons.SideEffect;
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog;
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
-import com.taozen.quithabit.cardActivities.AchievmentsActivity;
-import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.about.AboutActivity;
+import com.taozen.quithabit.cardActivities.AchievmentsActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
+import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.notif.MyReceiver;
 import com.taozen.quithabit.utils.MyHttpCoreAndroid;
-import com.taozen.quithabit.utils.MyHttpManager;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -72,6 +74,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -81,6 +84,7 @@ import butterknife.ButterKnife;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CHALLENGES_STRING;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKED;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.DAYOFPRESENT;
@@ -88,7 +92,6 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.HOUR_OF_FIR
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINED;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
-import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
 public class MainActivity extends AppCompatActivity {
@@ -105,15 +108,8 @@ public class MainActivity extends AppCompatActivity {
     private List<MainActivity.MyAsyncTask> tasks;
     private Timer timer;
     Float lifeRegained;
-//    private int lifeRegainedInteger;
-    //dialogs for fabs - messages
-    private String normalMessageForDialog = "\"Did you abstained to smoke today ?\"";
-    private String moreThanOneDayPassedMessageForDialog = "Did you abstained to smoke in the last days ?";
-    private String firstMessageDialog = "Hello, this is your first day!\n" +
-            "Since you're here " +
-            "it means that you made the " +
-            "first step in order to get " +
-            "rid of your habit";
+
+    ArrayList<String> quotesForPassingTheDayList = new ArrayList<>();
 
     private int cigarettesPerDay;
 
@@ -235,24 +231,39 @@ public class MainActivity extends AppCompatActivity {
 
     MainActivity.MyAsyncTask task;
 
+    private String generateQuoteForPassingTheDay() {
+        Random random = new Random();
+        quotesForPassingTheDayList.add(getString(R.string.pass_one));
+        quotesForPassingTheDayList.add(getString(R.string.pass_two));
+        quotesForPassingTheDayList.add(getString(R.string.pass_three));
+        quotesForPassingTheDayList.add(getString(R.string.pass_four));
+        quotesForPassingTheDayList.add(getString(R.string.pass_five));
+        quotesForPassingTheDayList.add(getString(R.string.pass_six));
+
+        return quotesForPassingTheDayList.get(random.nextInt(quotesForPassingTheDayList.size()));
+//        return quotesForPassingTheDayList.get(0);
+    }
+
     //OnCreate [START]
+    @UiThread
     @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
-        StringBuffer stringBuffer = new StringBuffer();
+//        StringBuffer stringBuffer = new StringBuffer();
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
 
         firstCheckForInitialCiggarettesPerDay();
         startFirstActivity();
+        //using API from splash
         Intent intent = getIntent();
         String name = intent.getStringExtra("data");
         tipofthedayTxtView.setText(name);
-        tipofthedayTxtView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//        tipofthedayTxtView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
         numberFormat = new DecimalFormat("#.##");
 
@@ -288,7 +299,6 @@ public class MainActivity extends AppCompatActivity {
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
         setTargetAfterCheckingCounter();
         long TempSavings = preferences.getLong(SAVINGS_FINAL, -100);
-        Log.d(TAGoncreate, stringBuffer.append(TempSavings).append(" TempSavings").append(" ciggs").append(cigarettesPerDay).toString());
         setTargetDays();
         firstCheckMax();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
@@ -313,15 +323,12 @@ public class MainActivity extends AppCompatActivity {
         //setMargin
         setMarginForProgress();
 
-        //check online state
-//        checkActivityOnline();
-
         if (preferences.contains("firstsave")){
             firstSave = preferences.getLong("firstsave",0);
             Log.d("taogenX", "firstsave: " + firstSave);
         } else {
             DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, 0);
-            ttfancyDialogForFirstTimeLaunch("WELCOME TO QUIT HABIT!", firstMessageDialog);
+            ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
             greenCondition();
             Log.d("taogenX", "firstsave: " + firstSave);
         }
@@ -435,7 +442,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ChallengeActivity.class);
                 startActivity(intent);
-                challs = "Tap to see your progress for your challenge!";
+                challs = getString(R.string.see_progress_challenge);
                 editor.putString(CHALLENGES_STRING, challs);
                 editor.apply();
             }
@@ -577,7 +584,6 @@ public class MainActivity extends AppCompatActivity {
     private void triggerPushNotification(int hourOfFirstLaunch) {
         Calendar alarmFor = Calendar.getInstance();
         alarmFor.set(Calendar.HOUR_OF_DAY, hourOfFirstLaunch);
-        Log.d("DAYZEN", " " + "hour of alarm" + hourOfFirstLaunch);
         alarmFor.set(Calendar.MINUTE, 1);
         alarmFor.set(Calendar.SECOND, 1);
         Intent MyIntent = new Intent(getApplicationContext(), MyReceiver.class);
@@ -594,15 +600,14 @@ public class MainActivity extends AppCompatActivity {
         //my personal method to save a value and keep it every time i launch on create :)
         if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
             HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, -1);
-            Log.d("TAOZEN1", "share prefs contains: firsthour = " + HOUR_OF_FIRSTLAUNCH);
         } else {
-            Log.d("TAOZEN1", "share prefs DOES NOT contains: firsthour");
             //recent refactor that works fine
             HOUR_OF_FIRSTLAUNCH = (calendar.get(Calendar.HOUR_OF_DAY)==0) ? 24 : calendar.get(Calendar.HOUR_OF_DAY);
             editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
             editor.apply();
+            //TODO: to implement later version
             strBuilder.append(String.format(getString(R.string.checkinStr), HOUR_OF_FIRSTLAUNCH));
-            strBuilder.append("\nWe will start tutorial now.");
+            strBuilder.append("\n").append(R.string.we_will_start_tutorial);
 //            showCustomDialogOnFirstLaunch("Welcome", strBuilder);
         }
     }
@@ -656,11 +661,13 @@ public class MainActivity extends AppCompatActivity {
 
     //dialog when user pass a day
     private void positiveDialogAfterPassDay() {
-        //dialog ------------
+        String dailyQuote = getResources().getString(R.string.daily_quote) + " \n\t" + generateQuoteForPassingTheDay()+"";
+        Log.d("QUOTE", " " + dailyQuote);
         new BottomDialog.Builder(this)
-                .setTitle("Awesome!")
-                .setContent("What can we improve? Your feedback is always welcome.")
-                .setPositiveText("OK")
+                .setTitle(R.string.awesome)
+                .setContent(dailyQuote)
+                .setPositiveText(R.string.OK)
+                .setCancelable(true)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
@@ -700,9 +707,9 @@ public class MainActivity extends AppCompatActivity {
     private void negativeDialogAfterRelapse() {
         //dialog ------------
         new BottomDialog.Builder(this)
-                .setTitle("It's ok to fail!")
-                .setContent("Don't waste your life! All you need is a little patience and persistance.")
-                .setPositiveText("OK")
+                .setTitle(getString(R.string.ok_to_fail))
+                .setContent(getString(R.string.fail_content))
+                .setPositiveText(R.string.OK)
                 .setCancelable(false)
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
@@ -810,18 +817,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setTodayToClickDay();
                 String messageForDialog;
-                messageForDialog = higherThanOne ? moreThanOneDayPassedMessageForDialog : normalMessageForDialog;
+                messageForDialog = higherThanOne ? getString(R.string.abstained_last_days) : getString(R.string.abstained_today);
                 //between 1 and 29
                 if (counter == 0) {
-                    ttfancyDialogForFirstTimeLaunch("WELCOME TO QUIT HABIT!", firstMessageDialog);
+                    ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
                 } else if (counter > 0 && counter < 29) {
-                    normalFancyDialog("BEAT YOUR MILESTONE - 30 DAYS!", messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone_thirty), messageForDialog);
                     //between 29(to show up in 30) and 60
                 } else if (counter > 28 && counter < 59) {
-                    normalFancyDialog("BEAT YOUR MILESTONE - 60 DAYS!", messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone_sixty), messageForDialog);
                     //between 59(to show up in 60) and 90
                 } else if (counter > 58 && counter < 91) {
-                    normalFancyDialog("BEAT YOUR MILESTONE - 90 DAYS!", messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone_ninety), messageForDialog);
                     //SHOW FANCY TOAST WITH CONGRATS
                 }//[END OF ELSE IFS DIALOGS]
                 fab.hide();
@@ -864,9 +871,9 @@ public class MainActivity extends AppCompatActivity {
         new FancyGifDialog.Builder(MainActivity.this)
                 .setTitle(title)
                 .setMessage(message)
-                .setNegativeBtnText("NO")
+                .setNegativeBtnText(getString(R.string.NO))
                 .setPositiveBtnBackground("#FF4081")
-                .setPositiveBtnText("YES")
+                .setPositiveBtnText(getString(R.string.YES))
                 .setNegativeBtnBackground("#FFA9A7A8")
                 .setGifResource(R.drawable.source)   //Pass your Gif here
                 .isCancellable(false)
@@ -926,10 +933,13 @@ public class MainActivity extends AppCompatActivity {
                         editor.putInt(COUNTER, counter);
                         int tempCigarettes = cigarettesPerDay * counter;
                         String tempusrCig = getString(R.string.cig_not_smoked);
-                        userCigaretesProgressTxt.setText(tempusrCig +" "+ tempCigarettes);
+                        String usrciggsprogs = tempusrCig + " " + tempCigarettes;
+                        userCigaretesProgressTxt.setText(usrciggsprogs);
                         editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-                        lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
-                        userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
+                        lifeRegained = (5f * (float) tempCigarettes) / 60f;
+                        String usrhrsprogrs = getString(R.string.life_r)
+                                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+                        userHoursProgressTxt.setText(usrhrsprogrs);
                         editor.putFloat(LIFEREGAINED, lifeRegained);
                         editor.putLong(SAVINGS_FINAL, savings);
                         editor.apply();
@@ -976,11 +986,14 @@ public class MainActivity extends AppCompatActivity {
                         editor.putInt(COUNTER, counter);
                         //new edit
                         int tempCigarettes = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
-                        String temCigs = getString(R.string.cig_not_smoked);
-                        userCigaretesProgressTxt.setText(temCigs + " " + tempCigarettes);
+                        String tempusrCig = getString(R.string.cig_not_smoked);
+                        String usrciggsprogs = tempusrCig + " " + tempCigarettes;
+                        userCigaretesProgressTxt.setText(usrciggsprogs);
                         editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-                        lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
-                        userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
+                        lifeRegained = (5f * (float) tempCigarettes) / 60f;
+                        String usrhrsprogrs = getString(R.string.life_r)
+                                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+                        userHoursProgressTxt.setText(usrhrsprogrs);
                         editor.putFloat(LIFEREGAINED, lifeRegained);
                         editor.apply();
                         checkActivityOnline();
@@ -1067,10 +1080,13 @@ public class MainActivity extends AppCompatActivity {
                         editor.putInt(COUNTER, counter);
                         int tempCigarettes = cigarettesPerDay * counter;
                         String tempusrCig = getString(R.string.cig_not_smoked);
-                        userCigaretesProgressTxt.setText(tempusrCig +" "+ tempCigarettes);
+                        String usrciggsprogs = tempusrCig + " " + tempCigarettes;
+                        userCigaretesProgressTxt.setText(usrciggsprogs);
                         editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-                        lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
-                        userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
+                        lifeRegained = (5f * (float) tempCigarettes) / 60f;
+                        String usrhrsprogrs = getString(R.string.life_r)
+                                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+                        userHoursProgressTxt.setText(usrhrsprogrs);
                         editor.putFloat(LIFEREGAINED, lifeRegained);
                         editor.putLong(SAVINGS_FINAL, savings);
                         editor.apply();
@@ -1104,7 +1120,7 @@ public class MainActivity extends AppCompatActivity {
         subTextNonSmoker.setAlpha(0.7f);
     }
 
-    private void resetWholeProgress(){
+    private void resetWholeProgress() {
         estabilishHighestRecordForCounter();
         editor.apply();
         i = 1;
@@ -1129,11 +1145,14 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt(COUNTER, counter);
         //new edit
         int tempCigarettes = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
-        String tempCigs = getString(R.string.cig_not_smoked);
-        userCigaretesProgressTxt.setText(tempCigs + " " + tempCigarettes);
+        String tempusrCig = getString(R.string.cig_not_smoked);
+        String usrciggsprogs = tempusrCig + " " + tempCigarettes;
+        userCigaretesProgressTxt.setText(usrciggsprogs);
         editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-        lifeRegained = Float.valueOf((5f * Float.valueOf(tempCigarettes)) / 60f);
-        userHoursProgressTxt.setText("Life regained: " + numberFormat.format(lifeRegained) + " hours");
+        lifeRegained = (5f * (float) tempCigarettes) / 60f;
+        String usrhrsprogrs = getString(R.string.life_r)
+                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+        userHoursProgressTxt.setText(usrhrsprogrs);
         editor.putFloat(LIFEREGAINED, lifeRegained);
         editor.apply();
         checkActivityOnline();
@@ -1246,7 +1265,7 @@ public class MainActivity extends AppCompatActivity {
             setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit),
                     R.string.target_string, targetTxtViewId);
             if (!preferences.contains(CHALLENGES_STRING)) {
-                challs = "Tap to start a challenge!";
+                challs = getString(R.string.tap_to_start_challenge);
 //                challengeTextViewSubtitle.setText(challs);
             } else {
                 challs = preferences.getString(CHALLENGES_STRING, challs);
@@ -1338,22 +1357,23 @@ public class MainActivity extends AppCompatActivity {
         }
         //temporarily integer
         int hoursTillCheckIn;
-        Log.d("TAOZEN10", "hours of now: " + HOUR_OF_DAYLIGHT + "\nhour of firstlaunch: "
-                + HOUR_OF_FIRSTLAUNCH + "\nbutton clicked today ? " + buttonClickedToday);
         //if only one day passed
         if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
             if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
                 hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
-                subTextNonSmoker.setText("Check-in: " + hoursTillCheckIn + " hours");
+                String checkInTextTemp = getResources().getString(R.string.check_in) +
+                        ": " + hoursTillCheckIn + " "
+                        + getResources().getString(R.string.hours);
+                subTextNonSmoker.setText(checkInTextTemp);
             //if user passed one day && hour is passed or equal to hour of first launch
             } else {
-                subTextNonSmoker.setText(R.string.check_in_now);
+                subTextNonSmoker.setText(getResources().getString(R.string.check_in_now));
             }
         //if more than one day passed
         } else if (DAY_OF_PRESENT >= DAY_OF_CLICK+2) {
-            subTextNonSmoker.setText(R.string.check_in_now);
+            subTextNonSmoker.setText(getResources().getString(R.string.check_in_now));
         } else {
-        subTextNonSmoker.setText(R.string.check_in_tommorow);
+        subTextNonSmoker.setText(getResources().getString(R.string.check_in_tomorrow));
         }
     }
 
@@ -1380,11 +1400,9 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -3);}
             if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -3); }
             if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -3); }
-//            if (preferences.contains(CLICKED)){buttonClickedToday = preferences.getBoolean(CLICKED, false);}
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-//        checkActivityOnline();
         updateButton();
         setImagesForAchievementCard();
         runningInBackground();
@@ -1461,7 +1479,7 @@ public class MainActivity extends AppCompatActivity {
                 + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
                 " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
         if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
-            HOUR_OF_DAYLIGHT=(HOUR_OF_FIRSTLAUNCH==24)?24:HOUR_OF_DAYLIGHT;
+            HOUR_OF_DAYLIGHT = (HOUR_OF_FIRSTLAUNCH==24 || HOUR_OF_FIRSTLAUNCH==23) && (HOUR_OF_DAYLIGHT==0) ? 24 : HOUR_OF_DAYLIGHT;
             if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
                 fab.show();
                 editor.putBoolean("saveimg", true);
@@ -1699,43 +1717,41 @@ public class MainActivity extends AppCompatActivity {
                 Objects.requireNonNull(connManager).getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }//isOnline[END]
+
+    //i am not using it for now (using the version from splash)
     private void requestDataById(int id) {
         task = new MainActivity.MyAsyncTask();
         task.execute(MainActivity.HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS + "/" + id);
     }
     @SideEffect
     private void checkActivityOnline() {
-        if (isOnline()) {
-            try {
+        try {
+            if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
                     counter = preferences.getInt(COUNTER, 0);
                 }
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-            if (counter == 0) {
-                requestDataById(1);
+                if (counter == 0) {
+                    requestDataById(1);
+                } else {
+                    requestDataById(counter);
+                }
+                //requestDataById(DAY_OF_PRESENT);
             } else {
-                requestDataById(counter);
+                errorText.setVisibility(View.VISIBLE);
+                tipofthedayTxtView.setText(R.string.error_fourtyfour);
+                Snackbar snackbar;
+                snackbar = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
+                View snackBarView = snackbar.getView();
+                snackBarView.setBackgroundColor(Color.RED);
+                snackbar.show();
             }
-//            requestDataById(DAY_OF_PRESENT);
-        } else {
-            errorText.setVisibility(View.VISIBLE);
-            tipofthedayTxtView.setText("ERROR 404");
-            Snackbar snackbar;
-            snackbar = Snackbar.make(parentLayout, "NO INTERNET CONNECTION!", Snackbar.LENGTH_LONG);
-            View snackBarView = snackbar.getView();
-            snackBarView.setBackgroundColor(Color.RED);
-            snackbar.show();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
     private void updateDisplayString(String message) {
-        tipofthedayTxtView.setText(new StringBuilder()
-                        .append(message)
-                        .append("\n")
-                        .toString()
-        );
+        tipofthedayTxtView.setText(new StringBuilder().append(message).append("\n").toString());
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -1769,7 +1785,17 @@ public class MainActivity extends AppCompatActivity {
                 assert content != null;
                 JsonElement rootNode = parser.parse(content);
                 JsonObject details = rootNode.getAsJsonObject();
-                JsonElement nameNode = details.get("name");
+                JsonElement nameNode;
+                //Log.d(TAGoncreate, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
+                //get initials like: ro
+                String lang = Resources.getSystem().getConfiguration().locale.getLanguage();
+                Log.d(TAGoncreate, "lang is: " + lang);
+                if (lang.equalsIgnoreCase("ro")) {
+                    nameNode = details.get("nameRO");
+                } else {
+                    nameNode = details.get("name");
+                }
+//                JsonElement nameNode = details.get("name");
                 return nameNode.getAsString();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1789,7 +1815,7 @@ public class MainActivity extends AppCompatActivity {
                 counterText.setVisibility(View.VISIBLE);
             }
             if (result == null) {
-                Toast.makeText(MainActivity.this, "Can't connect to web service",
+                Toast.makeText(MainActivity.this, R.string.cant_connect,
                         Toast.LENGTH_LONG).show();
             }
         }//onPostExecute[END]
@@ -2022,12 +2048,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void dialogForReset(){
         new BottomDialog.Builder(this)
-                .setTitle("Reset your whole progress")
-                .setContent("Are you sure ?")
-                .setPositiveText("YES")
+                .setTitle(R.string.reset_whole_progress)
+                .setContent(R.string.are_you_sure)
+                .setPositiveText(R.string.YES)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
-                .setNegativeText("NO")
+                .setNegativeText(R.string.NO)
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(BottomDialog dialog) {

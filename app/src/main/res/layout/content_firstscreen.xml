@@ -12,7 +12,7 @@
     <!--style="@style/Widget.AppCompat.EditText"-->
 
     <TextView
-        android:id="@+id/fsTitleId"
+        android:id="@+id/tvTitleId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/break_your_habit"
@@ -24,28 +24,16 @@
         android:alpha="0.8"
         android:textSize="28sp" />
 
-    <!--    <androidx.appcompat.widget.AppCompatEditText-->
-    <!--        android:id="@+id/edtTxtForCiggarettedId"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="@string/how_many_cigarettes_per_day"-->
-    <!--        android:gravity="center"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:layout_below="@id/fsTitleId"-->
-    <!--        android:alpha="0.7"-->
-    <!--        android:textSize="14sp"-->
-    <!--        android:backgroundTint="@color/greenColorLed"/>-->
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtTxtLayoutForCiggsId"
-        android:layout_width="270dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="@color/grey_50"
+        android:background="@color/grey_10"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         app:hintEnabled="true"
         android:alpha="0.7"
-        android:layout_below="@id/fsTitleId">
+        android:layout_below="@id/tvTitleId">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtTxtForCiggarettedId"
@@ -55,25 +43,14 @@
             android:layout_centerHorizontal="true"
             android:hint="@string/how_many_cigarettes_per_day"
             android:backgroundTint="@color/greenColorLed"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--    <androidx.appcompat.widget.AppCompatEditText-->
-    <!--        android:id="@+id/edtTxtForSavingsId"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="@string/how_much_do_you_spend_per_day"-->
-    <!--        android:gravity="center"-->
-    <!--        android:layout_centerHorizontal="true"-->
-    <!--        android:layout_below="@id/edtTxtForCiggarettedId"-->
-    <!--        android:textSize="14sp"-->
-    <!--        android:alpha="0.7"-->
-    <!--        android:backgroundTint="@color/greenColorLed"/>-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtTxtForSavingsId"
-        android:layout_width="270dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="@color/grey_50"
+        android:background="@color/grey_10"
         android:layout_centerHorizontal="true"
         app:hintEnabled="true"
         android:alpha="0.7"
@@ -87,9 +64,8 @@
             android:layout_centerHorizontal="true"
             android:hint="@string/how_much_do_you_spend_per_day"
             android:backgroundTint="@color/greenColorLed"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <Button
         android:id="@+id/confirmBtn"
@@ -102,11 +78,12 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/edtTxtForSavingsId"
         android:layout_marginTop="50dp"
+        android:textColor="@color/white"
         android:layout_marginBottom="10dp"
         android:gravity="center" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvThanksId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -118,7 +95,7 @@
         android:text="@string/thanks_for_downloading_this_app" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvAllRightsId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

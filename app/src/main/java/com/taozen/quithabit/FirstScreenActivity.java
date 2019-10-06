@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,19 +39,18 @@ import butterknife.ButterKnife;
 import butterknife.Optional;
 
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
-import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
 public class FirstScreenActivity extends AppCompatActivity {
-    @BindView(R.id.textView) TextView textView;
-    @BindView(R.id.textView3) TextView textView3;
-    @BindView(R.id.fsTitleId) TextView fsTitleId;
-    @BindView(R.id.edtTxtForSavingsId) TextInputLayout editTxtForSavings;
-    @BindView(R.id.editText) TextInputEditText editText;
-    @BindView(R.id.edtTxtLayoutForCiggsId) TextInputLayout editTxtLayoutCiggs;
-    @BindView(R.id.edtTxtForCiggarettedId) TextInputEditText editTxtForCiggs;
-    @BindView(R.id.confirmBtn) Button confirmationButton;
+    @BindView(R.id.tvThanksId) TextView tvThanks;
+    @BindView(R.id.tvAllRightsId) TextView tvAllRights;
+    @BindView(R.id.tvTitleId) TextView tvTitleWelcome;
+    @BindView(R.id.edtTxtForSavingsId) TextInputLayout etLayForSumPerDay;
+    @BindView(R.id.editText) TextInputEditText etForSumPerDay;
+    @BindView(R.id.edtTxtLayoutForCiggsId) TextInputLayout etLayForCiggaretesPerDay;
+    @BindView(R.id.edtTxtForCiggarettedId) TextInputEditText etForCiggaretesPerDay;
+    @BindView(R.id.confirmBtn) Button btnConfirm;
 
 
     //firstStart bool
@@ -106,55 +104,77 @@ public class FirstScreenActivity extends AppCompatActivity {
         TextView mTitle =  findViewById(R.id.toolbar_subtitle);
         mTitle.setTypeface(montSerratSemiBoldTypeface);
         setSupportActionBar(toolbar);
-//        toolbar.setLogo(R.drawable.logowalk);
+
+        //for future if needed
+        //toolbar.setLogo(R.drawable.logowalk);
 
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(FirstScreenActivity.this);
         editor = preferences.edit();
 
-        //set ciggs
-        fsTitleId.setTypeface(montSerratSemiBoldTypeface);
-        textView3.setTypeface(montSerratLightTypeface);
-        textView.setTypeface(montSerratItallicTypeface);
-        editTxtForSavings.setTypeface(montSerratSemiBoldTypeface);
-        editTxtLayoutCiggs.setTypeface(montSerratSemiBoldTypeface);
-        confirmationButton.setTypeface(montSerratSemiBoldTypeface);
+        //set fonts
+        tvTitleWelcome.setTypeface(montSerratSemiBoldTypeface);
+        tvAllRights.setTypeface(montSerratLightTypeface);
+        tvThanks.setTypeface(montSerratItallicTypeface);
+        etLayForSumPerDay.setTypeface(montSerratSemiBoldTypeface);
+        etLayForCiggaretesPerDay.setTypeface(montSerratSemiBoldTypeface);
+        btnConfirm.setTypeface(montSerratSemiBoldTypeface);
 
-        assert editTxtForCiggs != null;
-        editTxtForCiggs.setInputType(InputType.TYPE_CLASS_NUMBER);
-        assert editTxtForSavings != null;
-        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        assert etForCiggaretesPerDay != null;
+        etForCiggaretesPerDay.setInputType(InputType.TYPE_CLASS_NUMBER);
+        assert etLayForSumPerDay != null;
+        etForSumPerDay.setInputType(InputType.TYPE_CLASS_NUMBER);
+        String howMuch = getString(R.string.how_much_do_you_spend_per_day) + " (" + currency +")";
+        etLayForSumPerDay.setHint(howMuch);
 
-        editTxtForSavings.setHint("How much do you spend ? (" + currency +")");
-
-        editText.addTextChangedListener(new TextWatcher() {
+        etForSumPerDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                editText.append(currency);
+                etLayForSumPerDay.setHelperText(
+                        etForSumPerDay.getText()
+                                + currency
+                                + " "
+                                + getResources().getString(R.string.perdaysimple));
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                editTxtForSavings.append(currency);
+            }
+        });
+        etForCiggaretesPerDay.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                etLayForCiggaretesPerDay.setHelperText(
+                        etForCiggaretesPerDay.getText()
+                                + " " + getResources().getString(R.string.cigarettes)
+                                + " " + getResources().getString(R.string.perdaysimple));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 
         //set cigg
-        confirmationButton.setOnClickListener(new View.OnClickListener() {
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setCiggsPerDay();
                 setSavings();
                 TransitionManager.beginDelayedTransition(transitionsContainer,
                         new ChangeBounds().setPathMotion(new ArcMotion()).setDuration(800));
-                if (go && go2){
+                if (go && go2) {
                     visible = !visible;
-                    editTxtForSavings.setVisibility(visible ? View.VISIBLE : View.GONE);
-                    editTxtForCiggs.setVisibility(visible ? View.VISIBLE : View.GONE);
+                    etLayForSumPerDay.setVisibility(visible ? View.VISIBLE : View.GONE);
+                    etForCiggaretesPerDay.setVisibility(visible ? View.VISIBLE : View.GONE);
                     Intent i = new Intent(FirstScreenActivity.this, MainActivity.class);
 //                    TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 //                    currency = Currency.getInstance(new Locale("",
@@ -174,7 +194,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
 
     private void firstCheckForInitialCiggarettesPerDay() {
-        if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
+        if (!preferences.contains(INITIAL_CIGG_PER_DAY)) {
             isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
             //[calendar area]
             calendarForProgress = Calendar.getInstance();
@@ -196,15 +216,15 @@ public class FirstScreenActivity extends AppCompatActivity {
 
     @Optional
     private void setSavings() {
-        Editable editM = editText.getText();
-        nameSav = editText.getText().toString();
+        Editable editM = etForSumPerDay.getText();
+        nameSav = etForSumPerDay.getText().toString();
         if (TextUtils.isEmpty(nameSav)) {
             go = false;
-            editText.setError("Please input a sum");
+            etForSumPerDay.setError("Please input a sum");
             return;
         } else {
             if (go2){
-                confirmationButton.setEnabled(false);
+                btnConfirm.setEnabled(false);
             }
             go = true;
         }
@@ -216,15 +236,15 @@ public class FirstScreenActivity extends AppCompatActivity {
     }
     @Optional
     private void setCiggsPerDay() {
-        Editable editM = editTxtForCiggs.getText();
-        nameCigg = editTxtForCiggs.getText().toString();
+        Editable editM = etForCiggaretesPerDay.getText();
+        nameCigg = etForCiggaretesPerDay.getText().toString();
         if (TextUtils.isEmpty(nameCigg)) {
             go2 = false;
-            editTxtForCiggs.setError("Please input a cigg number");
+            etForCiggaretesPerDay.setError("Please input a cigg number");
             return;
         } else {
             if (go){
-                confirmationButton.setEnabled(false);
+                btnConfirm.setEnabled(false);
             }
             go2 = true;
         }

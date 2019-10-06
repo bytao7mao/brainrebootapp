@@ -45,7 +45,6 @@ public class AchievmentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievments);
-
         titles = getResources().getStringArray(R.array.titles_arr_for_ranks);
         TypedArray tArray = getResources().obtainTypedArray(
                 R.array.images_arr_for_ranks);
