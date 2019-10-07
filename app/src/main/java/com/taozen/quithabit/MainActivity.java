@@ -571,7 +571,7 @@ public class MainActivity extends AppCompatActivity {
             isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
             //[calendar area]
             calendarForProgress = Calendar.getInstance();
-            calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+            calendarForProgress.setTimeZone(TimeZone.getDefault());
             DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
             DAY_OF_CLICK = DAY_OF_PRESENT - 1;
             editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
@@ -776,7 +776,7 @@ public class MainActivity extends AppCompatActivity {
                     //fake first day of user to be day of present -1 to enable him/her to check in for the first time
                     //[calendar area]
                     calendarForProgress = Calendar.getInstance();
-                    calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                    calendarForProgress.setTimeZone(TimeZone.getDefault());
                     DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
                     DAY_OF_CLICK = DAY_OF_PRESENT - 1;
                     editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
@@ -856,7 +856,7 @@ public class MainActivity extends AppCompatActivity {
             }
             //[calendar area]
             calendarOnClick = Calendar.getInstance();
-            calendarOnClick.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+            calendarOnClick.setTimeZone(TimeZone.getDefault());
             DAY_OF_CLICK = calendarOnClick.get(Calendar.DAY_OF_YEAR);
             editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);
             editor.apply();
@@ -966,7 +966,7 @@ public class MainActivity extends AppCompatActivity {
                         i = 1;
                         //get time of relapse and put it into arraylist to send in logs activity
                         Calendar calendarOnClick2 = Calendar.getInstance();
-                        calendarOnClick2.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                        calendarOnClick2.setTimeZone(TimeZone.getDefault());
                         String tem = calendarOnClick2.getTime().toString() + " ole\n";
                         if (preferences.contains("arr")){
                             arr = tem + preferences.getString("arr", "no value");
@@ -1126,7 +1126,7 @@ public class MainActivity extends AppCompatActivity {
         i = 1;
         //get time of relapse and put it into arraylist to send in logs activity
         Calendar calendarOnClick2 = Calendar.getInstance();
-        calendarOnClick2.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+        calendarOnClick2.setTimeZone(TimeZone.getDefault());
         String tem = calendarOnClick2.getTime().toString() + " ole\n";
         if (preferences.contains("arr")){
             arr = tem + preferences.getString("arr", "no value");
@@ -1323,7 +1323,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("INTROTAO", "value for boolean clicked = " + buttonClickedToday);
             //[calendar area]
             calendarForProgress = Calendar.getInstance();
-            calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+            calendarForProgress.setTimeZone(TimeZone.getDefault());
             DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
             //for later usage
             editor.putInt(DAYOFPRESENT, DAY_OF_PRESENT);
