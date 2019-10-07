@@ -472,87 +472,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
 
-        //milestone dialog ------------
-//        AlertDialog.Builder milestoneAlert = new AlertDialog.Builder(this);
-//        final EditText editTextForMilestone = new EditText(MainActivity.this);
-//        milestoneAlert.setMessage("Set your milestone ?");
-//        milestoneAlert.setTitle("Milestone!");
-//        milestoneAlert.setView(editTextForMilestone);
-//        milestoneAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int whichButton) {
-//                //What ever you want to do with the value
-////                Editable milestone = editTextForMilestone.getText();
-//                String getMilestone = editTextForMilestone.getText().toString();
-//                userMaxCount = Integer.parseInt(getMilestone);
-//
-//            }
-//        });
-//        milestoneAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int whichButton) {
-//                //do nothing
-//            }
-//        });
-//        milestoneAlert.show();
-
-        //choose your habit ------------
-//        AlertDialog.Builder habitAlert = new AlertDialog.Builder(this);
-//        final EditText editTextForChoosingHabit = new EditText(MainActivity.this);
-//        habitAlert.setMessage("Type your habit ?");
-//        habitAlert.setTitle("Habit!");
-//        habitAlert.setView(editTextForChoosingHabit);
-//        habitAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int whichButton) {
-//                //What ever you want to do with the value
-////                Editable habit = editTextForChoosingHabit.getText();
-//                habitString = editTextForChoosingHabit.getText().toString();
-//
-//            }
-//        });
-//        habitAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int whichButton) {
-//                //do nothing
-//            }
-//        });
-//        habitAlert.show();
-
-//        //dialog ------------
-//        new BottomDialog.Builder(this)
-//                .setTitle("Awesome!")
-//                .setContent("What can we improve? Your feedback is always welcome.")
-//                .setPositiveText("OK")
-//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-//                .setPositiveTextColorResource(android.R.color.white)
-//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-//                .onPositive(new BottomDialog.ButtonCallback() {
-//                    @Override
-//                    public void onClick(BottomDialog dialog) {
-//                        Log.d("BottomDialogs", "Do something!");
-//                    }
-//                }).show();
-        //fancy dialog gif ------------
-//        new FancyGifDialog.Builder(this)
-//                .setTitle("Granny eating chocolate dialog box")
-//                .setMessage("This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog.")
-//                .setNegativeBtnText("Cancel")
-//                .setPositiveBtnBackground("#FF4081")
-//                .setPositiveBtnText("Ok")
-//                .setNegativeBtnBackground("#FFA9A7A8")
-//                .setGifResource(R.drawable.braingif)   //Pass your Gif here
-//                .isCancellable(true)
-//                .OnPositiveClicked(new FancyGifDialogListener() {
-//                    @Override
-//                    public void OnClick() {
-//                        Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//                .OnNegativeClicked(new FancyGifDialogListener() {
-//                    @Override
-//                    public void OnClick() {
-//                        Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//                .build();
     }//[END OF ONCREATE]
 
     private void setTargetAfterCheckingCounter() {
@@ -682,28 +601,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).show();
     }
-//    //dialog when user pass a day
-//    private void showCustomDialogOnFirstLaunch(String title, StringBuilder content){
-//        //dialog ------------
-//        new BottomDialog.Builder(this)
-//                .setTitle(title)
-//                .setContent(content)
-//                .setPositiveText("OK")
-//                .setCancelable(false)
-//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-//                .setPositiveTextColorResource(android.R.color.white)
-//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-//                .onPositive(new BottomDialog.ButtonCallback() {
-//                    @Override
-//                    public void onClick(BottomDialog dialog) {
-//                        Log.d("BottomDialogs", "Do something!");
-//                        //intro activity check in a separate thread
-////                        startIntroActivity();
-////                        showDialogForSavingSum();
-//                    }
-//                }).show();
-//    }
+
     //dialog when user pass a day
     private void negativeDialogAfterRelapse() {
         //dialog ------------
@@ -719,44 +617,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).show();
     }
-
-//    @SideEffect
-//    private void startIntroActivity() {
-//        //intro
-//        //code for INTRO
-//        Thread threadForSlider = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-////                //  Create a new boolean and preference and set it to true
-////                Log.d("taozenD", "thread separat: " + Thread.currentThread().getName());
-////                if (preferences.contains("firstStart")) {
-////                    isFirstStart = preferences.getBoolean("firstStart", false);
-////                } else {
-////                    //on first launch this will trigger
-////                    isFirstStart = true;
-////                    editor.putBoolean("firstStart", false);
-////                    editor.apply();
-////                }
-////                //  If the activity has never started before...
-//                if (isFirstStart) {
-////                    if (preferences.contains(COUNTER)) {
-////                        counter = preferences.getInt(COUNTER, -1);
-////                        editor.putInt(COUNTER, counter);
-////                        editor.apply();
-////                    }
-//                    //  Launch app intro
-//                    final Intent i = new Intent(MainActivity.this, IntroActivity.class);
-//                    runOnUiThread(new Runnable() {
-//                        @Override public void run() {
-//                            Log.d("taozenD", "thread din ui: " + Thread.currentThread().getName());
-//                            startActivity(i);
-//                        }
-//                    });
-//                }
-//            }
-//        });
-//        threadForSlider.start();
-//    }//end of INTRO
 
     @SideEffect
     private void startFirstActivity() {
@@ -823,15 +683,25 @@ public class MainActivity extends AppCompatActivity {
                 if (counter == 0) {
                     ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
                 } else if (counter > 0 && counter < 29) {
-                    normalFancyDialog(getString(R.string.beat_milestone_thirty), messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone, 30), messageForDialog);
                     //between 29(to show up in 30) and 60
                 } else if (counter > 28 && counter < 59) {
-                    normalFancyDialog(getString(R.string.beat_milestone_sixty), messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone, 60), messageForDialog);
                     //between 59(to show up in 60) and 90
-                } else if (counter > 58 && counter < 91) {
-                    normalFancyDialog(getString(R.string.beat_milestone_ninety), messageForDialog);
-                    //SHOW FANCY TOAST WITH CONGRATS
-                }//[END OF ELSE IFS DIALOGS]
+                } else if (counter > 58 && counter < 89) {
+                    normalFancyDialog(getString(R.string.beat_milestone, 90), messageForDialog);
+                    //between 89(to show up in 60) and 180
+                } else if (counter > 88 && counter < 179) {
+                    normalFancyDialog(getString(R.string.beat_milestone, 180), messageForDialog);
+                    //between 179(to show up in 60) and 270
+                } else if (counter > 178 && counter < 269) {
+                    normalFancyDialog(getString(R.string.beat_milestone, 270), messageForDialog);
+                    //between 279(to show up in 60) and 360
+                } else if (counter > 278 && counter < 361) {
+                    normalFancyDialog(getString(R.string.beat_milestone, 360), messageForDialog);
+                }
+                //SHOW FANCY TOAST WITH CONGRATS
+                //[END OF ELSE IFS DIALOGS]
                 fab.hide();
                 anim.cancel();
                 subTextNonSmoker.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
@@ -1249,7 +1119,19 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 textNonSmoker.setText(R.string.non_smoker_since);
             }
-            if (counter>=60) {
+            if (counter >= 270) {
+                userMaxCountForHabit = 360;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= 180) {
+                userMaxCountForHabit = 270;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= 90) {
+                userMaxCountForHabit = 180;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= 60) {
                 userMaxCountForHabit = 90;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
@@ -1340,9 +1222,6 @@ public class MainActivity extends AppCompatActivity {
             //we disable it by checking if buttonClickedToday is true
             updateButton();
             updateConditionGreenState();
-            //end of the year condition is when clickdate is higher than presentdate
-            //for example clickdate remain the day 365 and in the new year eve presentdate day is 1 january
-            endOfTheYearCondition();
             //green condition is when present day is higher than click day
             //in order to run our condition = to enable our button, our check in for user
             greenCondition();
@@ -1552,18 +1431,6 @@ public class MainActivity extends AppCompatActivity {
         animator.setDuration(1500);
         animator.start();
         i = 2;
-    }
-
-    @SideEffect
-    private void endOfTheYearCondition() {
-        if ((DAY_OF_CLICK >= 365 && DAY_OF_PRESENT > 0) && (!buttonClickedToday)) {
-            fab.show();
-            //instead of counter add dialog to ask user if he did his habit
-            //dialog and onclick counter++;
-            buttonClickedToday = preferences.getBoolean(CLICKED, false);
-            editor.putInt(COUNTER, counter);
-            editor.apply();
-        }
     }
 
     @SideEffect
@@ -2086,3 +1953,108 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }//[END OF MAIN CLASS]
+
+//milestone dialog ------------
+//        AlertDialog.Builder milestoneAlert = new AlertDialog.Builder(this);
+//        final EditText editTextForMilestone = new EditText(MainActivity.this);
+//        milestoneAlert.setMessage("Set your milestone ?");
+//        milestoneAlert.setTitle("Milestone!");
+//        milestoneAlert.setView(editTextForMilestone);
+//        milestoneAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                //What ever you want to do with the value
+////                Editable milestone = editTextForMilestone.getText();
+//                String getMilestone = editTextForMilestone.getText().toString();
+//                userMaxCount = Integer.parseInt(getMilestone);
+//
+//            }
+//        });
+//        milestoneAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                //do nothing
+//            }
+//        });
+//        milestoneAlert.show();
+
+//choose your habit ------------
+//        AlertDialog.Builder habitAlert = new AlertDialog.Builder(this);
+//        final EditText editTextForChoosingHabit = new EditText(MainActivity.this);
+//        habitAlert.setMessage("Type your habit ?");
+//        habitAlert.setTitle("Habit!");
+//        habitAlert.setView(editTextForChoosingHabit);
+//        habitAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                //What ever you want to do with the value
+////                Editable habit = editTextForChoosingHabit.getText();
+//                habitString = editTextForChoosingHabit.getText().toString();
+//
+//            }
+//        });
+//        habitAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                //do nothing
+//            }
+//        });
+//        habitAlert.show();
+
+//        //dialog ------------
+//        new BottomDialog.Builder(this)
+//                .setTitle("Awesome!")
+//                .setContent("What can we improve? Your feedback is always welcome.")
+//                .setPositiveText("OK")
+//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+//                .setPositiveTextColorResource(android.R.color.white)
+//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+//                .onPositive(new BottomDialog.ButtonCallback() {
+//                    @Override
+//                    public void onClick(BottomDialog dialog) {
+//                        Log.d("BottomDialogs", "Do something!");
+//                    }
+//                }).show();
+//fancy dialog gif ------------
+//        new FancyGifDialog.Builder(this)
+//                .setTitle("Granny eating chocolate dialog box")
+//                .setMessage("This is a granny eating chocolate dialog box. This library is used to help you easily create fancy gify dialog.")
+//                .setNegativeBtnText("Cancel")
+//                .setPositiveBtnBackground("#FF4081")
+//                .setPositiveBtnText("Ok")
+//                .setNegativeBtnBackground("#FFA9A7A8")
+//                .setGifResource(R.drawable.braingif)   //Pass your Gif here
+//                .isCancellable(true)
+//                .OnPositiveClicked(new FancyGifDialogListener() {
+//                    @Override
+//                    public void OnClick() {
+//                        Toast.makeText(MainActivity.this,"Ok",Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .OnNegativeClicked(new FancyGifDialogListener() {
+//                    @Override
+//                    public void OnClick() {
+//                        Toast.makeText(MainActivity.this,"Cancel",Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .build();
+
+//    //dialog when user pass a day
+//    private void showCustomDialogOnFirstLaunch(String title, StringBuilder content){
+//        //dialog ------------
+//        new BottomDialog.Builder(this)
+//                .setTitle(title)
+//                .setContent(content)
+//                .setPositiveText("OK")
+//                .setCancelable(false)
+//                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+//                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+//                .setPositiveTextColorResource(android.R.color.white)
+//                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+//                .onPositive(new BottomDialog.ButtonCallback() {
+//                    @Override
+//                    public void onClick(BottomDialog dialog) {
+//                        Log.d("BottomDialogs", "Do something!");
+//                        //intro activity check in a separate thread
+////                        startIntroActivity();
+////                        showDialogForSavingSum();
+//                    }
+//                }).show();
+//    }

@@ -56,9 +56,7 @@
     <string name="abstained_today">Te-ai abtinut de la fumat astazi ?</string>
     <string name="are_you_sure">Esti sigur/a ?</string>
     <string name="awesome">Super!</string>
-    <string name="beat_milestone_ninety">SA DEPASIM TARGETUL DE 90 ZILE!</string>
-    <string name="beat_milestone_sixty">SA DEPASIM TARGETUL DE 60 ZILE!</string>
-    <string name="beat_milestone_thirty">SA DEPASIM TARGETUL DE 30 ZILE!</string>
+    <string name="beat_milestone">SA DEPASIM TARGETUL DE %d ZILE!</string>
     <string name="cant_connect">Nu ne putem conecta la servicii</string>
     <string name="error_fourtyfour">EROARE 404</string>
     <string name="fail_content">Nu-ti pierde motivatia! Tot ce ai nevoie este putina rabdare si perseverenta.</string>

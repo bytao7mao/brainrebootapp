@@ -62,9 +62,7 @@
     <string name="life_r">Life regained:</string>
     <string name="hours">hours</string>
     <string name="welcome_to_quit_habit">WELCOME TO QUIT HABIT!</string>
-    <string name="beat_milestone_thirty">BEAT YOUR MILESTONE 30 DAYS!</string>
-    <string name="beat_milestone_sixty">BEAT YOUR MILESTONE 60 DAYS!</string>
-    <string name="beat_milestone_ninety">BEAT YOUR MILESTONE 90 DAYS!</string>
+    <string name="beat_milestone">BEAT YOUR MILESTONE %d DAYS!</string>
     <string name="ok_to_fail">It\'s ok to fail!</string>
     <string name="fail_content">Don\'t waste your life! All you need is a little patience and persistence.</string>
     <string name="awesome">Awesome!</string>
