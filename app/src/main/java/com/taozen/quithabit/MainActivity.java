@@ -569,6 +569,7 @@ public class MainActivity extends AppCompatActivity {
     private void firstCheckForInitialCiggarettesPerDay() {
         if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
             isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
+            editor.putInt("yearleap", calendarForProgress.get(Calendar.YEAR));
             //[calendar area]
             calendarForProgress = Calendar.getInstance();
             calendarForProgress.setTimeZone(TimeZone.getDefault());
@@ -1469,11 +1470,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private int returnLeapForClickYear() {
+        int x = 0;
+        if (isLeap(preferences.getInt("yearleap", 2019))) {
+            x = (DAY_OF_PRESENT == 1) ? 0 : (DAY_OF_PRESENT - 1);
+        }
+        return x;
+    }
+
     //[ENABLE BUTTON]
     @SideEffect
     private void greenCondition() {
         if (preferences.contains(COUNTER)) {
             counter = preferences.getInt(COUNTER, 0);
+        }
+        if (Calendar.getInstance().get(Calendar.YEAR) != preferences.getInt("yearleap", 2019)){
+            DAY_OF_CLICK = returnLeapForClickYear();
+            editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);editor.apply();
+            editor.putInt("yearleap", Calendar.getInstance().get(Calendar.YEAR));editor.apply();
         }
         Log.d("DAYZEN", "DAY OF CLICK " + DAY_OF_CLICK
                 + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
@@ -2065,14 +2079,5 @@ public class MainActivity extends AppCompatActivity {
     private boolean isLeap(int year){
         return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
     }
-    private int returnLeapForClickYear() {
-        if (isLeap(calendarForProgress.get(Calendar.YEAR))){
-            DAY_OF_PRESENT = 366 - DAY_OF_CLICK + DAY_OF_PRESENT;
-        } else {
-            DAY_OF_PRESENT = 365 - DAY_OF_CLICK + DAY_OF_PRESENT;
-        }
-        return DAY_OF_PRESENT;
-    }
-
 
 }//[END OF MAIN CLASS]
