@@ -2062,4 +2062,17 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
+    private boolean isLeap(int year){
+        return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
+    }
+    private int returnLeapForClickYear() {
+        if (isLeap(calendarForProgress.get(Calendar.YEAR))){
+            DAY_OF_PRESENT = 366 - DAY_OF_CLICK + DAY_OF_PRESENT;
+        } else {
+            DAY_OF_PRESENT = 365 - DAY_OF_CLICK + DAY_OF_PRESENT;
+        }
+        return DAY_OF_PRESENT;
+    }
+
+
 }//[END OF MAIN CLASS]
