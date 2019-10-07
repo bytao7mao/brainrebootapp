@@ -1471,11 +1471,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int returnLeapForClickYear() {
-        int x = 0;
-        if (isLeap(preferences.getInt("yearleap", 2019))) {
-            x = (DAY_OF_PRESENT == 1) ? 0 : (DAY_OF_PRESENT - 1);
-        }
+        int x = 366 - preferences.getInt(CLICKDAY_SP, -1000);
+//        if (isLeap(preferences.getInt("yearleap", 2019))) {
+//          return (DAY_OF_PRESENT == 1) ? 0 : (DAY_OF_PRESENT - 1);
+        Log.d("DAYZEN", "x: " + x + DAY_OF_PRESENT);
         return x;
+//        }
+//        return x;
     }
 
     //[ENABLE BUTTON]
@@ -1484,16 +1486,19 @@ public class MainActivity extends AppCompatActivity {
         if (preferences.contains(COUNTER)) {
             counter = preferences.getInt(COUNTER, 0);
         }
-        if (Calendar.getInstance().get(Calendar.YEAR) != preferences.getInt("yearleap", 2019)){
+        if (Calendar.getInstance().get(Calendar.YEAR) != preferences.getInt("yearleap", 2019)) {
             DAY_OF_CLICK = returnLeapForClickYear();
+            DAY_OF_CLICK *= -1;
             editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);editor.apply();
+            Log.d("DAYZEN", "DAY_OF_PRESENT: "  + DAY_OF_PRESENT);
             editor.putInt("yearleap", Calendar.getInstance().get(Calendar.YEAR));editor.apply();
         }
         Log.d("DAYZEN", "DAY OF CLICK " + DAY_OF_CLICK
                 + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
                 " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
         if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
-            HOUR_OF_DAYLIGHT = (HOUR_OF_FIRSTLAUNCH==24 || HOUR_OF_FIRSTLAUNCH==23) && (HOUR_OF_DAYLIGHT==0) ? 24 : HOUR_OF_DAYLIGHT;
+            HOUR_OF_DAYLIGHT = (HOUR_OF_FIRSTLAUNCH==24 || HOUR_OF_FIRSTLAUNCH==23)
+                    && (HOUR_OF_DAYLIGHT==0) ? 24 : HOUR_OF_DAYLIGHT;
             if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
                 fab.show();
                 editor.putBoolean("saveimg", true);
