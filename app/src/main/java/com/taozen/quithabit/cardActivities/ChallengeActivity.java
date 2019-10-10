@@ -21,16 +21,22 @@ import com.taozen.quithabit.R;
 import java.util.Locale;
 import java.util.Objects;
 
+import static com.taozen.quithabit.MainActivity.SIXTY;
+import static com.taozen.quithabit.MainActivity.ZERO;
+
 public class ChallengeActivity extends AppCompatActivity {
-    private static final long MILLIS_IN_MONTH = (24 * 60 * 60 * 1000L) * 30L;
-//    private static final long MILLIS_IN_WEEK = (24 * 60 * 60 * 1000L) * 7L; --> CORRECT
-//    private static final long MILLIS_IN_DAY = 24 * (60 * 60 * 1000L); --> CORRECT
-    private static final long MILLIS_IN_WEEK = (60 * 1000L) * 4L; // TEST 4minutes
-    private static final long MILLIS_IN_DAY = (60 * 1000L) * 3L;// TEST 3minutes
-    private static final long MILLIS_IN_HOUR = 60 * (60 * 1000L);
-    private static final long MILLIS_IN_TEN_MINUTES = (60 * 1000L) * 10L;
-    private static final long MILLIS_IN_MINUTE = 60 * 1000L;
-    private static final int COUNT_DOWN_INTERVAL = 1_000;
+    public static final int TWENTY_FOUR = 24;
+    private static final long MILLIS_IN_MONTH = (TWENTY_FOUR * SIXTY * SIXTY * 1000L) * 30L;
+//    private static final long MILLIS_IN_WEEK = (TWENTY_FOUR * SIXTY * SIXTY * 1000L) * 7L; --> CORRECT
+//    private static final long MILLIS_IN_DAY = TWENTY_FOUR * (SIXTY * SIXTY * 1000L); --> CORRECT
+    private static final long MILLIS_IN_WEEK = (SIXTY * 1000L) * 4L; // TEST 4minutes
+    private static final long MILLIS_IN_DAY = (SIXTY * 1000L) * 3L;// TEST 3minutes
+    private static final long MILLIS_IN_HOUR = SIXTY * (SIXTY * 1000L);
+    private static final long MILLIS_IN_TEN_MINUTES = (SIXTY * 1000L) * 10L;
+    private static final long MILLIS_IN_MINUTE = SIXTY * 1_000L;
+    public static final int ONE_THOUSAND = 1_000;
+    private static final int COUNT_DOWN_INTERVAL = ONE_THOUSAND;
+
 
     private long START_TIME_IN_MILLIS = MILLIS_IN_MINUTE;
     private TextView mTextViewCountDown;
@@ -98,8 +104,8 @@ public class ChallengeActivity extends AppCompatActivity {
         cardView.setCardElevation(0);
         //API 21 REQUIRES
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mButtonStartPause.setElevation(0);
-            mButtonReset.setElevation(0);
+            mButtonStartPause.setElevation(ZERO);
+            mButtonReset.setElevation(ZERO);
         }
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
@@ -197,13 +203,13 @@ public class ChallengeActivity extends AppCompatActivity {
     }
 
     private void updateCountDownText() {
-//        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-        int seconds = (int) (mTimeLeftInMillis / 1_000) % 60;
-        int months = (int) ((mTimeLeftInMillis / 1_000) / (86_400*7*4));
-        int weeks = (int) ((mTimeLeftInMillis / 1_000) / (86_400*7));
-        int days = (int) ((mTimeLeftInMillis / 1_000) / 86_400);
-        int hours = (int) ((mTimeLeftInMillis / 1_000) / 3_600);
-        int minutes = (int) ((mTimeLeftInMillis / 1_000) / 60) - hours * 60;
+//        int minutes = (int) (mTimeLeftInMillis / 1000) / SIXTY;
+        int seconds = (int) (mTimeLeftInMillis / ONE_THOUSAND) % SIXTY;
+        int months = (int) ((mTimeLeftInMillis / ONE_THOUSAND) / (86_400*7*4));
+        int weeks = (int) ((mTimeLeftInMillis / ONE_THOUSAND) / (86_400*7));
+        int days = (int) ((mTimeLeftInMillis / ONE_THOUSAND) / 86_400);
+        int hours = (int) ((mTimeLeftInMillis / ONE_THOUSAND) / 3_600);
+        int minutes = (int) ((mTimeLeftInMillis / ONE_THOUSAND) / SIXTY) - hours * SIXTY;
         String timeLeftFormatted;
         if (months == 1) {
 //            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = months\n\n%02d = weeks\n\n%02d = days\n\n%02d:%02d:%02d", months,

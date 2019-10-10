@@ -21,6 +21,11 @@ import com.taozen.quithabit.R;
 
 import java.util.Objects;
 
+import static com.taozen.quithabit.MainActivity.FIVE;
+import static com.taozen.quithabit.MainActivity.RANK;
+import static com.taozen.quithabit.MainActivity.TEN;
+import static com.taozen.quithabit.MainActivity.ZERO;
+
 public class AchievmentsActivity extends AppCompatActivity {
 
     public static void main(String[] args) { }
@@ -118,44 +123,44 @@ public class AchievmentsActivity extends AppCompatActivity {
             holder.tv.setText(titles[position]);
             holder.desc.setText(descriptions[position]);
 
-            if (preferences.contains("rank")){
-                if (Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("recruit")) {
-                    if (position > 0){
+            if (preferences.contains(RANK)){
+                if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit")) {
+                    if (position > ZERO){
                         holder.img.setAlpha(0.2f);
                     }
-                } else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("recruit II")) {
+                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit II")) {
                     if (position > 1){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("recruit III")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit III")) {
                     if (position > 3){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("silver")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver")) {
                     if (position > 4){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("silver II")) {
-                    if (position > 5){
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver II")) {
+                    if (position > FIVE){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("silver III")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver III")) {
                     if (position > 7){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold")) {
                     if (position > 8){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold I")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold I")) {
                     if (position > 9){
                         holder.img.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold II")) {
-                    if (position > 10){
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold II")) {
+                    if (position > TEN){
                         holder.img.setAlpha(0.2f);
                     }
-                } else if(Objects.requireNonNull(preferences.getString("rank", "")).equalsIgnoreCase("Gold III")) {
+                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold III")) {
                     if (position > 11){
                         holder.img.setAlpha(0.2f);
                     }

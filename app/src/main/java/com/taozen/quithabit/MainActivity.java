@@ -18,6 +18,7 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -39,7 +40,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -73,6 +73,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 import java.util.TimeZone;
@@ -97,6 +98,33 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FIN
 public class MainActivity extends AppCompatActivity implements SheetLayout.OnFabAnimationEndListener {
 
     private static final String TAG = MainActivity.class.getSimpleName() + "TAOMAO";
+    public static final int DEFAULT_NEGATIVE_VALUE = -1000;
+    public static final int LEAP_YEAR_DAYS = 366;
+    public static final int NORMAL_YEAR_DAYS = 365;
+    public static final int ONE_HUNDRED = 100;
+    public static final int SEVENTY_FIVE = 75;
+    public static final int FIVE = 5;
+    public static final int TEN = 10;
+    public static final int FIFTEEN = 15;
+    public static final int TWENTYFIVE = 25;
+    public static final int TWENTY = 20;
+    public static final int ZERO = 0;
+    public static final int THIRTY = 30;
+    public static final int FIFTY = 50;
+    public static final int SIXTY = 60;
+    public static final int FOURTEEN = 40;
+    public static final int EIGHTEEN = 80;
+    public static final String RO = "ro";
+    public static final String NAME = "name";
+    public static final String NAME_RO = "nameRO";
+    public static final String WE_FOUND_NO_CONTENT = "We found no content";
+    public static final String NO_QUOTES_AVAILABLE_IN_THIS_MOMENT = "No quotes available in this moment ...";
+    public static final int SIXTY_NINE = 69;
+    public static final int NINETY = 90;
+    public static final String HIGHEST = "highest";
+    public static final String RANK = "rank";
+    public static final String UNRANKED = "unranked";
+    public static final int TWO_HUNDRED = 200;
 
     String arr = "";
     long firstSave;
@@ -195,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             DAY_OF_PRESENT,
             HOUR_OF_DAYLIGHT,
             HOUR_OF_FIRSTLAUNCH;
-    //wil start from 30 to 60 to 90
+    //wil start from THIRTY to SIXTY to 90
     private int userMaxCountForHabit = -1;
     //default false
     private boolean buttonClickedToday;
@@ -240,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         quotesForPassingTheDayList.add(getString(R.string.pass_six));
 
         return quotesForPassingTheDayList.get(random.nextInt(quotesForPassingTheDayList.size()));
-//        return quotesForPassingTheDayList.get(0);
+//        return quotesForPassingTheDayList.get(ZERO);
     }
 
 
@@ -318,24 +346,24 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-//      getSupportActionBar().setElevation(0); //remove shadow - but now it is already removed in xml file
+//      getSupportActionBar().setElevation(ZERO); //remove shadow - but now it is already removed in xml file
 
-        progressCardView.setCardElevation(0);
-        savingsCardView.setCardElevation(0);
-        timeStampLogsCardview.setCardElevation(0);
-        cardViewMain.setCardElevation(0);
-        achievementRanksCard.setCardElevation(0);
-        challengeCardView.setCardElevation(0);
-        upperProgressPercentsCard.setCardElevation(0);
+        progressCardView.setCardElevation(ZERO);
+        savingsCardView.setCardElevation(ZERO);
+        timeStampLogsCardview.setCardElevation(ZERO);
+        cardViewMain.setCardElevation(ZERO);
+        achievementRanksCard.setCardElevation(ZERO);
+        challengeCardView.setCardElevation(ZERO);
+        upperProgressPercentsCard.setCardElevation(ZERO);
 
         //setMargin
         setMarginForProgress();
 
         if (preferences.contains("firstsave")){
-            firstSave = preferences.getLong("firstsave",0);
+            firstSave = preferences.getLong("firstsave",ZERO);
             Log.d("taogenX", "firstsave: " + firstSave);
         } else {
-            DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, 0);
+            DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, ZERO);
             ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
             greenCondition();
             Log.d("taogenX", "firstsave: " + firstSave);
@@ -343,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
         setTxtViewForUserMaxCountDaysOnStringVersion(
                 String.valueOf(userMaxCountForHabit),
-                R.string.target_string, targetTxtViewId);
+                targetTxtViewId);
 
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
         montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
@@ -477,12 +505,12 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     private void setTargetAfterCheckingCounter() {
         if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
         //test
-        if (!preferences.contains(COUNTER)){counterText.setText("0");
+        if (!preferences.contains(COUNTER)){counterText.setText("ZERO");
         } else {
             counterText.setText(String.valueOf(counter));
         }
-        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);}
-        if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, 0); }
+        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, ZERO);}
+        if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, ZERO); }
     }
 
     private void firstCheckForInitialCiggarettesPerDay() {
@@ -508,7 +536,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         ALARM_FOR.set(Calendar.SECOND, 1);
         final Intent MY_INTENT = new Intent(getApplicationContext(), MyReceiver.class);
         final PendingIntent PENDING_INTENT = PendingIntent.getBroadcast(getApplicationContext(),
-                0, MY_INTENT, PendingIntent.FLAG_CANCEL_CURRENT);
+                ZERO, MY_INTENT, PendingIntent.FLAG_CANCEL_CURRENT);
 
         final AlarmManager ALARM = (AlarmManager) getSystemService(ALARM_SERVICE);
         Objects.requireNonNull(ALARM)
@@ -522,7 +550,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, -1);
         } else {
             //recent refactor that works fine
-            HOUR_OF_FIRSTLAUNCH = (CALENDAR.get(Calendar.HOUR_OF_DAY)==0) ? 24 : CALENDAR.get(Calendar.HOUR_OF_DAY);
+            HOUR_OF_FIRSTLAUNCH = (CALENDAR.get(Calendar.HOUR_OF_DAY)==ZERO) ? 24 : CALENDAR.get(Calendar.HOUR_OF_DAY);
             editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
             editor.apply();
             //TODO: to implement later version
@@ -536,7 +564,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     private void setBackgroundForDaylightOrNight() {
         //change wallpaper during nighttime
         if (HOUR_OF_DAYLIGHT >= 21 || HOUR_OF_DAYLIGHT < 7) {
-//        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= 20) {
+//        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= TWENTY) {
             backgroundImgWall.setBackgroundResource(R.drawable.ppp);
             tipofthedayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
             counterText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
@@ -571,7 +599,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
     private void firstCheckMax() {
         if (userMaxCountForHabit == -1) {
-            userMaxCountForHabit = 30;
+            userMaxCountForHabit = THIRTY;
             editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
             editor.apply();
         } else {
@@ -684,23 +712,23 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 final String MESSAGE_FOR_DIALOG;
                 MESSAGE_FOR_DIALOG = higherThanOne ? getString(R.string.abstained_last_days) : getString(R.string.abstained_today);
                 //between 1 and 29
-                if (counter == 0) {
+                if (counter == ZERO) {
                     ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
-                } else if (counter > 0 && counter < 29) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 30), MESSAGE_FOR_DIALOG);
-                    //between 29(to show up in 30) and 60
+                } else if (counter > ZERO && counter < 29) {
+                    normalFancyDialog(getString(R.string.beat_milestone, THIRTY), MESSAGE_FOR_DIALOG);
+                    //between 29(to show up in THIRTY) and SIXTY
                 } else if (counter > 28 && counter < 59) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 60), MESSAGE_FOR_DIALOG);
-                    //between 59(to show up in 60) and 90
+                    normalFancyDialog(getString(R.string.beat_milestone, SIXTY), MESSAGE_FOR_DIALOG);
+                    //between 59(to show up in SIXTY) and 90
                 } else if (counter > 58 && counter < 89) {
                     normalFancyDialog(getString(R.string.beat_milestone, 90), MESSAGE_FOR_DIALOG);
-                    //between 89(to show up in 60) and 180
+                    //between 89(to show up in SIXTY) and 180
                 } else if (counter > 88 && counter < 179) {
                     normalFancyDialog(getString(R.string.beat_milestone, 180), MESSAGE_FOR_DIALOG);
-                    //between 179(to show up in 60) and 270
+                    //between 179(to show up in SIXTY) and 270
                 } else if (counter > 178 && counter < 269) {
                     normalFancyDialog(getString(R.string.beat_milestone, 270), MESSAGE_FOR_DIALOG);
-                    //between 279(to show up in 60) and 360
+                    //between 279(to show up in SIXTY) and 360
                 } else if (counter > 278 && counter < 361) {
                     normalFancyDialog(getString(R.string.beat_milestone, 360), MESSAGE_FOR_DIALOG);
                 }
@@ -722,7 +750,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             editor.putBoolean(CLICKED, buttonClickedToday);
             editor.apply();
             if (preferences.contains(INITIAL_CIGG_PER_DAY)){
-                cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
+                cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, ZERO);
             }
             if (!preferences.contains("taoz10")){
                 savings = 10;
@@ -759,7 +787,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                     @Override
                     public void OnClick() {
                         setCheckInText();
-                        if (counter == 0) {
+                        if (counter == ZERO) {
                             savings = preferences.getLong("taoz10", -10);
                         }
                         if (preferences.contains("diff") && higherThanOne){
@@ -767,9 +795,9 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             final int DIF = preferences.getInt("diff", -100);
                             counter = counter + DIF;
                             if (preferences.contains("tempLong")){
-                                longFromSavingActivity = preferences.getLong("tempLong", 0);
+                                longFromSavingActivity = preferences.getLong("tempLong", ZERO);
                             } else {
-                                longFromSavingActivity = 0;
+                                longFromSavingActivity = ZERO;
                             }
                             savings = longFromSavingActivity + (firstSave * counter);
                             editor.putLong(SAVINGS_FINAL, savings);
@@ -781,7 +809,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         } else {
                             if (counter == 1) {
                                 if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
                                     editor.putLong("firstsave", firstSave);
                                     editor.apply();
                                     Log.d("taogenX", "firstsave is: " + firstSave);
@@ -790,16 +818,16 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                             counter++;
                             if (counter == 1){
-                                savings = preferences.getLong(SAVINGS_FINAL, 0);
+                                savings = preferences.getLong(SAVINGS_FINAL, ZERO);
                                 editor.putLong(SAVINGS_FINAL, savings);
                                 if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
                                     editor.putLong("firstsave", firstSave);
                                     editor.apply();
                                     Log.d("taogenX", "firstsave is: " + firstSave);
                                 }
                             } else {
-                                savings = preferences.getLong(SAVINGS_FINAL, 0) + firstSave;
+                                savings = preferences.getLong(SAVINGS_FINAL, ZERO) + firstSave;
                                 Log.d("taogenX", "savings from TAO = " + savings);
                                 editor.putLong(SAVINGS_FINAL, savings);
                                 editor.apply();
@@ -833,7 +861,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         positiveDialogAfterPassDay();
                         //var 2 - custom toast after answer
 //                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-//                                    20, FancyToast.SUCCESS, true).show();
+//                                    TWENTY, FancyToast.SUCCESS, true).show();
                         estabilishHighestRecordForCounter();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
 
@@ -855,7 +883,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             }
                             editor.putString("arr", arr);
                             editor.putInt("highest", counter);
-                            Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
+                            Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", ZERO));
                             editor.apply();
                             counter = 1;
                             savings = firstSave;
@@ -909,17 +937,17 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         setTodayToClickDay();
                         firstCheckForInitialCiggarettesPerDay();
                         setCheckInText();
-                        if (counter == 0) {
+                        if (counter == ZERO) {
                             savings = preferences.getLong("taoz10", -10);
                         }
                         if (preferences.contains("diff") && higherThanOne) {
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            int DIF = preferences.getInt("diff", -100);
+                            final int DIF = preferences.getInt("diff", -100);
                             counter = counter + DIF;
                             if (preferences.contains("tempLong")){
-                                longFromSavingActivity = preferences.getLong("tempLong", 0);
+                                longFromSavingActivity = preferences.getLong("tempLong", ZERO);
                             } else {
-                                longFromSavingActivity = 0;
+                                longFromSavingActivity = ZERO;
                             }
                             savings = longFromSavingActivity + (firstSave * counter);
                             editor.putLong(SAVINGS_FINAL, savings);
@@ -931,7 +959,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         } else {
                             if (counter == 1) {
                                 if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
                                     editor.putLong("firstsave", firstSave);
                                     editor.apply();
                                     Log.d("taogenX", "firstsave is: " + firstSave);
@@ -940,16 +968,16 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                             counter++;
                             if (counter == 1){
-                                savings = preferences.getLong(SAVINGS_FINAL, 0);
+                                savings = preferences.getLong(SAVINGS_FINAL, ZERO);
                                 editor.putLong(SAVINGS_FINAL, savings);
                                 if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
                                     editor.putLong("firstsave", firstSave);
                                     editor.apply();
                                     Log.d("taogenX", "firstsave is: " + firstSave);
                                 }
                             } else {
-                                savings = preferences.getLong(SAVINGS_FINAL, 0) + firstSave;
+                                savings = preferences.getLong(SAVINGS_FINAL, ZERO) + firstSave;
                                 Log.d("taogenX", "savings from TAO = " + savings);
                                 editor.putLong(SAVINGS_FINAL, savings);
                                 editor.apply();
@@ -980,7 +1008,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         setTargetDays();
                         //var 2 - custom toast after answer
 //                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-//                                    20, FancyToast.SUCCESS, true).show();
+//                                    TWENTY, FancyToast.SUCCESS, true).show();
                         estabilishHighestRecordForCounter();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
 //                        sheetLayout.expandFab();
@@ -1018,7 +1046,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 arr = TEM;
             }
             editor.putString("arr", arr);
-            Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
+            Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", ZERO));
             editor.apply();
             counter = 1;
             savings = firstSave;
@@ -1028,7 +1056,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             //maybe
             editor.putInt(COUNTER, counter);
             //new edit
-            final int TEMP_CIGARETTES = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
+            final int TEMP_CIGARETTES = preferences.getInt(INITIAL_CIGG_PER_DAY, ZERO);
             final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
             final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
             userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
@@ -1056,7 +1084,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             if (preferences.contains("highest")){
                 //if editor cointains highest, we see which is higher, present counter or last counter;
                 final int FINAL_HIGHEST;
-                final int HIGHEST = preferences.getInt("highest",0);
+                final int HIGHEST = preferences.getInt("highest",ZERO);
                 if (counter >= HIGHEST) {
                     FINAL_HIGHEST = counter;
                 } else {
@@ -1065,7 +1093,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 editor.putInt("highest", FINAL_HIGHEST);
                 editor.apply();
             } else {
-                editor.putInt("highest", preferences.getInt(COUNTER, 0));
+                editor.putInt("highest", preferences.getInt(COUNTER, ZERO));
                 editor.apply();
             }
         } catch (final Exception e) {
@@ -1074,7 +1102,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     }
 
     private void setTxtViewForUserSavings(long SAVE_PER_DAY, String STRING,
-                                          int ANDROID_ID, TextView TEXTVIEW) {
+                                          TextView TEXTVIEW) {
         final DecimalFormat FORMATTER = new DecimalFormat("###,###,##0.00");
         final String VALUE_PER_YEAR_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
         final String TOTAL_SAVINGS_LOCAL = FORMATTER.format(Integer.parseInt(STRING));
@@ -1083,19 +1111,16 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         //target counter string
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder = stringBuilder.append(getString(R.string.perday)).append(" ").append(VALUE_PER_DAY_LOCAL).append(" ").append(CURRENCY_LOCAL).append("\n")
-                .append(getString(ANDROID_ID, TOTAL_SAVINGS_LOCAL)).append(" ").append(CURRENCY_LOCAL).append("\n")
+                .append(getString(R.string.savings, TOTAL_SAVINGS_LOCAL)).append(" ").append(CURRENCY_LOCAL).append("\n")
                 .append(getString(R.string.peryear)).append(" ").append(VALUE_PER_YEAR_LOCAL).append(" ").append(CURRENCY_LOCAL);
-//        String finalS = R.string.perday + " "  + valuePerDay + " "+currency + "\n"+
-//                getString(androiId, totalSavings) + " "+currency + "\nPer year: " + valuePerYear + " " + currency;
         TEXTVIEW.setText(stringBuilder);
     }
 
     private void setTxtViewForUserMaxCountDaysOnStringVersion(
             final String STRING,
-            final int ANDROID_ID,
             final TextView TEXTVIEW) {
         //target counter string
-        TEXTVIEW.setText(getString(ANDROID_ID, STRING));
+        TEXTVIEW.setText(getString(R.string.target_string, STRING));
     }
 
     private void savingsGetAndSetValue() {
@@ -1103,18 +1128,18 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             if (preferences.contains(SAVINGS_FINAL)) {
                 savings = preferences.getLong(SAVINGS_FINAL, 1);
             } else {
-                savings = 0;
+                savings = ZERO;
                 editor.putLong(SAVINGS_FINAL, savings);
                 editor.apply();
             }
             if (preferences.contains("firstsave")) {
-                firstSave = preferences.getLong("firstsave", 0);
+                firstSave = preferences.getLong("firstsave", ZERO);
                 Log.d("taogenX", "firstsave: " + firstSave);
             } else {
                 Log.d("taogenX", "firstsave: " + firstSave);
             }
             setTxtViewForUserSavings(firstSave,
-                    String.valueOf(savings), R.string.savings, moneySavingsTxt);
+                    String.valueOf(savings), moneySavingsTxt);
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -1125,9 +1150,9 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         try {
             //format string of MAX target txt view
             if (preferences.contains(COUNTER)) {
-                counter = preferences.getInt(COUNTER, 0);
+                counter = preferences.getInt(COUNTER, ZERO);
             }
-            if (counter == 0) {
+            if (counter == ZERO) {
                 textNonSmoker.setText(R.string.press_leaf);
             } else {
                 textNonSmoker.setText(R.string.non_smoker_since);
@@ -1144,22 +1169,22 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 userMaxCountForHabit = 180;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
-            } else if (counter >= 60) {
+            } else if (counter >= SIXTY) {
                 userMaxCountForHabit = 90;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
-            } else if (counter >= 30) {
-                userMaxCountForHabit = 60;
+            } else if (counter >= THIRTY) {
+                userMaxCountForHabit = SIXTY;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             } else {
-                userMaxCountForHabit = 30;
+                userMaxCountForHabit = THIRTY;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             }
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
             setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit),
-                    R.string.target_string, targetTxtViewId);
+                    targetTxtViewId);
             if (!preferences.contains(CHALLENGES_STRING)) {
                 challs = getString(R.string.tap_to_start_challenge);
 //                challengeTextViewSubtitle.setText(challs);
@@ -1214,7 +1239,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             }
             setImagesForAchievementCard();
             setImprovementProgressLevels();
-            DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, 0);
+            DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, ZERO);
             buttonClickedToday = preferences.getBoolean(CLICKED, false);
             Log.d("INTROTAO", "value for boolean clicked = " + buttonClickedToday);
             //[calendar area]
@@ -1247,7 +1272,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     private void setCheckInText() {
         try {
             if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
-                HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, 0);
+                HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, ZERO);
             }
             //if only one day passed
             if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
@@ -1366,12 +1391,12 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     }
 
     private int returnLeapForClickYear() {
-        final int defaultValue = -1000;
+        final int defaultValue = DEFAULT_NEGATIVE_VALUE;
         //using try catch due to preferences
         try {
             final int lastDayClick = preferences.getInt(CLICKDAY_SP, defaultValue);
             final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
-            final int x = isLeap(yearOfNow) ? 366 : 365;
+            final int x = isLeap(yearOfNow) ? LEAP_YEAR_DAYS : NORMAL_YEAR_DAYS;
             return x - lastDayClick;
         } catch (final Exception e) {
             e.printStackTrace();
@@ -1381,7 +1406,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     }
 
     private boolean isLeap(final int year){
-        return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
+        return ((year % 4 == ZERO && year % 100 != ZERO) || year % 400 == ZERO);
     }
 
     //[ENABLE BUTTON]
@@ -1389,7 +1414,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     private void greenCondition() {
         try {
             if (preferences.contains(COUNTER)) {
-                counter = preferences.getInt(COUNTER, 0);
+                counter = preferences.getInt(COUNTER, ZERO);
             }
             if (Calendar.getInstance().get(Calendar.YEAR) != preferences.getInt("yearleap", 2019)) {
                 DAY_OF_CLICK = returnLeapForClickYear();
@@ -1403,7 +1428,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                     " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
             if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
                 HOUR_OF_DAYLIGHT = (HOUR_OF_FIRSTLAUNCH==24 || HOUR_OF_FIRSTLAUNCH==23)
-                        && (HOUR_OF_DAYLIGHT==0) ? 24 : HOUR_OF_DAYLIGHT;
+                        && (HOUR_OF_DAYLIGHT==ZERO) ? 24 : HOUR_OF_DAYLIGHT;
                 if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
                     fab.show();
                     editor.putBoolean("saveimg", true);
@@ -1455,7 +1480,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
         // Android native animator
         final Animator ANIMATOR_LOCAL =
-                ViewAnimationUtils.createCircularReveal(MY_VIEW, CX, CY, 0, FINAL_RADIUS);
+                ViewAnimationUtils.createCircularReveal(MY_VIEW, CX, CY, ZERO, FINAL_RADIUS);
         ANIMATOR_LOCAL.setInterpolator(new AccelerateDecelerateInterpolator());
         ANIMATOR_LOCAL.setDuration(1500);
         ANIMATOR_LOCAL.start();
@@ -1466,84 +1491,84 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     private void setImprovementProgressLevels() {
         try {
             if (preferences.contains(COUNTER)) {
-                counter = preferences.getInt(COUNTER, 0);
+                counter = preferences.getInt(COUNTER, ZERO);
             }
             //energy levels
-            if (counter >= 0 && counter < 6) {
-                txtProgressForEnergyLevels.setText(5 + "%");
-                progressBarEnergyLevel.setProgress(5);
-            } else if (counter > 5 && counter < 10) {
-                txtProgressForEnergyLevels.setText(10 + "%");
-                progressBarEnergyLevel.setProgress(10);
-            } else if (counter > 9 && counter < 25) {
-                txtProgressForEnergyLevels.setText(25 + "%");
-                progressBarEnergyLevel.setProgress(25);
-            } else if (counter > 24 && counter < 40) {
-                txtProgressForEnergyLevels.setText(50 + "%");
-                progressBarEnergyLevel.setProgress(50);
-            } else if (counter > 39 && counter < 56) {
-                txtProgressForEnergyLevels.setText(75 + "%");
-                progressBarEnergyLevel.setProgress(75);
-            } else if (counter > 55) {
-                txtProgressForEnergyLevels.setText(100 + "%");
-                progressBarEnergyLevel.setProgress(100);
+            if (counter >= ZERO && counter < FIVE+1) {
+                txtProgressForEnergyLevels.setText(FIVE + "%");
+                progressBarEnergyLevel.setProgress(FIVE);
+            } else if (counter > FIVE && counter < TEN) {
+                txtProgressForEnergyLevels.setText(TEN + "%");
+                progressBarEnergyLevel.setProgress(TEN);
+            } else if (counter > TEN-1 && counter < FIFTEEN) {
+                txtProgressForEnergyLevels.setText(FIFTEEN + "%");
+                progressBarEnergyLevel.setProgress(FIFTEEN);
+            } else if (counter > TWENTY+4 && counter < FOURTEEN) {
+                txtProgressForEnergyLevels.setText(FIFTY + "%");
+                progressBarEnergyLevel.setProgress(FIFTY);
+            } else if (counter > FOURTEEN-1 && counter < FIFTEEN+6) {
+                txtProgressForEnergyLevels.setText(SEVENTY_FIVE + "%");
+                progressBarEnergyLevel.setProgress(SEVENTY_FIVE);
+            } else if (counter > FIFTEEN+5) {
+                txtProgressForEnergyLevels.setText(ONE_HUNDRED + "%");
+                progressBarEnergyLevel.setProgress(ONE_HUNDRED);
             }
 
             //fatigue levels
-            if (counter >= 0 && counter < 6) {
-                txtProgressForFatigue.setText(5 + "%");
-                progressBarFatigueLevel.setProgress(5);
-            } else if (counter > 5 && counter < 15) {
-                txtProgressForFatigue.setText(10 + "%");
-                progressBarFatigueLevel.setProgress(10);
-            } else if (counter > 14 && counter < 30) {
-                txtProgressForFatigue.setText(25 + "%");
-                progressBarFatigueLevel.setProgress(25);
-            } else if (counter > 29 && counter < 60) {
-                txtProgressForFatigue.setText(50 + "%");
-                progressBarFatigueLevel.setProgress(50);
-            } else if (counter > 59 && counter < 80) {
-                txtProgressForFatigue.setText(75 + "%");
-                progressBarFatigueLevel.setProgress(75);
-            } else if (counter > 79) {
-                txtProgressForFatigue.setText(100 + "%");
-                progressBarFatigueLevel.setProgress(100);
+            if (counter >= ZERO && counter < FIVE+1) {
+                txtProgressForFatigue.setText(FIVE + "%");
+                progressBarFatigueLevel.setProgress(FIVE);
+            } else if (counter > FIVE && counter < FIFTEEN) {
+                txtProgressForFatigue.setText(TEN + "%");
+                progressBarFatigueLevel.setProgress(TEN);
+            } else if (counter > FIFTEEN-1 && counter < THIRTY) {
+                txtProgressForFatigue.setText(TWENTYFIVE + "%");
+                progressBarFatigueLevel.setProgress(TWENTYFIVE);
+            } else if (counter > THIRTY-1 && counter < SIXTY) {
+                txtProgressForFatigue.setText(FIFTY + "%");
+                progressBarFatigueLevel.setProgress(FIFTY);
+            } else if (counter > SIXTY-1 && counter < EIGHTEEN) {
+                txtProgressForFatigue.setText(SEVENTY_FIVE + "%");
+                progressBarFatigueLevel.setProgress(SEVENTY_FIVE);
+            } else if (counter > EIGHTEEN-1) {
+                txtProgressForFatigue.setText(ONE_HUNDRED + "%");
+                progressBarFatigueLevel.setProgress(ONE_HUNDRED);
             }
 
             //gums levels
-            if (counter >= 0 && counter < 6) {
-                txtProgressForGums.setText(15 + "%");
-                progressBarGumsLevel.setProgress(15);
-            } else if (counter > 5 && counter < 20) {
-                txtProgressForGums.setText(25 + "%");
-                progressBarGumsLevel.setProgress(25);
-            } else if (counter > 19 && counter < 40) {
-                txtProgressForGums.setText(50 + "%");
-                progressBarGumsLevel.setProgress(50);
-            } else if (counter > 39 && counter < 60) {
-                txtProgressForGums.setText(75 + "%");
-                progressBarGumsLevel.setProgress(75);
-            } else if (counter > 59) {
-                txtProgressForGums.setText(100 + "%");
-                progressBarGumsLevel.setProgress(100);
+            if (counter >= ZERO && counter < FIVE+1) {
+                txtProgressForGums.setText(FIFTEEN + "%");
+                progressBarGumsLevel.setProgress(FIFTEEN);
+            } else if (counter > FIVE && counter < TWENTY) {
+                txtProgressForGums.setText(TWENTYFIVE + "%");
+                progressBarGumsLevel.setProgress(TWENTYFIVE);
+            } else if (counter > TWENTY-1 && counter < FOURTEEN) {
+                txtProgressForGums.setText(FIFTY + "%");
+                progressBarGumsLevel.setProgress(FIFTY);
+            } else if (counter > FOURTEEN-1 && counter < SIXTY) {
+                txtProgressForGums.setText(SEVENTY_FIVE + "%");
+                progressBarGumsLevel.setProgress(SEVENTY_FIVE);
+            } else if (counter > SIXTY-1) {
+                txtProgressForGums.setText(ONE_HUNDRED + "%");
+                progressBarGumsLevel.setProgress(ONE_HUNDRED);
             }
 
             //breath levels
-            if (counter >= 0 && counter < 6) {
-                txtProgressForBreath.setText(15 + "%");
-                progressBarBreathlevel.setProgress(15);
-            } else if (counter > 0 && counter < 10) {
-                txtProgressForBreath.setText(25 + "%");
-                progressBarBreathlevel.setProgress(25);
-            } else if (counter > 9 && counter < 20) {
-                txtProgressForBreath.setText(50 + "%");
-                progressBarBreathlevel.setProgress(50);
-            } else if (counter > 19 && counter < 30) {
-                txtProgressForBreath.setText(75 + "%");
-                progressBarBreathlevel.setProgress(75);
-            } else if (counter > 29) {
-                txtProgressForBreath.setText(100 + "%");
-                progressBarBreathlevel.setProgress(100);
+            if (counter >= ZERO && counter < FIVE+1) {
+                txtProgressForBreath.setText(FIFTEEN + "%");
+                progressBarBreathlevel.setProgress(FIFTEEN);
+            } else if (counter > ZERO && counter < TEN) {
+                txtProgressForBreath.setText(TWENTYFIVE + "%");
+                progressBarBreathlevel.setProgress(TWENTYFIVE);
+            } else if (counter > TEN-1 && counter < TWENTY) {
+                txtProgressForBreath.setText(FIFTY + "%");
+                progressBarBreathlevel.setProgress(FIFTY);
+            } else if (counter > TWENTY-1 && counter < THIRTY) {
+                txtProgressForBreath.setText(SEVENTY_FIVE + "%");
+                progressBarBreathlevel.setProgress(SEVENTY_FIVE);
+            } else if (counter > THIRTY-1) {
+                txtProgressForBreath.setText(ONE_HUNDRED + "%");
+                progressBarBreathlevel.setProgress(ONE_HUNDRED);
             }
         } catch (final Exception e) {
             e.printStackTrace();
@@ -1578,7 +1603,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             counter++;
             final Calendar CALENDAR_LOCAL = Calendar.getInstance();
             final int GET_MINUTE = CALENDAR_LOCAL.get(Calendar.MINUTE);
-//            int zet = preferences.getInt(CLICKDAY_SP, 0);
+//            int zet = preferences.getInt(CLICKDAY_SP, ZERO);
             editor.putInt(CLICKDAY_SP, GET_MINUTE);
             Log.d("taolenZ777", "zet = " + GET_MINUTE);
             counterText.setText(String.valueOf(counter));
@@ -1591,7 +1616,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             startActivity(INTENT);
             return true;
         } else if (ID_LOCAL == R.id.action_help) {
-            counter = 80;
+            counter = EIGHTEEN;
             counterText.setText(String.valueOf(counter));
             editor.putInt(COUNTER, counter);
             editor.apply();
@@ -1636,9 +1661,9 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         try {
             if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
-                    counter = preferences.getInt(COUNTER, 0);
+                    counter = preferences.getInt(COUNTER, ZERO);
                 }
-                if (counter == 0) {
+                if (counter == ZERO) {
                     requestDataById(1);
                 } else {
                     requestDataById(counter);
@@ -1676,11 +1701,11 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         protected void onPreExecute() {
             try {
                 counter = preferences.getInt(COUNTER, counter);
-                if (!preferences.contains(COUNTER)){counterText.setText(0);}else {
+                if (!preferences.contains(COUNTER)){counterText.setText(ZERO);}else {
                     counterText.setText(String.valueOf(counter));
                 }
                 updateDisplayString("Starting to fetch data from heroku ...");
-                if (tasks.size() == 0) {
+                if (tasks.size() == ZERO) {
                     progressBarLoading.setVisibility(View.VISIBLE);
                     progressBarLoading2.setVisibility(View.VISIBLE);
                     counterImgView.setVisibility(View.INVISIBLE);
@@ -1698,24 +1723,25 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 //using GSON
                 final JsonParser JSON_PARSER = new JsonParser();
                 //using MyHttpManager getData static method
-//                String content = MyHttpManager.getData(params[0]);
-//                Thread.sleep(1000);
+                //String content = MyHttpManager.getData(params[ZERO]);
+                //Thread.sleep(1000);
                 //using MyHttpCoreAndroid
-                final String CONTENT_LOCAL = MyHttpCoreAndroid.getData(PARAMS_LOCAL[0]);
-                assert CONTENT_LOCAL != null : "We found no content";
+                final String CONTENT_LOCAL = MyHttpCoreAndroid.getData(PARAMS_LOCAL[ZERO]);
+                assert CONTENT_LOCAL != null : WE_FOUND_NO_CONTENT;
                 final JsonElement ROOT_NODE = JSON_PARSER.parse(CONTENT_LOCAL);
                 final JsonObject DETAILS_LOCAL = ROOT_NODE.getAsJsonObject();
                 final JsonElement NAME_ELEMENT_NODE;
                 //Log.d(TAG, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
-                //get initials like: ro
-                final String PUT_LANGUAGE_IN_STRING = Resources.getSystem().getConfiguration().locale.getLanguage();
+                final Locale locale = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                                ? getResources().getConfiguration().getLocales().get(ZERO)
+                                : getResources().getConfiguration().locale;
+                //get initials like: RO/US/EN/FR
+                final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
                 Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING);
-                if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("ro")) {
-                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameRO");
-                } else {
-                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("name");
-                }
-//                JsonElement nameNode = details.get("name");
+                //get quote from ro if user is ro, else get default quotes
+                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
+                        ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
+
                 return NAME_ELEMENT_NODE.getAsString();
             } catch (final Exception e) {
                 e.printStackTrace();
@@ -1729,7 +1755,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 updateDisplayString(RESULT);
                 //we get rid of the task that we created
                 tasks.remove(this);
-                if (tasks.size() == 0) {
+                if (tasks.size() == ZERO) {
                     progressBarLoading.setVisibility(View.INVISIBLE);
                     progressBarLoading2.setVisibility(View.GONE);
                     counterImgView.setVisibility(View.VISIBLE);
@@ -1740,14 +1766,15 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                     //Toast.makeText(MainActivity.this, R.string.cant_connect,
                     //Toast.LENGTH_LONG).show();
                 //}
+                //var 2 to solve null result(quotes)
             } finally {
-                final String tempResult = (RESULT == null) ?  "No quotes available in this moment ..." : RESULT;
+                final String tempResult = (RESULT == null) ? NO_QUOTES_AVAILABLE_IN_THIS_MOMENT : RESULT;
                 updateDisplayString(tempResult);
             }
         }//onPostExecute[END]
         @Override
         protected void onProgressUpdate(final String... VALUES) {
-            updateDisplayString(VALUES[0]);
+            updateDisplayString(VALUES[ZERO]);
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
 
@@ -1755,10 +1782,10 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     private void setImagesForAchievementCard() {
         try {
             if (preferences.contains(COUNTER)) {
-                counter = preferences.getInt(COUNTER, 0);
+                counter = preferences.getInt(COUNTER, ZERO);
             }
             Log.d("taoAchiev", "counter from achiev = " + counter);
-            if (counter>=0&&counter<10) {
+            if (counter>=ZERO&&counter<TEN) {
                 //user have between a day and a week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron7);
                 rankOneImg.setAlpha(1.0f);
@@ -1768,8 +1795,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(0.2f);
                 rankFourImg.setBackgroundResource(R.mipmap.chevron11);
                 rankFourImg.setAlpha(0.2f);
-                editor.putString("rank", "Recruit");
-            } else if (counter>9&&counter<20) {
+                editor.putString(RANK, "Recruit");
+            } else if (counter>9&&counter<TWENTY) {
                 rankOneImg.setBackgroundResource(R.mipmap.chevron7);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
@@ -1778,8 +1805,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(0.2f);
                 rankFourImg.setBackgroundResource(R.mipmap.chevron11);
                 rankFourImg.setAlpha(0.2f);
-                editor.putString("rank", "Recruit II");
-            } else if (counter>19&&counter<30) {
+                editor.putString(RANK, "Recruit II");
+            } else if (counter>(TWENTY-1)&&counter<THIRTY) {
                 rankOneImg.setBackgroundResource(R.mipmap.chevron7);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
@@ -1788,8 +1815,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(1.0f);
                 rankFourImg.setBackgroundResource(R.mipmap.chevron11);
                 rankFourImg.setAlpha(1.0f);
-                editor.putString("rank", "Recruit III");
-            } else if (counter>29&&counter<40) {
+                editor.putString(RANK, "Recruit III");
+            } else if (counter>(THIRTY-1)&&counter<FOURTEEN) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron19);
                 rankOneImg.setAlpha(1.0f);
@@ -1799,8 +1826,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(0.2f);
                 rankFourImg.setBackgroundResource(R.mipmap.chevron10);
                 rankFourImg.setAlpha(0.2f);
-                editor.putString("rank", "Silver");
-            } else if (counter>39&&counter<50) {
+                editor.putString(RANK, "Silver");
+            } else if (counter>(FOURTEEN-1)&&counter<FIFTY) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron19);
                 rankOneImg.setAlpha(1.0f);
@@ -1810,8 +1837,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(0.2f);
                 rankFourImg.setBackgroundResource(R.mipmap.chevron10);
                 rankFourImg.setAlpha(0.2f);
-                editor.putString("rank", "Silver II");
-            } else if (counter>49&&counter<60) {
+                editor.putString(RANK, "Silver II");
+            } else if (counter>(FIFTY-1)&&counter<SIXTY) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron19);
                 rankOneImg.setAlpha(1.0f);
@@ -1821,8 +1848,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(1.0f);
                 rankFourImg.setBackgroundResource(R.mipmap.chevron10);
                 rankFourImg.setAlpha(1.0f);
-                editor.putString("rank", "Silver III");
-            } else if (counter>59&&counter<70) {
+                editor.putString(RANK, "Silver III");
+            } else if (counter>(SIXTY-1)&&counter<SEVENTY_FIVE-5) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron16);
                 rankOneImg.setAlpha(1.0f);
@@ -1832,8 +1859,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(0.2f);
                 rankFourImg.setBackgroundResource(R.mipmap.gnm);
                 rankFourImg.setAlpha(0.2f);
-                editor.putString("rank", "Gold");
-            } else if (counter>69&&counter<80) {
+                editor.putString(RANK, "Gold");
+            } else if (counter> SIXTY_NINE &&counter<EIGHTEEN) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron16);
                 rankOneImg.setAlpha(1.0f);
@@ -1843,8 +1870,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(0.2f);
                 rankFourImg.setBackgroundResource(R.mipmap.gnm);
                 rankFourImg.setAlpha(0.2f);
-                editor.putString("rank", "Gold I");
-            } else if (counter>79&&counter<90) {
+                editor.putString(RANK, "Gold I");
+            } else if (counter>(EIGHTEEN-1)&&counter< NINETY) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron16);
                 rankOneImg.setAlpha(1.0f);
@@ -1854,9 +1881,9 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(1.0f);
                 rankFourImg.setBackgroundResource(R.mipmap.gnm);
                 rankFourImg.setAlpha(0.2f);
-                editor.putString("rank", "Gold II");
+                editor.putString(RANK, "Gold II");
                 //WHEN USER REACH DAY 90 - GREATEST MILESTONE
-            } else if (counter == 90) {
+            } else if (counter == NINETY) {
                 rankOneImg.setBackgroundResource(R.mipmap.chevron16);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
@@ -1865,7 +1892,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankThreeImg.setAlpha(1.0f);
                 rankFourImg.setBackgroundResource(R.mipmap.gnm);
                 rankFourImg.setAlpha(1.0f);
-                editor.putString("rank", "Gold III");
+                editor.putString(RANK, "Gold III");
             }
         //using "final rethrow" by not specifying throwing a specific exception like NullPointer
         //the final keyword is optional, but in practice, we've found that it helps to use it while
@@ -1913,21 +1940,21 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         try {
             //getting the highest streak and put it in progress card
             final int HIGHEST_STREAK;
-            if (preferences.contains("highest")){
-                HIGHEST_STREAK = preferences.getInt("highest", 0);
+            if (preferences.contains(HIGHEST)){
+                HIGHEST_STREAK = preferences.getInt(HIGHEST, ZERO);
             } else {
-                HIGHEST_STREAK = preferences.getInt(COUNTER, 0);
+                HIGHEST_STREAK = preferences.getInt(COUNTER, ZERO);
             }
             final String TEMP_STREAK = getString(R.string.streak_string, HIGHEST_STREAK);
             TV_HIGHEST_STREAK.setText(TEMP_STREAK);
             //getting highest rank and put it into ranks card
-            final String LAST_STREAK = preferences.getString("rank", "unranked yet");
+            final String LAST_STREAK = preferences.getString(RANK, UNRANKED);
             final String RANK_LOCAL = getString(R.string.rank_master, LAST_STREAK);
             rankMasterTxt.setText(RANK_LOCAL);
             rankMasterTxt.setBackground(ContextCompat.getDrawable(getApplicationContext(),
                     R.drawable.custom_button_round));
 
-            if (counter == 0) {
+            if (counter == ZERO) {
                 TV_USER_CIGARETTES_PROGRESS.setText(R.string.cig_press_leaf);
                 final String PRESS_LEAF = getString(R.string.life_press_leaf);
                 TV_HOURS_PROGRESS.setText(PRESS_LEAF);
@@ -1936,12 +1963,12 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                     lifeRegained = preferences.getFloat(LIFEREGAINED, -1);
                     numberFormat.format(lifeRegained);
                 } else {
-                    lifeRegained = Float.valueOf((5f * Float.valueOf(preferences.getInt(MODIFIED_CIGG_PER_DAY, 0))) / 60f);
+                    lifeRegained = Float.valueOf((5f * Float.valueOf(preferences.getInt(MODIFIED_CIGG_PER_DAY, ZERO))) / 60f);
                     numberFormat.format(lifeRegained);
                 }
                 final String CIGARETTES_NOT_SMOKED_STRING = getString(R.string.cig_not_smoked);
                 final String LIFE_REGAINED_STRING = getString(R.string.life_reg, numberFormat.format(lifeRegained));
-                TV_USER_CIGARETTES_PROGRESS.setText(CIGARETTES_NOT_SMOKED_STRING +" " + preferences.getInt(MODIFIED_CIGG_PER_DAY, 0));
+                TV_USER_CIGARETTES_PROGRESS.setText(CIGARETTES_NOT_SMOKED_STRING +" " + preferences.getInt(MODIFIED_CIGG_PER_DAY, ZERO));
                 TV_HOURS_PROGRESS.setText(LIFE_REGAINED_STRING);
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.apply();
@@ -1951,15 +1978,15 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
     private void setMarginForProgress() {
         final Resources RESOURCES = this.getResources();
-        final int PX = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, RESOURCES.getDisplayMetrics());
+        final int PX = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, TWO_HUNDRED, RESOURCES.getDisplayMetrics());
         final LinearLayout.LayoutParams PARAMS_LOCAL = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        PARAMS_LOCAL.setMargins(PX, 0, 0, 0);
+        PARAMS_LOCAL.setMargins(PX, ZERO, ZERO, ZERO);
         Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
-        if (progressBarEnergyLevel.getProgress() == 100) {
+        if (progressBarEnergyLevel.getProgress() == MainActivity.ONE_HUNDRED) {
 //            txtProgressForEnergyLevels.setLayoutParams(params);
-            setMargins(txtProgressForEnergyLevels, PX, 0 , 0, 0);
+            setMargins(txtProgressForEnergyLevels, PX, ZERO , ZERO, ZERO);
             Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
         }
     }
