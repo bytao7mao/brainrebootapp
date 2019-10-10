@@ -26,17 +26,17 @@
             android:text="Add your today's extra savings!"
             android:textSize="24sp" />
 
-<!--        <androidx.appcompat.widget.AppCompatEditText-->
-<!--            android:id="@+id/editTxtSavingsId"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/savings_TitleId"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:backgroundTint="@color/greenColorLed"-->
-<!--            android:gravity="center"-->
-<!--            android:padding="4dp"-->
-<!--            android:hint="how much to save ?"-->
-<!--            android:textSize="14sp" />-->
+        <!--        <androidx.appcompat.widget.AppCompatEditText-->
+        <!--            android:id="@+id/editTxtSavingsId"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/savings_TitleId"-->
+        <!--            android:layout_centerHorizontal="true"-->
+        <!--            android:backgroundTint="@color/greenColorLed"-->
+        <!--            android:gravity="center"-->
+        <!--            android:padding="4dp"-->
+        <!--            android:hint="how much to save ?"-->
+        <!--            android:textSize="14sp" />-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTxtSavingsId"

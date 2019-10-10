@@ -1,13 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="MaterialTheme" parent="ParentMaterialTheme">
-        <!-- Customize your theme here. -->
-        <item name="windowActionBar">false</item>
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-    </style>
+    <style name="MaterialTheme" parent="ParentMaterialTheme"></style>
 <!--    Theme.AppCompat.Light.NoActionBar-->
 
     <style name="ParentMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">

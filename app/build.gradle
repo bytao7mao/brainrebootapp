@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
-//min api 21
+//min api 24
 android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.taozen.quithabit"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
