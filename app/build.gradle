@@ -99,6 +99,9 @@ dependencies {
 
     //tt fancy dialog
     implementation 'com.bestsoft32.tayyab:tt-fancy-gif-dialog:1.0.2'
+
+    //testing area
+    implementation 'com.github.coyarzun89:fabtransitionactivity:0.2.0'
 }
 apply plugin: 'com.google.gms.google-services'
 

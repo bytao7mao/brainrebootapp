@@ -38,8 +38,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -50,13 +50,13 @@ import com.anupcowkur.herebedragons.SideEffect;
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog;
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
+import com.github.fabtransitionactivity.SheetLayout;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.about.AboutActivity;
@@ -94,7 +94,7 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINE
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SheetLayout.OnFabAnimationEndListener {
 
     private static final String TAG = MainActivity.class.getSimpleName() + "TAOMAO";
 
@@ -243,6 +243,8 @@ public class MainActivity extends AppCompatActivity {
 //        return quotesForPassingTheDayList.get(0);
     }
 
+
+    @BindView(R.id.bottom_sheet) SheetLayout sheetLayout;
     //OnCreate [START]
     @UiThread
     @SuppressLint("CommitPrefEdits")
@@ -256,6 +258,11 @@ public class MainActivity extends AppCompatActivity {
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
+
+        sheetLayout.setFab(fab);
+        sheetLayout.setFabAnimationEndListener(this);
+
+//        sheetLayout.setBackgroundColor(getResources().getColor(R.color.white));
 
         firstCheckForInitialCiggarettesPerDay();
         startFirstActivity();
@@ -285,7 +292,8 @@ public class MainActivity extends AppCompatActivity {
         setTheHourOfFirstLaunch(CALENDAR);
         //pn
         triggerPushNotification(HOUR_OF_FIRSTLAUNCH);
-        setBackgroundForDaylightOrNight();
+        //leave it for pay version
+//        setBackgroundForDaylightOrNight();
         tasks = new ArrayList<>();
         config = getResources().getConfiguration();
         //set text for checkin
@@ -573,13 +581,15 @@ public class MainActivity extends AppCompatActivity {
 
     //dialog when user pass a day
     private void positiveDialogAfterPassDay() {
-        final String DAILY_QUOTE = getResources().getString(R.string.daily_quote) + " \n\t" + generateQuoteForPassingTheDay()+"";
+        final String DAILY_QUOTE_TITLE = getResources().getString(R.string.awesome)
+                + "\n" + getResources().getString(R.string.daily_quote) + "\n";
+        final String DAILY_QUOTE = generateQuoteForPassingTheDay()+"";
         Log.d("QUOTE", " " + DAILY_QUOTE);
-        new BottomDialog.Builder(this)
-                .setTitle(R.string.awesome)
+        BottomDialog bottomDialog = new BottomDialog.Builder(this)
+                .setTitle(DAILY_QUOTE_TITLE)
                 .setContent(DAILY_QUOTE)
                 .setPositiveText(R.string.OK)
-                .setCancelable(true)
+                .setCancelable(false)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
@@ -589,9 +599,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(BottomDialog dialog) {
                         //call on destroy
 //                        finish();
+                        sheetLayout.contractFab();
                         Log.d("BottomDialogs", "Do something!");
                     }
-                }).show();
+                }).build();
+        bottomDialog.show();
     }
 
     //dialog when user pass a day
@@ -816,6 +828,7 @@ public class MainActivity extends AppCompatActivity {
                         setImagesForAchievementCard();
                         counterText.setText(String.valueOf(counter));
                         setTargetDays();
+                        sheetLayout.expandFab();
                         //var 1 - dialog after answer
                         positiveDialogAfterPassDay();
                         //var 2 - custom toast after answer
@@ -1646,6 +1659,12 @@ public class MainActivity extends AppCompatActivity {
     private void updateDisplayString(final String MESSAGE) {
         tipofthedayTxtView.setText(MESSAGE + "\n");
     }
+
+    @Override
+    public void onFabAnimationEnd() {
+        //TODO: decide what to put here
+    }
+
 
     @SuppressLint("StaticFieldLeak")
     public class MyAsyncTask extends AsyncTask<String, String, String> {
