@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         sheetLayout.setFab(fab);
         sheetLayout.setFabAnimationEndListener(this);
 
-//        sheetLayout.setBackgroundColor(getResources().getColor(R.color.white));
+//      sheetLayout.setBackgroundColor(getResources().getColor(R.color.white));
 
         firstCheckForInitialCiggarettesPerDay();
         startFirstActivity();
@@ -884,6 +884,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             counter = preferences.getInt(COUNTER, -1);
                             counterText.setText(String.valueOf(counter));
                             setTargetDays();
+                            sheetLayout.expandFab();
                             negativeDialogAfterRelapse();
                             estabilishHighestRecordForCounter();
                         } catch (final Exception e) {
@@ -894,7 +895,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 .build();//[END of NORMAL DIALOG]
     }
 
-    private void ttfancyDialogForFirstTimeLaunch(String title, String message){
+    private void ttfancyDialogForFirstTimeLaunch(String title, String message) {
         new TTFancyGifDialog.Builder(MainActivity.this)
                 .setTitle(title)
                 .setMessage(message)
@@ -911,7 +912,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         if (counter == 0) {
                             savings = preferences.getLong("taoz10", -10);
                         }
-                        if (preferences.contains("diff") && higherThanOne){
+                        if (preferences.contains("diff") && higherThanOne) {
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                             int DIF = preferences.getInt("diff", -100);
                             counter = counter + DIF;
@@ -977,13 +978,14 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         setImagesForAchievementCard();
                         counterText.setText(String.valueOf(counter));
                         setTargetDays();
-                        //var 1 - dialog after answer
-                        positiveDialogAfterPassDay();
                         //var 2 - custom toast after answer
 //                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
 //                                    20, FancyToast.SUCCESS, true).show();
                         estabilishHighestRecordForCounter();
                         showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
+//                        sheetLayout.expandFab();
+                        //var 1 - dialog after answer
+                        positiveDialogAfterPassDay();
                         cleanUpAfterFirstCounter();
                     }
                 })
@@ -1663,6 +1665,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     @Override
     public void onFabAnimationEnd() {
         //TODO: decide what to put here
+//        sheetLayout.contractFab();//not working properly
+        cleanUpAfterFirstCounter();
     }
 
 
