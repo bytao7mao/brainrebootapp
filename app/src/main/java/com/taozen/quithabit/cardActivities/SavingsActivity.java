@@ -12,9 +12,10 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.taozen.quithabit.R;
 
 import java.util.Objects;
@@ -27,7 +28,8 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FIN
 public class SavingsActivity extends AppCompatActivity {
     @BindView(R.id.savingsTxt) TextView savingsTxt;
     @BindView(R.id.addSavingsBtnId) Button otherSavingsBtn;
-    @BindView(R.id.editTxtSavingsId) EditText editTxtSavings;
+    @BindView(R.id.editTxtSavingsId) TextInputLayout etSavingsLayout;
+    @BindView(R.id.editText) TextInputEditText etInputEdit;
     @BindView(R.id.savings_TitleId) TextView titleTxt;
     long otherIntSavings;
     long finalSum;
@@ -67,14 +69,14 @@ public class SavingsActivity extends AppCompatActivity {
         montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
 
         savingsTxt.setTypeface(montSerratMediumTypeface);
-        editTxtSavings.setTypeface(montSerratMediumTypeface);
+        etSavingsLayout.setTypeface(montSerratMediumTypeface);
         otherSavingsBtn.setTypeface(montSerratMediumTypeface);
         titleTxt.setTypeface(montSerratMediumTypeface);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
         otherSavingsBtn.setEnabled(true);
-        editTxtSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
+        etInputEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
         getIntentOrPrefsAndStore();
 
         otherSavingsBtn.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +85,7 @@ public class SavingsActivity extends AppCompatActivity {
                 try {
                     editor.putBoolean("saveimg", false);
                     editor.apply();
-                    otherIntSavings = Integer.parseInt(String.valueOf(editTxtSavings.getText()));
+                    otherIntSavings = Integer.parseInt(String.valueOf(etInputEdit.getText()));
                     finalSum = finalSum + otherIntSavings;
                     savingsTxt.setText("Total savings: " + finalSum + " $");
                     Log.d("LOGGTAO", "savings from onClick: " + finalSum);
@@ -92,10 +94,10 @@ public class SavingsActivity extends AppCompatActivity {
                     editor.putLong("tempLong", tempLong);
                     editor.apply();
 //                    otherSavingsBtn.setEnabled(false);
-//                    editTxtSavings.setEnabled(false);
-//                    editTxtSavings.setInputType(InputType.TYPE_NULL);
+//                    etSavingsLayout.setEnabled(false);
+//                    etSavingsLayout.setInputType(InputType.TYPE_NULL);
                     otherSavingsBtn.setVisibility(View.GONE);
-                    editTxtSavings.setVisibility(View.GONE);
+                    etSavingsLayout.setVisibility(View.GONE);
                     titleTxt.setText("Well done!");
                 } catch (NumberFormatException e) {
                     e.printStackTrace();

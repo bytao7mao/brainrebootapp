@@ -21,7 +21,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
-import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -57,6 +56,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.about.AboutActivity;
@@ -96,7 +96,7 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FIN
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAGoncreate = MainActivity.class.getSimpleName() + "oncreate";
+    private static final String TAG = MainActivity.class.getSimpleName() + "TAOMAO";
 
     String arr = "";
     long firstSave;
@@ -130,12 +130,12 @@ public class MainActivity extends AppCompatActivity {
     //TextViews
     @BindView(R.id.exploreAchievementId) TextView exploreAId;
     @BindView(R.id.exploreSavingsId) TextView exploreSId;
-//    @BindView(R.id.rankFourIdText) TextView rankFourTxt;
+    //    @BindView(R.id.rankFourIdText) TextView rankFourTxt;
 //    @BindView(R.id.rankThreeIdText) TextView rankThreeTxt;
 //    @BindView(R.id.rankTwoIdText) TextView rankTwoTxt;
 //    @BindView(R.id.rankOneIdText) TextView rankOneTxt;
     @BindView(R.id.comingSoonTxtForChallenge2) TextView comingSoonTxtForChallenge2;
-//    @BindView(R.id.comingSoonTxtForProgress) TextView comingSoonTxtForProgress;
+    //    @BindView(R.id.comingSoonTxtForProgress) TextView comingSoonTxtForProgress;
     @BindView(R.id.comingSoonTxtForChallenge) TextView comingSoonTxtForChallenge;
     @BindView(R.id.rank_master) TextView rankMasterTxt;
     @BindView(R.id.toolbar_subtitle) TextView subTextToolbar;
@@ -149,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
     @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtView;
     @BindView(R.id.progressActivityId) TextView progressBarsTxt;
-//    @BindView(R.id.logsTxtId) TextView failLogsTxtView;
+    //    @BindView(R.id.logsTxtId) TextView failLogsTxtView;
     @BindView(R.id.challengeTxtIdTitleId) TextView challengeTextViewTitle;
-//    @BindView(R.id.challengeTextId) TextView challengeTextViewSubtitle;
+    //    @BindView(R.id.challengeTextId) TextView challengeTextViewSubtitle;
     @BindView(R.id.tvErrorId) TextView errorText;
     @BindView(R.id.textNonSmokerId) TextView textNonSmoker;
     @BindView(R.id.subTextSmokeId) TextView subTextNonSmoker;
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rankThreeId) ImageView rankThreeImg;
     @BindView(R.id.rankFourId) ImageView rankFourImg;
     @BindView(R.id.backgroundId) ImageView backgroundImgWall;
-//  @BindView(R.id.imageViewMiddleId) ImageView imageViewMiddle;
+    //  @BindView(R.id.imageViewMiddleId) ImageView imageViewMiddle;
     @BindView(R.id.pulsator) PulsatorLayout pulsator;
     //CircularProgressBar
     //progress for percent - this is a circular bar
@@ -260,9 +260,9 @@ public class MainActivity extends AppCompatActivity {
         firstCheckForInitialCiggarettesPerDay();
         startFirstActivity();
         //using API from splash
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("data");
-        tipofthedayTxtView.setText(name);
+        final Intent INTENT = getIntent();
+        final String NAME = INTENT.getStringExtra("data");
+        tipofthedayTxtView.setText(NAME);
 //        tipofthedayTxtView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
         numberFormat = new DecimalFormat("#.##");
@@ -278,11 +278,11 @@ public class MainActivity extends AppCompatActivity {
         anim.setRepeatCount(Animation.INFINITE);
 
         //testing area
-        Date date = new Date();
-        Calendar calendar = GregorianCalendar.getInstance();
-        calendar.setTime(date);
-        HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
-        setTheHourOfFirstLaunch(calendar);
+        final Date DATE = new Date();
+        final Calendar CALENDAR = GregorianCalendar.getInstance();
+        CALENDAR.setTime(DATE);
+        HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
+        setTheHourOfFirstLaunch(CALENDAR);
         //pn
         triggerPushNotification(HOUR_OF_FIRSTLAUNCH);
         setBackgroundForDaylightOrNight();
@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
 
         //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
         setTargetAfterCheckingCounter();
-        long TempSavings = preferences.getLong(SAVINGS_FINAL, -100);
+//        long TempSavings = preferences.getLong(SAVINGS_FINAL, -100);
         setTargetDays();
         firstCheckMax();
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
@@ -379,13 +379,13 @@ public class MainActivity extends AppCompatActivity {
         comingSoonTxtForChallenge.setTypeface(montSerratMediumTypeface);
         comingSoonTxtForChallenge2.setTypeface(montSerratMediumTypeface);
 
-        int tvWidth = subTextNonSmoker.getWidth();
-        int tvHeight = subTextNonSmoker.getHeight();
+        final int TV_WIDTH = subTextNonSmoker.getWidth();
+        final int TV_HEIGHT = subTextNonSmoker.getHeight();
 
-        float density = getResources().getDisplayMetrics().density;
-        float densityWidth = tvWidth / density;
-        float densityHeight = tvHeight / density;
-        Log.d("DENS", "widht: " + densityWidth + " height: " + densityHeight + density);
+        final float DENSITY = getResources().getDisplayMetrics().density;
+        final float DENSITY_WEIGHT = TV_WIDTH / DENSITY;
+        final float DENSITY_HEIGHT = TV_HEIGHT / DENSITY;
+        Log.d("DENS", "widht: " + DENSITY_WEIGHT + " height: " + DENSITY_HEIGHT + DENSITY);
 
         try {
             if (preferences.contains(COUNTER)) {
@@ -414,34 +414,31 @@ public class MainActivity extends AppCompatActivity {
         achievementRanksCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AchievmentsActivity.class);
-                startActivity(intent);
+                final Intent INTENT = new Intent(MainActivity.this, AchievmentsActivity.class);
+                startActivity(INTENT);
             }
         });//achievementRanksCard[END]
         timeStampLogsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: finish logs activity
-                Intent intent = new Intent(MainActivity.this, FailLogsActivity.class);
-                startActivity(intent);
+                final Intent INTENT = new Intent(MainActivity.this, FailLogsActivity.class);
+                startActivity(INTENT);
             }
         });//timeStampCardView[END]
         savingsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SavingsActivity.class);
-                intent.putExtra(SAVINGS_FINAL, savings);
-                startActivity(intent);
-//                addSavingsSumImg.setVisibility(View.INVISIBLE);
-//                editor.putBoolean("saveimg", false);
-//                editor.apply();
+                final Intent INTENT = new Intent(MainActivity.this, SavingsActivity.class);
+                INTENT.putExtra(SAVINGS_FINAL, savings);
+                startActivity(INTENT);
             }
         });//savingsCardView[END]
         challengeCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ChallengeActivity.class);
-                startActivity(intent);
+                final Intent INTENT = new Intent(MainActivity.this, ChallengeActivity.class);
+                startActivity(INTENT);
                 challs = getString(R.string.see_progress_challenge);
                 editor.putString(CHALLENGES_STRING, challs);
                 editor.apply();
@@ -502,27 +499,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void triggerPushNotification(int hourOfFirstLaunch) {
-        Calendar alarmFor = Calendar.getInstance();
-        alarmFor.set(Calendar.HOUR_OF_DAY, hourOfFirstLaunch);
-        alarmFor.set(Calendar.MINUTE, 1);
-        alarmFor.set(Calendar.SECOND, 1);
-        Intent MyIntent = new Intent(getApplicationContext(), MyReceiver.class);
-        PendingIntent MyPendIntent = PendingIntent.getBroadcast(getApplicationContext(),
-                0, MyIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        final Calendar ALARM_FOR = Calendar.getInstance();
+        ALARM_FOR.set(Calendar.HOUR_OF_DAY, hourOfFirstLaunch);
+        ALARM_FOR.set(Calendar.MINUTE, 1);
+        ALARM_FOR.set(Calendar.SECOND, 1);
+        final Intent MY_INTENT = new Intent(getApplicationContext(), MyReceiver.class);
+        final PendingIntent PENDING_INTENT = PendingIntent.getBroadcast(getApplicationContext(),
+                0, MY_INTENT, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        AlarmManager MyAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Objects.requireNonNull(MyAlarm)
+        final AlarmManager ALARM = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Objects.requireNonNull(ALARM)
                 .setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                        alarmFor.getTimeInMillis(), MyPendIntent);
+                        ALARM_FOR.getTimeInMillis(), PENDING_INTENT);
     }
 
-    private void setTheHourOfFirstLaunch(Calendar calendar) {
+    private void setTheHourOfFirstLaunch(final Calendar CALENDAR) {
         //my personal method to save a value and keep it every time i launch on create :)
         if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
             HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, -1);
         } else {
             //recent refactor that works fine
-            HOUR_OF_FIRSTLAUNCH = (calendar.get(Calendar.HOUR_OF_DAY)==0) ? 24 : calendar.get(Calendar.HOUR_OF_DAY);
+            HOUR_OF_FIRSTLAUNCH = (CALENDAR.get(Calendar.HOUR_OF_DAY)==0) ? 24 : CALENDAR.get(Calendar.HOUR_OF_DAY);
             editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
             editor.apply();
             //TODO: to implement later version
@@ -535,7 +532,7 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void setBackgroundForDaylightOrNight() {
         //change wallpaper during nighttime
-        if (HOUR_OF_DAYLIGHT <= 6 && HOUR_OF_DAYLIGHT >= 22) {
+        if (HOUR_OF_DAYLIGHT >= 21 || HOUR_OF_DAYLIGHT < 7) {
 //        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= 20) {
             backgroundImgWall.setBackgroundResource(R.drawable.ppp);
             tipofthedayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
@@ -581,11 +578,11 @@ public class MainActivity extends AppCompatActivity {
 
     //dialog when user pass a day
     private void positiveDialogAfterPassDay() {
-        String dailyQuote = getResources().getString(R.string.daily_quote) + " \n\t" + generateQuoteForPassingTheDay()+"";
-        Log.d("QUOTE", " " + dailyQuote);
+        final String DAILY_QUOTE = getResources().getString(R.string.daily_quote) + " \n\t" + generateQuoteForPassingTheDay()+"";
+        Log.d("QUOTE", " " + DAILY_QUOTE);
         new BottomDialog.Builder(this)
                 .setTitle(R.string.awesome)
-                .setContent(dailyQuote)
+                .setContent(DAILY_QUOTE)
                 .setPositiveText(R.string.OK)
                 .setCancelable(true)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
@@ -622,7 +619,7 @@ public class MainActivity extends AppCompatActivity {
     private void startFirstActivity() {
         //intro
         //code for INTRO
-        Thread threadForSlider = new Thread(new Runnable() {
+        final Thread THREAD_FOR_SLIDER = new Thread(new Runnable() {
             @Override
             public void run() {
                 //  Create a new boolean and preference and set it to true
@@ -666,7 +663,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        threadForSlider.start();
+        THREAD_FOR_SLIDER.start();
     }//end of INTRO
 
     @SideEffect
@@ -677,28 +674,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setTodayToClickDay();
-                String messageForDialog;
-                messageForDialog = higherThanOne ? getString(R.string.abstained_last_days) : getString(R.string.abstained_today);
+                final String MESSAGE_FOR_DIALOG;
+                MESSAGE_FOR_DIALOG = higherThanOne ? getString(R.string.abstained_last_days) : getString(R.string.abstained_today);
                 //between 1 and 29
                 if (counter == 0) {
                     ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
                 } else if (counter > 0 && counter < 29) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 30), messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone, 30), MESSAGE_FOR_DIALOG);
                     //between 29(to show up in 30) and 60
                 } else if (counter > 28 && counter < 59) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 60), messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone, 60), MESSAGE_FOR_DIALOG);
                     //between 59(to show up in 60) and 90
                 } else if (counter > 58 && counter < 89) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 90), messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone, 90), MESSAGE_FOR_DIALOG);
                     //between 89(to show up in 60) and 180
                 } else if (counter > 88 && counter < 179) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 180), messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone, 180), MESSAGE_FOR_DIALOG);
                     //between 179(to show up in 60) and 270
                 } else if (counter > 178 && counter < 269) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 270), messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone, 270), MESSAGE_FOR_DIALOG);
                     //between 279(to show up in 60) and 360
                 } else if (counter > 278 && counter < 361) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 360), messageForDialog);
+                    normalFancyDialog(getString(R.string.beat_milestone, 360), MESSAGE_FOR_DIALOG);
                 }
                 //SHOW FANCY TOAST WITH CONGRATS
                 //[END OF ELSE IFS DIALOGS]
@@ -757,155 +754,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if (preferences.contains("diff") && higherThanOne){
                             Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            int dif = preferences.getInt("diff", -100);
-                            counter = counter + dif;
-                                if (preferences.contains("tempLong")){
-                                    longFromSavingActivity = preferences.getLong("tempLong", 0);
-                                } else {
-                                    longFromSavingActivity = 0;
-                                }
-                                savings = longFromSavingActivity + (firstSave * counter);
-                                editor.putLong(SAVINGS_FINAL, savings);
-                                editor.apply();
-
-                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter
-                            +"\n savings = " + savings);
-                            higherThanOne = false;
-                        } else {
-                            if (counter == 1) {
-                                if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
-                                    editor.putLong("firstsave", firstSave);
-                                    editor.apply();
-                                    Log.d("taogenX", "firstsave is: " + firstSave);
-                                }
-                            }
-                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            counter++;
-                            if (counter == 1){
-                                savings = preferences.getLong(SAVINGS_FINAL, 0);
-                                editor.putLong(SAVINGS_FINAL, savings);
-                                if (preferences.contains(SAVINGS_FINAL)){
-                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
-                                    editor.putLong("firstsave", firstSave);
-                                    editor.apply();
-                                    Log.d("taogenX", "firstsave is: " + firstSave);
-                                }
-                            } else {
-                                savings = preferences.getLong(SAVINGS_FINAL, 0) + firstSave;
-                                Log.d("taogenX", "savings from TAO = " + savings);
-                                editor.putLong(SAVINGS_FINAL, savings);
-                                editor.apply();
-                            }
-                            higherThanOne = false;
-                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
-                        }
-                        i = 1;
-                        editor.putInt(COUNTER, counter);
-                        int tempCigarettes = cigarettesPerDay * counter;
-                        String tempusrCig = getString(R.string.cig_not_smoked);
-                        String usrciggsprogs = tempusrCig + " " + tempCigarettes;
-                        userCigaretesProgressTxt.setText(usrciggsprogs);
-                        editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-                        lifeRegained = (5f * (float) tempCigarettes) / 60f;
-                        String usrhrsprogrs = getString(R.string.life_r)
-                                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
-                        userHoursProgressTxt.setText(usrhrsprogrs);
-                        editor.putFloat(LIFEREGAINED, lifeRegained);
-                        editor.putLong(SAVINGS_FINAL, savings);
-                        editor.apply();
-                        checkActivityOnline();
-//                        setTheSavingsPerDay();
-                        savingsGetAndSetValue();
-                        setImprovementProgressLevels();
-                        setImagesForAchievementCard();
-                        counterText.setText(String.valueOf(counter));
-                        setTargetDays();
-                        //var 1 - dialog after answer
-                        positiveDialogAfterPassDay();
-                        //var 2 - custom toast after answer
-//                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-//                                    20, FancyToast.SUCCESS, true).show();
-                        estabilishHighestRecordForCounter();
-                        showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
-
-                    }
-                })
-                .OnNegativeClicked(new FancyGifDialogListener() {
-                    @Override
-                    public void OnClick() {
-                        i = 1;
-                        //get time of relapse and put it into arraylist to send in logs activity
-                        Calendar calendarOnClick2 = Calendar.getInstance();
-                        calendarOnClick2.setTimeZone(TimeZone.getDefault());
-                        String tem = calendarOnClick2.getTime().toString() + " ole\n";
-                        if (preferences.contains("arr")){
-                            arr = tem + preferences.getString("arr", "no value");
-                        } else {
-                            arr = tem;
-                        }
-                        editor.putString("arr", arr);
-                        editor.putInt("highest", counter);
-                        Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
-                        editor.apply();
-                        counter = 1;
-                        savings = firstSave;
-                        Log.d("taogenX", "firstsave is: " + firstSave);
-                        //to see
-                        editor.putLong(SAVINGS_FINAL, savings);//off
-                        //maybe
-                        editor.putInt(COUNTER, counter);
-                        //new edit
-                        int tempCigarettes = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
-                        String tempusrCig = getString(R.string.cig_not_smoked);
-                        String usrciggsprogs = tempusrCig + " " + tempCigarettes;
-                        userCigaretesProgressTxt.setText(usrciggsprogs);
-                        editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-                        lifeRegained = (5f * (float) tempCigarettes) / 60f;
-                        String usrhrsprogrs = getString(R.string.life_r)
-                                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
-                        userHoursProgressTxt.setText(usrhrsprogrs);
-                        editor.putFloat(LIFEREGAINED, lifeRegained);
-                        editor.apply();
-                        checkActivityOnline();
-//                        setTheSavingsPerDay();
-                        savingsGetAndSetValue();
-                        setImprovementProgressLevels();
-                        try {
-                            counter = preferences.getInt(COUNTER, -1);
-                        } catch (NullPointerException e) {
-                            e.printStackTrace();
-                        }
-                        counterText.setText(String.valueOf(counter));
-                        setTargetDays();
-                        negativeDialogAfterRelapse();
-                        estabilishHighestRecordForCounter();
-                    }
-                })
-                .build();//[END of NORMAL DIALOG]
-    }
-
-    private void ttfancyDialogForFirstTimeLaunch(String title, String message){
-        new TTFancyGifDialog.Builder(MainActivity.this)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveBtnText("Ok")
-                .setPositiveBtnBackground("#FF4081")
-                .setGifResource(R.drawable.source)      //pass your gif, png or jpg
-                .isCancellable(false)
-                .OnPositiveClicked(new TTFancyGifDialogListener() {
-                    @Override
-                    public void OnClick() {
-                        setTodayToClickDay();
-                        firstCheckForInitialCiggarettesPerDay();
-                        setCheckInText();
-                        if (counter == 0) {
-                            savings = preferences.getLong("taoz10", -10);
-                        }
-                        if (preferences.contains("diff") && higherThanOne){
-                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            int dif = preferences.getInt("diff", -100);
-                            counter = counter + dif;
+                            final int DIF = preferences.getInt("diff", -100);
+                            counter = counter + DIF;
                             if (preferences.contains("tempLong")){
                                 longFromSavingActivity = preferences.getLong("tempLong", 0);
                             } else {
@@ -949,15 +799,162 @@ public class MainActivity extends AppCompatActivity {
                         }
                         i = 1;
                         editor.putInt(COUNTER, counter);
-                        int tempCigarettes = cigarettesPerDay * counter;
-                        String tempusrCig = getString(R.string.cig_not_smoked);
-                        String usrciggsprogs = tempusrCig + " " + tempCigarettes;
-                        userCigaretesProgressTxt.setText(usrciggsprogs);
-                        editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-                        lifeRegained = (5f * (float) tempCigarettes) / 60f;
-                        String usrhrsprogrs = getString(R.string.life_r)
+                        final int TEMP_CIGARETTES = cigarettesPerDay * counter;
+                        final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
+                        final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
+                        userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+                        editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
+                        lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
+                        final String USER_HOURS_PROGRESS = getString(R.string.life_r)
                                 + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
-                        userHoursProgressTxt.setText(usrhrsprogrs);
+                        userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
+                        editor.putFloat(LIFEREGAINED, lifeRegained);
+                        editor.putLong(SAVINGS_FINAL, savings);
+                        editor.apply();
+                        checkActivityOnline();
+//                        setTheSavingsPerDay();
+                        savingsGetAndSetValue();
+                        setImprovementProgressLevels();
+                        setImagesForAchievementCard();
+                        counterText.setText(String.valueOf(counter));
+                        setTargetDays();
+                        //var 1 - dialog after answer
+                        positiveDialogAfterPassDay();
+                        //var 2 - custom toast after answer
+//                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
+//                                    20, FancyToast.SUCCESS, true).show();
+                        estabilishHighestRecordForCounter();
+                        showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
+
+                    }
+                })
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                        i = 1;
+                        //get time of relapse and put it into arraylist to send in logs activity
+                        final Calendar CALENDAR_ON_CLICK = Calendar.getInstance();
+                        CALENDAR_ON_CLICK.setTimeZone(TimeZone.getDefault());
+                        final String tem = CALENDAR_ON_CLICK.getTime().toString() + " - fail\n";
+                        if (preferences.contains("arr")){
+                            arr = tem + preferences.getString("arr", "no value");
+                        } else {
+                            arr = tem;
+                        }
+                        editor.putString("arr", arr);
+                        editor.putInt("highest", counter);
+                        Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
+                        editor.apply();
+                        counter = 1;
+                        savings = firstSave;
+                        Log.d("taogenX", "firstsave is: " + firstSave);
+                        //to see
+                        editor.putLong(SAVINGS_FINAL, savings);//off
+                        //maybe
+                        editor.putInt(COUNTER, counter);
+                        //new edit
+                        final int TEMP_CIGARETTES = cigarettesPerDay * counter;
+                        final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
+                        final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
+                        userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+                        editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
+                        lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
+                        final String USER_HOURS_PROGRESS = getString(R.string.life_r)
+                                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+                        userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
+                        editor.putFloat(LIFEREGAINED, lifeRegained);
+                        editor.apply();
+                        checkActivityOnline();
+//                        setTheSavingsPerDay();
+                        savingsGetAndSetValue();
+                        setImprovementProgressLevels();
+                        try {
+                            counter = preferences.getInt(COUNTER, -1);
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
+                        counterText.setText(String.valueOf(counter));
+                        setTargetDays();
+                        negativeDialogAfterRelapse();
+                        estabilishHighestRecordForCounter();
+                    }
+                })
+                .build();//[END of NORMAL DIALOG]
+    }
+
+    private void ttfancyDialogForFirstTimeLaunch(String title, String message){
+        new TTFancyGifDialog.Builder(MainActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveBtnText("Ok")
+                .setPositiveBtnBackground("#FF4081")
+                .setGifResource(R.drawable.source)      //pass your gif, png or jpg
+                .isCancellable(false)
+                .OnPositiveClicked(new TTFancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {
+                        setTodayToClickDay();
+                        firstCheckForInitialCiggarettesPerDay();
+                        setCheckInText();
+                        if (counter == 0) {
+                            savings = preferences.getLong("taoz10", -10);
+                        }
+                        if (preferences.contains("diff") && higherThanOne){
+                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
+                            int DIF = preferences.getInt("diff", -100);
+                            counter = counter + DIF;
+                            if (preferences.contains("tempLong")){
+                                longFromSavingActivity = preferences.getLong("tempLong", 0);
+                            } else {
+                                longFromSavingActivity = 0;
+                            }
+                            savings = longFromSavingActivity + (firstSave * counter);
+                            editor.putLong(SAVINGS_FINAL, savings);
+                            editor.apply();
+
+                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter
+                                    +"\n savings = " + savings);
+                            higherThanOne = false;
+                        } else {
+                            if (counter == 1) {
+                                if (preferences.contains(SAVINGS_FINAL)){
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    editor.putLong("firstsave", firstSave);
+                                    editor.apply();
+                                    Log.d("taogenX", "firstsave is: " + firstSave);
+                                }
+                            }
+                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
+                            counter++;
+                            if (counter == 1){
+                                savings = preferences.getLong(SAVINGS_FINAL, 0);
+                                editor.putLong(SAVINGS_FINAL, savings);
+                                if (preferences.contains(SAVINGS_FINAL)){
+                                    firstSave = preferences.getLong(SAVINGS_FINAL, 0);
+                                    editor.putLong("firstsave", firstSave);
+                                    editor.apply();
+                                    Log.d("taogenX", "firstsave is: " + firstSave);
+                                }
+                            } else {
+                                savings = preferences.getLong(SAVINGS_FINAL, 0) + firstSave;
+                                Log.d("taogenX", "savings from TAO = " + savings);
+                                editor.putLong(SAVINGS_FINAL, savings);
+                                editor.apply();
+                            }
+                            higherThanOne = false;
+                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
+                        }
+                        i = 1;
+                        editor.putInt(COUNTER, counter);
+                        final int TEMP_CIGARETTES = cigarettesPerDay * counter;
+                        final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
+                        final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
+                        userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+                        editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
+                        lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
+                        final String USER_HOURS_PROGRESS = getString(R.string.life_r)
+                                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+                        userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
                         editor.putFloat(LIFEREGAINED, lifeRegained);
                         editor.putLong(SAVINGS_FINAL, savings);
                         editor.apply();
@@ -996,13 +993,14 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
         i = 1;
         //get time of relapse and put it into arraylist to send in logs activity
-        Calendar calendarOnClick2 = Calendar.getInstance();
-        calendarOnClick2.setTimeZone(TimeZone.getDefault());
-        String tem = calendarOnClick2.getTime().toString() + " ole\n";
+        final Calendar CALENDAR_ON_CLICK = Calendar.getInstance();
+        CALENDAR_ON_CLICK.setTimeZone(TimeZone.getDefault());
+        //Get time of fail
+        final String TEM = CALENDAR_ON_CLICK.getTime().toString() + " - reset\n";
         if (preferences.contains("arr")){
-            arr = tem + preferences.getString("arr", "no value");
+            arr = TEM + preferences.getString("arr", "no value");
         } else {
-            arr = tem;
+            arr = TEM;
         }
         editor.putString("arr", arr);
         Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
@@ -1015,15 +1013,15 @@ public class MainActivity extends AppCompatActivity {
         //maybe
         editor.putInt(COUNTER, counter);
         //new edit
-        int tempCigarettes = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
-        String tempusrCig = getString(R.string.cig_not_smoked);
-        String usrciggsprogs = tempusrCig + " " + tempCigarettes;
-        userCigaretesProgressTxt.setText(usrciggsprogs);
-        editor.putInt(MODIFIED_CIGG_PER_DAY, tempCigarettes);
-        lifeRegained = (5f * (float) tempCigarettes) / 60f;
-        String usrhrsprogrs = getString(R.string.life_r)
+        final int TEMP_CIGARETTES = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
+        final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
+        final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
+        userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+        editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
+        lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
+        final String USER_HOURS_PROGRESS = getString(R.string.life_r)
                 + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
-        userHoursProgressTxt.setText(usrhrsprogrs);
+        userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
         editor.putFloat(LIFEREGAINED, lifeRegained);
         editor.apply();
         checkActivityOnline();
@@ -1043,16 +1041,14 @@ public class MainActivity extends AppCompatActivity {
     private void estabilishHighestRecordForCounter() {
         if (preferences.contains("highest")){
             //if editor cointains highest, we see which is higher, present counter or last counter;
-            int fh;
-            int h = preferences.getInt("highest",0);
-            if (counter > h) {
-                fh = counter;
-            } else if (counter == h) {
-                fh = counter;
+            final int FINAL_HIGHEST;
+            final int HIGHEST = preferences.getInt("highest",0);
+            if (counter >= HIGHEST) {
+                FINAL_HIGHEST = counter;
             } else {
-                fh = h;
+                FINAL_HIGHEST = HIGHEST;
             }
-            editor.putInt("highest", fh);
+            editor.putInt("highest", FINAL_HIGHEST);
             editor.apply();
         } else {
             editor.putInt("highest", preferences.getInt(COUNTER, 0));
@@ -1060,29 +1056,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setTxtViewForUserSavings(long savePerDay, String string,
-                                          int androiId, TextView textView) {
-        DecimalFormat formatter = new DecimalFormat("###,###,##0.00");
-        String valuePerYear = formatter.format(Integer.parseInt(String.valueOf(savePerDay))*365);
-        String totalSavings = formatter.format(Integer.parseInt(string));
-        String valuePerDay = formatter.format(Integer.parseInt(String.valueOf(savePerDay)));
-        String currency = preferences.getString("currency", "$");
+    private void setTxtViewForUserSavings(long SAVE_PER_DAY, String STRING,
+                                          int ANDROID_ID, TextView TEXTVIEW) {
+        final DecimalFormat FORMATTER = new DecimalFormat("###,###,##0.00");
+        final String VALUE_PER_YEAR_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
+        final String TOTAL_SAVINGS_LOCAL = FORMATTER.format(Integer.parseInt(STRING));
+        final String VALUE_PER_DAY_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY)));
+        final String CURRENCY_LOCAL = preferences.getString("currency", "$");
         //target counter string
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder = stringBuilder.append(getString(R.string.perday)).append(" ").append(valuePerDay).append(" ").append(currency).append("\n")
-                .append(getString(androiId, totalSavings)).append(" ").append(currency).append("\n")
-                .append(getString(R.string.peryear)).append(" ").append(valuePerYear).append(" ").append(currency);
+        stringBuilder = stringBuilder.append(getString(R.string.perday)).append(" ").append(VALUE_PER_DAY_LOCAL).append(" ").append(CURRENCY_LOCAL).append("\n")
+                .append(getString(ANDROID_ID, TOTAL_SAVINGS_LOCAL)).append(" ").append(CURRENCY_LOCAL).append("\n")
+                .append(getString(R.string.peryear)).append(" ").append(VALUE_PER_YEAR_LOCAL).append(" ").append(CURRENCY_LOCAL);
 //        String finalS = R.string.perday + " "  + valuePerDay + " "+currency + "\n"+
 //                getString(androiId, totalSavings) + " "+currency + "\nPer year: " + valuePerYear + " " + currency;
-        textView.setText(stringBuilder);
+        TEXTVIEW.setText(stringBuilder);
     }
 
     private void setTxtViewForUserMaxCountDaysOnStringVersion(
-            String string,
-            int androiId,
-            TextView textview) {
+            final String STRING,
+            final int ANDROID_ID,
+            final TextView TEXTVIEW) {
         //target counter string
-        textview.setText(getString(androiId, string));
+        TEXTVIEW.setText(getString(ANDROID_ID, STRING));
     }
 
     private void savingsGetAndSetValue() {
@@ -1158,9 +1154,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         //remaining days -- + "  " for space between number of days and text
-        String calcDaysTarget = (userMaxCountForHabit - counter) + "";
-        String targetCalcDaysTarget = getString(R.string.remaining_days, calcDaysTarget);
-        remainingDaysTxt.setText(targetCalcDaysTarget);
+        final String CALC_DAYS_TARGET = (userMaxCountForHabit - counter) + "";
+        final String PUT_TARGET_DAYS_IN_STRING = getString(R.string.remaining_days, CALC_DAYS_TARGET);
+        remainingDaysTxt.setText(PUT_TARGET_DAYS_IN_STRING);
     }
 
     //running task
@@ -1212,10 +1208,10 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt(DAYOFPRESENT, DAY_OF_PRESENT);
             editor.apply();
             //testing area
-            Date date = new Date();
-            Calendar calendar = GregorianCalendar.getInstance();
-            calendar.setTime(date);
-            HOUR_OF_DAYLIGHT = calendar.get(Calendar.HOUR_OF_DAY);
+            final Date DATE = new Date();
+            final Calendar CALENDAR = GregorianCalendar.getInstance();
+            CALENDAR.setTime(DATE);
+            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
             Log.d("taolenZ", "hour of now: " + HOUR_OF_DAYLIGHT);
             setTargetDays();
             //if the button/check in is already clicked today,
@@ -1235,25 +1231,24 @@ public class MainActivity extends AppCompatActivity {
         if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
             HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, 0);
         }
-        //temporarily integer
-        int hoursTillCheckIn;
         //if only one day passed
         if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
             if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
-                hoursTillCheckIn = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
-                String checkInTextTemp = getResources().getString(R.string.check_in) +
-                        ": " + hoursTillCheckIn + " "
+                //temporarily integer
+                final int HOURS_UNTILL_CHECK_IN = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
+                final String CHECK_IN_TEXT = getResources().getString(R.string.check_in) +
+                        ": " + HOURS_UNTILL_CHECK_IN + " "
                         + getResources().getString(R.string.hours);
-                subTextNonSmoker.setText(checkInTextTemp);
-            //if user passed one day && hour is passed or equal to hour of first launch
+                subTextNonSmoker.setText(CHECK_IN_TEXT);
+                //if user passed one day && hour is passed or equal to hour of first launch
             } else {
                 subTextNonSmoker.setText(getResources().getString(R.string.check_in_now));
             }
-        //if more than one day passed
+            //if more than one day passed
         } else if (DAY_OF_PRESENT >= DAY_OF_CLICK+2) {
             subTextNonSmoker.setText(getResources().getString(R.string.check_in_now));
         } else {
-        subTextNonSmoker.setText(getResources().getString(R.string.check_in_tomorrow));
+            subTextNonSmoker.setText(getResources().getString(R.string.check_in_tomorrow));
         }
     }
 
@@ -1298,11 +1293,11 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         //-5 default
         try {
-        if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -5);editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);editor.apply();}
-        if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -5); editor.putLong(SAVINGS_FINAL, savings);editor.apply();}
-        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -5);editor.putInt(COUNTER, counter);editor.apply();}
-        if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -5);editor.putFloat(LIFEREGAINED, lifeRegained);editor.apply(); }
-        if (preferences.contains(getString(R.string.maxCounter))){userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -5);editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);editor.apply();}
+            if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -5);editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);editor.apply();}
+            if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -5); editor.putLong(SAVINGS_FINAL, savings);editor.apply();}
+            if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -5);editor.putInt(COUNTER, counter);editor.apply();}
+            if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -5);editor.putFloat(LIFEREGAINED, lifeRegained);editor.apply(); }
+            if (preferences.contains(getString(R.string.maxCounter))){userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -5);editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);editor.apply();}
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -1394,8 +1389,8 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
             higherThanOne = true;
-            int diff = DAY_OF_PRESENT - DAY_OF_CLICK;
-            editor.putInt("diff", diff);
+            final int DIFF_LOCAL = DAY_OF_PRESENT - DAY_OF_CLICK;
+            editor.putInt("diff", DIFF_LOCAL);
             editor.apply();
             fab.show();
             editor.putBoolean("saveimg", true);
@@ -1414,22 +1409,22 @@ public class MainActivity extends AppCompatActivity {
     }//END OF -> [ENABLE BUTTON]
 
     private void startAnimatorForUpperCard() {
-        View myView = findViewById(R.id.card_view_mainID);
+        final View MY_VIEW = findViewById(R.id.card_view_mainID);
         // get the center for the clipping circle
-        int cx = (myView.getLeft() + myView.getRight()) / 2;
-        int cy = (myView.getTop() + myView.getBottom()) / 2;
+        final int CX = (MY_VIEW.getLeft() + MY_VIEW.getRight()) / 2;
+        final int CY = (MY_VIEW.getTop() + MY_VIEW.getBottom()) / 2;
 
         // get the final radius for the clipping circle
-        int dx = Math.max(cx, myView.getWidth() - cx);
-        int dy = Math.max(cy, myView.getHeight() - cy);
-        float finalRadius = (float) Math.hypot(dx, dy);
+        final int DX = Math.max(CX, MY_VIEW.getWidth() - CX);
+        final int DY = Math.max(CY, MY_VIEW.getHeight() - CY);
+        final float FINAL_RADIUS = (float) Math.hypot(DX, DY);
 
         // Android native animator
-        Animator animator =
-                ViewAnimationUtils.createCircularReveal(myView, cx, cy, 0, finalRadius);
-        animator.setInterpolator(new AccelerateDecelerateInterpolator());
-        animator.setDuration(1500);
-        animator.start();
+        final Animator ANIMATOR_LOCAL =
+                ViewAnimationUtils.createCircularReveal(MY_VIEW, CX, CY, 0, FINAL_RADIUS);
+        ANIMATOR_LOCAL.setInterpolator(new AccelerateDecelerateInterpolator());
+        ANIMATOR_LOCAL.setDuration(1500);
+        ANIMATOR_LOCAL.start();
         i = 2;
     }
 
@@ -1544,33 +1539,36 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
+
+        //onOptionsItemSelected is called everytime user clicks
+        //options menu, so here it is ok to have a final int assigned as id
+        final int ID_LOCAL = item.getItemId();
+        if (ID_LOCAL == R.id.action_settings) {
             counter++;
-            Calendar calendar = Calendar.getInstance();
-            int zet2 = calendar.get(Calendar.MINUTE);
-            int zet = preferences.getInt(CLICKDAY_SP, 0);
-            editor.putInt(CLICKDAY_SP, zet2);
-            Log.d("taolenZ777", "zet = " + zet2);
+            final Calendar CALENDAR_LOCAL = Calendar.getInstance();
+            final int GET_MINUTE = CALENDAR_LOCAL.get(Calendar.MINUTE);
+//            int zet = preferences.getInt(CLICKDAY_SP, 0);
+            editor.putInt(CLICKDAY_SP, GET_MINUTE);
+            Log.d("taolenZ777", "zet = " + GET_MINUTE);
             counterText.setText(String.valueOf(counter));
             editor.putInt(COUNTER, counter);
             editor.apply();
             setImprovementProgressLevels();
             return true;
-        } else if (id == R.id.action_about) {
-            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-            startActivity(intent);
+        } else if (ID_LOCAL == R.id.action_about) {
+            final Intent INTENT = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(INTENT);
             return true;
-        } else if (id == R.id.action_help) {
+        } else if (ID_LOCAL == R.id.action_help) {
             counter = 80;
             counterText.setText(String.valueOf(counter));
             editor.putInt(COUNTER, counter);
             editor.apply();
-        } else if (id == R.id.check_in_hour) {
+        } else if (ID_LOCAL == R.id.check_in_hour) {
             //do nothing for now
             //TODO: think about we want to let user change the check in hour or not
 //            showDialogForChangingCheckInDate();
-        } else if (id == R.id.reset_button){
+        } else if (ID_LOCAL == R.id.reset_button){
             //TODO: reset progress
             dialogForReset();
 //            HOUR_OF_FIRSTLAUNCH = 3;
@@ -1581,7 +1579,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }//END OF -> [MENU]
-
 
     //hide the rest of the menu
     @Override
@@ -1596,16 +1593,16 @@ public class MainActivity extends AppCompatActivity {
 
     @SideEffect
     protected boolean isOnline() {
-        ConnectivityManager connManager =
+        final ConnectivityManager connManager =
                 (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo =
+                        getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo networkInfo =
                 Objects.requireNonNull(connManager).getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }//isOnline[END]
 
     //i am not using it for now (using the version from splash)
-    private void requestDataById(int id) {
+    private void requestDataById(final int id) {
         task = new MainActivity.MyAsyncTask();
         task.execute(MainActivity.HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS + "/" + id);
     }
@@ -1625,19 +1622,19 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 errorText.setVisibility(View.VISIBLE);
                 tipofthedayTxtView.setText(R.string.error_fourtyfour);
-                Snackbar snackbar;
-                snackbar = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
-                View snackBarView = snackbar.getView();
-                snackBarView.setBackgroundColor(Color.RED);
-                snackbar.show();
+                final Snackbar SNACKBAR;
+                SNACKBAR = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
+                final View SNACKBAR_VIEW = SNACKBAR.getView();
+                SNACKBAR_VIEW.setBackgroundColor(Color.RED);
+                SNACKBAR.show();
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
 
-    private void updateDisplayString(String message) {
-        tipofthedayTxtView.setText(new StringBuilder().append(message).append("\n").toString());
+    private void updateDisplayString(final String MESSAGE) {
+        tipofthedayTxtView.setText(MESSAGE + "\n");
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -1659,39 +1656,39 @@ public class MainActivity extends AppCompatActivity {
             tasks.add(this);
         }//onPreExecute[END]
         @Override
-        protected String doInBackground(String... params) {
+        protected String doInBackground(final String... PARAMS_LOCAL) {
             try {
                 //using GSON
-                JsonParser parser = new JsonParser();
+                final JsonParser JSON_PARSER = new JsonParser();
                 //using MyHttpManager getData static method
 //                String content = MyHttpManager.getData(params[0]);
 //                Thread.sleep(1000);
                 //using MyHttpCoreAndroid
-                String content = MyHttpCoreAndroid.getData(params[0]);
-                assert content != null;
-                JsonElement rootNode = parser.parse(content);
-                JsonObject details = rootNode.getAsJsonObject();
-                JsonElement nameNode;
-                //Log.d(TAGoncreate, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
+                final String CONTENT_LOCAL = MyHttpCoreAndroid.getData(PARAMS_LOCAL[0]);
+                assert CONTENT_LOCAL != null : "We found no content";
+                final JsonElement ROOT_NODE = JSON_PARSER.parse(CONTENT_LOCAL);
+                final JsonObject DETAILS_LOCAL = ROOT_NODE.getAsJsonObject();
+                final JsonElement NAME_ELEMENT_NODE;
+                //Log.d(TAG, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
                 //get initials like: ro
-                String lang = Resources.getSystem().getConfiguration().locale.getLanguage();
-                Log.d(TAGoncreate, "lang is: " + lang);
-                if (lang.equalsIgnoreCase("ro")) {
-                    nameNode = details.get("nameRO");
+                final String PUT_LANGUAGE_IN_STRING = Resources.getSystem().getConfiguration().locale.getLanguage();
+                Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING);
+                if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("ro")) {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameRO");
                 } else {
-                    nameNode = details.get("name");
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("name");
                 }
 //                JsonElement nameNode = details.get("name");
-                return nameNode.getAsString();
-            } catch (Exception e) {
+                return NAME_ELEMENT_NODE.getAsString();
+            } catch (final JsonSyntaxException e) {
                 e.printStackTrace();
                 return null;
             }//using GSON[END]
         }//doInBackground[END]
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(final String RESULT) {
             //using raw JSON PARSER
-            updateDisplayString(result);
+            updateDisplayString(RESULT);
             //we get rid of the task that we created
             tasks.remove(this);
             if (tasks.size() == 0) {
@@ -1700,14 +1697,14 @@ public class MainActivity extends AppCompatActivity {
                 counterImgView.setVisibility(View.VISIBLE);
                 counterText.setVisibility(View.VISIBLE);
             }
-            if (result == null) {
+            if (RESULT == null) {
                 Toast.makeText(MainActivity.this, R.string.cant_connect,
                         Toast.LENGTH_LONG).show();
             }
         }//onPostExecute[END]
         @Override
-        protected void onProgressUpdate(String... values) {
-            updateDisplayString(values[0]);
+        protected void onProgressUpdate(final String... VALUES) {
+            updateDisplayString(VALUES[0]);
         }//onProgressUpdate[END]
     }//MyAsyncTask[END]
 
@@ -1831,16 +1828,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDialogForChangingCheckInDate() {
-        final EditText editTextForChoosingSavings =
+        final EditText ET_FOR_CHOOSING_SAVINGS =
                 new EditText(MainActivity.this);
-        editTextForChoosingSavings.setInputType(InputType.TYPE_CLASS_NUMBER);
+        ET_FOR_CHOOSING_SAVINGS.setInputType(InputType.TYPE_CLASS_NUMBER);
         //impl bottom dialog instead of normal dialog
         new BottomDialog.Builder(this)
                 .setTitle("Check in customization!")
                 .setContent("Type in what time is suitable for you to check in.")
                 .setPositiveText("SET")
                 .setCancelable(false)
-                .setCustomView(editTextForChoosingSavings)
+                .setCustomView(ET_FOR_CHOOSING_SAVINGS)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
@@ -1848,9 +1845,9 @@ public class MainActivity extends AppCompatActivity {
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(BottomDialog dialog) {
-                        Editable editM = editTextForChoosingSavings.getText();
+                        Editable editM = ET_FOR_CHOOSING_SAVINGS.getText();
                         if (TextUtils.isEmpty(editM)){
-                            editTextForChoosingSavings.setError("Please input numbers!");
+                            ET_FOR_CHOOSING_SAVINGS.setError("Please input numbers!");
                             return;
                         }
                         HOUR_OF_FIRSTLAUNCH = Integer.parseInt(editM.toString());
@@ -1862,30 +1859,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SideEffect
-    private void showEntireProgressForUserCard(TextView userCigarettesProgressTxt,
-                                               TextView userHighestStreakDays,
-                                               TextView userHoursProgressTxt) {
+    private void showEntireProgressForUserCard(final TextView TV_USER_CIGARETTES_PROGRESS,
+                                               final TextView TV_HIGHEST_STREAK,
+                                               final TextView TV_HOURS_PROGRESS) {
         try {
             //getting the highest streak and put it in progress card
-            int highestStreak;
+            final int HIGHEST_STREAK;
             if (preferences.contains("highest")){
-                highestStreak = preferences.getInt("highest", 0);
+                HIGHEST_STREAK = preferences.getInt("highest", 0);
             } else {
-                highestStreak = preferences.getInt(COUNTER, 0);
+                HIGHEST_STREAK = preferences.getInt(COUNTER, 0);
             }
-            String tempStreak = getString(R.string.streak_string, highestStreak);
-            userHighestStreakDays.setText(tempStreak);
+            final String TEMP_STREAK = getString(R.string.streak_string, HIGHEST_STREAK);
+            TV_HIGHEST_STREAK.setText(TEMP_STREAK);
             //getting highest rank and put it into ranks card
-            String theLatestRank = preferences.getString("rank", "unranked yet");
-            String rank_master = getString(R.string.rank_master, theLatestRank);
-            rankMasterTxt.setText(rank_master);
+            final String LAST_STREAK = preferences.getString("rank", "unranked yet");
+            final String RANK_LOCAL = getString(R.string.rank_master, LAST_STREAK);
+            rankMasterTxt.setText(RANK_LOCAL);
             rankMasterTxt.setBackground(ContextCompat.getDrawable(getApplicationContext(),
                     R.drawable.custom_button_round));
 
             if (counter == 0) {
-                userCigarettesProgressTxt.setText(R.string.cig_press_leaf);
-                String pressLeaf = getString(R.string.life_press_leaf);
-                userHoursProgressTxt.setText(pressLeaf);
+                TV_USER_CIGARETTES_PROGRESS.setText(R.string.cig_press_leaf);
+                final String PRESS_LEAF = getString(R.string.life_press_leaf);
+                TV_HOURS_PROGRESS.setText(PRESS_LEAF);
             } else {
                 if (preferences.contains(LIFEREGAINED)) {
                     lifeRegained = preferences.getFloat(LIFEREGAINED, -1);
@@ -1894,10 +1891,10 @@ public class MainActivity extends AppCompatActivity {
                     lifeRegained = Float.valueOf((5f * Float.valueOf(preferences.getInt(MODIFIED_CIGG_PER_DAY, 0))) / 60f);
                     numberFormat.format(lifeRegained);
                 }
-                String cignotsmked = getString(R.string.cig_not_smoked);
-                String lifereg = getString(R.string.life_reg, numberFormat.format(lifeRegained));
-                userCigarettesProgressTxt.setText(cignotsmked +" " + preferences.getInt(MODIFIED_CIGG_PER_DAY, 0));
-                userHoursProgressTxt.setText(lifereg);
+                final String CIGARETTES_NOT_SMOKED_STRING = getString(R.string.cig_not_smoked);
+                final String LIFE_REGAINED_STRING = getString(R.string.life_reg, numberFormat.format(lifeRegained));
+                TV_USER_CIGARETTES_PROGRESS.setText(CIGARETTES_NOT_SMOKED_STRING +" " + preferences.getInt(MODIFIED_CIGG_PER_DAY, 0));
+                TV_HOURS_PROGRESS.setText(LIFE_REGAINED_STRING);
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.apply();
             }
@@ -1905,25 +1902,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setMarginForProgress() {
-        Resources r = this.getResources();
-        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, r.getDisplayMetrics());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+        final Resources RESOURCES = this.getResources();
+        final int PX = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, RESOURCES.getDisplayMetrics());
+        final LinearLayout.LayoutParams PARAMS_LOCAL = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(px, 0, 0, 0);
+        PARAMS_LOCAL.setMargins(PX, 0, 0, 0);
         Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
         if (progressBarEnergyLevel.getProgress() == 100) {
 //            txtProgressForEnergyLevels.setLayoutParams(params);
-            setMargins(txtProgressForEnergyLevels, px, 0 , 0, 0);
+            setMargins(txtProgressForEnergyLevels, PX, 0 , 0, 0);
             Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
         }
     }
 
-    private void setMargins (View view, int left, int top, int right, int bottom) {
-        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            p.setMargins(left, top, right, bottom);
-            view.requestLayout();
+    private void setMargins (final View VIEW, final int LEFT, final int TOP, final int RIGHT, final int BOTTOM) {
+        if (VIEW.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            final ViewGroup.MarginLayoutParams LAYOUT_PARAMS = (ViewGroup.MarginLayoutParams) VIEW.getLayoutParams();
+            LAYOUT_PARAMS.setMargins(LEFT, TOP, RIGHT, BOTTOM);
+            VIEW.requestLayout();
         }
     }
 
@@ -1948,11 +1945,11 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
-    private boolean isLeap(int year){
-        return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
-    }
-
 }//[END OF MAIN CLASS]
+
+//    private boolean isLeap(final int year){
+//        return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
+//    }
 
 //milestone dialog ------------
 //        AlertDialog.Builder milestoneAlert = new AlertDialog.Builder(this);
