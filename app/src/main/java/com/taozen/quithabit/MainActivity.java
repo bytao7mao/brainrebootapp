@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
     @BindView(R.id.progressCardIdAchievments) CardView achievementRanksCard;
     @BindView(R.id.progressCardId) CardView upperProgressPercentsCard;
-    @BindView(R.id.txtviewsprogrs) LinearLayout txtviewsprogrs;
 
     //TextViews
     @BindView(R.id.exploreAchievementId) TextView exploreAId;
@@ -250,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    try {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(MainActivity.this);
 //        StringBuffer stringBuffer = new StringBuffer();
@@ -386,8 +386,6 @@ public class MainActivity extends AppCompatActivity {
         final float DENSITY_WEIGHT = TV_WIDTH / DENSITY;
         final float DENSITY_HEIGHT = TV_HEIGHT / DENSITY;
         Log.d("DENS", "widht: " + DENSITY_WEIGHT + " height: " + DENSITY_HEIGHT + DENSITY);
-
-        try {
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);
             }
@@ -395,9 +393,6 @@ public class MainActivity extends AppCompatActivity {
             showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
             setImagesForAchievementCard();
             setImprovementProgressLevels();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
         if (preferences.contains("saveimg")) {
             if (!preferences.getBoolean("saveimg", true)) {
 //                TODO: addSavingsSumImg.setVisibility(View.INVISIBLE);
@@ -449,26 +444,26 @@ public class MainActivity extends AppCompatActivity {
         disableViewsForComingSoon();
 
         //retrieving the counter and minute values
-        try {
-            //run the task
-            runningInBackground();
-            //counter on click for fab button
-            counterFabButtonInitializer();
-            setTargetDays();
+        //run the task
+        runningInBackground();
+        //counter on click for fab button
+        counterFabButtonInitializer();
+        setTargetDays();
 
-            savingsGetAndSetValue();
-            if (preferences.contains(COUNTER)){
-                counter = preferences.getInt(COUNTER, -1);
-            }
-            if (preferences.contains(CLICKED)){
-                buttonClickedToday = preferences.getBoolean(CLICKED, false);
-            }
-            setImprovementProgressLevels();
-
-        } catch (NullPointerException e) {
+        savingsGetAndSetValue();
+        if (preferences.contains(COUNTER)){
+            counter = preferences.getInt(COUNTER, -1);
+        }
+        if (preferences.contains(CLICKED)){
+            buttonClickedToday = preferences.getBoolean(CLICKED, false);
+        }
+        setImprovementProgressLevels();
+            //using "final rethrow" by not specifying throwing a specific exception like NullPointer
+            //the final keyword is optional, but in practice, we've found that it helps to use it while
+            //adjusting to the new semantics of catch and rethrow
+        } catch (final Exception e) {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
-
     }//[END OF ONCREATE]
 
     private void setTargetAfterCheckingCounter() {
@@ -730,10 +725,13 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             setImagesForAchievementCard();
             Log.d("INTROTAO", "counter from onclick = " + counter + buttonClickedToday);
-        } catch (NullPointerException e) {
+            //using "final rethrow" by not specifying throwing a specific exception like NullPointer
+            //the final keyword is optional, but in practice, we've found that it helps to use it while
+            //adjusting to the new semantics of catch and rethrow
+        } catch (final Exception e) {
             e.printStackTrace();
         }
-    }
+    }//[END OF setTodayToClickDay]
 
     private void normalFancyDialog(String title, String message) {
         new FancyGifDialog.Builder(MainActivity.this)
@@ -831,52 +829,53 @@ public class MainActivity extends AppCompatActivity {
                 .OnNegativeClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
-                        i = 1;
-                        //get time of relapse and put it into arraylist to send in logs activity
-                        final Calendar CALENDAR_ON_CLICK = Calendar.getInstance();
-                        CALENDAR_ON_CLICK.setTimeZone(TimeZone.getDefault());
-                        final String tem = CALENDAR_ON_CLICK.getTime().toString() + " - fail\n";
-                        if (preferences.contains("arr")){
-                            arr = tem + preferences.getString("arr", "no value");
-                        } else {
-                            arr = tem;
-                        }
-                        editor.putString("arr", arr);
-                        editor.putInt("highest", counter);
-                        Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
-                        editor.apply();
-                        counter = 1;
-                        savings = firstSave;
-                        Log.d("taogenX", "firstsave is: " + firstSave);
-                        //to see
-                        editor.putLong(SAVINGS_FINAL, savings);//off
-                        //maybe
-                        editor.putInt(COUNTER, counter);
-                        //new edit
-                        final int TEMP_CIGARETTES = cigarettesPerDay * counter;
-                        final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
-                        final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
-                        userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
-                        editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
-                        lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
-                        final String USER_HOURS_PROGRESS = getString(R.string.life_r)
-                                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
-                        userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
-                        editor.putFloat(LIFEREGAINED, lifeRegained);
-                        editor.apply();
-                        checkActivityOnline();
-//                        setTheSavingsPerDay();
-                        savingsGetAndSetValue();
-                        setImprovementProgressLevels();
                         try {
+                            i = 1;
+                            //get time of relapse and put it into arraylist to send in logs activity
+                            final Calendar CALENDAR_ON_CLICK = Calendar.getInstance();
+                            CALENDAR_ON_CLICK.setTimeZone(TimeZone.getDefault());
+                            final String tem = CALENDAR_ON_CLICK.getTime().toString() + " - fail\n";
+                            if (preferences.contains("arr")){
+                                arr = tem + preferences.getString("arr", "no value");
+                            } else {
+                                arr = tem;
+                            }
+                            editor.putString("arr", arr);
+                            editor.putInt("highest", counter);
+                            Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
+                            editor.apply();
+                            counter = 1;
+                            savings = firstSave;
+                            Log.d("taogenX", "firstsave is: " + firstSave);
+                            //to see
+                            editor.putLong(SAVINGS_FINAL, savings);//off
+                            //maybe
+                            editor.putInt(COUNTER, counter);
+                            //new edit
+                            final int TEMP_CIGARETTES = cigarettesPerDay * counter;
+                            final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
+                            final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
+                            userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+                            editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
+                            lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
+                            final String USER_HOURS_PROGRESS = getString(R.string.life_r)
+                                    + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+                            userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
+                            editor.putFloat(LIFEREGAINED, lifeRegained);
+                            editor.apply();
+                            checkActivityOnline();
+    //                        setTheSavingsPerDay();
+                            savingsGetAndSetValue();
+                            setImprovementProgressLevels();
+
                             counter = preferences.getInt(COUNTER, -1);
-                        } catch (NullPointerException e) {
+                            counterText.setText(String.valueOf(counter));
+                            setTargetDays();
+                            negativeDialogAfterRelapse();
+                            estabilishHighestRecordForCounter();
+                        } catch (final Exception e) {
                             e.printStackTrace();
                         }
-                        counterText.setText(String.valueOf(counter));
-                        setTargetDays();
-                        negativeDialogAfterRelapse();
-                        estabilishHighestRecordForCounter();
                     }
                 })
                 .build();//[END of NORMAL DIALOG]
@@ -989,70 +988,73 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resetWholeProgress() {
-        estabilishHighestRecordForCounter();
-        editor.apply();
-        i = 1;
-        //get time of relapse and put it into arraylist to send in logs activity
-        final Calendar CALENDAR_ON_CLICK = Calendar.getInstance();
-        CALENDAR_ON_CLICK.setTimeZone(TimeZone.getDefault());
-        //Get time of fail
-        final String TEM = CALENDAR_ON_CLICK.getTime().toString() + " - reset\n";
-        if (preferences.contains("arr")){
-            arr = TEM + preferences.getString("arr", "no value");
-        } else {
-            arr = TEM;
-        }
-        editor.putString("arr", arr);
-        Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
-        editor.apply();
-        counter = 1;
-        savings = firstSave;
-        Log.d("taogenX", "firstsave is: " + firstSave);
-        //to see
-        editor.putLong(SAVINGS_FINAL, savings);//off
-        //maybe
-        editor.putInt(COUNTER, counter);
-        //new edit
-        final int TEMP_CIGARETTES = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
-        final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
-        final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
-        userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
-        editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
-        lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
-        final String USER_HOURS_PROGRESS = getString(R.string.life_r)
-                + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
-        userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
-        editor.putFloat(LIFEREGAINED, lifeRegained);
-        editor.apply();
-        checkActivityOnline();
-//                        setTheSavingsPerDay();
-        savingsGetAndSetValue();
-        setImprovementProgressLevels();
         try {
+            estabilishHighestRecordForCounter();
+            editor.apply();
+            i = 1;
+            //get time of relapse and put it into arraylist to send in logs activity
+            final Calendar CALENDAR_ON_CLICK = Calendar.getInstance();
+            CALENDAR_ON_CLICK.setTimeZone(TimeZone.getDefault());
+            //Get time of fail
+            final String TEM = CALENDAR_ON_CLICK.getTime().toString() + " - reset\n";
+            if (preferences.contains("arr")){
+                arr = TEM + preferences.getString("arr", "no value");
+            } else {
+                arr = TEM;
+            }
+            editor.putString("arr", arr);
+            Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", 0));
+            editor.apply();
+            counter = 1;
+            savings = firstSave;
+            Log.d("taogenX", "firstsave is: " + firstSave);
+            //to see
+            editor.putLong(SAVINGS_FINAL, savings);//off
+            //maybe
+            editor.putInt(COUNTER, counter);
+            //new edit
+            final int TEMP_CIGARETTES = preferences.getInt(INITIAL_CIGG_PER_DAY, 0);
+            final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
+            final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
+            userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+            editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
+            lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
+            final String USER_HOURS_PROGRESS = getString(R.string.life_r)
+                    + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+            userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
+            editor.putFloat(LIFEREGAINED, lifeRegained);
+            editor.apply();
+            checkActivityOnline();
+            savingsGetAndSetValue();
+            setImprovementProgressLevels();
             counter = preferences.getInt(COUNTER, -1);
-        } catch (NullPointerException e) {
+            counterText.setText(String.valueOf(counter));
+            setTargetDays();
+            negativeDialogAfterRelapse();
+        } catch (final Exception e) {
             e.printStackTrace();
         }
-        counterText.setText(String.valueOf(counter));
-        setTargetDays();
-        negativeDialogAfterRelapse();
     }
 
     private void estabilishHighestRecordForCounter() {
-        if (preferences.contains("highest")){
-            //if editor cointains highest, we see which is higher, present counter or last counter;
-            final int FINAL_HIGHEST;
-            final int HIGHEST = preferences.getInt("highest",0);
-            if (counter >= HIGHEST) {
-                FINAL_HIGHEST = counter;
+        try {
+            if (preferences.contains("highest")){
+                //if editor cointains highest, we see which is higher, present counter or last counter;
+                final int FINAL_HIGHEST;
+                final int HIGHEST = preferences.getInt("highest",0);
+                if (counter >= HIGHEST) {
+                    FINAL_HIGHEST = counter;
+                } else {
+                    FINAL_HIGHEST = HIGHEST;
+                }
+                editor.putInt("highest", FINAL_HIGHEST);
+                editor.apply();
             } else {
-                FINAL_HIGHEST = HIGHEST;
+                editor.putInt("highest", preferences.getInt(COUNTER, 0));
+                editor.apply();
             }
-            editor.putInt("highest", FINAL_HIGHEST);
-            editor.apply();
-        } else {
-            editor.putInt("highest", preferences.getInt(COUNTER, 0));
-            editor.apply();
+        } catch (final Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1082,25 +1084,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void savingsGetAndSetValue() {
-        if (preferences.contains(SAVINGS_FINAL)) {
-            try {
+        try {
+            if (preferences.contains(SAVINGS_FINAL)) {
                 savings = preferences.getLong(SAVINGS_FINAL, 1);
-            } catch (ClassCastException e) {
-                e.printStackTrace();
+            } else {
+                savings = 0;
+                editor.putLong(SAVINGS_FINAL, savings);
+                editor.apply();
             }
-        } else {
-            savings = 0;
-            editor.putLong(SAVINGS_FINAL, savings);
-            editor.apply();
+            if (preferences.contains("firstsave")) {
+                firstSave = preferences.getLong("firstsave", 0);
+                Log.d("taogenX", "firstsave: " + firstSave);
+            } else {
+                Log.d("taogenX", "firstsave: " + firstSave);
+            }
+            setTxtViewForUserSavings(firstSave,
+                    String.valueOf(savings), R.string.savings, moneySavingsTxt);
+        } catch (final Exception e) {
+            e.printStackTrace();
         }
-        if (preferences.contains("firstsave")){
-            firstSave = preferences.getLong("firstsave",0);
-            Log.d("taogenX", "firstsave: " + firstSave);
-        } else {
-            Log.d("taogenX", "firstsave: " + firstSave);
-        }
-        setTxtViewForUserSavings(firstSave,
-                String.valueOf(savings), R.string.savings, moneySavingsTxt);
     }
 
     @SideEffect
@@ -1150,13 +1152,13 @@ public class MainActivity extends AppCompatActivity {
                 challs = preferences.getString(CHALLENGES_STRING, challs);
 //                challengeTextViewSubtitle.setText(challs);
             }
-        } catch (NullPointerException e) {
+            //remaining days -- + "  " for space between number of days and text
+            final String CALC_DAYS_TARGET = (userMaxCountForHabit - counter) + "";
+            final String PUT_TARGET_DAYS_IN_STRING = getString(R.string.remaining_days, CALC_DAYS_TARGET);
+            remainingDaysTxt.setText(PUT_TARGET_DAYS_IN_STRING);
+        } catch (final Exception e) {
             e.printStackTrace();
         }
-        //remaining days -- + "  " for space between number of days and text
-        final String CALC_DAYS_TARGET = (userMaxCountForHabit - counter) + "";
-        final String PUT_TARGET_DAYS_IN_STRING = getString(R.string.remaining_days, CALC_DAYS_TARGET);
-        remainingDaysTxt.setText(PUT_TARGET_DAYS_IN_STRING);
     }
 
     //running task
@@ -1228,27 +1230,31 @@ public class MainActivity extends AppCompatActivity {
 
     @SideEffect
     private void setCheckInText() {
-        if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
-            HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, 0);
-        }
-        //if only one day passed
-        if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
-            if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
-                //temporarily integer
-                final int HOURS_UNTILL_CHECK_IN = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
-                final String CHECK_IN_TEXT = getResources().getString(R.string.check_in) +
-                        ": " + HOURS_UNTILL_CHECK_IN + " "
-                        + getResources().getString(R.string.hours);
-                subTextNonSmoker.setText(CHECK_IN_TEXT);
-                //if user passed one day && hour is passed or equal to hour of first launch
-            } else {
-                subTextNonSmoker.setText(getResources().getString(R.string.check_in_now));
+        try {
+            if (preferences.contains(HOUR_OF_FIRSLAUNCH_SP)) {
+                HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, 0);
             }
-            //if more than one day passed
-        } else if (DAY_OF_PRESENT >= DAY_OF_CLICK+2) {
-            subTextNonSmoker.setText(getResources().getString(R.string.check_in_now));
-        } else {
-            subTextNonSmoker.setText(getResources().getString(R.string.check_in_tomorrow));
+            //if only one day passed
+            if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
+                if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
+                    //temporarily integer
+                    final int HOURS_UNTILL_CHECK_IN = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
+                    final String CHECK_IN_TEXT = getResources().getString(R.string.check_in) +
+                            ": " + HOURS_UNTILL_CHECK_IN + " "
+                            + getResources().getString(R.string.hours);
+                    subTextNonSmoker.setText(CHECK_IN_TEXT);
+                    //if user passed one day && hour is passed or equal to hour of first launch
+                } else {
+                    subTextNonSmoker.setText(getResources().getString(R.string.check_in_now));
+                }
+                //if more than one day passed
+            } else if (DAY_OF_PRESENT >= DAY_OF_CLICK+2) {
+                subTextNonSmoker.setText(getResources().getString(R.string.check_in_now));
+            } else {
+                subTextNonSmoker.setText(getResources().getString(R.string.check_in_tomorrow));
+            }
+        } catch (final Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1256,9 +1262,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        counterText.setText(String.valueOf(counter));
-        setCheckInText();
         try {
+            counterText.setText(String.valueOf(counter));
+            setCheckInText();
             if (preferences.contains("saveimg")) {
                 if (!preferences.getBoolean("saveimg", true)) {
 //                    TODO: addSavingsSumImg.setVisibility(View.INVISIBLE);
@@ -1275,16 +1281,16 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -3);}
             if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -3); }
             if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -3); }
-        } catch (NullPointerException e) {
+            updateButton();
+            setImagesForAchievementCard();
+            runningInBackground();
+            savingsGetAndSetValue();
+            setTargetDays();
+            setCheckInText();
+            Log.d("INTROTAO", "values in onResume: " + "cigperday " + cigarettesPerDay+ " savings: " + savings + " counter: " + counter);
+        } catch (final Exception e) {
             e.printStackTrace();
         }
-        updateButton();
-        setImagesForAchievementCard();
-        runningInBackground();
-        savingsGetAndSetValue();
-        setTargetDays();
-        setCheckInText();
-        Log.d("INTROTAO", "values in onResume: " + "cigperday " + cigarettesPerDay+ " savings: " + savings + " counter: " + counter);
     }//[END of ONRESUME]
 
     //onPause
@@ -1298,7 +1304,7 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -5);editor.putInt(COUNTER, counter);editor.apply();}
             if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, -5);editor.putFloat(LIFEREGAINED, lifeRegained);editor.apply(); }
             if (preferences.contains(getString(R.string.maxCounter))){userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -5);editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);editor.apply();}
-        } catch (NullPointerException e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
         Log.d("INTROTAO", "values in onPause: " + "cigperday " + cigarettesPerDay+ " savings: " + savings+ " counter: " + counter);
@@ -1316,11 +1322,11 @@ public class MainActivity extends AppCompatActivity {
             editor.putFloat(LIFEREGAINED, lifeRegained);
             editor.putLong(SAVINGS_FINAL, savings);
             editor.apply();
-        } catch (NullPointerException e) {
+            Log.d("INTROTAO", "values in onDestroy: " + "cigperday " + cigarettesPerDay+ " savings: " + savings+ " counter: " + counter);
+            if (task != null && !task.isCancelled()) { task.cancel(true); }
+        } catch (final Exception e) {
             e.printStackTrace();
         }
-        Log.d("INTROTAO", "values in onDestroy: " + "cigperday " + cigarettesPerDay+ " savings: " + savings+ " counter: " + counter);
-        if (task != null && !task.isCancelled()) { task.cancel(true); }
     }//[END of ONDESTROY]
 
     private void updateButton() {
@@ -1345,35 +1351,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int returnLeapForClickYear() {
-        int x = 366 - preferences.getInt(CLICKDAY_SP, -1000);
-//        if (isLeap(preferences.getInt("yearleap", 2019))) {
-//          return (DAY_OF_PRESENT == 1) ? 0 : (DAY_OF_PRESENT - 1);
-        Log.d("DAYZEN", "x: " + x + DAY_OF_PRESENT);
-        return x;
-//        }
-//        return x;
+        final int defaultValue = -1000;
+        //using try catch due to preferences
+        try {
+            final int lastDayClick = preferences.getInt(CLICKDAY_SP, defaultValue);
+            final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
+            final int x = isLeap(yearOfNow) ? 366 : 365;
+            return x - lastDayClick;
+        } catch (final Exception e) {
+            e.printStackTrace();
+            //will never happen'
+            return defaultValue;
+        }
+    }
+
+    private boolean isLeap(final int year){
+        return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
     }
 
     //[ENABLE BUTTON]
     @SideEffect
     private void greenCondition() {
-        if (preferences.contains(COUNTER)) {
-            counter = preferences.getInt(COUNTER, 0);
-        }
-        if (Calendar.getInstance().get(Calendar.YEAR) != preferences.getInt("yearleap", 2019)) {
-            DAY_OF_CLICK = returnLeapForClickYear();
-            DAY_OF_CLICK *= -1;
-            editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);editor.apply();
-            Log.d("DAYZEN", "DAY_OF_PRESENT: "  + DAY_OF_PRESENT);
-            editor.putInt("yearleap", Calendar.getInstance().get(Calendar.YEAR));editor.apply();
-        }
-        Log.d("DAYZEN", "DAY OF CLICK " + DAY_OF_CLICK
-                + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
-                " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
-        if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
-            HOUR_OF_DAYLIGHT = (HOUR_OF_FIRSTLAUNCH==24 || HOUR_OF_FIRSTLAUNCH==23)
-                    && (HOUR_OF_DAYLIGHT==0) ? 24 : HOUR_OF_DAYLIGHT;
-            if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
+        try {
+            if (preferences.contains(COUNTER)) {
+                counter = preferences.getInt(COUNTER, 0);
+            }
+            if (Calendar.getInstance().get(Calendar.YEAR) != preferences.getInt("yearleap", 2019)) {
+                DAY_OF_CLICK = returnLeapForClickYear();
+                DAY_OF_CLICK *= -1;
+                editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);editor.apply();
+                Log.d("DAYZEN", "DAY_OF_PRESENT: "  + DAY_OF_PRESENT);
+                editor.putInt("yearleap", Calendar.getInstance().get(Calendar.YEAR));editor.apply();
+            }
+            Log.d("DAYZEN", "DAY OF CLICK " + DAY_OF_CLICK
+                    + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
+                    " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
+            if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+1)) {
+                HOUR_OF_DAYLIGHT = (HOUR_OF_FIRSTLAUNCH==24 || HOUR_OF_FIRSTLAUNCH==23)
+                        && (HOUR_OF_DAYLIGHT==0) ? 24 : HOUR_OF_DAYLIGHT;
+                if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
+                    fab.show();
+                    editor.putBoolean("saveimg", true);
+                    editor.apply();
+                    setCheckInText();
+                    if (i == 1)
+                        startAnimatorForUpperCard();
+                    anim.start();
+                    Log.d("DAYZEN", "if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {" + " ACTIVATED");
+                } else {
+                    setCheckInText();
+                    anim.cancel();
+                    fab.hide();
+                }
+            } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
+                higherThanOne = true;
+                final int DIFF_LOCAL = DAY_OF_PRESENT - DAY_OF_CLICK;
+                editor.putInt("diff", DIFF_LOCAL);
+                editor.apply();
                 fab.show();
                 editor.putBoolean("saveimg", true);
                 editor.apply();
@@ -1381,30 +1415,15 @@ public class MainActivity extends AppCompatActivity {
                 if (i == 1)
                     startAnimatorForUpperCard();
                 anim.start();
-                Log.d("DAYZEN", "if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT ) {" + " ACTIVATED");
+                Log.d("DAYZEN", "} else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {" + " ACTIVATED");
             } else {
                 setCheckInText();
                 anim.cancel();
                 fab.hide();
+                Log.d("DAYZEN", "BIG ELSE FROM GREENCONDITION " + " ACTIVATED");
             }
-        } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
-            higherThanOne = true;
-            final int DIFF_LOCAL = DAY_OF_PRESENT - DAY_OF_CLICK;
-            editor.putInt("diff", DIFF_LOCAL);
-            editor.apply();
-            fab.show();
-            editor.putBoolean("saveimg", true);
-            editor.apply();
-            setCheckInText();
-            if (i == 1)
-                startAnimatorForUpperCard();
-            anim.start();
-            Log.d("DAYZEN", "} else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {" + " ACTIVATED");
-        } else {
-            setCheckInText();
-            anim.cancel();
-            fab.hide();
-            Log.d("DAYZEN", "BIG ELSE FROM GREENCONDITION " + " ACTIVATED");
+        } catch (final Exception e) {
+            e.printStackTrace();
         }
     }//END OF -> [ENABLE BUTTON]
 
@@ -1434,88 +1453,85 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, 0);
             }
-        } catch (NullPointerException e) {
+            //energy levels
+            if (counter >= 0 && counter < 6) {
+                txtProgressForEnergyLevels.setText(5 + "%");
+                progressBarEnergyLevel.setProgress(5);
+            } else if (counter > 5 && counter < 10) {
+                txtProgressForEnergyLevels.setText(10 + "%");
+                progressBarEnergyLevel.setProgress(10);
+            } else if (counter > 9 && counter < 25) {
+                txtProgressForEnergyLevels.setText(25 + "%");
+                progressBarEnergyLevel.setProgress(25);
+            } else if (counter > 24 && counter < 40) {
+                txtProgressForEnergyLevels.setText(50 + "%");
+                progressBarEnergyLevel.setProgress(50);
+            } else if (counter > 39 && counter < 56) {
+                txtProgressForEnergyLevels.setText(75 + "%");
+                progressBarEnergyLevel.setProgress(75);
+            } else if (counter > 55) {
+                txtProgressForEnergyLevels.setText(100 + "%");
+                progressBarEnergyLevel.setProgress(100);
+            }
+
+            //fatigue levels
+            if (counter >= 0 && counter < 6) {
+                txtProgressForFatigue.setText(5 + "%");
+                progressBarFatigueLevel.setProgress(5);
+            } else if (counter > 5 && counter < 15) {
+                txtProgressForFatigue.setText(10 + "%");
+                progressBarFatigueLevel.setProgress(10);
+            } else if (counter > 14 && counter < 30) {
+                txtProgressForFatigue.setText(25 + "%");
+                progressBarFatigueLevel.setProgress(25);
+            } else if (counter > 29 && counter < 60) {
+                txtProgressForFatigue.setText(50 + "%");
+                progressBarFatigueLevel.setProgress(50);
+            } else if (counter > 59 && counter < 80) {
+                txtProgressForFatigue.setText(75 + "%");
+                progressBarFatigueLevel.setProgress(75);
+            } else if (counter > 79) {
+                txtProgressForFatigue.setText(100 + "%");
+                progressBarFatigueLevel.setProgress(100);
+            }
+
+            //gums levels
+            if (counter >= 0 && counter < 6) {
+                txtProgressForGums.setText(15 + "%");
+                progressBarGumsLevel.setProgress(15);
+            } else if (counter > 5 && counter < 20) {
+                txtProgressForGums.setText(25 + "%");
+                progressBarGumsLevel.setProgress(25);
+            } else if (counter > 19 && counter < 40) {
+                txtProgressForGums.setText(50 + "%");
+                progressBarGumsLevel.setProgress(50);
+            } else if (counter > 39 && counter < 60) {
+                txtProgressForGums.setText(75 + "%");
+                progressBarGumsLevel.setProgress(75);
+            } else if (counter > 59) {
+                txtProgressForGums.setText(100 + "%");
+                progressBarGumsLevel.setProgress(100);
+            }
+
+            //breath levels
+            if (counter >= 0 && counter < 6) {
+                txtProgressForBreath.setText(15 + "%");
+                progressBarBreathlevel.setProgress(15);
+            } else if (counter > 0 && counter < 10) {
+                txtProgressForBreath.setText(25 + "%");
+                progressBarBreathlevel.setProgress(25);
+            } else if (counter > 9 && counter < 20) {
+                txtProgressForBreath.setText(50 + "%");
+                progressBarBreathlevel.setProgress(50);
+            } else if (counter > 19 && counter < 30) {
+                txtProgressForBreath.setText(75 + "%");
+                progressBarBreathlevel.setProgress(75);
+            } else if (counter > 29) {
+                txtProgressForBreath.setText(100 + "%");
+                progressBarBreathlevel.setProgress(100);
+            }
+        } catch (final Exception e) {
             e.printStackTrace();
-        }
-        Log.d("taolenX", "[setImprovementProgressLevels] counter is = " + counter);
-        //TODO: setup the levels
-        //energy levels
-        if (counter >= 0 && counter < 6) {
-            txtProgressForEnergyLevels.setText(5 + "%");
-            progressBarEnergyLevel.setProgress(5);
-        } else if (counter > 5 && counter < 10) {
-            txtProgressForEnergyLevels.setText(10 + "%");
-            progressBarEnergyLevel.setProgress(10);
-        } else if (counter > 9 && counter < 25) {
-            txtProgressForEnergyLevels.setText(25 + "%");
-            progressBarEnergyLevel.setProgress(25);
-        } else if (counter > 24 && counter < 40) {
-            txtProgressForEnergyLevels.setText(50 + "%");
-            progressBarEnergyLevel.setProgress(50);
-        } else if (counter > 39 && counter < 56) {
-            txtProgressForEnergyLevels.setText(75 + "%");
-            progressBarEnergyLevel.setProgress(75);
-        } else if (counter > 55) {
-            txtProgressForEnergyLevels.setText(100 + "%");
-            progressBarEnergyLevel.setProgress(100);
-//            setMargins (txtProgressForEnergyLevels, 0, 0, -15, 0);
-        }
-
-        //fatigue levels
-        if (counter >= 0 && counter < 6) {
-            txtProgressForFatigue.setText(5 + "%");
-            progressBarFatigueLevel.setProgress(5);
-        } else if (counter > 5 && counter < 15) {
-            txtProgressForFatigue.setText(10 + "%");
-            progressBarFatigueLevel.setProgress(10);
-        } else if (counter > 14 && counter < 30) {
-            txtProgressForFatigue.setText(25 + "%");
-            progressBarFatigueLevel.setProgress(25);
-        } else if (counter > 29 && counter < 60) {
-            txtProgressForFatigue.setText(50 + "%");
-            progressBarFatigueLevel.setProgress(50);
-        } else if (counter > 59 && counter < 80) {
-            txtProgressForFatigue.setText(75 + "%");
-            progressBarFatigueLevel.setProgress(75);
-        } else if (counter > 79) {
-            txtProgressForFatigue.setText(100 + "%");
-            progressBarFatigueLevel.setProgress(100);
-        }
-
-        //gums levels
-        if (counter >= 0 && counter < 6) {
-            txtProgressForGums.setText(15 + "%");
-            progressBarGumsLevel.setProgress(15);
-        } else if (counter > 5 && counter < 20) {
-            txtProgressForGums.setText(25 + "%");
-            progressBarGumsLevel.setProgress(25);
-        } else if (counter > 19 && counter < 40) {
-            txtProgressForGums.setText(50 + "%");
-            progressBarGumsLevel.setProgress(50);
-        } else if (counter > 39 && counter < 60) {
-            txtProgressForGums.setText(75 + "%");
-            progressBarGumsLevel.setProgress(75);
-        } else if (counter > 59) {
-            txtProgressForGums.setText(100 + "%");
-            progressBarGumsLevel.setProgress(100);
-        }
-
-        //breath levels
-        if (counter >= 0 && counter < 6) {
-            txtProgressForBreath.setText(15 + "%");
-            progressBarBreathlevel.setProgress(15);
-        } else if (counter > 0 && counter < 10) {
-            txtProgressForBreath.setText(25 + "%");
-            progressBarBreathlevel.setProgress(25);
-        } else if (counter > 9 && counter < 20) {
-            txtProgressForBreath.setText(50 + "%");
-            progressBarBreathlevel.setProgress(50);
-        } else if (counter > 19 && counter < 30) {
-            txtProgressForBreath.setText(75 + "%");
-            progressBarBreathlevel.setProgress(75);
-        } else if (counter > 29) {
-            txtProgressForBreath.setText(100 + "%");
-            progressBarBreathlevel.setProgress(100);
         }
     }
 
@@ -1569,13 +1585,7 @@ public class MainActivity extends AppCompatActivity {
             //TODO: think about we want to let user change the check in hour or not
 //            showDialogForChangingCheckInDate();
         } else if (ID_LOCAL == R.id.reset_button){
-            //TODO: reset progress
             dialogForReset();
-//            HOUR_OF_FIRSTLAUNCH = 3;
-//            editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
-//            editor.apply();
-//            triggerPushNotification(HOUR_OF_FIRSTLAUNCH);
-
         }
         return super.onOptionsItemSelected(item);
     }//END OF -> [MENU]
@@ -1628,7 +1638,7 @@ public class MainActivity extends AppCompatActivity {
                 SNACKBAR_VIEW.setBackgroundColor(Color.RED);
                 SNACKBAR.show();
             }
-        } catch (NullPointerException e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
     }
@@ -1641,19 +1651,23 @@ public class MainActivity extends AppCompatActivity {
     public class MyAsyncTask extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
-            counter = preferences.getInt(COUNTER, counter);
-            if (!preferences.contains(COUNTER)){counterText.setText(0);}else {
-                counterText.setText(String.valueOf(counter));
+            try {
+                counter = preferences.getInt(COUNTER, counter);
+                if (!preferences.contains(COUNTER)){counterText.setText(0);}else {
+                    counterText.setText(String.valueOf(counter));
+                }
+                updateDisplayString("Starting to fetch data from heroku ...");
+                if (tasks.size() == 0) {
+                    progressBarLoading.setVisibility(View.VISIBLE);
+                    progressBarLoading2.setVisibility(View.VISIBLE);
+                    counterImgView.setVisibility(View.INVISIBLE);
+                    counterText.setVisibility(View.INVISIBLE);
+                }
+                //if we click we add a task
+                tasks.add(this);
+            } catch (final Exception e) {
+                e.printStackTrace();
             }
-            updateDisplayString("Starting to fetch data from heroku ...");
-            if (tasks.size() == 0) {
-                progressBarLoading.setVisibility(View.VISIBLE);
-                progressBarLoading2.setVisibility(View.VISIBLE);
-                counterImgView.setVisibility(View.INVISIBLE);
-                counterText.setVisibility(View.INVISIBLE);
-            }
-            //if we click we add a task
-            tasks.add(this);
         }//onPreExecute[END]
         @Override
         protected String doInBackground(final String... PARAMS_LOCAL) {
@@ -1680,26 +1694,32 @@ public class MainActivity extends AppCompatActivity {
                 }
 //                JsonElement nameNode = details.get("name");
                 return NAME_ELEMENT_NODE.getAsString();
-            } catch (final JsonSyntaxException e) {
+            } catch (final Exception e) {
                 e.printStackTrace();
                 return null;
             }//using GSON[END]
         }//doInBackground[END]
         @Override
         protected void onPostExecute(final String RESULT) {
-            //using raw JSON PARSER
-            updateDisplayString(RESULT);
-            //we get rid of the task that we created
-            tasks.remove(this);
-            if (tasks.size() == 0) {
-                progressBarLoading.setVisibility(View.INVISIBLE);
-                progressBarLoading2.setVisibility(View.GONE);
-                counterImgView.setVisibility(View.VISIBLE);
-                counterText.setVisibility(View.VISIBLE);
-            }
-            if (RESULT == null) {
-                Toast.makeText(MainActivity.this, R.string.cant_connect,
-                        Toast.LENGTH_LONG).show();
+            try {
+                //using raw JSON PARSER
+                updateDisplayString(RESULT);
+                //we get rid of the task that we created
+                tasks.remove(this);
+                if (tasks.size() == 0) {
+                    progressBarLoading.setVisibility(View.INVISIBLE);
+                    progressBarLoading2.setVisibility(View.GONE);
+                    counterImgView.setVisibility(View.VISIBLE);
+                    counterText.setVisibility(View.VISIBLE);
+                }
+                //keep this as secondary solve instead of finally
+                //if (RESULT == null) {
+                    //Toast.makeText(MainActivity.this, R.string.cant_connect,
+                    //Toast.LENGTH_LONG).show();
+                //}
+            } finally {
+                final String tempResult = (RESULT == null) ?  "No quotes available in this moment ..." : RESULT;
+                updateDisplayString(tempResult);
             }
         }//onPostExecute[END]
         @Override
@@ -1714,116 +1734,121 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, 0);
             }
-        } catch (NullPointerException e){e.printStackTrace();}
-        Log.d("taoAchiev", "counter from achiev = " + counter);
-        if (counter>=0&&counter<10) {
-            //user have between a day and a week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-            rankTwoImg.setAlpha(0.2f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-            rankThreeImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron11);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Recruit");
-        } else if (counter>9&&counter<20) {
-            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-            rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-            rankThreeImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron11);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Recruit II");
-        } else if (counter>19&&counter<30) {
-            rankOneImg.setBackgroundResource(R.mipmap.chevron7);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
-            rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
-            rankThreeImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron11);
-            rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "Recruit III");
-        } else if (counter>29&&counter<40) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron19);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
-            rankTwoImg.setAlpha(0.2f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
-            rankThreeImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Silver");
-        } else if (counter>39&&counter<50) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron19);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
-            rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
-            rankThreeImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Silver II");
-        } else if (counter>49&&counter<60) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron19);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
-            rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
-            rankThreeImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.chevron10);
-            rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "Silver III");
-        } else if (counter>59&&counter<70) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron16);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
-            rankTwoImg.setAlpha(0.2f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
-            rankThreeImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.gnm);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold");
-        } else if (counter>69&&counter<80) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron16);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
-            rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
-            rankThreeImg.setAlpha(0.2f);
-            rankFourImg.setBackgroundResource(R.mipmap.gnm);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold I");
-        } else if (counter>79&&counter<90) {
-            //when user pass 1 week
-            rankOneImg.setBackgroundResource(R.mipmap.chevron16);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
-            rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
-            rankThreeImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.gnm);
-            rankFourImg.setAlpha(0.2f);
-            editor.putString("rank", "Gold II");
-            //WHEN USER REACH DAY 90 - GREATEST MILESTONE
-        } else if (counter == 90) {
-            rankOneImg.setBackgroundResource(R.mipmap.chevron16);
-            rankOneImg.setAlpha(1.0f);
-            rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
-            rankTwoImg.setAlpha(1.0f);
-            rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
-            rankThreeImg.setAlpha(1.0f);
-            rankFourImg.setBackgroundResource(R.mipmap.gnm);
-            rankFourImg.setAlpha(1.0f);
-            editor.putString("rank", "Gold III");
+            Log.d("taoAchiev", "counter from achiev = " + counter);
+            if (counter>=0&&counter<10) {
+                //user have between a day and a week
+                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setAlpha(0.2f);
+                rankFourImg.setBackgroundResource(R.mipmap.chevron11);
+                rankFourImg.setAlpha(0.2f);
+                editor.putString("rank", "Recruit");
+            } else if (counter>9&&counter<20) {
+                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setAlpha(0.2f);
+                rankFourImg.setBackgroundResource(R.mipmap.chevron11);
+                rankFourImg.setAlpha(0.2f);
+                editor.putString("rank", "Recruit II");
+            } else if (counter>19&&counter<30) {
+                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setAlpha(1.0f);
+                rankFourImg.setBackgroundResource(R.mipmap.chevron11);
+                rankFourImg.setAlpha(1.0f);
+                editor.putString("rank", "Recruit III");
+            } else if (counter>29&&counter<40) {
+                //when user pass 1 week
+                rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+                rankThreeImg.setAlpha(0.2f);
+                rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+                rankFourImg.setAlpha(0.2f);
+                editor.putString("rank", "Silver");
+            } else if (counter>39&&counter<50) {
+                //when user pass 1 week
+                rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+                rankThreeImg.setAlpha(0.2f);
+                rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+                rankFourImg.setAlpha(0.2f);
+                editor.putString("rank", "Silver II");
+            } else if (counter>49&&counter<60) {
+                //when user pass 1 week
+                rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+                rankThreeImg.setAlpha(1.0f);
+                rankFourImg.setBackgroundResource(R.mipmap.chevron10);
+                rankFourImg.setAlpha(1.0f);
+                editor.putString("rank", "Silver III");
+            } else if (counter>59&&counter<70) {
+                //when user pass 1 week
+                rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+                rankThreeImg.setAlpha(0.2f);
+                rankFourImg.setBackgroundResource(R.mipmap.gnm);
+                rankFourImg.setAlpha(0.2f);
+                editor.putString("rank", "Gold");
+            } else if (counter>69&&counter<80) {
+                //when user pass 1 week
+                rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+                rankThreeImg.setAlpha(0.2f);
+                rankFourImg.setBackgroundResource(R.mipmap.gnm);
+                rankFourImg.setAlpha(0.2f);
+                editor.putString("rank", "Gold I");
+            } else if (counter>79&&counter<90) {
+                //when user pass 1 week
+                rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+                rankThreeImg.setAlpha(1.0f);
+                rankFourImg.setBackgroundResource(R.mipmap.gnm);
+                rankFourImg.setAlpha(0.2f);
+                editor.putString("rank", "Gold II");
+                //WHEN USER REACH DAY 90 - GREATEST MILESTONE
+            } else if (counter == 90) {
+                rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+                rankThreeImg.setAlpha(1.0f);
+                rankFourImg.setBackgroundResource(R.mipmap.gnm);
+                rankFourImg.setAlpha(1.0f);
+                editor.putString("rank", "Gold III");
+            }
+        //using "final rethrow" by not specifying throwing a specific exception like NullPointer
+        //the final keyword is optional, but in practice, we've found that it helps to use it while
+        //adjusting to the new semantics of catch and rethrow
+        } catch (final Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1898,7 +1923,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.apply();
             }
-        } catch(Exception e){ e.printStackTrace(); }
+        } catch(final Exception e){ e.printStackTrace(); }
     }
 
     private void setMarginForProgress() {

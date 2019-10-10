@@ -162,17 +162,23 @@ public class SplashActivity extends AppCompatActivity {
         }//doInBackground[END]
         @Override
         protected void onPostExecute(String result) {
-            if (preferences.contains("splash")){
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                i.putExtra("data", result);
-                startActivity(i);
-            } else {
-                Intent i = new Intent(SplashActivity.this, FirstScreenActivity.class);
-                i.putExtra("data", result);
-                firstCheckForInitialCiggarettesPerDay();
-                startActivity(i);
+            try {
+                final String tempResult = (result == null) ?
+                        "No quotes available in this moment ..." : result;
+                if (preferences.contains("splash")){
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                    i.putExtra("data", tempResult);
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(SplashActivity.this, FirstScreenActivity.class);
+                    i.putExtra("data", tempResult);
+                    firstCheckForInitialCiggarettesPerDay();
+                    startActivity(i);
+                }
+                finish();
+            } catch (final Exception e){
+                e.printStackTrace();
             }
-            finish();
         }//onPostExecute[END]
 
         private void firstCheckForInitialCiggarettesPerDay() {

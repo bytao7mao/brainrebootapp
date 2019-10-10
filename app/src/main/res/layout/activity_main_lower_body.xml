@@ -41,11 +41,13 @@
                 app:cardCornerRadius="8dp">
 
                 <ImageView
+                    android:id="@+id/bg_grey"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_50"/>
 
                 <ImageView
+                    android:id="@+id/marketingImg"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
@@ -68,31 +70,32 @@
                 <LinearLayout
                     android:id="@+id/txtviewsprogrs"
                     android:orientation="vertical"
+                    android:layout_marginStart="10dp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/YourProgressIdCigaretes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    style="@style/TextColorBlack"
-                    android:textSize="14sp" />
-                <TextView
-                    android:id="@+id/YourHighestStreakId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    style="@style/TextColorBlack"
-                    android:textSize="14sp" />
-                <TextView
-                    android:id="@+id/YourProgressIdHours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:textSize="14sp"
-                    style="@style/TextColorBlack" />
+                    <TextView
+                        android:id="@+id/YourProgressIdCigaretes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        style="@style/TextColorBlack"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/YourHighestStreakId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        style="@style/TextColorBlack"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/YourProgressIdHours"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:textSize="14sp"
+                        style="@style/TextColorBlack" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </FrameLayout>
@@ -104,90 +107,90 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_below="@id/frameCardIdYourProgress">
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/progressCardIdAchievments"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/progressCardIdAchievments"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                app:cardCornerRadius="8dp">
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    app:cardCornerRadius="8dp">
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_50" />
+                <TextView
+                    android:id="@+id/YourAchievmentsId"
+                    style="@style/TextColorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="14sp"
+                    android:alpha="0.8"
+                    android:text="@string/your_latest_achievments" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:background="@mipmap/medal" />
+                <LinearLayout
+                    android:layout_width="225dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="10dp">
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/grey_50" />
-                    <TextView
-                        android:id="@+id/YourAchievmentsId"
-                        style="@style/TextColorBlack"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/rankOneId"
+                        android:layout_width="0dp"
+                        android:layout_margin="5dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginStart="60dp"
-                        android:layout_marginEnd="10dp"
-                        android:textSize="14sp"
-                        android:alpha="0.8"
-                        android:text="@string/your_latest_achievments" />
+                        android:layout_weight="1" />
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="5dp"
-                        android:background="@mipmap/medal" />
-                    <LinearLayout
-                        android:layout_width="225dp"
-                        android:layout_height="55dp"
-                        android:layout_marginTop="35dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="10dp">
-                        <ImageView
-                            android:id="@+id/rankOneId"
-                            android:layout_width="0dp"
-                            android:layout_margin="5dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                        <ImageView
-                            android:id="@+id/rankTwoId"
-                            android:layout_width="0dp"
-                            android:layout_margin="5dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                        <ImageView
-                            android:id="@+id/rankThreeId"
-                            android:layout_width="0dp"
-                            android:layout_margin="5dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                        <ImageView
-                            android:id="@+id/rankFourId"
-                            android:layout_width="0dp"
-                            android:layout_margin="5dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </LinearLayout>
+                        android:id="@+id/rankTwoId"
+                        android:layout_width="0dp"
+                        android:layout_margin="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                    <ImageView
+                        android:id="@+id/rankThreeId"
+                        android:layout_width="0dp"
+                        android:layout_margin="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                    <ImageView
+                        android:id="@+id/rankFourId"
+                        android:layout_width="0dp"
+                        android:layout_margin="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/rank_master"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:alpha="0.8"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingBottom="4dp"
-                        android:paddingTop="2dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_gravity="center|bottom"
-                        android:text="@string/rank_master"/>
-                    <TextView
-                        android:id="@+id/exploreAchievementId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:padding="8dp"
-                        android:textSize="12sp"
-                        android:alpha="0.7"
-                        android:text="@string/explore"
-                        style="@style/TextColorBlack" />
-                </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/rank_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:alpha="0.8"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="2dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_gravity="center|bottom"
+                    android:text="@string/rank_master"/>
+                <TextView
+                    android:id="@+id/exploreAchievementId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:padding="8dp"
+                    android:textSize="12sp"
+                    android:alpha="0.7"
+                    android:text="@string/explore"
+                    style="@style/TextColorBlack" />
+            </androidx.cardview.widget.CardView>
         </FrameLayout>
         <!--savings area-->
         <FrameLayout
@@ -232,7 +235,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="0.7"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="80dp"
                     android:layout_marginTop="5dp"
                     android:textSize="14sp"
                     android:layout_toEndOf="@id/savingsImgId" />
@@ -310,16 +314,16 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="2dp"
                     android:background="@mipmap/winner" />
-<!--                <TextView-->
-<!--                    android:id="@+id/challengeTextId"-->
-<!--                    style="@style/TextColorBlack"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="70dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_marginEnd="20dp"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_toEndOf="@id/challengeImgId" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/challengeTextId"-->
+                <!--                    style="@style/TextColorBlack"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="70dp"-->
+                <!--                    android:layout_gravity="center_vertical"-->
+                <!--                    android:layout_marginEnd="20dp"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:layout_toEndOf="@id/challengeImgId" />-->
             </androidx.cardview.widget.CardView>
         </FrameLayout>
         <!--logs area-->
@@ -359,17 +363,17 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="2dp"
                     android:background="@mipmap/archives" />
-<!--                <TextView-->
-<!--                    android:id="@+id/logsTxtId"-->
-<!--                    style="@style/TextColorBlack"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="70dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginEnd="20dp"-->
-<!--                    android:layout_toEndOf="@id/logsImgId"-->
-<!--                    android:text="@string/see_your_personal_logs_failures" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/logsTxtId"-->
+                <!--                    style="@style/TextColorBlack"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="70dp"-->
+                <!--                    android:layout_gravity="center_vertical"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:layout_marginEnd="20dp"-->
+                <!--                    android:layout_toEndOf="@id/logsImgId"-->
+                <!--                    android:text="@string/see_your_personal_logs_failures" />-->
             </androidx.cardview.widget.CardView>
         </FrameLayout>
     </RelativeLayout>

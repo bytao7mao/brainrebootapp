@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_mainID"
         android:layout_width="match_parent"
-        android:layout_height="420dp"
+        android:layout_height="450dp"
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -17,13 +17,14 @@
         android:elevation="3dp"
         app:cardCornerRadius="8dp">
         <RelativeLayout
+            android:id="@+id/rl_top"
             android:layout_width="match_parent"
-            android:layout_height="420dp">
+            android:layout_height="450dp">
             <ImageView
+                android:id="@+id/bg_grey"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/grey_50" />
-
             <ImageView
                 android:id="@+id/backgroundId"
                 android:layout_width="match_parent"
@@ -76,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="130dp">
+                android:layout_marginTop="120dp">
                 <ProgressBar
                     android:id="@+id/loadingProgressId"
                     style="?android:attr/progressBarStyle"
@@ -86,10 +87,9 @@
                     android:visibility="invisible" />
                 <ImageView
                     android:id="@+id/counterImageId"
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
+                    android:layout_width="210dp"
+                    android:layout_height="210dp"
                     android:src="@drawable/counterwhitero"
-                    android:layout_marginStart="-20dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
                 <TextView
@@ -98,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
+                    android:text="0"
                     android:alpha="0.9"
                     style="@style/TextColorBlack"
                     android:textSize="58sp" />
@@ -150,18 +151,20 @@
             </pl.bclogic.pulsator4droid.library.PulsatorLayout>
             <!--android:alpha="0.7"-->
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="385dp">
-                <!--android:layout_marginStart="25dp"-->
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/subTextSmokeId">
+                <!--android:layout_alignParentBottom="true"-->
                 <ImageView
                     android:id="@+id/milestoneImageId"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/sandclock" />
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/ic_clock" />
                 <!--android:layout_marginTop="3dp"-->
                 <TextView
                     android:id="@+id/remaining_days_Id"
@@ -179,12 +182,13 @@
                 <!--android:layout_marginBottom="10dp"-->
                 <ImageView
                     android:id="@+id/targetImageId"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginStart="40dp"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/remaining_days_Id"
-                    android:src="@drawable/target" />
+                    android:src="@drawable/ic_goal" />
                 <TextView
                     android:id="@+id/targetTxtViewId"
                     android:layout_toEndOf="@id/targetImageId"
@@ -240,7 +244,7 @@
                 android:gravity="center_horizontal"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="110dp"
-                android:layout_width="340dp"
+                android:layout_width="330dp"
                 android:layout_height="20dp">
                 <TextView
                     android:id="@+id/subTextEnergyId"
@@ -256,8 +260,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginStart="-5dp"
                     android:textSize="12sp"
-                    android:layout_marginStart="-20dp"
                     android:alpha="0.7"
                     android:text="@string/breath"
                     style="@style/TextColorBlack" />
@@ -265,8 +269,8 @@
                     android:id="@+id/subTextFatigueId"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="-10dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="-5dp"
                     android:textSize="12sp"
                     android:alpha="0.7"
                     android:text="@string/fatigue"
@@ -277,7 +281,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="12sp"
-                    android:layout_marginStart="-5dp"
                     android:alpha="0.7"
                     android:text="@string/gums"
                     style="@style/TextColorBlack" />
