@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 //        long TempSavings = preferences.getLong(SAVINGS_FINAL, -100);
         setTargetDays();
         firstCheckMax();
-        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+//        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         progressBarLoading.getIndeterminateDrawable().setColorFilter(
                 ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
         progressBarLoading2.getIndeterminateDrawable().setColorFilter(
@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         upperProgressPercentsCard.setCardElevation(ZERO);
 
         //setMargin
-        setMarginForProgress();
+//        setMarginForProgress();
 
         if (preferences.contains("firstsave")){
             firstSave = preferences.getLong("firstsave",ZERO);
@@ -734,9 +734,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 }
                 //SHOW FANCY TOAST WITH CONGRATS
                 //[END OF ELSE IFS DIALOGS]
-                fab.hide();
-                anim.cancel();
-                subTextNonSmoker.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
+                cleanUpAfterFirstCounter();
             }
         });
     }
@@ -1494,31 +1492,31 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 counter = preferences.getInt(COUNTER, ZERO);
             }
             //energy levels
-            if (counter >= ZERO && counter < FIVE+1) {
+            if (counter >= ZERO && counter < FIVE) {
                 txtProgressForEnergyLevels.setText(FIVE + "%");
                 progressBarEnergyLevel.setProgress(FIVE);
-            } else if (counter > FIVE && counter < TEN) {
+            } else if (counter > FIVE-1 && counter < TEN) {
                 txtProgressForEnergyLevels.setText(TEN + "%");
                 progressBarEnergyLevel.setProgress(TEN);
             } else if (counter > TEN-1 && counter < FIFTEEN) {
                 txtProgressForEnergyLevels.setText(FIFTEEN + "%");
                 progressBarEnergyLevel.setProgress(FIFTEEN);
-            } else if (counter > TWENTY+4 && counter < FOURTEEN) {
+            } else if (counter > FIFTEEN-1 && counter < FOURTEEN) {
                 txtProgressForEnergyLevels.setText(FIFTY + "%");
                 progressBarEnergyLevel.setProgress(FIFTY);
-            } else if (counter > FOURTEEN-1 && counter < FIFTEEN+6) {
+            } else if (counter > FOURTEEN-1 && counter < SEVENTY_FIVE+6) {
                 txtProgressForEnergyLevels.setText(SEVENTY_FIVE + "%");
                 progressBarEnergyLevel.setProgress(SEVENTY_FIVE);
-            } else if (counter > FIFTEEN+5) {
+            } else if (counter > SEVENTY_FIVE+5) {
                 txtProgressForEnergyLevels.setText(ONE_HUNDRED + "%");
                 progressBarEnergyLevel.setProgress(ONE_HUNDRED);
             }
 
             //fatigue levels
-            if (counter >= ZERO && counter < FIVE+1) {
+            if (counter >= ZERO && counter < FIVE) {
                 txtProgressForFatigue.setText(FIVE + "%");
                 progressBarFatigueLevel.setProgress(FIVE);
-            } else if (counter > FIVE && counter < FIFTEEN) {
+            } else if (counter > FIVE-1 && counter < FIFTEEN) {
                 txtProgressForFatigue.setText(TEN + "%");
                 progressBarFatigueLevel.setProgress(TEN);
             } else if (counter > FIFTEEN-1 && counter < THIRTY) {
@@ -1536,10 +1534,10 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             }
 
             //gums levels
-            if (counter >= ZERO && counter < FIVE+1) {
+            if (counter >= ZERO && counter < FIVE) {
                 txtProgressForGums.setText(FIFTEEN + "%");
                 progressBarGumsLevel.setProgress(FIFTEEN);
-            } else if (counter > FIVE && counter < TWENTY) {
+            } else if (counter > FIVE-1 && counter < TWENTY) {
                 txtProgressForGums.setText(TWENTYFIVE + "%");
                 progressBarGumsLevel.setProgress(TWENTYFIVE);
             } else if (counter > TWENTY-1 && counter < FOURTEEN) {
@@ -1554,10 +1552,10 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             }
 
             //breath levels
-            if (counter >= ZERO && counter < FIVE+1) {
+            if (counter >= ZERO && counter < FIVE) {
                 txtProgressForBreath.setText(FIFTEEN + "%");
                 progressBarBreathlevel.setProgress(FIFTEEN);
-            } else if (counter > ZERO && counter < TEN) {
+            } else if (counter > FIVE-1 && counter < TEN) {
                 txtProgressForBreath.setText(TWENTYFIVE + "%");
                 progressBarBreathlevel.setProgress(TWENTYFIVE);
             } else if (counter > TEN-1 && counter < TWENTY) {
@@ -1976,28 +1974,28 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         } catch(final Exception e){ e.printStackTrace(); }
     }
 
-    private void setMarginForProgress() {
-        final Resources RESOURCES = this.getResources();
-        final int PX = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, TWO_HUNDRED, RESOURCES.getDisplayMetrics());
-        final LinearLayout.LayoutParams PARAMS_LOCAL = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        PARAMS_LOCAL.setMargins(PX, ZERO, ZERO, ZERO);
-        Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
-        if (progressBarEnergyLevel.getProgress() == MainActivity.ONE_HUNDRED) {
-//            txtProgressForEnergyLevels.setLayoutParams(params);
-            setMargins(txtProgressForEnergyLevels, PX, ZERO , ZERO, ZERO);
-            Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
-        }
-    }
-
-    private void setMargins (final View VIEW, final int LEFT, final int TOP, final int RIGHT, final int BOTTOM) {
-        if (VIEW.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-            final ViewGroup.MarginLayoutParams LAYOUT_PARAMS = (ViewGroup.MarginLayoutParams) VIEW.getLayoutParams();
-            LAYOUT_PARAMS.setMargins(LEFT, TOP, RIGHT, BOTTOM);
-            VIEW.requestLayout();
-        }
-    }
+//    private void setMarginForProgress() {
+//        final Resources RESOURCES = this.getResources();
+//        final int PX = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, TWO_HUNDRED, RESOURCES.getDisplayMetrics());
+//        final LinearLayout.LayoutParams PARAMS_LOCAL = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.WRAP_CONTENT,
+//                LinearLayout.LayoutParams.WRAP_CONTENT);
+//        PARAMS_LOCAL.setMargins(PX, ZERO, ZERO, ZERO);
+//        Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
+//        if (progressBarEnergyLevel.getProgress() == MainActivity.ONE_HUNDRED) {
+////            txtProgressForEnergyLevels.setLayoutParams(params);
+//            setMargins(txtProgressForEnergyLevels, PX, ZERO , ZERO, ZERO);
+//            Log.d("TAOLEN10", " works the SETMARGIN + " + progressBarEnergyLevel.getProgress());
+//        }
+//    }
+//
+//    private void setMargins (final View VIEW, final int LEFT, final int TOP, final int RIGHT, final int BOTTOM) {
+//        if (VIEW.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+//            final ViewGroup.MarginLayoutParams LAYOUT_PARAMS = (ViewGroup.MarginLayoutParams) VIEW.getLayoutParams();
+//            LAYOUT_PARAMS.setMargins(LEFT, TOP, RIGHT, BOTTOM);
+//            VIEW.requestLayout();
+//        }
+//    }
 
     private void disableViewsForComingSoon(){
         challengeCardView.setClickable(false);

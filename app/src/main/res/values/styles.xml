@@ -10,6 +10,7 @@
         <!-- Parent theme For all Pre - lollipop and lollipop above versions i.e. For all devices -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="spinBars">true</item>
         <item name="windowActionBar">false</item>
@@ -21,12 +22,17 @@
 
     <style name="MaterialTheme.NoActionBar">
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@color/white</item>
+<!--        <item name="android:statusBarColor">@color/cardview_dark_background</item>-->
         <item name="android:popupBackground">@drawable/popup_menu_round</item>
+        <item name="android:windowLightStatusBar">true</item>
+<!--        <item name="android:windowBackground">@color/white</item>-->
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
     <style name="AboutPageStyle" parent="ParentMaterialTheme">
         <item name="android:fontFamily">@font/montserratsemibold</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="TitleBarStyle" parent="android:TextAppearance">

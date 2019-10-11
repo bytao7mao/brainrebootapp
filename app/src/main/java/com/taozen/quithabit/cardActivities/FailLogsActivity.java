@@ -35,7 +35,7 @@ public class FailLogsActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(FailLogsActivity.this);
         editor = preferences.edit();
 
-        getWindow().setStatusBarColor(ContextCompat.getColor(FailLogsActivity.this, R.color.white));
+//        getWindow().setStatusBarColor(ContextCompat.getColor(FailLogsActivity.this, R.color.white));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

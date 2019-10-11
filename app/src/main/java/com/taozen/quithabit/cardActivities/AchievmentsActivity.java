@@ -67,7 +67,7 @@ public class AchievmentsActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(AchievmentsActivity.this);
         editor = preferences.edit();
 
-        getWindow().setStatusBarColor(ContextCompat.getColor(AchievmentsActivity.this, R.color.white));
+//        getWindow().setStatusBarColor(ContextCompat.getColor(AchievmentsActivity.this, R.color.white));
         //TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

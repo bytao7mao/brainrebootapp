@@ -52,7 +52,7 @@ public class SavingsActivity extends AppCompatActivity {
         setContentView(R.layout.app_bar_savings);
         ButterKnife.bind(SavingsActivity.this);
 
-        getWindow().setStatusBarColor(ContextCompat.getColor(SavingsActivity.this, R.color.white));
+//        getWindow().setStatusBarColor(ContextCompat.getColor(SavingsActivity.this, R.color.white));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

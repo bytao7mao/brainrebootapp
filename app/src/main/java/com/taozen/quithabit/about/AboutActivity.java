@@ -2,11 +2,15 @@ package com.taozen.quithabit.about;
 
 import android.graphics.Color;
 import android.os.Bundle;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.shashank.sony.fancyaboutpagelib.FancyAboutPage;
 import com.taozen.quithabit.R;
+
+import java.util.Objects;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -14,7 +18,6 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        getWindow().setStatusBarColor(ContextCompat.getColor(AboutActivity.this, R.color.white));
         FancyAboutPage fancyAboutPage=findViewById(R.id.fancyaboutpage);
         fancyAboutPage.setCoverTintColor(Color.GREEN);  //Optional
         fancyAboutPage.setCover(R.drawable.bgday);

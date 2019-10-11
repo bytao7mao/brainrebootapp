@@ -62,7 +62,7 @@ public class SplashActivity extends AppCompatActivity {
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(SplashActivity.this);
         editor = preferences.edit();
-        getWindow().setStatusBarColor(ContextCompat.getColor(SplashActivity.this, R.color.white));
+//        getWindow().setStatusBarColor(ContextCompat.getColor(SplashActivity.this, R.color.white));
         if (preferences.contains(COUNTER)){
             int c = preferences.getInt(COUNTER, 0);
             editor.putInt(COUNTER, c);

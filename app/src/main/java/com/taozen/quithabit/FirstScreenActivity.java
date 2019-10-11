@@ -99,7 +99,7 @@ public class FirstScreenActivity extends AppCompatActivity {
                 Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
         Log.d("taogX", currency+"");
 
-        getWindow().setStatusBarColor(ContextCompat.getColor(FirstScreenActivity.this, R.color.white));
+//        getWindow().setStatusBarColor(ContextCompat.getColor(FirstScreenActivity.this, R.color.white));
         Toolbar toolbar = findViewById(R.id.toolbar);
         TextView mTitle =  findViewById(R.id.toolbar_subtitle);
         mTitle.setTypeface(montSerratSemiBoldTypeface);

@@ -72,7 +72,7 @@ public class ChallengeActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getWindow().setStatusBarColor(ContextCompat.getColor(ChallengeActivity.this, R.color.white));
+//        getWindow().setStatusBarColor(ContextCompat.getColor(ChallengeActivity.this, R.color.white));
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(ChallengeActivity.this);
         editor = preferences.edit();
