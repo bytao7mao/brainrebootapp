@@ -22,6 +22,7 @@ import com.taozen.quithabit.R;
 import java.util.Objects;
 
 import static com.taozen.quithabit.MainActivity.FIVE;
+import static com.taozen.quithabit.MainActivity.ONE;
 import static com.taozen.quithabit.MainActivity.RANK;
 import static com.taozen.quithabit.MainActivity.TEN;
 import static com.taozen.quithabit.MainActivity.ZERO;
@@ -35,9 +36,9 @@ public class AchievmentsActivity extends AppCompatActivity {
     int[] images;
 
     String[] descriptions = new String[] {
-            "Android ListView Short Bronze LvL I", "Android ListView Short Bronze LvL II", "Android ListView Short Bronze LvL III", "Android ListView Short Bronze LvL IV",
-            "Android ListView Short Silver LvL I", "Android ListView Short Silver LvL II", "Android ListView Short Silver LvL III", "Android ListView Short Silver LvL IV",
-            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Only for those who are worthy!"};
+            "Control yourself!", "You can do it!", "The future looks good!", "Almost there!",
+            "The right way!", "The zen way!", "Keep up the way!", "There is no going back!",
+            "A new life!", "Zen monk!", "Zen master!", "Only for those who are worthy!"};
 
     //shared pref
     private SharedPreferences preferences;
@@ -116,6 +117,9 @@ public class AchievmentsActivity extends AppCompatActivity {
             Holder holder=new Holder();
             View view;
             view = inflater.inflate(R.layout.list_item, null);
+            if (view == null) {
+                view = View.inflate(parent.getContext(), R.layout.list_item, null);
+            }
             holder.img = view.findViewById(R.id.listview_image);
             holder.tv = view.findViewById(R.id.listview_item_title);
             holder.desc = view.findViewById(R.id.listview_item_short_description);
@@ -127,42 +131,62 @@ public class AchievmentsActivity extends AppCompatActivity {
                 if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit")) {
                     if (position > ZERO){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit II")) {
-                    if (position > 1){
+                    if (position > ONE){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit III")) {
-                    if (position > 3){
+                    if (position > ONE+2){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver")) {
-                    if (position > 4){
+                    if (position > ONE+3){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver II")) {
                     if (position > FIVE){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver III")) {
-                    if (position > 7){
+                    if (position > FIVE+2){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold")) {
-                    if (position > 8){
+                    if (position > FIVE+3){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold I")) {
-                    if (position > 9){
+                    if (position > TEN-1){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold II")) {
                     if (position > TEN){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold III")) {
-                    if (position > 11){
+                    if (position > TEN+1){
                         holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
                     }
                 }
             }

@@ -125,6 +125,10 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     public static final String RANK = "rank";
     public static final String UNRANKED = "unranked";
     public static final int TWO_HUNDRED = 200;
+    public static final int ONE = 1;
+    public static final int ONE_HUNDRED_AND_EIGHTY = 180;
+    public static final int TWO_HUNDRED_AND_SEVENTY = 270;
+    public static final int THREE_HUNDRED = 300;
 
     String arr = "";
     long firstSave;
@@ -289,6 +293,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
         sheetLayout.setFab(fab);
         sheetLayout.setFabAnimationEndListener(this);
+//        progressBarBreathlevel.setTooltipText("it is working!"); // not working now
 
 //      sheetLayout.setBackgroundColor(getResources().getColor(R.color.white));
 
@@ -1492,79 +1497,85 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 counter = preferences.getInt(COUNTER, ZERO);
             }
             //energy levels
-            if (counter >= ZERO && counter < FIVE) {
+            if (counter >= ZERO && counter < THIRTY) {
                 txtProgressForEnergyLevels.setText(FIVE + "%");
                 progressBarEnergyLevel.setProgress(FIVE);
-            } else if (counter > FIVE-1 && counter < TEN) {
-                txtProgressForEnergyLevels.setText(TEN + "%");
-                progressBarEnergyLevel.setProgress(TEN);
-            } else if (counter > TEN-1 && counter < FIFTEEN) {
+            } else if (counter > THIRTY-1 && counter < SIXTY) {
                 txtProgressForEnergyLevels.setText(FIFTEEN + "%");
                 progressBarEnergyLevel.setProgress(FIFTEEN);
-            } else if (counter > FIFTEEN-1 && counter < FOURTEEN) {
+            } else if (counter > SIXTY-1 && counter < NINETY) {
+                txtProgressForEnergyLevels.setText(THIRTY + "%");
+                progressBarEnergyLevel.setProgress(THIRTY);
+            } else if (counter > NINETY-1 && counter < ONE_HUNDRED_AND_EIGHTY) {
                 txtProgressForEnergyLevels.setText(FIFTY + "%");
                 progressBarEnergyLevel.setProgress(FIFTY);
-            } else if (counter > FOURTEEN-1 && counter < SEVENTY_FIVE+6) {
+            } else if (counter > ONE_HUNDRED_AND_EIGHTY-1 && counter < TWO_HUNDRED_AND_SEVENTY) {
                 txtProgressForEnergyLevels.setText(SEVENTY_FIVE + "%");
                 progressBarEnergyLevel.setProgress(SEVENTY_FIVE);
-            } else if (counter > SEVENTY_FIVE+5) {
+            } else if (counter > TWO_HUNDRED_AND_SEVENTY) {
                 txtProgressForEnergyLevels.setText(ONE_HUNDRED + "%");
                 progressBarEnergyLevel.setProgress(ONE_HUNDRED);
             }
 
             //fatigue levels
-            if (counter >= ZERO && counter < FIVE) {
+            if (counter >= ZERO && counter < THIRTY) {
                 txtProgressForFatigue.setText(FIVE + "%");
                 progressBarFatigueLevel.setProgress(FIVE);
-            } else if (counter > FIVE-1 && counter < FIFTEEN) {
-                txtProgressForFatigue.setText(TEN + "%");
-                progressBarFatigueLevel.setProgress(TEN);
-            } else if (counter > FIFTEEN-1 && counter < THIRTY) {
-                txtProgressForFatigue.setText(TWENTYFIVE + "%");
-                progressBarFatigueLevel.setProgress(TWENTYFIVE);
             } else if (counter > THIRTY-1 && counter < SIXTY) {
+                txtProgressForFatigue.setText(FIFTEEN + "%");
+                progressBarFatigueLevel.setProgress(FIFTEEN);
+            } else if (counter > SIXTY-1 && counter < NINETY) {
+                txtProgressForFatigue.setText(THIRTY + "%");
+                progressBarFatigueLevel.setProgress(THIRTY);
+            } else if (counter > NINETY-1 && counter < ONE_HUNDRED_AND_EIGHTY) {
                 txtProgressForFatigue.setText(FIFTY + "%");
                 progressBarFatigueLevel.setProgress(FIFTY);
-            } else if (counter > SIXTY-1 && counter < EIGHTEEN) {
+            } else if (counter > ONE_HUNDRED_AND_EIGHTY-1 && counter < TWO_HUNDRED_AND_SEVENTY) {
                 txtProgressForFatigue.setText(SEVENTY_FIVE + "%");
                 progressBarFatigueLevel.setProgress(SEVENTY_FIVE);
-            } else if (counter > EIGHTEEN-1) {
+            } else if (counter > TWO_HUNDRED_AND_SEVENTY) {
                 txtProgressForFatigue.setText(ONE_HUNDRED + "%");
                 progressBarFatigueLevel.setProgress(ONE_HUNDRED);
             }
 
             //gums levels
-            if (counter >= ZERO && counter < FIVE) {
-                txtProgressForGums.setText(FIFTEEN + "%");
-                progressBarGumsLevel.setProgress(FIFTEEN);
-            } else if (counter > FIVE-1 && counter < TWENTY) {
-                txtProgressForGums.setText(TWENTYFIVE + "%");
-                progressBarGumsLevel.setProgress(TWENTYFIVE);
-            } else if (counter > TWENTY-1 && counter < FOURTEEN) {
+            if (counter >= ZERO && counter < THIRTY) {
+                txtProgressForGums.setText(ONE + "%");
+                progressBarGumsLevel.setProgress(ONE);
+            } else if (counter > THIRTY-1 && counter < SIXTY) {
+                txtProgressForGums.setText(TWENTY + "%");
+                progressBarGumsLevel.setProgress(TWENTY);
+            } else if (counter > SIXTY-1 && counter < NINETY) {
+                txtProgressForGums.setText(THIRTY + "%");
+                progressBarGumsLevel.setProgress(THIRTY);
+            } else if (counter > NINETY-1 && counter < ONE_HUNDRED_AND_EIGHTY) {
                 txtProgressForGums.setText(FIFTY + "%");
                 progressBarGumsLevel.setProgress(FIFTY);
-            } else if (counter > FOURTEEN-1 && counter < SIXTY) {
+            } else if (counter > ONE_HUNDRED_AND_EIGHTY-1 && counter < TWO_HUNDRED_AND_SEVENTY) {
                 txtProgressForGums.setText(SEVENTY_FIVE + "%");
                 progressBarGumsLevel.setProgress(SEVENTY_FIVE);
-            } else if (counter > SIXTY-1) {
+            } else if (counter > TWO_HUNDRED_AND_SEVENTY) {
                 txtProgressForGums.setText(ONE_HUNDRED + "%");
                 progressBarGumsLevel.setProgress(ONE_HUNDRED);
             }
 
             //breath levels
-            if (counter >= ZERO && counter < FIVE) {
-                txtProgressForBreath.setText(FIFTEEN + "%");
-                progressBarBreathlevel.setProgress(FIFTEEN);
-            } else if (counter > FIVE-1 && counter < TEN) {
-                txtProgressForBreath.setText(TWENTYFIVE + "%");
-                progressBarBreathlevel.setProgress(TWENTYFIVE);
-            } else if (counter > TEN-1 && counter < TWENTY) {
+            if (counter >= ZERO && counter < THIRTY) {
+                txtProgressForBreath.setText(ONE + "%");
+                progressBarBreathlevel.setProgress(ONE);
+            } else if (counter > THIRTY-1 && counter < SIXTY) {
+                txtProgressForBreath.setText(TWENTY + "%");
+                progressBarBreathlevel.setProgress(TWENTY);
+            } else if (counter > SIXTY-1 && counter < NINETY) {
+                txtProgressForBreath.setText(THIRTY + "%");
+                progressBarBreathlevel.setProgress(THIRTY);
+            } else if (counter > NINETY-1 && counter < ONE_HUNDRED_AND_EIGHTY) {
                 txtProgressForBreath.setText(FIFTY + "%");
                 progressBarBreathlevel.setProgress(FIFTY);
-            } else if (counter > TWENTY-1 && counter < THIRTY) {
+            } else if (counter > ONE_HUNDRED_AND_EIGHTY-1 && counter < TWO_HUNDRED_AND_SEVENTY) {
                 txtProgressForBreath.setText(SEVENTY_FIVE + "%");
                 progressBarBreathlevel.setProgress(SEVENTY_FIVE);
-            } else if (counter > THIRTY-1) {
+            } else if (counter > TWO_HUNDRED_AND_SEVENTY) {
                 txtProgressForBreath.setText(ONE_HUNDRED + "%");
                 progressBarBreathlevel.setProgress(ONE_HUNDRED);
             }
@@ -1783,7 +1794,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 counter = preferences.getInt(COUNTER, ZERO);
             }
             Log.d("taoAchiev", "counter from achiev = " + counter);
-            if (counter>=ZERO&&counter<TEN) {
+            if (counter>=ZERO&&counter<THIRTY) {
                 //user have between a day and a week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron7);
                 rankOneImg.setAlpha(1.0f);
@@ -1794,7 +1805,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setBackgroundResource(R.mipmap.chevron11);
                 rankFourImg.setAlpha(0.2f);
                 editor.putString(RANK, "Recruit");
-            } else if (counter>9&&counter<TWENTY) {
+            } else if (counter>(THIRTY-1)&&counter<SIXTY) {
                 rankOneImg.setBackgroundResource(R.mipmap.chevron7);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
@@ -1804,7 +1815,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setBackgroundResource(R.mipmap.chevron11);
                 rankFourImg.setAlpha(0.2f);
                 editor.putString(RANK, "Recruit II");
-            } else if (counter>(TWENTY-1)&&counter<THIRTY) {
+            } else if (counter>(SIXTY-1)&&counter<NINETY) {
                 rankOneImg.setBackgroundResource(R.mipmap.chevron7);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
@@ -1814,7 +1825,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setBackgroundResource(R.mipmap.chevron11);
                 rankFourImg.setAlpha(1.0f);
                 editor.putString(RANK, "Recruit III");
-            } else if (counter>(THIRTY-1)&&counter<FOURTEEN) {
+            } else if (counter>(NINETY-1)&&counter<ONE_HUNDRED+20) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron19);
                 rankOneImg.setAlpha(1.0f);
@@ -1825,7 +1836,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setBackgroundResource(R.mipmap.chevron10);
                 rankFourImg.setAlpha(0.2f);
                 editor.putString(RANK, "Silver");
-            } else if (counter>(FOURTEEN-1)&&counter<FIFTY) {
+            } else if (counter>(ONE_HUNDRED+19)&&counter<ONE_HUNDRED_AND_EIGHTY-20) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron19);
                 rankOneImg.setAlpha(1.0f);
@@ -1836,7 +1847,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setBackgroundResource(R.mipmap.chevron10);
                 rankFourImg.setAlpha(0.2f);
                 editor.putString(RANK, "Silver II");
-            } else if (counter>(FIFTY-1)&&counter<SIXTY) {
+            } else if (counter>(ONE_HUNDRED_AND_EIGHTY-21)&&counter<ONE_HUNDRED_AND_EIGHTY) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron19);
                 rankOneImg.setAlpha(1.0f);
@@ -1847,7 +1858,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setBackgroundResource(R.mipmap.chevron10);
                 rankFourImg.setAlpha(1.0f);
                 editor.putString(RANK, "Silver III");
-            } else if (counter>(SIXTY-1)&&counter<SEVENTY_FIVE-5) {
+            } else if (counter>(ONE_HUNDRED_AND_EIGHTY-1)&&counter<TWO_HUNDRED+20) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron16);
                 rankOneImg.setAlpha(1.0f);
@@ -1858,7 +1869,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setBackgroundResource(R.mipmap.gnm);
                 rankFourImg.setAlpha(0.2f);
                 editor.putString(RANK, "Gold");
-            } else if (counter> SIXTY_NINE &&counter<EIGHTEEN) {
+            } else if (counter> (TWO_HUNDRED+19)&&counter<TWO_HUNDRED_AND_SEVENTY) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron16);
                 rankOneImg.setAlpha(1.0f);
@@ -1869,7 +1880,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setBackgroundResource(R.mipmap.gnm);
                 rankFourImg.setAlpha(0.2f);
                 editor.putString(RANK, "Gold I");
-            } else if (counter>(EIGHTEEN-1)&&counter< NINETY) {
+            } else if (counter>(TWO_HUNDRED_AND_SEVENTY-1)&&counter< THREE_HUNDRED) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.mipmap.chevron16);
                 rankOneImg.setAlpha(1.0f);
@@ -1881,7 +1892,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 rankFourImg.setAlpha(0.2f);
                 editor.putString(RANK, "Gold II");
                 //WHEN USER REACH DAY 90 - GREATEST MILESTONE
-            } else if (counter == NINETY) {
+            } else if (counter >= THREE_HUNDRED) {
                 rankOneImg.setBackgroundResource(R.mipmap.chevron16);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.mipmap.chevron17);

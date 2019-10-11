@@ -310,16 +310,12 @@
                     app:maximum="100"
                     app:progress="50"
                     app:progressAnimationDuration="100"
-                    android:tooltipText="energy levels"
-                    app:startAngle="270"
-                    tools:targetApi="o" />
-                <!--app:wlv_borderWidth="3dp"-->
+                    app:startAngle="270" />
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_breath"
                     android:layout_width="0dp"
                     android:layout_height="65dp"
                     android:layout_weight="1"
-                    android:tooltipText="breath levels"
                     app:animateProgress="true"
                     app:backgroundStrokeColor="@color/grey_300"
                     app:backgroundStrokeWidth="3dp"
@@ -334,15 +330,12 @@
                     app:maximum="100"
                     app:progress="50"
                     app:progressAnimationDuration="100"
-                    app:startAngle="270"
-                    tools:targetApi="o" />
-                <!--app:wlv_borderWidth="3dp"-->
+                    app:startAngle="270" />
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_fatigue"
                     android:layout_width="0dp"
                     android:layout_height="65dp"
                     android:layout_weight="1"
-                    android:tooltipText="fatigue levels"
                     app:animateProgress="true"
                     app:backgroundStrokeColor="@color/grey_300"
                     app:backgroundStrokeWidth="3dp"
@@ -357,11 +350,9 @@
                     app:maximum="100"
                     app:progress="50"
                     app:progressAnimationDuration="100"
-                    app:startAngle="270"
-                    tools:targetApi="o" />
+                    app:startAngle="270" />
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_gums"
-                    android:tooltipText="gums levels"
                     app:animateProgress="true"
                     app:backgroundStrokeColor="@color/grey_300"
                     app:backgroundStrokeWidth="3dp"
@@ -379,8 +370,7 @@
                     app:startAngle="270"
                     android:layout_width="0dp"
                     android:layout_height="65dp"
-                    android:layout_weight="1"
-                    tools:targetApi="o" />
+                    android:layout_weight="1" />
             </LinearLayout>
             <FrameLayout
                 android:layout_width="match_parent"

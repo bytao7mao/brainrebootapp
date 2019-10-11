@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_mainID"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="470dp"
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -19,7 +19,7 @@
         <RelativeLayout
             android:id="@+id/rl_top"
             android:layout_width="match_parent"
-            android:layout_height="450dp">
+            android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/bg_grey"
                 android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="120dp">
+                android:layout_marginTop="140dp">
                 <ProgressBar
                     android:id="@+id/loadingProgressId"
                     style="?android:attr/progressBarStyle"
@@ -310,16 +310,12 @@
                     app:maximum="100"
                     app:progress="50"
                     app:progressAnimationDuration="100"
-                    android:tooltipText="energy levels"
-                    app:startAngle="270"
-                    tools:targetApi="o" />
-                <!--app:wlv_borderWidth="3dp"-->
+                    app:startAngle="270" />
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_breath"
                     android:layout_width="0dp"
                     android:layout_height="65dp"
                     android:layout_weight="1"
-                    android:tooltipText="breath levels"
                     app:animateProgress="true"
                     app:backgroundStrokeColor="@color/grey_300"
                     app:backgroundStrokeWidth="3dp"
@@ -334,15 +330,12 @@
                     app:maximum="100"
                     app:progress="50"
                     app:progressAnimationDuration="100"
-                    app:startAngle="270"
-                    tools:targetApi="o" />
-                <!--app:wlv_borderWidth="3dp"-->
+                    app:startAngle="270" />
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_fatigue"
                     android:layout_width="0dp"
                     android:layout_height="65dp"
                     android:layout_weight="1"
-                    android:tooltipText="fatigue levels"
                     app:animateProgress="true"
                     app:backgroundStrokeColor="@color/grey_300"
                     app:backgroundStrokeWidth="3dp"
@@ -357,11 +350,9 @@
                     app:maximum="100"
                     app:progress="50"
                     app:progressAnimationDuration="100"
-                    app:startAngle="270"
-                    tools:targetApi="o" />
+                    app:startAngle="270" />
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_gums"
-                    android:tooltipText="gums levels"
                     app:animateProgress="true"
                     app:backgroundStrokeColor="@color/grey_300"
                     app:backgroundStrokeWidth="3dp"
@@ -379,8 +370,7 @@
                     app:startAngle="270"
                     android:layout_width="0dp"
                     android:layout_height="65dp"
-                    android:layout_weight="1"
-                    tools:targetApi="o" />
+                    android:layout_weight="1" />
             </LinearLayout>
             <FrameLayout
                 android:layout_width="match_parent"
