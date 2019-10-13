@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.preference.PreferenceManager;
-import androidx.core.content.ContextCompat;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -29,15 +29,13 @@ import static com.taozen.quithabit.MainActivity.ZERO;
 
 public class AchievmentsActivity extends AppCompatActivity {
 
-    public static void main(String[] args) { }
-
     // Array of strings for ListView Title
     String[] titles;
     int[] images;
 
     String[] descriptions = new String[] {
-            "Control yourself!", "You can do it!", "The future looks good!", "Almost there!",
-            "The right way!", "The zen way!", "Keep up the way!", "There is no going back!",
+            "Control yourself!", "You can do it!", "The right way!", "Almost there!",
+            "Zen apprentice", "The zen way!", "Keep up the way!", "There is no going back!",
             "A new life!", "Zen monk!", "Zen master!", "Only for those who are worthy!"};
 
     //shared pref
@@ -116,9 +114,9 @@ public class AchievmentsActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             Holder holder=new Holder();
             View view;
-            view = inflater.inflate(R.layout.list_item, null);
+            view = inflater.inflate(R.layout.list_item_achievments, null);
             if (view == null) {
-                view = View.inflate(parent.getContext(), R.layout.list_item, null);
+                view = View.inflate(parent.getContext(), R.layout.list_item_achievments, null);
             }
             holder.img = view.findViewById(R.id.listview_image);
             holder.tv = view.findViewById(R.id.listview_item_title);

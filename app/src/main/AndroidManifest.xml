@@ -32,7 +32,7 @@
             android:name=".FirstScreenActivity"
             android:excludeFromRecents="true" />
         <activity android:name=".cardActivities.AchievmentsActivity" />
-        <activity android:name=".about.AboutActivity" />
+        <activity android:name=".options.AboutActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/MaterialTheme.NoActionBar">
@@ -51,6 +51,7 @@
             android:label="app_intro" />
         <activity android:name=".cardActivities.SavingsActivity" />
         <activity android:name=".cardActivities.ChallengeActivity" />
+        <activity android:name=".options.LegalActivity" />
 
         <service android:name=".notif.MyFirebaseMessagingService" />
         <service android:name=".notif.MyNewIntentService" />

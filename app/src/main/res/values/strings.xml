@@ -11,7 +11,7 @@
     <string name="help">Help</string>
     <string name="checkinStr">You will check-in everyday at %d:00</string>
     <string name="thanks_for_downloading_this_app">Thanks for downloading this app !\nEnjoy!</string>
-    <string name="all_rights_reserved_to_bytao7mao"><![CDATA[All rights reserved to @bytao7mao]]></string>
+    <string name="all_rights_reserved_to_bytao7mao"><![CDATA[Copyright © 2019 Marius Nicolae]]></string>
     <string name="rank_master">Current Rank: %s</string>
     <string name="streak_string">Highest days streak: %d</string>
     <string name="reset_progress">Reset progress</string>
@@ -96,4 +96,10 @@
         Thank you!"
     </string>
     <string name="how_much_to_save">how much to save</string>
+    <string name="legal">Legal</string>
+    <string name="quithabit_nosmoke_for_android">QuitHabit! \nNoSmoke \nfor Android</string>
+    <string name="quithabit_nosmoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke for
+        \nAndroid is built using \nopen-source software:</string>
+    <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Terms of Conditions</a></string>
+    <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licences</a></string>
 </resources>

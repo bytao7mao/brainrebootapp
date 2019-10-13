@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options_array">
+        <item>"Privacy Policy"</item>
+        <item>"Terms of Service"</item>
+        <item>"Third party licences"</item>
+        <item>"Send feedback"</item>
+        <item>"Reset your progress"</item>
+        <item>"About</item>
+    </string-array>
+</resources>

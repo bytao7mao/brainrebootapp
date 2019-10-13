@@ -1,28 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AboutPageStyle"
-        android:background="#FFFFFF">
-        <com.shashank.sony.fancyaboutpagelib.FancyAboutPage
+        android:background="@color/white"
+        android:paddingBottom="5dp"
+        android:theme="@style/MaterialTheme.NoActionBar"
+        android:translationZ="0.1dp"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--android:background="?attr/colorPrimary"-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:id="@+id/fancyaboutpage">
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="180dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:src="@mipmap/ic_launcher_foreground"
-                app:civ_border_color="#FFF"
-                app:civ_border_width="10dp" />
-            <!--            app:civ_border_color="#40FFFFFF"-->
-        </com.shashank.sony.fancyaboutpagelib.FancyAboutPage>
-    </RelativeLayout>
-</ScrollView>
+            android:layout_height="?attr/actionBarSize"
+            android:alpha="0.8"
+            app:popupTheme="@style/MaterialTheme.NoActionBar"
+            app:titleTextAppearance="@style/TitleBarStyle" />
+        <View
+            android:id="@+id/delimitationBarId"
+            style="@style/Divider"
+            android:layout_height="0.2dp"
+            android:background="@android:color/darker_gray" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quithabit_nosmoke_for_android"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_10percent" />
+
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Version"
+        android:textSize="12sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_version_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp"
+        android:text="0.9 (100)"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_version" />
+
+    <TextView
+        android:id="@+id/tv_third_party_licences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/quithabit_nosmoke_for_android_is_built_using_open_source_software"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_version_number" />
+
+    <TextView
+        android:id="@+id/tv_third_party_licences_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/licences"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_third_party_licences" />
+
+    <TextView
+        android:id="@+id/tv_terms_and_conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/terms_of_service"
+        android:autoLink="all"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_80percent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_third_party_licences_link" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_10percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_80percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_10percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

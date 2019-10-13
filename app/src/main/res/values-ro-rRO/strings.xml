@@ -11,7 +11,7 @@
     <string name="progressactivity_get_started">Sa incepem o noua viata!</string>
     <string name="maxCounter">Calculare</string>
     <string name="help">Ajutor</string>
-    <string name="all_rights_reserved_to_bytao7mao">Toate drepturile rezervate catre @bytao7mao</string>
+    <string name="all_rights_reserved_to_bytao7mao"><![CDATA[Toate drepturile rezervate catre © Marius Nicolae]]></string>
     <string name="checkinStr">In fiecare zi te vom verifica la ora %d:00</string>
     <string name="rank_master">Rank: %s</string>
     <string name="reset_progress">Resetare progres</string>

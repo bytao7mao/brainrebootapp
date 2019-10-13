@@ -103,7 +103,7 @@
         android:layout_marginBottom="20dp"
         android:textStyle="italic"
         android:alpha="0.7"
-        android:textSize="12sp"
+        android:textSize="8sp"
         android:text="@string/all_rights_reserved_to_bytao7mao" />
 
 </RelativeLayout>
