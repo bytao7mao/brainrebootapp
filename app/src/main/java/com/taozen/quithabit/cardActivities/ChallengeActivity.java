@@ -68,6 +68,7 @@ public class ChallengeActivity extends AppCompatActivity {
         relativeLayout = findViewById(R.id.rltvlayout);
         //TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Challenges");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);

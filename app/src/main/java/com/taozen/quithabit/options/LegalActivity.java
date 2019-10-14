@@ -32,6 +32,13 @@ import static com.taozen.quithabit.MainActivity.TERMS_AND_CONDITIONS;
 
 public class LegalActivity extends AppCompatActivity {
 
+    private int resetProgressInteger = 0;
+    private int privacyInteger = 1;
+    private int termsAndConditionsInteger = 2;
+    private int thirdPartyLicencesInteger = 3;
+    private int feedbackInteger = 4;
+    private int aboutInteger = 5;
+
     String[] titles;
     String[] descriptions = new String[] {
             "", "", "", "", "", "version 0.9 (100)"};
@@ -63,6 +70,7 @@ public class LegalActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(LegalActivity.this);
         editor = preferences.edit();
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Settings");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         titles = getResources().getStringArray(R.array.options_array);
@@ -155,18 +163,18 @@ public class LegalActivity extends AppCompatActivity {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (position == 0) {
+                    if (position == privacyInteger) {
                         final Intent INTENT = new Intent(Intent.ACTION_VIEW);
                         INTENT.setData(Uri.parse(PRIVACY_POLICY));
                         startActivity(INTENT);
-                    } else if (position == 1) {
+                    } else if (position == termsAndConditionsInteger) {
                         final Intent INTENT = new Intent(Intent.ACTION_VIEW);
                         INTENT.setData(Uri.parse(TERMS_AND_CONDITIONS));
                         startActivity(INTENT);
-                    } else if (position == 2) {
+                    } else if (position == thirdPartyLicencesInteger) {
                         //TODO: third party licences like ip app
 
-                    } else if (position == 3) {
+                    } else if (position == feedbackInteger) {
                         final Intent INTENT = new Intent(Intent.ACTION_SEND);
                         INTENT.setType("message/rfc822");
                         INTENT.putExtra(Intent.EXTRA_EMAIL  , new String[]{"rebootway@outlook.com"});
@@ -177,9 +185,9 @@ public class LegalActivity extends AppCompatActivity {
                         } catch (android.content.ActivityNotFoundException ex) {
                             Toast.makeText(LegalActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                         }
-                    } else if (position == 4) {
+                    } else if (position == resetProgressInteger) {
                         dialogForResetForced();
-                    } else if (position == 5) {
+                    } else if (position == aboutInteger) {
                         final Intent INTENT = new Intent(LegalActivity.this, AboutActivity.class);
                         startActivity(INTENT);
                     }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "213412197825-qhar2fp9u81e19lh40ig3kn7987vo3gc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taozen.quithabit",
+            "certificate_hash": "639b4dbcdec8c915c43c22ba6e3f9a9ff8d5c43e"
+          }
+        },
+        {
           "client_id": "213412197825-qadel0r9b58jmmvguno90lvea09d20sv.apps.googleusercontent.com",
           "client_type": 3
         }

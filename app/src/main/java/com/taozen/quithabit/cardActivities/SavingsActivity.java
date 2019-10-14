@@ -14,6 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+//import com.google.android.gms.ads.AdListener;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdSize;
+//import com.google.android.gms.ads.AdView;
+//import com.google.android.gms.ads.InterstitialAd;
+//import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.taozen.quithabit.R;
@@ -45,7 +51,7 @@ public class SavingsActivity extends AppCompatActivity {
     static Typeface montSerratSemiBoldTypeface;
     static Typeface montSerratExtraBoldTypeface;
     static Typeface montSerratSimpleBoldTypeface;
-
+//    private InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +61,33 @@ public class SavingsActivity extends AppCompatActivity {
 //        getWindow().setStatusBarColor(ContextCompat.getColor(SavingsActivity.this, R.color.white));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Savings");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        //ads
+//        AdView mAdView = findViewById(R.id.adView);
+////        mAdView.setAdUnitId("ca-app-pub-8605805180436473/8417283556");
+////        mAdView.setAdSize(AdSize.BANNER);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+////        MobileAds.initialize(this, "ca-app-pub-8605805180436473/8417283556");
+//        mInterstitialAd = new InterstitialAd(this);
+//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+//        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+//        if (mInterstitialAd.isLoaded()) {
+//            mInterstitialAd.show();
+//        } else {
+//            Log.d("TAG", "The interstitial wasn't loaded yet.");
+//        }
+//        mInterstitialAd.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdClosed() {
+//                // Load the next interstitial.
+//                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+//            }
+//
+//        });
 
         //fonts
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");

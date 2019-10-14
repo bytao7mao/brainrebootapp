@@ -36,7 +36,7 @@ public class AchievmentsActivity extends AppCompatActivity {
     String[] descriptions = new String[] {
             "Control yourself!", "You can do it!", "The right way!", "Almost there!",
             "Zen apprentice", "The zen way!", "Keep up the way!", "There is no going back!",
-            "A new life!", "Zen monk!", "Zen master!", "Only for those who are worthy!"};
+            "A new life!", "Zen monk!"};
 
     //shared pref
     private SharedPreferences preferences;
@@ -69,6 +69,7 @@ public class AchievmentsActivity extends AppCompatActivity {
 //        getWindow().setStatusBarColor(ContextCompat.getColor(AchievmentsActivity.this, R.color.white));
         //TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Achievements");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
@@ -126,61 +127,61 @@ public class AchievmentsActivity extends AppCompatActivity {
             holder.desc.setText(descriptions[position]);
 
             if (preferences.contains(RANK)){
-                if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit")) {
+                if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wolf")) {
                     if (position > ZERO){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit II")) {
+                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("badger")) {
                     if (position > ONE){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("recruit III")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("bear")) {
                     if (position > ONE+2){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wild bear")) {
                     if (position > ONE+3){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver II")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("deer")) {
                     if (position > FIVE){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("silver III")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("boar")) {
                     if (position > FIVE+2){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("elk")) {
                     if (position > FIVE+3){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold I")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("beaver")) {
                     if (position > TEN-1){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold II")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("fox")) {
                     if (position > TEN){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
                     }
-                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("Gold III")) {
+                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("lynx")) {
                     if (position > TEN+1){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);

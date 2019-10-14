@@ -50,6 +50,12 @@ import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.fabtransitionactivity.SheetLayout;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdSize;
+//import com.google.android.gms.ads.AdView;
+//import com.google.android.gms.ads.MobileAds;
+//import com.google.android.gms.ads.initialization.InitializationStatus;
+//import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
@@ -170,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     @BindView(R.id.progressCardId) CardView upperProgressPercentsCard;
 
     //TextViews
+    @BindView(R.id.tv_offer) TextView tvOffer;
     @BindView(R.id.exploreAchievementId) TextView exploreAId;
     @BindView(R.id.exploreSavingsId) TextView exploreSId;
     @BindView(R.id.comingSoonTxtForChallenge2) TextView comingSoonTxtForChallenge2;
@@ -209,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
     @BindView(R.id.rankThreeId) ImageView rankThreeImg;
-    @BindView(R.id.rankFourId) ImageView rankFourImg;
+//    @BindView(R.id.rankFourId) ImageView rankFourImg;
     @BindView(R.id.backgroundId) ImageView backgroundImgWall;
     @BindView(R.id.pulsator) PulsatorLayout pulsator;
     //CircularProgressBar
@@ -273,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
         return quotesForPassingTheDayList.get(random.nextInt(quotesForPassingTheDayList.size()));
     }
-
+//    private AdView adView;
 
     @BindView(R.id.bottom_sheet) SheetLayout sheetLayout;
     //OnCreate [START]
@@ -298,10 +305,43 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         final Intent INTENT = getIntent();
         final String NAME = INTENT.getStringExtra("data");
         tipofthedayTxtView.setText(NAME);
+        tvOffer.setText(setTxtVwToOffer());
 //        tipofthedayTxtView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
-        numberFormat = new DecimalFormat("#.##");
+        //ads
+//        AdView mAdView = findViewById(R.id.adView);
+//                mAdView.setAdUnitId("ca-app-pub-8605805180436473/8417283556");
+//                mAdView.setAdSize(AdSize.BANNER);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this, "ca-app-pub-8605805180436473/8417283556");
 
+        //variant 2
+        // Initialize the Mobile Ads SDK.
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+//        });
+//
+//        // Gets the ad view defined in layout/ad_fragment.xml with ad unit ID set in
+//        // values/strings.xml.
+//        adView = findViewById(R.id.adView);
+//
+//        // Create an ad request. Check your logcat output for the hashed device ID to
+//        // get test ads on a physical device. e.g.
+//        // "Use AdRequest.Builder.addTestDevice("ca-app-pub-8605805180436473/7955971322") to get test ads on this device."
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .addTestDevice("ca-app-pub-8605805180436473/7955971322")
+//                .build();
+//
+//        // Start loading the ad in the background.
+//        adView.loadAd(adRequest);
+
+
+
+
+
+        numberFormat = new DecimalFormat("#.##");
         //anim for subtext
         anim = ObjectAnimator.ofInt(subTextNonSmoker,
                 "TextColor",
@@ -893,23 +933,23 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         if (counter == ZERO) {
                             savings = preferences.getLong("taoz10", -10);
                         }
-                        if (preferences.contains("diff") && higherThanOne) {
-                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
-                            final int DIF = preferences.getInt("diff", -100);
-                            counter = counter + DIF;
-                            if (preferences.contains("tempLong")){
-                                longFromSavingActivity = preferences.getLong("tempLong", ZERO);
-                            } else {
-                                longFromSavingActivity = ZERO;
-                            }
-                            savings = longFromSavingActivity + (firstSave * counter);
-                            editor.putLong(SAVINGS_FINAL, savings);
-                            editor.apply();
-
-                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter
-                                    +"\n savings = " + savings);
-                            higherThanOne = false;
-                        } else {
+//                        if (preferences.contains("diff") && higherThanOne) {
+////                            Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
+////                            final int DIF = preferences.getInt("diff", -100);
+////                            counter = counter + DIF;
+////                            if (preferences.contains("tempLong")){
+////                                longFromSavingActivity = preferences.getLong("tempLong", ZERO);
+////                            } else {
+////                                longFromSavingActivity = ZERO;
+////                            }
+////                            savings = longFromSavingActivity + (firstSave * counter);
+////                            editor.putLong(SAVINGS_FINAL, savings);
+////                            editor.apply();
+////
+////                            Log.d("COUNTERTAO", "after - counter is raised with: " + counter
+////                                    +"\n savings = " + savings);
+////                            higherThanOne = false;
+//                        } else {
                             if (counter == 1) {
                                 if (preferences.contains(SAVINGS_FINAL)){
                                     firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
@@ -937,7 +977,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             }
                             higherThanOne = false;
                             Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
-                        }
+//                        }
                         i = 1;
                         editor.putInt(COUNTER, counter);
                         final int TEMP_CIGARETTES = cigarettesPerDay * counter;
@@ -1765,112 +1805,88 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             }
             if (counter>=ZERO&&counter<THIRTY) {
                 //user have between a day and a week
-                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankOneImg.setBackgroundResource(R.drawable.ic_wolf);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_badger);
                 rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_bear_1);
                 rankThreeImg.setAlpha(0.2f);
-                rankFourImg.setBackgroundResource(R.mipmap.chevron11);
-                rankFourImg.setAlpha(0.2f);
-                editor.putString(RANK, "Recruit");
+                editor.putString(RANK, "Wolf");
             } else if (counter>(THIRTY-1)&&counter<SIXTY) {
-                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankOneImg.setBackgroundResource(R.drawable.ic_wolf);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_badger);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_bear_1);
                 rankThreeImg.setAlpha(0.2f);
-                rankFourImg.setBackgroundResource(R.mipmap.chevron11);
-                rankFourImg.setAlpha(0.2f);
-                editor.putString(RANK, "Recruit II");
+                editor.putString(RANK, "Badger");
             } else if (counter>(SIXTY-1)&&counter<NINETY) {
-                rankOneImg.setBackgroundResource(R.mipmap.chevron7);
+                rankOneImg.setBackgroundResource(R.drawable.ic_wolf);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron8);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_badger);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron9);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_bear_1);
                 rankThreeImg.setAlpha(1.0f);
-                rankFourImg.setBackgroundResource(R.mipmap.chevron11);
-                rankFourImg.setAlpha(1.0f);
-                editor.putString(RANK, "Recruit III");
+                editor.putString(RANK, "Bear");
             } else if (counter>(NINETY-1)&&counter<ONE_HUNDRED+20) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+                rankOneImg.setBackgroundResource(R.drawable.ic_bear);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_deer);
                 rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
                 rankThreeImg.setAlpha(0.2f);
-                rankFourImg.setBackgroundResource(R.mipmap.chevron10);
-                rankFourImg.setAlpha(0.2f);
-                editor.putString(RANK, "Silver");
+                editor.putString(RANK, "Wild Bear");
             } else if (counter>(ONE_HUNDRED+19)&&counter<ONE_HUNDRED_AND_EIGHTY-20) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+                rankOneImg.setBackgroundResource(R.drawable.ic_bear);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_deer);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
                 rankThreeImg.setAlpha(0.2f);
-                rankFourImg.setBackgroundResource(R.mipmap.chevron10);
-                rankFourImg.setAlpha(0.2f);
-                editor.putString(RANK, "Silver II");
+                editor.putString(RANK, "Deer");
             } else if (counter>(ONE_HUNDRED_AND_EIGHTY-21)&&counter<ONE_HUNDRED_AND_EIGHTY) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.mipmap.chevron19);
+                rankOneImg.setBackgroundResource(R.drawable.ic_bear);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron20);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_deer);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron21);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
                 rankThreeImg.setAlpha(1.0f);
-                rankFourImg.setBackgroundResource(R.mipmap.chevron10);
-                rankFourImg.setAlpha(1.0f);
-                editor.putString(RANK, "Silver III");
+                editor.putString(RANK, "Boar");
             } else if (counter>(ONE_HUNDRED_AND_EIGHTY-1)&&counter<TWO_HUNDRED+20) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+                rankOneImg.setBackgroundResource(R.drawable.ic_elk);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_beaver);
                 rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fox);
                 rankThreeImg.setAlpha(0.2f);
-                rankFourImg.setBackgroundResource(R.mipmap.gnm);
-                rankFourImg.setAlpha(0.2f);
-                editor.putString(RANK, "Gold");
+                editor.putString(RANK, "Elk");
             } else if (counter> (TWO_HUNDRED+19)&&counter<TWO_HUNDRED_AND_SEVENTY) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+                rankOneImg.setBackgroundResource(R.drawable.ic_elk);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_beaver);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fox);
                 rankThreeImg.setAlpha(0.2f);
-                rankFourImg.setBackgroundResource(R.mipmap.gnm);
-                rankFourImg.setAlpha(0.2f);
-                editor.putString(RANK, "Gold I");
+                editor.putString(RANK, "Beaver");
             } else if (counter>(TWO_HUNDRED_AND_SEVENTY-1)&&counter< THREE_HUNDRED) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.mipmap.chevron16);
+                rankOneImg.setBackgroundResource(R.drawable.ic_elk);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_beaver);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fox);
                 rankThreeImg.setAlpha(1.0f);
-                rankFourImg.setBackgroundResource(R.mipmap.gnm);
-                rankFourImg.setAlpha(0.2f);
-                editor.putString(RANK, "Gold II");
+                editor.putString(RANK, "Fox");
                 //WHEN USER REACH DAY 90 - GREATEST MILESTONE
             } else if (counter >= THREE_HUNDRED) {
-                rankOneImg.setBackgroundResource(R.mipmap.chevron16);
-                rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.mipmap.chevron17);
-                rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.mipmap.chevron18);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_lynx);
                 rankThreeImg.setAlpha(1.0f);
-                rankFourImg.setBackgroundResource(R.mipmap.gnm);
-                rankFourImg.setAlpha(1.0f);
-                editor.putString(RANK, "Gold III");
+                editor.putString(RANK, "Lynx");
             }
         //using "final rethrow" by not specifying throwing a specific exception like NullPointer
         //the final keyword is optional, but in practice, we've found that it helps to use it while
@@ -2009,6 +2025,10 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private String setTxtVwToOffer(){
+        final String CURRENCY_LOCAL = preferences.getString("currency", "$");
+        return getResources().getString(R.string.unlimited_price, CURRENCY_LOCAL);
     }
 
 }//[END OF MAIN CLASS]

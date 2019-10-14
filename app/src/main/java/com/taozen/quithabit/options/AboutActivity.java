@@ -17,6 +17,7 @@ import com.taozen.quithabit.R;
 import java.util.Objects;
 
 import static com.taozen.quithabit.MainActivity.TERMS_AND_CONDITIONS;
+import static com.taozen.quithabit.MainActivity.WEB_PAGE;
 
 public class AboutActivity extends AppCompatActivity {
     public static final String TERMS = "https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html";
@@ -28,6 +29,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("About");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
@@ -46,6 +48,15 @@ public class AboutActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final Intent INTENT = new Intent(Intent.ACTION_VIEW);
                 INTENT.setData(Uri.parse(LICENCES));
+                startActivity(INTENT);
+            }
+        });
+        TextView tv_logo = findViewById(R.id.tv_logo);
+        tv_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent INTENT = new Intent(Intent.ACTION_VIEW);
+                INTENT.setData(Uri.parse(WEB_PAGE));
                 startActivity(INTENT);
             }
         });

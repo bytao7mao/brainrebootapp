@@ -7,7 +7,7 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -20,10 +20,10 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="50dp"
-            android:padding="5dp"
+            android:padding="24dp"
             android:alpha="0.8"
             android:gravity="center"
-            android:text="Add your today's extra savings!"
+            android:text="@string/add_your_today_s_extra_savings"
             android:textSize="24sp" />
 
         <!--        <androidx.appcompat.widget.AppCompatEditText-->
@@ -40,7 +40,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTxtSavingsId"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="@color/grey_10"
             android:layout_centerHorizontal="true"
@@ -56,7 +56,7 @@
                 android:layout_centerHorizontal="true"
                 android:hint="@string/how_much_to_save"
                 android:backgroundTint="@color/greenColorLed"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -88,10 +88,25 @@
             android:textSize="20sp" />
 
         <ImageView
+            android:id="@+id/imgSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/savingsTxt"
             android:layout_centerHorizontal="true"
             android:src="@mipmap/profit" />
+
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            android:id="@+id/adView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/imgSave"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="33dp"-->
+<!--            app:adSize="BANNER"-->
+<!--            app:adUnitId="ca-app-pub-3940256099942544/6300978111">-->
+<!--&lt;!&ndash;       real     ca-app-pub-8605805180436473/8417283556&ndash;&gt;-->
+<!--&lt;!&ndash;     test       ca-app-pub-3940256099942544/6300978111&ndash;&gt;-->
+<!--        </com.google.android.gms.ads.AdView>-->
     </RelativeLayout>
 </LinearLayout>

@@ -8,6 +8,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+<!--    <meta-data-->
+<!--        android:name="com.google.android.gms.ads.AD_MANAGER_APP"-->
+<!--        android:value="true"/>-->
+
+<!--    &lt;!&ndash; Sample AdMob App ID: ca-app-pub-8605805180436473~8997590254 &ndash;&gt;-->
+<!--    <meta-data-->
+<!--        android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+<!--        android:value="ca-app-pub-8605805180436473~8997590254"/>-->
+
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
@@ -18,6 +28,16 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/>
+
+        <!-- Sample AdMob App ID: ca-app-pub-8605805180436473~8997590254 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8605805180436473~8997590254"/>
+
         <activity
             android:name=".cardActivities.FailLogsActivity"
             tools:ignore="InnerclassSeparator" />

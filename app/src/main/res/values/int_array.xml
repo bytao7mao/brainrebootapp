@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="images_arr_for_ranks">
-        <item>@mipmap/chevron7</item>
-        <item>@mipmap/chevron8</item>
-        <item>@mipmap/chevron9</item>
-        <item>@mipmap/chevron11</item>
-        <item>@mipmap/chevron19</item>
-        <item>@mipmap/chevron20</item>
-        <item>@mipmap/chevron21</item>
-        <item>@mipmap/chevron10</item>
-        <item>@mipmap/chevron16</item>
-        <item>@mipmap/chevron17</item>
-        <item>@mipmap/chevron18</item>
-        <item>@mipmap/gnm</item>
+        <item>@drawable/ic_wolf</item>
+        <item>@drawable/ic_badger</item>
+        <item>@drawable/ic_bear_1</item>
+        <item>@drawable/ic_bear</item>
+        <item>@drawable/ic_deer</item>
+        <item>@drawable/ic_boar</item>
+        <item>@drawable/ic_elk</item>
+        <item>@drawable/ic_beaver</item>
+        <item>@drawable/ic_fox</item>
+        <item>@drawable/ic_lynx</item>
     </integer-array>
 </resources>
