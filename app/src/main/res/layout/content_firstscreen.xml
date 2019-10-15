@@ -29,7 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="About your smoking"
-        android:padding="10dp"
+        android:paddingStart="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_above="@id/edtTxtLayoutForCiggsId"
         android:textSize="16sp" />
 
@@ -37,11 +38,9 @@
         android:id="@+id/edtTxtLayoutForCiggsId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_10"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         app:hintEnabled="true"
-        android:alpha="0.7"
         android:layout_below="@id/tvTitleId">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -60,10 +59,8 @@
         android:id="@+id/edtTxtForSavingsId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_10"
         android:layout_centerHorizontal="true"
         app:hintEnabled="true"
-        android:alpha="0.7"
         android:layout_below="@id/edtTxtLayoutForCiggsId">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -98,7 +95,8 @@
         android:layout_above="@id/tvAllRightsId"
         android:layout_width="match_parent"
         android:layout_marginBottom="30dp"
-        android:alpha="0.8"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:text="@string/thanks_for_downloading_this_app"
         android:textAlignment="center"
         android:textSize="14sp" />
@@ -108,8 +106,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/prv_terms_linear"
         android:layout_width="match_parent"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:textAlignment="center"
-        android:alpha="0.8"
         android:textSize="14sp"
         android:text="@string/agreeing_to_terms" />
     <LinearLayout
@@ -118,20 +117,20 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:layout_above="@id/confirmBtn"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tvPolicy"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:alpha="0.8"
             android:textSize="14sp"
             android:text="@string/privacy_policy" />
         <TextView
             android:id="@+id/tvAnd"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:alpha="0.8"
             android:padding="5dp"
             android:textSize="14sp"
             android:text="and" />
@@ -139,7 +138,6 @@
             android:id="@+id/tvTerms"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:alpha="0.8"
             android:textSize="14sp"
             android:text="@string/terms_of_service" />
     </LinearLayout>

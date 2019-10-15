@@ -391,6 +391,7 @@
         android:id="@+id/unl_off_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:layout_below="@id/delimitationBarIdBottom"
         android:orientation="horizontal">
         <TextView
@@ -401,7 +402,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
             android:textColor="@color/greish"
-            android:textSize="26sp"
+            android:textSize="16sp"
             android:text="@string/unlimited"/>
         <TextView
             android:id="@+id/tv_offer"

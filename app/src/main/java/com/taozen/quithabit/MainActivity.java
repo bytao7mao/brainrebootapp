@@ -32,6 +32,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -164,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
     //Views
     @BindView(android.R.id.content) View parentLayout;
+    @BindView(R.id.unl_off_layout) LinearLayout upgradeLayout;
     //Fab
     @BindView(R.id.fab) FloatingActionButton fab;
     //CardViews
@@ -382,9 +384,6 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
-            toolbar.setTitle("dsadsadsa");
-        }
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 //      getSupportActionBar().setElevation(ZERO); //remove shadow - but now it is already removed in xml file
 
@@ -451,6 +450,9 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         comingSoonTxtForChallenge.setTypeface(montSerratMediumTypeface);
         comingSoonTxtForChallenge2.setTypeface(montSerratMediumTypeface);
 
+        subTextNonSmoker.setBackground((ContextCompat.getDrawable(
+                getApplicationContext(), R.drawable.custom_text_round_bg)));
+
         final int TV_WIDTH = subTextNonSmoker.getWidth();
         final int TV_HEIGHT = subTextNonSmoker.getHeight();
 
@@ -511,6 +513,14 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 editor.apply();
             }
         });//challengeCardView[END]
+
+        upgradeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogForPayment();
+                //TODO: goto payment after dialog
+            }
+        });
 
         //disable views for "coming soon area"
         disableViewsForComingSoon();
@@ -597,7 +607,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             textNonSmoker.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
             textNonSmoker.setAlpha(1.0f);
             subTextNonSmoker.setBackground((ContextCompat.getDrawable(
-                    getApplicationContext(), R.drawable.custom_button_round)));
+                    getApplicationContext(), R.drawable.custom_text_round_bg)));
             subTextNonSmoker.setAlpha(1.0f);
             backgroundImgWall.setAlpha(1.0f);
         } else {
@@ -611,7 +621,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             textNonSmoker.setAlpha(0.8f);
 //            subTextNonSmoker.setTextColor(getResources().getColor(R.color.greish));
             subTextNonSmoker.setBackground((ContextCompat.getDrawable(
-                    getApplicationContext(), R.drawable.custom_button_round)));
+                    getApplicationContext(), R.drawable.custom_text_round_bg)));
             subTextNonSmoker.setAlpha(0.7f);
 //            backgroundImgWall.setAlpha(0.05f);
             backgroundImgWall.setAlpha(0f);
@@ -1027,7 +1037,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         fab.hide();
         anim.cancel();
         subTextNonSmoker.setBackground((ContextCompat.getDrawable(
-                getApplicationContext(), R.drawable.custom_button_round)));
+                getApplicationContext(), R.drawable.custom_text_round_bg)));
         subTextNonSmoker.setTextColor(ContextCompat.getColor(
                 getApplicationContext(), R.color.greish));
         subTextNonSmoker.setAlpha(0.7f);
@@ -1956,7 +1966,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             final String RANK_LOCAL = getString(R.string.rank_master, LAST_STREAK);
             rankMasterTxt.setText(RANK_LOCAL);
             rankMasterTxt.setBackground(ContextCompat.getDrawable(getApplicationContext(),
-                    R.drawable.custom_button_round));
+                    R.drawable.custom_text_round_bg));
 
             if (counter == ZERO) {
                 TV_USER_CIGARETTES_PROGRESS.setText(R.string.cig_press_leaf);
@@ -1988,6 +1998,21 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     private void dialogForReset(){
         new BottomDialog.Builder(this)
                 .setTitle(R.string.reset_whole_progress)
+                .setContent(R.string.are_you_sure)
+                .setPositiveText(R.string.YES)
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                .setNegativeText(R.string.NO)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BottomDialog bottomDialog) {
+                        resetWholeProgress();
+                    }
+                }).show();
+    }
+    private void dialogForPayment(){
+        new BottomDialog.Builder(this)
+                .setTitle("You are about to buy the full version.")
                 .setContent(R.string.are_you_sure)
                 .setPositiveText(R.string.YES)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
@@ -2037,9 +2062,17 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             e.printStackTrace();
         }
     }
+
     private String setTxtVwToOffer(){
         final String CURRENCY_LOCAL = preferences.getString("currency", "$");
-        return getResources().getString(R.string.unlimited_price, CURRENCY_LOCAL);
+        if (CURRENCY_LOCAL.equalsIgnoreCase("ron")){
+            //RON
+            return getResources().getString(R.string.unlimited_price_ron, CURRENCY_LOCAL);
+        } else {
+            //USD OR EUR
+            return getResources().getString(R.string.unlimited_price, CURRENCY_LOCAL);
+        }
+//        return getResources().getString(R.string.unlimited_price, CURRENCY_LOCAL);
     }
 
 }//[END OF MAIN CLASS]

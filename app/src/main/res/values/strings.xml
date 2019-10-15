@@ -11,8 +11,8 @@
     <string name="help">Help</string>
     <string name="checkinStr">You will check-in everyday at %d:00</string>
     <string name="thanks_for_downloading_this_app">We use this information to show you how
-        \nmuch money you\'re saving by giving up
-    \nsmoking</string>
+        much money you\'re saving by giving up
+    smoking</string>
     <string name="agreeing_to_terms">By using this app you are agreeing to our</string>
     <string name="rank_master">Current Rank: %s</string>
     <string name="streak_string">Highest days streak: %d</string>
@@ -110,7 +110,8 @@
     //Test ads key
     <string name="APP_ID">ca-app-pub-8605805180436473~8997590254</string>
     <string name="UNIT_ID">ca-app-pub-8605805180436473/8417283556</string>
-    <string name="unlimited_price">7.99 %s/yr</string>
-    <string name="unlimited">UNLIMITED</string>
+    <string name="unlimited_price">1.99 %s</string>
+    <string name="unlimited_price_ron">7.99 %s</string>
+    <string name="unlimited">UPGRADE TO PRO!</string>
     <string name="done">DONE</string>
 </resources>
