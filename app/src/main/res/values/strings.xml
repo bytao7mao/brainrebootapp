@@ -107,6 +107,6 @@
     //Test ads key
     <string name="APP_ID">ca-app-pub-8605805180436473~8997590254</string>
     <string name="UNIT_ID">ca-app-pub-8605805180436473/8417283556</string>
-    <string name="unlimited_price">7.99 %s</string>
+    <string name="unlimited_price">7.99 %s/yr</string>
     <string name="unlimited">UNLIMITED</string>
 </resources>
