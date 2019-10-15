@@ -58,6 +58,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     @BindView(R.id.tvPolicy) TextView tvPolicy;
     @BindView(R.id.tvTerms) TextView tvTerms;
     @BindView(R.id.tvAnd) TextView tvAnd;
+    @BindView(R.id.tvSubtitleSmoking) TextView tvSubtitleSmoking;
 
 
     //firstStart bool
@@ -125,6 +126,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         tvThanks.setTypeface(montSerratLightTypeface);
         tvTerms.setTypeface(montSerratLightTypeface);
         tvPolicy.setTypeface(montSerratLightTypeface);
+        tvSubtitleSmoking.setTypeface(montSerratLightTypeface);
         tvAnd.setTypeface(montSerratLightTypeface);
         etLayForSumPerDay.setTypeface(montSerratSemiBoldTypeface);
         etLayForCiggaretesPerDay.setTypeface(montSerratSemiBoldTypeface);

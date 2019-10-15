@@ -24,9 +24,18 @@
         android:alpha="0.8"
         android:textSize="28sp" />
 
+    <TextView
+        android:id="@+id/tvSubtitleSmoking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About your smoking"
+        android:padding="10dp"
+        android:layout_above="@id/edtTxtLayoutForCiggsId"
+        android:textSize="16sp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtTxtLayoutForCiggsId"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey_10"
         android:layout_centerHorizontal="true"
@@ -39,16 +48,17 @@
             android:id="@+id/edtTxtForCiggarettedId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_centerHorizontal="true"
+            android:paddingStart="10dp"
             android:hint="@string/how_many_cigarettes_per_day"
             android:backgroundTint="@color/greenColorLed"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
+<!--        android:ellipsize="start"-->
+<!--        android:gravity="center_horizontal"-->
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtTxtForSavingsId"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey_10"
         android:layout_centerHorizontal="true"
@@ -60,11 +70,10 @@
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_centerHorizontal="true"
+            android:paddingStart="10dp"
             android:hint="@string/how_much_do_you_spend_per_day"
             android:backgroundTint="@color/greenColorLed"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

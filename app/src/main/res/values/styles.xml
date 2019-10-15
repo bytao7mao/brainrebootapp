@@ -1,17 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-<!--    <style name="ActionButtonStyle" parent="Widget.AppCompat.ActionButton">-->
-<!--        <item name="android:minWidth">0dp</item>-->
-<!--        <item name="android:paddingStart">4dp</item>-->
-<!--        <item name="android:paddingEnd">4dp</item>-->
-<!--    </style>-->
-    <style name="MaterialThemeFor24" parent="ParentMaterialTheme24">
-        <!--        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>-->
-    </style>
+
     <style name="MaterialTheme" parent="ParentMaterialTheme">
 <!--        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>-->
     </style>
-<!--    Theme.AppCompat.Light.NoActionBar-->
 
     <style name="ParentMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:fontFamily">@font/montserratsemibold</item>
@@ -25,20 +17,6 @@
         <item name="spinBars">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
-        <item name="android:popupBackground">@drawable/popup_menu_round</item>
-        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
-    </style>
-    <style name="ParentMaterialTheme24" parent="Theme.AppCompat.Light">
-        <item name="android:fontFamily">@font/montserratsemibold</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/grey_700</item>
-        <!-- Parent theme For all Pre - lollipop and lollipop above versions i.e. For all devices -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="spinBars">true</item>
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
         <item name="android:popupBackground">@drawable/popup_menu_round</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
@@ -72,12 +50,6 @@
         <item name="android:activityCloseEnterAnimation">@transition/slide_in_left</item>
         <item name="android:activityCloseExitAnimation">@transition/slide_out_right</item>
     </style>
-
-    <!--<style name="Fade">-->
-        <!--<item name="android:windowEnterAnimation">@transition/slide_in_right</item>-->
-        <!--<item name="android:windowExitAnimation">@transition/slide_out_left</item>-->
-    <!--</style>-->
-
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
