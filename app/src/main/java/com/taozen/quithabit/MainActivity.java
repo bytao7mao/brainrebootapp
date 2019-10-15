@@ -382,6 +382,9 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+            toolbar.setTitle("dsadsadsa");
+        }
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 //      getSupportActionBar().setElevation(ZERO); //remove shadow - but now it is already removed in xml file
 
@@ -724,6 +727,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             @Override
             public void onClick(View v) {
                 setTodayToClickDay();
+                final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
+                final int x = isLeap(yearOfNow) ? LEAP_YEAR_DAYS : NORMAL_YEAR_DAYS;
                 final String MESSAGE_FOR_DIALOG;
                 MESSAGE_FOR_DIALOG = higherThanOne ? getString(R.string.abstained_last_days) : getString(R.string.abstained_today);
                 //between 1 and 29
@@ -747,7 +752,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 } else if (counter > TWO_HUNDRED_AND_SEVENTY-TWO && counter < THREE_HUNDRED+SIXTY+ONE) {
                     normalFancyDialog(getString(R.string.beat_milestone, 360), MESSAGE_FOR_DIALOG);
                     //if user has reached almost one year (360 days) we ask if he/she want reset
-                } else if (counter >= THREE_HUNDRED+SIXTY+ONE) {
+                } else if (counter >= x) {
                     dialogForResetForced();
                 }
                 //SHOW FANCY TOAST WITH CONGRATS
@@ -817,6 +822,11 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             editor.putLong(SAVINGS_FINAL, savings);
                             editor.apply();
                             higherThanOne = false;
+                            final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
+                            final int x = isLeap(yearOfNow) ? LEAP_YEAR_DAYS : NORMAL_YEAR_DAYS;
+                            if (counter > x){
+                                dialogForResetForced();
+                            }
                         } else {
                             counter++;
                             savings = preferences.getLong(SAVINGS_FINAL, ZERO) + firstSave;
@@ -1066,7 +1076,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             counter = preferences.getInt(COUNTER, -1);
             counterText.setText(String.valueOf(counter));
             setTargetDays();
-            negativeDialogAfterRelapse();
+            //TODO: to replace with another dialog
+//            negativeDialogAfterRelapse();
         } catch (final Exception e) {
             e.printStackTrace();
         }

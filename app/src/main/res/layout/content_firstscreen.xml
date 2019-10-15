@@ -69,41 +69,71 @@
 
     <Button
         android:id="@+id/confirmBtn"
-        android:background="@drawable/custom_button"
+        android:background="@drawable/custom_button_round"
         android:textAllCaps="true"
-        android:text="@string/confirm"
-        android:alpha="0.8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/edtTxtForSavingsId"
-        android:layout_marginTop="50dp"
+        android:text="@string/done"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        style="?android:attr/borderlessButtonStyle"
         android:textColor="@color/white"
+        android:elevation="0dp"
         android:layout_marginBottom="10dp"
         android:gravity="center" />
 
     <TextView
         android:id="@+id/tvThanksId"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:textAlignment="center"
+        android:layout_above="@id/tvAllRightsId"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="30dp"
         android:alpha="0.8"
-        android:textSize="12sp"
-        android:text="@string/thanks_for_downloading_this_app" />
+        android:text="@string/thanks_for_downloading_this_app"
+        android:textAlignment="center"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvAllRightsId"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/prv_terms_linear"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:alpha="0.8"
+        android:textSize="14sp"
+        android:text="@string/agreeing_to_terms" />
+    <LinearLayout
+        android:id="@+id/prv_terms_linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:textStyle="italic"
-        android:alpha="0.7"
-        android:textSize="8sp"
-        android:text="@string/all_rights_reserved_to_bytao7mao" />
+        android:layout_above="@id/confirmBtn"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvPolicy"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:alpha="0.8"
+            android:textSize="14sp"
+            android:text="@string/privacy_policy" />
+        <TextView
+            android:id="@+id/tvAnd"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:alpha="0.8"
+            android:padding="5dp"
+            android:textSize="14sp"
+            android:text="and" />
+        <TextView
+            android:id="@+id/tvTerms"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:alpha="0.8"
+            android:textSize="14sp"
+            android:text="@string/terms_of_service" />
+    </LinearLayout>
+
 
 </RelativeLayout>

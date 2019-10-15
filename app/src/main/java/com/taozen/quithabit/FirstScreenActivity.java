@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
@@ -22,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.transitionseverywhere.ArcMotion;
@@ -38,6 +40,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Optional;
 
+import static com.taozen.quithabit.MainActivity.PRIVACY_POLICY;
+import static com.taozen.quithabit.options.AboutActivity.TERMS;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
@@ -51,6 +55,9 @@ public class FirstScreenActivity extends AppCompatActivity {
     @BindView(R.id.edtTxtLayoutForCiggsId) TextInputLayout etLayForCiggaretesPerDay;
     @BindView(R.id.edtTxtForCiggarettedId) TextInputEditText etForCiggaretesPerDay;
     @BindView(R.id.confirmBtn) Button btnConfirm;
+    @BindView(R.id.tvPolicy) TextView tvPolicy;
+    @BindView(R.id.tvTerms) TextView tvTerms;
+    @BindView(R.id.tvAnd) TextView tvAnd;
 
 
     //firstStart bool
@@ -115,7 +122,10 @@ public class FirstScreenActivity extends AppCompatActivity {
         //set fonts
         tvTitleWelcome.setTypeface(montSerratSemiBoldTypeface);
         tvAllRights.setTypeface(montSerratLightTypeface);
-        tvThanks.setTypeface(montSerratItallicTypeface);
+        tvThanks.setTypeface(montSerratLightTypeface);
+        tvTerms.setTypeface(montSerratLightTypeface);
+        tvPolicy.setTypeface(montSerratLightTypeface);
+        tvAnd.setTypeface(montSerratLightTypeface);
         etLayForSumPerDay.setTypeface(montSerratSemiBoldTypeface);
         etLayForCiggaretesPerDay.setTypeface(montSerratSemiBoldTypeface);
         btnConfirm.setTypeface(montSerratSemiBoldTypeface);
@@ -126,6 +136,23 @@ public class FirstScreenActivity extends AppCompatActivity {
         etForSumPerDay.setInputType(InputType.TYPE_CLASS_NUMBER);
         String howMuch = getString(R.string.how_much_do_you_spend_per_day) + " (" + currency +")";
         etLayForSumPerDay.setHint(howMuch);
+
+        tvPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent INTENT = new Intent(Intent.ACTION_VIEW);
+                INTENT.setData(Uri.parse(PRIVACY_POLICY));
+                startActivity(INTENT);
+            }
+        });
+        tvTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent INTENT = new Intent(Intent.ACTION_VIEW);
+                INTENT.setData(Uri.parse(TERMS));
+                startActivity(INTENT);
+            }
+        });
 
         etForSumPerDay.addTextChangedListener(new TextWatcher() {
             @Override

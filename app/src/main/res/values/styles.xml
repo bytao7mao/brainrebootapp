@@ -5,7 +5,9 @@
 <!--        <item name="android:paddingStart">4dp</item>-->
 <!--        <item name="android:paddingEnd">4dp</item>-->
 <!--    </style>-->
-
+    <style name="MaterialThemeFor24" parent="ParentMaterialTheme24">
+        <!--        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>-->
+    </style>
     <style name="MaterialTheme" parent="ParentMaterialTheme">
 <!--        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>-->
     </style>
@@ -23,6 +25,20 @@
         <item name="spinBars">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="android:popupBackground">@drawable/popup_menu_round</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+    </style>
+    <style name="ParentMaterialTheme24" parent="Theme.AppCompat.Light">
+        <item name="android:fontFamily">@font/montserratsemibold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/grey_700</item>
+        <!-- Parent theme For all Pre - lollipop and lollipop above versions i.e. For all devices -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="spinBars">true</item>
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
         <item name="android:popupBackground">@drawable/popup_menu_round</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
