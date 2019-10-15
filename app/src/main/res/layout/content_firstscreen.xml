@@ -51,7 +51,7 @@
             android:paddingStart="10dp"
             android:hint="@string/how_many_cigarettes_per_day"
             android:backgroundTint="@color/greenColorLed"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 <!--        android:ellipsize="start"-->
 <!--        android:gravity="center_horizontal"-->
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,7 +73,7 @@
             android:paddingStart="10dp"
             android:hint="@string/how_much_do_you_spend_per_day"
             android:backgroundTint="@color/greenColorLed"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
