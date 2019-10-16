@@ -34,9 +34,9 @@ public class AchievmentsActivity extends AppCompatActivity {
     int[] images;
 
     String[] descriptions = new String[] {
-            "Control yourself!", "You can do it!", "The right way!", "Almost there!",
-            "Zen apprentice", "The zen way!", "Keep up the way!", "There is no going back!",
-            "A new life!", "Zen monk!"};
+            "You can do it!", "Control yourself!", "The right way!", "The zen way!",
+            "Zen apprentice", "Zen monk!", "Keep up the way!", "Almost there!",
+            "There is no going back!", "A new life!"};
 
     //shared pref
     private SharedPreferences preferences;
