@@ -1,14 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Quit Habit! NoSmoking</string>
-    <string name="about" tools:ignore="ExtraTranslation">About</string>
     <string name="target_string">Goal: %s</string>
     <string name="savings">Per total: %s</string>
     <string name="remaining_days">Remaining: %s</string>
     <string name="total_savings">This is your total savings: %s $</string>
-    <string name="action_settings">settings</string>
     <string name="progressactivity_get_started">Get started on the life you want</string>
     <string name="maxCounter">maxCounter</string>
-    <string name="help">Help</string>
     <string name="checkinStr">You will check-in everyday at %d:00</string>
     <string name="thanks_for_downloading_this_app">We use this information to show you how
         much money you\'re saving by giving up
@@ -16,8 +13,6 @@
     <string name="agreeing_to_terms">By using this app you are agreeing to our</string>
     <string name="rank_master">Current Rank: %s</string>
     <string name="streak_string">Highest days streak: %d</string>
-    <string name="reset_progress">Reset progress</string>
-    <string name="coming_soon">Coming Soon!</string>
     <string name="non_smoker_since">Non-smoker since</string>
     <string name="check_in_tomorrow">Check-in: tomorrow!</string>
     <string name="check_in">check-in</string>
@@ -29,9 +24,6 @@
     <string name="cig_press_leaf">Press leaf to calculate</string>
     <string name="life_press_leaf">Press leaf to calculate"</string>
     <string name="life_reg">Life regained: %s hours</string>
-    <string name="see_your_personal_logs_failures">See your Personal logs - failures</string>
-    <string name="your_logs">Your logs</string>
-    <string name="your_challenge">Your challenge</string>
     <string name="explore">Explore</string>
     <string name="your_savings">Your savings</string>
     <string name="your_latest_achievments">Your latest achievements</string>
@@ -41,14 +33,11 @@
     <string name="breath">Breath</string>
     <string name="fatigue">Fatigue</string>
     <string name="gums">Gums</string>
-    <string name="new_post_image">New post image</string>
     <string name="how_many_cigarettes_per_day">How many cigarettes per day ?</string>
     <string name="how_much_do_you_spend_per_day">How much per day ?</string>
     <string name="break_your_habit">Break your habit!</string>
-    <string name="confirm">Confirm</string>
     <string name="cigarettes">cigarettes</string>
     <string name="example_of_tip_of_the_day">"For Every Reason It’s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. – Jack Canfield"</string>
-    <string name="check_in_soon">Check-in soon!</string>
     <string name="perday">Per day:</string>
     <string name="perdaysimple">per day</string>
     <string name="peryear">Per year:</string>
@@ -57,7 +46,6 @@
     <string name="YES">YES</string>
     <string name="NO">NO</string>
     <string name="OK">OK</string>
-    <string name="cant_connect">Can\'t connect to web service</string>
     <string name="no_connection">NO INTERNET CONNECTION!</string>
     <string name="error_fourtyfour">ERROR 404</string>
     <string name="tap_to_start_challenge">Tap to start a challenge!</string>
@@ -69,34 +57,15 @@
     <string name="fail_content">Don\'t waste your life! All you need is a little patience and persistence.</string>
     <string name="awesome">Awesome!</string>
     <string name="we_will_start_tutorial">We will start tutorial now.</string>
-    <string name="see_progress_challenge">Tap to see your progress for your challenge!</string>
     <string name="pass_one">Our strength grows out of our weakness\n\t - Ralph Waldo Emerson</string>
     <string name="pass_two">Believe in your potential, and you will be successful\n\t - John Maxwell</string>
     <string name="pass_three">Believe you can and you\'re halfway there\n\t - Theodore Roosevelt</string>
     <string name="pass_four">The surest way not to fail is to determine to succeed\n\t - Richard Brinsley Sheridan</string>
     <string name="pass_five">The secret of getting ahead is getting started\n\t - Mark Twain</string>
-    <string name="my_profile_description">Android Developer | Software Developer | Java Enthusiast</string>
     <string name="pass_six">It is in your moments of decision that your destiny is shaped\n\t - Tony Robbins</string>
     <string name="first_day">Hello, this is your first day! Since you\'re here it means that you made the first step in order to get rid of your habit</string>
     <string name="abstained_last_days">Did you abstained to smoke in the last days ?</string>
     <string name="abstained_today">Did you abstained to smoke today ?</string>
-    <string name="about_app_description">
-        Quit Habit! App is a motivational app that tracks your daily struggle to stop your habit.
-        \n
-        \nThis app also tracks daily saved amount of money and have daily motivational quotes.
-        \n
-        \nI have to mention a special list of authors from which i borrowed design from:
-        \n-app icon made by @Roundicons from www.flaticon.com;
-        \n-savings icon made by @Eucalyp from www.flaticon.com;
-        \n-rank icons made by @Dimitry Miroliubov/Smashicons from www.flaticon.com;
-        \n-card icons made by @icongeek26 from www.flaticon.com;
-        \n-counter icon made by @starline from www.flaticon.com but made some modifications by myself.
-        \n
-        \nAs you can see, i did not added any advertising campaign because, i, myself, dislike ads.
-        \nIf you enjoyed this app, please support it by sharing it with friends or other people.
-        \n\n
-        Thank you!"
-    </string>
     <string name="how_much_to_save">how much to save</string>
     <string name="legal">Legal</string>
     <string name="quithabit_nosmoke_for_android">QuitHabit! \nNoSmoke \nfor Android</string>
@@ -108,10 +77,8 @@
     <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> and \nthe <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a>\nlogos are trademarks of \nMarius Nicolae. All \nrights reserved</string>
     <string name="add_your_today_s_extra_savings">Add your today\'s extra savings!</string>
     //Test ads key
-    <string name="APP_ID">ca-app-pub-8605805180436473~8997590254</string>
-    <string name="UNIT_ID">ca-app-pub-8605805180436473/8417283556</string>
     <string name="unlimited_price">1.99 %s</string>
     <string name="unlimited_price_ron">7.99 %s</string>
-    <string name="unlimited">UPGRADE TO PRO!</string>
+    <string name="unlimited">UPGRADE TO FULL VERSION!</string>
     <string name="done">DONE</string>
 </resources>

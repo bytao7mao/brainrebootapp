@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -331,7 +333,7 @@ public class ChallengeActivity extends AppCompatActivity {
                 //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
-                    public void onClick(BottomDialog dialog) {
+                    public void onClick(@NonNull BottomDialog dialog) {
                         Log.d("BottomDialogs", "Do something!");
                     }
                 }).show();

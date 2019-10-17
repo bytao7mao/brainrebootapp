@@ -71,8 +71,8 @@
             android:background="@drawable/custom_button"
             android:stateListAnimator="@null"
             android:textColor="@color/white"
-            android:layout_toRightOf="@id/challengeImgId"
             android:text="start" />
+<!--        android:layout_toRightOf="@id/challengeImgId"-->
         <Button
             android:id="@+id/button_reset"
             android:layout_width="80dp"

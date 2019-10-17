@@ -41,7 +41,7 @@ public class LegalActivity extends AppCompatActivity {
 
     String[] titles;
     String[] descriptions = new String[] {
-            "", "", "", "", "", "version 0.9 (100)"};
+            "", "", "", "", "", "version 0.1 (100)"};
 
     //shared pref
     private SharedPreferences preferences;
@@ -155,7 +155,7 @@ public class LegalActivity extends AppCompatActivity {
             holder.desc = view.findViewById(R.id.listview_desc);
             holder.tv.setText(titles[position]);
             holder.desc.setText(descriptions[position]);
-            setFontBold(holder.tv, holder.desc);
+            setFontBoldForDialog(holder.tv, holder.desc);
             if (position==5){
                 setFontBoldForDialog(holder.tv, holder.desc);
             }

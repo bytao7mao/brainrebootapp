@@ -171,18 +171,18 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     //CardViews
     @BindView(R.id.progressCardIdProgress) CardView progressCardView;
     @BindView(R.id.progressCardIdSavings) CardView savingsCardView;
-    @BindView(R.id.progressCardIdChallenge) CardView challengeCardView;
-    @BindView(R.id.progressCardIdLogs) CardView timeStampLogsCardview;
+//    @BindView(R.id.progressCardIdChallenge) CardView challengeCardView;
+//    @BindView(R.id.progressCardIdLogs) CardView timeStampLogsCardview;
     @BindView(R.id.card_view_mainID) CardView cardViewMain;
     @BindView(R.id.progressCardIdAchievments) CardView achievementRanksCard;
     @BindView(R.id.progressCardId) CardView upperProgressPercentsCard;
 
     //TextViews
-    @BindView(R.id.tv_offer) TextView tvOffer;
+//    @BindView(R.id.tv_offer) TextView tvOffer;
     @BindView(R.id.exploreAchievementId) TextView exploreAId;
     @BindView(R.id.exploreSavingsId) TextView exploreSId;
-    @BindView(R.id.comingSoonTxtForChallenge2) TextView comingSoonTxtForChallenge2;
-    @BindView(R.id.comingSoonTxtForChallenge) TextView comingSoonTxtForChallenge;
+//    @BindView(R.id.comingSoonTxtForChallenge2) TextView comingSoonTxtForChallenge2;
+//    @BindView(R.id.comingSoonTxtForChallenge) TextView comingSoonTxtForChallenge;
     @BindView(R.id.rank_master) TextView rankMasterTxt;
     @BindView(R.id.toolbar_subtitle) TextView subTextToolbar;
     @BindView(R.id.counterTextId) TextView counterText;
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
     @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtView;
     @BindView(R.id.progressActivityId) TextView progressBarsTxt;
-    @BindView(R.id.challengeTxtIdTitleId) TextView challengeTextViewTitle;
+//    @BindView(R.id.challengeTxtIdTitleId) TextView challengeTextViewTitle;
     @BindView(R.id.tvErrorId) TextView errorText;
     @BindView(R.id.textNonSmokerId) TextView textNonSmoker;
     @BindView(R.id.subTextSmokeId) TextView subTextNonSmoker;
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     @BindView(R.id.YourAchievmentsId) TextView yourAchievmentTxt;
     @BindView(R.id.YourProgressId) TextView yourProgressTxt;
     @BindView(R.id.YourSavingsId) TextView yourSavingsTxt;
-    @BindView(R.id.YourLogsId) TextView yourLogsTxt;
+//    @BindView(R.id.YourLogsId) TextView yourLogsTxt;
     @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
     @BindView(R.id.YourHighestStreakId) TextView userHighestStreakTxt;
     @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         final Intent INTENT = getIntent();
         final String NAME = INTENT.getStringExtra("data");
         tipofthedayTxtView.setText(NAME);
-        tvOffer.setText(setTxtVwToOffer());
+//        tvOffer.setText(setTxtVwToOffer());
 //        tipofthedayTxtView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
         //ads
@@ -389,10 +389,10 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
         progressCardView.setCardElevation(ZERO);
         savingsCardView.setCardElevation(ZERO);
-        timeStampLogsCardview.setCardElevation(ZERO);
+//        timeStampLogsCardview.setCardElevation(ZERO);
         cardViewMain.setCardElevation(ZERO);
         achievementRanksCard.setCardElevation(ZERO);
-        challengeCardView.setCardElevation(ZERO);
+//        challengeCardView.setCardElevation(ZERO);
         upperProgressPercentsCard.setCardElevation(ZERO);
 
 
@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         txtProgressForBreath.setTypeface(montSerratBoldTypeface);
         txtProgressForGums.setTypeface(montSerratBoldTypeface);
         moneySavingsTxt.setTypeface(montSerratMediumTypeface);
-        challengeTextViewTitle.setTypeface(montSerratBoldTypeface);
+//        challengeTextViewTitle.setTypeface(montSerratBoldTypeface);
         progressBarsTxt.setTypeface(montSerratBoldTypeface);
         textNonSmoker.setTypeface(montSerratBoldTypeface);
         subTextEnergy.setTypeface(montSerratMediumTypeface);
@@ -440,15 +440,15 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         yourAchievmentTxt.setTypeface(montSerratBoldTypeface);
         yourProgressTxt.setTypeface(montSerratBoldTypeface);
         yourSavingsTxt.setTypeface(montSerratBoldTypeface);
-        yourLogsTxt.setTypeface(montSerratBoldTypeface);
+//        yourLogsTxt.setTypeface(montSerratBoldTypeface);
         userCigaretesProgressTxt.setTypeface(montSerratMediumTypeface);
         userHighestStreakTxt.setTypeface(montSerratMediumTypeface);
         userHoursProgressTxt.setTypeface(montSerratMediumTypeface);
         subTextNonSmoker.setTypeface(montSerratMediumTypeface);
         subTextToolbar.setTypeface(montSerratSemiBoldTypeface);
         rankMasterTxt.setTypeface(montSerratMediumTypeface);
-        comingSoonTxtForChallenge.setTypeface(montSerratMediumTypeface);
-        comingSoonTxtForChallenge2.setTypeface(montSerratMediumTypeface);
+//        comingSoonTxtForChallenge.setTypeface(montSerratMediumTypeface);
+//        comingSoonTxtForChallenge2.setTypeface(montSerratMediumTypeface);
 
         subTextNonSmoker.setBackground((ContextCompat.getDrawable(
                 getApplicationContext(), R.drawable.custom_text_round_bg)));
@@ -487,14 +487,14 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 startActivity(INTENT);
             }
         });//achievementRanksCard[END]
-        timeStampLogsCardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: finish logs activity
-                final Intent INTENT = new Intent(MainActivity.this, FailLogsActivity.class);
-                startActivity(INTENT);
-            }
-        });//timeStampCardView[END]
+//        timeStampLogsCardview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //TODO: finish logs activity
+//                final Intent INTENT = new Intent(MainActivity.this, FailLogsActivity.class);
+//                startActivity(INTENT);
+//            }
+//        });//timeStampCardView[END]
         savingsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -503,16 +503,16 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 startActivity(INTENT);
             }
         });//savingsCardView[END]
-        challengeCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent INTENT = new Intent(MainActivity.this, ChallengeActivity.class);
-                startActivity(INTENT);
-                challs = getString(R.string.see_progress_challenge);
-                editor.putString(CHALLENGES_STRING, challs);
-                editor.apply();
-            }
-        });//challengeCardView[END]
+//        challengeCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final Intent INTENT = new Intent(MainActivity.this, ChallengeActivity.class);
+//                startActivity(INTENT);
+//                challs = getString(R.string.see_progress_challenge);
+//                editor.putString(CHALLENGES_STRING, challs);
+//                editor.apply();
+//            }
+//        });//challengeCardView[END]
 
         upgradeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -523,7 +523,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         });
 
         //disable views for "coming soon area"
-        disableViewsForComingSoon();
+//        disableViewsForComingSoon();
 
         //retrieving the counter and minute values
         //run the task
@@ -655,7 +655,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
-                    public void onClick(BottomDialog dialog) {
+                    public void onClick(@NonNull BottomDialog dialog) {
                     //call on destroy
                     sheetLayout.contractFab();
                     }
@@ -1511,8 +1511,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 txtProgressForEnergyLevels.setText(ONE_HUNDRED + "%");
                 progressBarEnergyLevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForEnergyLevels.setText(ONE + "%");
-                progressBarEnergyLevel.setProgress(ONE);
+                txtProgressForEnergyLevels.setText(TWO + "%");
+                progressBarEnergyLevel.setProgress(TWO);
             }
 
             //fatigue levels
@@ -1535,8 +1535,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 txtProgressForFatigue.setText(ONE_HUNDRED + "%");
                 progressBarFatigueLevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForFatigue.setText(ONE + "%");
-                progressBarFatigueLevel.setProgress(ONE);
+                txtProgressForFatigue.setText(TWO + "%");
+                progressBarFatigueLevel.setProgress(TWO);
             }
 
             //gums levels
@@ -1559,8 +1559,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 txtProgressForGums.setText(ONE_HUNDRED + "%");
                 progressBarGumsLevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForGums.setText(ZERO + "%");
-                progressBarGumsLevel.setProgress(ZERO);
+                txtProgressForGums.setText(ONE + "%");
+                progressBarGumsLevel.setProgress(ONE);
             }
 
             //breath levels
@@ -1583,8 +1583,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 txtProgressForBreath.setText(ONE_HUNDRED + "%");
                 progressBarBreathlevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForBreath.setText(ZERO + "%");
-                progressBarBreathlevel.setProgress(ZERO);
+                txtProgressForBreath.setText(ONE + "%");
+                progressBarBreathlevel.setProgress(ONE);
             }
         } catch (final Exception e) {
             e.printStackTrace();
@@ -1934,7 +1934,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
-                    public void onClick(BottomDialog dialog) {
+                    public void onClick(@NonNull BottomDialog dialog) {
                         Editable editM = ET_FOR_CHOOSING_SAVINGS.getText();
                         if (TextUtils.isEmpty(editM)){
                             ET_FOR_CHOOSING_SAVINGS.setError("Please input numbers!");
@@ -1990,10 +1990,10 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         } catch(final Exception e){ e.printStackTrace(); }
     }
 
-    private void disableViewsForComingSoon(){
-        challengeCardView.setClickable(false);
-        timeStampLogsCardview.setClickable(false);
-    }
+//    private void disableViewsForComingSoon(){
+//        challengeCardView.setClickable(false);
+//        timeStampLogsCardview.setClickable(false);
+//    }
 
     private void dialogForReset(){
         new BottomDialog.Builder(this)

@@ -28,11 +28,6 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("About");
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
         TextView tv_terms_and_conditions = findViewById(R.id.tv_terms_and_conditions);
         tv_terms_and_conditions.setOnClickListener(new View.OnClickListener() {
             @Override

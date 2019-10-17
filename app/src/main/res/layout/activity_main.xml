@@ -35,7 +35,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:id="@+id/toolbar_subtitle2"
                     android:textSize="12sp"
                     android:layout_marginStart="10dp"
                     android:alpha="0.6"
@@ -51,7 +50,6 @@
 <!--                android:background="@android:color/darker_gray" />-->
     </com.google.android.material.appbar.AppBarLayout>
     <RelativeLayout
-        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">

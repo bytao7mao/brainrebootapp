@@ -246,7 +246,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     @Optional
     private void setSavings() {
         Editable editM = etForSumPerDay.getText();
-        nameSav = etForSumPerDay.getText().toString();
+        nameSav = Objects.requireNonNull(etForSumPerDay.getText()).toString();
         if (TextUtils.isEmpty(nameSav)) {
             go = false;
             etForSumPerDay.setError("Please input a sum");
@@ -257,7 +257,7 @@ public class FirstScreenActivity extends AppCompatActivity {
             }
             go = true;
         }
-        long moneyInt = (long) Integer.parseInt(editM.toString());
+        long moneyInt = (long) Integer.parseInt(Objects.requireNonNull(editM).toString());
         editor.putLong(SAVINGS_FINAL, moneyInt);
         editor.putLong("taoz10", moneyInt);
         editor.apply();
@@ -266,7 +266,7 @@ public class FirstScreenActivity extends AppCompatActivity {
     @Optional
     private void setCiggsPerDay() {
         Editable editM = etForCiggaretesPerDay.getText();
-        nameCigg = etForCiggaretesPerDay.getText().toString();
+        nameCigg = Objects.requireNonNull(etForCiggaretesPerDay.getText()).toString();
         if (TextUtils.isEmpty(nameCigg)) {
             go2 = false;
             etForCiggaretesPerDay.setError("Please input a cigg number");
@@ -277,7 +277,7 @@ public class FirstScreenActivity extends AppCompatActivity {
             }
             go2 = true;
         }
-        int cigInt = Integer.parseInt(editM.toString());
+        int cigInt = Integer.parseInt(Objects.requireNonNull(editM).toString());
         editor.putInt(INITIAL_CIGG_PER_DAY, cigInt);
         editor.apply();
         Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);

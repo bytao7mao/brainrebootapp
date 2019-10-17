@@ -13,7 +13,6 @@
     <!-- Grey Color Shades -->
     <color name="grey_10">#FBFBFB</color>
     <color name="grey_50">#FAFAFA</color>
-    <color name="grey_200">#EEEEEE</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey_700">#616161</color>
 </resources>

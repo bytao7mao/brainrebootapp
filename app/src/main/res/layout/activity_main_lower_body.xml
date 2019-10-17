@@ -42,13 +42,11 @@
                 app:cardCornerRadius="8dp">
 
                 <ImageView
-                    android:id="@+id/bg_grey"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/grey_50"/>
 
                 <ImageView
-                    android:id="@+id/marketingImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -68,7 +66,6 @@
                     android:layout_toEndOf="@id/savingsImgId"
                     android:text="@string/your_entire_progress" />
                 <LinearLayout
-                    android:id="@+id/txtviewsprogrs"
                     android:orientation="vertical"
                     android:layout_marginStart="15dp"
                     android:layout_gravity="center"
@@ -188,7 +185,6 @@
         </FrameLayout>
         <!--savings area-->
         <FrameLayout
-            android:id="@+id/frameCardIdMoneySaved"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -224,7 +220,6 @@
                     android:layout_height="wrap_content"/>
 
                 <LinearLayout
-                    android:id="@+id/txtviewsprogrs2"
                     android:orientation="vertical"
                     android:layout_marginStart="15dp"
                     android:layout_gravity="center"
@@ -255,127 +250,127 @@
             </androidx.cardview.widget.CardView>
         </FrameLayout>
 
-        <!--challenge area-->
-        <TextView
-            android:id="@+id/comingSoonTxtForChallenge"
-            style="@style/TextColorBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="470dp"
-            android:textSize="24sp"
-            android:text="@string/coming_soon" />
+<!--        &lt;!&ndash;challenge area&ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/comingSoonTxtForChallenge"-->
+<!--            style="@style/TextColorBlack"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="470dp"-->
+<!--            android:textSize="24sp"-->
+<!--            android:text="@string/coming_soon" />-->
 
-        <TextView
-            android:id="@+id/comingSoonTxtForChallenge2"
-            style="@style/TextColorBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="570dp"
-            android:textSize="24sp"
-            android:text="@string/coming_soon" />
+<!--        <TextView-->
+<!--            android:id="@+id/comingSoonTxtForChallenge2"-->
+<!--            style="@style/TextColorBlack"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="570dp"-->
+<!--            android:textSize="24sp"-->
+<!--            android:text="@string/coming_soon" />-->
 
-        <FrameLayout
-            android:id="@+id/frameCardIdChallenge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:alpha="0.3"
-            android:layout_below="@id/frameCardIdMoneySaved">
+<!--        <FrameLayout-->
+<!--            android:id="@+id/frameCardIdChallenge"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:alpha="0.3"-->
+<!--            android:layout_below="@id/frameCardIdMoneySaved">-->
 
-            <!--last item in screen-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/progressCardIdChallenge"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                app:cardCornerRadius="8dp">
+<!--            &lt;!&ndash;last item in screen&ndash;&gt;-->
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/progressCardIdChallenge"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="100dp"-->
+<!--                app:cardCornerRadius="8dp">-->
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_50" />
-                <TextView
-                    android:id="@+id/challengeTxtIdTitleId"
-                    style="@style/TextColorBlack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginEnd="80dp"
-                    android:textSize="14sp"
-                    android:alpha="0.8"
-                    android:text="@string/your_challenge" />
-                <ImageView
-                    android:id="@+id/challengeImgId"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="2dp"
-                    android:background="@mipmap/winner" />
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/grey_50" />-->
 <!--                <TextView-->
-<!--                    android:id="@+id/challengeTextId"-->
+<!--                    android:id="@+id/challengeTxtIdTitleId"-->
 <!--                    style="@style/TextColorBlack"-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="70dp"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:layout_marginStart="60dp"-->
+<!--                    android:layout_marginEnd="80dp"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:alpha="0.8"-->
+<!--                    android:text="@string/your_challenge" />-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/challengeImgId"-->
+<!--                    android:layout_width="55dp"-->
+<!--                    android:layout_height="55dp"-->
 <!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_marginEnd="20dp"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_toEndOf="@id/challengeImgId" />-->
-            </androidx.cardview.widget.CardView>
-        </FrameLayout>
-        <!--logs area-->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:alpha="0.3"
-            android:layout_below="@id/frameCardIdChallenge">
-            <!--last item in screen-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/progressCardIdLogs"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="5dp"
-                app:cardCornerRadius="8dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_50" />
-                <TextView
-                    android:id="@+id/YourLogsId"
-                    style="@style/TextColorBlack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginEnd="80dp"
-                    android:textSize="14sp"
-                    android:alpha="0.8"
-                    android:text="@string/your_logs" />
-                <ImageView
-                    android:id="@+id/logsImgId"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="2dp"
-                    android:background="@mipmap/archives" />
+<!--                    android:layout_marginStart="2dp"-->
+<!--                    android:background="@mipmap/winner" />-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/challengeTextId"&ndash;&gt;-->
+<!--&lt;!&ndash;                    style="@style/TextColorBlack"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginStart="70dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_gravity="center_vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginEnd="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_toEndOf="@id/challengeImgId" />&ndash;&gt;-->
+<!--            </androidx.cardview.widget.CardView>-->
+<!--        </FrameLayout>-->
+<!--        &lt;!&ndash;logs area&ndash;&gt;-->
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:alpha="0.3"-->
+<!--            android:layout_below="@id/frameCardIdChallenge">-->
+<!--            &lt;!&ndash;last item in screen&ndash;&gt;-->
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/progressCardIdLogs"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                app:cardCornerRadius="8dp">-->
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@color/grey_50" />-->
 <!--                <TextView-->
-<!--                    android:id="@+id/logsTxtId"-->
+<!--                    android:id="@+id/YourLogsId"-->
 <!--                    style="@style/TextColorBlack"-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="70dp"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:layout_marginStart="60dp"-->
+<!--                    android:layout_marginEnd="80dp"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:alpha="0.8"-->
+<!--                    android:text="@string/your_logs" />-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/logsImgId"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
 <!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_marginEnd="20dp"-->
-<!--                    android:layout_toEndOf="@id/logsImgId"-->
-<!--                    android:text="@string/see_your_personal_logs_failures" />-->
-            </androidx.cardview.widget.CardView>
-        </FrameLayout>
+<!--                    android:layout_marginStart="2dp"-->
+<!--                    android:background="@mipmap/archives" />-->
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/logsTxtId"&ndash;&gt;-->
+<!--&lt;!&ndash;                    style="@style/TextColorBlack"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginStart="70dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_gravity="center_vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="12sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginEnd="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_toEndOf="@id/logsImgId"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="@string/see_your_personal_logs_failures" />&ndash;&gt;-->
+<!--            </androidx.cardview.widget.CardView>-->
+<!--        </FrameLayout>-->
     </RelativeLayout>
 
     <View
@@ -392,25 +387,23 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:layout_below="@id/delimitationBarIdBottom"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <TextView
-            android:id="@+id/tv_offer_unlimited"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"
             android:textColor="@color/greish"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:text="@string/unlimited"/>
-        <TextView
-            android:id="@+id/tv_offer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:alpha="0.7"
-            android:layout_gravity="center_vertical"
-            android:textSize="16sp"
-            android:text="@string/unlimited_price"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_offer"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="10dp"-->
+<!--            android:alpha="0.7"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:textSize="16sp"-->
+<!--            android:text="@string/unlimited_price"/>-->
     </LinearLayout>
 </RelativeLayout>

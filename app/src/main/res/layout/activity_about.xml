@@ -7,33 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="100dp">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingBottom="5dp"
-            android:theme="@style/MaterialTheme.NoActionBar"
-            android:translationZ="0.1dp"
-            app:elevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <!--android:background="?attr/colorPrimary"-->
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:alpha="0.8"
-                app:popupTheme="@style/MaterialTheme.NoActionBar"
-                app:titleTextAppearance="@style/TitleBarStyle" />
-            <View
-                android:id="@+id/delimitationBarId"
-                style="@style/Divider"
-                android:layout_height="0.2dp"
-                android:background="@android:color/darker_gray" />
-        </com.google.android.material.appbar.AppBarLayout>
+        android:layout_marginBottom="20dp">
 
         <TextView
             android:id="@+id/tv_title"
@@ -60,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:text="0.9 (100)"
+            android:text="0.1 (100)"
             app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
             app:layout_constraintTop_toBottomOf="@+id/tv_version" />
 
@@ -126,9 +100,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.10" />
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

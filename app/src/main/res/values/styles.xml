@@ -32,11 +32,6 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
-    <style name="AboutPageStyle" parent="ParentMaterialTheme">
-        <item name="android:fontFamily">@font/montserratsemibold</item>
-        <item name="android:windowLightStatusBar">true</item>
-    </style>
-
     <style name="TitleBarStyle" parent="android:TextAppearance">
         <item name="android:fontFamily">@font/montserratsemibold</item>
         <item name="android:textSize">14sp</item>

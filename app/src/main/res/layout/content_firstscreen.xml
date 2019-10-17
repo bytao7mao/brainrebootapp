@@ -30,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:text="About your smoking"
 
         android:textSize="16sp"
@@ -53,6 +54,7 @@
             android:backgroundTint="@color/greenColorLed"
             android:hint="@string/how_many_cigarettes_per_day"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:textSize="14sp" />
         <!--        android:ellipsize="start"-->
         <!--        android:gravity="center_horizontal"-->
@@ -75,6 +77,7 @@
             android:backgroundTint="@color/greenColorLed"
             android:hint="@string/how_much_do_you_spend_per_day"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
