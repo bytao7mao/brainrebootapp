@@ -165,6 +165,7 @@ public class FirstScreenActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 etLayForSumPerDay.setHelperText(
                         etForSumPerDay.getText()
+                                + " "
                                 + currency
                                 + " "
                                 + getResources().getString(R.string.perdaysimple));

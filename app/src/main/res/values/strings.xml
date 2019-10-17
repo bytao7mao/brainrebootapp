@@ -79,6 +79,6 @@
     //Test ads key
     <string name="unlimited_price">1.99 %s</string>
     <string name="unlimited_price_ron">7.99 %s</string>
-    <string name="unlimited">UPGRADE TO FULL VERSION!</string>
+    <string name="unlimited">Instead of smoking</string>
     <string name="done">DONE</string>
 </resources>

@@ -58,13 +58,13 @@ dependencies {
     implementation 'com.jakewharton:butterknife:9.0.0-rc1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 
-    //app intro library
-    implementation 'com.github.AppIntro:AppIntro:v4.2.3'
+    //app intro library - NOT USING!
+//    implementation 'com.github.AppIntro:AppIntro:v4.2.3'
 
     //will use in future
     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
 
-    //to use in the near future, when i am ready to launch the app
+    //bottom dialogs library
     implementation 'com.github.javiersantos:BottomDialogs:1.2.1'
 
     //to be used for ask user if he relapsed or not
@@ -78,12 +78,6 @@ dependencies {
 
     //using it for percent view
     implementation 'com.budiyev.android:circular-progress-bar:1.2.2'
-
-    //using it for percent effect view
-    implementation 'me.itangqi.waveloadingview:library:0.3.5'
-
-    //a secondary nice fab option with menus in it
-    implementation 'com.github.joaquimley:faboptions:1.2.0'
 
     //parsing json data
     implementation 'com.google.code.gson:gson:2.8.5'

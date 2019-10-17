@@ -27,7 +27,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:icon">
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
@@ -65,10 +66,6 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity
-            android:name=".intro.IntroActivity"
-            android:excludeFromRecents="true"
-            android:label="app_intro" />
         <activity android:name=".cardActivities.SavingsActivity" />
         <activity android:name=".cardActivities.ChallengeActivity" />
         <activity android:name=".options.LegalActivity" />

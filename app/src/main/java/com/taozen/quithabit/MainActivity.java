@@ -32,8 +32,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +41,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.widget.TooltipCompat;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
@@ -51,12 +50,6 @@ import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.fabtransitionactivity.SheetLayout;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
-//import com.google.android.gms.ads.AdRequest;
-//import com.google.android.gms.ads.AdSize;
-//import com.google.android.gms.ads.AdView;
-//import com.google.android.gms.ads.MobileAds;
-//import com.google.android.gms.ads.initialization.InitializationStatus;
-//import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
@@ -65,8 +58,6 @@ import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.cardActivities.AchievmentsActivity;
-import com.taozen.quithabit.cardActivities.ChallengeActivity;
-import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.options.LegalActivity;
 import com.taozen.quithabit.utils.MyHttpCoreAndroid;
@@ -76,6 +67,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -98,6 +90,13 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIG
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINED;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
+
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdSize;
+//import com.google.android.gms.ads.AdView;
+//import com.google.android.gms.ads.MobileAds;
+//import com.google.android.gms.ads.initialization.InitializationStatus;
+//import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends AppCompatActivity implements SheetLayout.OnFabAnimationEndListener {
 
@@ -153,7 +152,6 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     public static final String TERMS_AND_CONDITIONS = "https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html";
     public static final String THIRD_PARTY_LICENCES = "https://bytao7mao.github.io/quithabit/legal/licences.html";
 
-
     boolean higherThanOne;
     private List<MainActivity.MyAsyncTask> tasks;
     private Timer timer;
@@ -165,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
     //Views
     @BindView(android.R.id.content) View parentLayout;
-    @BindView(R.id.unl_off_layout) LinearLayout upgradeLayout;
+    @BindView(R.id.unl_off_layout) RelativeLayout upgradeLayout;
     //Fab
     @BindView(R.id.fab) FloatingActionButton fab;
     //CardViews
@@ -517,8 +515,9 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         upgradeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogForPayment();
+                insteadOfSmoking();
                 //TODO: goto payment after dialog
+
             }
         });
 
@@ -859,7 +858,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         editor.putFloat(LIFEREGAINED, lifeRegained);
                         editor.putLong(SAVINGS_FINAL, savings);
                         editor.apply();
-                        checkActivityOnline();
+//                        checkActivityOnline();
 //                        setTheSavingsPerDay();
                         savingsGetAndSetValue();
                         setImprovementProgressLevels();
@@ -912,7 +911,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
                             editor.putFloat(LIFEREGAINED, lifeRegained);
                             editor.apply();
-                            checkActivityOnline();
+//                            checkActivityOnline();
     //                        setTheSavingsPerDay();
                             savingsGetAndSetValue();
                             setImprovementProgressLevels();
@@ -2010,18 +2009,36 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                     }
                 }).show();
     }
-    private void dialogForPayment(){
+    private void insteadOfSmoking(){
+        Random random = new Random();
+
+        ArrayList<String> titles = new ArrayList<>();
+        ArrayList<Integer> icons = new ArrayList<>();
+        titles.add("Learn a new language!");
+        icons.add(R.drawable.ic_translate);
+        titles.add("Read a new book!");
+        icons.add(R.drawable.ic_book);
+        titles.add("Go to the gym and work out!");
+        icons.add(R.drawable.ic_dumbbell);
+        titles.add("Try a new cooking recipe!");
+        icons.add(R.drawable.ic_recipe_book);
+        titles.add("Take a day trip!");
+        icons.add(R.drawable.ic_car);
+        titles.add("Practice meditation!");
+        icons.add(R.drawable.ic_yoga_posture);
+
+        int today = random.nextInt(titles.size());
         new BottomDialog.Builder(this)
-                .setTitle("You are about to buy the full version.")
-                .setContent(R.string.are_you_sure)
-                .setPositiveText(R.string.YES)
+                .setTitle(titles.get(today))
+                .setPositiveText(R.string.OK)
+                .setIcon(icons.get(today))
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
-                .setNegativeText(R.string.NO)
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(@NonNull BottomDialog bottomDialog) {
-                        resetWholeProgress();
+                        //do nothing
+
                     }
                 }).show();
     }

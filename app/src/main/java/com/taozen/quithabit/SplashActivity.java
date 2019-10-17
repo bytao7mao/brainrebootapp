@@ -98,6 +98,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 //requestDataById(DAY_OF_PRESENT);
             } else {
+                requestDataById(counter);
 //                errorText.setVisibility(View.VISIBLE);
 //                tipofthedayTxtView.setText(R.string.error_fourtyfour);
                 Snackbar snackbar;
