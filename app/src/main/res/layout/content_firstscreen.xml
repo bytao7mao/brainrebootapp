@@ -88,7 +88,7 @@
         android:layout_height="32dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:background="@drawable/custom_button_round"
+        android:background="@drawable/custom_round_green_color"
         android:elevation="0dp"
         android:gravity="center"
         android:text="@string/done"

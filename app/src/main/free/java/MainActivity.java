@@ -32,8 +32,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +41,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
@@ -50,6 +51,12 @@ import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.fabtransitionactivity.SheetLayout;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdSize;
+//import com.google.android.gms.ads.AdView;
+//import com.google.android.gms.ads.MobileAds;
+//import com.google.android.gms.ads.initialization.InitializationStatus;
+//import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
@@ -58,6 +65,8 @@ import com.google.gson.JsonParser;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.cardActivities.AchievmentsActivity;
+import com.taozen.quithabit.cardActivities.ChallengeActivity;
+import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.options.LegalActivity;
 import com.taozen.quithabit.utils.MyHttpCoreAndroid;
@@ -67,7 +76,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -90,13 +98,6 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIG
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINED;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
-
-//import com.google.android.gms.ads.AdRequest;
-//import com.google.android.gms.ads.AdSize;
-//import com.google.android.gms.ads.AdView;
-//import com.google.android.gms.ads.MobileAds;
-//import com.google.android.gms.ads.initialization.InitializationStatus;
-//import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends AppCompatActivity implements SheetLayout.OnFabAnimationEndListener {
 
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     public static final String TERMS_AND_CONDITIONS = "https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html";
     public static final String THIRD_PARTY_LICENCES = "https://bytao7mao.github.io/quithabit/legal/licences.html";
 
+
     boolean higherThanOne;
     private List<MainActivity.MyAsyncTask> tasks;
     private Timer timer;
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 
     //Views
     @BindView(android.R.id.content) View parentLayout;
-    @BindView(R.id.unl_off_layout) RelativeLayout upgradeLayout;
+    @BindView(R.id.unl_off_layout) LinearLayout upgradeLayout;
     //Fab
     @BindView(R.id.fab) FloatingActionButton fab;
     //CardViews
@@ -512,9 +514,13 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 //            }
 //        });//challengeCardView[END]
 
-
-        checkInsteadOfSmoking();
-
+        upgradeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogForPayment();
+                //TODO: goto payment after dialog
+            }
+        });
 
         //disable views for "coming soon area"
 //        disableViewsForComingSoon();
@@ -541,26 +547,6 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
     }//[END OF ONCREATE]
-
-    private void checkInsteadOfSmoking() {
-        int click = 0;
-        upgradeLayout.setClickable(true);
-        if (preferences.contains("instead")){
-            click = preferences.getInt("instead", 0);
-        }
-        if (click == 0){
-            upgradeLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("DAYZEN", "value of click " +
-                            preferences.getInt("instead", 0));
-                    insteadOfSmoking();
-                }
-            });
-        } else {
-            upgradeLayout.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-        }
-    }
 
     private void setTargetAfterCheckingCounter() {
         if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
@@ -750,11 +736,6 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //reset instead of smoking
-                editor.putInt("instead", 0);
-                editor.apply();
-                upgradeLayout.setBackground(getDrawable(R.drawable.custom_round_green_color));
-                upgradeLayout.setClickable(true);
                 setTodayToClickDay();
                 final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
                 final int x = isLeap(yearOfNow) ? LEAP_YEAR_DAYS : NORMAL_YEAR_DAYS;
@@ -763,26 +744,8 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 //between 1 and 29
                 if (counter == ZERO) {
                     ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
-                } else if (counter > ZERO && counter < THIRTY-ONE) {
-                    normalFancyDialog(getString(R.string.beat_milestone, THIRTY), MESSAGE_FOR_DIALOG);
-                    //between 29(to show up in THIRTY) and SIXTY
-                } else if (counter > THIRTY-TWO && counter < SIXTY-ONE) {
-                    normalFancyDialog(getString(R.string.beat_milestone, SIXTY), MESSAGE_FOR_DIALOG);
-                    //between 59(to show up in SIXTY) and 90
-                } else if (counter > SIXTY-TWO && counter < NINETY-ONE) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 90), MESSAGE_FOR_DIALOG);
-                    //between 89(to show up in SIXTY) and 180
-                } else if (counter > NINETY-TWO && counter < ONE_HUNDRED_AND_EIGHTY-ONE) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 180), MESSAGE_FOR_DIALOG);
-                    //between 179(to show up in SIXTY) and 270
-                } else if (counter > ONE_HUNDRED_AND_EIGHTY-TWO && counter < TWO_HUNDRED_AND_SEVENTY-ONE) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 270), MESSAGE_FOR_DIALOG);
-                    //between 279(to show up in SIXTY) and 360
-                } else if (counter > TWO_HUNDRED_AND_SEVENTY-TWO && counter < THREE_HUNDRED+SIXTY+ONE) {
-                    normalFancyDialog(getString(R.string.beat_milestone, 360), MESSAGE_FOR_DIALOG);
-                    //if user has reached almost one year (360 days) we ask if he/she want reset
-                } else if (counter >= x) {
-                    dialogForResetForced();
+                } else if (counter >= TEN-1) {
+                    dialogForPayment();
                 }
                 //SHOW FANCY TOAST WITH CONGRATS
                 //[END OF ELSE IFS DIALOGS]
@@ -878,7 +841,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                         editor.putFloat(LIFEREGAINED, lifeRegained);
                         editor.putLong(SAVINGS_FINAL, savings);
                         editor.apply();
-//                        checkActivityOnline();
+                        checkActivityOnline();
 //                        setTheSavingsPerDay();
                         savingsGetAndSetValue();
                         setImprovementProgressLevels();
@@ -931,7 +894,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                             userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
                             editor.putFloat(LIFEREGAINED, lifeRegained);
                             editor.apply();
-//                            checkActivityOnline();
+                            checkActivityOnline();
     //                        setTheSavingsPerDay();
                             savingsGetAndSetValue();
                             setImprovementProgressLevels();
@@ -1255,7 +1218,6 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
     @SideEffect
     private void startTheEngine() {
         try {
-            checkInsteadOfSmoking();
             //set text for checkin
             setCheckInText();
             showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
@@ -1448,11 +1410,6 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                     + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
                     " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
             if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+ONE)) {
-                //reset instead of smoking
-                editor.putInt("instead", 0);
-                editor.apply();
-                upgradeLayout.setBackground(getDrawable(R.drawable.custom_round_green_color));
-                upgradeLayout.setClickable(true);
                 HOUR_OF_DAYLIGHT = (HOUR_OF_FIRSTLAUNCH==TWENTYFIVE-ONE || HOUR_OF_FIRSTLAUNCH==TWENTY+THREE)
                         && (HOUR_OF_DAYLIGHT==ZERO) ? TWENTYFIVE-ONE : HOUR_OF_DAYLIGHT;
                 if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
@@ -2035,39 +1992,18 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                     }
                 }).show();
     }
-    private void insteadOfSmoking(){
-        Random random = new Random();
-
-        ArrayList<String> titles = new ArrayList<>();
-        ArrayList<Integer> icons = new ArrayList<>();
-        titles.add("Learn a new language!");
-        icons.add(R.drawable.ic_translate);
-        titles.add("Read a new book!");
-        icons.add(R.drawable.ic_book);
-        titles.add("Go to the gym and work out!");
-        icons.add(R.drawable.ic_dumbbell);
-        titles.add("Try a new cooking recipe!");
-        icons.add(R.drawable.ic_recipe_book);
-        titles.add("Take a day trip!");
-        icons.add(R.drawable.ic_car);
-        titles.add("Practice meditation!");
-        icons.add(R.drawable.ic_yoga_posture);
-
-        int today = random.nextInt(titles.size());
+    private void dialogForPayment(){
         new BottomDialog.Builder(this)
-                .setTitle(titles.get(today))
-                .setPositiveText(R.string.OK)
-                .setIcon(icons.get(today))
+                .setTitle("You are about to buy the full version.")
+                .setContent(R.string.are_you_sure)
+                .setPositiveText(R.string.YES)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
+                .setNegativeText(R.string.NO)
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(@NonNull BottomDialog bottomDialog) {
-                        int click = 1;
-                        editor.putInt("instead", click);
-                        editor.apply();
-                        upgradeLayout.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-                        upgradeLayout.setClickable(false);
+                        resetWholeProgress();
                     }
                 }).show();
     }

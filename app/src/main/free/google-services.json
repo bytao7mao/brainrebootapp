@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "213412197825",
+    "firebase_url": "https://rebootway.firebaseio.com",
+    "project_id": "rebootway",
+    "storage_bucket": "rebootway.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213412197825:android:7b4fd3fe53cb9c58",
+        "android_client_info": {
+          "package_name": "com.taozen.quithabit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213412197825-qhar2fp9u81e19lh40ig3kn7987vo3gc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taozen.quithabit",
+            "certificate_hash": "639b4dbcdec8c915c43c22ba6e3f9a9ff8d5c43e"
+          }
+        },
+        {
+          "client_id": "213412197825-qadel0r9b58jmmvguno90lvea09d20sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgmvh1-JZd28H0upmWuIukWtbAgxDYil0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213412197825-qadel0r9b58jmmvguno90lvea09d20sv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213412197825:android:bc6e896186f811093c6b40",
+        "android_client_info": {
+          "package_name": "com.taozen.quithabit.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213412197825-qadel0r9b58jmmvguno90lvea09d20sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgmvh1-JZd28H0upmWuIukWtbAgxDYil0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213412197825-qadel0r9b58jmmvguno90lvea09d20sv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213412197825:android:92b3221cfd2f9d343c6b40",
+        "android_client_info": {
+          "package_name": "com.taozen.quithabit.paid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213412197825-qadel0r9b58jmmvguno90lvea09d20sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgmvh1-JZd28H0upmWuIukWtbAgxDYil0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213412197825-qadel0r9b58jmmvguno90lvea09d20sv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

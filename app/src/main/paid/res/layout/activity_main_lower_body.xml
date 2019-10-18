@@ -382,31 +382,4 @@
         android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray" />
 
-    <RelativeLayout
-        android:id="@+id/unl_off_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/custom_round_green_color"
-        android:layout_below="@id/delimitationBarIdBottom">
-        <ImageView
-            android:id="@+id/insteadOfImgId"
-            android:layout_marginStart="20dp"
-            android:padding="10dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/ic_running"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tvInsteadOf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_toEndOf="@id/insteadOfImgId"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:text="@string/unlimited"/>
-    </RelativeLayout>
-
 </RelativeLayout>
