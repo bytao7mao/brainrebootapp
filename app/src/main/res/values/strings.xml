@@ -15,7 +15,7 @@
     <string name="streak_string">Highest days streak: %d</string>
     <string name="non_smoker_since">Non-smoker since</string>
     <string name="check_in_tomorrow">Check-in: tomorrow!</string>
-    <string name="check_in">check-in</string>
+    <string name="check_in">Check-in</string>
     <string name="daily_quote">Today\'s motivation!</string>
     <string name="press_leaf">Press on the leaf</string>
     <string name="check_in_now">Check-in now!</string>

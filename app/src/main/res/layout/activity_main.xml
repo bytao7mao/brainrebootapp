@@ -53,14 +53,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
-        <com.github.fabtransitionactivity.SheetLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/bottom_sheet"
-            app:ft_container_gravity="center"
-            android:elevation="2dp"
-            app:ft_color="@color/colorPrimary">
-        </com.github.fabtransitionactivity.SheetLayout>
         <io.codetail.widget.RevealFrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -79,18 +71,6 @@
                 </androidx.core.widget.NestedScrollView>
             </LinearLayout>
         </io.codetail.widget.RevealFrameLayout>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            app:backgroundTint="@color/white"
-            app:borderWidth="0dp"
-            app:elevation="1dp"
-            app:fabSize="normal"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@mipmap/leaf" />
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
