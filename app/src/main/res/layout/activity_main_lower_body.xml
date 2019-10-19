@@ -94,6 +94,13 @@
                     android:textSize="14sp"
                     style="@style/TextColorBlack" />
                 </LinearLayout>
+                <ImageView
+                    android:id="@+id/shareProgress"
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/ic_share_black_24dp" />
             </androidx.cardview.widget.CardView>
         </FrameLayout>
         <!--achievments area-->
@@ -177,10 +184,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:padding="8dp"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:alpha="0.7"
                         android:text="@string/explore"
                         style="@style/TextColorBlack" />
+                    <ImageView
+                        android:id="@+id/shareAchievment"
+                        android:layout_margin="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@drawable/ic_share_black_24dp" />
                 </androidx.cardview.widget.CardView>
         </FrameLayout>
         <!--savings area-->
@@ -235,7 +249,6 @@
                     android:layout_marginTop="5dp"
                     android:textSize="14sp" />
                 </LinearLayout>
-
                 <TextView
                     android:id="@+id/exploreSavingsId"
                     android:layout_width="wrap_content"
@@ -243,9 +256,16 @@
                     android:layout_gravity="bottom"
                     android:alpha="0.7"
                     android:padding="8dp"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="@string/explore"
                     style="@style/TextColorBlack" />
+                <ImageView
+                    android:id="@+id/shareSavings"
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/ic_share_black_24dp" />
 
             </androidx.cardview.widget.CardView>
         </FrameLayout>

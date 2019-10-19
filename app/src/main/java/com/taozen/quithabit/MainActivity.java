@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -31,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -41,6 +44,15 @@ import com.anupcowkur.herebedragons.SideEffect;
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog;
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.share.ShareApi;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -56,7 +68,9 @@ import com.taozen.quithabit.utils.MyHttpCoreAndroid;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -132,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int ONE_THOUSAND_AND_FIVE_HUNDRED = 1500;
     public static final String FIRST_START = "firstStart";
     public static final String ZERO_STRING = "ZERO";
+    public static final int EIGHT = 8;
 
     String arr = "";
     long firstSave;
@@ -202,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressId2) ProgressBar progressBarLoading2;
     //ImageViews
+    @BindView(R.id.shareProgress) ImageView shareProgressImg;
     @BindView(R.id.counterImageId) ImageView counterImgView;
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
@@ -268,6 +284,8 @@ public class MainActivity extends AppCompatActivity {
 
         return quotesForPassingTheDayList.get(random.nextInt(quotesForPassingTheDayList.size()));
     }
+    private CallbackManager callbackManager;
+    private LoginManager manager;
     //OnCreate [START]
     @UiThread
     @SuppressLint("CommitPrefEdits")
@@ -280,6 +298,13 @@ public class MainActivity extends AppCompatActivity {
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
+
+        shareProgressImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareFacebookInit();
+            }
+        });
 
         firstCheckForInitialCiggarettesPerDay();
         startFirstActivity();
@@ -447,7 +472,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean("saveimg", true);
             editor.apply();
         }
-        achievementRanksCard.setOnClickListener(new View.OnClickListener() {
+        exploreAId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent INTENT = new Intent(MainActivity.this, AchievmentsActivity.class);
@@ -462,7 +487,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(INTENT);
 //            }
 //        });//timeStampCardView[END]
-        savingsCardView.setOnClickListener(new View.OnClickListener() {
+        exploreSId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent INTENT = new Intent(MainActivity.this, SavingsActivity.class);
@@ -508,6 +533,45 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
     }//[END OF ONCREATE]
+
+    private void shareFacebookInit() {
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+        List<String> permissionNeeds = Collections.singletonList("publish_actions");
+        manager = LoginManager.getInstance();
+        manager.logInWithPublishPermissions(this, permissionNeeds);
+        manager.registerCallback(callbackManager, new  FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                publishImage();
+            }
+            @Override
+            public void onCancel() {
+                System.out.println("onCancel");
+            }
+            @Override
+            public void onError(FacebookException exception) {
+                System.out.println("onError");
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void publishImage(){
+        Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(image)
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+        ShareApi.share(content, null);
+    }
 
     private void showDeviceDensityPixels() {
         final int TV_WIDTH = subTextNonSmoker.getWidth();
@@ -1803,17 +1867,25 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, ZERO);
             }
-            if (counter>=ZERO&&counter<THIRTY) {
+            if (counter>=ZERO&&counter<EIGHT) {
                 //user have between a day and a week
                 rankOneImg.setBackgroundResource(R.drawable.ic_wolf);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_badger);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_squirrel);
                 rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_bear_1);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_badger);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Wolf");
-            } else if (counter>(THIRTY-1)&&counter<SIXTY) {
+            } else if (counter>(EIGHT -1)&&counter<THIRTY) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_wolf);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_squirrel);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_badger);
+                rankThreeImg.setAlpha(0.2f);
+                editor.putString(RANK, "Squirrel");
+            } else if (counter>(THIRTY-1)&&counter<SIXTY) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_squirrel);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.drawable.ic_badger);
                 rankTwoImg.setAlpha(1.0f);
@@ -1821,7 +1893,7 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Badger");
             } else if (counter>(SIXTY-1)&&counter<NINETY) {
-                rankOneImg.setBackgroundResource(R.drawable.ic_wolf);
+                rankOneImg.setBackgroundResource(R.drawable.ic_squirrel);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.drawable.ic_badger);
                 rankTwoImg.setAlpha(1.0f);
@@ -1837,7 +1909,7 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Wild Bear");
-            } else if (counter>(ONE_HUNDRED+19)&&counter<ONE_HUNDRED_AND_EIGHTY-20) {
+            } else if (counter>(ONE_HUNDRED+19)&&counter<ONE_HUNDRED_AND_EIGHTY-30) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.drawable.ic_bear);
                 rankOneImg.setAlpha(1.0f);
@@ -1846,7 +1918,7 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Deer");
-            } else if (counter>(ONE_HUNDRED_AND_EIGHTY-21)&&counter<ONE_HUNDRED_AND_EIGHTY) {
+            } else if (counter>(ONE_HUNDRED_AND_EIGHTY-31)&&counter<ONE_HUNDRED_AND_EIGHTY) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.drawable.ic_bear);
                 rankOneImg.setAlpha(1.0f);
@@ -1855,7 +1927,7 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
                 rankThreeImg.setAlpha(1.0f);
                 editor.putString(RANK, "Boar");
-            } else if (counter>(ONE_HUNDRED_AND_EIGHTY-1)&&counter<TWO_HUNDRED+20) {
+            } else if (counter>(ONE_HUNDRED_AND_EIGHTY-1)&&counter<TWO_HUNDRED+10) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.drawable.ic_elk);
                 rankOneImg.setAlpha(1.0f);
@@ -1864,7 +1936,7 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setBackgroundResource(R.drawable.ic_fox);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Elk");
-            } else if (counter> (TWO_HUNDRED+19)&&counter<TWO_HUNDRED_AND_SEVENTY) {
+            } else if (counter> (TWO_HUNDRED+9)&&counter<TWO_HUNDRED_AND_SEVENTY) {
                 //when user pass 1 week
                 rankOneImg.setBackgroundResource(R.drawable.ic_elk);
                 rankOneImg.setAlpha(1.0f);

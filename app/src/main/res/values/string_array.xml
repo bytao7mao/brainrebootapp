@@ -2,6 +2,7 @@
 <resources>
     <string-array name="titles_arr_for_ranks">
         <item>"Wolf"</item>
+        <item>"Squirrel"</item>
         <item>"Badger"</item>
         <item>"Bear"</item>
         <item>"Wild Bear</item>

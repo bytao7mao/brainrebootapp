@@ -215,17 +215,17 @@ public class ChallengeActivity extends AppCompatActivity {
         int minutes = (int) ((mTimeLeftInMillis / ONE_THOUSAND) / SIXTY) - hours * SIXTY;
         String timeLeftFormatted;
         if (months == 1) {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = months\n\n%02d = weeks\n\n%02d = days\n\n%02d:%02d:%02d", months,
-//                    weeks, days, hours, minutes, seconds);
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = months\n\n%02d = weeks\n\n%02d = daysArray\n\n%02d:%02d:%02d", months,
+//                    weeks, daysArray, hours, minutes, seconds);
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d = months", months);
         } else if (weeks >= 1) {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = weeks\n\n%02d = days\n\n%02d:%02d:%02d", weeks,
-//                    days, hours, minutes, seconds);
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = weeks\n\n%02d = daysArray\n\n%02d:%02d:%02d", weeks,
+//                    daysArray, hours, minutes, seconds);
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d = weeks", weeks);
         } else if (days >= 1) {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = days\n\n%02d:%02d:%02d", days,
+//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = daysArray\n\n%02d:%02d:%02d", daysArray,
 //                    hours, minutes, seconds);
-            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = days", days);
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = daysArray", days);
         } else if (hours >= 1) {
 //            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = hours\n\n%02d:%02d:%02d", hours,
 //                    hours, minutes, seconds);

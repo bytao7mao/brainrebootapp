@@ -33,10 +33,15 @@ public class AchievmentsActivity extends AppCompatActivity {
     String[] titles;
     int[] images;
 
-    String[] descriptions = new String[] {
-            "You can do it!", "Control yourself!", "The right way!", "The zen way!",
+    String[] descriptionsArray = new String[] {
+            "You can do it!", "Your own way!", "Control yourself!", "The right way!", "The zen way!",
             "Zen apprentice", "Zen monk!", "Keep up the way!", "Almost there!",
             "There is no going back!", "A new life!"};
+
+    String[] daysArray = new String[] {
+            "1 Day!", "1 Week!", "1 Month!", "2 Months!",
+            "3 Months!", "4 Months!", "5 Months!", "6 Months!",
+            "7 Months!", "9 Months!", "300 Days!"};
 
     //shared pref
     private SharedPreferences preferences;
@@ -66,7 +71,6 @@ public class AchievmentsActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(AchievmentsActivity.this);
         editor = preferences.edit();
 
-//        getWindow().setStatusBarColor(ContextCompat.getColor(AchievmentsActivity.this, R.color.white));
         //TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Achievements");
@@ -74,7 +78,8 @@ public class AchievmentsActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mListView = findViewById(R.id.list_view);
-        CustomAdapterListView customAdapterListView = new CustomAdapterListView(this, titles, images, descriptions);
+        CustomAdapterListView customAdapterListView =
+                new CustomAdapterListView(this, titles, daysArray, images, descriptionsArray);
         mListView.setAdapter(customAdapterListView);
     }
 
@@ -84,15 +89,18 @@ public class AchievmentsActivity extends AppCompatActivity {
         return true;
     }
     class CustomAdapterListView extends BaseAdapter {
-        String [] titles, descriptions;
+        String [] titlesArr, descriptionsArr, daysArr;
         Context context;
         int [] imageId;
         private LayoutInflater inflater=null;
-        CustomAdapterListView(AchievmentsActivity mainActivity, String[] prgmNameList, int[] prgmImages, String[] descriptions) {
+        CustomAdapterListView(AchievmentsActivity mainActivity,
+                              String[] prgmNameList,String[] days,
+                              int[] prgmImages, String[] descriptions) {
             // TODO Auto-generated constructor stub
-            this.descriptions=descriptions;
-            titles=prgmNameList;
+            descriptionsArr =descriptions;
+            titlesArr =prgmNameList;
             context=mainActivity;
+            daysArr =days;
             imageId=prgmImages;
             inflater = ( LayoutInflater )context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -122,9 +130,11 @@ public class AchievmentsActivity extends AppCompatActivity {
             holder.img = view.findViewById(R.id.listview_image);
             holder.tv = view.findViewById(R.id.listview_item_title);
             holder.desc = view.findViewById(R.id.listview_item_short_description);
+            holder.days = view.findViewById(R.id.tv_progress);
             holder.img.setImageResource(images[position]);
-            holder.tv.setText(titles[position]);
-            holder.desc.setText(descriptions[position]);
+            holder.tv.setText(titlesArr[position]);
+            holder.desc.setText(descriptionsArr[position]);
+            holder.days.setText(daysArr[position]);
 
             if (preferences.contains(RANK)){
                 if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wolf")) {
@@ -132,60 +142,77 @@ public class AchievmentsActivity extends AppCompatActivity {
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
-                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("badger")) {
+                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("squirrel")) {
                     if (position > ONE){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
+                    }
+                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("badger")) {
+                    if (position > ONE+1){
+                        holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("bear")) {
-                    if (position > ONE+2){
+                    if (position > ONE+2+1){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wild bear")) {
-                    if (position > ONE+3){
+                    if (position > ONE+3+1){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("deer")) {
-                    if (position > FIVE){
+                    if (position > FIVE+1){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("boar")) {
-                    if (position > FIVE+2){
+                    if (position > FIVE+2+1){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("elk")) {
-                    if (position > FIVE+3){
+                    if (position > FIVE+3+1){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
                 }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("beaver")) {
-                    if (position > TEN-1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                    }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("fox")) {
                     if (position > TEN){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
-                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("lynx")) {
+                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("fox")) {
                     if (position > TEN+1){
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
                         holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
+                    }
+                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("lynx")) {
+                    if (position > TEN+1+1){
+                        holder.img.setAlpha(0.2f);
+                        holder.tv.setAlpha(0.2f);
+                        holder.desc.setAlpha(0.2f);
+                        holder.days.setAlpha(0.2f);
                     }
                 }
             }
@@ -193,7 +220,7 @@ public class AchievmentsActivity extends AppCompatActivity {
         }
     }
     public class Holder {
-        TextView tv, desc;
+        TextView tv, desc, days;
         ImageView img;
     }
 

@@ -17,7 +17,6 @@
 <!--        android:name="com.google.android.gms.ads.APPLICATION_ID"-->
 <!--        android:value="ca-app-pub-8605805180436473~8997590254"/>-->
 
-
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
@@ -29,6 +28,10 @@
         android:theme="@style/MaterialTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider1234"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
@@ -57,14 +60,6 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/MaterialTheme.NoActionBar">
-
-            <!-- android:label="brainreboot" -->
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".cardActivities.SavingsActivity" />
         <activity android:name=".cardActivities.ChallengeActivity" />

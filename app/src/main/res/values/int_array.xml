@@ -2,6 +2,7 @@
 <resources>
     <integer-array name="images_arr_for_ranks">
         <item>@drawable/ic_wolf</item>
+        <item>@drawable/ic_squirrel</item>
         <item>@drawable/ic_badger</item>
         <item>@drawable/ic_bear_1</item>
         <item>@drawable/ic_bear</item>
