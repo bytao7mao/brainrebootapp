@@ -105,9 +105,6 @@ public class FirstScreenActivity extends AppCompatActivity {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         currency = Currency.getInstance(new Locale("",
                 Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
-        Log.d("taogX", currency+"");
-
-//        getWindow().setStatusBarColor(ContextCompat.getColor(FirstScreenActivity.this, R.color.white));
         Toolbar toolbar = findViewById(R.id.toolbar);
         TextView mTitle =  findViewById(R.id.toolbar_subtitle);
         mTitle.setTypeface(montSerratSemiBoldTypeface);
@@ -206,10 +203,6 @@ public class FirstScreenActivity extends AppCompatActivity {
                     etLayForSumPerDay.setVisibility(visible ? View.VISIBLE : View.GONE);
                     etForCiggaretesPerDay.setVisibility(visible ? View.VISIBLE : View.GONE);
                     Intent i = new Intent(FirstScreenActivity.this, MainActivity.class);
-//                    TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//                    currency = Currency.getInstance(new Locale("",
-//                            Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
-                    Log.d("taogX", currency+"");
                     editor.putString("currency", currency);
                     editor.apply();
                     editor.putInt("splash", 1);
@@ -250,7 +243,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         nameSav = Objects.requireNonNull(etForSumPerDay.getText()).toString();
         if (TextUtils.isEmpty(nameSav)) {
             go = false;
-            etForSumPerDay.setError("Please input a sum");
+            etForSumPerDay.setError(getResources().getString(R.string.error_sum));
             return;
         } else {
             if (go2){
@@ -262,7 +255,6 @@ public class FirstScreenActivity extends AppCompatActivity {
         editor.putLong(SAVINGS_FINAL, moneyInt);
         editor.putLong("taoz10", moneyInt);
         editor.apply();
-        Log.d("INTROTAO", "moneyInt saved in INTROACTIVITY ? :  " + moneyInt);
     }
     @Optional
     private void setCiggsPerDay() {
@@ -270,7 +262,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         nameCigg = Objects.requireNonNull(etForCiggaretesPerDay.getText()).toString();
         if (TextUtils.isEmpty(nameCigg)) {
             go2 = false;
-            etForCiggaretesPerDay.setError("Please input a cigg number");
+            etForCiggaretesPerDay.setError(getResources().getString(R.string.num_of_cig));
             return;
         } else {
             if (go){
@@ -281,6 +273,5 @@ public class FirstScreenActivity extends AppCompatActivity {
         int cigInt = Integer.parseInt(Objects.requireNonNull(editM).toString());
         editor.putInt(INITIAL_CIGG_PER_DAY, cigInt);
         editor.apply();
-        Log.d("INTROTAO", "cigg saved in INTROACTIVITY ? :  " + cigInt);
     }
 }

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import androidx.core.content.ContextCompat;
@@ -22,15 +23,22 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.taozen.quithabit.utils.MyHttpCoreAndroid;
 import com.taozen.quithabit.utils.MyHttpManager;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 import java.util.TimeZone;
 
 import butterknife.BindView;
 
+import static com.taozen.quithabit.MainActivity.NAME;
+import static com.taozen.quithabit.MainActivity.NAME_RO;
+import static com.taozen.quithabit.MainActivity.RO;
+import static com.taozen.quithabit.MainActivity.WE_FOUND_NO_CONTENT;
+import static com.taozen.quithabit.MainActivity.ZERO;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
@@ -98,7 +106,11 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 //requestDataById(DAY_OF_PRESENT);
             } else {
-                requestDataById(counter);
+                if (counter == 0) {
+                    requestDataById(1);
+                } else {
+                    requestDataById(counter);
+                }
 //                errorText.setVisibility(View.VISIBLE);
 //                tipofthedayTxtView.setText(R.string.error_fourtyfour);
                 Snackbar snackbar;
@@ -136,26 +148,27 @@ public class SplashActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             try {
                 //using GSON
-                JsonParser parser = new JsonParser();
+                final JsonParser JSON_PARSER = new JsonParser();
                 //using MyHttpManager getData static method
-                String content = MyHttpManager.getData(params[0]);
-//                Thread.sleep(1000);
+                //String content = MyHttpManager.getData(params[ZERO]);
+                //Thread.sleep(1000);
                 //using MyHttpCoreAndroid
-//                String content = MyHttpCoreAndroid.getData(params[0]);
-                assert content != null;
-                JsonElement rootNode = parser.parse(content);
-                JsonObject details = rootNode.getAsJsonObject();
-                JsonElement nameNode;
-                //Log.d(TAGoncreate, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
-                //get initials like: ro
-                String lang = Resources.getSystem().getConfiguration().locale.getLanguage();
-                if (lang.equalsIgnoreCase("ro")) {
-                    nameNode = details.get("nameRO");
-                } else {
-                    nameNode = details.get("name");
-                }
-//                JsonElement nameNode = details.get("name");
-                return nameNode.getAsString();
+                final String CONTENT_LOCAL = MyHttpCoreAndroid.getData(params[ZERO]);
+                assert CONTENT_LOCAL != null : WE_FOUND_NO_CONTENT;
+                final JsonElement ROOT_NODE = JSON_PARSER.parse(CONTENT_LOCAL);
+                final JsonObject DETAILS_LOCAL = ROOT_NODE.getAsJsonObject();
+                final JsonElement NAME_ELEMENT_NODE;
+                //Log.d(TAG, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
+                final Locale locale = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                        ? getResources().getConfiguration().getLocales().get(ZERO)
+                        : getResources().getConfiguration().locale;
+                //get initials like: RO/US/EN/FR
+                final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
+                //get quote from ro if user is ro, else get default quotes
+                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
+                        ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
+
+                return NAME_ELEMENT_NODE.getAsString();
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

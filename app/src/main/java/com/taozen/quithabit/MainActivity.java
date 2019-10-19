@@ -1689,8 +1689,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //requestDataById(DAY_OF_PRESENT);
             } else {
-                errorText.setVisibility(View.VISIBLE);
-                tipofthedayTxtView.setText(R.string.error_fourtyfour);
+//                errorText.setVisibility(View.VISIBLE);
+//                tipofthedayTxtView.setText(R.string.error_fourtyfour);
+                if (counter == ZERO) {
+                    requestDataById(1);
+                } else {
+                    requestDataById(counter);
+                }
                 final Snackbar SNACKBAR;
                 SNACKBAR = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
                 final View SNACKBAR_VIEW = SNACKBAR.getView();
@@ -1763,8 +1768,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final String RESULT) {
             try {
+                final String tempResult = (RESULT == null) ?
+                        "No quotes available in this moment ..." : RESULT;
                 //using raw JSON PARSER
-                updateDisplayString(RESULT);
+                updateDisplayString(tempResult);
                 //we get rid of the task that we created
                 tasks.remove(this);
                 if (tasks.size() == ZERO) {
