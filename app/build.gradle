@@ -101,7 +101,7 @@ dependencies {
     implementation 'com.github.coyarzun89:fabtransitionactivity:0.2.0'
 
     //facebook share
-    implementation 'com.facebook.android:facebook-android-sdk:4.0.1'
+
 
     //ads
 //    implementation 'com.google.android.gms:play-services-ads:18.2.0'

@@ -2,6 +2,7 @@ package com.taozen.quithabit;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,10 +14,14 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -39,22 +44,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.anupcowkur.herebedragons.SideEffect;
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog;
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.share.ShareApi;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -66,11 +62,19 @@ import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.options.LegalActivity;
 import com.taozen.quithabit.utils.MyHttpCoreAndroid;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -83,7 +87,6 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-//import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CHALLENGES_STRING;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
@@ -95,6 +98,8 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIG
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINED;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
+
+//import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 //import com.google.android.gms.ads.AdRequest;
 //import com.google.android.gms.ads.AdSize;
@@ -273,6 +278,8 @@ public class MainActivity extends AppCompatActivity {
 
     MainActivity.MyAsyncTask task;
 
+    int i = 0;
+
     private String generateQuoteForPassingTheDay() {
         Random random = new Random();
         quotesForPassingTheDayList.add(getString(R.string.pass_one));
@@ -284,8 +291,7 @@ public class MainActivity extends AppCompatActivity {
 
         return quotesForPassingTheDayList.get(random.nextInt(quotesForPassingTheDayList.size()));
     }
-    private CallbackManager callbackManager;
-    private LoginManager manager;
+
     //OnCreate [START]
     @UiThread
     @SuppressLint("CommitPrefEdits")
@@ -299,10 +305,50 @@ public class MainActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = preferences.edit();
 
+        //strictmode ?
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
         shareProgressImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFacebookInit();
+                //share text
+//                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                sharingIntent.setType("text/plain");
+//                String shareBody = "Your body here";
+//                String shareSub = "Your subject here";
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+//                startActivity(Intent.createChooser(sharingIntent, "Share using"));
+
+                //share image
+                Bitmap b = Screenshoot.takescreenshot(counterImgView);
+//                backgroundImgWall.setImageBitmap(b);
+
+                Uri uri = null;
+                try {
+                    File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "to-share.png");
+                    FileOutputStream stream = new FileOutputStream(file);
+                    b.compress(Bitmap.CompressFormat.PNG, 90, stream);
+                    stream.close();
+                    uri = Uri.fromFile(file);
+                } catch (IOException e) {
+                    Log.d(TAG, "IOException while trying to write file for sharing: " + e.getMessage());
+                }
+
+                //Convert to byte array
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("image/*");
+
+                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+                intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
+                try {
+                    startActivity(Intent.createChooser(intent, "Share Screenshot"));
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(getApplicationContext(), "No App Available", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -395,15 +441,6 @@ public class MainActivity extends AppCompatActivity {
             ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
             greenCondition();
         }
-
-//        if (buttonClickedToday) {
-//            checkInButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    insteadOfSmokingNegative();
-//                }
-//            });
-//        }
 
         setTxtViewForUserMaxCountDaysOnStringVersion(
                 String.valueOf(userMaxCountForHabit),
@@ -534,43 +571,10 @@ public class MainActivity extends AppCompatActivity {
         }//[END OF RETRIEVING VALUES]
     }//[END OF ONCREATE]
 
-    private void shareFacebookInit() {
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
-        List<String> permissionNeeds = Collections.singletonList("publish_actions");
-        manager = LoginManager.getInstance();
-        manager.logInWithPublishPermissions(this, permissionNeeds);
-        manager.registerCallback(callbackManager, new  FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                publishImage();
-            }
-            @Override
-            public void onCancel() {
-                System.out.println("onCancel");
-            }
-            @Override
-            public void onError(FacebookException exception) {
-                System.out.println("onError");
-            }
-        });
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void publishImage(){
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(image)
-                .build();
-        SharePhotoContent content = new SharePhotoContent.Builder()
-                .addPhoto(photo)
-                .build();
-        ShareApi.share(content, null);
+        //TODO: if needed
     }
 
     private void showDeviceDensityPixels() {
