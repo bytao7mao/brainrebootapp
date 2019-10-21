@@ -28,7 +28,7 @@
     <string name="life_press_leaf">Press check-in to calculate"</string>
     <string name="life_reg">Life regained: %s hours</string>
     <string name="explore">Explore</string>
-    <string name="your_savings">Your savings</string>
+    <string name="your_savings">Your latest savings</string>
     <string name="your_latest_achievments">Your latest achievements</string>
     <string name="personal_progress">Personal progress</string>
     <string name="error_loading_data_from_api">Cannot retrieve data from server</string>
