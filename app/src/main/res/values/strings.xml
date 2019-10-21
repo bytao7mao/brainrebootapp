@@ -31,7 +31,7 @@
     <string name="your_savings">Your savings</string>
     <string name="your_latest_achievments">Your latest achievements</string>
     <string name="personal_progress">Personal progress</string>
-    <string name="error_loading_data_from_api">Error loading data from api</string>
+    <string name="error_loading_data_from_api">Cannot retrieve data from server</string>
     <string name="energy">Energy</string>
     <string name="breath">Breath</string>
     <string name="fatigue">Fatigue</string>
