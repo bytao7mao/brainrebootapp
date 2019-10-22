@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:theme="@style/MaterialThemeNoActionBar"
     tools:context=".FirstScreenActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,6 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"
+            android:background="@drawable/custom_round_green_color"
             android:layout_margin="10dp"
             android:gravity="center"
             android:text="@string/done"

@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,29 +34,41 @@
             android:id="@+id/editTxtSavingsId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey_10"
+            style="@style/EditTextCustomTheme"
             android:layout_centerHorizontal="true"
-            app:hintEnabled="true"
+            android:layout_margin="8dp"
             android:layout_below="@id/savings_TitleId">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 android:layout_centerHorizontal="true"
                 android:hint="@string/how_much_to_save"
-                android:backgroundTint="@color/greenColorLed"
                 android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/edtTxtForSavingsId"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="8dp"-->
+<!--            style="@style/EditTextCustomTheme"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/edtTxtLayoutForCiggsId">-->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/editText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="@string/how_much_do_you_spend_per_day"-->
+<!--                android:textSize="14sp" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <Button
             android:id="@+id/addSavingsBtnId"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="48dp"
             android:layout_below="@id/editTxtSavingsId"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"

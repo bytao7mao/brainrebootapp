@@ -57,7 +57,7 @@
             android:value="ca-app-pub-8605805180436473~8997590254"/>
 
         <activity android:name=".SplashActivity"
-            android:theme="@style/MaterialThemeNoActionBar">
+            android:theme="@style/MaterialThemeFirstScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -65,6 +65,7 @@
         </activity>
         <activity
             android:name=".FirstScreenActivity"
+            android:theme="@style/MaterialThemeFirstScreen"
             android:excludeFromRecents="true" />
         <activity android:name=".cardActivities.AchievmentsActivity"
             android:theme="@style/MaterialThemeNoActionBarW"/>
@@ -74,7 +75,8 @@
             android:name=".MainActivity"
             android:theme="@style/MaterialThemeWithActionBar">
         </activity>
-        <activity android:name=".cardActivities.SavingsActivity" />
+        <activity android:name=".cardActivities.SavingsActivity"
+            android:theme="@style/MaterialThemeNoActionBarW"/>
         <activity android:name=".cardActivities.ChallengeActivity" />
         <activity android:name=".options.LegalActivity"
             android:theme="@style/MaterialThemeNoActionBarW"/>

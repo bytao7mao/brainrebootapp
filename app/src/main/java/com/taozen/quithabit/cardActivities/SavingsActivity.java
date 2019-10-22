@@ -100,6 +100,15 @@ public class SavingsActivity extends AppCompatActivity {
             }
             }
     });
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Savings");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 }
 
     //fetching value from MainActivity

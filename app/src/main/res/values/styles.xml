@@ -1,23 +1,33 @@
 <resources>
 
     <style name="MaterialThemeNoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="android:fontFamily">@font/montserratsemibold</item>
-        <item name="android:textSize">12sp</item>
+        <!--        <item name="android:fontFamily">@font/montserratsemibold</item>-->
+        <!--        <item name="android:textSize">12sp</item>-->
+        <item name="colorPrimaryDark">@color/white</item>
+        <!--        <item name="colorPrimary">@color/white</item>-->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="MaterialThemeNoActionBarW" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="android:fontFamily">@font/montserratsemibold</item>
-        <item name="android:textSize">12sp</item>
+        <!--        <item name="android:fontFamily">@font/montserratsemibold</item>-->
+        <!--        <item name="android:textSize">12sp</item>-->
         <item name="colorPrimaryDark">@color/white</item>
+        <!--        <item name="colorPrimary">@color/white</item>-->
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="MaterialThemeWithActionBar" parent="Theme.MaterialComponents.Light.Bridge">
-        <item name="android:fontFamily">@font/montserratsemibold</item>
-        <item name="android:textSize">12sp</item>
+<!--        <item name="android:fontFamily">@font/montserratsemibold</item>-->
+<!--        <item name="android:textSize">12sp</item>-->
         <item name="colorPrimaryDark">@color/white</item>
+<!--        <item name="colorPrimary">@color/white</item>-->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="MaterialThemeFirstScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+<!--        <item name="android:fontFamily">@font/montserratsemibold</item>-->
+<!--        <item name="android:textSize">12sp</item>-->
+        <item name="colorPrimaryDark">@color/white</item>
+<!--        <item name="colorPrimary">@color/white</item>-->
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
