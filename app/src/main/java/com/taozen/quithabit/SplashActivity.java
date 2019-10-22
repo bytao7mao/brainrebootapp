@@ -112,8 +112,6 @@ public class SplashActivity extends AppCompatActivity {
                 } else {
                     requestDataById(counter);
                 }
-//                errorText.setVisibility(View.VISIBLE);
-//                tipofthedayTxtView.setText(R.string.error_fourtyfour);
                 Snackbar snackbar;
                 snackbar = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
                 View snackBarView = snackbar.getView();
@@ -127,7 +125,7 @@ public class SplashActivity extends AppCompatActivity {
 
     @SideEffect
     protected boolean isOnline() {
-        boolean connected = false;
+        boolean connected;
 //        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 //        Network[] networks = Objects.requireNonNull(cm).getAllNetworks();
 //        if (cm != null) {
@@ -138,11 +136,7 @@ public class SplashActivity extends AppCompatActivity {
 //                }
 //            }
 //        }
-        if (NetworkUtils.isConnected(getApplicationContext())){
-            connected = true;
-        } else {
-            connected = false;
-        }
+        connected = NetworkUtils.isConnected(getApplicationContext());
         return connected;
 
 //        ConnectivityManager connManager =

@@ -175,7 +175,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="8dp"
-                        android:src="@drawable/counterwhitedefault"
+                        android:src="@drawable/counterwhitedefaultro"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_85percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/lightbulbForTip"

@@ -37,6 +37,9 @@ dependencies {
     implementation 'com.intuit.ssp:ssp-android:1.0.5'
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
 
+    // Java
+    implementation 'androidx.core:core:1.2.0-beta01'
+
     //firebase
     implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
@@ -52,7 +55,7 @@ dependencies {
 
     //android libs
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0-beta01'
+    implementation 'com.google.android.material:material:1.2.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
@@ -63,23 +66,11 @@ dependencies {
     implementation 'com.jakewharton:butterknife:9.0.0-rc1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 
-    //app intro library - NOT USING!
-//    implementation 'com.github.AppIntro:AppIntro:v4.2.3'
-
     //will use in future
     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
 
     //bottom dialogs library
     implementation 'com.github.javiersantos:BottomDialogs:1.2.1'
-
-    //to be used for ask user if he relapsed or not
-    implementation 'com.github.Shashank02051997:FancyGifDialog-Android:1.1'
-
-    //gifs library
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'
-
-    //to keep it here as a secondary pulsator effect
-    implementation 'pl.bclogic:pulsator4droid:1.0.3'
 
     //using it for percent view
     implementation 'com.budiyev.android:circular-progress-bar:1.2.2'
@@ -87,27 +78,9 @@ dependencies {
     //parsing json data
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    //about page library
-    implementation 'com.github.Shashank02051997:FancyAboutPage-Android:2.6'
-
     //here be dragons - a plugin for seeing the methods used
     implementation 'com.anupcowkur:here-be-dragons-annotation:1.0.1'
 
-    //transitions
-    implementation "com.andkulikov:transitionseverywhere:1.8.1"
-
-    //tt fancy dialog
-    implementation 'com.bestsoft32.tayyab:tt-fancy-gif-dialog:1.0.2'
-
-    //transition fab
-    implementation 'com.github.coyarzun89:fabtransitionactivity:0.2.0'
-
-    //facebook share
-
-
-    //ads
-//    implementation 'com.google.android.gms:play-services-ads:18.2.0'
-//    implementation 'com.google.firebase:firebase-ads:18.2.0'
 }
 apply plugin: 'com.google.gms.google-services'
 

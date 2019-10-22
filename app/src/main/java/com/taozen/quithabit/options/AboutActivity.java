@@ -1,22 +1,15 @@
 package com.taozen.quithabit.options;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.shashank.sony.fancyaboutpagelib.FancyAboutPage;
 import com.taozen.quithabit.R;
 
-import java.util.Objects;
-
-import static com.taozen.quithabit.MainActivity.TERMS_AND_CONDITIONS;
 import static com.taozen.quithabit.MainActivity.WEB_PAGE;
 
 public class AboutActivity extends AppCompatActivity {

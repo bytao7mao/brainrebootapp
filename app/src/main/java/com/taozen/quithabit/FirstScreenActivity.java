@@ -7,29 +7,21 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.TextViewCompat;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.transitionseverywhere.ArcMotion;
-import com.transitionseverywhere.ChangeBounds;
-import com.transitionseverywhere.TransitionManager;
 
 import java.util.Calendar;
 import java.util.Currency;
@@ -111,18 +103,18 @@ public class FirstScreenActivity extends AppCompatActivity {
         editor = preferences.edit();
 
         //set fonts
-        tvTitleWelcome.setTypeface(montSerratSemiBoldTypeface);
-        tvAllRights.setTypeface(montSerratLightTypeface);
-        tvThanks.setTypeface(montSerratLightTypeface);
-        tvTerms.setTypeface(montSerratLightTypeface);
-        tvPolicy.setTypeface(montSerratLightTypeface);
-        tvSubtitleSmoking.setTypeface(montSerratLightTypeface);
-        tvAnd.setTypeface(montSerratLightTypeface);
-        etLayForSumPerDay.setTypeface(montSerratSemiBoldTypeface);
-        etLayForCiggaretesPerDay.setTypeface(montSerratSemiBoldTypeface);
-        btnConfirm.setTypeface(montSerratSemiBoldTypeface);
-        btnConfirm.setBackgroundColor(ContextCompat.getColor(FirstScreenActivity.this,
-                R.color.colorPrimary));
+//        tvTitleWelcome.setTypeface(montSerratSemiBoldTypeface);
+//        tvAllRights.setTypeface(montSerratLightTypeface);
+//        tvThanks.setTypeface(montSerratLightTypeface);
+//        tvTerms.setTypeface(montSerratLightTypeface);
+//        tvPolicy.setTypeface(montSerratLightTypeface);
+//        tvSubtitleSmoking.setTypeface(montSerratLightTypeface);
+//        tvAnd.setTypeface(montSerratLightTypeface);
+//        etLayForSumPerDay.setTypeface(montSerratSemiBoldTypeface);
+//        etLayForCiggaretesPerDay.setTypeface(montSerratSemiBoldTypeface);
+//        btnConfirm.setTypeface(montSerratSemiBoldTypeface);
+//        btnConfirm.setBackgroundColor(ContextCompat.getColor(FirstScreenActivity.this,
+//                R.color.colorPrimary));
 
         assert etForCiggaretesPerDay != null;
         etForCiggaretesPerDay.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -191,8 +183,6 @@ public class FirstScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setCiggsPerDay();
                 setSavings();
-                TransitionManager.beginDelayedTransition(transitionsContainer,
-                        new ChangeBounds().setPathMotion(new ArcMotion()).setDuration(800));
                 if (go && go2) {
                     visible = !visible;
                     etLayForSumPerDay.setVisibility(visible ? View.VISIBLE : View.GONE);

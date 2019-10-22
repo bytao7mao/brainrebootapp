@@ -67,10 +67,10 @@ public class SavingsActivity extends AppCompatActivity {
         montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
         montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
 
-        savingsTxt.setTypeface(montSerratMediumTypeface);
-        etSavingsLayout.setTypeface(montSerratMediumTypeface);
-        otherSavingsBtn.setTypeface(montSerratMediumTypeface);
-        titleTxt.setTypeface(montSerratMediumTypeface);
+//        savingsTxt.setTypeface(montSerratMediumTypeface);
+//        etSavingsLayout.setTypeface(montSerratMediumTypeface);
+//        otherSavingsBtn.setTypeface(montSerratMediumTypeface);
+//        titleTxt.setTypeface(montSerratMediumTypeface);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();

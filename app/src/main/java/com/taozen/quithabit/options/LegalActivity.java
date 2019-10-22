@@ -3,16 +3,22 @@ package com.taozen.quithabit.options;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.preference.PreferenceManager;
+
+import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,12 +29,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.taozen.quithabit.R;
 
+import java.util.Calendar;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import static com.taozen.quithabit.MainActivity.PRIVACY_POLICY;
 import static com.taozen.quithabit.MainActivity.TERMS_AND_CONDITIONS;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINED;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
 
 public class LegalActivity extends AppCompatActivity {
 
@@ -72,9 +85,8 @@ public class LegalActivity extends AppCompatActivity {
         editor = preferences.edit();
         titles = getResources().getStringArray(R.array.options_array);
         mListView = findViewById(R.id.list_view);
-        LegalActivity.CustomAdapterListView customAdapterListView =
-                new LegalActivity.CustomAdapterListView(this, titles, descriptions);
-        mListView.setAdapter(customAdapterListView);
+        CustomAdapterListView customAdapterListView =
+                new CustomAdapterListView(this, titles, descriptions);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Legal");
@@ -85,6 +97,8 @@ public class LegalActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        mListView.requestFocusFromTouch();
+        mListView.setAdapter(customAdapterListView);
 
     }
 
@@ -152,7 +166,7 @@ public class LegalActivity extends AppCompatActivity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            LegalActivity.Holder holder=new LegalActivity.Holder();
+            Holder holder=new Holder();
             View view;
             view = inflater.inflate(R.layout.list_item_options, null);
             if (view == null) {
@@ -209,38 +223,33 @@ public class LegalActivity extends AppCompatActivity {
     }
 
     private void dialogForResetForced() {
-        new BottomDialog.Builder(this)
-                .setTitle("Your progress will reset permanently!")
-                .setContent("Are you sure ?")
-                .setPositiveText(R.string.YES)
-                .setNegativeText(R.string.NO)
-                .setPositiveTextColorResource(android.R.color.white)
-                .setNegativeTextColorResource(android.R.color.white)
-                .setCancelable(false)
-                .onNegative(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull BottomDialog bottomDialog) {
-
-                    }
-                })
-                .onPositive(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull BottomDialog bottomDialog) {
-                        //TODO: dialog to announce user that his/her progress is reset
-                        new BottomDialog.Builder(LegalActivity.this)
-                                .setTitle("Your progress has been reset!")
-                                .setContent("App will close now.")
-                                .setPositiveText(R.string.OK)
-                                .setPositiveTextColorResource(android.R.color.white)
-                                .setCancelable(false)
-                                .onPositive(new BottomDialog.ButtonCallback() {
-                                    @Override
-                                    public void onClick(@NonNull BottomDialog bottomDialog) {
-                                        clearAppData();
-                                    }
-                                }).show();
-                    }
-                }).show();
+        MaterialAlertDialogBuilder milestoneAlert = new MaterialAlertDialogBuilder
+                (new ContextThemeWrapper(this, R.style.AlertDialogTheme));
+        milestoneAlert.setMessage("Are you sure ?");
+        milestoneAlert.setTitle("Your progress will reset permanently!");
+        milestoneAlert.setCancelable(false);
+        milestoneAlert.setPositiveButton(getString(R.string.YES), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                new BottomDialog.Builder(LegalActivity.this)
+                        .setTitle("Your progress has been reset!")
+                        .setContent("App will close now.")
+                        .setPositiveText(R.string.OK)
+                        .setPositiveTextColorResource(android.R.color.white)
+                        .setCancelable(false)
+                        .onPositive(new BottomDialog.ButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull BottomDialog bottomDialog) {
+                                clearAppData();
+                            }
+                        }).show();
+            }
+        });
+        milestoneAlert.setNegativeButton(getString(R.string.NO), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //do nothing
+            }
+        });
+        milestoneAlert.show();
     }
 
     private void clearAppData() {
