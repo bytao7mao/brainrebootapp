@@ -4,19 +4,19 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Handler;
-import android.preference.PreferenceManager;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.anupcowkur.herebedragons.SideEffect;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,12 +24,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.taozen.quithabit.utils.MyHttpCoreAndroid;
-import com.taozen.quithabit.utils.MyHttpManager;
+import com.taozen.quithabit.utils.NetworkUtils;
 
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Random;
 import java.util.TimeZone;
 
 import butterknife.BindView;
@@ -105,7 +104,9 @@ public class SplashActivity extends AppCompatActivity {
                     requestDataById(counter);
                 }
                 //requestDataById(DAY_OF_PRESENT);
+                Log.d("DAYZEN", "is connected to net");
             } else {
+                Log.d("DAYZEN", "is NOT connected to net");
                 if (counter == 0) {
                     requestDataById(1);
                 } else {
@@ -126,12 +127,30 @@ public class SplashActivity extends AppCompatActivity {
 
     @SideEffect
     protected boolean isOnline() {
-        ConnectivityManager connManager =
-                (ConnectivityManager)
-                        getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo =
-                Objects.requireNonNull(connManager).getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
+        boolean connected = false;
+//        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        Network[] networks = Objects.requireNonNull(cm).getAllNetworks();
+//        if (cm != null) {
+//            for (Network netinfo : networks) {
+//                NetworkInfo ni = cm.getNetworkInfo(netinfo);
+//                if (ni.isConnected() && ni.isAvailable()) {
+//                    connected = true;
+//                }
+//            }
+//        }
+        if (NetworkUtils.isConnected(getApplicationContext())){
+            connected = true;
+        } else {
+            connected = false;
+        }
+        return connected;
+
+//        ConnectivityManager connManager =
+//                (ConnectivityManager)
+//                        getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo networkInfo =
+//                Objects.requireNonNull(connManager).getActiveNetworkInfo();
+//        return networkInfo != null && networkInfo.isConnected();
     }//isOnline[END]
 
     private void requestDataById(int id) {

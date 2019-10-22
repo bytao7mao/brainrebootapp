@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;

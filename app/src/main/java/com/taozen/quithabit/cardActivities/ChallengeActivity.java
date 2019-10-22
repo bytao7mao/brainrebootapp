@@ -3,7 +3,7 @@ package com.taozen.quithabit.cardActivities;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -72,11 +72,11 @@ public class ChallengeActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(ChallengeActivity.this);
         editor = preferences.edit();
 
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
-        mButtonStartPause = findViewById(R.id.button_start_pause);
-        mButtonReset = findViewById(R.id.button_reset);
-        challengeBack = findViewById(R.id.challBackgroundId);
-        cardView = findViewById(R.id.progressCardIdChallengeInside);
+//        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+//        mButtonStartPause = findViewById(R.id.button_start_pause);
+//        mButtonReset = findViewById(R.id.button_reset);
+//        challengeBack = findViewById(R.id.challBackgroundId);
+//        cardView = findViewById(R.id.progressCardIdChallengeInside);
 
         THREEHOURS = "THREEHOURS";ONEDAY="ONEDAY";ONEWEEK="ONEWEEK";
         try {

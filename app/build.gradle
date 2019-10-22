@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
 
     //implementation 'com.google.firebase:firebase-database:16.0.6'
+    implementation "androidx.preference:preference:1.1.0"
 
     //google
     implementation 'com.google.android.gms:play-services-location:17.0.0'
