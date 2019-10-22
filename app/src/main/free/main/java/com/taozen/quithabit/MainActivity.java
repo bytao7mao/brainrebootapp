@@ -66,7 +66,6 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.taozen.quithabit.cardActivities.AchievmentsActivity;
 import com.taozen.quithabit.cardActivities.ChallengeActivity;
-import com.taozen.quithabit.cardActivities.FailLogsActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.options.LegalActivity;
 import com.taozen.quithabit.utils.MyHttpCoreAndroid;

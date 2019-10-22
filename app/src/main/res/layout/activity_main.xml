@@ -7,83 +7,23 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<!--    android:background="@color/white"-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:theme="@style/MaterialTheme.NoActionBar"
-            android:translationZ="0.1dp"
-            app:elevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/topLayout">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-                app:popupTheme="@style/MaterialTheme.NoActionBar"
-                app:titleTextAppearance="@style/TitleBarStyle" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="-57dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                app:layout_collapseMode="pin">
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/inner_guideline_vertical_5percent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.05" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/toolbar_subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Quit Habit!"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
-                    app:layout_constraintStart_toStartOf="@+id/inner_guideline_vertical_5percent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:alpha="0.6"
-                    android:text="NoSmoke"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/toolbar_subtitle"
-                    app:layout_constraintStart_toEndOf="@+id/toolbar_subtitle"
-                    app:layout_constraintTop_toTopOf="@+id/toolbar_subtitle" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.AppBarLayout>
         <!--topLayout START-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toTopOf="@id/delimitationBarIdFirst"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            app:layout_constraintBottom_toTopOf="@id/delimitationBarIdFirst">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_mainID"
@@ -108,54 +48,63 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.10" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_15percent_inner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.15" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_90percentCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.90" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_50percentCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.50" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_85percentCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.85" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_75percentCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.75" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_90percentCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.90" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_07percentCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.07" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_10percentCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.10" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_25percentCard"
                         android:layout_width="wrap_content"
@@ -173,7 +122,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tipofthedayTxtViewId" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/tipofthedayTxtViewId"
                         style="@style/TextColorBlack"
                         android:layout_width="240dp"
@@ -233,23 +182,23 @@
                         app:layout_constraintTop_toBottomOf="@+id/tipofthedayTxtViewId"
                         app:layout_constraintVertical_bias="0.3" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/counterTextId"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:layout_margin="8dp"
                         android:alpha="0.9"
                         android:text="25"
-                        android:layout_margin="8dp"
                         android:textSize="58sp"
                         app:layout_constraintBottom_toBottomOf="@+id/counterImageId"
                         app:layout_constraintEnd_toEndOf="@+id/counterImageId"
                         app:layout_constraintStart_toStartOf="@+id/counterImageId"
                         app:layout_constraintTop_toTopOf="@+id/counterImageId" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/textNonSmokerId"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -275,7 +224,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_90percentCard" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/remaining_days_Id"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -305,7 +254,7 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentCard"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_90percentCard" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/targetTxtViewId"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -338,8 +287,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutCheckIn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/custom_round_green_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -360,17 +312,15 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
                 android:background="@drawable/ic_running"
-                android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percentCheckIn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/subTextCheckInId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:text="@string/check_in_now"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -422,7 +372,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/grey_50">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/appCompatTextViewPercentViewsTitle"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -435,7 +385,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/subTextEnergyId"
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
@@ -449,7 +399,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/progress_bar_energy" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/subTextBreathId"
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
@@ -463,7 +413,7 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentPercent"
                         app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/subTextFatigueId"
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
@@ -477,7 +427,7 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25percentPercent"
                         app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/subTextGumsId"
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
@@ -729,6 +679,12 @@
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.25" />
                     <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_horizontal_25percentBottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.25" />
+                    <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_30percentBottom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -753,8 +709,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextViewProgressTitle"
+                    <TextView
+                        android:id="@+id/textViewProgressTitle"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -778,20 +734,23 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/YourProgressIdCigaretes"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:alpha="0.7"
                         android:text="example 1"
                         android:textSize="14sp"
+                        app:layout_constraintBottom_toTopOf="@+id/YourHighestStreakId"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/YourHighestStreakId"
-                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30percentBottom" />
+                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30percentBottom"
+                        app:layout_constraintVertical_bias="1.0" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/YourHighestStreakId"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -799,13 +758,13 @@
                         android:alpha="0.7"
                         android:text="example 2"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toTopOf="@+id/YourProgressIdHours"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/YourProgressIdHours"
-                        app:layout_constraintTop_toBottomOf="@+id/YourProgressIdCigaretes" />
+                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentBottom" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/YourProgressIdHours"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -817,7 +776,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25percentBottom" />
+                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25percentBottom"
+                        app:layout_constraintTop_toBottomOf="@+id/YourHighestStreakId"
+                        app:layout_constraintVertical_bias="0.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -922,8 +883,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextViewAchievTitle"
+                    <TextView
+                        android:id="@+id/textViewAchievTitle"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -949,8 +910,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/rankOneId"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/ic_boar"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90achieveBottom"
@@ -960,8 +921,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/rankTwoId"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/ic_boar"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90achieveBottom"
@@ -971,8 +932,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/rankThreeId"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/ic_boar"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90achieveBottom"
@@ -1112,8 +1073,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextViewSavingsTitle"
+                    <TextView
+                        android:id="@+id/textViewSavingsTitle"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1137,7 +1098,7 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_90savingBottom"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/exploreSavingsId"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -1151,7 +1112,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/appCompatImageViewSavings" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/savingsTxtId"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -1184,8 +1145,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/InsteadOfLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/custom_round_green_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -1205,18 +1169,17 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/ic_innovation"
+                android:background="@drawable/ic_hot_air_balloon"
                 android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15InsteadOf"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/subTextInsteadOfId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:text="@string/unlimited"
                 android:textColor="@color/white"
                 android:textSize="20sp"

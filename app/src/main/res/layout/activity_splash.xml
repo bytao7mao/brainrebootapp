@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/grey_50"
     android:fitsSystemWindows="true">
 
     <ImageView
@@ -10,6 +10,5 @@
         android:layout_height="100dp"
         android:layout_centerInParent="true"
         android:src="@mipmap/ic_launcher_round"/>
-
 
 </RelativeLayout>

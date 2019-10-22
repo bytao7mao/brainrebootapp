@@ -4,60 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/MaterialThemeNoActionBar"
     tools:context=".FirstScreenActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:elevation="0dp"
-            android:background="@color/white"
-            android:paddingBottom="5dp"
-            android:translationZ="0.1dp"
-            android:theme="@style/MaterialTheme.NoActionBar">
-            <!--android:background="?attr/colorPrimary"-->
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:titleTextAppearance="@style/TitleBarStyle"
-                app:popupTheme="@style/MaterialTheme.NoActionBar" />
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
-                <TextView
-                    android:id="@+id/toolbar_subtitle"
-                    android:textSize="16sp"
-                    android:layout_marginStart="10dp"
-                    android:text="Quit Habit!"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:textSize="12sp"
-                    android:layout_marginStart="10dp"
-                    android:alpha="0.6"
-                    android:text="NoSmoke"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <!--        <View-->
-            <!--            android:id="@+id/delimitationBarId"-->
-            <!--            style="@style/Divider"-->
-            <!--            android:layout_height="0.2dp"-->
-            <!--            android:background="@android:color/darker_gray" />-->
-        </com.google.android.material.appbar.AppBarLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/transitions_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:background="@color/white"
         tools:context=".FirstScreenActivity">
-
+<!--        android:background="@color/white"-->
         <!--style="@style/Widget.AppCompat.EditText"-->
-
         <TextView
             android:id="@+id/tvTitleId"
             android:layout_width="wrap_content"
@@ -71,81 +28,63 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_10percent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
         <TextView
             android:id="@+id/tvSubtitleSmoking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:layout_margin="8dp"
             android:text="About your smoking"
-
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percent"
             app:layout_constraintStart_toStartOf="@+id/edtTxtLayoutForCiggsId" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtTxtLayoutForCiggsId"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:hintEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_25percent">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtTxtForCiggarettedId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/greenColorLed"
                 android:hint="@string/how_many_cigarettes_per_day"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 android:textSize="14sp" />
-            <!--        android:ellipsize="start"-->
-            <!--        android:gravity="center_horizontal"-->
+<!--            android:backgroundTint="@color/greenColorLed"-->
         </com.google.android.material.textfield.TextInputLayout>
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtTxtForSavingsId"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            app:hintEnabled="true"
+            android:layout_margin="8dp"
+            style="@style/EditTextCustomTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtTxtLayoutForCiggsId">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/greenColorLed"
                 android:hint="@string/how_much_do_you_spend_per_day"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/confirmBtn"
-            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
+            android:layout_height="48dp"
             android:layout_alignParentBottom="true"
             android:layout_margin="10dp"
-            android:background="@drawable/custom_round_green_color"
-            android:elevation="0dp"
             android:gravity="center"
             android:text="@string/done"
             android:textAllCaps="true"
-            android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
         <TextView
             android:id="@+id/tvThanksId"
             android:layout_width="0dp"
@@ -159,7 +98,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtTxtForSavingsId" />
-
         <TextView
             android:id="@+id/tvAllRightsId"
             android:layout_width="0dp"
@@ -170,9 +108,7 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintStart_toStartOf="@+id/linearLayout2" />
-
-
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -182,7 +118,6 @@
             app:layout_constraintBottom_toTopOf="@+id/confirmBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-
             <TextView
                 android:id="@+id/tvPolicy"
                 android:layout_width="wrap_content"
@@ -192,7 +127,6 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/confirmBtn"
                 app:layout_constraintStart_toStartOf="@+id/guideline_vertical_20percent" />
-
             <TextView
                 android:id="@+id/tvAnd"
                 android:layout_width="wrap_content"
@@ -204,7 +138,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tvPolicy"
                 app:layout_constraintEnd_toStartOf="@+id/tvTerms"
                 app:layout_constraintStart_toEndOf="@+id/tvPolicy" />
-
             <TextView
                 android:id="@+id/tvTerms"
                 android:layout_width="wrap_content"
@@ -213,9 +146,7 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPolicy"
                 app:layout_constraintStart_toEndOf="@+id/tvAnd" />
-        </LinearLayout>
-
-
+        </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_vertical_20percent"
             android:layout_width="wrap_content"
@@ -234,7 +165,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.25" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_vertical_80percent"
             android:layout_width="wrap_content"

@@ -43,7 +43,7 @@ public class LegalActivity extends AppCompatActivity {
     String[] descriptions = new String[] {
             "", "", "", "", "", "version 0.1 (100)"};
 
-    //shared pref
+    //shared preferences
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
@@ -66,17 +66,25 @@ public class LegalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
-        //shared pref
+
+        //shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(LegalActivity.this);
         editor = preferences.edit();
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Settings");
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         titles = getResources().getStringArray(R.array.options_array);
         mListView = findViewById(R.id.list_view);
-        LegalActivity.CustomAdapterListView customAdapterListView = new LegalActivity.CustomAdapterListView(this, titles, descriptions);
+        LegalActivity.CustomAdapterListView customAdapterListView =
+                new LegalActivity.CustomAdapterListView(this, titles, descriptions);
         mListView.setAdapter(customAdapterListView);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Legal");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
@@ -87,7 +95,6 @@ public class LegalActivity extends AppCompatActivity {
     }
 
     class CustomAdapterListView extends BaseAdapter {
-
         String [] titles, descriptions;
         Context context;
         private LayoutInflater inflater=null;
@@ -196,17 +203,20 @@ public class LegalActivity extends AppCompatActivity {
             return view;
         }
     }
+
     public class Holder {
         TextView tv, desc;
     }
-    private void dialogForResetForced(){
+
+    private void dialogForResetForced() {
         new BottomDialog.Builder(this)
                 .setTitle("Your progress will reset permanently!")
                 .setContent("Are you sure ?")
                 .setPositiveText(R.string.YES)
                 .setNegativeText(R.string.NO)
-                .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
+                .setNegativeTextColorResource(android.R.color.white)
+                .setCancelable(false)
                 .onNegative(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(@NonNull BottomDialog bottomDialog) {
@@ -216,10 +226,23 @@ public class LegalActivity extends AppCompatActivity {
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(@NonNull BottomDialog bottomDialog) {
-                        clearAppData();
+                        //TODO: dialog to announce user that his/her progress is reset
+                        new BottomDialog.Builder(LegalActivity.this)
+                                .setTitle("Your progress has been reset!")
+                                .setContent("App will close now.")
+                                .setPositiveText(R.string.OK)
+                                .setPositiveTextColorResource(android.R.color.white)
+                                .setCancelable(false)
+                                .onPositive(new BottomDialog.ButtonCallback() {
+                                    @Override
+                                    public void onClick(@NonNull BottomDialog bottomDialog) {
+                                        clearAppData();
+                                    }
+                                }).show();
                     }
                 }).show();
     }
+
     private void clearAppData() {
         try {
             // clearing app data

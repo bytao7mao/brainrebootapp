@@ -68,14 +68,6 @@ public class ChallengeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_challenge);
 
         relativeLayout = findViewById(R.id.rltvlayout);
-        //TOOLBAR
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Challenges");
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-//        getWindow().setStatusBarColor(ContextCompat.getColor(ChallengeActivity.this, R.color.white));
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(ChallengeActivity.this);
         editor = preferences.edit();

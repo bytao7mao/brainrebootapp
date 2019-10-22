@@ -51,43 +51,12 @@ public class SavingsActivity extends AppCompatActivity {
     static Typeface montSerratSemiBoldTypeface;
     static Typeface montSerratExtraBoldTypeface;
     static Typeface montSerratSimpleBoldTypeface;
-//    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.app_bar_savings);
+        setContentView(R.layout.activity_savings);
         ButterKnife.bind(SavingsActivity.this);
-
-//        getWindow().setStatusBarColor(ContextCompat.getColor(SavingsActivity.this, R.color.white));
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Savings");
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-        //ads
-//        AdView mAdView = findViewById(R.id.adView);
-////        mAdView.setAdUnitId("ca-app-pub-8605805180436473/8417283556");
-////        mAdView.setAdSize(AdSize.BANNER);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
-////        MobileAds.initialize(this, "ca-app-pub-8605805180436473/8417283556");
-//        mInterstitialAd = new InterstitialAd(this);
-//        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-//        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-//        if (mInterstitialAd.isLoaded()) {
-//            mInterstitialAd.show();
-//        } else {
-//            Log.d("TAG", "The interstitial wasn't loaded yet.");
-//        }
-//        mInterstitialAd.setAdListener(new AdListener() {
-//            @Override
-//            public void onAdClosed() {
-//                // Load the next interstitial.
-//                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-//            }
-//
-//        });
 
         //fonts
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -112,27 +81,23 @@ public class SavingsActivity extends AppCompatActivity {
         otherSavingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    editor.putBoolean("saveimg", false);
-                    editor.apply();
-                    otherIntSavings = Integer.parseInt(String.valueOf(etInputEdit.getText()));
-                    finalSum = finalSum + otherIntSavings;
-                    savingsTxt.setText("Total savings: " + finalSum + " $");
-                    Log.d("LOGGTAO", "savings from onClick: " + finalSum);
-                    editor.putLong(SAVINGS_FINAL, finalSum);
-                    long tempLong = otherIntSavings;
-                    editor.putLong("tempLong", tempLong);
-                    editor.apply();
-//                    otherSavingsBtn.setEnabled(false);
-//                    etSavingsLayout.setEnabled(false);
-//                    etSavingsLayout.setInputType(InputType.TYPE_NULL);
-                    otherSavingsBtn.setVisibility(View.GONE);
-                    etSavingsLayout.setVisibility(View.GONE);
-                    titleTxt.setText("Well done!");
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-
+            try {
+                editor.putBoolean("saveimg", false);
+                editor.apply();
+                otherIntSavings = Integer.parseInt(String.valueOf(etInputEdit.getText()));
+                finalSum = finalSum + otherIntSavings;
+                savingsTxt.setText("Total savings: " + finalSum + " $");
+                Log.d("LOGGTAO", "savings from onClick: " + finalSum);
+                editor.putLong(SAVINGS_FINAL, finalSum);
+                long tempLong = otherIntSavings;
+                editor.putLong("tempLong", tempLong);
+                editor.apply();
+                otherSavingsBtn.setVisibility(View.GONE);
+                etSavingsLayout.setVisibility(View.GONE);
+                titleTxt.setText("Well done!");
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
             }
     });
 }

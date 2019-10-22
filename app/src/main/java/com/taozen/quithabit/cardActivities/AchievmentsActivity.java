@@ -71,16 +71,20 @@ public class AchievmentsActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(AchievmentsActivity.this);
         editor = preferences.edit();
 
-        //TOOLBAR
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Achievements");
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
         mListView = findViewById(R.id.list_view);
         CustomAdapterListView customAdapterListView =
                 new CustomAdapterListView(this, titles, daysArray, images, descriptionsArray);
         mListView.setAdapter(customAdapterListView);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Achievements");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override

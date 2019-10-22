@@ -22,6 +22,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -54,12 +55,11 @@ public class FirstScreenActivity extends AppCompatActivity {
     @BindView(R.id.editText) TextInputEditText etForSumPerDay;
     @BindView(R.id.edtTxtLayoutForCiggsId) TextInputLayout etLayForCiggaretesPerDay;
     @BindView(R.id.edtTxtForCiggarettedId) TextInputEditText etForCiggaretesPerDay;
-    @BindView(R.id.confirmBtn) Button btnConfirm;
+    @BindView(R.id.confirmBtn) MaterialButton btnConfirm;
     @BindView(R.id.tvPolicy) TextView tvPolicy;
     @BindView(R.id.tvTerms) TextView tvTerms;
     @BindView(R.id.tvAnd) TextView tvAnd;
     @BindView(R.id.tvSubtitleSmoking) TextView tvSubtitleSmoking;
-
 
     //firstStart bool
     private boolean isFirstStart;
@@ -105,13 +105,6 @@ public class FirstScreenActivity extends AppCompatActivity {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         currency = Currency.getInstance(new Locale("",
                 Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView mTitle =  findViewById(R.id.toolbar_subtitle);
-        mTitle.setTypeface(montSerratSemiBoldTypeface);
-        setSupportActionBar(toolbar);
-
-        //for future if needed
-        //toolbar.setLogo(R.drawable.logowalk);
 
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(FirstScreenActivity.this);
@@ -128,6 +121,8 @@ public class FirstScreenActivity extends AppCompatActivity {
         etLayForSumPerDay.setTypeface(montSerratSemiBoldTypeface);
         etLayForCiggaretesPerDay.setTypeface(montSerratSemiBoldTypeface);
         btnConfirm.setTypeface(montSerratSemiBoldTypeface);
+        btnConfirm.setBackgroundColor(ContextCompat.getColor(FirstScreenActivity.this,
+                R.color.colorPrimary));
 
         assert etForCiggaretesPerDay != null;
         etForCiggaretesPerDay.setInputType(InputType.TYPE_CLASS_NUMBER);
