@@ -1637,7 +1637,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
 //            dialogForReset();
 //            return true;
 //        } else if (ID_LOCAL == R.id.legal) {
-////            final Intent INTENT = new Intent(MainActivity.this, LegalActivity.class);
+////            final Intent INTENT = new Intent(MainActivity.this, OptionsActivity.class);
 ////            startActivity(INTENT);
 //            return true;
 //        }

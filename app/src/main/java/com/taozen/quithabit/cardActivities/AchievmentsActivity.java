@@ -9,7 +9,6 @@ import androidx.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.taozen.quithabit.R;
-import com.taozen.quithabit.options.LegalActivity;
 
 import java.util.Objects;
 

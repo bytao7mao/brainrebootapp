@@ -71,7 +71,7 @@
             android:label="app_intro" />
         <activity android:name=".cardActivities.SavingsActivity" />
         <activity android:name=".cardActivities.ChallengeActivity" />
-        <activity android:name=".options.LegalActivity" />
+        <activity android:name=".options.OptionsActivity" />
 
         <service android:name=".notif.MyFirebaseMessagingService" />
         <service android:name=".notif.MyNewIntentService" />

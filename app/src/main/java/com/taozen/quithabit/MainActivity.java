@@ -54,7 +54,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.taozen.quithabit.cardActivities.AchievmentsActivity;
 import com.taozen.quithabit.cardActivities.SavingsActivity;
-import com.taozen.quithabit.options.LegalActivity;
+import com.taozen.quithabit.options.OptionsActivity;
 import com.taozen.quithabit.utils.MyHttpCoreAndroid;
 import com.taozen.quithabit.utils.NetworkUtils;
 
@@ -1586,7 +1586,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (ID_LOCAL == R.id.options) {
-            final Intent INTENT = new Intent(MainActivity.this, LegalActivity.class);
+            final Intent INTENT = new Intent(MainActivity.this, OptionsActivity.class);
             startActivity(INTENT);
             return true;
         }
@@ -1618,7 +1618,7 @@ public class MainActivity extends AppCompatActivity {
 //            dialogForReset();
 //            return true;
 //        } else if (ID_LOCAL == R.id.legal) {
-////            final Intent INTENT = new Intent(MainActivity.this, LegalActivity.class);
+////            final Intent INTENT = new Intent(MainActivity.this, OptionsActivity.class);
 ////            startActivity(INTENT);
 //            return true;
 //        }

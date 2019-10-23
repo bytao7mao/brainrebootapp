@@ -78,7 +78,7 @@
         <activity android:name=".cardActivities.SavingsActivity"
             android:theme="@style/MaterialThemeNoActionBarW"/>
         <activity android:name=".cardActivities.ChallengeActivity" />
-        <activity android:name=".options.LegalActivity"
+        <activity android:name=".options.OptionsActivity"
             android:theme="@style/MaterialThemeNoActionBarW"/>
 
         <service android:name=".notif.MyFirebaseMessagingService" />
