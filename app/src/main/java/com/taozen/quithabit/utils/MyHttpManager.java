@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 
 public class MyHttpManager {
+    @SuppressWarnings("deprecation")
     public static String getData(String uri){
         AndroidHttpClient androidHttpClient = AndroidHttpClient.newInstance("AndroidAgent");
         HttpGet request = new HttpGet(uri);

@@ -5,6 +5,7 @@ import android.view.View;
 
 public class Screenshoot {
 
+    @SuppressWarnings("deprecation")
     public static Bitmap takescreenshot(View v) {
         v.setDrawingCacheEnabled(true);
         v.buildDrawingCache(true);

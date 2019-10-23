@@ -5,26 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/grey_50"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-<!--    android:background="@color/white"-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        tools:context=".MainActivity">
-        <!--topLayout START-->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/topLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="8dp"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
+        <!--    android:background="@color/white"-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            tools:context=".MainActivity">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_mainID"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -39,8 +29,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerTop"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_50">
+                    android:layout_height="match_parent">
+                    <!--                    android:background="@color/grey_50"-->
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_10percentCard"
@@ -117,10 +107,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_idea"
-                        app:layout_constraintBottom_toBottomOf="@+id/tipofthedayTxtViewId"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percentCard"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percent_inner"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tipofthedayTxtViewId" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tipofthedayTxtViewId"
@@ -128,8 +118,9 @@
                         android:layout_width="240dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:paddingTop="4dp"
                         android:text="@string/example_of_tip_of_the_day"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percentCard"
                         app:layout_constraintEnd_toEndOf="@+id/counterImageId"
                         app:layout_constraintStart_toStartOf="@+id/counterImageId"
@@ -175,10 +166,11 @@
                         android:id="@+id/counterImageId"
                         android:layout_width="200sp"
                         android:layout_height="200sp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
                         android:layout_marginTop="8dp"
-                        android:src="@drawable/counterwhitedefault"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@drawable/counterwhitelast2"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_85percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/lightbulbForTip"
@@ -187,15 +179,12 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/counterTextId"
-                        style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
                         android:layout_margin="8dp"
                         android:alpha="0.9"
                         android:text="25"
-                        android:textSize="58sp"
+                        android:textSize="62sp"
                         app:layout_constraintBottom_toBottomOf="@+id/counterImageId"
                         app:layout_constraintEnd_toEndOf="@+id/counterImageId"
                         app:layout_constraintStart_toStartOf="@+id/counterImageId"
@@ -206,7 +195,6 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:layout_margin="8dp"
                         android:alpha="0.8"
                         android:text="@string/non_smoker_since"
@@ -271,95 +259,95 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/targetImageId" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--topLayout END-->
+            </com.google.android.material.card.MaterialCardView>
+            <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!--topLayout END-->
 
-<!--        <View-->
-<!--            android:id="@+id/delimitationBarIdFirst"-->
-<!--            style="@style/Divider"-->
-<!--            android:layout_height="0.2dp"-->
-<!--            android:alpha="0.5"-->
-<!--            android:background="@android:color/darker_gray"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/topLayout"/>-->
+            <!--        <View-->
+            <!--            android:id="@+id/delimitationBarIdFirst"-->
+            <!--            style="@style/Divider"-->
+            <!--            android:layout_height="0.2dp"-->
+            <!--            android:alpha="0.5"-->
+            <!--            android:background="@android:color/darker_gray"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"-->
+            <!--            app:layout_constraintTop_toBottomOf="@id/topLayout"/>-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutCheckIn"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:elevation="2dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:background="@drawable/custom_round_green_color"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_view_mainID"
-            app:layout_constraintBottom_toTopOf="@id/card_view_Middle">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_vertical_15percentCheckIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.15" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/checkInImgId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/ic_running"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percentCheckIn"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutCheckIn"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:elevation="2dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/custom_round_green_color"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/subTextCheckInId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/check_in_now"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15percentCheckIn"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@id/card_view_mainID"
+                app:layout_constraintBottom_toTopOf="@id/card_view_Middle">
 
-<!--        <View-->
-<!--            android:id="@+id/delimitationBarIdSecond"-->
-<!--            style="@style/Divider"-->
-<!--            android:layout_height="0.2dp"-->
-<!--            android:alpha="0.5"-->
-<!--            android:background="@android:color/darker_gray"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/middleLayout"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/layoutCheckIn"/>-->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vertical_15percentCheckIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.15" />
 
-        <!--middleLayout START - percent-->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/middleLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/layoutCheckIn"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/bottomLayout">-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/checkInImgId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/ic_running"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percentCheckIn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
+                <TextView
+                    android:id="@+id/subTextCheckInId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/check_in_now"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15percentCheckIn"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--        <View-->
+            <!--            android:id="@+id/delimitationBarIdSecond"-->
+            <!--            style="@style/Divider"-->
+            <!--            android:layout_height="0.2dp"-->
+            <!--            android:alpha="0.5"-->
+            <!--            android:background="@android:color/darker_gray"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintBottom_toTopOf="@id/middleLayout"-->
+            <!--            app:layout_constraintTop_toBottomOf="@id/layoutCheckIn"/>-->
+
+            <!--middleLayout START - percent-->
+            <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--            android:id="@+id/middleLayout"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:layout_marginStart="8dp"-->
+            <!--            android:layout_marginEnd="8dp"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/layoutCheckIn"-->
+            <!--            app:layout_constraintBottom_toTopOf="@id/bottomLayout">-->
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Middle"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
@@ -376,9 +364,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerMiddle"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_50">
-
+                    android:layout_height="match_parent">
+                    <!--                    android:background="@color/grey_50"-->
                     <TextView
                         android:id="@+id/appCompatTextViewPercentViewsTitle"
                         style="@style/TextColorBlack"
@@ -633,24 +620,24 @@
                         app:layout_constraintTop_toTopOf="@+id/progress_bar_gums"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--middleLayout END-->
+            </com.google.android.material.card.MaterialCardView>
+            <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!--middleLayout END-->
 
-        <!--bottomLayout START-->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/bottomLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/card_view_Middle"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/bottomLayoutAchievments">-->
+            <!--bottomLayout START-->
+            <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--            android:id="@+id/bottomLayout"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:layout_marginStart="8dp"-->
+            <!--            android:layout_marginEnd="8dp"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@id/card_view_Middle"-->
+            <!--            app:layout_constraintBottom_toTopOf="@id/bottomLayoutAchievments">-->
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -667,8 +654,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerBottom"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_50">
+                    android:layout_height="match_parent">
+                    <!--                    android:background="@color/grey_50"-->
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_15percentBottom"
@@ -806,24 +793,24 @@
                         app:layout_constraintVertical_bias="0.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--BottomLayout END-->
+            </com.google.android.material.card.MaterialCardView>
+            <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!--BottomLayout END-->
 
-        <!--bottomLayoutAchieve START-->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/bottomLayoutAchievments"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/bottomLayoutSavings">-->
+            <!--bottomLayoutAchieve START-->
+            <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--            android:id="@+id/bottomLayoutAchievments"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:layout_marginStart="8dp"-->
+            <!--            android:layout_marginEnd="8dp"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom"-->
+            <!--            app:layout_constraintBottom_toTopOf="@id/bottomLayoutSavings">-->
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom_Achievments"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -1004,24 +991,24 @@
                         app:layout_constraintTop_toBottomOf="@+id/rankTwoId" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--BottomLayoutAchieve END-->
+            </com.google.android.material.card.MaterialCardView>
+            <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!--BottomLayoutAchieve END-->
 
-        <!--bottomLayoutAchieve START-->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/bottomLayoutSavings"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom_Achievments"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout">-->
+            <!--bottomLayoutAchieve START-->
+            <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--            android:id="@+id/bottomLayoutSavings"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:layout_marginStart="8dp"-->
+            <!--            android:layout_marginEnd="8dp"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom_Achievments"-->
+            <!--            app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout">-->
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom_Saving"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -1170,80 +1157,80 @@
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30savingBottom" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--BottomLayoutSavings END-->
+            </com.google.android.material.card.MaterialCardView>
+            <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!--BottomLayoutSavings END-->
 
-<!--        <View-->
-<!--            android:id="@+id/delimitationBarIdThird"-->
-<!--            style="@style/Divider"-->
-<!--            android:layout_height="0.2dp"-->
-<!--            android:alpha="0.5"-->
-<!--            android:background="@android:color/darker_gray"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/bottomLayoutSavings"/>-->
+            <!--        <View-->
+            <!--            android:id="@+id/delimitationBarIdThird"-->
+            <!--            style="@style/Divider"-->
+            <!--            android:layout_height="0.2dp"-->
+            <!--            android:alpha="0.5"-->
+            <!--            android:background="@android:color/darker_gray"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout"-->
+            <!--            app:layout_constraintTop_toBottomOf="@id/bottomLayoutSavings"/>-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/InsteadOfLayout"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_margin="8dp"
-            android:elevation="2dp"
-            android:background="@drawable/custom_round_green_color"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_view_Bottom_Saving">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_vertical_15InsteadOf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.15" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/InsteadOfImgId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/ic_hot_air_balloon"
-                android:padding="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15InsteadOf"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/subTextInsteadOfId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/unlimited"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/InsteadOfLayout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:elevation="2dp"
+                android:background="@drawable/custom_round_green_color"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15InsteadOf"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view_Bottom_Saving">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vertical_15InsteadOf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.15" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/InsteadOfImgId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/ic_hot_air_balloon"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15InsteadOf"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/subTextInsteadOfId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unlimited"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15InsteadOf"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--        <View-->
+            <!--            android:id="@+id/delimitationBarIdLast"-->
+            <!--            style="@style/Divider"-->
+            <!--            android:layout_height="0.2dp"-->
+            <!--            android:layout_marginBottom="8dp"-->
+            <!--            android:alpha="0.5"-->
+            <!--            android:background="@android:color/darker_gray"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@id/InsteadOfLayout" />-->
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--        <View-->
-<!--            android:id="@+id/delimitationBarIdLast"-->
-<!--            style="@style/Divider"-->
-<!--            android:layout_height="0.2dp"-->
-<!--            android:layout_marginBottom="8dp"-->
-<!--            android:alpha="0.5"-->
-<!--            android:background="@android:color/darker_gray"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/InsteadOfLayout" />-->
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

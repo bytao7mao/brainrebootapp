@@ -47,6 +47,8 @@ import androidx.preference.PreferenceManager;
 import com.anupcowkur.herebedragons.SideEffect;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
@@ -167,18 +169,18 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.layoutCheckIn) ConstraintLayout checkInButton;
 
     //CardViews
-    @BindView(R.id.card_view_Bottom) CardView progressCardView;
-    @BindView(R.id.card_view_Bottom_Saving) CardView savingsCardView;
-    @BindView(R.id.card_view_mainID) CardView cardViewMain;
-    @BindView(R.id.card_view_Bottom_Achievments) CardView achievementRanksCard;
-    @BindView(R.id.card_view_Middle) CardView upperProgressPercentsCard;
+    @BindView(R.id.card_view_Bottom) MaterialCardView progressCardView;
+    @BindView(R.id.card_view_Bottom_Saving) MaterialCardView savingsCardView;
+    @BindView(R.id.card_view_mainID) MaterialCardView cardViewMain;
+    @BindView(R.id.card_view_Bottom_Achievments) MaterialCardView achievementRanksCard;
+    @BindView(R.id.card_view_Middle) MaterialCardView upperProgressPercentsCard;
 
     //TextViews
     @BindView(R.id.YourQDay) TextView YourQDay;
     @BindView(R.id.exploreAchievementId) MaterialTextView TvExploreAchievement;
     @BindView(R.id.exploreSavingsId) MaterialTextView TvExploreSavings;
     @BindView(R.id.rank_master) TextView rankMasterTxt;
-    @BindView(R.id.counterTextId) TextView counterText;
+    @BindView(R.id.counterTextId) MaterialTextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
     @BindView(R.id.txtProgressIdForBreath) TextView txtProgressForBreath;
     @BindView(R.id.txtProgressIdForFatigue) TextView txtProgressForFatigue;
@@ -282,6 +284,13 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
+        counterImgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkInButton.callOnClick();
+            }
+        });
+
         shareProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -338,7 +347,12 @@ public class MainActivity extends AppCompatActivity {
         final Date DATE = new Date();
         final Calendar CALENDAR = GregorianCalendar.getInstance();
         CALENDAR.setTime(DATE);
+        //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
+        //to 24 to be able to make the calculation
+        //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
         HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
+        HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
+        Log.d("DAYZEN2", "HOUR? " + HOUR_OF_DAYLIGHT);
         setTheHourOfFirstLaunch(CALENDAR);
         //leave it for pay version
 //        setBackgroundForDaylightOrNight();
@@ -778,7 +792,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     //SHOW FANCY TOAST WITH CONGRATS
                     //[END OF ELSE IFS DIALOGS]
-                    checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
 //                    checkInButton.setClickable(false);
                 }
 
@@ -826,6 +839,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setPositiveButton(getString(R.string.YES), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 setCheckInText();
+                checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
                 if (counter == ZERO) {
                     savings = preferences.getLong("taoz10", -10);
                 }
@@ -884,6 +898,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setNegativeButton(getString(R.string.NO), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 try {
+                    checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
                     //get time of relapse and put it into arraylist to send in logs activity
                     final Calendar CALENDAR_ON_CLICK = Calendar.getInstance();
                     CALENDAR_ON_CLICK.setTimeZone(TimeZone.getDefault());
@@ -1385,6 +1400,7 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void greenCondition() {
         try {
+            HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, ZERO);
             }
@@ -1397,17 +1413,16 @@ public class MainActivity extends AppCompatActivity {
             Log.d(DAYZEN, "DAY OF CLICK " + DAY_OF_CLICK
                     + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
                     " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
+            //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
+            //to 24 to be able to make the calculation
+            //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
+            HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
             if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+ONE)) {
                 //reset instead of smoking
                 editor.putInt("instead", 0);
                 editor.apply();
                 insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_green_color));
                 insteadOfLayout.setClickable(true);
-                //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
-                //to 24 to be able to make the calculation
-                //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
-                HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
-
                 if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
                     checkInButton.setBackground(getDrawable(R.drawable.custom_round_green_color));
                     checkInButton.setClickable(true);

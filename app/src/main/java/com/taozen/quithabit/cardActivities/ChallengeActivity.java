@@ -39,7 +39,6 @@ public class ChallengeActivity extends AppCompatActivity {
     public static final int ONE_THOUSAND = 1_000;
     private static final int COUNT_DOWN_INTERVAL = ONE_THOUSAND;
 
-
     private long START_TIME_IN_MILLIS = MILLIS_IN_MINUTE;
     private TextView mTextViewCountDown;
     private Button mButtonStartPause;
