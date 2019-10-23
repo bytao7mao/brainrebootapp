@@ -9,11 +9,13 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 public class NetworkUtils {
 
     public static boolean isConnected(@NonNull Context context) {
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        NetworkInfo networkInfo = Objects.requireNonNull(connMgr).getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnected());
     }
 
@@ -27,12 +29,7 @@ public class NetworkUtils {
 
     private static boolean isConnected(@NonNull Context context, int type) {
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            NetworkInfo networkInfo = connMgr.getNetworkInfo(type);
-            return networkInfo != null && networkInfo.isConnected();
-        } else {
-            return isConnected(connMgr, type);
-        }
+        return isConnected(Objects.requireNonNull(connMgr), type);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

@@ -11,30 +11,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
         tools:context=".MainActivity">
         <!--topLayout START-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/topLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintBottom_toTopOf="@id/delimitationBarIdFirst"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/topLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_mainID"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:cardElevation="2dp"
+                app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/topLayout">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerTop"
@@ -140,7 +140,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:background="@drawable/ic_share_black_24dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_share_black_24dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_10percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_90percentCard"
@@ -182,7 +185,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tipofthedayTxtViewId"
                         app:layout_constraintVertical_bias="0.3" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/counterTextId"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
@@ -269,34 +272,35 @@
                         app:layout_constraintTop_toTopOf="@+id/targetImageId" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <!--topLayout END-->
 
-        <View
-            android:id="@+id/delimitationBarIdFirst"
-            style="@style/Divider"
-            android:layout_height="0.2dp"
-            android:layout_marginTop="5dp"
-            android:alpha="0.5"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"
-            app:layout_constraintTop_toBottomOf="@id/topLayout"/>
+<!--        <View-->
+<!--            android:id="@+id/delimitationBarIdFirst"-->
+<!--            style="@style/Divider"-->
+<!--            android:layout_height="0.2dp"-->
+<!--            android:alpha="0.5"-->
+<!--            android:background="@android:color/darker_gray"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/topLayout"/>-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutCheckIn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_margin="5dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:elevation="2dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/custom_round_green_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/delimitationBarIdFirst"
-            app:layout_constraintBottom_toTopOf="@id/delimitationBarIdSecond">
+            app:layout_constraintTop_toBottomOf="@id/card_view_mainID"
+            app:layout_constraintBottom_toTopOf="@id/card_view_Middle">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_vertical_15percentCheckIn"
@@ -331,40 +335,43 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/delimitationBarIdSecond"
-            style="@style/Divider"
-            android:layout_height="0.2dp"
-            android:alpha="0.5"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/middleLayout"
-            app:layout_constraintTop_toBottomOf="@id/layoutCheckIn"/>
+<!--        <View-->
+<!--            android:id="@+id/delimitationBarIdSecond"-->
+<!--            style="@style/Divider"-->
+<!--            android:layout_height="0.2dp"-->
+<!--            android:alpha="0.5"-->
+<!--            android:background="@android:color/darker_gray"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/middleLayout"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/layoutCheckIn"/>-->
 
         <!--middleLayout START - percent-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/middleLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/delimitationBarIdSecond"
-            app:layout_constraintBottom_toTopOf="@id/bottomLayout">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/middleLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/layoutCheckIn"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/bottomLayout">-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_Middle"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/middleLayout">
+                app:layout_constraintTop_toBottomOf="@+id/layoutCheckIn"
+                app:layout_constraintBottom_toTopOf="@id/card_view_Bottom">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerMiddle"
@@ -627,32 +634,35 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <!--middleLayout END-->
 
         <!--bottomLayout START-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottomLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/delimitationBarIdSecond"
-            app:layout_constraintBottom_toTopOf="@id/bottomLayoutAchievments">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/bottomLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/card_view_Middle"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/bottomLayoutAchievments">-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_Bottom"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottomLayout">
+                app:layout_constraintTop_toBottomOf="@id/card_view_Middle"
+                app:layout_constraintBottom_toTopOf="@id/card_view_Bottom_Achievments">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerBottom"
@@ -728,7 +738,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:background="@drawable/ic_share_black_24dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_share_black_24dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30percentBottom"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_90percentBottom"
@@ -739,7 +752,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
+                        android:alpha="0.6"
                         android:text="Q! Day: "
                         android:textSize="14sp"
                         app:layout_constraintBottom_toTopOf="@+id/YourProgressIdCigaretes"
@@ -754,7 +767,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
+                        android:alpha="0.6"
                         android:text="example 1"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toTopOf="@+id/YourHighestStreakId"
@@ -767,7 +780,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
+                        android:alpha="0.6"
                         android:text="example 2"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -782,7 +795,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
+                        android:alpha="0.6"
                         android:text="example 3"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -794,30 +807,35 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <!--BottomLayout END-->
 
         <!--bottomLayoutAchieve START-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottomLayoutAchievments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottomLayout"
-            app:layout_constraintBottom_toTopOf="@id/bottomLayoutSavings">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/bottomLayoutAchievments"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/bottomLayoutSavings">-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_Bottom_Achievments"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottomLayoutAchievments">
+                app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom"
+                app:layout_constraintBottom_toTopOf="@id/card_view_Bottom_Saving">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerBottomAchieve"
@@ -914,7 +932,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:background="@drawable/ic_share_black_24dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_share_black_24dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30achieveBottom"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_90achieveBottom"
@@ -953,26 +974,27 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_75achieveBottom"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_20achieveBottom" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/exploreAchievementId"
-                        style="@style/TextColorBlack"
+                        android:textColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
                         android:padding="8dp"
+                        android:clickable="true"
                         android:text="@string/explore"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_20achieveBottom"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatImageViewAchiev" />
+                        app:layout_constraintTop_toBottomOf="@+id/appCompatImageViewAchiev"
+                        android:focusable="true" />
 
                     <TextView
                         android:id="@+id/rank_master"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|bottom"
-                        android:alpha="0.8"
+                        android:alpha="0.6"
                         android:text="@string/rank_master"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -983,31 +1005,35 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <!--BottomLayoutAchieve END-->
 
         <!--bottomLayoutAchieve START-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottomLayoutSavings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottomLayoutAchievments"
-            app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/bottomLayoutSavings"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom_Achievments"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout">-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view_Bottom_Saving"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottomLayoutSavings">
+                app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom_Achievments"
+                app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerBottomSaving"
@@ -1104,21 +1130,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:background="@drawable/ic_share_black_24dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_share_black_24dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30savingBottom"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_90savingBottom"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/exploreSavingsId"
-                        style="@style/TextColorBlack"
+                        android:textColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
                         android:padding="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:text="@string/explore"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_20savingBottom"
                         app:layout_constraintStart_toStartOf="parent"
@@ -1129,7 +1160,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.8"
+                        android:alpha="0.6"
                         android:text="Example of savings"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90savingBottom"
@@ -1140,7 +1171,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <!--BottomLayoutSavings END-->
 
 <!--        <View-->
@@ -1158,15 +1189,16 @@
             android:id="@+id/InsteadOfLayout"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
+            android:elevation="2dp"
+            android:background="@drawable/custom_round_green_color"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:background="@drawable/custom_round_green_color"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bottomLayoutSavings"
-            app:layout_constraintBottom_toTopOf="@id/delimitationBarIdLast">
+            app:layout_constraintTop_toBottomOf="@id/card_view_Bottom_Saving">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_vertical_15InsteadOf"
@@ -1202,18 +1234,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/delimitationBarIdLast"
-            style="@style/Divider"
-            android:layout_height="0.2dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:alpha="0.5"
-            android:background="@android:color/darker_gray"
-            android:paddingTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/InsteadOfLayout" />
+<!--        <View-->
+<!--            android:id="@+id/delimitationBarIdLast"-->
+<!--            style="@style/Divider"-->
+<!--            android:layout_height="0.2dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:alpha="0.5"-->
+<!--            android:background="@android:color/darker_gray"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/InsteadOfLayout" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

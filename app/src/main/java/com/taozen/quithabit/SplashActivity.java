@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -41,6 +42,7 @@ import static com.taozen.quithabit.MainActivity.ZERO;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
+import static com.taozen.quithabit.utils.LocaleUtils.getSystemLocale;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -171,10 +173,14 @@ public class SplashActivity extends AppCompatActivity {
                 final JsonElement ROOT_NODE = JSON_PARSER.parse(CONTENT_LOCAL);
                 final JsonObject DETAILS_LOCAL = ROOT_NODE.getAsJsonObject();
                 final JsonElement NAME_ELEMENT_NODE;
-                //Log.d(TAG, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
-                final Locale locale = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-                        ? getResources().getConfiguration().getLocales().get(ZERO)
-                        : getResources().getConfiguration().locale;
+                //Log.d(TAG, "Language is: " + LocaleUtils.getDefault().getDisplayLanguage());//get language like romana
+                final Locale locale;
+                //version api 23 higher or equal
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    locale = getResources().getConfiguration().getLocales().get(0);
+                } else {
+                    locale = getResources().getConfiguration().locale;
+                }
                 //get initials like: RO/US/EN/FR
                 final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
                 //get quote from ro if user is ro, else get default quotes

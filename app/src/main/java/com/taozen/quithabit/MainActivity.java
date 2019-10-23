@@ -49,6 +49,7 @@ import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -174,8 +175,8 @@ public class MainActivity extends AppCompatActivity {
 
     //TextViews
     @BindView(R.id.YourQDay) TextView YourQDay;
-    @BindView(R.id.exploreAchievementId) TextView exploreAId;
-    @BindView(R.id.exploreSavingsId) TextView exploreSId;
+    @BindView(R.id.exploreAchievementId) MaterialTextView TvExploreAchievement;
+    @BindView(R.id.exploreSavingsId) MaterialTextView TvExploreSavings;
     @BindView(R.id.rank_master) TextView rankMasterTxt;
     @BindView(R.id.counterTextId) TextView counterText;
     @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
@@ -359,11 +360,11 @@ public class MainActivity extends AppCompatActivity {
                 createBlendModeColorFilterCompat(
                         R.color.colorPrimaryDark, BlendModeCompat.SRC_ATOP));
 
-        progressCardView.setCardElevation(ZERO);
-        savingsCardView.setCardElevation(ZERO);
-        cardViewMain.setCardElevation(ZERO);
-        achievementRanksCard.setCardElevation(ZERO);
-        upperProgressPercentsCard.setCardElevation(ZERO);
+//        progressCardView.setCardElevation(ZERO);
+//        savingsCardView.setCardElevation(ZERO);
+//        cardViewMain.setCardElevation(ZERO);
+//        achievementRanksCard.setCardElevation(ZERO);
+//        upperProgressPercentsCard.setCardElevation(ZERO);
 
         if (preferences.contains("firstsave")){
             firstSave = preferences.getLong("firstsave",ZERO);
@@ -396,9 +397,9 @@ public class MainActivity extends AppCompatActivity {
                                         getApplicationContext(), R.color.white)));
 
 //        tipofthedayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
-//        exploreAId.setTypeface(montSerratMediumTypeface);
-//        exploreSId.setTypeface(montSerratMediumTypeface);
-//        counterText.setTypeface(montSerratBoldTypeface);
+//        TvExploreAchievement.setTypeface(montSerratMediumTypeface);
+//        TvExploreSavings.setTypeface(montSerratMediumTypeface);
+        counterText.setTypeface(montSerratBoldTypeface);
 //        remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
 //        targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
 //        txtProgressForEnergyLevels.setTypeface(montSerratBoldTypeface);
@@ -441,14 +442,14 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean("saveimg", true);
             editor.apply();
         }
-        exploreAId.setOnClickListener(new View.OnClickListener() {
+        TvExploreAchievement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent INTENT = new Intent(MainActivity.this, AchievmentsActivity.class);
                 startActivity(INTENT);
             }
         });//achievementRanksCard[END]
-        exploreSId.setOnClickListener(new View.OnClickListener() {
+        TvExploreSavings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent INTENT = new Intent(MainActivity.this, SavingsActivity.class);
@@ -876,8 +877,6 @@ public class MainActivity extends AppCompatActivity {
                 //var 1 - dialog after answer
                 positiveDialogAfterPassDay();
                 //var 2 - custom toast after answer
-//                        FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-//                                    TWENTY, FancyToast.SUCCESS, true).show();
                 estabilishHighestRecordForCounter();
                 showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
             }
@@ -1000,8 +999,6 @@ public class MainActivity extends AppCompatActivity {
                 counterText.setText(String.valueOf(counter));
                 setTargetDays();
                 //var 2 - custom toast after answer
-//                FancyToast.makeText(MainActivity.this, "Congratulations! One day healthier than yesterday!",
-//                                    TWENTY, FancyToast.SUCCESS, true).show();
                 estabilishHighestRecordForCounter();
                 showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
                 //var 1 - dialog after answer
@@ -1652,11 +1649,7 @@ public class MainActivity extends AppCompatActivity {
 ////                Objects.requireNonNull(connManager).getActiveNetworkInfo();
 ////        return networkInfo != null && networkInfo.isConnected();
         boolean connected;
-        if (NetworkUtils.isConnected(getApplicationContext())){
-            connected = true;
-        } else {
-            connected = false;
-        }
+        connected = NetworkUtils.isConnected(getApplicationContext());
         return connected;
     }//isOnline[END]
 
@@ -1736,10 +1729,14 @@ public class MainActivity extends AppCompatActivity {
                 final JsonElement ROOT_NODE = JSON_PARSER.parse(CONTENT_LOCAL);
                 final JsonObject DETAILS_LOCAL = ROOT_NODE.getAsJsonObject();
                 final JsonElement NAME_ELEMENT_NODE;
-                //Log.d(TAG, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
-                final Locale locale = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-                                ? getResources().getConfiguration().getLocales().get(ZERO)
-                                : getResources().getConfiguration().locale;
+                //Log.d(TAG, "Language is: " + LocaleUtils.getDefault().getDisplayLanguage());//get language like romana
+                final Locale locale;
+                //version api 23 higher or equal
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    locale = getResources().getConfiguration().getLocales().get(0);
+                } else {
+                    locale = getResources().getConfiguration().locale;
+                }
                 //get initials like: RO/US/EN/FR
                 final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
                 Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING);
@@ -1942,8 +1939,6 @@ public class MainActivity extends AppCompatActivity {
             final String LAST_STREAK = preferences.getString(RANK, UNRANKED);
             final String RANK_LOCAL = getString(R.string.rank_master, LAST_STREAK);
             rankMasterTxt.setText(RANK_LOCAL);
-            rankMasterTxt.setBackground(ContextCompat.getDrawable(getApplicationContext(),
-                    R.drawable.custom_text_round_bg));
 
             if (counter == ZERO) {
                 TV_USER_CIGARETTES_PROGRESS.setText(R.string.cig_press_leaf);
@@ -2025,6 +2020,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     private void insteadOfSmokingNegative() {
         new BottomDialog.Builder(this)
                 .setTitle("Please check again tomorrow!")

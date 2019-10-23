@@ -207,27 +207,27 @@ public class ChallengeActivity extends AppCompatActivity {
         int minutes = (int) ((mTimeLeftInMillis / ONE_THOUSAND) / SIXTY) - hours * SIXTY;
         String timeLeftFormatted;
         if (months == 1) {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = months\n\n%02d = weeks\n\n%02d = daysArray\n\n%02d:%02d:%02d", months,
+//            timeLeftFormatted = String.format(LocaleUtils.getDefault(), "%02d = months\n\n%02d = weeks\n\n%02d = daysArray\n\n%02d:%02d:%02d", months,
 //                    weeks, daysArray, hours, minutes, seconds);
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d = months", months);
         } else if (weeks >= 1) {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = weeks\n\n%02d = daysArray\n\n%02d:%02d:%02d", weeks,
+//            timeLeftFormatted = String.format(LocaleUtils.getDefault(), "%02d = weeks\n\n%02d = daysArray\n\n%02d:%02d:%02d", weeks,
 //                    daysArray, hours, minutes, seconds);
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d = weeks", weeks);
         } else if (days >= 1) {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = daysArray\n\n%02d:%02d:%02d", daysArray,
+//            timeLeftFormatted = String.format(LocaleUtils.getDefault(), "%02d = daysArray\n\n%02d:%02d:%02d", daysArray,
 //                    hours, minutes, seconds);
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d = daysArray", days);
         } else if (hours >= 1) {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = hours\n\n%02d:%02d:%02d", hours,
+//            timeLeftFormatted = String.format(LocaleUtils.getDefault(), "%02d = hours\n\n%02d:%02d:%02d", hours,
 //                    hours, minutes, seconds);
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d = hours", hours);
         } else if (minutes >= 1) {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = minutes\n\n%02d:%02d:%02d", minutes,
+//            timeLeftFormatted = String.format(LocaleUtils.getDefault(), "%02d = minutes\n\n%02d:%02d:%02d", minutes,
 //                    hours, minutes, seconds);
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d = minutes", minutes);
         } else {
-//            timeLeftFormatted = String.format(Locale.getDefault(), "%02d = seconds\n\n%02d:%02d:%02d", seconds,
+//            timeLeftFormatted = String.format(LocaleUtils.getDefault(), "%02d = seconds\n\n%02d:%02d:%02d", seconds,
 //                    hours, minutes, seconds);
             timeLeftFormatted = String.format(Locale.getDefault(), "%02d = seconds", seconds);
         }

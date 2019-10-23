@@ -50,16 +50,16 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
     ListView mListView;
 
     //fonts
-    static Typeface montSerratBoldTypeface;
-    static Typeface montSerratItallicTypeface;
-    static Typeface montSerratLightTypeface;
-    static Typeface montSerratMediumTypeface;
-    static Typeface montSerratSemiBoldTypeface;
-    static Typeface montSerratExtraBoldTypeface;
-    static Typeface montSerratSimpleBoldTypeface;
-    static Typeface montSerratThinItalicTypeface;
-    static Typeface montSerratMediumItalicTypeface;
-    static Typeface montSerratSemiBoldItalicTypeface;
+//    static Typeface montSerratBoldTypeface;
+//    static Typeface montSerratItallicTypeface;
+//    static Typeface montSerratLightTypeface;
+//    static Typeface montSerratMediumTypeface;
+//    static Typeface montSerratSemiBoldTypeface;
+//    static Typeface montSerratExtraBoldTypeface;
+//    static Typeface montSerratSimpleBoldTypeface;
+//    static Typeface montSerratThinItalicTypeface;
+//    static Typeface montSerratMediumItalicTypeface;
+//    static Typeface montSerratSemiBoldItalicTypeface;
 
     @SuppressLint("CommitPrefEdits")
     @Override
@@ -67,7 +67,7 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
-//        shared preferences
+        //shared preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(OptionsActivity.this);
         editor = preferences.edit();
         titles = getResources().getStringArray(R.array.options_array);

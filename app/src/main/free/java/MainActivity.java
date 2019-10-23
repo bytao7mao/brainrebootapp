@@ -1752,7 +1752,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
                 final JsonElement ROOT_NODE = JSON_PARSER.parse(CONTENT_LOCAL);
                 final JsonObject DETAILS_LOCAL = ROOT_NODE.getAsJsonObject();
                 final JsonElement NAME_ELEMENT_NODE;
-                //Log.d(TAG, "Language is: " + Locale.getDefault().getDisplayLanguage());//get language like romana
+                //Log.d(TAG, "Language is: " + LocaleUtils.getDefault().getDisplayLanguage());//get language like romana
                 final Locale locale = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
                                 ? getResources().getConfiguration().getLocales().get(ZERO)
                                 : getResources().getConfiguration().locale;
