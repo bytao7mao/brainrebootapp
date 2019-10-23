@@ -62,6 +62,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -172,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.card_view_Middle) CardView upperProgressPercentsCard;
 
     //TextViews
+    @BindView(R.id.YourQDay) TextView YourQDay;
     @BindView(R.id.exploreAchievementId) TextView exploreAId;
     @BindView(R.id.exploreSavingsId) TextView exploreSId;
     @BindView(R.id.rank_master) TextView rankMasterTxt;
@@ -556,6 +558,18 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //recent refactor that works fine
             HOUR_OF_FIRSTLAUNCH = (CALENDAR.get(Calendar.HOUR_OF_DAY)==ZERO) ? 24 : CALENDAR.get(Calendar.HOUR_OF_DAY);
+            final int MONTH_CALENDAR = CALENDAR.get(Calendar.MONTH)+1;
+            final int MONTH_LOCALDATE;
+            final String MONTH_STRING;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                MONTH_LOCALDATE = LocalDate.now().getMonthValue();
+                MONTH_STRING = ""+LocalDate.now().getMonth();
+            } else {
+                MONTH_LOCALDATE = MONTH_CALENDAR;
+                MONTH_STRING = ""+MONTH_CALENDAR;
+            }
+            editor.putString("qday", CALENDAR.get(Calendar.DAY_OF_MONTH)
+                    +"-" + MONTH_STRING + "-" + CALENDAR.get(Calendar.YEAR));
             editor.putInt(HOUR_OF_FIRSLAUNCH_SP, HOUR_OF_FIRSTLAUNCH);
             editor.apply();
             //TODO: to implement later version
@@ -647,6 +661,20 @@ public class MainActivity extends AppCompatActivity {
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(BottomDialog dialog) {
+                        final Calendar CALENDAR = Calendar.getInstance();
+                        CALENDAR.setTimeZone(TimeZone.getDefault());
+                        final int MONTH_CALENDAR = CALENDAR.get(Calendar.MONTH)+1;
+                        final int MONTH_LOCALDATE;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            MONTH_LOCALDATE = LocalDate.now().getMonthValue();
+                        } else {
+                            MONTH_LOCALDATE = MONTH_CALENDAR;
+                        }
+                        editor.putString("qday", CALENDAR.get(Calendar.DAY_OF_MONTH)
+                                +"-" + MONTH_LOCALDATE + "-" + CALENDAR.get(Calendar.YEAR));
+                        editor.apply();
+                        YourQDay.setText(getResources().getString(
+                                R.string.qday,preferences.getString("qday", "none")));
                     }
                 }).show();
     }
@@ -1451,8 +1479,8 @@ public class MainActivity extends AppCompatActivity {
 
             //fatigue levels
             if (counter >= TEN-1 && counter < THIRTY) {
-                txtProgressForFatigue.setText(FIVE + "%");
-                progressBarFatigueLevel.setProgress(FIVE);
+                txtProgressForFatigue.setText(TEN + "%");
+                progressBarFatigueLevel.setProgress(TEN);
             } else if (counter > THIRTY-ONE && counter < SIXTY) {
                 txtProgressForFatigue.setText(FIFTEEN + "%");
                 progressBarFatigueLevel.setProgress(FIFTEEN);
@@ -1469,8 +1497,8 @@ public class MainActivity extends AppCompatActivity {
                 txtProgressForFatigue.setText(ONE_HUNDRED + "%");
                 progressBarFatigueLevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForFatigue.setText(TWO + "%");
-                progressBarFatigueLevel.setProgress(TWO);
+                txtProgressForFatigue.setText(FIVE + "%");
+                progressBarFatigueLevel.setProgress(FIVE);
             }
 
             //gums levels
@@ -1517,8 +1545,8 @@ public class MainActivity extends AppCompatActivity {
                 txtProgressForBreath.setText(ONE_HUNDRED + "%");
                 progressBarBreathlevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForBreath.setText(ONE + "%");
-                progressBarBreathlevel.setProgress(ONE);
+                txtProgressForBreath.setText(TWO + "%");
+                progressBarBreathlevel.setProgress(TWO);
             }
         } catch (final Exception e) {
             e.printStackTrace();
@@ -1899,6 +1927,8 @@ public class MainActivity extends AppCompatActivity {
                                                final TextView TV_HIGHEST_STREAK,
                                                final TextView TV_HOURS_PROGRESS) {
         try {
+            YourQDay.setText(getResources().getString(
+                    R.string.qday,preferences.getString("qday", "none")));
             //getting the highest streak and put it in progress card
             final int HIGHEST_STREAK;
             if (preferences.contains(HIGHEST)){
@@ -1936,11 +1966,6 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch(final Exception e){ e.printStackTrace(); }
     }
-
-//    private void disableViewsForComingSoon(){
-//        challengeCardView.setClickable(false);
-//        timeStampLogsCardview.setClickable(false);
-//    }
 
     private void dialogForReset(){
         new BottomDialog.Builder(this)

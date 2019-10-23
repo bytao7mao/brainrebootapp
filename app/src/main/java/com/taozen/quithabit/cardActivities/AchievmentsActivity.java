@@ -9,6 +9,8 @@ import androidx.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.taozen.quithabit.R;
+import com.taozen.quithabit.options.LegalActivity;
 
 import java.util.Objects;
 
@@ -97,13 +100,13 @@ public class AchievmentsActivity extends AppCompatActivity {
         Context context;
         int [] imageId;
         private LayoutInflater inflater=null;
-        CustomAdapterListView(AchievmentsActivity mainActivity,
+        CustomAdapterListView(AchievmentsActivity achievmentsActivity,
                               String[] prgmNameList,String[] days,
                               int[] prgmImages, String[] descriptions) {
             // TODO Auto-generated constructor stub
             descriptionsArr =descriptions;
             titlesArr =prgmNameList;
-            context=mainActivity;
+            context=achievmentsActivity;
             daysArr =days;
             imageId=prgmImages;
             inflater = ( LayoutInflater )context.
@@ -125,105 +128,110 @@ public class AchievmentsActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            Holder holder=new Holder();
-            View view;
-            view = inflater.inflate(R.layout.list_item_achievments, null);
-            if (view == null) {
-                view = View.inflate(parent.getContext(), R.layout.list_item_achievments, null);
-            }
-            holder.img = view.findViewById(R.id.listview_image);
-            holder.tv = view.findViewById(R.id.listview_item_title);
-            holder.desc = view.findViewById(R.id.listview_item_short_description);
-            holder.days = view.findViewById(R.id.tv_progress);
-            holder.img.setImageResource(images[position]);
-            holder.tv.setText(titlesArr[position]);
-            holder.desc.setText(descriptionsArr[position]);
-            holder.days.setText(daysArr[position]);
+            ViewHolder holder=null;
+            View view = convertView;
 
-            if (preferences.contains(RANK)){
-                if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wolf")) {
-                    if (position > ZERO){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("squirrel")) {
-                    if (position > ONE){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("badger")) {
-                    if (position > ONE+1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("bear")) {
-                    if (position > ONE+2+1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wild bear")) {
-                    if (position > ONE+3+1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("deer")) {
-                    if (position > FIVE+1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("boar")) {
-                    if (position > FIVE+2+1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("elk")) {
-                    if (position > FIVE+3+1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("beaver")) {
-                    if (position > TEN){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("fox")) {
-                    if (position > TEN+1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
-                    }
-                } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("lynx")) {
-                    if (position > TEN+1+1){
-                        holder.img.setAlpha(0.2f);
-                        holder.tv.setAlpha(0.2f);
-                        holder.desc.setAlpha(0.2f);
-                        holder.days.setAlpha(0.2f);
+                if (view == null) {
+                    holder = new ViewHolder();
+                    view = View.inflate(parent.getContext(), R.layout.list_item_achievments, null);
+                    holder.img = view.findViewById(R.id.listview_image);
+                    holder.tv = view.findViewById(R.id.listview_item_title);
+                    holder.desc = view.findViewById(R.id.listview_item_short_description);
+                    holder.days = view.findViewById(R.id.tv_progress);
+                    holder.img.setImageResource(images[position]);
+                    holder.tv.setText(titlesArr[position]);
+                    holder.desc.setText(descriptionsArr[position]);
+                    holder.days.setText(daysArr[position]);
+
+                    view.setTag(holder);
+
+                if (preferences.contains(RANK)){
+                    if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wolf")) {
+                        if (position > ZERO){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("squirrel")) {
+                        if (position > ONE){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("badger")) {
+                        if (position > ONE+1){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("bear")) {
+                        if (position > ONE+2+1){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wild bear")) {
+                        if (position > ONE+3+1){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("deer")) {
+                        if (position > FIVE+1){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("boar")) {
+                        if (position > FIVE+2+1){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("elk")) {
+                        if (position > FIVE+3+1){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("beaver")) {
+                        if (position > TEN){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("fox")) {
+                        if (position > TEN+1){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("lynx")) {
+                        if (position > TEN+1+1){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
                     }
                 }
-            }
+            } else {
+                    holder = (ViewHolder) view.getTag();
+                }
             return view;
         }
     }
-    public class Holder {
+    public class ViewHolder {
         TextView tv, desc, days;
         ImageView img;
     }

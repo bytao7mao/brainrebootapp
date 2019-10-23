@@ -20,7 +20,9 @@
     <string name="check_in_tomorrow">Check-in: tomorrow!</string>
     <string name="check_in">Check-in</string>
     <string name="daily_quote">Today\'s motivation!</string>
-    <string name="press_leaf">Press on the leaf</string>
+    <string name="qday">Q! Day: %s</string>
+    <string name="cannot_be_zero">Cannot be 0!</string>
+    <string name="press_leaf">Press on the check-in button</string>
     <string name="check_in_now">Check-in now!</string>
     <string name="your_entire_progress">Your entire progress</string>
     <string name="cig_not_smoked">Cigarettes not smoked:</string>

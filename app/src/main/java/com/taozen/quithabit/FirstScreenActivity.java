@@ -162,6 +162,7 @@ public class FirstScreenActivity extends AppCompatActivity {
         etForCiggaretesPerDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                
             }
 
             @Override
@@ -174,6 +175,7 @@ public class FirstScreenActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -227,8 +229,13 @@ public class FirstScreenActivity extends AppCompatActivity {
         Editable editM = etForSumPerDay.getText();
         nameSav = Objects.requireNonNull(etForSumPerDay.getText()).toString();
         if (TextUtils.isEmpty(nameSav)) {
-            go = false;
-            etForSumPerDay.setError(getResources().getString(R.string.error_sum));
+            go2 = false;
+            etForSumPerDay.setError(getResources().getString(R.string.num_of_cig));
+            return;
+        } else if (nameSav.length() == 1 && nameSav.startsWith("0")
+                || (Integer.parseInt(nameSav) < 1)) {
+            go2 = false;
+            etForSumPerDay.setError(getResources().getString(R.string.cannot_be_zero));
             return;
         } else {
             if (go2){
@@ -248,6 +255,11 @@ public class FirstScreenActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(nameCigg)) {
             go2 = false;
             etForCiggaretesPerDay.setError(getResources().getString(R.string.num_of_cig));
+            return;
+        } else if (nameCigg.length() == 1 && nameCigg.startsWith("0")
+                || (Integer.parseInt(nameCigg) < 1)) {
+            go2 = false;
+            etForCiggaretesPerDay.setError(getResources().getString(R.string.cannot_be_zero));
             return;
         } else {
             if (go){
