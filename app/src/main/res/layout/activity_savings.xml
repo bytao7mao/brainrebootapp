@@ -73,14 +73,13 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="57dp"
-            android:layout_marginRight="57dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/custom_round_green_color"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:elevation="0dp"
-            android:text="add"
+            android:text="@string/add"
             android:textAllCaps="true" />
 
         <TextView
@@ -100,7 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/savingsTxt"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/profit" />
+            android:src="@mipmap/profit"
+            android:contentDescription="TODO" />
 
 <!--        <com.google.android.gms.ads.AdView-->
 <!--            android:id="@+id/adView"-->

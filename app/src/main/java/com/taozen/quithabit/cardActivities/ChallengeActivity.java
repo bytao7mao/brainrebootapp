@@ -6,11 +6,10 @@ import android.os.CountDownTimer;
 import androidx.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.cardview.widget.CardView;
-import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.taozen.quithabit.R;
 import java.util.Locale;
-import java.util.Objects;
 
 import static com.taozen.quithabit.MainActivity.SIXTY;
 import static com.taozen.quithabit.MainActivity.ZERO;

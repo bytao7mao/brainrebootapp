@@ -212,7 +212,7 @@
             android:id="@+id/listview_desc6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Version 0.1 (100)"
+            android:text="@string/version_app"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/listview_title6"
             app:layout_constraintEnd_toEndOf="parent"

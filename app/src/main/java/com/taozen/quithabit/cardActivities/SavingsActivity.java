@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.preference.PreferenceManager;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
@@ -23,8 +22,6 @@ import android.widget.TextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.taozen.quithabit.R;
-
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

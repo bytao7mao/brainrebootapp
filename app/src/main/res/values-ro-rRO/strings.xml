@@ -65,4 +65,22 @@
     <string name="OK">OK</string>
     <string name="YES">DA</string>
     <string name="how_much_to_save">ce suma salvati</string>
+    <string name="add_your_today_s_extra_savings">Adauga economiile</string>
+    <string name="agreeing_to_terms">Prin folosirea aplicatiei sunteti de acord cu</string>
+    <string name="cannot_be_zero">Valoarea nu poate fi 0</string>
+    <string name="done">CONTINUARE</string>
+    <string name="error_sum">Va rugam introduceti o suma</string>
+    <string name="legal">Legal</string>
+    <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licenta</a></string>
+    <string name="num_of_cig">Va rugam introduceti un numar</string>
+    <string name="privacy_policy"><a href="https://bytao7mao.github.io/quithabit/legal/privacy_policy.html">Politica de confidentialitate</a></string>
+    <string name="qday">Ziua Q!: %s</string>
+    <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> si <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> logo sunt marci inregistrate ale lui Marius Nicolae. Toate drepturile rezervate</string>
+    <string name="quithabit_nosmoke_for_android">QuitHabit!  NoSmoke pentru Android</string>
+    <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Termeni si Conditii</a></string>
+    <string name="unlimited">Activitati in locul fumatului</string>
+    <string name="unlimited_price">1.99 %s</string>
+    <string name="unlimited_price_ron">7.99 %s</string>
+    <string name="quithabit_nosmoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke pentru
+        \nAndroid este dezvoltat folosind \nsoftware open-source:</string>
 </resources>

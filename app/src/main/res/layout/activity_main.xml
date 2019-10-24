@@ -102,12 +102,19 @@
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.25" />
 
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_horizontal_20percentCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.20" />
+
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/lightbulbForTip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_idea"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percentCard"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_20percentCard"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percent_inner"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -170,7 +177,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:src="@drawable/counterwhitelast2"
+                        android:src="@drawable/counterimg"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_85percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/lightbulbForTip"

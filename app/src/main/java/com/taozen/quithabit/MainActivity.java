@@ -37,7 +37,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.BlendModeColorFilterCompat;
@@ -47,7 +46,6 @@ import androidx.preference.PreferenceManager;
 import com.anupcowkur.herebedragons.SideEffect;
 import com.budiyev.android.circularprogressbar.CircularProgressBar;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -153,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     private Timer timer;
     Float lifeRegained;
 
-    ArrayList<String> quotesForPassingTheDayList = new ArrayList<>();
+    final ArrayList<String> quotesForPassingTheDayList = new ArrayList<>();
 
     private int cigarettesPerDay;
 
@@ -234,10 +232,10 @@ public class MainActivity extends AppCompatActivity {
     //shared pref
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
-    private DisplayMetrics metrics = new DisplayMetrics();
+    private final DisplayMetrics metrics = new DisplayMetrics();
     private Configuration config;
     private String challs;
-    private StringBuilder strBuilder = new StringBuilder();
+    private final StringBuilder strBuilder = new StringBuilder();
 
     //fonts
     static Typeface montSerratBoldTypeface;

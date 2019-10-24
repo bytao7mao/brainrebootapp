@@ -34,12 +34,13 @@ public class AchievmentsActivity extends AppCompatActivity {
     String[] titles;
     int[] images;
 
-    String[] descriptionsArray = new String[] {
-            "You can do it!", "Your own way!", "Control yourself!", "The right way!", "The zen way!",
+    final String[] descriptionsArray = new String[] {
+            "You can do it!", "Your own way!", "Control yourself!", "The right way!",
+            "The zen way!",
             "Zen apprentice", "Zen monk!", "Keep up the way!", "Almost there!",
             "There is no going back!", "A new life!"};
 
-    String[] daysArray = new String[] {
+    final String[] daysArray = new String[] {
             "1 Day!", "1 Week!", "1 Month!", "2 Months!",
             "3 Months!", "4 Months!", "5 Months!", "6 Months!",
             "7 Months!", "9 Months!", "300 Days!"};
@@ -94,9 +95,11 @@ public class AchievmentsActivity extends AppCompatActivity {
         return true;
     }
     class CustomAdapterListView extends BaseAdapter {
-        String [] titlesArr, descriptionsArr, daysArr;
-        Context context;
-        int [] imageId;
+        final String [] titlesArr;
+        final String [] descriptionsArr;
+        final String [] daysArr;
+        final Context context;
+        final int [] imageId;
         private LayoutInflater inflater=null;
         CustomAdapterListView(AchievmentsActivity achievmentsActivity,
                               String[] prgmNameList,String[] days,

@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="About your smoking"
+            android:text="@string/about_your_smoking"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percent"
             app:layout_constraintStart_toStartOf="@+id/edtTxtLayoutForCiggsId" />
@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:text="and"
+                android:text="@string/and"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPolicy"
                 app:layout_constraintEnd_toStartOf="@+id/tvTerms"

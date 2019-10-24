@@ -1,14 +1,9 @@
 package com.taozen.quithabit;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,7 +24,6 @@ import com.taozen.quithabit.utils.NetworkUtils;
 
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.TimeZone;
 
 import butterknife.BindView;
@@ -42,7 +36,6 @@ import static com.taozen.quithabit.MainActivity.ZERO;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.CLICKDAY_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
-import static com.taozen.quithabit.utils.LocaleUtils.getSystemLocale;
 
 public class SplashActivity extends AppCompatActivity {
 
