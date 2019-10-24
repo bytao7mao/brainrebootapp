@@ -120,7 +120,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tipofthedayTxtViewId"
+                    android:id="@+id/tvTipOfTheDay"
                     style="@style/TextColorBlack"
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_85percentCard"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/lightbulbForTip"
-                    app:layout_constraintTop_toBottomOf="@+id/tipofthedayTxtViewId"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTipOfTheDay"
                     app:layout_constraintVertical_bias="0.3" />
 
                 <com.google.android.material.textview.MaterialTextView

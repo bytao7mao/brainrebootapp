@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/grey_50"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <!--    android:background="@color/white"-->
+    
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,7 +30,6 @@
                     android:id="@+id/innerTop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <!--                    android:background="@color/grey_50"-->
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_10percentCard"
@@ -120,7 +119,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tipofthedayTxtViewId"
+                        android:id="@+id/tvTipOfTheDay"
                         style="@style/TextColorBlack"
                         android:layout_width="240dp"
                         android:layout_height="wrap_content"
@@ -181,7 +180,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_85percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/lightbulbForTip"
-                        app:layout_constraintTop_toBottomOf="@+id/tipofthedayTxtViewId"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTipOfTheDay"
                         app:layout_constraintVertical_bias="0.3" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -372,7 +371,7 @@
                     android:id="@+id/innerMiddle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <!--                    android:background="@color/grey_50"-->
+
                     <TextView
                         android:id="@+id/appCompatTextViewPercentViewsTitle"
                         style="@style/TextColorBlack"
@@ -662,7 +661,6 @@
                     android:id="@+id/innerBottom"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <!--                    android:background="@color/grey_50"-->
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_15percentBottom"
@@ -834,8 +832,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerBottomAchieve"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_50">
+                    android:layout_height="match_parent">
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_15achieveBottom"
@@ -1032,8 +1029,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerBottomSaving"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_50">
+                    android:layout_height="match_parent">
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_15savingBottom"

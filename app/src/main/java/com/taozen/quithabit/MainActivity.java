@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
     @BindView(R.id.savingsTxtId) TextView moneySavingsTxt;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
-    @BindView(R.id.tipofthedayTxtViewId) TextView tipofthedayTxtView;
+    @BindView(R.id.tvTipOfTheDay) TextView tipOfTheDayTxtView;
     @BindView(R.id.textNonSmokerId) TextView textNonSmoker;
     @BindView(R.id.subTextCheckInId) TextView checkInText;
     @BindView(R.id.subTextEnergyId) TextView subTextEnergy;
@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
         //using API from splash
         final Intent INTENT = getIntent();
         final String NAME = INTENT.getStringExtra("data");
-        tipofthedayTxtView.setText(NAME);
+        tipOfTheDayTxtView.setText(NAME);
 
         numberFormat = new DecimalFormat("#.##");
 
@@ -408,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
                                 ContextCompat.getColor(
                                         getApplicationContext(), R.color.white)));
 
-//        tipofthedayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
+//        tipOfTheDayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
 //        TvExploreAchievement.setTypeface(montSerratMediumTypeface);
 //        TvExploreSavings.setTypeface(montSerratMediumTypeface);
         counterText.setTypeface(montSerratBoldTypeface);
@@ -598,7 +598,7 @@ public class MainActivity extends AppCompatActivity {
 //        if (HOUR_OF_DAYLIGHT >= 21 || HOUR_OF_DAYLIGHT < 7) {
 ////        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= TWENTY) {
 //            backgroundImgWall.setBackgroundResource(R.drawable.ppp);
-//            tipofthedayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+//            tipOfTheDayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
 //            counterText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
 //            counterText.setAlpha(1.0f);
 //            remainingDaysTxt.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
@@ -614,7 +614,7 @@ public class MainActivity extends AppCompatActivity {
 //        } else {
 //            //change wallpaper during daytime
 //            backgroundImgWall.setBackgroundResource(R.drawable.bgday);
-//            tipofthedayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
+//            tipOfTheDayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
 //            counterText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
 //            remainingDaysTxt.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
 //            targetTxtViewId.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.greish));
@@ -1702,7 +1702,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplayString(final String MESSAGE) {
-        tipofthedayTxtView.setText(MESSAGE + "\n");
+        tipOfTheDayTxtView.setText(MESSAGE + "\n");
     }
 
 

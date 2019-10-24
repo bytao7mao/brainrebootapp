@@ -16,7 +16,7 @@
     <string name="streak_string">Record: %d</string>
     <string name="thanks_for_downloading_this_app">Multumesc pentru download !</string>
     <string name="check_in_tomorrow">Verificare maine!</string>
-    <string name="non_smoker_since">Nefumator de</string>
+    <string name="non_smoker_since">Nefumator</string>
     <string name="check_in_now">Verifica acum!</string>
     <string name="press_leaf">Apasa pe frunza</string>
     <string name="cig_not_smoked">Tigari nefumate:</string>
@@ -83,4 +83,11 @@
     <string name="unlimited_price_ron">7.99 %s</string>
     <string name="quithabit_nosmoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke pentru
         \nAndroid este dezvoltat folosind \nsoftware open-source:</string>
+    <string name="version_app">Versiunea 0.1 (100)</string>
+    <string name="wolf">Wolf</string>
+    <string name="you_can_do_it">Poti reusi</string>
+    <string name="powered_by_q">Powered by Q!</string>
+    <string name="add">adauga</string>
+    <string name="and">si</string>
+    <string name="about_your_smoking">Informatii despre tine</string>
 </resources>
