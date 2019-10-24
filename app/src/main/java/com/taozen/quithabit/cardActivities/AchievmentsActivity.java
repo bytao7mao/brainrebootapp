@@ -129,22 +129,20 @@ public class AchievmentsActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder=null;
-            View view = convertView;
-
+            ViewHolder holder=new ViewHolder();
+            View view;
+            view = inflater.inflate(R.layout.list_item_achievments, null);
                 if (view == null) {
-                    holder = new ViewHolder();
                     view = View.inflate(parent.getContext(), R.layout.list_item_achievments, null);
-                    holder.img = view.findViewById(R.id.listview_image);
-                    holder.tv = view.findViewById(R.id.listview_item_title);
-                    holder.desc = view.findViewById(R.id.listview_item_short_description);
-                    holder.days = view.findViewById(R.id.tv_progress);
-                    holder.img.setImageResource(images[position]);
-                    holder.tv.setText(titlesArr[position]);
-                    holder.desc.setText(descriptionsArr[position]);
-                    holder.days.setText(daysArr[position]);
-
-                    view.setTag(holder);
+                }
+                holder.img = view.findViewById(R.id.listview_image);
+                holder.tv = view.findViewById(R.id.listview_item_title);
+                holder.desc = view.findViewById(R.id.listview_item_short_description);
+                holder.days = view.findViewById(R.id.tv_progress);
+                holder.img.setImageResource(images[position]);
+                holder.tv.setText(titlesArr[position]);
+                holder.desc.setText(descriptionsArr[position]);
+                holder.days.setText(daysArr[position]);
 
                 if (preferences.contains(RANK)){
                     if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wolf")) {
@@ -225,9 +223,6 @@ public class AchievmentsActivity extends AppCompatActivity {
                             holder.days.setAlpha(0.2f);
                         }
                     }
-                }
-            } else {
-                    holder = (ViewHolder) view.getTag();
                 }
             return view;
         }
