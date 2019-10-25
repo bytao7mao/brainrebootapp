@@ -7,11 +7,13 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -85,6 +87,9 @@ public class FirstScreenActivity extends AppCompatActivity {
         go = false;
         go2 = false;
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
+        //shared pref
+        preferences = PreferenceManager.getDefaultSharedPreferences(FirstScreenActivity.this);
+        editor = preferences.edit();
 
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
         montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
@@ -94,13 +99,27 @@ public class FirstScreenActivity extends AppCompatActivity {
         montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
         montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
 
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        currency = Currency.getInstance(new Locale("",
-                Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
+        try {
+            if (isAirplaneModeOn(getApplicationContext())) {
+                //default if airplane mode is enabled
+                currency = "USD";
+            } else {
+                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                currency = Currency.getInstance(new Locale("",
+                        Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //if airplane mode is activated on phone
+            editor.putString("currency", currency);
+            editor.apply();
+        }
 
-        //shared pref
-        preferences = PreferenceManager.getDefaultSharedPreferences(FirstScreenActivity.this);
-        editor = preferences.edit();
+        //classic implementation
+//        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//                currency = Currency.getInstance(new Locale("",
+//                        Objects.requireNonNull(telephonyManager).getNetworkCountryIso())).getCurrencyCode();
 
         //set fonts
 //        tvTitleWelcome.setTypeface(montSerratSemiBoldTypeface);
@@ -222,6 +241,11 @@ public class FirstScreenActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private static boolean isAirplaneModeOn(Context context) {
+        return Settings.System.getInt(context.getContentResolver(),
+                Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
     }
 
     @Optional
