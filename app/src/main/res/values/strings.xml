@@ -16,7 +16,7 @@
     <string name="agreeing_to_terms">By using this app you are agreeing to our</string>
     <string name="rank_master">Current Rank: %s</string>
     <string name="streak_string">Highest days streak: %d</string>
-    <string name="non_smoker_since">Smoke free</string>
+    <string name="non_smoker_since">Smoke free days</string>
     <string name="check_in_tomorrow">Check-in: tomorrow!</string>
     <string name="check_in">Check-in</string>
     <string name="daily_quote">Today\'s motivation!</string>
@@ -81,7 +81,6 @@
     <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licences</a></string>
     <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> and \nthe <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> \nlogos are trademarks of \nMarius Nicolae. \nAll  rights reserved</string>
     <string name="add_your_today_s_extra_savings">Add your today\'s extra savings!</string>
-    //Test ads key
     <string name="unlimited_price">1.99 %s</string>
     <string name="unlimited">Instead of smoking</string>
     <string name="done">DONE</string>
@@ -95,4 +94,5 @@
     <string name="powered_by_q">Powered by Q!</string>
     <string name="cannot_check_in">You cannot check-in right now!\nPlease check back later.</string>
     <string name="please_check_tomorrow">Please check again tomorrow!</string>
+    <string name="continue_button">CONTINUE</string>
 </resources>

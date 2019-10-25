@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -203,12 +204,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressIdReplacement) ProgressBar progressBarLoading2;
     //ImageViews
-    @BindView(R.id.counterImageId) ImageView counterImgView;
+//    @BindView(R.id.counterImageId) ImageView counterImgView;
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
     @BindView(R.id.rankThreeId) ImageView rankThreeImg;
     //CircularProgressBar
     //progress for percent - this is a circular bar
+    @BindView(R.id.counterImageId) CircularProgressBar counterImgView;
     @BindView(R.id.progress_bar_energy) CircularProgressBar progressBarEnergyLevel;
     @BindView(R.id.progress_bar_gums) CircularProgressBar progressBarGumsLevel;
     @BindView(R.id.progress_bar_fatigue) CircularProgressBar progressBarFatigueLevel;
@@ -281,6 +283,11 @@ public class MainActivity extends AppCompatActivity {
             //strictmode ?
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
+            if (preferences.contains(COUNTER)) {
+                counter = preferences.getInt(COUNTER, -1);
+            }
+
+            setCounterImageDaysOrDay(counter);
 
             counterImgView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -363,6 +370,7 @@ public class MainActivity extends AppCompatActivity {
             setTargetAfterCheckingCounter();
             setTargetDays();
             firstCheckMax();
+
             progressBarLoading.getIndeterminateDrawable().setColorFilter(BlendModeColorFilterCompat.
                     createBlendModeColorFilterCompat(
                             R.color.colorPrimaryDark, BlendModeCompat.SRC_ATOP));
@@ -410,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
 //        tipOfTheDayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
 //        TvExploreAchievement.setTypeface(montSerratMediumTypeface);
 //        TvExploreSavings.setTypeface(montSerratMediumTypeface);
-            counterText.setTypeface(montSerratBoldTypeface);
+            counterText.setTypeface(montSerratSimpleBoldTypeface);
 //        remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
 //        targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
 //        txtProgressForEnergyLevels.setTypeface(montSerratBoldTypeface);
@@ -483,6 +491,42 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
     }//[END OF ONCREATE]
+
+    private void setCounterImageDaysOrDay(int counterInner) {
+        try {
+            final Locale localeMAIN;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                localeMAIN = getResources().getConfiguration().getLocales().get(0);
+            } else {
+                localeMAIN = getResources().getConfiguration().locale;
+            }
+            //get initials like: RO/US/EN/FR
+            final String PUT_LANGUAGE_IN_STRING_ON_CREATE = localeMAIN.getLanguage();
+            Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING_ON_CREATE);
+            if (counterInner < 2) {
+                final Drawable ro_or_eng_for_first_day =
+                        (PUT_LANGUAGE_IN_STRING_ON_CREATE.equalsIgnoreCase(RO))
+                                ? ContextCompat.getDrawable(
+                                getApplicationContext(),
+                                R.drawable.counterimg_ro)
+                                : ContextCompat.getDrawable(getApplicationContext(),
+                                R.drawable.counterimgone);
+//                counterImgView.setImageDrawable(ro_or_eng_for_first_day);
+            } else {
+                final Drawable ro_or_eng_for_first_day =
+                        (PUT_LANGUAGE_IN_STRING_ON_CREATE.equalsIgnoreCase(RO))
+                                ? ContextCompat.getDrawable(
+                                getApplicationContext(),
+                                R.drawable.counterimg_ro)
+                                : ContextCompat.getDrawable(getApplicationContext(),
+                                R.drawable.counterimg);
+//                counterImgView.setImageDrawable(ro_or_eng_for_first_day);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -721,6 +765,7 @@ public class MainActivity extends AppCompatActivity {
         checkInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setCounterImageDaysOrDay(counter);
                 if (buttonClickedToday) {
                     checkInNotAvailable();
                 } else if (!checkInText.getText().toString().equalsIgnoreCase(
@@ -737,6 +782,7 @@ public class MainActivity extends AppCompatActivity {
                         ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
                     } else if (counter > ZERO && counter < THIRTY-ONE) {
                         normalFancyDialog(getString(R.string.beat_milestone, THIRTY), MESSAGE_FOR_DIALOG);
+                        counterImgView.setProgress(counter*3);
                         //between 29(to show up in THIRTY) and SIXTY
                     } else if (counter > THIRTY-TWO && counter < SIXTY-ONE) {
                         normalFancyDialog(getString(R.string.beat_milestone, SIXTY), MESSAGE_FOR_DIALOG);
@@ -810,6 +856,7 @@ public class MainActivity extends AppCompatActivity {
                 if (preferences.contains("diff") && higherThanOne){
                     final int DIF = preferences.getInt("diff", -100);
                     counter = counter + DIF;
+                    setCounterImageDaysOrDay(counter);
                     if (preferences.contains("tempLong")){
                         longFromSavingActivity = preferences.getLong("tempLong", ZERO);
                     } else {
@@ -826,6 +873,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     counter++;
+                    setCounterImageDaysOrDay(counter);
                     savings = preferences.getLong(SAVINGS_FINAL, ZERO) + firstSave;
                     Log.d("taogenX", "savings from TAO = " + savings);
                     editor.putLong(SAVINGS_FINAL, savings);
@@ -857,6 +905,7 @@ public class MainActivity extends AppCompatActivity {
                 //var 2 - custom toast after answer
                 estabilishHighestRecordForCounter();
                 showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
+//                counterImgView.setProgress(counter);
             }
         });
         milestoneAlert.setNegativeButton(getString(R.string.NO), new DialogInterface.OnClickListener() {
@@ -876,6 +925,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putInt(HIGHEST, counter);
                     editor.apply();
                     counter = 1;
+                    setCounterImageDaysOrDay(counter);
                     savings = firstSave;
                     //to see
                     editor.putLong(SAVINGS_FINAL, savings);//off
@@ -902,6 +952,7 @@ public class MainActivity extends AppCompatActivity {
                     setTargetDays();
                     negativeDialogAfterRelapse();
                     estabilishHighestRecordForCounter();
+//                    counterImgView.setProgress(counter);
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }
@@ -940,6 +991,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                 counter++;
+                setCounterImageDaysOrDay(counter);
                 if (counter == 1){
                     savings = preferences.getLong(SAVINGS_FINAL, ZERO);
                     editor.putLong(SAVINGS_FINAL, savings);
@@ -983,6 +1035,7 @@ public class MainActivity extends AppCompatActivity {
                 //var 1 - dialog after answer
                 positiveDialogAfterPassDay();
                 checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
+//                counterImgView.setProgress(counter);
             }
         });
         milestoneAlert.show();
@@ -1149,6 +1202,11 @@ public class MainActivity extends AppCompatActivity {
             final String CALC_DAYS_TARGET = (userMaxCountForHabit - counter) + "";
             final String PUT_TARGET_DAYS_IN_STRING = getString(R.string.remaining_days, CALC_DAYS_TARGET);
             remainingDaysTxt.setText(PUT_TARGET_DAYS_IN_STRING);
+//            int maxCount = preferences.getInt(getString(R.string.maxCounter), -1);
+            int maxCount = Integer.parseInt(CALC_DAYS_TARGET);
+            //max 30 always
+            Log.d("dayzen", ""+maxCount);
+            counterImgView.setProgress((30-maxCount)*3);
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -1655,7 +1713,7 @@ public class MainActivity extends AppCompatActivity {
                 if (tasks.size() == ZERO) {
                     progressBarLoading.setVisibility(View.VISIBLE);
                     progressBarLoading2.setVisibility(View.VISIBLE);
-                    counterImgView.setVisibility(View.INVISIBLE);
+//                    counterImgView.setVisibility(View.INVISIBLE);
                     counterText.setVisibility(View.INVISIBLE);
                 }
                 //if we click we add a task
