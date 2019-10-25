@@ -757,7 +757,7 @@ public class MainActivity extends AppCompatActivity {
                     //reset instead of smoking
                     editor.putInt("instead", 0);
                     editor.apply();
-                    insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_green_color));
+                    insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_primary_color));
                     insteadOfLayout.setClickable(true);
                     setTodayToClickDay();
                     final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
@@ -1419,10 +1419,10 @@ public class MainActivity extends AppCompatActivity {
                 //reset instead of smoking
                 editor.putInt("instead", 0);
                 editor.apply();
-                insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_green_color));
+                insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_primary_color));
                 insteadOfLayout.setClickable(true);
                 if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
-                    checkInButton.setBackground(getDrawable(R.drawable.custom_round_green_color));
+                    checkInButton.setBackground(getDrawable(R.drawable.custom_round_primary_color));
                     checkInButton.setClickable(true);
                     editor.putBoolean("saveimg", true);
                     editor.apply();
@@ -1436,13 +1436,13 @@ public class MainActivity extends AppCompatActivity {
                 //reset instead of smoking
                 editor.putInt("instead", 0);
                 editor.apply();
-                insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_green_color));
+                insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_primary_color));
                 insteadOfLayout.setClickable(true);
                 higherThanOne = true;
                 final int DIFF_LOCAL = DAY_OF_PRESENT - DAY_OF_CLICK;
                 editor.putInt("diff", DIFF_LOCAL);
                 editor.apply();
-                checkInButton.setBackground(getDrawable(R.drawable.custom_round_green_color));
+                checkInButton.setBackground(getDrawable(R.drawable.custom_round_primary_color));
                 checkInButton.setClickable(true);
                 editor.putBoolean("saveimg", true);
                 editor.apply();
@@ -1803,94 +1803,94 @@ public class MainActivity extends AppCompatActivity {
             }
             if (counter>=ZERO&&counter<EIGHT) {
                 //user have between a day and a week
-                rankOneImg.setBackgroundResource(R.drawable.ic_wolf);
+                rankOneImg.setBackgroundResource(R.drawable.ic_oneday);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_squirrel);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_oneweek);
                 rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_badger);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_onemonth);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Wolf");
             } else if (counter>(EIGHT -1)&&counter<THIRTY) {
-                rankOneImg.setBackgroundResource(R.drawable.ic_wolf);
+                rankOneImg.setBackgroundResource(R.drawable.ic_oneday);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_squirrel);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_oneweek);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_badger);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_onemonth);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Squirrel");
             } else if (counter>(THIRTY-1)&&counter<SIXTY) {
-                rankOneImg.setBackgroundResource(R.drawable.ic_squirrel);
+                rankOneImg.setBackgroundResource(R.drawable.ic_oneweek);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_badger);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_onemonth);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_bear_1);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_twomonths);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Badger");
             } else if (counter>(SIXTY-1)&&counter<NINETY) {
-                rankOneImg.setBackgroundResource(R.drawable.ic_squirrel);
+                rankOneImg.setBackgroundResource(R.drawable.ic_oneweek);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_badger);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_onemonth);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_bear_1);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_twomonths);
                 rankThreeImg.setAlpha(1.0f);
                 editor.putString(RANK, "Bear");
             } else if (counter>(NINETY-1)&&counter<ONE_HUNDRED+20) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.drawable.ic_bear);
+                rankOneImg.setBackgroundResource(R.drawable.ic_threemonths);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_deer);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_fourmonths);
                 rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fivemonths);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Wild Bear");
             } else if (counter>(ONE_HUNDRED+19)&&counter<ONE_HUNDRED_AND_EIGHTY-30) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.drawable.ic_bear);
+                rankOneImg.setBackgroundResource(R.drawable.ic_threemonths);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_deer);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_fourmonths);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fivemonths);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Deer");
             } else if (counter>(ONE_HUNDRED_AND_EIGHTY-31)&&counter<ONE_HUNDRED_AND_EIGHTY) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.drawable.ic_bear);
+                rankOneImg.setBackgroundResource(R.drawable.ic_threemonths);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_deer);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_fourmonths);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_boar);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fivemonths);
                 rankThreeImg.setAlpha(1.0f);
                 editor.putString(RANK, "Boar");
             } else if (counter>(ONE_HUNDRED_AND_EIGHTY-1)&&counter<TWO_HUNDRED+10) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.drawable.ic_elk);
+                rankOneImg.setBackgroundResource(R.drawable.ic_sixmonths);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_beaver);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_sevenmonths);
                 rankTwoImg.setAlpha(0.2f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_fox);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_ninemonths);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Elk");
             } else if (counter> (TWO_HUNDRED+9)&&counter<TWO_HUNDRED_AND_SEVENTY) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.drawable.ic_elk);
+                rankOneImg.setBackgroundResource(R.drawable.ic_sixmonths);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_beaver);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_sevenmonths);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_fox);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_ninemonths);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Beaver");
             } else if (counter>(TWO_HUNDRED_AND_SEVENTY-1)&&counter< THREE_HUNDRED) {
                 //when user pass 1 week
-                rankOneImg.setBackgroundResource(R.drawable.ic_elk);
+                rankOneImg.setBackgroundResource(R.drawable.ic_sixmonths);
                 rankOneImg.setAlpha(1.0f);
-                rankTwoImg.setBackgroundResource(R.drawable.ic_beaver);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_sevenmonths);
                 rankTwoImg.setAlpha(1.0f);
-                rankThreeImg.setBackgroundResource(R.drawable.ic_fox);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_ninemonths);
                 rankThreeImg.setAlpha(1.0f);
                 editor.putString(RANK, "Fox");
                 //WHEN USER REACH DAY 90 - GREATEST MILESTONE
             } else if (counter >= THREE_HUNDRED) {
-                rankThreeImg.setBackgroundResource(R.drawable.ic_lynx);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_threehundreddays);
                 rankThreeImg.setAlpha(1.0f);
                 editor.putString(RANK, "Lynx");
             }

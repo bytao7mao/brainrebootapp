@@ -202,9 +202,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:alpha="0.8"
+                        android:alpha="0.4"
                         android:text="@string/non_smoker_since"
-                        android:textSize="24sp"
+                        android:textSize="36sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90percentCard"
                         app:layout_constraintEnd_toEndOf="@+id/counterImageId"
                         app:layout_constraintStart_toStartOf="@+id/counterImageId"
@@ -231,7 +231,7 @@
                         android:layout_toEndOf="@id/milestoneImageId"
                         android:alpha="0.7"
                         android:text="@string/remaining_days"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/milestoneImageId"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_50percentCard"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -260,7 +260,7 @@
                         android:layout_toEndOf="@id/targetImageId"
                         android:alpha="0.7"
                         android:text="@string/target_string"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/targetImageId"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/targetImageId" />
@@ -290,7 +290,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:background="@drawable/custom_round_green_color"
+                android:background="@drawable/custom_round_primary_color"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_view_mainID"
@@ -379,7 +379,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.9"
                         android:text="@string/progressactivity_get_started"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30percentPercent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -646,7 +646,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="160dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -718,7 +718,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.9"
                         android:text="@string/your_entire_progress"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30percentBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.1"
@@ -746,7 +746,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.6"
                         android:text="Q! Day: "
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/YourProgressIdCigaretes"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -761,7 +761,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.6"
                         android:text="example 1"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/YourHighestStreakId"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -774,7 +774,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.6"
                         android:text="example 2"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -789,7 +789,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.6"
                         android:text="example 3"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -818,7 +818,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom_Achievments"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="180dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -853,19 +853,21 @@
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.25"
                         tools:ignore="TooManyViews" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_50achieveBottom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.50"
+                        app:layout_constraintGuide_percent="0.45"
                         tools:ignore="TooManyViews" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_75achieveBottom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.75"
+                        app:layout_constraintGuide_percent="0.70"
                         tools:ignore="TooManyViews" />
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_30achieveBottom"
@@ -873,7 +875,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.30" />
-
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_20achieveBottom"
                         android:layout_width="wrap_content"
@@ -887,12 +888,17 @@
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.90" />
                     <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline_vertical_90achieveBottom"
+                        android:id="@+id/guideline_vertical_95achieveBottom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.90" />
-
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_vertical_90achieveBottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.95" />
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/appCompatImageViewAchiev"
                         android:layout_width="wrap_content"
@@ -912,7 +918,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.9"
                         android:text="@string/your_latest_achievments"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30achieveBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90achieveBottom"
                         app:layout_constraintHorizontal_bias="0.1"
@@ -924,78 +930,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
-                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/ic_share_black_24dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30achieveBottom"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_90achieveBottom"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_95achieveBottom"
                         app:layout_constraintTop_toTopOf="parent" />
 
-<!--                    <androidx.appcompat.widget.AppCompatImageView-->
-<!--                        android:id="@+id/rankOneId"-->
-<!--                        android:layout_width="65dp"-->
-<!--                        android:layout_height="65dp"-->
-<!--                        android:layout_margin="10dp"-->
-<!--                        android:background="@drawable/ic_boar"-->
-<!--                        android:src="@drawable/ic_medalo"-->
-<!--                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90achieveBottom"-->
-<!--                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_50achieveBottom"-->
-<!--                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25achieveBottom"-->
-<!--                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_20achieveBottom" />-->
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/frameLayout1"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/rankOneId"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/ic_oneday"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90achieveBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_50achieveBottom"
-                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25achieveBottom"
-                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_20achieveBottom" >
-
-                        <ImageView
-                            android:id="@+id/imageView2"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            android:src="@drawable/ic_wolf"
-                            app:layout_constraintBottom_toBottomOf="@+id/imageView1"
-                            app:layout_constraintEnd_toEndOf="@+id/imageView1"
-                            app:layout_constraintStart_toStartOf="@+id/imageView1"
-                            app:layout_constraintTop_toTopOf="@+id/imageView1"
-                            app:layout_constraintVertical_bias="0.13" />
-
-                        <ImageView
-                            android:id="@+id/imageView1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_medalbest"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/textView1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1 DAY"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imageView2"
-                            app:layout_constraintVertical_bias="1.0" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_20achieveBottom"
+                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_20achieveBottom" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/rankTwoId"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
                         android:layout_margin="10dp"
-                        android:background="@drawable/ic_boar"
+                        android:background="@drawable/ic_sevenmonths"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90achieveBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_75achieveBottom"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50achieveBottom"
@@ -1003,12 +963,12 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/rankThreeId"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
                         android:layout_margin="10dp"
-                        android:background="@drawable/ic_boar"
+                        android:background="@drawable/ic_threehundreddays"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90achieveBottom"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90achieveBottom"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_75achieveBottom"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_20achieveBottom" />
 
@@ -1036,9 +996,9 @@
                         android:text="@string/rank_master"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25achieveBottom"
+                        app:layout_constraintEnd_toEndOf="@+id/rankThreeId"
+                        app:layout_constraintHorizontal_bias="0.1"
+                        app:layout_constraintStart_toStartOf="@+id/rankOneId"
                         app:layout_constraintTop_toBottomOf="@+id/rankTwoId" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1062,7 +1022,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom_Saving"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="160dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -1155,7 +1115,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.9"
                         android:text="@string/your_savings"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30savingBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90savingBottom"
                         app:layout_constraintHorizontal_bias="0.1"
@@ -1199,7 +1159,7 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.6"
                         android:text="Example of savings"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90savingBottom"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90savingBottom"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -1228,7 +1188,7 @@
                 android:layout_height="45dp"
                 android:layout_margin="8dp"
                 android:elevation="2dp"
-                android:background="@drawable/custom_round_green_color"
+                android:background="@drawable/custom_round_primary_color"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"

@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/custom_round_green_color"
+            android:background="@drawable/custom_round_primary_color"
             android:layout_margin="10dp"
             android:gravity="center"
             android:text="@string/done"

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="images_arr_for_ranks">
-        <item>@drawable/ic_wolf</item>
-        <item>@drawable/ic_squirrel</item>
-        <item>@drawable/ic_badger</item>
-        <item>@drawable/ic_bear_1</item>
-        <item>@drawable/ic_bear</item>
-        <item>@drawable/ic_deer</item>
-        <item>@drawable/ic_boar</item>
-        <item>@drawable/ic_elk</item>
-        <item>@drawable/ic_beaver</item>
-        <item>@drawable/ic_fox</item>
-        <item>@drawable/ic_lynx</item>
+        <item>@drawable/ic_oneday</item>
+        <item>@drawable/ic_oneweek</item>
+        <item>@drawable/ic_onemonth</item>
+        <item>@drawable/ic_twomonths</item>
+        <item>@drawable/ic_threemonths</item>
+        <item>@drawable/ic_fourmonths</item>
+        <item>@drawable/ic_fivemonths</item>
+        <item>@drawable/ic_sixmonths</item>
+        <item>@drawable/ic_sevenmonths</item>
+        <item>@drawable/ic_ninemonths</item>
+        <item>@drawable/ic_threehundreddays</item>
     </integer-array>
 </resources>
