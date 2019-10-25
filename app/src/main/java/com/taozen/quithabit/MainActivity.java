@@ -782,7 +782,6 @@ public class MainActivity extends AppCompatActivity {
                         ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
                     } else if (counter > ZERO && counter < THIRTY-ONE) {
                         normalFancyDialog(getString(R.string.beat_milestone, THIRTY), MESSAGE_FOR_DIALOG);
-                        counterImgView.setProgress(counter*3);
                         //between 29(to show up in THIRTY) and SIXTY
                     } else if (counter > THIRTY-TWO && counter < SIXTY-ONE) {
                         normalFancyDialog(getString(R.string.beat_milestone, SIXTY), MESSAGE_FOR_DIALOG);
