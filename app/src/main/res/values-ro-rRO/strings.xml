@@ -18,7 +18,7 @@
     <string name="check_in_tomorrow">Verificare maine!</string>
     <string name="non_smoker_since">Nefumator</string>
     <string name="check_in_now">Verifica acum!</string>
-    <string name="press_leaf">Apasa pe frunza</string>
+    <string name="calculating">Calculam …</string>
     <string name="cig_not_smoked">Tigari nefumate:</string>
     <string name="cig_press_leaf">Tigari nefumate: Apasati frunza</string>
     <string name="your_entire_progress">Progresul tau</string>
@@ -90,4 +90,6 @@
     <string name="add">adauga</string>
     <string name="and">si</string>
     <string name="about_your_smoking">Informatii despre tine</string>
+    <string name="cannot_check_in">Nu puteti verifica acum. Va rugam sa incercati mai tarziu.</string>
+    <string name="please_check_tomorrow">Va rugam sa verificati maine!</string>
 </resources>

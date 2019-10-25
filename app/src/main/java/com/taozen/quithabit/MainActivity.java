@@ -271,28 +271,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    try {
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(MainActivity.this);
-        //shared pref
-        preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        editor = preferences.edit();
+        try {
+            setContentView(R.layout.activity_main);
+            ButterKnife.bind(MainActivity.this);
+            //shared pref
+            preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            editor = preferences.edit();
 
-        //strictmode ?
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
+            //strictmode ?
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
 
-        counterImgView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkInButton.callOnClick();
-            }
-        });
+            counterImgView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkInButton.callOnClick();
+                }
+            });
 
-        shareProgress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //share text
+            shareProgress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //share text
 //                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 //                sharingIntent.setType("text/plain");
 //                String shareBody = "Your body here";
@@ -301,76 +301,75 @@ public class MainActivity extends AppCompatActivity {
 //                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 //                startActivity(Intent.createChooser(sharingIntent, "Share using"));
 
-                //share image
+                    //share image
 //                Bitmap b = Screenshoot.takescreenshot(counterImgView);
-                Bitmap b = Screenshoot.takescreenshot(upperProgressPercentsCard);
+                    Bitmap b = Screenshoot.takescreenshot(upperProgressPercentsCard);
 //                backgroundImgWall.setImageBitmap(b);
 
-                Uri uri = null;
-                try {
-                    File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "to-share.png");
-                    FileOutputStream stream = new FileOutputStream(file);
-                    b.compress(Bitmap.CompressFormat.PNG, 90, stream);
-                    stream.close();
-                    uri = Uri.fromFile(file);
-                } catch (IOException e) {
-                    Log.d(TAG, "IOException while trying to write file for sharing: " + e.getMessage());
+                    Uri uri = null;
+                    try {
+                        File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "to-share.png");
+                        FileOutputStream stream = new FileOutputStream(file);
+                        b.compress(Bitmap.CompressFormat.PNG, 90, stream);
+                        stream.close();
+                        uri = Uri.fromFile(file);
+                    } catch (IOException e) {
+                        Log.d(TAG, "IOException while trying to write file for sharing: " + e.getMessage());
+                    }
+
+                    //Convert to byte array
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.setType("image/*");
+                    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+                    intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+                    intent.putExtra(Intent.EXTRA_STREAM, uri);
+                    try {
+                        startActivity(Intent.createChooser(intent, "Share Progress"));
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(getApplicationContext(), "No App Available", Toast.LENGTH_SHORT).show();
+                    }
                 }
+            });
 
-                //Convert to byte array
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.setType("image/*");
-                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-                intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
-                intent.putExtra(Intent.EXTRA_STREAM, uri);
-                try {
-                    startActivity(Intent.createChooser(intent, "Share Progress"));
-                } catch (ActivityNotFoundException e) {
-                    Toast.makeText(getApplicationContext(), "No App Available", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+            firstCheckForInitialCiggarettesPerDay();
+            startFirstActivity();
+            //using API from splash
+            final Intent INTENT = getIntent();
+            final String NAME = INTENT.getStringExtra("data");
+            tipOfTheDayTxtView.setText(NAME);
 
-        firstCheckForInitialCiggarettesPerDay();
-        startFirstActivity();
-        //using API from splash
-        final Intent INTENT = getIntent();
-        final String NAME = INTENT.getStringExtra("data");
-        tipOfTheDayTxtView.setText(NAME);
+            numberFormat = new DecimalFormat("#.##");
 
-        numberFormat = new DecimalFormat("#.##");
-
-        //testing area
-        final Date DATE = new Date();
-        final Calendar CALENDAR = GregorianCalendar.getInstance();
-        CALENDAR.setTime(DATE);
-        //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
-        //to 24 to be able to make the calculation
-        //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
-        HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
-        HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
-        Log.d("DAYZEN2", "HOUR? " + HOUR_OF_DAYLIGHT);
-        setTheHourOfFirstLaunch(CALENDAR);
-        //leave it for pay version
+            //testing area
+            final Date DATE = new Date();
+            final Calendar CALENDAR = GregorianCalendar.getInstance();
+            CALENDAR.setTime(DATE);
+            //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
+            //to 24 to be able to make the calculation
+            //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
+            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
+            HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
+            setTheHourOfFirstLaunch(CALENDAR);
+            //leave it for pay version
 //        setBackgroundForDaylightOrNight();
-        tasks = new ArrayList<>();
-        config = getResources().getConfiguration();
-        //set text for checkin
-        setCheckInText();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            tasks = new ArrayList<>();
+            config = getResources().getConfiguration();
+            //set text for checkin
+            setCheckInText();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
-        setTargetAfterCheckingCounter();
-        setTargetDays();
-        firstCheckMax();
-        progressBarLoading.getIndeterminateDrawable().setColorFilter(BlendModeColorFilterCompat.
-                createBlendModeColorFilterCompat(
-                R.color.colorPrimaryDark, BlendModeCompat.SRC_ATOP));
+            //CONDITION TO SET TARGET TEXT AFTER CHECKINNG COUNTER
+            setTargetAfterCheckingCounter();
+            setTargetDays();
+            firstCheckMax();
+            progressBarLoading.getIndeterminateDrawable().setColorFilter(BlendModeColorFilterCompat.
+                    createBlendModeColorFilterCompat(
+                            R.color.colorPrimaryDark, BlendModeCompat.SRC_ATOP));
 
-        progressBarLoading2.getIndeterminateDrawable().setColorFilter(BlendModeColorFilterCompat.
-                createBlendModeColorFilterCompat(
-                        R.color.colorPrimaryDark, BlendModeCompat.SRC_ATOP));
+            progressBarLoading2.getIndeterminateDrawable().setColorFilter(BlendModeColorFilterCompat.
+                    createBlendModeColorFilterCompat(
+                            R.color.colorPrimaryDark, BlendModeCompat.SRC_ATOP));
 
 //        progressCardView.setCardElevation(ZERO);
 //        savingsCardView.setCardElevation(ZERO);
@@ -378,40 +377,40 @@ public class MainActivity extends AppCompatActivity {
 //        achievementRanksCard.setCardElevation(ZERO);
 //        upperProgressPercentsCard.setCardElevation(ZERO);
 
-        if (preferences.contains("firstsave")){
-            firstSave = preferences.getLong("firstsave",ZERO);
-        } else {
-            DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, ZERO);
-            ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
-            greenCondition();
-        }
+            if (preferences.contains("firstsave")){
+                firstSave = preferences.getLong("firstsave",ZERO);
+            } else {
+                DAY_OF_CLICK = preferences.getInt(CLICKDAY_SP, ZERO);
+                ttfancyDialogForFirstTimeLaunch(getString(R.string.welcome_to_quit_habit), getString(R.string.first_day));
+                greenCondition();
+            }
 
-        setTxtViewForUserMaxCountDaysOnStringVersion(
-                String.valueOf(userMaxCountForHabit),
-                targetTxtViewId);
+            setTxtViewForUserMaxCountDaysOnStringVersion(
+                    String.valueOf(userMaxCountForHabit),
+                    targetTxtViewId);
 
-        montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
-        montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
-        montSerratLightTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.ttf");
-        montSerratMediumTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Medium.ttf");
-        montSerratSemiBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.ttf");
-        montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
-        montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
-        montSerratThinItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ThinItalic.ttf");
-        montSerratMediumItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-MediumItalic.ttf");
-        montSerratSemiBoldItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBoldItalic.ttf");
+            montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
+            montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
+            montSerratLightTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.ttf");
+            montSerratMediumTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Medium.ttf");
+            montSerratSemiBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBold.ttf");
+            montSerratExtraBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ExtraBold.ttf");
+            montSerratSimpleBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
+            montSerratThinItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-ThinItalic.ttf");
+            montSerratMediumItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-MediumItalic.ttf");
+            montSerratSemiBoldItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBoldItalic.ttf");
 
-        ActionBar actionBar = getSupportActionBar();
-        Objects.requireNonNull(actionBar).
-                setBackgroundDrawable(
-                        new ColorDrawable(
-                                ContextCompat.getColor(
-                                        getApplicationContext(), R.color.white)));
+            ActionBar actionBar = getSupportActionBar();
+            Objects.requireNonNull(actionBar).
+                    setBackgroundDrawable(
+                            new ColorDrawable(
+                                    ContextCompat.getColor(
+                                            getApplicationContext(), R.color.white)));
 
 //        tipOfTheDayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
 //        TvExploreAchievement.setTypeface(montSerratMediumTypeface);
 //        TvExploreSavings.setTypeface(montSerratMediumTypeface);
-        counterText.setTypeface(montSerratBoldTypeface);
+            counterText.setTypeface(montSerratBoldTypeface);
 //        remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
 //        targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
 //        txtProgressForEnergyLevels.setTypeface(montSerratBoldTypeface);
@@ -433,63 +432,50 @@ public class MainActivity extends AppCompatActivity {
 //        checkInText.setTypeface(montSerratMediumTypeface);
 //        rankMasterTxt.setTypeface(montSerratMediumTypeface);
 
-        showDeviceDensityPixels();
-        if (preferences.contains(COUNTER)) {
+            showDeviceDensityPixels();
+            if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);
             }
             //setting the achievments images for user
             showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
             setImagesForAchievementCard();
             setImprovementProgressLevels();
-        if (preferences.contains("saveimg")) {
-            if (!preferences.getBoolean("saveimg", true)) {
-//                TODO: addSavingsSumImg.setVisibility(View.INVISIBLE);
-            } else {
-//                addSavingsSumImg.setVisibility(View.VISIBLE);
-                editor.putBoolean("saveimg", true);
-                editor.apply();
-            }
-        } else {
-//            addSavingsSumImg.setVisibility(View.VISIBLE);
-            editor.putBoolean("saveimg", true);
-            editor.apply();
-        }
-        TvExploreAchievement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent INTENT = new Intent(MainActivity.this, AchievmentsActivity.class);
-                startActivity(INTENT);
-            }
-        });//achievementRanksCard[END]
-        TvExploreSavings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent INTENT = new Intent(MainActivity.this, SavingsActivity.class);
-                INTENT.putExtra(SAVINGS_FINAL, savings);
-                startActivity(INTENT);
-            }
-        });//savingsCardView[END]
+            TvExploreAchievement.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Intent INTENT = new Intent(MainActivity.this, AchievmentsActivity.class);
+                    startActivity(INTENT);
+                }
+            });//achievementRanksCard[END]
+            TvExploreSavings.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Intent INTENT = new Intent(MainActivity.this, SavingsActivity.class);
+                    INTENT.putExtra(SAVINGS_FINAL, savings);
+                    startActivity(INTENT);
+                }
+            });//savingsCardView[END]
 
-        checkInsteadOfSmoking();
+            checkInsteadOfSmoking();
 
-        //disable views for "coming soon area"
+            //disable views for "coming soon area"
 //        disableViewsForComingSoon();
 
-        //retrieving the counter and minute values
-        //run the task
-        runningInBackground();
-        //counter on click for counter button
-        counterButtonInitializer();
-        setTargetDays();
+            //retrieving the counter and minute values
+            //run the task
+            runningInBackground();
+            //counter on click for counter button
+            counterButtonInitializer();
+            setTargetDays();
 
-        savingsGetAndSetValue();
-        if (preferences.contains(COUNTER)){
-            counter = preferences.getInt(COUNTER, -1);
-        }
-        if (preferences.contains(CLICKED)){
-            buttonClickedToday = preferences.getBoolean(CLICKED, false);
-        }
-        setImprovementProgressLevels();
+            savingsGetAndSetValue();
+            if (preferences.contains(COUNTER)){
+                counter = preferences.getInt(COUNTER, -1);
+            }
+            if (preferences.contains(CLICKED)){
+                buttonClickedToday = preferences.getBoolean(CLICKED, false);
+            }
+            setImprovementProgressLevels();
             //using "final rethrow" by not specifying throwing a specific exception like NullPointer
             //the final keyword is optional, but in practice, we've found that it helps to use it while
             //adjusting to the new semantics of catch and rethrow
@@ -515,26 +501,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkInsteadOfSmoking() {
-        insteadOfLayout.setClickable(true);
-        int click = (preferences.contains("instead")) ?
-                click = preferences.getInt("instead", 0) : 0;
-
-        if (click == 0){
-            insteadOfLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    insteadOfSmoking();
-                }
-            });
-        } else {
-            insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-            insteadOfLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    insteadOfSmokingNegative();
-                }
-            });
-        }
+        insteadOfLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                insteadOfSmoking();
+            }
+        });
     }
 
     private void setTargetAfterCheckingCounter() {
@@ -657,7 +629,7 @@ public class MainActivity extends AppCompatActivity {
                 .onPositive(new BottomDialog.ButtonCallback() {
                     @Override
                     public void onClick(@NonNull BottomDialog dialog) {
-                    //call on destroy
+                        //call on destroy
                     }
                 }).build();
         bottomDialog.show();
@@ -746,19 +718,15 @@ public class MainActivity extends AppCompatActivity {
     private void counterButtonInitializer() {
         //active when user passed a day
         //inactive when user wait
-//        checkInButton.setClickable(true);
         checkInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (buttonClickedToday) {
-//                    checkInButton.setClickable(true);
-                    insteadOfSmokingNegative();
+                    checkInNotAvailable();
+                } else if (!checkInText.getText().toString().equalsIgnoreCase(
+                        getResources().getString(R.string.check_in_now))) {
+                    checkInNotAvailable();
                 } else {
-                    //reset instead of smoking
-                    editor.putInt("instead", 0);
-                    editor.apply();
-                    insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_primary_color));
-                    insteadOfLayout.setClickable(true);
                     setTodayToClickDay();
                     final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
                     final int x = isLeap(yearOfNow) ? LEAP_YEAR_DAYS : NORMAL_YEAR_DAYS;
@@ -790,9 +758,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     //SHOW FANCY TOAST WITH CONGRATS
                     //[END OF ELSE IFS DIALOGS]
-//                    checkInButton.setClickable(false);
                 }
-
             }
         });
     }
@@ -1140,7 +1106,7 @@ public class MainActivity extends AppCompatActivity {
                 counter = preferences.getInt(COUNTER, ZERO);
             }
             if (counter == ZERO) {
-                textNonSmoker.setText(R.string.press_leaf);
+                textNonSmoker.setText(R.string.calculating);
             } else {
                 textNonSmoker.setText(R.string.non_smoker_since);
             }
@@ -1290,15 +1256,6 @@ public class MainActivity extends AppCompatActivity {
             checkActivityOnline();
             counterText.setText(String.valueOf(counter));
             setCheckInText();
-            if (preferences.contains("saveimg")) {
-                if (!preferences.getBoolean("saveimg", true)) {
-//                    TODO: addSavingsSumImg.setVisibility(View.INVISIBLE);
-                } else {
-//                    TODO: addSavingsSumImg.setVisibility(View.VISIBLE);
-                }
-            } else {
-//                TODO: addSavingsSumImg.setVisibility(View.VISIBLE);
-            }
             //Only retrieve and save in onpause
             //-3 default values
             if (preferences.contains(getString(R.string.maxCounter))){userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -3);}
@@ -1354,7 +1311,6 @@ public class MainActivity extends AppCompatActivity {
     private void updateButton() {
         if (buttonClickedToday) {
             checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-//            checkInButton.setClickable(false);
         }
     }
     //[ENABLE BOOLEAN FOR DAY PASSED]
@@ -1367,11 +1323,9 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean(CLICKED, buttonClickedToday);
             editor.apply();
             checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-//            checkInButton.setClickable(false);
             //when days are the same and user already clicked
         } else if (DAY_OF_PRESENT == DAY_OF_CLICK && buttonClickedToday) {
             checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-//            checkInButton.setClickable(false);
         }
     }
 
@@ -1416,41 +1370,23 @@ public class MainActivity extends AppCompatActivity {
             //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
             HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
             if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+ONE)) {
-                //reset instead of smoking
-                editor.putInt("instead", 0);
-                editor.apply();
-                insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_primary_color));
-                insteadOfLayout.setClickable(true);
                 if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
                     checkInButton.setBackground(getDrawable(R.drawable.custom_round_primary_color));
-                    checkInButton.setClickable(true);
-                    editor.putBoolean("saveimg", true);
-                    editor.apply();
                     setCheckInText();
                 } else {
                     setCheckInText();
                     checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-//                    checkInButton.setClickable(false);
                 }
             } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
-                //reset instead of smoking
-                editor.putInt("instead", 0);
-                editor.apply();
-                insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_primary_color));
-                insteadOfLayout.setClickable(true);
                 higherThanOne = true;
                 final int DIFF_LOCAL = DAY_OF_PRESENT - DAY_OF_CLICK;
                 editor.putInt("diff", DIFF_LOCAL);
                 editor.apply();
                 checkInButton.setBackground(getDrawable(R.drawable.custom_round_primary_color));
-                checkInButton.setClickable(true);
-                editor.putBoolean("saveimg", true);
-                editor.apply();
                 setCheckInText();
             } else {
                 setCheckInText();
                 checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-//                checkInButton.setClickable(false);
             }
         } catch (final Exception e) {
             e.printStackTrace();
@@ -1780,8 +1716,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //keep this as secondary solve instead of finally
                 //if (RESULT == null) {
-                    //Toast.makeText(MainActivity.this, R.string.cant_connect,
-                    //Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, R.string.cant_connect,
+                //Toast.LENGTH_LONG).show();
                 //}
                 //var 2 to solve null result(quotes)
             } finally {
@@ -1894,9 +1830,9 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setAlpha(1.0f);
                 editor.putString(RANK, "Lynx");
             }
-        //using "final rethrow" by not specifying throwing a specific exception like NullPointer
-        //the final keyword is optional, but in practice, we've found that it helps to use it while
-        //adjusting to the new semantics of catch and rethrow
+            //using "final rethrow" by not specifying throwing a specific exception like NullPointer
+            //the final keyword is optional, but in practice, we've found that it helps to use it while
+            //adjusting to the new semantics of catch and rethrow
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -1990,7 +1926,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).show();
     }
-    private void insteadOfSmoking(){
+    private void insteadOfSmoking() {
         Random random = new Random();
 
         ArrayList<String> titles = new ArrayList<>();
@@ -2009,39 +1945,33 @@ public class MainActivity extends AppCompatActivity {
         icons.add(R.drawable.ic_yoga_posture);
 
         int today = random.nextInt(titles.size());
-        if (preferences.contains("instead")) {
-            if (preferences.getInt("instead", 0)==0) {
-                new BottomDialog.Builder(this)
-                        .setTitle(titles.get(today))
-                        .setPositiveText(R.string.OK)
-                        .setIcon(icons.get(today))
-                        .setPositiveBackgroundColorResource(R.color.colorPrimary)
-                        .setPositiveTextColorResource(android.R.color.white)
-                        .onPositive(new BottomDialog.ButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull BottomDialog bottomDialog) {
-                                int click = 1;
-                                editor.putInt("instead", click);
-                                editor.apply();
-                                insteadOfLayout.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-//                        insteadOfLayout.setClickable(false);
-                            }
-                        }).show();
-            } else {
-                insteadOfSmokingNegative();
-            }
-        }
+        new BottomDialog.Builder(this)
+                .setTitle(titles.get(today))
+                .setPositiveText(R.string.OK)
+                .setIcon(icons.get(today))
+                .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                .setPositiveTextColorResource(android.R.color.white)
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BottomDialog bottomDialog) {
 
+                    }
+                }).show();
     }
 
-    private void insteadOfSmokingNegative() {
+    private void checkInNotAvailable() {
+        String x = checkInText.getText().toString().equalsIgnoreCase(
+                getResources().getString(R.string.check_in_tomorrow)
+        ) ? getResources().getString(R.string.please_check_tomorrow) :
+                getResources().getString(R.string.cannot_check_in);
         new BottomDialog.Builder(this)
-                .setTitle("Please check again tomorrow!")
+                .setTitle(x)
                 .setPositiveText(R.string.OK)
                 .setPositiveBackgroundColorResource(R.color.colorPrimary)
                 .setPositiveTextColorResource(android.R.color.white)
                 .show();
     }
+
     private void dialogForResetForced(){
         new BottomDialog.Builder(this)
                 .setTitle("You are now one year recovered!")

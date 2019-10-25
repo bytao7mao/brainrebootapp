@@ -22,7 +22,7 @@
     <string name="daily_quote">Today\'s motivation!</string>
     <string name="qday">Q! Day: %s</string>
     <string name="cannot_be_zero">Cannot be 0!</string>
-    <string name="press_leaf">Press on the check-in button</string>
+    <string name="calculating">Calculating …</string>
     <string name="check_in_now">Check-in now!</string>
     <string name="your_entire_progress">Your entire progress</string>
     <string name="cig_not_smoked">Cigarettes not smoked:</string>
@@ -93,4 +93,6 @@
     <string name="you_can_do_it">You can do it</string>
     <string name="wolf">Wolf</string>
     <string name="powered_by_q">Powered by Q!</string>
+    <string name="cannot_check_in">You cannot check-in right now!\nPlease check back later.</string>
+    <string name="please_check_tomorrow">Please check again tomorrow!</string>
 </resources>
