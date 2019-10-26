@@ -2,6 +2,9 @@
 <resources>
     <string-array name="options_array">
         <item>"Reset your progress"</item>
+        <item>"Change quit date"</item>
+        <item>"Change smoking data"</item>
+        <item>"Language"</item>
         <item>"Privacy Policy"</item>
         <item>"Terms of Service"</item>
         <item>"Third party licences"</item>

@@ -37,10 +37,13 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
     private final int THIRD_PARTY_LICENCES_INTEGER = R.id.first4;
     private final int FEEDBACK_INTEGER = R.id.first5;
     private final int ABOUT_INTEGER = R.id.first6;
+    private final int QUIT_DATE = R.id.firstb;
+    private final int CHANGE_SMOKING_DATA = R.id.firstc;
+    private final int LANGUAGE = R.id.firstd;
 
     String[] titles;
     String[] descriptions = new String[] {
-            "", "", "", "", "", "version 0.1 (100)"};
+            "", "", "", "", "", "", "", "", "version 0.1 (100)"};
 
     //shared preferences
     private SharedPreferences preferences;
@@ -80,18 +83,33 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+        //reset
         TextView listview_title = findViewById(R.id.listview_title1);
         listview_title.setText(titles[0]);
+        //quitdata
         TextView listview_title2 = findViewById(R.id.listview_title2);
-        listview_title2.setText(titles[1]);
+        listview_title2.setText(titles[4]);
+        //smoking data
         TextView listview_title3 = findViewById(R.id.listview_title3);
-        listview_title3.setText(titles[2]);
+        listview_title3.setText(titles[5]);
+//      language
         TextView listview_title4 = findViewById(R.id.listview_title4);
-        listview_title4.setText(titles[3]);
+        listview_title4.setText(titles[6]);
+        //third instead of privacy
         TextView listview_title5 = findViewById(R.id.listview_title5);
-        listview_title5.setText(titles[4]);
+        listview_title5.setText(titles[7]);
+        //privacy instead of terms
         TextView listview_title6 = findViewById(R.id.listview_title6);
-        listview_title6.setText(titles[5]);
+        listview_title6.setText(titles[8]);
+        //terms instead of third
+        TextView listview_titleb = findViewById(R.id.listview_titleb);
+        listview_titleb.setText(titles[1]);
+        //feedback
+        TextView listview_titlec = findViewById(R.id.listview_titlec);
+        listview_titlec.setText(titles[2]);
+        //about
+        TextView listview_titled = findViewById(R.id.listview_titled);
+        listview_titled.setText(titles[3]);
 
         ConstraintLayout resetConstraintLayout = findViewById(RESET_PROGRESS_INTEGER);
         ConstraintLayout privacyConstraintLayout = findViewById(PRIVACY_INTEGER);
@@ -99,12 +117,19 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         ConstraintLayout thirdPartyConstraintLayout = findViewById(THIRD_PARTY_LICENCES_INTEGER);
         ConstraintLayout feedbackConstraintLayout = findViewById(FEEDBACK_INTEGER);
         ConstraintLayout aboutConstraintLayout = findViewById(ABOUT_INTEGER);
+        ConstraintLayout changeQuitData = findViewById(QUIT_DATE);
+        ConstraintLayout changeSmokingData = findViewById(CHANGE_SMOKING_DATA);
+        ConstraintLayout changeLang = findViewById(LANGUAGE);
+
         resetConstraintLayout.setOnClickListener(this);
         privacyConstraintLayout.setOnClickListener(this);
         termsConstraintLayout.setOnClickListener(this);
         thirdPartyConstraintLayout.setOnClickListener(this);
         feedbackConstraintLayout.setOnClickListener(this);
         aboutConstraintLayout.setOnClickListener(this);
+        changeLang.setOnClickListener(this);
+        changeSmokingData.setOnClickListener(this);
+        changeQuitData.setOnClickListener(this);
 
     }
 
@@ -192,6 +217,16 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case RESET_PROGRESS_INTEGER:
                 dialogForResetForced();
+                break;
+            case CHANGE_SMOKING_DATA:
+                //TODO: take values from shared prefs and change them
+                break;
+            case QUIT_DATE:
+                //TODO: take value of smoking date and put calendar to give user freedom to choose whatever start
+                //date he/she wants, also change the counter to be equal from that date
+                break;
+            case LANGUAGE:
+                //TODO: let user choose from german, french, spanish, english, romanian languages
                 break;
             case ABOUT_INTEGER:
                 final Intent INTENT_ABOUT = new Intent(OptionsActivity.this, AboutActivity.class);

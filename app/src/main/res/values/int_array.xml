@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="images_arr_for_ranks">
+        <item>@drawable/ic_qdate</item>
         <item>@drawable/ic_oneday</item>
         <item>@drawable/ic_oneweek</item>
         <item>@drawable/ic_onemonth</item>

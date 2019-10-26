@@ -180,20 +180,21 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.exploreSavingsId) MaterialTextView TvExploreSavings;
     @BindView(R.id.rank_master) TextView rankMasterTxt;
     @BindView(R.id.counterTextId) MaterialTextView counterText;
-    @BindView(R.id.txtProgressIdForGums) TextView txtProgressForGums;
+    @BindView(R.id.txtProgressIdForBlood) TextView txtProgressForBlood;
     @BindView(R.id.txtProgressIdForBreath) TextView txtProgressForBreath;
-    @BindView(R.id.txtProgressIdForFatigue) TextView txtProgressForFatigue;
+    @BindView(R.id.txtProgressIdForHeart) TextView txtProgressForHeart;
     @BindView(R.id.txtProgressIdForEnergy) TextView txtProgressForEnergyLevels;
+    @BindView(R.id.subTextEnergyId) TextView subTextEnergy;
+    @BindView(R.id.subTextBreathId) TextView subTextBreath;
+    @BindView(R.id.subTextHeartId) TextView subTextHeart;
+    @BindView(R.id.subTextBloodId) TextView subTextBlood;
+
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
     @BindView(R.id.savingsTxtId) TextView moneySavingsTxt;
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
     @BindView(R.id.tvTipOfTheDay) TextView tipOfTheDayTxtView;
     @BindView(R.id.textNonSmokerId) TextView textNonSmoker;
     @BindView(R.id.subTextCheckInId) TextView checkInText;
-    @BindView(R.id.subTextEnergyId) TextView subTextEnergy;
-    @BindView(R.id.subTextBreathId) TextView subTextBreath;
-    @BindView(R.id.subTextFatigueId) TextView subTextFatigue;
-    @BindView(R.id.subTextGumsId) TextView subTextGums;
     @BindView(R.id.textViewAchievTitle) TextView yourAchievmentTxtTitle;
     @BindView(R.id.textViewProgressTitle) TextView yourProgressTxtTitle;
     @BindView(R.id.textViewSavingsTitle) TextView yourSavingsTxtTitle;
@@ -204,16 +205,16 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressIdReplacement) ProgressBar progressBarLoading2;
     //ImageViews
-//    @BindView(R.id.counterImageId) ImageView counterImgView;
+//    @BindView(R.id.counterImageId) ImageView counterImgViewProgressbar;
     @BindView(R.id.rankOneId) ImageView rankOneImg;
     @BindView(R.id.rankTwoId) ImageView rankTwoImg;
     @BindView(R.id.rankThreeId) ImageView rankThreeImg;
     //CircularProgressBar
     //progress for percent - this is a circular bar
-    @BindView(R.id.counterImageId) CircularProgressBar counterImgView;
+    @BindView(R.id.counterImageId) CircularProgressBar counterImgViewProgressbar;
     @BindView(R.id.progress_bar_energy) CircularProgressBar progressBarEnergyLevel;
-    @BindView(R.id.progress_bar_gums) CircularProgressBar progressBarGumsLevel;
-    @BindView(R.id.progress_bar_fatigue) CircularProgressBar progressBarFatigueLevel;
+    @BindView(R.id.progress_bar_blood) CircularProgressBar progressBarBloodLevel;
+    @BindView(R.id.progress_bar_heart) CircularProgressBar progressBarHeartLevel;
     @BindView(R.id.progress_bar_breath) CircularProgressBar progressBarBreathlevel;
 
     //firstStart bool
@@ -289,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
 
             setCounterImageDaysOrDay(counter);
 
-            counterImgView.setOnClickListener(new View.OnClickListener() {
+            counterImgViewProgressbar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     checkInButton.callOnClick();
@@ -309,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(Intent.createChooser(sharingIntent, "Share using"));
 
                     //share image
-//                Bitmap b = Screenshoot.takescreenshot(counterImgView);
+//                Bitmap b = Screenshoot.takescreenshot(counterImgViewProgressbar);
                     Bitmap b = Screenshoot.takescreenshot(upperProgressPercentsCard);
 //                backgroundImgWall.setImageBitmap(b);
 
@@ -422,9 +423,9 @@ public class MainActivity extends AppCompatActivity {
 //        remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
 //        targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
 //        txtProgressForEnergyLevels.setTypeface(montSerratBoldTypeface);
-//        txtProgressForFatigue.setTypeface(montSerratBoldTypeface);
+//        txtProgressForHeart.setTypeface(montSerratBoldTypeface);
 //        txtProgressForBreath.setTypeface(montSerratBoldTypeface);
-//        txtProgressForGums.setTypeface(montSerratBoldTypeface);
+//        txtProgressForBlood.setTypeface(montSerratBoldTypeface);
 //        moneySavingsTxt.setTypeface(montSerratMediumTypeface);
 //        textNonSmoker.setTypeface(montSerratBoldTypeface);
 //        subTextEnergy.setTypeface(montSerratMediumTypeface);
@@ -511,7 +512,7 @@ public class MainActivity extends AppCompatActivity {
                                 R.drawable.counterimg_ro)
                                 : ContextCompat.getDrawable(getApplicationContext(),
                                 R.drawable.counterimgone);
-//                counterImgView.setImageDrawable(ro_or_eng_for_first_day);
+//                counterImgViewProgressbar.setImageDrawable(ro_or_eng_for_first_day);
             } else {
                 final Drawable ro_or_eng_for_first_day =
                         (PUT_LANGUAGE_IN_STRING_ON_CREATE.equalsIgnoreCase(RO))
@@ -520,7 +521,7 @@ public class MainActivity extends AppCompatActivity {
                                 R.drawable.counterimg_ro)
                                 : ContextCompat.getDrawable(getApplicationContext(),
                                 R.drawable.counterimg);
-//                counterImgView.setImageDrawable(ro_or_eng_for_first_day);
+//                counterImgViewProgressbar.setImageDrawable(ro_or_eng_for_first_day);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -892,7 +893,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.putLong(SAVINGS_FINAL, savings);
                 editor.apply();
-                checkActivityOnline();
+//                checkActivityOnline();
 //                        setTheSavingsPerDay();
                 savingsGetAndSetValue();
                 setImprovementProgressLevels();
@@ -904,7 +905,7 @@ public class MainActivity extends AppCompatActivity {
                 //var 2 - custom toast after answer
                 estabilishHighestRecordForCounter();
                 showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
-//                counterImgView.setProgress(counter);
+//                counterImgViewProgressbar.setProgress(counter);
             }
         });
         milestoneAlert.setNegativeButton(getString(R.string.NO), new DialogInterface.OnClickListener() {
@@ -942,7 +943,7 @@ public class MainActivity extends AppCompatActivity {
                     userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
                     editor.putFloat(LIFEREGAINED, lifeRegained);
                     editor.apply();
-                    checkActivityOnline();
+//                    checkActivityOnline();
                     //                        setTheSavingsPerDay();
                     savingsGetAndSetValue();
                     setImprovementProgressLevels();
@@ -951,7 +952,7 @@ public class MainActivity extends AppCompatActivity {
                     setTargetDays();
                     negativeDialogAfterRelapse();
                     estabilishHighestRecordForCounter();
-//                    counterImgView.setProgress(counter);
+//                    counterImgViewProgressbar.setProgress(counter);
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }
@@ -1021,7 +1022,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.putLong(SAVINGS_FINAL, savings);
                 editor.apply();
-                checkActivityOnline();
+//                checkActivityOnline();
 //                        setTheSavingsPerDay();
                 savingsGetAndSetValue();
                 setImprovementProgressLevels();
@@ -1034,7 +1035,7 @@ public class MainActivity extends AppCompatActivity {
                 //var 1 - dialog after answer
                 positiveDialogAfterPassDay();
                 checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
-//                counterImgView.setProgress(counter);
+//                counterImgViewProgressbar.setProgress(counter);
             }
         });
         milestoneAlert.show();
@@ -1076,7 +1077,7 @@ public class MainActivity extends AppCompatActivity {
             userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
             editor.putFloat(LIFEREGAINED, lifeRegained);
             editor.apply();
-            checkActivityOnline();
+//            checkActivityOnline();
             savingsGetAndSetValue();
             setImprovementProgressLevels();
             counter = preferences.getInt(COUNTER, -1);
@@ -1205,7 +1206,7 @@ public class MainActivity extends AppCompatActivity {
             int maxCount = Integer.parseInt(CALC_DAYS_TARGET);
             //max 30 always
             Log.d("dayzen", ""+maxCount);
-            counterImgView.setProgress((30-maxCount)*3);
+            counterImgViewProgressbar.setProgress((float) ((30-maxCount)*3.3));
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -1310,7 +1311,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         try {
-            checkActivityOnline();
+//            checkActivityOnline();
             counterText.setText(String.valueOf(counter));
             setCheckInText();
             //Only retrieve and save in onpause
@@ -1458,8 +1459,8 @@ public class MainActivity extends AppCompatActivity {
             }
             //energy levels
             if (counter >= TEN-1 && counter < THIRTY) {
-                txtProgressForEnergyLevels.setText(FIVE + "%");
-                progressBarEnergyLevel.setProgress(FIVE);
+                txtProgressForEnergyLevels.setText(FIVE+3 + "%");
+                progressBarEnergyLevel.setProgress(FIVE+3);
             } else if (counter > THIRTY-1 && counter < SIXTY) {
                 txtProgressForEnergyLevels.setText(FIFTEEN + "%");
                 progressBarEnergyLevel.setProgress(FIFTEEN);
@@ -1476,62 +1477,62 @@ public class MainActivity extends AppCompatActivity {
                 txtProgressForEnergyLevels.setText(ONE_HUNDRED + "%");
                 progressBarEnergyLevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForEnergyLevels.setText(TWO + "%");
-                progressBarEnergyLevel.setProgress(TWO);
+                txtProgressForEnergyLevels.setText(THREE + "%");
+                progressBarEnergyLevel.setProgress(THREE);
             }
 
-            //fatigue levels
+            //heart levels
             if (counter >= TEN-1 && counter < THIRTY) {
-                txtProgressForFatigue.setText(TEN + "%");
-                progressBarFatigueLevel.setProgress(TEN);
+                txtProgressForHeart.setText(TEN + "%");
+                progressBarHeartLevel.setProgress(TEN);
             } else if (counter > THIRTY-ONE && counter < SIXTY) {
-                txtProgressForFatigue.setText(FIFTEEN + "%");
-                progressBarFatigueLevel.setProgress(FIFTEEN);
+                txtProgressForHeart.setText(FIFTEEN + "%");
+                progressBarHeartLevel.setProgress(FIFTEEN);
             } else if (counter > SIXTY-ONE && counter < NINETY) {
-                txtProgressForFatigue.setText(THIRTY + "%");
-                progressBarFatigueLevel.setProgress(THIRTY);
+                txtProgressForHeart.setText(THIRTY + "%");
+                progressBarHeartLevel.setProgress(THIRTY);
             } else if (counter > NINETY-ONE && counter < ONE_HUNDRED_AND_EIGHTY) {
-                txtProgressForFatigue.setText(FIFTY + "%");
-                progressBarFatigueLevel.setProgress(FIFTY);
+                txtProgressForHeart.setText(FIFTY + "%");
+                progressBarHeartLevel.setProgress(FIFTY);
             } else if (counter > ONE_HUNDRED_AND_EIGHTY-ONE && counter < TWO_HUNDRED_AND_SEVENTY) {
-                txtProgressForFatigue.setText(SEVENTY_FIVE + "%");
-                progressBarFatigueLevel.setProgress(SEVENTY_FIVE);
+                txtProgressForHeart.setText(SEVENTY_FIVE + "%");
+                progressBarHeartLevel.setProgress(SEVENTY_FIVE);
             } else if (counter > TWO_HUNDRED_AND_SEVENTY) {
-                txtProgressForFatigue.setText(ONE_HUNDRED + "%");
-                progressBarFatigueLevel.setProgress(ONE_HUNDRED);
+                txtProgressForHeart.setText(ONE_HUNDRED + "%");
+                progressBarHeartLevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForFatigue.setText(FIVE + "%");
-                progressBarFatigueLevel.setProgress(FIVE);
+                txtProgressForHeart.setText(FIVE + "%");
+                progressBarHeartLevel.setProgress(FIVE);
             }
 
-            //gums levels
+            //blood levels
             if (counter >= TEN-1 && counter < THIRTY) {
-                txtProgressForGums.setText(THREE + "%");
-                progressBarGumsLevel.setProgress(THREE);
+                txtProgressForBlood.setText(FIFTEEN + "%");
+                progressBarBloodLevel.setProgress(FIFTEEN);
             } else if (counter > THIRTY-ONE && counter < SIXTY) {
-                txtProgressForGums.setText(TWENTY + "%");
-                progressBarGumsLevel.setProgress(TWENTY);
+                txtProgressForBlood.setText(TWENTY + "%");
+                progressBarBloodLevel.setProgress(TWENTY);
             } else if (counter > SIXTY-ONE && counter < NINETY) {
-                txtProgressForGums.setText(THIRTY + "%");
-                progressBarGumsLevel.setProgress(THIRTY);
+                txtProgressForBlood.setText(THIRTY + "%");
+                progressBarBloodLevel.setProgress(THIRTY);
             } else if (counter > NINETY-ONE && counter < ONE_HUNDRED_AND_EIGHTY) {
-                txtProgressForGums.setText(FIFTY + "%");
-                progressBarGumsLevel.setProgress(FIFTY);
+                txtProgressForBlood.setText(FIFTY + "%");
+                progressBarBloodLevel.setProgress(FIFTY);
             } else if (counter > ONE_HUNDRED_AND_EIGHTY-ONE && counter < TWO_HUNDRED_AND_SEVENTY) {
-                txtProgressForGums.setText(SEVENTY_FIVE + "%");
-                progressBarGumsLevel.setProgress(SEVENTY_FIVE);
+                txtProgressForBlood.setText(SEVENTY_FIVE + "%");
+                progressBarBloodLevel.setProgress(SEVENTY_FIVE);
             } else if (counter > TWO_HUNDRED_AND_SEVENTY) {
-                txtProgressForGums.setText(ONE_HUNDRED + "%");
-                progressBarGumsLevel.setProgress(ONE_HUNDRED);
+                txtProgressForBlood.setText(ONE_HUNDRED + "%");
+                progressBarBloodLevel.setProgress(ONE_HUNDRED);
             } else {
-                txtProgressForGums.setText(ONE + "%");
-                progressBarGumsLevel.setProgress(ONE);
+                txtProgressForBlood.setText(FIVE + "%");
+                progressBarBloodLevel.setProgress(FIVE);
             }
 
             //breath levels
             if (counter >= TEN-1 && counter < THIRTY) {
-                txtProgressForBreath.setText(THREE + "%");
-                progressBarBreathlevel.setProgress(THREE);
+                txtProgressForBreath.setText(TEN + "%");
+                progressBarBreathlevel.setProgress(TEN);
             } else if (counter > THIRTY-ONE && counter < SIXTY) {
                 txtProgressForBreath.setText(TWENTY + "%");
                 progressBarBreathlevel.setProgress(TWENTY);
@@ -1712,7 +1713,7 @@ public class MainActivity extends AppCompatActivity {
                 if (tasks.size() == ZERO) {
                     progressBarLoading.setVisibility(View.VISIBLE);
                     progressBarLoading2.setVisibility(View.VISIBLE);
-//                    counterImgView.setVisibility(View.INVISIBLE);
+//                    counterImgViewProgressbar.setVisibility(View.INVISIBLE);
                     counterText.setVisibility(View.INVISIBLE);
                 }
                 //if we click we add a task
@@ -1768,7 +1769,7 @@ public class MainActivity extends AppCompatActivity {
                 if (tasks.size() == ZERO) {
                     progressBarLoading.setVisibility(View.INVISIBLE);
                     progressBarLoading2.setVisibility(View.GONE);
-                    counterImgView.setVisibility(View.VISIBLE);
+                    counterImgViewProgressbar.setVisibility(View.VISIBLE);
                     counterText.setVisibility(View.VISIBLE);
                 }
                 //keep this as secondary solve instead of finally

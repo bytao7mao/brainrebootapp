@@ -13,10 +13,12 @@
         some personal statistics such as the amount
         of money you\'re saving by giving up
     smoking.</string>
+    <string name="quit_date_change">Current quit date: %s</string>
+    <string name="smoking_data">Cost per packet for example.</string>
     <string name="agreeing_to_terms">By using this app you are agreeing to our</string>
     <string name="rank_master">Current Rank: %s</string>
     <string name="streak_string">Highest days streak: %d</string>
-    <string name="non_smoker_since">Smoke free days</string>
+    <string name="non_smoker_since">Days Smoke Free</string>
     <string name="check_in_tomorrow">Check-in: tomorrow!</string>
     <string name="check_in">Check-in</string>
     <string name="daily_quote">Today\'s motivation!</string>
@@ -34,10 +36,10 @@
     <string name="your_latest_achievments">Your latest achievements</string>
     <string name="personal_progress">Personal progress</string>
     <string name="error_loading_data_from_api">Cannot retrieve data from server</string>
-    <string name="energy">Energy</string>
-    <string name="breath">Breath</string>
-    <string name="fatigue">Fatigue</string>
-    <string name="gums">Gums</string>
+    <string name="energy">Energy\nlevels</string>
+    <string name="breath">Breathing</string>
+    <string name="fatigue">Heart\nrate</string>
+    <string name="gums">Blood\ncirculation</string>
     <string name="how_many_cigarettes_per_day">How many cigarettes per day ?</string>
     <string name="how_much_do_you_spend_per_day">How much do you spend per day ?</string>
     <string name="break_your_habit">Break your habit!</string>

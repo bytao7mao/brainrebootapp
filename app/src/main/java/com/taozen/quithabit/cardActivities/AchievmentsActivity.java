@@ -35,12 +35,14 @@ public class AchievmentsActivity extends AppCompatActivity {
     int[] images;
 
     final String[] descriptionsArray = new String[] {
+            "A beautiful journey!",
             "You can do it!", "Your own way!", "Control yourself!", "The right way!",
             "The zen way!",
             "Zen apprentice", "Zen monk!", "Keep up the way!", "Almost there!",
             "There is no going back!", "A new life!"};
 
     final String[] daysArray = new String[] {
+            "Quit Date!",
             "1 Day!", "1 Week!", "1 Month!", "2 Months!",
             "3 Months!", "4 Months!", "5 Months!", "6 Months!",
             "7 Months!", "9 Months!", "300 Days!"};
@@ -75,7 +77,7 @@ public class AchievmentsActivity extends AppCompatActivity {
 
         mListView = findViewById(R.id.list_view);
         CustomAdapterListView customAdapterListView =
-                new CustomAdapterListView(this, titles, daysArray, images, descriptionsArray);
+                new CustomAdapterListView(this, titles, daysArray, images);
         mListView.setAdapter(customAdapterListView);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -96,7 +98,7 @@ public class AchievmentsActivity extends AppCompatActivity {
     }
     class CustomAdapterListView extends BaseAdapter {
         final String [] titlesArr;
-        final String [] descriptionsArr;
+        final String [] descriptions = new String[0];
         final String [] daysArr;
         final Context context;
         final int [] imageId;
@@ -105,12 +107,23 @@ public class AchievmentsActivity extends AppCompatActivity {
                               String[] prgmNameList,String[] days,
                               int[] prgmImages, String[] descriptions) {
             // TODO Auto-generated constructor stub
-            descriptionsArr =descriptions;
+            descriptions =descriptions;
             titlesArr =prgmNameList;
             context=achievmentsActivity;
             daysArr =days;
             imageId=prgmImages;
-            inflater = ( LayoutInflater )context.
+            inflater = (LayoutInflater)context.
+                    getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        CustomAdapterListView(AchievmentsActivity achievmentsActivity,
+                              String[] prgmNameList,String[] days,
+                              int[] prgmImages) {
+            // TODO Auto-generated constructor stub
+            titlesArr =prgmNameList;
+            context=achievmentsActivity;
+            daysArr =days;
+            imageId=prgmImages;
+            inflater = (LayoutInflater)context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
@@ -137,89 +150,94 @@ public class AchievmentsActivity extends AppCompatActivity {
                 }
                 holder.img = view.findViewById(R.id.listview_image);
                 holder.tv = view.findViewById(R.id.listview_item_title);
-                holder.desc = view.findViewById(R.id.listview_item_short_description);
+//                holder.desc = view.findViewById(R.id.listview_item_short_description);
                 holder.days = view.findViewById(R.id.tv_progress);
                 holder.img.setImageResource(images[position]);
                 holder.tv.setText(titlesArr[position]);
-                holder.desc.setText(descriptionsArr[position]);
+//                holder.desc.setText(descriptionsArr[position]);
                 holder.days.setText(daysArr[position]);
+
+                if (position == 0) {
+                    holder.tv.setText(preferences.getString("qday", "none"));
+                    holder.tv.setTextSize(22f);
+                }
 
                 if (preferences.contains(RANK)){
                     if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wolf")) {
-                        if (position > ZERO){
+                        if (position > ZERO+1){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("squirrel")) {
-                        if (position > ONE){
-                            holder.img.setAlpha(0.2f);
-                            holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
-                            holder.days.setAlpha(0.2f);
-                        }
-                    } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("badger")) {
                         if (position > ONE+1){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("badger")) {
+                        if (position > ONE+2){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("bear")) {
-                        if (position > ONE+2+1){
+                        if (position > ONE+4){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wild bear")) {
-                        if (position > ONE+3+1){
+                        if (position > ONE+5){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
                             holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("deer")) {
-                        if (position > FIVE+1){
+                        if (position > FIVE+2){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("boar")) {
-                        if (position > FIVE+2+1){
+                        if (position > FIVE+4){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("elk")) {
-                        if (position > FIVE+3+1){
-                            holder.img.setAlpha(0.2f);
-                            holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
-                            holder.days.setAlpha(0.2f);
-                        }
-                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("beaver")) {
                         if (position > TEN){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
-                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("fox")) {
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("beaver")) {
                         if (position > TEN+1){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
+                            holder.days.setAlpha(0.2f);
+                        }
+                    }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("fox")) {
+                        if (position > TEN+2){
+                            holder.img.setAlpha(0.2f);
+                            holder.tv.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("lynx")) {
-                        if (position > TEN+1+1){
+                        if (position > TEN+3){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
-                            holder.desc.setAlpha(0.2f);
+//                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     }

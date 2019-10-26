@@ -7,17 +7,19 @@
     android:paddingTop="8dp"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
-    android:layout_height="72dp">
+    android:layout_height="100dp">
+
 
     <ImageView
         android:id="@+id/listview_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/app_name"
         android:padding="10dp"
         android:src="@drawable/ic_sevenmonths"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_20percent"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_002percent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_30percent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -26,35 +28,36 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="@string/wolf"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_60percent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_20percent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_progress"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_98percent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_30percent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/listview_item_short_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="@string/you_can_do_it"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_60percent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/listview_item_title"
-        app:layout_constraintTop_toBottomOf="@+id/listview_item_title" />
+<!--    <TextView-->
+<!--        android:id="@+id/listview_item_short_description"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="5dp"-->
+<!--        android:text="@string/you_can_do_it"-->
+<!--        android:textSize="16sp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tv_progress"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_10percent" />-->
 
     <TextView
         android:id="@+id/tv_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="1 Day"
-        android:textSize="18sp"
+        android:text="1 Day Smoke Free"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_60percent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_98percent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_30percent"
         tools:ignore="HardcodedText" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -70,17 +73,17 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.98" />
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical_20percent"
+        android:id="@+id/guideline_vertical_30percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.20" />
+        app:layout_constraintGuide_percent="0.30" />
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical_60percent"
+        android:id="@+id/guideline_vertical_50percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.60" />
+        app:layout_constraintGuide_percent="0.50" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_10percent"
         android:layout_width="wrap_content"
