@@ -550,6 +550,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 insteadOfSmoking();
+//                insteadOfLayout.setEnabled(false);
+//                insteadOfLayout.setBackgroundColor(Color.WHITE);
             }
         });
     }
@@ -1428,6 +1430,7 @@ public class MainActivity extends AppCompatActivity {
             //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
             HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
             if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+ONE)) {
+                insteadOfLayout.setEnabled(true);
                 if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
                     checkInButton.setBackground(getDrawable(R.drawable.custom_round_primary_color));
                     setCheckInText();
