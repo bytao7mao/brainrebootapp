@@ -176,6 +176,13 @@ public class MainActivity extends AppCompatActivity {
 
     //TextViews
     @BindView(R.id.YourQDay) TextView YourQDay;
+    @BindView(R.id.YourQDay2) TextView YourQDay2;
+    @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
+    @BindView(R.id.YourProgressIdCigaretes2) TextView userCigaretesProgressTxt2;
+    @BindView(R.id.YourHighestStreakId) TextView userHighestStreakTxt;
+    @BindView(R.id.YourHighestStreakId2) TextView userHighestStreakTxt2;
+    @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
+    @BindView(R.id.YourProgressIdHours2) TextView userHoursProgressTxt2;
     @BindView(R.id.exploreAchievementId) MaterialTextView TvExploreAchievement;
     @BindView(R.id.exploreSavingsId) MaterialTextView TvExploreSavings;
 //    @BindView(R.id.rank_master) TextView rankMasterTxt;
@@ -198,9 +205,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.textViewAchievTitle) TextView yourAchievmentTxtTitle;
     @BindView(R.id.textViewProgressTitle) TextView yourProgressTxtTitle;
     @BindView(R.id.textViewSavingsTitle) TextView yourSavingsTxtTitle;
-    @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
-    @BindView(R.id.YourHighestStreakId) TextView userHighestStreakTxt;
-    @BindView(R.id.YourProgressIdHours) TextView userHoursProgressTxt;
     //ProgressBar
     @BindView(R.id.loadingProgressId) ProgressBar progressBarLoading;
     @BindView(R.id.loadingProgressIdReplacement) ProgressBar progressBarLoading2;
@@ -451,7 +455,12 @@ public class MainActivity extends AppCompatActivity {
                 counter = preferences.getInt(COUNTER, -1);
             }
             //setting the achievments images for user
-            showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
+            showEntireProgressForUserCard(userCigaretesProgressTxt,
+                    userCigaretesProgressTxt2,
+                    userHighestStreakTxt,
+                    userHighestStreakTxt2,
+                    userHoursProgressTxt,
+                    userHoursProgressTxt2);
             setImagesForAchievementCard();
             setImprovementProgressLevels();
             TvExploreAchievement.setOnClickListener(new View.OnClickListener() {
@@ -490,6 +499,16 @@ public class MainActivity extends AppCompatActivity {
                 buttonClickedToday = preferences.getBoolean(CLICKED, false);
             }
             setImprovementProgressLevels();
+
+            //updating textviews
+            showEntireProgressForUserCard(userCigaretesProgressTxt,
+                    userCigaretesProgressTxt2,
+                    userHighestStreakTxt,
+                    userHighestStreakTxt2,
+                    userHoursProgressTxt,
+                    userHoursProgressTxt2);
+            setTextViewsForProgress();
+
             //using "final rethrow" by not specifying throwing a specific exception like NullPointer
             //the final keyword is optional, but in practice, we've found that it helps to use it while
             //adjusting to the new semantics of catch and rethrow
@@ -711,8 +730,9 @@ public class MainActivity extends AppCompatActivity {
                         editor.putString("qday", CALENDAR.get(Calendar.DAY_OF_MONTH)
                                 +"-" + MONTH_LOCALDATE + "-" + CALENDAR.get(Calendar.YEAR));
                         editor.apply();
-                        YourQDay.setText(getResources().getString(
-                                R.string.qday,preferences.getString("qday", "none")));
+                        YourQDay.setText(getResources().getString(R.string.qday));
+//                        YourQDay2.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
+                        YourQDay2.setText(preferences.getString("qday", "none"));
                     }
                 }).show();
     }
@@ -890,18 +910,7 @@ public class MainActivity extends AppCompatActivity {
                     higherThanOne = false;
                 }
                 editor.putInt(COUNTER, counter);
-                final int TEMP_CIGARETTES = cigarettesPerDay * counter;
-                final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
-                final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
-                userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
-                editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
-                lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
-                final String USER_HOURS_PROGRESS = getString(R.string.life_r)
-                        + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
-                userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
-                editor.putFloat(LIFEREGAINED, lifeRegained);
-                editor.putLong(SAVINGS_FINAL, savings);
-                editor.apply();
+                setTextViewsForProgress();
 //                checkActivityOnline();
 //                        setTheSavingsPerDay();
                 savingsGetAndSetValue();
@@ -913,7 +922,12 @@ public class MainActivity extends AppCompatActivity {
                 positiveDialogAfterPassDay();
                 //var 2 - custom toast after answer
                 estabilishHighestRecordForCounter();
-                showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
+                showEntireProgressForUserCard(userCigaretesProgressTxt,
+                        userCigaretesProgressTxt2,
+                        userHighestStreakTxt,
+                        userHighestStreakTxt2,
+                        userHoursProgressTxt,
+                        userHoursProgressTxt2);
 //                counterImgViewProgressbar.setProgress(counter);
             }
         });
@@ -943,13 +957,14 @@ public class MainActivity extends AppCompatActivity {
                     //new edit
                     final int TEMP_CIGARETTES = cigarettesPerDay * counter;
                     final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
-                    final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
+                    final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE;
                     userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+                    userCigaretesProgressTxt2.setText(String.valueOf(TEMP_CIGARETTES));
                     editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
                     lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
-                    final String USER_HOURS_PROGRESS = getString(R.string.life_r)
-                            + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+                    final String USER_HOURS_PROGRESS = getString(R.string.life_r);
                     userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
+                    userHoursProgressTxt2.setText(String.valueOf(numberFormat.format(lifeRegained) + " " + getString(R.string.hours)));
                     editor.putFloat(LIFEREGAINED, lifeRegained);
                     editor.apply();
 //                    checkActivityOnline();
@@ -968,6 +983,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         milestoneAlert.show();
+    }
+
+    private void setTextViewsForProgress() {
+        final int TEMP_CIGARETTES = cigarettesPerDay * counter;
+        final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
+        final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE;
+        userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+        userCigaretesProgressTxt2.setText(String.valueOf(TEMP_CIGARETTES));
+        editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
+        lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
+        final String USER_HOURS_PROGRESS = getString(R.string.life_r);
+        userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
+        userHoursProgressTxt2.setText(String.valueOf(numberFormat.format(lifeRegained) + " " + getString(R.string.hours)));
+        editor.putFloat(LIFEREGAINED, lifeRegained);
+        editor.putLong(SAVINGS_FINAL, savings);
+        editor.apply();
     }
 
     private void ttfancyDialogForFirstTimeLaunch(String title, String message) {
@@ -1020,18 +1051,7 @@ public class MainActivity extends AppCompatActivity {
                 higherThanOne = false;
                 Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
                 editor.putInt(COUNTER, counter);
-                final int TEMP_CIGARETTES = cigarettesPerDay * counter;
-                final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
-                final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
-                userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
-                editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
-                lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
-                final String USER_HOURS_PROGRESS = getString(R.string.life_r)
-                        + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
-                userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
-                editor.putFloat(LIFEREGAINED, lifeRegained);
-                editor.putLong(SAVINGS_FINAL, savings);
-                editor.apply();
+                setTextViewsForProgress();
                 checkActivityOnline();
 //                        setTheSavingsPerDay();
                 savingsGetAndSetValue();
@@ -1041,7 +1061,12 @@ public class MainActivity extends AppCompatActivity {
                 setTargetDays();
                 //var 2 - custom toast after answer
                 estabilishHighestRecordForCounter();
-                showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
+                showEntireProgressForUserCard(userCigaretesProgressTxt,
+                        userCigaretesProgressTxt2,
+                        userHighestStreakTxt,
+                        userHighestStreakTxt2,
+                        userHoursProgressTxt,
+                        userHoursProgressTxt2);
                 //var 1 - dialog after answer
                 positiveDialogAfterPassDay();
                 checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
@@ -1078,13 +1103,14 @@ public class MainActivity extends AppCompatActivity {
             //new edit
             final int TEMP_CIGARETTES = preferences.getInt(INITIAL_CIGG_PER_DAY, ZERO);
             final String CIGARETTES_NOT_SMOKE = getString(R.string.cig_not_smoked);
-            final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE + " " + TEMP_CIGARETTES;
+            final String USER_CIGARETTES_PROGRESS = CIGARETTES_NOT_SMOKE;
             userCigaretesProgressTxt.setText(USER_CIGARETTES_PROGRESS);
+            userCigaretesProgressTxt2.setText(String.valueOf(TEMP_CIGARETTES));
             editor.putInt(MODIFIED_CIGG_PER_DAY, TEMP_CIGARETTES);
             lifeRegained = (5f * (float) TEMP_CIGARETTES) / 60f;
-            final String USER_HOURS_PROGRESS = getString(R.string.life_r)
-                    + " " + numberFormat.format(lifeRegained) + " " + getString(R.string.hours);
+            final String USER_HOURS_PROGRESS = getString(R.string.life_r);
             userHoursProgressTxt.setText(USER_HOURS_PROGRESS);
+            userHoursProgressTxt2.setText(String.valueOf(numberFormat.format(lifeRegained) + " " + getString(R.string.hours)));
             editor.putFloat(LIFEREGAINED, lifeRegained);
             editor.apply();
 //            checkActivityOnline();
@@ -1251,7 +1277,12 @@ public class MainActivity extends AppCompatActivity {
             checkInsteadOfSmoking();
             //set text for checkin
             setCheckInText();
-            showEntireProgressForUserCard(userCigaretesProgressTxt, userHighestStreakTxt, userHoursProgressTxt);
+            showEntireProgressForUserCard(userCigaretesProgressTxt,
+                    userCigaretesProgressTxt2,
+                    userHighestStreakTxt,
+                    userHighestStreakTxt2,
+                    userHoursProgressTxt,
+                    userHoursProgressTxt2);
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);
                 editor.putInt(COUNTER, counter);
@@ -1938,12 +1969,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SideEffect
-    private void showEntireProgressForUserCard(final TextView TV_USER_CIGARETTES_PROGRESS,
-                                               final TextView TV_HIGHEST_STREAK,
-                                               final TextView TV_HOURS_PROGRESS) {
+    private void showEntireProgressForUserCard(final TextView TV_USER_CIGARETTES_PROGRESS,final TextView TV_USER_CIGARETTES_PROGRESS2,
+                                               final TextView TV_HIGHEST_STREAK,final TextView TV_HIGHEST_STREAK2,
+                                               final TextView TV_HOURS_PROGRESS, final TextView TV_HOURS_PROGRESS2) {
         try {
             YourQDay.setText(getResources().getString(
-                    R.string.qday,preferences.getString("qday", "none")));
+                    R.string.qday));
+            YourQDay2.setText(preferences.getString("qday", "none"));
             //getting the highest streak and put it in progress card
             final int HIGHEST_STREAK;
             if (preferences.contains(HIGHEST)){
@@ -1951,8 +1983,9 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 HIGHEST_STREAK = preferences.getInt(COUNTER, ZERO);
             }
-            final String TEMP_STREAK = getString(R.string.streak_string, HIGHEST_STREAK);
+            final String TEMP_STREAK = getString(R.string.streak_string);
             TV_HIGHEST_STREAK.setText(TEMP_STREAK);
+            TV_HIGHEST_STREAK2.setText(String.valueOf(HIGHEST_STREAK));
             //getting highest rank and put it into ranks card
             final String LAST_STREAK = preferences.getString(RANK, UNRANKED);
             final String RANK_LOCAL = getString(R.string.rank_master, LAST_STREAK);
@@ -1961,7 +1994,7 @@ public class MainActivity extends AppCompatActivity {
             if (counter == ZERO) {
                 TV_USER_CIGARETTES_PROGRESS.setText(R.string.cig_press_leaf);
                 final String PRESS_LEAF = getString(R.string.life_press_leaf);
-                TV_HOURS_PROGRESS.setText(PRESS_LEAF);
+//                TV_HOURS_PROGRESS.setText(PRESS_LEAF);
             } else {
                 if (preferences.contains(LIFEREGAINED)) {
                     lifeRegained = preferences.getFloat(LIFEREGAINED, -1);
@@ -1971,11 +2004,15 @@ public class MainActivity extends AppCompatActivity {
                     numberFormat.format(lifeRegained);
                 }
                 final String CIGARETTES_NOT_SMOKED_STRING = getString(R.string.cig_not_smoked);
-                final String LIFE_REGAINED_STRING = getString(R.string.life_reg, numberFormat.format(lifeRegained));
-                TV_USER_CIGARETTES_PROGRESS.setText(CIGARETTES_NOT_SMOKED_STRING +" " + preferences.getInt(MODIFIED_CIGG_PER_DAY, ZERO));
-                TV_HOURS_PROGRESS.setText(LIFE_REGAINED_STRING);
-                editor.putFloat(LIFEREGAINED, lifeRegained);
-                editor.apply();
+                final String LIFE_REGAINED_STRING = getString(R.string.life_reg);
+                TV_USER_CIGARETTES_PROGRESS.setText(CIGARETTES_NOT_SMOKED_STRING);
+                TV_USER_CIGARETTES_PROGRESS2.setText(preferences.getInt(MODIFIED_CIGG_PER_DAY, ZERO));
+//                TV_HOURS_PROGRESS.setText(LIFE_REGAINED_STRING);
+//                TV_HOURS_PROGRESS2.setText(String.valueOf(numberFormat.format(lifeRegained)));
+                Log.d("DAYZEN", "txt1: " + LIFE_REGAINED_STRING
+                + "txt2: " + String.valueOf(numberFormat.format(lifeRegained)));
+//                editor.putFloat(LIFEREGAINED, lifeRegained);
+//                editor.apply();
             }
         } catch(final Exception e){ e.printStackTrace(); }
     }

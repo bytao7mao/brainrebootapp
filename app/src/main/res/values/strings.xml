@@ -17,12 +17,12 @@
     <string name="smoking_data">Cost per packet for example.</string>
     <string name="agreeing_to_terms">By using this app you are agreeing to our</string>
     <string name="rank_master">Current Rank: %s</string>
-    <string name="streak_string">Highest days streak: %d</string>
+    <string name="streak_string">Highest days streak: </string>
     <string name="non_smoker_since">Days Smoke Free</string>
     <string name="check_in_tomorrow">Check-in: tomorrow!</string>
     <string name="check_in">Check-in</string>
     <string name="daily_quote">Today\'s motivation!</string>
-    <string name="qday">Q! Day: %s</string>
+    <string name="qday">Q! Day: </string>
     <string name="cannot_be_zero">Cannot be 0!</string>
     <string name="calculating">Calculating …</string>
     <string name="check_in_now">Check-in now!</string>
@@ -30,7 +30,7 @@
     <string name="cig_not_smoked">Cigarettes not smoked:</string>
     <string name="cig_press_leaf">Press check-in to calculate</string>
     <string name="life_press_leaf">Press check-in to calculate"</string>
-    <string name="life_reg">Life regained: %s hours</string>
+    <string name="life_reg">Life regained: </string>
     <string name="explore">Explore</string>
     <string name="your_savings">Your latest savings</string>
     <string name="your_latest_achievments">Your latest achievements</string>

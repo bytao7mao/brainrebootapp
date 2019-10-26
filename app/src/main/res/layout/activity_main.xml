@@ -727,7 +727,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -767,12 +767,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.25" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_30percentBottom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.30" />
+                        app:layout_constraintGuide_begin="54dp" />
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_90percentBottom"
                         android:layout_width="wrap_content"
@@ -780,17 +781,17 @@
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.90" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/appCompatImageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/ic_high_performance"
-                        android:contentDescription="@string/personal_progress"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/exploreProgressId"
-                        app:layout_constraintStart_toStartOf="@+id/exploreProgressId"
-                        app:layout_constraintTop_toTopOf="parent" />
+<!--                    <androidx.appcompat.widget.AppCompatImageView-->
+<!--                        android:id="@+id/appCompatImageView"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="5dp"-->
+<!--                        android:background="@drawable/ic_high_performance"-->
+<!--                        android:contentDescription="@string/personal_progress"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/exploreProgressId"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/exploreProgressId"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
 <!--                    <com.google.android.material.textview.MaterialTextView-->
 <!--                        android:id="@+id/exploreProgressId"-->
@@ -841,6 +842,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:alpha="0.6"
                         android:text="Q! Day: "
                         android:textSize="16sp"
@@ -851,58 +853,76 @@
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30percentBottom"
                         app:layout_constraintVertical_bias="1.0" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/infoLifeRegainedProgress"
+                    <TextView
+                        android:id="@+id/YourQDay2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_info_outline_primary_color_24dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
-                        app:layout_constraintStart_toEndOf="@+id/YourHighestStreakId"
-                        app:layout_constraintTop_toBottomOf="@+id/YourProgressIdCigaretes" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/infoQDayProgress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_info_outline_primary_color_24dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours"
-                        app:layout_constraintStart_toEndOf="@+id/YourProgressIdHours"
-                        app:layout_constraintTop_toBottomOf="@+id/YourHighestStreakId"
-                        app:layout_constraintVertical_bias="0.0" />
+                        android:alpha="0.6"
+                        android:text="24-09-2019"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourQDay"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/YourQDay"
+                        app:layout_constraintTop_toTopOf="@+id/YourQDay" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/infoHighestDaysProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
                         android:src="@drawable/ic_info_outline_primary_color_24dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes"
-                        app:layout_constraintStart_toEndOf="@+id/YourProgressIdCigaretes"
-                        app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/YourHighestStreakId2"
+                        app:layout_constraintTop_toTopOf="@+id/YourHighestStreakId" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoLifeRegainedProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/YourProgressIdHours2"
+                        app:layout_constraintTop_toTopOf="@+id/YourProgressIdHours"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/infoCigarettesProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/YourProgressIdCigaretes2"
+                        app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoQDayProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
                         android:src="@drawable/ic_info_outline_primary_color_24dp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourQDay"
-                        app:layout_constraintStart_toEndOf="@+id/YourQDay"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/YourQDay2"
                         app:layout_constraintTop_toTopOf="@+id/YourQDay" />
 
                     <TextView
@@ -910,6 +930,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:alpha="0.6"
                         android:text="example 1"
                         android:textSize="16sp"
@@ -919,34 +940,80 @@
                         app:layout_constraintStart_toStartOf="@+id/YourHighestStreakId" />
 
                     <TextView
+                        android:id="@+id/YourProgressIdCigaretes2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.6"
+                        android:text="900"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/YourProgressIdCigaretes"
+                        app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes" />
+
+                    <TextView
                         android:id="@+id/YourHighestStreakId"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="8dp"
                         android:alpha="0.6"
                         android:text="example 2"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/YourProgressIdHours"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentBottom"
                         app:layout_constraintVertical_bias="0.6" />
+
+                    <TextView
+                        android:id="@+id/YourHighestStreakId2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.6"
+                        android:text="24-09-2019"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/YourHighestStreakId"
+                        app:layout_constraintTop_toTopOf="@+id/YourHighestStreakId" />
 
                     <TextView
                         android:id="@+id/YourProgressIdHours"
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:alpha="0.6"
                         android:text="example 3"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25percentBottom"
+                        app:layout_constraintStart_toStartOf="@+id/YourHighestStreakId"
                         app:layout_constraintTop_toBottomOf="@+id/YourHighestStreakId"
                         app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/YourProgressIdHours2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.6"
+                        android:text="24-09-2019"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/YourProgressIdHours"
+                        app:layout_constraintTop_toTopOf="@+id/YourProgressIdHours" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
