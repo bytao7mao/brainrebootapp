@@ -24,6 +24,7 @@ import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.taozen.quithabit.R;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.taozen.quithabit.MainActivity.PRIVACY_POLICY;

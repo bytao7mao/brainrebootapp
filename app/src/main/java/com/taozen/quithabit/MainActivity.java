@@ -197,7 +197,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.subTextBloodId) TextView subTextBlood;
 
     @BindView(R.id.targetTxtViewId) TextView targetTxtViewId;
-    @BindView(R.id.savingsTxtId) TextView moneySavingsTxt;
+    @BindView(R.id.savingsTxtIdPerDay) TextView moneySavingsTxtPerDay;
+    @BindView(R.id.savingsTxtIdPerDay2) TextView moneySavingsTxtPerDayResult;
+    @BindView(R.id.savingsTxtIdPerTotal) TextView moneySavingsTxtPerTotal;
+    @BindView(R.id.savingsTxtIdPerTotal2) TextView moneySavingsTxtPerTotalResult;
+    @BindView(R.id.savingsTxtIdPerYear) TextView moneySavingsTxtPerYear;
+    @BindView(R.id.savingsTxtIdPerYear2) TextView moneySavingsTxtPerYearResult;
+
     @BindView(R.id.remaining_days_Id) TextView remainingDaysTxt;
     @BindView(R.id.tvTipOfTheDay) TextView tipOfTheDayTxtView;
     @BindView(R.id.textNonSmokerId) TextView textNonSmoker;
@@ -262,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String generateQuoteForPassingTheDay() {
         Random random = new Random();
+        //TODO: add more strings/quotes
         quotesForPassingTheDayList.add(getString(R.string.pass_one));
         quotesForPassingTheDayList.add(getString(R.string.pass_two));
         quotesForPassingTheDayList.add(getString(R.string.pass_three));
@@ -352,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
             if (NAME!=null){
                 tipOfTheDayTxtView.setText(NAME);
             } else {
+                //if text cannot be get from server we put R.string.example_of_tip_of_the_day
                 checkActivityOnline();
             }
 
@@ -520,33 +528,35 @@ public class MainActivity extends AppCompatActivity {
 //    not using it now
     private void setCounterImageDaysOrDay(int counterInner) {
         try {
-            final Locale localeMAIN;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                localeMAIN = getResources().getConfiguration().getLocales().get(0);
-            } else {
-                localeMAIN = getResources().getConfiguration().locale;
-            }
-            //get initials like: RO/US/EN/FR
-            final String PUT_LANGUAGE_IN_STRING_ON_CREATE = localeMAIN.getLanguage();
-            Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING_ON_CREATE);
+//            final Locale localeMAIN;
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                localeMAIN = getResources().getConfiguration().getLocales().get(0);
+//            } else {
+//                localeMAIN = getResources().getConfiguration().locale;
+//            }
+//            //get initials like: RO/US/EN/FR
+//            final String PUT_LANGUAGE_IN_STRING_ON_CREATE = localeMAIN.getLanguage();
+//            Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING_ON_CREATE);
             if (counterInner < 2) {
-                final Drawable ro_or_eng_for_first_day =
-                        (PUT_LANGUAGE_IN_STRING_ON_CREATE.equalsIgnoreCase(RO))
-                                ? ContextCompat.getDrawable(
-                                getApplicationContext(),
-                                R.drawable.counterimg_ro)
-                                : ContextCompat.getDrawable(getApplicationContext(),
-                                R.drawable.counterimgone);
-//                counterImgViewProgressbar.setImageDrawable(ro_or_eng_for_first_day);
+//                final Drawable ro_or_eng_for_first_day =
+//                        (PUT_LANGUAGE_IN_STRING_ON_CREATE.equalsIgnoreCase(RO))
+//                                ? ContextCompat.getDrawable(
+//                                getApplicationContext(),
+//                                R.drawable.counterimg_ro)
+//                                : ContextCompat.getDrawable(getApplicationContext(),
+//                                R.drawable.counterimgone);
+                textNonSmoker.setText(getString(R.string.non_smoker_sincer_one_day));
+                textNonSmoker.setTextSize(28f);
             } else {
-                final Drawable ro_or_eng_for_first_day =
-                        (PUT_LANGUAGE_IN_STRING_ON_CREATE.equalsIgnoreCase(RO))
-                                ? ContextCompat.getDrawable(
-                                getApplicationContext(),
-                                R.drawable.counterimg_ro)
-                                : ContextCompat.getDrawable(getApplicationContext(),
-                                R.drawable.counterimg);
-//                counterImgViewProgressbar.setImageDrawable(ro_or_eng_for_first_day);
+//                final Drawable ro_or_eng_for_first_day =
+//                        (PUT_LANGUAGE_IN_STRING_ON_CREATE.equalsIgnoreCase(RO))
+//                                ? ContextCompat.getDrawable(
+//                                getApplicationContext(),
+//                                R.drawable.counterimg_ro)
+//                                : ContextCompat.getDrawable(getApplicationContext(),
+//                                R.drawable.counterimg);
+                textNonSmoker.setText(getString(R.string.non_smoker_since));
+                textNonSmoker.setTextSize(36f);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1148,19 +1158,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setTxtViewForUserSavings(long SAVE_PER_DAY, String TOTAL_SAVINGS,
-                                          TextView TEXTVIEW) {
+    private void setTxtViewForUserSavings(long SAVE_PER_DAY, String TOTAL_SAVINGS) {
         final DecimalFormat FORMATTER = new DecimalFormat("###,###,##0.00");
         final String VALUE_PER_YEAR_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
         final String TOTAL_SAVINGS_LOCAL = FORMATTER.format(Integer.parseInt(TOTAL_SAVINGS));
         final String VALUE_PER_DAY_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY)));
         final String CURRENCY_LOCAL = preferences.getString("currency", "$");
         //target counter string
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder = stringBuilder.append(getString(R.string.perday)).append(" ").append(VALUE_PER_DAY_LOCAL).append(" ").append(CURRENCY_LOCAL).append("\n")
-                .append(getString(R.string.savings, TOTAL_SAVINGS_LOCAL)).append(" ").append(CURRENCY_LOCAL).append("\n")
-                .append(getString(R.string.peryear)).append(" ").append(VALUE_PER_YEAR_LOCAL).append(" ").append(CURRENCY_LOCAL);
-        TEXTVIEW.setText(stringBuilder);
+//        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder =
+//                //per day
+//                stringBuilder.append(getString(R.string.perday)).append(" ").append(VALUE_PER_DAY_LOCAL).append(" ").append(CURRENCY_LOCAL).append("\n")
+//                //per total
+//                .append(getString(R.string.savings, TOTAL_SAVINGS_LOCAL)).append(" ").append(CURRENCY_LOCAL).append("\n")
+//                //per year
+//                .append(getString(R.string.peryear)).append(" ").append(VALUE_PER_YEAR_LOCAL).append(" ").append(CURRENCY_LOCAL);
+//        TEXTVIEW.setText(stringBuilder);
+        String perDayNormal = getString(R.string.perday);
+        moneySavingsTxtPerDay.setText(perDayNormal);
+        String perDayResult = " " + VALUE_PER_DAY_LOCAL + " " + CURRENCY_LOCAL;
+        moneySavingsTxtPerDayResult.setText(perDayResult);
+        String perTotalNormal = getString(R.string.savings);
+        moneySavingsTxtPerTotal.setText(perTotalNormal);
+        String perTotalResult = " " + TOTAL_SAVINGS_LOCAL + " " + CURRENCY_LOCAL;
+        moneySavingsTxtPerTotalResult.setText(perTotalResult);
+        String perYearNormal = getString(R.string.peryear);
+        moneySavingsTxtPerYear.setText(perYearNormal);
+        String perYearResult = " " + VALUE_PER_YEAR_LOCAL + " " + CURRENCY_LOCAL;
+        moneySavingsTxtPerYearResult.setText(perYearResult);
     }
 
     private void setTxtViewForUserMaxCountDaysOnStringVersion(
@@ -1180,8 +1205,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
             firstSave = preferences.contains(FIRSTSAVE) ? preferences.getLong(FIRSTSAVE, ZERO) : ZERO;
-            setTxtViewForUserSavings(firstSave,
-                    String.valueOf(savings), moneySavingsTxt);
+            setTxtViewForUserSavings(firstSave, String.valueOf(savings));
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -1196,6 +1220,8 @@ public class MainActivity extends AppCompatActivity {
             }
             if (counter == ZERO) {
                 textNonSmoker.setText(R.string.calculating);
+            } else if (counter == 1) {
+                textNonSmoker.setText(R.string.non_smoker_sincer_one_day);
             } else {
                 textNonSmoker.setText(R.string.non_smoker_since);
             }
@@ -1802,6 +1828,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final String RESULT) {
             try {
+                //TODO: to think about putting here R.string.example_of_tip_of_the_day instead of no quotes
                 final String tempResult = (RESULT == null) ?
                         "No quotes available in this moment ..." : RESULT;
                 //using raw JSON PARSER

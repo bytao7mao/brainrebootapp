@@ -16,7 +16,8 @@
     <string name="streak_string">Record: %d</string>
     <string name="thanks_for_downloading_this_app">Folosim aceste informatii pentru a analiza progresul tau zilnic.</string>
     <string name="check_in_tomorrow">Verificare maine!</string>
-    <string name="non_smoker_since">Nefumator</string>
+    <string name="non_smoker_since">Zile Fara Fumat</string>
+    <string name="non_smoker_sincer_one_day">O Zi Fara Fumat</string>
     <string name="check_in_now">Verifica acum!</string>
     <string name="calculating">Calculam …</string>
     <string name="cig_not_smoked">Tigari nefumate:</string>

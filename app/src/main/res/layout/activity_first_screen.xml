@@ -14,19 +14,32 @@
         tools:context=".FirstScreenActivity">
 <!--        android:background="@color/white"-->
         <!--style="@style/Widget.AppCompat.EditText"-->
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
+            android:contentDescription="TODO"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvTitleId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
             android:alpha="0.8"
             android:gravity="center"
             android:text="@string/break_your_habit"
             android:textSize="28sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_10percent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
         <TextView
             android:id="@+id/tvSubtitleSmoking"
             android:layout_width="wrap_content"
@@ -165,7 +178,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.35" />
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_vertical_80percent"
             android:layout_width="wrap_content"

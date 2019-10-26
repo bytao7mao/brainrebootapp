@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Quit Habit! NoSmoking</string>
     <string name="target_string">Goal: %s</string>
-    <string name="savings">Per total: %s</string>
+    <string name="savings">Per total:</string>
     <string name="remaining_days">Remaining: %s</string>
     <string name="total_savings">This is your total savings: %s $</string>
     <string name="progressactivity_get_started">Get started on the life you want</string>
@@ -19,6 +19,7 @@
     <string name="rank_master">Current Rank: %s</string>
     <string name="streak_string">Highest days streak: </string>
     <string name="non_smoker_since">Days Smoke Free</string>
+    <string name="non_smoker_sincer_one_day">One Day Smoke Free</string>
     <string name="check_in_tomorrow">Check-in: tomorrow!</string>
     <string name="check_in">Check-in</string>
     <string name="daily_quote">Today\'s motivation!</string>
@@ -42,11 +43,11 @@
     <string name="gums">Blood\ncirculation</string>
     <string name="how_many_cigarettes_per_day">How many cigarettes per day ?</string>
     <string name="how_much_do_you_spend_per_day">How much do you spend per day ?</string>
-    <string name="break_your_habit">Break your habit!</string>
+    <string name="break_your_habit">Break your habit now!</string>
     <string name="cigarettes">cigarettes</string>
     <string name="example_of_tip_of_the_day">"For Every Reason It’s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. – Jack Canfield"</string>
     <string name="perday">Per day:</string>
-    <string name="perdaysimple">per day</string>
+    <string name="perdaysimple">Per day:</string>
     <string name="peryear">Per year:</string>
     <string name="reset_whole_progress">Reset your whole progress</string>
     <string name="are_you_sure">Are you sure ?</string>
