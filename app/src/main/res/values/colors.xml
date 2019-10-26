@@ -6,7 +6,7 @@
     <color name="colorAccent">#E040FB</color>
     <color name="colorPrimaryLight">#D1C4E9</color>
     <color name="divider">#BDBDBD</color>
-    <color name="greish">#5C5C5C</color>
+    <color name="colorGreyLight">#5C5C5C</color>
 
     <color name="greenColorLed">#6200EE</color>
     <color name="white">#FFF</color>

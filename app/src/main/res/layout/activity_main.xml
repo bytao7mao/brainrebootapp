@@ -384,7 +384,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Middle"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="220dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -418,14 +418,27 @@
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
                         android:alpha="0.7"
                         android:text="@string/energy"
+                        android:textAlignment="center"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25percentPercent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/progress_bar_energy" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoEnergyPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/subTextEnergyId"
+                        app:layout_constraintStart_toStartOf="@+id/subTextEnergyId"
+                        app:layout_constraintTop_toBottomOf="@+id/subTextEnergyId"
+                        app:layout_constraintVertical_bias="0.20" />
 
                     <TextView
                         android:id="@+id/subTextBreathId"
@@ -441,6 +454,19 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentPercent"
                         app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoBreathPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/infoHeartPercent"
+                        app:layout_constraintEnd_toEndOf="@+id/subTextBreathId"
+                        app:layout_constraintStart_toStartOf="@+id/subTextBreathId"
+                        app:layout_constraintTop_toTopOf="@+id/infoHeartPercent" />
+
                     <TextView
                         android:id="@+id/subTextHeartId"
                         style="@style/TextColorBlack"
@@ -455,6 +481,19 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25percentPercent"
                         app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoHeartPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/infoEnergyPercent"
+                        app:layout_constraintEnd_toEndOf="@+id/subTextHeartId"
+                        app:layout_constraintStart_toStartOf="@+id/subTextHeartId"
+                        app:layout_constraintTop_toTopOf="@+id/infoEnergyPercent" />
+
                     <TextView
                         android:id="@+id/subTextBloodId"
                         style="@style/TextColorBlack"
@@ -468,6 +507,19 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_75percentPercent"
                         app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoBloodPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/infoBreathPercent"
+                        app:layout_constraintEnd_toEndOf="@+id/subTextBloodId"
+                        app:layout_constraintStart_toStartOf="@+id/subTextBloodId"
+                        app:layout_constraintTop_toTopOf="@+id/infoBreathPercent" />
 
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/progress_bar_energy"
@@ -488,7 +540,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25percentPercent"
                         app:layout_constraintHorizontal_weight="1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextViewPercentViewsTitle"
+                        app:layout_constraintVertical_bias="0.20"
                         app:maximum="100"
                         app:progress="50"
                         app:progressAnimationDuration="100"
@@ -739,21 +792,21 @@
                         app:layout_constraintStart_toStartOf="@+id/exploreProgressId"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/exploreProgressId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:padding="8dp"
-                        android:text="@string/explore"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25percentBottom"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/exploreProgressId"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                        android:clickable="true"-->
+<!--                        android:focusable="true"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:text="@string/explore"-->
+<!--                        android:textColor="@color/colorPrimary"-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25percentBottom"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />-->
 
                     <TextView
                         android:id="@+id/textViewProgressTitle"
@@ -798,6 +851,60 @@
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30percentBottom"
                         app:layout_constraintVertical_bias="1.0" />
 
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoLifeRegainedProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
+                        app:layout_constraintStart_toEndOf="@+id/YourHighestStreakId"
+                        app:layout_constraintTop_toBottomOf="@+id/YourProgressIdCigaretes" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoQDayProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours"
+                        app:layout_constraintStart_toEndOf="@+id/YourProgressIdHours"
+                        app:layout_constraintTop_toBottomOf="@+id/YourHighestStreakId"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoHighestDaysProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes"
+                        app:layout_constraintStart_toEndOf="@+id/YourProgressIdCigaretes"
+                        app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoCigarettesProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_info_outline_primary_color_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/YourQDay"
+                        app:layout_constraintStart_toEndOf="@+id/YourQDay"
+                        app:layout_constraintTop_toTopOf="@+id/YourQDay" />
+
                     <TextView
                         android:id="@+id/YourProgressIdCigaretes"
                         style="@style/TextColorBlack"
@@ -836,7 +943,7 @@
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                        app:layout_constraintHorizontal_bias="0.1"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25percentBottom"
                         app:layout_constraintTop_toBottomOf="@+id/YourHighestStreakId"
                         app:layout_constraintVertical_bias="0.0" />
@@ -1033,18 +1140,18 @@
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30achieveBottom"
                         app:layout_constraintVertical_bias="0.9" />
 
-                    <TextView
-                        android:id="@+id/rank_master"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.8"
-                        android:text="@string/rank_master"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/rankThreeId"
-                        app:layout_constraintHorizontal_bias="0.1"
-                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25achieveBottom"
-                        app:layout_constraintTop_toBottomOf="@+id/rankTwoId" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/rank_master"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:alpha="0.8"-->
+<!--                        android:text="@string/rank_master"-->
+<!--                        android:textSize="16sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/rankThreeId"-->
+<!--                        app:layout_constraintHorizontal_bias="0.1"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25achieveBottom"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/rankTwoId" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>

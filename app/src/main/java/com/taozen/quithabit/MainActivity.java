@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.YourQDay) TextView YourQDay;
     @BindView(R.id.exploreAchievementId) MaterialTextView TvExploreAchievement;
     @BindView(R.id.exploreSavingsId) MaterialTextView TvExploreSavings;
-    @BindView(R.id.rank_master) TextView rankMasterTxt;
+//    @BindView(R.id.rank_master) TextView rankMasterTxt;
     @BindView(R.id.counterTextId) MaterialTextView counterText;
     @BindView(R.id.txtProgressIdForBlood) TextView txtProgressForBlood;
     @BindView(R.id.txtProgressIdForBreath) TextView txtProgressForBreath;
@@ -345,7 +345,12 @@ public class MainActivity extends AppCompatActivity {
             //using API from splash
             final Intent INTENT = getIntent();
             final String NAME = INTENT.getStringExtra("data");
-            tipOfTheDayTxtView.setText(NAME);
+            if (NAME!=null){
+                tipOfTheDayTxtView.setText(NAME);
+            } else {
+                checkActivityOnline();
+            }
+
 
             numberFormat = new DecimalFormat("#.##");
 
@@ -493,6 +498,7 @@ public class MainActivity extends AppCompatActivity {
         }//[END OF RETRIEVING VALUES]
     }//[END OF ONCREATE]
 
+//    not using it now
     private void setCounterImageDaysOrDay(int counterInner) {
         try {
             final Locale localeMAIN;
@@ -845,6 +851,7 @@ public class MainActivity extends AppCompatActivity {
     private void normalFancyDialog(String title, String message) {
         MaterialAlertDialogBuilder milestoneAlert = new MaterialAlertDialogBuilder
                 (new ContextThemeWrapper(this, R.style.AlertDialogTheme));
+        milestoneAlert.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.popup_menu_round));
         milestoneAlert.setMessage(message);
         milestoneAlert.setTitle(title);
         milestoneAlert.setCancelable(false);
@@ -968,6 +975,7 @@ public class MainActivity extends AppCompatActivity {
                 (new ContextThemeWrapper(this, R.style.AlertDialogTheme));
         milestoneAlert.setMessage(message);
         milestoneAlert.setTitle(title);
+        milestoneAlert.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.popup_menu_round));
         milestoneAlert.setCancelable(false);
         milestoneAlert.setPositiveButton(getString(R.string.YES), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
@@ -1024,7 +1032,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putFloat(LIFEREGAINED, lifeRegained);
                 editor.putLong(SAVINGS_FINAL, savings);
                 editor.apply();
-//                checkActivityOnline();
+                checkActivityOnline();
 //                        setTheSavingsPerDay();
                 savingsGetAndSetValue();
                 setImprovementProgressLevels();
@@ -1948,7 +1956,7 @@ public class MainActivity extends AppCompatActivity {
             //getting highest rank and put it into ranks card
             final String LAST_STREAK = preferences.getString(RANK, UNRANKED);
             final String RANK_LOCAL = getString(R.string.rank_master, LAST_STREAK);
-            rankMasterTxt.setText(RANK_LOCAL);
+//            rankMasterTxt.setText(RANK_LOCAL);
 
             if (counter == ZERO) {
                 TV_USER_CIGARETTES_PROGRESS.setText(R.string.cig_press_leaf);

@@ -37,7 +37,7 @@
     <string name="personal_progress">Personal progress</string>
     <string name="error_loading_data_from_api">Cannot retrieve data from server</string>
     <string name="energy">Energy\nlevels</string>
-    <string name="breath">Breathing</string>
+    <string name="breath">Proper breathing</string>
     <string name="fatigue">Heart\nrate</string>
     <string name="gums">Blood\ncirculation</string>
     <string name="how_many_cigarettes_per_day">How many cigarettes per day ?</string>
