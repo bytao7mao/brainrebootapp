@@ -35,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:textColorLink="@color/colorPrimary"
             android:text="@string/quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_80percent"
@@ -57,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/licences"
+            android:textColorLink="@color/colorPrimary"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
             app:layout_constraintTop_toBottomOf="@+id/tv_third_party_licences" />
@@ -66,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:textColorLink="@color/colorPrimary"
             android:text="@string/terms_of_service"
             android:autoLink="all"
             android:textSize="18sp"

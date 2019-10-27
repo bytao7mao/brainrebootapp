@@ -93,10 +93,12 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FIN
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int FIVE_HUNDRED = 500;
     private static final String TAG = MainActivity.class.getSimpleName() + "TAOMAO";
+    public static final int ONE_THOUSAND = 1000;
     public static final int DEFAULT_NEGATIVE_VALUE = -1000;
-    public static final int LEAP_YEAR_DAYS = 366;
-    public static final int NORMAL_YEAR_DAYS = 365;
+    public static final int LEAP_YEAR_DAYS = 365;
+    public static final int NORMAL_YEAR_DAYS = 364;
     public static final int ONE_HUNDRED = 100;
     public static final int SEVENTY_FIVE = 75;
     public static final int FIVE = 5;
@@ -136,6 +138,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String ZERO_STRING = "ZERO";
     public static final int EIGHT = 8;
     public static final int TWENTYFOUR = 24;
+    public static final int FOUR_HUNDRED = 400;
+    public static final int SIX_HUNDRED = 600;
+    public static final int SEVEN_HUNDRED = 700;
+    public static final int EIGHT_HUNDRED = 800;
+    public static final int NINE_HUNDRED = 900;
 
     String[] monthName = {"Jan", "Feb",
             "Mar", "Apr", "May", "Jun", "Jul",
@@ -340,7 +347,10 @@ public class MainActivity extends AppCompatActivity {
                         stream.close();
                         uri = Uri.fromFile(file);
                     } catch (IOException e) {
-                        Log.d(TAG, "IOException while trying to write file for sharing: " + e.getMessage());
+                        e.printStackTrace();
+                        if (BuildConfig.DEBUG) {
+                            Log.d(TAG, "IOException while trying to write file for sharing: " + e.getMessage());
+                        }
                     }
 
                     //Convert to byte array
@@ -854,10 +864,28 @@ public class MainActivity extends AppCompatActivity {
                     } else if (counter > ONE_HUNDRED_AND_EIGHTY-TWO && counter < TWO_HUNDRED_AND_SEVENTY-ONE) {
                         normalFancyDialog(getString(R.string.beat_milestone, 270), MESSAGE_FOR_DIALOG);
                         //between 279(to show up in SIXTY) and 360
-                    } else if (counter > TWO_HUNDRED_AND_SEVENTY-TWO && counter < THREE_HUNDRED+SIXTY+ONE) {
-                        normalFancyDialog(getString(R.string.beat_milestone, 360), MESSAGE_FOR_DIALOG);
+                    } else if (counter > TWO_HUNDRED_AND_SEVENTY-TWO && counter < x) {
+                        normalFancyDialog(getString(R.string.beat_milestone, x), MESSAGE_FOR_DIALOG);
                         //if user has reached almost one year (360 days) we ask if he/she want reset
-                    } else if (counter >= x) {
+                        //TODO: add more ifs until 1000
+                    } else if (counter >= x && counter < 401) {
+                        normalFancyDialog(getString(R.string.beat_milestone, 400), MESSAGE_FOR_DIALOG);
+                    } else if (counter >= 401 && counter < 501) {
+                        normalFancyDialog(getString(R.string.beat_milestone, 500), MESSAGE_FOR_DIALOG);
+                    } else if (counter >= 501 && counter < 601) {
+                        normalFancyDialog(getString(R.string.beat_milestone, 600), MESSAGE_FOR_DIALOG);
+                    } else if (counter >= 601 && counter < 701) {
+                        normalFancyDialog(getString(R.string.beat_milestone, 700), MESSAGE_FOR_DIALOG);
+                    } else if (counter >= 701 && counter < 801) {
+                        normalFancyDialog(getString(R.string.beat_milestone, 800), MESSAGE_FOR_DIALOG);
+                    } else if (counter >= 801 && counter < 901) {
+                        normalFancyDialog(getString(R.string.beat_milestone, 900), MESSAGE_FOR_DIALOG);
+                    } else if (counter >= 901 && counter < 1001) {
+                        normalFancyDialog(getString(R.string.beat_milestone, 1000), MESSAGE_FOR_DIALOG);
+                    } else if (counter >= 1000 && counter < 2001) {
+                        normalFancyDialog(getString(R.string.beat_milestone, 2000), MESSAGE_FOR_DIALOG);
+                    } else if (counter >= 2000) {
+                        //impossible
                         dialogForResetForced();
                     }
                     //SHOW FANCY TOAST WITH CONGRATS
@@ -912,7 +940,7 @@ public class MainActivity extends AppCompatActivity {
                 if (counter == ZERO) {
                     savings = preferences.getLong("taoz10", -10);
                 }
-                if (preferences.contains("diff") && higherThanOne){
+                if (preferences.contains("diff") && higherThanOne) {
                     final int DIF = preferences.getInt("diff", -100);
                     counter = counter + DIF;
                     setCounterImageDaysOrDay(counter);
@@ -927,7 +955,7 @@ public class MainActivity extends AppCompatActivity {
                     higherThanOne = false;
                     final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
                     final int x = isLeap(yearOfNow) ? LEAP_YEAR_DAYS : NORMAL_YEAR_DAYS;
-                    if (counter > x){
+                    if (counter >= ONE_THOUSAND_AND_FIVE_HUNDRED){
                         dialogForResetForced();
                     }
                 } else {
@@ -1246,32 +1274,80 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 textNonSmoker.setText(R.string.non_smoker_since);
             }
-            if (counter >= NINETY*THREE) {
+            //TODO: finish calculation for MAXCOUNT
+            if (counter >= ONE_THOUSAND) {
+                //12 months//1 year
+                userMaxCountForHabit = ONE_THOUSAND*2;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= NINE_HUNDRED) {
+                //12 months//1 year
+                userMaxCountForHabit = ONE_THOUSAND;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= EIGHT_HUNDRED) {
+                //12 months//1 year
+                userMaxCountForHabit = NINE_HUNDRED;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= SEVEN_HUNDRED) {
+                //12 months//1 year
+                userMaxCountForHabit = EIGHT_HUNDRED;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= SIX_HUNDRED) {
+                //12 months//1 year
+                userMaxCountForHabit = SEVEN_HUNDRED;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= FIVE_HUNDRED) {
+                //12 months//1 year
+                userMaxCountForHabit = SIX_HUNDRED;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= FOUR_HUNDRED) {
+                //12 months//1 year
+                userMaxCountForHabit = FIVE_HUNDRED;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= NINETY*FOUR) {
+                //12 months//1 year
+                userMaxCountForHabit = FOUR_HUNDRED;
+                editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
+                editor.apply();
+            } else if (counter >= NINETY*THREE) {
+                //12 months//1 year
                 userMaxCountForHabit = NINETY*FOUR;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             } else if (counter >= NINETY*TWO) {
+                //9 months
                 userMaxCountForHabit = NINETY*THREE;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             } else if (counter >= NINETY) {
+                //6 months
                 userMaxCountForHabit = NINETY*TWO;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             } else if (counter >= SIXTY) {
+                //3 months
                 userMaxCountForHabit = NINETY;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             } else if (counter >= THIRTY) {
+                //2 months
                 userMaxCountForHabit = SIXTY;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             } else {
+                //1 month
                 userMaxCountForHabit = THIRTY;
                 editor.putInt(getString(R.string.maxCounter), userMaxCountForHabit);
                 editor.apply();
             }
             userMaxCountForHabit = preferences.getInt(getString(R.string.maxCounter), -1);
+            counterImgViewProgressbar.setMaximum(userMaxCountForHabit);
             setTxtViewForUserMaxCountDaysOnStringVersion(String.valueOf(userMaxCountForHabit),
                     targetTxtViewId);
             if (!preferences.contains(CHALLENGES_STRING)) {
@@ -1289,7 +1365,8 @@ public class MainActivity extends AppCompatActivity {
             int maxCount = Integer.parseInt(CALC_DAYS_TARGET);
             //max 30 always
             Log.d("dayzen", ""+maxCount);
-            counterImgViewProgressbar.setProgress((float) ((30-maxCount)*3.3));
+//            counterImgViewProgressbar.setProgress((float) ((30-maxCount)*3.3));
+            counterImgViewProgressbar.setProgress(preferences.getInt(COUNTER, 0));
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -1502,7 +1579,9 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, ZERO);
             }
+            //if year has passed
             if (Calendar.getInstance().get(Calendar.YEAR) != preferences.getInt(YEARLEAP, 2019)) {
+                //366 - DAY OF CLICK
                 DAY_OF_CLICK = returnLeapForClickYear();
                 DAY_OF_CLICK *= -1;
                 editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);editor.apply();
@@ -1882,9 +1961,12 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void setImagesForAchievementCard() {
         try {
+            final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
+            final int x = isLeap(yearOfNow) ? LEAP_YEAR_DAYS : NORMAL_YEAR_DAYS;
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, ZERO);
             }
+            Log.d("DAYZEN2", "counter " + counter);
             if (counter>=ZERO&&counter<EIGHT) {
                 //user have between a day and a week
                 rankOneImg.setBackgroundResource(R.drawable.ic_oneday);
@@ -1973,11 +2055,81 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setAlpha(1.0f);
                 editor.putString(RANK, "Fox");
                 //WHEN USER REACH DAY 90 - GREATEST MILESTONE
-            } else if (counter >= THREE_HUNDRED) {
-                rankThreeImg.setBackgroundResource(R.drawable.ic_threehundreddays);
-                rankThreeImg.setAlpha(1.0f);
+            } else if (counter >= THREE_HUNDRED && counter < x) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_threehundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_fourhundreddays);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fivehundreddays);
+                rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Lynx");
-            }
+            } else if (counter >= FOUR_HUNDRED && counter < FIVE_HUNDRED) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_threehundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_fourhundreddays);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fivehundreddays);
+                rankThreeImg.setAlpha(0.2f);
+                editor.putString(RANK, "Eagle");
+            } else if (counter >= FIVE_HUNDRED && counter < SIX_HUNDRED) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_threehundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_fourhundreddays);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fivehundreddays);
+                rankThreeImg.setAlpha(1.0f);
+                editor.putString(RANK, "Elephant");
+            } else if (counter >= SIX_HUNDRED && counter < SEVEN_HUNDRED) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_sixhundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_sevenhundreddays);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
+                rankThreeImg.setAlpha(0.2f);
+                editor.putString(RANK, "Leopard");
+            } else if (counter >= SEVEN_HUNDRED && counter < EIGHT_HUNDRED) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_sixhundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_sevenhundreddays);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
+                rankThreeImg.setAlpha(0.2f);
+                editor.putString(RANK, "Buffalo");
+            } else if (counter >= EIGHT_HUNDRED && counter < ONE_THOUSAND) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_sixhundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_sevenhundreddays);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
+                rankThreeImg.setAlpha(1.0f);
+                editor.putString(RANK, "Buffalo");
+            } else if (counter >= ONE_THOUSAND && counter < ONE_THOUSAND+ONE_HUNDRED) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_ninehundreddays);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_onethousanddays);
+                rankThreeImg.setAlpha(0.2f);
+                editor.putString(RANK, "Lion");
+            } else if (counter >= ONE_THOUSAND+ONE_HUNDRED && counter < ONE_THOUSAND+TWO_HUNDRED) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_ninehundreddays);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_onethousanddays);
+                rankThreeImg.setAlpha(0.2f);
+                editor.putString(RANK, "Lion");
+                //higher than 1200
+            } else if (counter >= ONE_THOUSAND+TWO_HUNDRED) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_ninehundreddays);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_onethousanddays);
+                rankThreeImg.setAlpha(1.0f);
+                editor.putString(RANK, "Lion");
+        }
+            editor.apply();
             //using "final rethrow" by not specifying throwing a specific exception like NullPointer
             //the final keyword is optional, but in practice, we've found that it helps to use it while
             //adjusting to the new semantics of catch and rethrow
