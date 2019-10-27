@@ -13,5 +13,13 @@
         <item>"Beaver"</item>
         <item>"Fox"</item>
         <item>"Lynx"</item>
+        <item>"Eagle"</item>
+        <item>"Elephant"</item>
+        <item>"Leopard"</item>
+        <item>"Buffalo"</item>
+        <item>"Shark"</item>
+        <item>"Panther"</item>
+        <item>"Tiger"</item>
+        <item>"Lion"</item>
     </string-array>
 </resources>

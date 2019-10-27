@@ -2,6 +2,7 @@ package com.taozen.quithabit;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.IntentService;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -137,6 +137,11 @@ public class MainActivity extends AppCompatActivity {
     public static final int EIGHT = 8;
     public static final int TWENTYFOUR = 24;
 
+    String[] monthName = {"Jan", "Feb",
+            "Mar", "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct", "Nov",
+            "Dec"};
+
     String arr = "";
     long firstSave;
     long longFromSavingActivity;
@@ -175,6 +180,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.card_view_Middle) MaterialCardView upperProgressPercentsCard;
 
     //TextViews
+    @BindView(R.id.savingsTopId) MaterialTextView savingsTopText;
+    @BindView(R.id.QuitDateTopId) MaterialTextView quitDateTopText;
     @BindView(R.id.YourQDay) TextView YourQDay;
     @BindView(R.id.YourQDay2) TextView YourQDay2;
     @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
@@ -432,6 +439,8 @@ public class MainActivity extends AppCompatActivity {
                             new ColorDrawable(
                                     ContextCompat.getColor(
                                             getApplicationContext(), R.color.white)));
+            actionBar.setElevation(0f);
+//            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.actionbar_round));
 
 //        tipOfTheDayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
 //        TvExploreAchievement.setTypeface(montSerratMediumTypeface);
@@ -743,6 +752,17 @@ public class MainActivity extends AppCompatActivity {
                         YourQDay.setText(getResources().getString(R.string.qday));
 //                        YourQDay2.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
                         YourQDay2.setText(preferences.getString("qday", "none"));
+                        String q2;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            q2 = YourQDay2.getText().toString().substring(3,6) +
+                                    YourQDay2.getText().toString().substring(YourQDay2.length()-5,YourQDay2.length());
+                        } else {
+                            int q2b = Integer.parseInt(YourQDay2.getText().toString().substring(3,5));
+                            String m = monthName[q2b-1];
+                            q2 = m+YourQDay2.getText().toString().substring(YourQDay2.length()-5,YourQDay2.length());
+                        }
+                        quitDateTopText.setText(q2);
+                        Log.d("DAYZEN2", "date: " + q2);
                     }
                 }).show();
     }
@@ -1182,6 +1202,7 @@ public class MainActivity extends AppCompatActivity {
         moneySavingsTxtPerTotal.setText(perTotalNormal);
         String perTotalResult = " " + TOTAL_SAVINGS_LOCAL + " " + CURRENCY_LOCAL;
         moneySavingsTxtPerTotalResult.setText(perTotalResult);
+        savingsTopText.setText(moneySavingsTxtPerTotalResult.getText().toString());
         String perYearNormal = getString(R.string.peryear);
         moneySavingsTxtPerYear.setText(perYearNormal);
         String perYearResult = " " + VALUE_PER_YEAR_LOCAL + " " + CURRENCY_LOCAL;
@@ -2003,6 +2024,17 @@ public class MainActivity extends AppCompatActivity {
             YourQDay.setText(getResources().getString(
                     R.string.qday));
             YourQDay2.setText(preferences.getString("qday", "none"));
+            String q2;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                q2 = YourQDay2.getText().toString().substring(3,6) +
+                        YourQDay2.getText().toString().substring(YourQDay2.length()-5,YourQDay2.length());
+            } else {
+                int q2b = Integer.parseInt(YourQDay2.getText().toString().substring(3,5));
+                String m = monthName[q2b-1];
+                q2 = m+YourQDay2.getText().toString().substring(YourQDay2.length()-5,YourQDay2.length());
+            }
+            quitDateTopText.setText(q2);
+            Log.d("DAYZEN2", "date: " + q2);
             //getting the highest streak and put it in progress card
             final int HIGHEST_STREAK;
             if (preferences.contains(HIGHEST)){

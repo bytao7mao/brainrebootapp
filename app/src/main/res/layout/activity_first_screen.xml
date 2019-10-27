@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/EditTextCustomTheme"
             app:hintEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,6 +80,7 @@
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHighlight="@color/colorPrimary"
                 android:hint="@string/how_much_do_you_spend_per_day"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/custom_round_primary_color"
+            android:background="@drawable/custom_round_dark_orange"
             android:layout_margin="10dp"
             android:gravity="center"
             android:text="@string/continue_button"

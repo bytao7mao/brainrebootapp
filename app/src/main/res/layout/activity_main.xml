@@ -11,20 +11,165 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
             tools:context=".MainActivity">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/intruder"
+                style="@style/CustomCardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+<!--                android:backgroundTint="@color/colorPrimary"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/totalSavingsTopId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:alpha="0.8"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="Total Savings"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_50_percent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@id/guideline_top_vertical_10_percent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/savingsTopId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="904$"
+                        android:textColor="@color/white"
+                        android:textSize="28sp"
+                        app:layout_constraintEnd_toEndOf="@+id/totalSavingsTopId"
+                        app:layout_constraintStart_toStartOf="@+id/totalSavingsTopId"
+                        app:layout_constraintTop_toBottomOf="@+id/totalSavingsTopId" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/QuitTopId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:alpha="0.8"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="Quit Date"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="@id/guideline_top_vertical_95_percent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_50_percent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/QuitDateTopId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:alpha="0.4"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="24-09-2019"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="@+id/QuitTopId"
+                        app:layout_constraintStart_toStartOf="@+id/QuitTopId"
+                        app:layout_constraintTop_toBottomOf="@+id/QuitTopId" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_top_vertical_10_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.05" />
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_top_vertical_50_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.50" />
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_top_vertical_95_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.95" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+<!--            <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:background="@drawable/actionbar_round"-->
+<!--                android:backgroundTint="@color/colorPrimary"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/guideline_06_top"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
+
+
+<!--            </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_06_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_percent="0.08"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_mainID"
                 android:layout_width="match_parent"
-                android:layout_height="520dp"
-                android:layout_margin="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
+                app:cardElevation="0dp"
                 app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/guideline_06_top">
+                <!--                android:layout_height="520dp"-->
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerTop"
@@ -137,9 +282,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
-                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/ic_share_black_24dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_10percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -168,19 +313,19 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-<!--                    <androidx.appcompat.widget.AppCompatImageView-->
-<!--                        android:id="@+id/counterImageId2"-->
-<!--                        android:layout_width="220dp"-->
-<!--                        android:layout_height="220dp"-->
-<!--                        android:clickable="true"-->
-<!--                        android:focusable="true"-->
-<!--                        android:foreground="?android:attr/selectableItemBackground"-->
-<!--                        android:src="@drawable/counterimg"-->
-<!--                        app:layout_constraintBottom_toBottomOf="@+id/counterImageId"-->
-<!--                        app:layout_constraintEnd_toEndOf="@+id/counterImageId"-->
-<!--                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15percent_inner"-->
-<!--                        app:layout_constraintTop_toBottomOf="@+id/tvTipOfTheDay"-->
-<!--                        app:layout_constraintVertical_bias="0.6" />-->
+                    <!--                    <androidx.appcompat.widget.AppCompatImageView-->
+                    <!--                        android:id="@+id/counterImageId2"-->
+                    <!--                        android:layout_width="220dp"-->
+                    <!--                        android:layout_height="220dp"-->
+                    <!--                        android:clickable="true"-->
+                    <!--                        android:focusable="true"-->
+                    <!--                        android:foreground="?android:attr/selectableItemBackground"-->
+                    <!--                        android:src="@drawable/counterimg"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="@+id/counterImageId"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="@+id/counterImageId"-->
+                    <!--                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15percent_inner"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@+id/tvTipOfTheDay"-->
+                    <!--                        app:layout_constraintVertical_bias="0.6" />-->
 
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/counterImageId"
@@ -193,8 +338,8 @@
                         app:backgroundStrokeColor="@color/grey_300"
                         app:backgroundStrokeWidth="22dp"
                         app:drawBackgroundStroke="true"
-                        app:foregroundStrokeCap="round"
-                        app:foregroundStrokeColor="#6200EE"
+                        app:foregroundStrokeCap="butt"
+                        app:foregroundStrokeColor="@color/colorPrimary"
                         app:foregroundStrokeWidth="22dp"
                         app:indeterminate="false"
                         app:indeterminateMinimumAngle="45"
@@ -230,7 +375,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:alpha="0.6"
+                        android:alpha="0.8"
                         android:text="@string/non_smoker_since"
                         android:textSize="36sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90percentCard"
@@ -318,7 +463,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:background="@drawable/custom_round_primary_color"
+                android:background="@drawable/custom_round_dark_orange"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_view_mainID"
@@ -384,21 +529,37 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Middle"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="240dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toTopOf="@id/card_view_Bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutCheckIn"
-                app:layout_constraintBottom_toTopOf="@id/card_view_Bottom">
+                app:layout_constraintTop_toBottomOf="@+id/layoutCheckIn">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerMiddle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/explorePercentsId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="8dp"
+                        android:text="@string/explore"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25percentPercent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/subTextEnergyId" />
 
                     <TextView
                         android:id="@+id/appCompatTextViewPercentViewsTitle"
@@ -418,7 +579,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
+                        android:alpha="1"
                         android:text="@string/energy"
                         android:textAlignment="center"
                         android:textSize="14sp"
@@ -426,53 +587,26 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/progress_bar_energy" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/infoEnergyPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_info_outline_grey_24dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/subTextEnergyId"
-                        app:layout_constraintStart_toStartOf="@+id/subTextEnergyId"
-                        app:layout_constraintTop_toBottomOf="@+id/subTextEnergyId"
-                        app:layout_constraintVertical_bias="0.20" />
-
                     <TextView
                         android:id="@+id/subTextBreathId"
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:alpha="0.7"
+                        android:alpha="1"
                         android:text="@string/breath"
+                        android:textAlignment="center"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/subTextEnergyId"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_75percentPercent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentPercent"
                         app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/infoBreathPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_info_outline_grey_24dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/infoHeartPercent"
-                        app:layout_constraintEnd_toEndOf="@+id/subTextBreathId"
-                        app:layout_constraintStart_toStartOf="@+id/subTextBreathId"
-                        app:layout_constraintTop_toTopOf="@+id/infoHeartPercent" />
-
                     <TextView
                         android:id="@+id/subTextHeartId"
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
+                        android:alpha="1"
                         android:text="@string/fatigue"
                         android:textAlignment="center"
                         android:textSize="14sp"
@@ -481,25 +615,12 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25percentPercent"
                         app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/infoHeartPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_info_outline_grey_24dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/infoEnergyPercent"
-                        app:layout_constraintEnd_toEndOf="@+id/subTextHeartId"
-                        app:layout_constraintStart_toStartOf="@+id/subTextHeartId"
-                        app:layout_constraintTop_toTopOf="@+id/infoEnergyPercent" />
-
                     <TextView
                         android:id="@+id/subTextBloodId"
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:alpha="0.7"
+                        android:alpha="1"
                         android:text="@string/gums"
                         android:textAlignment="center"
                         android:textSize="14sp"
@@ -507,19 +628,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_75percentPercent"
                         app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/infoBloodPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_info_outline_grey_24dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/infoBreathPercent"
-                        app:layout_constraintEnd_toEndOf="@+id/subTextBloodId"
-                        app:layout_constraintStart_toStartOf="@+id/subTextBloodId"
-                        app:layout_constraintTop_toTopOf="@+id/infoBreathPercent" />
 
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/progress_bar_energy"
@@ -529,8 +637,8 @@
                         app:backgroundStrokeColor="@color/grey_300"
                         app:backgroundStrokeWidth="8dp"
                         app:drawBackgroundStroke="true"
-                        app:foregroundStrokeCap="round"
-                        app:foregroundStrokeColor="#6200EE"
+                        app:foregroundStrokeCap="butt"
+                        app:foregroundStrokeColor="@color/colorPrimary"
                         app:foregroundStrokeWidth="8dp"
                         app:indeterminate="false"
                         app:indeterminateMinimumAngle="45"
@@ -546,6 +654,7 @@
                         app:progress="50"
                         app:progressAnimationDuration="100"
                         app:startAngle="270" />
+                    <!--                    app:foregroundStrokeColor="#6200EE"-->
 
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/progress_bar_breath"
@@ -555,8 +664,8 @@
                         app:backgroundStrokeColor="@color/grey_300"
                         app:backgroundStrokeWidth="8dp"
                         app:drawBackgroundStroke="true"
-                        app:foregroundStrokeCap="round"
-                        app:foregroundStrokeColor="#6200EE"
+                        app:foregroundStrokeCap="butt"
+                        app:foregroundStrokeColor="@color/colorPrimary"
                         app:foregroundStrokeWidth="8dp"
                         app:indeterminate="false"
                         app:indeterminateMinimumAngle="45"
@@ -580,8 +689,8 @@
                         app:backgroundStrokeColor="@color/grey_300"
                         app:backgroundStrokeWidth="8dp"
                         app:drawBackgroundStroke="true"
-                        app:foregroundStrokeCap="round"
-                        app:foregroundStrokeColor="#6200EE"
+                        app:foregroundStrokeCap="butt"
+                        app:foregroundStrokeColor="@color/colorPrimary"
                         app:foregroundStrokeWidth="8dp"
                         app:indeterminate="false"
                         app:indeterminateMinimumAngle="45"
@@ -605,8 +714,8 @@
                         app:backgroundStrokeColor="@color/grey_300"
                         app:backgroundStrokeWidth="8dp"
                         app:drawBackgroundStroke="true"
-                        app:foregroundStrokeCap="round"
-                        app:foregroundStrokeColor="#6200EE"
+                        app:foregroundStrokeCap="butt"
+                        app:foregroundStrokeColor="@color/colorPrimary"
                         app:foregroundStrokeWidth="8dp"
                         app:indeterminate="false"
                         app:indeterminateMinimumAngle="45"
@@ -628,24 +737,28 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.15" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_25percentPercent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.25" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_30percentPercent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_percent="0.30" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_50percentPercent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.50" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_75percentPercent"
                         android:layout_width="wrap_content"
@@ -655,56 +768,59 @@
 
                     <TextView
                         android:id="@+id/txtProgressIdForEnergy"
-                        style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.8"
                         android:text="500"
+                        style="@style/TextColorBlack"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/progress_bar_energy"
                         app:layout_constraintEnd_toEndOf="@+id/progress_bar_energy"
                         app:layout_constraintStart_toStartOf="@+id/progress_bar_energy"
                         app:layout_constraintTop_toTopOf="@+id/progress_bar_energy" />
+
                     <TextView
                         android:id="@+id/txtProgressIdForBreath"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.8"
                         android:text="5"
+                        style="@style/TextColorBlack"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        style="@style/TextColorBlack"
                         app:layout_constraintBottom_toBottomOf="@+id/progress_bar_breath"
                         app:layout_constraintEnd_toEndOf="@+id/progress_bar_breath"
                         app:layout_constraintStart_toStartOf="@+id/progress_bar_breath"
-                        app:layout_constraintTop_toTopOf="@+id/progress_bar_breath"/>
+                        app:layout_constraintTop_toTopOf="@+id/progress_bar_breath" />
+
                     <TextView
                         android:id="@+id/txtProgressIdForHeart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.8"
                         android:text="100"
+                        style="@style/TextColorBlack"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        style="@style/TextColorBlack"
                         app:layout_constraintBottom_toBottomOf="@+id/progress_bar_heart"
                         app:layout_constraintEnd_toEndOf="@+id/progress_bar_heart"
                         app:layout_constraintStart_toStartOf="@+id/progress_bar_heart"
-                        app:layout_constraintTop_toTopOf="@+id/progress_bar_heart"/>
+                        app:layout_constraintTop_toTopOf="@+id/progress_bar_heart" />
+
                     <TextView
                         android:id="@+id/txtProgressIdForBlood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="300"
                         android:alpha="0.8"
+                        android:text="300"
+                        style="@style/TextColorBlack"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        style="@style/TextColorBlack"
                         app:layout_constraintBottom_toBottomOf="@+id/progress_bar_blood"
                         app:layout_constraintEnd_toEndOf="@+id/progress_bar_blood"
                         app:layout_constraintStart_toStartOf="@+id/progress_bar_blood"
-                        app:layout_constraintTop_toTopOf="@+id/progress_bar_blood"/>
+                        app:layout_constraintTop_toTopOf="@+id/progress_bar_blood" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -732,7 +848,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_view_Middle"
@@ -741,7 +857,9 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerBottom"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    >
+<!--                    android:background="@android:color/holo_orange_dark"-->
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_15percentBottom"
@@ -814,7 +932,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.9"
+                        android:alpha="1"
                         android:text="@string/your_entire_progress"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30percentBottom"
@@ -843,7 +961,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:alpha="0.6"
+                        android:alpha="1"
                         android:text="Q! Day: "
                         android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/YourProgressIdCigaretes"
@@ -857,13 +975,13 @@
                         android:id="@+id/YourQDay2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.6"
+                        android:alpha="1"
                         android:text="24-09-2019"
-                        android:textColor="@color/colorPrimary"
+                        style="@style/TextColorOrange"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourQDay"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0.1"
                         app:layout_constraintStart_toEndOf="@+id/YourQDay"
                         app:layout_constraintTop_toTopOf="@+id/YourQDay" />
 
@@ -871,13 +989,14 @@
                         android:id="@+id/infoHighestDaysProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
                         android:src="@drawable/ic_info_outline_grey_24dp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/YourHighestStreakId2"
                         app:layout_constraintTop_toTopOf="@+id/YourHighestStreakId" />
 
@@ -885,13 +1004,14 @@
                         android:id="@+id/infoLifeRegainedProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
                         android:src="@drawable/ic_info_outline_grey_24dp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/YourProgressIdHours2"
                         app:layout_constraintTop_toTopOf="@+id/YourProgressIdHours"
                         app:layout_constraintVertical_bias="0.0" />
@@ -900,13 +1020,14 @@
                         android:id="@+id/infoCigarettesProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
                         android:src="@drawable/ic_info_outline_grey_24dp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/YourProgressIdCigaretes2"
                         app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes"
                         app:layout_constraintVertical_bias="0.0" />
@@ -915,13 +1036,14 @@
                         android:id="@+id/infoQDayProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
                         android:src="@drawable/ic_info_outline_grey_24dp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourQDay"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/YourQDay2"
                         app:layout_constraintTop_toTopOf="@+id/YourQDay" />
 
@@ -931,7 +1053,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:alpha="0.6"
+                        android:alpha="1"
                         android:text="example 1"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/YourHighestStreakId"
@@ -943,13 +1065,13 @@
                         android:id="@+id/YourProgressIdCigaretes2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.6"
+                        android:alpha="1"
                         android:text="900"
-                        android:textColor="@color/colorPrimary"
+                        style="@style/TextColorOrange"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0.1"
                         app:layout_constraintStart_toEndOf="@+id/YourProgressIdCigaretes"
                         app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes" />
 
@@ -960,7 +1082,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="8dp"
-                        android:alpha="0.6"
+                        android:alpha="1"
                         android:text="example 2"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -974,13 +1096,13 @@
                         android:id="@+id/YourHighestStreakId2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.6"
+                        android:alpha="1"
                         android:text="24-09-2019"
-                        android:textColor="@color/colorPrimary"
+                        style="@style/TextColorOrange"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0.1"
                         app:layout_constraintStart_toEndOf="@+id/YourHighestStreakId"
                         app:layout_constraintTop_toTopOf="@+id/YourHighestStreakId" />
 
@@ -991,7 +1113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:alpha="0.6"
+                        android:alpha="1"
                         android:text="example 3"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -1005,13 +1127,13 @@
                         android:id="@+id/YourProgressIdHours2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.6"
+                        android:alpha="1"
                         android:text="24-09-2019"
-                        android:textColor="@color/colorPrimary"
+                        style="@style/TextColorOrange"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintHorizontal_bias="0.1"
                         app:layout_constraintStart_toEndOf="@+id/YourProgressIdHours"
                         app:layout_constraintTop_toTopOf="@+id/YourProgressIdHours" />
 
@@ -1041,7 +1163,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom"
@@ -1135,7 +1257,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.9"
+                        android:alpha="1"
                         android:text="@string/your_latest_achievments"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30achieveBottom"
@@ -1246,7 +1368,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom_Achievments"
@@ -1332,7 +1454,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.9"
+                        android:alpha="1"
                         android:text="@string/your_savings"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30savingBottom"
@@ -1376,7 +1498,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.6"
+                        android:alpha="0.8"
                         android:text="Per Day: "
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25savingBottom"
@@ -1386,7 +1508,7 @@
                         android:id="@+id/savingsTxtIdPerDay2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.6"
+                        android:alpha="0.8"
                         android:text="Per Day result"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp"
@@ -1402,7 +1524,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:alpha="0.6"
+                        android:alpha="0.8"
                         android:text="Per total: "
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25savingBottom"
@@ -1413,7 +1535,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:alpha="0.6"
+                        android:alpha="0.8"
                         android:text="Per total result"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp"
@@ -1429,7 +1551,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:alpha="0.6"
+                        android:alpha="0.8"
                         android:text="Per Year: "
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25savingBottom"
@@ -1440,7 +1562,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:alpha="0.6"
+                        android:alpha="0.8"
                         android:text="Per Year result"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp"
@@ -1472,7 +1594,7 @@
                 android:layout_height="45dp"
                 android:layout_margin="8dp"
                 android:elevation="2dp"
-                android:background="@drawable/custom_round_primary_color"
+                android:background="@drawable/custom_round_dark_orange"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"

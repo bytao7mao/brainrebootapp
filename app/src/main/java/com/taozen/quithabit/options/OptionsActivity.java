@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.github.javiersantos.bottomdialogs.BottomDialog;
@@ -145,6 +146,7 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
     private void dialogForResetForced() {
         MaterialAlertDialogBuilder milestoneAlert = new MaterialAlertDialogBuilder
                 (new ContextThemeWrapper(this, R.style.AlertDialogTheme));
+        milestoneAlert.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.popup_menu_round));
         milestoneAlert.setMessage("Are you sure ?");
         milestoneAlert.setTitle("Your progress will reset permanently!");
         milestoneAlert.setCancelable(false);

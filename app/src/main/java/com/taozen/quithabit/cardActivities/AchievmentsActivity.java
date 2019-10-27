@@ -45,7 +45,9 @@ public class AchievmentsActivity extends AppCompatActivity {
             "Quit Date!",
             "1 Day!", "1 Week!", "1 Month!", "2 Months!",
             "3 Months!", "4 Months!", "5 Months!", "6 Months!",
-            "7 Months!", "9 Months!", "300 Days!"};
+            "7 Months!", "9 Months!", "300 Days!", "1 Year", "400 Days",
+            "500 Days", "600 Days", "700 Days", "800 Days", "900 Days",
+            "1000 Days"};
 
     //shared pref
     private SharedPreferences preferences;
