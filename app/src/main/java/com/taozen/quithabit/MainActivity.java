@@ -444,13 +444,14 @@ public class MainActivity extends AppCompatActivity {
             montSerratSemiBoldItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBoldItalic.ttf");
 
             ActionBar actionBar = getSupportActionBar();
+            Objects.requireNonNull(actionBar).setTitle("Dashboard");
             Objects.requireNonNull(actionBar).
                     setBackgroundDrawable(
                             new ColorDrawable(
                                     ContextCompat.getColor(
                                             getApplicationContext(), R.color.white)));
 //            actionBar.setElevation(0.2f);
-            actionBar.setElevation(4f);
+            actionBar.setElevation(0f);
 //            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.actionbar_round));
 
 //        tipOfTheDayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
