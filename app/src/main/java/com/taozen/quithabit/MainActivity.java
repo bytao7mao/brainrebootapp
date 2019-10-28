@@ -390,8 +390,8 @@ public class MainActivity extends AppCompatActivity {
             //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
             //to 24 to be able to make the calculation
             //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
-            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
-            HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
+            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR);
+//            HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
             setTheHourOfFirstLaunch(CALENDAR);
             //leave it for pay version
 //        setBackgroundForDaylightOrNight();
@@ -643,7 +643,8 @@ public class MainActivity extends AppCompatActivity {
             HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, -1);
         } else {
             //recent refactor that works fine
-            HOUR_OF_FIRSTLAUNCH = (CALENDAR.get(Calendar.HOUR_OF_DAY)==ZERO) ? 24 : CALENDAR.get(Calendar.HOUR_OF_DAY);
+            HOUR_OF_FIRSTLAUNCH = CALENDAR.get(Calendar.HOUR);
+//            HOUR_OF_FIRSTLAUNCH = (CALENDAR.get(Calendar.HOUR_OF_DAY)==ZERO) ? 24 : CALENDAR.get(Calendar.HOUR_OF_DAY);
             final int MONTH_CALENDAR = CALENDAR.get(Calendar.MONTH)+1;
             final int MONTH_LOCALDATE;
             final String MONTH_STRING;
@@ -1427,7 +1428,7 @@ public class MainActivity extends AppCompatActivity {
             final Date DATE = new Date();
             final Calendar CALENDAR = GregorianCalendar.getInstance();
             CALENDAR.setTime(DATE);
-            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
+            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR);
             setTargetDays();
             //if the button/check in is already clicked today,
             //we disable it by checking if buttonClickedToday is true
@@ -1451,9 +1452,9 @@ public class MainActivity extends AppCompatActivity {
             if (DAY_OF_PRESENT == DAY_OF_CLICK+1) {
                 if (HOUR_OF_FIRSTLAUNCH > HOUR_OF_DAYLIGHT) {
                     //temporarily integer
-                    final int HOURS_UNTILL_CHECK_IN = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
+                    final int HOURS_UNTIL_CHECK_IN = HOUR_OF_FIRSTLAUNCH - HOUR_OF_DAYLIGHT;
                     final String CHECK_IN_TEXT = getResources().getString(R.string.check_in) +
-                            ": " + HOURS_UNTILL_CHECK_IN + " "
+                            ": " + HOURS_UNTIL_CHECK_IN + " "
                             + getResources().getString(R.string.hours);
                     checkInText.setText(CHECK_IN_TEXT);
                     //if user passed one day && hour is passed or equal to hour of first launch
@@ -1593,15 +1594,21 @@ public class MainActivity extends AppCompatActivity {
             //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
             //to 24 to be able to make the calculation
             //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
-            HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
+//            HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
             if (DAY_OF_PRESENT > DAY_OF_CLICK && (DAY_OF_PRESENT == DAY_OF_CLICK+ONE)) {
-                insteadOfLayout.setEnabled(true);
-                if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT) {
+                if (HOUR_OF_DAYLIGHT==24){
+                    HOUR_OF_FIRSTLAUNCH=23;
+                    DAY_OF_PRESENT=DAY_OF_PRESENT-1;
+                } else {
+                    HOUR_OF_FIRSTLAUNCH=preferences.getInt(HOUR_OF_FIRSLAUNCH_SP,0);
+                    DAY_OF_PRESENT = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+                }
+                if (HOUR_OF_FIRSTLAUNCH <= HOUR_OF_DAYLIGHT && DAY_OF_PRESENT > DAY_OF_CLICK) {
                     checkInButton.setBackground(getDrawable(R.drawable.custom_round_primary_color));
                     setCheckInText();
                 } else {
-                    setCheckInText();
                     checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
+                    setCheckInText();
                 }
             } else if (DAY_OF_PRESENT > DAY_OF_CLICK+1) {
                 higherThanOne = true;
