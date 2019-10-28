@@ -52,6 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="1"
+                        android:fontFamily="@font/robotomedium"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
@@ -60,7 +61,7 @@
                         android:paddingEnd="8dp"
                         android:text="@string/total_savings_top"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="24sp"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_50_percent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@id/guideline_top_vertical_10_percent"
@@ -75,12 +76,11 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:fontFamily="@font/robotomedium"
-                        android:paddingStart="8dp"
                         android:paddingTop="8dp"
                         android:paddingEnd="8dp"
                         android:text="904$"
                         android:textColor="@color/white"
-                        android:textSize="38sp"
+                        android:textSize="36sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_top_horizontal_70_percent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -132,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.05" />
+                        app:layout_constraintGuide_percent="0.02" />
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_top_vertical_50_percent"
                         android:layout_width="wrap_content"
@@ -352,6 +352,23 @@
                     <!--                        app:layout_constraintTop_toBottomOf="@+id/tvTipOfTheDay"-->
                     <!--                        app:layout_constraintVertical_bias="0.6" />-->
 
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/sunny"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@drawable/ic_sunlast"
+                        app:layout_constraintBottom_toBottomOf="@+id/counterImageId"
+                        app:layout_constraintEnd_toStartOf="@+id/counterImageId"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/counterImageId"
+                        app:layout_constraintVertical_bias="0.0" />
+
+
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/counterImageId"
                         android:layout_width="220dp"
@@ -372,13 +389,15 @@
                         app:indeterminateSweepAnimationDuration="600"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/lightbulbForTip"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentCard"
                         app:layout_constraintVertical_bias="0.100000024"
                         app:maximum="100"
                         app:progress="50"
                         app:progressAnimationDuration="100"
                         app:startAngle="270" />
+
+
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/counterTextId"
@@ -588,6 +607,8 @@
                         android:id="@+id/explorePercentsId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
@@ -597,8 +618,10 @@
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25percentPercent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/subTextEnergyId" />
+                        app:layout_constraintTop_toBottomOf="@+id/subTextEnergyId"
+                        app:layout_constraintVertical_bias="1.0" />
 
                     <TextView
                         android:id="@+id/appCompatTextViewPercentViewsTitle"
@@ -1362,6 +1385,8 @@
                         android:id="@+id/exploreAchievementId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
@@ -1371,9 +1396,10 @@
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25achieveBottom"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30achieveBottom"
-                        app:layout_constraintVertical_bias="0.9" />
+                        app:layout_constraintVertical_bias="1.0" />
 
 <!--                    <TextView-->
 <!--                        android:id="@+id/rank_master"-->
@@ -1409,7 +1435,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom_Saving"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -1532,6 +1558,8 @@
                         android:id="@+id/exploreSavingsId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
@@ -1541,8 +1569,10 @@
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25savingBottom"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatImageViewSavings" />
+                        app:layout_constraintTop_toBottomOf="@+id/appCompatImageViewSavings"
+                        app:layout_constraintVertical_bias="1.0" />
                     <!--                    go to savings activity-->
 
                     <TextView
@@ -1550,6 +1580,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:alpha="0.8"
                         android:text="Per Day: "
                         android:textSize="16sp"
@@ -1575,6 +1606,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:alpha="0.8"
                         android:text="Per total: "
@@ -1602,6 +1634,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:alpha="0.8"
                         android:text="Per Year: "

@@ -168,11 +168,12 @@ public class MainActivity extends AppCompatActivity {
 
     private int cigarettesPerDay;
 
-    //share
+    //imageviews
     @BindView(R.id.shareDays) ImageView shareDays;
     @BindView(R.id.shareProgress) ImageView shareProgress;
     @BindView(R.id.shareAchieve) ImageView shareAchieve;
     @BindView(R.id.shareSavings) ImageView shareSavings;
+    @BindView(R.id.sunny) ImageView sunny;
 
     //Views
     @BindView(android.R.id.content) View parentLayout;
@@ -305,6 +306,8 @@ public class MainActivity extends AppCompatActivity {
             //shared pref
             preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
             editor = preferences.edit();
+
+            setBackgroundForDaylightOrNight();
 
             //strictmode ?
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -670,9 +673,17 @@ public class MainActivity extends AppCompatActivity {
 
     @SideEffect
     private void setBackgroundForDaylightOrNight() {
+        int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         //change wallpaper during nighttime
 //        if (HOUR_OF_DAYLIGHT >= 21 || HOUR_OF_DAYLIGHT < 7) {
-////        if (HOUR_OF_DAYLIGHT >= 6 && HOUR_OF_DAYLIGHT <= TWENTY) {
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "hour of daylight " + h);
+        }
+        if (h >= 6 && h <= TWENTY) {
+            sunny.setImageResource(R.drawable.ic_sunlast);
+        } else {
+            sunny.setImageResource(R.drawable.ic_bat);
+        }
 //            backgroundImgWall.setBackgroundResource(R.drawable.ppp);
 //            tipOfTheDayTxtView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
 //            counterText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
@@ -1217,7 +1228,7 @@ public class MainActivity extends AppCompatActivity {
         final DecimalFormat FORMATTER2= new DecimalFormat("###,###,##0");
         final String VALUE_PER_YEAR_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
         final String TOTAL_SAVINGS_LOCAL = FORMATTER.format(Integer.parseInt(TOTAL_SAVINGS));
-        final String TOTAL_SAVINGS_LOCAL2 = FORMATTER.format(Integer.parseInt(TOTAL_SAVINGS));
+        final String TOTAL_SAVINGS_LOCAL2 = FORMATTER2.format(Integer.parseInt(TOTAL_SAVINGS));
         final String VALUE_PER_DAY_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY)));
         final String CURRENCY_LOCAL = preferences.getString("currency", "$");
         //target counter string
