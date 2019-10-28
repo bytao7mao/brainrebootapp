@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TextViews
     @BindView(R.id.savingsTopId) MaterialTextView savingsTopText;
-    @BindView(R.id.QuitDateTopId) MaterialTextView quitDateTopText;
+//    @BindView(R.id.QuitDateTopId) MaterialTextView quitDateTopText;
     @BindView(R.id.YourQDay) TextView YourQDay;
     @BindView(R.id.YourQDay2) TextView YourQDay2;
     @BindView(R.id.YourProgressIdCigaretes) TextView userCigaretesProgressTxt;
@@ -449,7 +449,8 @@ public class MainActivity extends AppCompatActivity {
                             new ColorDrawable(
                                     ContextCompat.getColor(
                                             getApplicationContext(), R.color.white)));
-            actionBar.setElevation(0.2f);
+//            actionBar.setElevation(0.2f);
+            actionBar.setElevation(4f);
 //            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.actionbar_round));
 
 //        tipOfTheDayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
@@ -772,7 +773,7 @@ public class MainActivity extends AppCompatActivity {
                             String m = monthName[q2b-1];
                             q2 = m+YourQDay2.getText().toString().substring(YourQDay2.length()-5,YourQDay2.length());
                         }
-                        quitDateTopText.setText(q2);
+//                        quitDateTopText.setText(q2);
                         Log.d("DAYZEN2", "date: " + q2);
                     }
                 }).show();
@@ -1212,9 +1213,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTxtViewForUserSavings(long SAVE_PER_DAY, String TOTAL_SAVINGS) {
         final DecimalFormat FORMATTER = new DecimalFormat("###,###,##0.00");
-        final String VALUE_PER_YEAR_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
-        final String TOTAL_SAVINGS_LOCAL = FORMATTER.format(Integer.parseInt(TOTAL_SAVINGS));
-        final String VALUE_PER_DAY_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY)));
+        final DecimalFormat FORMATTER2= new DecimalFormat("###,###,##0");
+        final String VALUE_PER_YEAR_LOCAL = FORMATTER2.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
+        final String TOTAL_SAVINGS_LOCAL = FORMATTER2.format(Integer.parseInt(TOTAL_SAVINGS));
+        final String TOTAL_SAVINGS_LOCAL2 = FORMATTER2.format(Integer.parseInt(TOTAL_SAVINGS));
+        final String VALUE_PER_DAY_LOCAL = FORMATTER2.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY)));
         final String CURRENCY_LOCAL = preferences.getString("currency", "$");
         //target counter string
 //        StringBuilder stringBuilder = new StringBuilder();
@@ -1233,8 +1236,9 @@ public class MainActivity extends AppCompatActivity {
         String perTotalNormal = getString(R.string.savings);
         moneySavingsTxtPerTotal.setText(perTotalNormal);
         String perTotalResult = " " + TOTAL_SAVINGS_LOCAL + " " + CURRENCY_LOCAL;
+        String perTotalResult2 = " " + TOTAL_SAVINGS_LOCAL2 + " " + CURRENCY_LOCAL;
         moneySavingsTxtPerTotalResult.setText(perTotalResult);
-        savingsTopText.setText(moneySavingsTxtPerTotalResult.getText().toString());
+        savingsTopText.setText(perTotalResult2);
         String perYearNormal = getString(R.string.peryear);
         moneySavingsTxtPerYear.setText(perYearNormal);
         String perYearResult = " " + VALUE_PER_YEAR_LOCAL + " " + CURRENCY_LOCAL;
@@ -2195,7 +2199,7 @@ public class MainActivity extends AppCompatActivity {
                 String m = monthName[q2b-1];
                 q2 = m+YourQDay2.getText().toString().substring(YourQDay2.length()-5,YourQDay2.length());
             }
-            quitDateTopText.setText(q2);
+//            quitDateTopText.setText(q2);
             Log.d("DAYZEN2", "date: " + q2);
             //getting the highest streak and put it in progress card
             final int HIGHEST_STREAK;

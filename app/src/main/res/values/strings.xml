@@ -98,4 +98,5 @@
     <string name="cannot_check_in">You cannot check-in right now!\nPlease check back later.</string>
     <string name="please_check_tomorrow">Please check again tomorrow!</string>
     <string name="continue_button">Continue</string>
+    <string name="total_savings_top">Total Savings</string>
 </resources>
