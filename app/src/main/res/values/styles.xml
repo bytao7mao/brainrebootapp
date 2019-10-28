@@ -5,6 +5,7 @@
         <!--        <item name="android:textSize">12sp</item>-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <!--        <item name="colorPrimary">@color/white</item>-->
         <item name="android:windowLightStatusBar">true</item>
     </style>
@@ -14,6 +15,7 @@
         <!--        <item name="android:textSize">12sp</item>-->
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <!--        <item name="colorPrimary">@color/white</item>-->
         <item name="android:windowLightStatusBar">true</item>
     </style>
@@ -23,6 +25,7 @@
 <!--        <item name="android:textSize">12sp</item>-->
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
 <!--        <item name="colorPrimary">@color/white</item>-->
         <item name="android:windowLightStatusBar">true</item>
     </style>

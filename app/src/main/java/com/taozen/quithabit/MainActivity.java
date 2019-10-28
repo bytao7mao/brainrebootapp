@@ -444,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
             montSerratSemiBoldItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-SemiBoldItalic.ttf");
 
             ActionBar actionBar = getSupportActionBar();
-            Objects.requireNonNull(actionBar).setTitle("Dashboard");
+            Objects.requireNonNull(actionBar).setTitle("Q! NoSmoke");
             Objects.requireNonNull(actionBar).
                     setBackgroundDrawable(
                             new ColorDrawable(
@@ -1215,10 +1215,10 @@ public class MainActivity extends AppCompatActivity {
     private void setTxtViewForUserSavings(long SAVE_PER_DAY, String TOTAL_SAVINGS) {
         final DecimalFormat FORMATTER = new DecimalFormat("###,###,##0.00");
         final DecimalFormat FORMATTER2= new DecimalFormat("###,###,##0");
-        final String VALUE_PER_YEAR_LOCAL = FORMATTER2.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
-        final String TOTAL_SAVINGS_LOCAL = FORMATTER2.format(Integer.parseInt(TOTAL_SAVINGS));
-        final String TOTAL_SAVINGS_LOCAL2 = FORMATTER2.format(Integer.parseInt(TOTAL_SAVINGS));
-        final String VALUE_PER_DAY_LOCAL = FORMATTER2.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY)));
+        final String VALUE_PER_YEAR_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
+        final String TOTAL_SAVINGS_LOCAL = FORMATTER.format(Integer.parseInt(TOTAL_SAVINGS));
+        final String TOTAL_SAVINGS_LOCAL2 = FORMATTER.format(Integer.parseInt(TOTAL_SAVINGS));
+        final String VALUE_PER_DAY_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY)));
         final String CURRENCY_LOCAL = preferences.getString("currency", "$");
         //target counter string
 //        StringBuilder stringBuilder = new StringBuilder();

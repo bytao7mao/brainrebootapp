@@ -22,15 +22,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+        <!--            app:cardElevation="0.1dp"-->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/intruder"
             style="@style/CustomCardViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@android:color/holo_orange_dark"
-            app:cardElevation="0.1dp"
+            android:backgroundTint="@color/colorPrimary"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -51,20 +51,18 @@
                     android:id="@+id/totalSavingsTopId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:alpha="0.8"
+                    android:alpha="1"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingStart="8dp"
                     android:paddingTop="8dp"
                     android:paddingEnd="8dp"
-                    android:text="Total Savings"
+                    android:text="@string/total_savings_top"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_50_percent"
-                    app:layout_constraintHorizontal_bias="0.2"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@id/guideline_top_vertical_10_percent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,53 +70,62 @@
                     android:id="@+id/savingsTopId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="904$"
-                    android:textColor="@color/white"
-                    android:textSize="28sp"
-                    app:layout_constraintEnd_toEndOf="@+id/totalSavingsTopId"
-                    app:layout_constraintStart_toStartOf="@+id/totalSavingsTopId"
-                    app:layout_constraintTop_toBottomOf="@+id/totalSavingsTopId" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/QuitTopId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:alpha="0.8"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:fontFamily="@font/robotomedium"
                     android:paddingStart="8dp"
                     android:paddingTop="8dp"
                     android:paddingEnd="8dp"
-                    android:text="Quit Date"
+                    android:text="904$"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="@id/guideline_top_vertical_95_percent"
-                    app:layout_constraintHorizontal_bias="0.8"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_50_percent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="38sp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline_top_horizontal_70_percent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_10_percent"
+                    app:layout_constraintTop_toBottomOf="@+id/totalSavingsTopId"
+                    app:layout_constraintVertical_bias="0.0" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/QuitDateTopId"
+                <!--                    <com.google.android.material.textview.MaterialTextView-->
+                <!--                        android:id="@+id/QuitTopId"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:alpha="1"-->
+                <!--                        android:background="?attr/selectableItemBackgroundBorderless"-->
+                <!--                        android:clickable="true"-->
+                <!--                        android:focusable="true"-->
+                <!--                        android:paddingStart="8dp"-->
+                <!--                        android:paddingTop="8dp"-->
+                <!--                        android:paddingEnd="8dp"-->
+                <!--                        android:text="Quit Date"-->
+                <!--                        android:textColor="@color/white"-->
+                <!--                        android:textSize="16sp"-->
+                <!--                        app:layout_constraintBottom_toBottomOf="@id/guideline_top_horizontal_70_percent"-->
+                <!--                        app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_10_percent" />-->
+
+                <!--                    <com.google.android.material.textview.MaterialTextView-->
+                <!--                        android:id="@+id/QuitDateTopId"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="12dp"-->
+                <!--                        android:alpha="1"-->
+                <!--                        android:background="?attr/selectableItemBackgroundBorderless"-->
+                <!--                        android:clickable="true"-->
+                <!--                        android:focusable="true"-->
+                <!--                        android:text="24-09-2019"-->
+                <!--                        android:textColor="@color/white"-->
+                <!--                        android:textSize="12sp"-->
+                <!--                        app:layout_constraintBottom_toBottomOf="@+id/QuitTopId"-->
+                <!--                        app:layout_constraintStart_toEndOf="@+id/QuitTopId" />-->
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_top_horizontal_70_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:alpha="0.4"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="24-09-2019"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="@+id/QuitTopId"
-                    app:layout_constraintStart_toStartOf="@+id/QuitTopId"
-                    app:layout_constraintTop_toBottomOf="@+id/QuitTopId" />
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.70" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_top_vertical_10_percent"
@@ -126,13 +133,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.05" />
-
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_top_vertical_50_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.60" />
+                    app:layout_constraintGuide_percent="0.70" />
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_top_vertical_95_percent"
                     android:layout_width="wrap_content"
@@ -160,17 +166,17 @@
         <!--            </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_06_top"
+            android:id="@+id/guideline_10_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_percent="0.08"
+            app:layout_constraintGuide_percent="0.09"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
+        <!--            app:cardElevation="0.2dp"-->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_mainID"
             android:layout_width="match_parent"
@@ -179,11 +185,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="0.2dp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline_06_top">
+            app:layout_constraintTop_toTopOf="@+id/guideline_10_top">
             <!--                android:layout_height="520dp"-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -481,13 +487,15 @@
         <!--            app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"-->
         <!--            app:layout_constraintTop_toBottomOf="@id/topLayout"/>-->
 
+
+        <!--            android:elevation="0.2dp"-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutCheckIn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:elevation="0.2dp"
+            android:elevation="0dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
@@ -555,6 +563,8 @@
         <!--            app:layout_constraintTop_toBottomOf="@+id/layoutCheckIn"-->
         <!--            app:layout_constraintBottom_toTopOf="@id/bottomLayout">-->
 
+
+        <!--            app:cardElevation="0.2dp"-->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_Middle"
             android:layout_width="match_parent"
@@ -563,7 +573,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="0.2dp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toTopOf="@id/card_view_Bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -878,7 +888,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="0.2dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_view_Middle"
@@ -1198,7 +1208,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="0.2dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom"
@@ -1404,7 +1414,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="0.2dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom_Achievments"
@@ -1635,7 +1645,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_margin="8dp"
-            android:elevation="0.2dp"
+            android:elevation="0dp"
             android:background="@drawable/custom_round_dark_orange"
             android:clickable="true"
             android:focusable="true"
