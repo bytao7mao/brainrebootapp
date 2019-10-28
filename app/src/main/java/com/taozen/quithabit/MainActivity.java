@@ -449,13 +449,13 @@ public class MainActivity extends AppCompatActivity {
                             new ColorDrawable(
                                     ContextCompat.getColor(
                                             getApplicationContext(), R.color.white)));
-            actionBar.setElevation(0f);
+            actionBar.setElevation(0.2f);
 //            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.actionbar_round));
 
 //        tipOfTheDayTxtView.setTypeface(montSerratSemiBoldItalicTypeface);
 //        TvExploreAchievement.setTypeface(montSerratMediumTypeface);
 //        TvExploreSavings.setTypeface(montSerratMediumTypeface);
-            counterText.setTypeface(montSerratSimpleBoldTypeface);
+//            counterText.setTypeface(montSerratSimpleBoldTypeface);
 //        remainingDaysTxt.setTypeface(montSerratSimpleBoldTypeface);
 //        targetTxtViewId.setTypeface(montSerratSimpleBoldTypeface);
 //        txtProgressForEnergyLevels.setTypeface(montSerratBoldTypeface);
@@ -842,7 +842,7 @@ public class MainActivity extends AppCompatActivity {
                         getResources().getString(R.string.check_in_now))) {
                     checkInNotAvailable();
                 } else {
-                    setTodayToClickDay();
+//                    setTodayToClickDay();
                     final int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
                     final int x = isLeap(yearOfNow) ? LEAP_YEAR_DAYS : NORMAL_YEAR_DAYS;
                     final String MESSAGE_FOR_DIALOG;
@@ -937,6 +937,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setPositiveButton(getString(R.string.YES), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 setCheckInText();
+                setTodayToClickDay();
                 checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
                 if (counter == ZERO) {
                     savings = preferences.getLong("taoz10", -10);
@@ -993,6 +994,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setNegativeButton(getString(R.string.NO), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 try {
+                    setTodayToClickDay();
                     checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
                     //get time of relapse and put it into arraylist to send in logs activity
                     final Calendar CALENDAR_ON_CLICK = Calendar.getInstance();
@@ -1069,6 +1071,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setCancelable(false);
         milestoneAlert.setPositiveButton(getString(R.string.YES), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
+                setTodayToClickDay();
                 if (preferences.contains(SAVINGS_FINAL)){
                     firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
                     editor.putLong("firstsave", firstSave);

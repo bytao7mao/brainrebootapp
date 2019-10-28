@@ -5,13 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/grey_50"
+    android:background="@color/grey_100"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MainActivity">
+
+            <View
+                android:id="@+id/delimitationBarIdFirst"
+                style="@style/Divider"
+                android:layout_height="0.2dp"
+                android:alpha="0.5"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/intruder"
@@ -20,7 +30,7 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@android:color/holo_orange_dark"
-                app:cardElevation="0dp"
+                app:cardElevation="0.1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -54,7 +64,7 @@
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_50_percent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="0.2"
                         app:layout_constraintStart_toStartOf="@id/guideline_top_vertical_10_percent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +100,7 @@
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="@id/guideline_top_vertical_95_percent"
-                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintHorizontal_bias="0.8"
                         app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_50_percent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,12 +126,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintGuide_percent="0.05" />
+
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_top_vertical_50_percent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.50" />
+                        app:layout_constraintGuide_percent="0.60" />
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_top_vertical_95_percent"
                         android:layout_width="wrap_content"
@@ -168,7 +179,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +189,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerTop"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="500dp">
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_10percentCard"
@@ -248,7 +259,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.25" />
+                        app:layout_constraintGuide_percent="0.30" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_horizontal_20percentCard"
@@ -269,7 +280,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percent_inner"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tvTipOfTheDay" />
-<!--                    on click we should alert the user that tips will update everyday-->
+                    <!--                    on click we should alert the user that tips will update everyday-->
 
                     <TextView
                         android:id="@+id/tvTipOfTheDay"
@@ -289,10 +300,10 @@
                         android:id="@+id/shareDays"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
+                        android:padding="8dp"
                         android:src="@drawable/ic_share_black_24dp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_10percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -337,8 +348,8 @@
 
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/counterImageId"
-                        android:layout_width="220sp"
-                        android:layout_height="220sp"
+                        android:layout_width="220dp"
+                        android:layout_height="220dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
@@ -353,12 +364,11 @@
                         app:indeterminateMinimumAngle="45"
                         app:indeterminateRotationAnimationDuration="1200"
                         app:indeterminateSweepAnimationDuration="600"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_85percentCard"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/lightbulbForTip"
-                        app:layout_constraintTop_toBottomOf="@+id/tvTipOfTheDay"
-                        app:layout_constraintVertical_bias="0.3"
+                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentCard"
+                        app:layout_constraintVertical_bias="0.100000024"
                         app:maximum="100"
                         app:progress="50"
                         app:progressAnimationDuration="100"
@@ -370,6 +380,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:alpha="1"
+                        android:fontFamily="@font/robotomedium"
                         android:text="50"
                         android:textSize="120sp"
                         app:layout_constraintBottom_toBottomOf="@+id/counterImageId"
@@ -383,29 +394,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:layout_marginTop="8dp"
                         android:alpha="0.8"
+                        android:fontFamily="@font/robotomedium"
                         android:text="@string/non_smoker_since"
                         android:textSize="36sp"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90percentCard"
-                        app:layout_constraintEnd_toEndOf="@+id/counterImageId"
-                        app:layout_constraintStart_toStartOf="@+id/counterImageId"
-                        app:layout_constraintTop_toBottomOf="@+id/counterImageId"
-                        app:layout_constraintVertical_bias="0.3" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/counterImageId" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/milestoneImageId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:layout_marginStart="20dp"
                         android:src="@drawable/ic_clock"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_90percentCard" />
-<!--                    on click we will alert user that this will update every he/she reaches the goal-->
-<!--                    and it will show remaining days till he/she will achieve the goal days-->
+                    <!--                    on click we will alert user that this will update every he/she reaches the goal-->
+                    <!--                    and it will show remaining days till he/she will achieve the goal days-->
 
                     <TextView
                         android:id="@+id/remaining_days_Id"
@@ -428,18 +439,18 @@
                         android:id="@+id/targetImageId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
                         android:src="@drawable/ic_goal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/targetTxtViewId"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentCard"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_90percentCard" />
-<!--                    on click we will alert user that the goal will update periodically-->
+                    <!--                    on click we will alert user that the goal will update periodically-->
 
                     <TextView
                         android:id="@+id/targetTxtViewId"
@@ -476,7 +487,7 @@
                 android:layout_height="45dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:elevation="0dp"
+                android:elevation="0.2dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
@@ -509,9 +520,10 @@
                     android:id="@+id/subTextCheckInId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotomedium"
                     android:text="@string/check_in_now"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.1"
@@ -551,7 +563,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintBottom_toTopOf="@id/card_view_Bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -583,7 +595,8 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:alpha="0.9"
+                        android:fontFamily="@font/robotomedium"
+                        android:alpha="1"
                         android:text="@string/progressactivity_get_started"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_30percentPercent"
@@ -865,7 +878,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_view_Middle"
@@ -949,6 +962,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomedium"
                         android:alpha="1"
                         android:text="@string/your_entire_progress"
                         android:textSize="20sp"
@@ -962,7 +976,7 @@
                         android:id="@+id/shareProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:padding="8dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
@@ -1006,9 +1020,10 @@
                         android:id="@+id/infoHighestDaysProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
                         android:focusable="true"
                         android:src="@drawable/ic_info_outline_grey_24dp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
@@ -1021,7 +1036,8 @@
                         android:id="@+id/infoLifeRegainedProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
@@ -1037,7 +1053,8 @@
                         android:id="@+id/infoCigarettesProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
@@ -1053,7 +1070,8 @@
                         android:id="@+id/infoQDayProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
@@ -1180,7 +1198,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom"
@@ -1274,6 +1292,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomedium"
                         android:alpha="1"
                         android:text="@string/your_latest_achievments"
                         android:textSize="20sp"
@@ -1286,7 +1305,7 @@
                         android:id="@+id/shareAchieve"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:padding="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
@@ -1385,7 +1404,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom_Achievments"
@@ -1475,6 +1494,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomedium"
                         android:alpha="1"
                         android:text="@string/your_savings"
                         android:textSize="20sp"
@@ -1488,7 +1508,7 @@
                         android:id="@+id/shareSavings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:padding="8dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
@@ -1615,7 +1635,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_margin="8dp"
-                android:elevation="0dp"
+                android:elevation="0.2dp"
                 android:background="@drawable/custom_round_dark_orange"
                 android:clickable="true"
                 android:focusable="true"

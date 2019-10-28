@@ -76,7 +76,7 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         editor = preferences.edit();
         titles = getResources().getStringArray(R.array.options_array);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Legal");
+        toolbar.setTitle("Options");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -91,6 +91,8 @@ public class FirstScreenActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(FirstScreenActivity.this);
         editor = preferences.edit();
 
+        btnConfirm.setElevation(0.2f);
+
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
         montSerratItallicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Italic.ttf");
         montSerratLightTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Light.ttf");

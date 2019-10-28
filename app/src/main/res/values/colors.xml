@@ -2,8 +2,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="colorPrimary">@android:color/holo_orange_dark</color>
-    <color name="colorPrimaryDark">@android:color/holo_orange_light</color>
-    <color name="colorAccent">@android:color/holo_orange_light</color>
+    <color name="colorPrimaryDark">#DD2C00</color>
+    <color name="colorAccent">#FF3D00</color>
     <color name="colorPrimaryLight">#D1C4E9</color>
     <color name="divider">#BDBDBD</color>
     <color name="colorGreyLight">#5C5C5C</color>
@@ -15,11 +15,17 @@
     <!-- Grey Color Shades -->
     <color name="grey_10">#FBFBFB</color>
     <color name="grey_50">#FAFAFA</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey_700">#616161</color>
     <color name="light_grey">#D3D3D3</color>
     <color name="silver">#C0C0C0</color>
     <color name="gainsboro">#DCDCDC</color>
+    <color name="blue_gray_50">#ECEFF1</color>
+    <color name="blue_gray_100">#CFD8DC</color>
+    <color name="blue_gray_200">#B0BEC5</color>
+    <color name="blue_gray_300">#90A4AE</color>
 
     <color name="mtrl_textinput_default_box_stroke_color"
         tools:override="true">@color/colorPrimary</color>
