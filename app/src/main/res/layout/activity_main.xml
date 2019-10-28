@@ -30,8 +30,12 @@
 <!--                android:layout_marginEnd="16dp"-->
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/top_announcement_bar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/totalSavingsTopId"
@@ -257,11 +261,15 @@
                         android:id="@+id/lightbulbForTip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:src="@drawable/ic_idea"
                         app:layout_constraintBottom_toBottomOf="@+id/tvTipOfTheDay"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percent_inner"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tvTipOfTheDay" />
+<!--                    on click we should alert the user that tips will update everyday-->
 
                     <TextView
                         android:id="@+id/tvTipOfTheDay"
@@ -388,11 +396,16 @@
                         android:id="@+id/milestoneImageId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:layout_marginStart="20dp"
                         android:src="@drawable/ic_clock"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_90percentCard" />
+<!--                    on click we will alert user that this will update every he/she reaches the goal-->
+<!--                    and it will show remaining days till he/she will achieve the goal days-->
 
                     <TextView
                         android:id="@+id/remaining_days_Id"
@@ -415,6 +428,9 @@
                         android:id="@+id/targetImageId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:src="@drawable/ic_goal"
@@ -423,6 +439,7 @@
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentCard"
                         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_90percentCard" />
+<!--                    on click we will alert user that the goal will update periodically-->
 
                     <TextView
                         android:id="@+id/targetTxtViewId"
@@ -459,7 +476,7 @@
                 android:layout_height="45dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:elevation="2dp"
+                android:elevation="0dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
@@ -1441,6 +1458,9 @@
                         android:id="@+id/appCompatImageViewSavings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:layout_margin="5dp"
                         android:background="@drawable/ic_profit"
                         android:contentDescription="@string/personal_progress"
@@ -1448,6 +1468,7 @@
                         app:layout_constraintEnd_toEndOf="@+id/exploreSavingsId"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+<!--                    go to same activity as explore text which is savings activity-->
 
                     <TextView
                         android:id="@+id/textViewSavingsTitle"
@@ -1492,6 +1513,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25savingBottom"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/appCompatImageViewSavings" />
+                    <!--                    go to savings activity-->
 
                     <TextView
                         android:id="@+id/savingsTxtIdPerDay"
@@ -1593,7 +1615,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_margin="8dp"
-                android:elevation="2dp"
+                android:elevation="0dp"
                 android:background="@drawable/custom_round_dark_orange"
                 android:clickable="true"
                 android:focusable="true"

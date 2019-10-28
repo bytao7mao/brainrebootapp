@@ -10,6 +10,7 @@
 
     <color name="greenColorLed">@android:color/holo_orange_dark</color>
     <color name="white">#FFF</color>
+    <color name="orange_not_referenced">#ffff8800</color>
 
     <!-- Grey Color Shades -->
     <color name="grey_10">#FBFBFB</color>
