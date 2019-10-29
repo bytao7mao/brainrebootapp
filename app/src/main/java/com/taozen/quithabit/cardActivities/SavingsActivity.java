@@ -22,6 +22,7 @@ import android.widget.TextView;
 //import com.google.android.gms.ads.AdView;
 //import com.google.android.gms.ads.InterstitialAd;
 //import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.taozen.quithabit.R;
@@ -36,7 +37,7 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FIN
 
 public class SavingsActivity extends AppCompatActivity {
     @BindView(R.id.savingsTxt) TextView savingsTxt;
-    @BindView(R.id.addSavingsBtnId) Button otherSavingsBtn;
+    @BindView(R.id.addSavingsBtnId) MaterialButton otherSavingsBtn;
     @BindView(R.id.editTxtSavingsId) TextInputLayout etSavingsLayout;
     @BindView(R.id.editText) TextInputEditText etInputEdit;
     @BindView(R.id.savings_TitleId) TextView titleTxt;

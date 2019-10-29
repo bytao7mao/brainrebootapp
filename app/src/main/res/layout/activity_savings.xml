@@ -69,20 +69,21 @@
 <!--                android:textSize="14sp" />-->
 <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/addSavingsBtnId"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTxtSavingsId"
             android:layout_centerHorizontal="true"
+            app:cornerRadius="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/custom_round_primary_color"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:elevation="0dp"
             android:text="@string/add_money"
             android:textAllCaps="true" />

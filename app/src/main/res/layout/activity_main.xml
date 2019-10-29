@@ -27,8 +27,8 @@
                 android:id="@+id/intruder"
                 style="@style/CustomCardViewStyle"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="320dp"
+                android:layout_marginTop="32dp"
                 android:backgroundTint="@color/colorPrimary"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +46,21 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground">
+
+<!--                    <androidx.appcompat.widget.AppCompatImageView-->
+<!--                        android:id="@+id/appCompatImageViewSavings_top"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="5dp"-->
+<!--                        android:background="@drawable/ic_piggy_bank"-->
+<!--                        android:clickable="true"-->
+<!--                        android:contentDescription="@string/personal_progress"-->
+<!--                        android:focusable="true"-->
+<!--                        android:foreground="?android:attr/selectableItemBackground"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/guideline_top_horizontal_70_percent"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/savingsTopId"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/totalSavingsTopId"
@@ -127,7 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.02" />
+                        app:layout_constraintGuide_percent="0.06" />
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_top_vertical_50_percent"
                         android:layout_width="wrap_content"
@@ -167,7 +182,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintGuide_percent="0.09"
+                app:layout_constraintGuide_percent="0.095"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -179,7 +194,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toTopOf="@id/layoutCheckIn"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -366,7 +381,7 @@
                         android:id="@+id/counterImageId"
                         android:layout_width="240dp"
                         android:layout_height="240dp"
-                        android:layout_marginTop="42dp"
+                        android:layout_marginTop="58dp"
                         android:layout_marginBottom="8dp"
                         android:clickable="true"
                         android:focusable="true"
@@ -584,7 +599,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toTopOf="@id/card_view_Bottom"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -903,7 +918,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1223,7 +1238,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1432,7 +1447,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1682,10 +1697,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/InsteadOfLayout"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_margin="8dp"
                 android:elevation="0dp"
-                android:background="@drawable/custom_round_dark_orange"
+                android:background="@drawable/custom_round_light_orange"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
@@ -1720,7 +1735,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/unlimited"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/robotomedium"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.1"
