@@ -30,6 +30,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.BlendModeColorFilterCompat;
 import androidx.core.graphics.BlendModeCompat;
 import androidx.preference.PreferenceManager;
@@ -59,6 +61,8 @@ import com.taozen.quithabit.cardActivities.SavingsActivity;
 import com.taozen.quithabit.options.OptionsActivity;
 import com.taozen.quithabit.utils.MyHttpCoreAndroid;
 import com.taozen.quithabit.utils.NetworkUtils;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -453,6 +457,16 @@ public class MainActivity extends AppCompatActivity {
                             new ColorDrawable(
                                     ContextCompat.getColor(
                                             getApplicationContext(), R.color.grey_100)));
+            TextView textView = new TextView(getApplicationContext());
+            textView.setText("progress");
+            textView.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.robotoblack));
+            textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
+            textView.setTextSize(28f);
+            ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            actionBar.setCustomView(textView);
+
 //            actionBar.setElevation(0.2f);
             actionBar.setElevation(0f);
 //            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.actionbar_round));

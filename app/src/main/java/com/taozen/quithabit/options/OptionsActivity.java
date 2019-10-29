@@ -16,16 +16,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.github.javiersantos.bottomdialogs.BottomDialog;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.taozen.quithabit.R;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.taozen.quithabit.MainActivity.PRIVACY_POLICY;
@@ -75,9 +74,11 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         preferences = PreferenceManager.getDefaultSharedPreferences(OptionsActivity.this);
         editor = preferences.edit();
         titles = getResources().getStringArray(R.array.options_array);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Options");
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+//        toolbar.setTitleTextAppearance(getApplicationContext(), R.style.TitleBarToolbarCustom);
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_orange_32dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

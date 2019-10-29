@@ -6,7 +6,7 @@
     <item
         android:id="@+id/options"
         android:orderInCategory="1"
-        android:icon="@drawable/ic_settings_grey_32dp"
+        android:icon="@drawable/ic_settings_orange_32dp"
         android:title="@string/legal"
         app:showAsAction="always"/>
 

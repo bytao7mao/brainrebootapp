@@ -23,6 +23,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.taozen.quithabit.R;
 
+import java.text.DecimalFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -34,6 +36,7 @@ public class SavingsActivity extends AppCompatActivity {
     @BindView(R.id.editTxtSavingsId) TextInputLayout etSavingsLayout;
     @BindView(R.id.editText) TextInputEditText etInputEdit;
     @BindView(R.id.savings_TitleId) TextView titleTxt;
+    @BindView(R.id.savingsTxtResult) TextView savingsTxtResult;
     long otherIntSavings;
     long finalSum;
     //shared pref
@@ -49,11 +52,16 @@ public class SavingsActivity extends AppCompatActivity {
     static Typeface montSerratExtraBoldTypeface;
     static Typeface montSerratSimpleBoldTypeface;
 
+    String CURRENCY_LOCAL;
+    DecimalFormat FORMATTER;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_savings);
         ButterKnife.bind(SavingsActivity.this);
+
+
 
         //fonts
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -75,6 +83,12 @@ public class SavingsActivity extends AppCompatActivity {
         etInputEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
         getIntentOrPrefsAndStore();
 
+        CURRENCY_LOCAL = preferences.getString("currency", "$");
+
+        FORMATTER = new DecimalFormat("###,###,##0.00");
+        final DecimalFormat FORMATTER2= new DecimalFormat("###,###,##0");
+        final String CURRENCY_LOCAL = preferences.getString("currency", "$");
+
         otherSavingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +97,8 @@ public class SavingsActivity extends AppCompatActivity {
                 editor.apply();
                 otherIntSavings = Integer.parseInt(String.valueOf(etInputEdit.getText()));
                 finalSum = finalSum + otherIntSavings;
-                savingsTxt.setText("Total savings: " + finalSum + " $");
+                savingsTxtResult.setText(String.valueOf(FORMATTER.format(finalSum)) + CURRENCY_LOCAL);
+                savingsTxt.setText(R.string.total_money_saved_congrats);
                 Log.d("LOGGTAO", "savings from onClick: " + finalSum);
                 editor.putLong(SAVINGS_FINAL, finalSum);
                 long tempLong = otherIntSavings;
@@ -99,7 +114,7 @@ public class SavingsActivity extends AppCompatActivity {
     });
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Savings");
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_orange_32dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,12 +131,14 @@ public class SavingsActivity extends AppCompatActivity {
                     //retrieve by intent(outside activity)
                     finalSum = intent.getLongExtra(SAVINGS_FINAL, -1);
                     Log.d("LOGGTAO", "get from intent ? = " + finalSum);
-                    savingsTxt.setText("Your total savings: " + finalSum + " $");
+                    savingsTxtResult.setText(String.valueOf(FORMATTER.format(finalSum)) + CURRENCY_LOCAL);
+                    savingsTxt.setText(R.string.total_money_saved);
                 } else {
                     //retrieve by prefs (inside activity)
                     finalSum = preferences.getLong(SAVINGS_FINAL, -1);
                     Log.d("LOGGTAO", "get from preferences ? = " + finalSum);
-                    savingsTxt.setText("Your total savings: " + finalSum + " $");
+                    savingsTxtResult.setText(String.valueOf(FORMATTER.format(finalSum)) + CURRENCY_LOCAL);
+                    savingsTxt.setText(R.string.total_money_saved);
                 }
             } catch (NullPointerException e) {
                 e.printStackTrace();
