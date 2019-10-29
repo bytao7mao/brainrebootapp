@@ -16,7 +16,7 @@
             <View
                 android:id="@+id/delimitationBarIdFirst"
                 style="@style/Divider"
-                android:layout_height="0.2dp"
+                android:layout_height="0dp"
                 android:alpha="0.5"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -76,11 +76,12 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:fontFamily="@font/robotomedium"
+                        android:paddingStart="0dp"
                         android:paddingTop="8dp"
                         android:paddingEnd="8dp"
                         android:text="904$"
                         android:textColor="@color/white"
-                        android:textSize="36sp"
+                        android:textSize="42sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_top_horizontal_70_percent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -195,7 +196,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/innerTop"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp">
+                    android:layout_height="wrap_content">
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline_vertical_10percentCard"
@@ -291,15 +292,17 @@
                     <TextView
                         android:id="@+id/tvTipOfTheDay"
                         style="@style/TextColorBlack"
-                        android:layout_width="240dp"
+                        android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:fontFamily="@font/robotoitalic"
                         android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
                         android:text="@string/example_of_tip_of_the_day"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percentCard"
-                        app:layout_constraintEnd_toEndOf="@+id/counterImageId"
-                        app:layout_constraintStart_toStartOf="@+id/counterImageId"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentCard"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15percent_inner"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -361,18 +364,18 @@
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:src="@drawable/ic_sunlast"
-                        app:layout_constraintBottom_toBottomOf="@+id/counterImageId"
-                        app:layout_constraintEnd_toStartOf="@+id/counterImageId"
+                        app:layout_constraintEnd_toEndOf="@+id/counterImageId"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/counterImageId"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintStart_toStartOf="@+id/counterImageId"
+                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentCard" />
 
 
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/counterImageId"
                         android:layout_width="220dp"
                         android:layout_height="220dp"
+                        android:layout_marginTop="42dp"
+                        android:layout_marginBottom="8dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
@@ -387,16 +390,15 @@
                         app:indeterminateMinimumAngle="45"
                         app:indeterminateRotationAnimationDuration="1200"
                         app:indeterminateSweepAnimationDuration="600"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90percentCard"
+                        app:layout_constraintBottom_toTopOf="@+id/textNonSmokerId"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentCard"
-                        app:layout_constraintVertical_bias="0.100000024"
+                        app:layout_constraintTop_toBottomOf="@+id/sunny"
+                        app:layout_constraintTop_toTopOf="@+id/sunny"
                         app:maximum="100"
                         app:progress="50"
                         app:progressAnimationDuration="100"
                         app:startAngle="270" />
-
 
 
                     <com.google.android.material.textview.MaterialTextView
@@ -419,14 +421,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:layout_marginTop="8dp"
                         android:alpha="0.8"
                         android:fontFamily="@font/robotomedium"
                         android:text="@string/non_smoker_since"
                         android:textSize="36sp"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90percentCard"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/counterImageId" />
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/milestoneImageId"
@@ -1432,6 +1433,55 @@
             <!--            app:layout_constraintTop_toBottomOf="@+id/card_view_Bottom_Achievments"-->
             <!--            app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout">-->
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/InsteadOfLayout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:elevation="0dp"
+                android:background="@drawable/custom_round_dark_orange"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view_Bottom_Saving">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vertical_15InsteadOf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.15" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/InsteadOfImgId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/ic_hot_air_balloon"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15InsteadOf"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/subTextInsteadOfId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unlimited"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15InsteadOf"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Bottom_Saving"
                 android:layout_width="match_parent"
@@ -1673,54 +1723,7 @@
             <!--            app:layout_constraintBottom_toTopOf="@id/InsteadOfLayout"-->
             <!--            app:layout_constraintTop_toBottomOf="@id/bottomLayoutSavings"/>-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/InsteadOfLayout"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_margin="8dp"
-                android:elevation="0dp"
-                android:background="@drawable/custom_round_dark_orange"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_view_Bottom_Saving">
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_vertical_15InsteadOf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.15" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/InsteadOfImgId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/ic_hot_air_balloon"
-                    android:padding="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15InsteadOf"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/subTextInsteadOfId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/unlimited"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15InsteadOf"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--        <View-->
             <!--            android:id="@+id/delimitationBarIdLast"-->

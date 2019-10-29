@@ -4,7 +4,7 @@
         <item name="android:fontFamily">@font/robotoregular</item>
         <!--        <item name="android:textSize">12sp</item>-->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryDark">@color/grey_50</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!--        <item name="colorPrimary">@color/white</item>-->
         <item name="android:windowLightStatusBar">true</item>
@@ -13,7 +13,7 @@
     <style name="MaterialThemeNoActionBarW" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:fontFamily">@font/robotoregular</item>
         <!--        <item name="android:textSize">12sp</item>-->
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryDark">@color/grey_50</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!--        <item name="colorPrimary">@color/white</item>-->
@@ -23,7 +23,7 @@
     <style name="MaterialThemeWithActionBar" parent="Theme.MaterialComponents.Light.Bridge">
         <item name="android:fontFamily">@font/robotoregular</item>
 <!--        <item name="android:textSize">12sp</item>-->
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryDark">@color/grey_50</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
 <!--        <item name="colorPrimary">@color/white</item>-->

@@ -393,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
             //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
             //to 24 to be able to make the calculation
             //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
-            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR);
+            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
 //            HOUR_OF_DAYLIGHT = HOUR_OF_DAYLIGHT == ZERO ? TWENTYFOUR : HOUR_OF_DAYLIGHT;
             setTheHourOfFirstLaunch(CALENDAR);
             //leave it for pay version
@@ -452,7 +452,7 @@ public class MainActivity extends AppCompatActivity {
                     setBackgroundDrawable(
                             new ColorDrawable(
                                     ContextCompat.getColor(
-                                            getApplicationContext(), R.color.white)));
+                                            getApplicationContext(), R.color.grey_100)));
 //            actionBar.setElevation(0.2f);
             actionBar.setElevation(0f);
 //            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.actionbar_round));
@@ -648,7 +648,7 @@ public class MainActivity extends AppCompatActivity {
             HOUR_OF_FIRSTLAUNCH = preferences.getInt(HOUR_OF_FIRSLAUNCH_SP, -1);
         } else {
             //recent refactor that works fine
-            HOUR_OF_FIRSTLAUNCH = CALENDAR.get(Calendar.HOUR);
+            HOUR_OF_FIRSTLAUNCH = CALENDAR.get(Calendar.HOUR_OF_DAY);
 //            HOUR_OF_FIRSTLAUNCH = (CALENDAR.get(Calendar.HOUR_OF_DAY)==ZERO) ? 24 : CALENDAR.get(Calendar.HOUR_OF_DAY);
             final int MONTH_CALENDAR = CALENDAR.get(Calendar.MONTH)+1;
             final int MONTH_LOCALDATE;
@@ -984,7 +984,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 editor.putInt(COUNTER, counter);
                 setTextViewsForProgress();
-//                checkActivityOnline();
+                checkActivityOnline();
 //                        setTheSavingsPerDay();
                 savingsGetAndSetValue();
                 setImprovementProgressLevels();
@@ -1410,7 +1410,7 @@ public class MainActivity extends AppCompatActivity {
                             }//run from runonuithread
                         });//runonuithread
                     }//run from Timertask
-                }, 100, 10_000);//Timertask once per 10 SECONDS
+                }, 100, 20_000);//Timertask once per 10 SECONDS
             }//run from async
         });//async
     }//runningInBackground
@@ -1447,7 +1447,7 @@ public class MainActivity extends AppCompatActivity {
             final Date DATE = new Date();
             final Calendar CALENDAR = GregorianCalendar.getInstance();
             CALENDAR.setTime(DATE);
-            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR);
+            HOUR_OF_DAYLIGHT = CALENDAR.get(Calendar.HOUR_OF_DAY);
             setTargetDays();
             //if the button/check in is already clicked today,
             //we disable it by checking if buttonClickedToday is true
