@@ -88,7 +88,6 @@ public class ChallengeActivity extends AppCompatActivity {
 //                editor.putString("way", firstDialog);
 //                editor.apply();
 //            }
-//            Log.d("TAOLENXY", "oncreate try catch->>ENUMS IS: " + firstDialog);
 //        } catch (NullPointerException e) {
 //            e.printStackTrace();
 //        }
@@ -135,7 +134,6 @@ public class ChallengeActivity extends AppCompatActivity {
 //    protected void onResume() {
 //        super.onResume();
 //        firstDialog = preferences.getString("way", null);
-//        Log.d("TAOLENXY", "onResume->>ENUMS IS: " + firstDialog);
 //    }
 //
 //    private void startTimer() {
@@ -186,8 +184,6 @@ public class ChallengeActivity extends AppCompatActivity {
 //                START_TIME_IN_MILLIS = MILLIS_IN_DAY;
 //            }
 //        } catch (NullPointerException e) {e.printStackTrace();
-//            Log.d("TAOLENXY", "NullPointerException: " + firstDialog);}
-//        Log.d("TAOLENXY", "resetTimer->>ENUMS IS: " + firstDialog);
 //        mTimeLeftInMillis = START_TIME_IN_MILLIS;
 //        challengeBack.setImageResource(R.drawable.on);
 //        updateCountDownText();
@@ -304,7 +300,7 @@ public class ChallengeActivity extends AppCompatActivity {
 //                .onPositive(new BottomDialog.ButtonCallback() {
 //                    @Override
 //                    public void onClick(BottomDialog dialog) {
-//                        Log.d("BottomDialogs", "Do something!");
+//
 //                    }
 //                }).show();
 //    }
@@ -323,7 +319,7 @@ public class ChallengeActivity extends AppCompatActivity {
 //                .onPositive(new BottomDialog.ButtonCallback() {
 //                    @Override
 //                    public void onClick(@NonNull BottomDialog dialog) {
-//                        Log.d("BottomDialogs", "Do something!");
+//
 //                    }
 //                }).show();
 //    }

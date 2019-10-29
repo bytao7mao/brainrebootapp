@@ -2,6 +2,8 @@ package com.taozen.quithabit.utils;
 
 import android.util.Log;
 
+import com.taozen.quithabit.BuildConfig;
+
 public class Constants {
 
     private static Constants obj;
@@ -14,7 +16,9 @@ public class Constants {
     public static Constants getInstance() {
         if (obj==null)
 //            obj = new Constants();
-            Log.e("QUIHABITERR", "HAHA FOOL, YOU CANNOT INSTANTIATE CONSTANTS CLASS LOL");
+            if (BuildConfig.DEBUG) {
+                Log.e("QUIHABITERR", "HAHA FOOL, YOU CANNOT INSTANTIATE CONSTANTS CLASS LOL");
+            }
         return null;
     }
 

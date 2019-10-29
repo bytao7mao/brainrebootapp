@@ -13,7 +13,6 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 //import com.google.android.gms.ads.AdListener;
@@ -25,6 +24,7 @@ import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.taozen.quithabit.BuildConfig;
 import com.taozen.quithabit.R;
 
 import java.text.DecimalFormat;
@@ -65,8 +65,6 @@ public class SavingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_savings);
         ButterKnife.bind(SavingsActivity.this);
-
-
 
         //fonts
         montSerratBoldTypeface = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Black.ttf");
@@ -114,7 +112,9 @@ public class SavingsActivity extends AppCompatActivity {
                     finalSum = finalSum + otherIntSavings;
                     savingsTxtResult.setText(String.valueOf(FORMATTER.format(finalSum)) + CURRENCY_LOCAL);
                     savingsTxt.setText(R.string.total_money_saved_congrats);
-                    Log.d("LOGGTAO", "savings from onClick: " + finalSum);
+                    if (BuildConfig.DEBUG) {
+                        Log.d("LOGGTAO", "savings from onClick: " + finalSum);
+                    }
                     editor.putLong(SAVINGS_FINAL, finalSum);
                     long tempLong = otherIntSavings;
                     editor.putLong("tempLong", tempLong);
@@ -146,13 +146,17 @@ public class SavingsActivity extends AppCompatActivity {
                 if (intent != null) {
                     //retrieve by intent(outside activity)
                     finalSum = intent.getLongExtra(SAVINGS_FINAL, -1);
-                    Log.d("LOGGTAO", "get from intent ? = " + finalSum);
+                    if (BuildConfig.DEBUG) {
+                        Log.d("LOGGTAO", "get from intent ? = " + finalSum);
+                    }
                     savingsTxtResult.setText(String.valueOf(FORMATTER.format(finalSum)) + CURRENCY_LOCAL);
                     savingsTxt.setText(R.string.total_money_saved);
                 } else {
                     //retrieve by prefs (inside activity)
                     finalSum = preferences.getLong(SAVINGS_FINAL, -1);
-                    Log.d("LOGGTAO", "get from preferences ? = " + finalSum);
+                    if (BuildConfig.DEBUG) {
+                        Log.d("LOGGTAO", "get from preferences ? = " + finalSum);
+                    }
                     savingsTxtResult.setText(String.valueOf(FORMATTER.format(finalSum)) + CURRENCY_LOCAL);
                     savingsTxt.setText(R.string.total_money_saved);
                 }
@@ -171,7 +175,6 @@ public class SavingsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("LOGGTAO", "hello onResume!");
         getIntentOrPrefsAndStore();
     }
 }

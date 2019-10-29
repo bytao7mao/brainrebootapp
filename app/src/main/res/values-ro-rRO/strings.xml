@@ -21,16 +21,16 @@
     <string name="check_in_now">Verifica acum!</string>
     <string name="calculating">Calculam …</string>
     <string name="cig_not_smoked">Tigari nefumate:</string>
-    <string name="cig_press_leaf">Tigari nefumate: Calculam …</string>
+    <string name="cig_press_leaf">Apasati pentru calcul</string>
     <string name="your_entire_progress">Progresul tau</string>
     <string name="life_press_leaf">Viata recuperata: Calculam …</string>
     <string name="life_reg">Viata recuperata: %s ore</string>
-    <string name="breath">Respiratia</string>
-    <string name="energy">Energie</string>
+    <string name="breath">Respiratie corecta</string>
+    <string name="energy">Nivelul energiei</string>
     <string name="error_loading_data_from_api">Eroare la incarcarea datelor</string>
     <string name="explore">Explorati</string>
-    <string name="fatigue">Oboseala</string>
-    <string name="gums">Gingii</string>
+    <string name="fatigue">Ritmul inimii</string>
+    <string name="gums">Circulatia sangelui</string>
     <string name="personal_progress">Progresul personal</string>
     <string name="your_latest_achievments">Ultima ta realizare</string>
     <string name="your_savings">Economiile tale</string>
@@ -80,8 +80,6 @@
     <string name="quithabit_nosmoke_for_android">QuitHabit!  NoSmoke pentru Android</string>
     <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Termeni si Conditii</a></string>
     <string name="unlimited">Activitati in locul fumatului</string>
-    <string name="unlimited_price">1.99 %s</string>
-    <string name="unlimited_price_ron">7.99 %s</string>
     <string name="quithabit_nosmoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke pentru
         \nAndroid este dezvoltat folosind \nsoftware open-source:</string>
     <string name="version_app">Versiunea 0.1 (100)</string>
@@ -94,4 +92,12 @@
     <string name="cannot_check_in">Nu puteti verifica acum. Va rugam sa incercati mai tarziu.</string>
     <string name="please_check_tomorrow">Va rugam sa verificati maine!</string>
     <string name="continue_button">CONTINUARE</string>
+    <string name="add_money">adaugati suma</string>
+    <string name="get_started">Sa incepem</string>
+    <string name="quit_date_change">Data renuntarii: %s</string>
+    <string name="smoking_data">Cheltuielile pe un pachet ca de exemplu.</string>
+    <string name="total_money_saved">Suma totala de bani salvata</string>
+    <string name="total_money_saved_congrats">Valoarea totala de bani</string>
+    <string name="total_savings_top">Suma totala</string>
+    <string name="progress">progres</string>
 </resources>

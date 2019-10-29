@@ -11,11 +11,7 @@
     <string name="checkinStr">You will check-in everyday at %d:00</string>
     <string name="error_sum">Please input a sum</string>
     <string name="num_of_cig">Please input a number</string>
-    <string name="thanks_for_downloading_this_app">We use this information to show you
-        some personal statistics such as the amount
-        of money you\'re saving by giving up
-    smoking.</string>
-    <string name="quit_date_change">Current quit date: %s</string>
+    <string name="thanks_for_downloading_this_app">We use this information to show you         some personal statistics such as the amount         of money you\'re saving by giving up     smoking.</string>
     <string name="smoking_data">Cost per packet for example.</string>
     <string name="agreeing_to_terms">By using this app you are agreeing to our</string>
     <string name="rank_master">Current Rank: %s</string>
@@ -39,10 +35,10 @@
     <string name="your_latest_achievments">Your latest achievements</string>
     <string name="personal_progress">Personal progress</string>
     <string name="error_loading_data_from_api">Cannot retrieve data from server</string>
-    <string name="energy">Energy\nlevels</string>
+    <string name="energy">Energy levels</string>
     <string name="breath">Proper breathing</string>
-    <string name="fatigue">Heart\nrate</string>
-    <string name="gums">Blood\ncirculation</string>
+    <string name="fatigue">Heart rate</string>
+    <string name="gums">Blood circulation</string>
     <string name="how_many_cigarettes_per_day">How many cigarettes per day ?</string>
     <string name="how_much_do_you_spend_per_day">How much do you spend per day ?</string>
     <string name="break_your_habit">Break your habit now!</string>
@@ -67,29 +63,23 @@
     <string name="fail_content">Don\'t waste your life! All you need is a little patience and persistence.</string>
     <string name="awesome">Awesome!</string>
     <string name="we_will_start_tutorial">We will start tutorial now.</string>
-    <string name="pass_one">Our strength grows out of our weakness\n\t - Ralph Waldo Emerson</string>
-    <string name="pass_two">Believe in your potential, and you will be successful\n\t - John Maxwell</string>
-    <string name="pass_three">Believe you can and you\'re halfway there\n\t - Theodore Roosevelt</string>
-    <string name="pass_four">The surest way not to fail is to determine to succeed\n\t - Richard Brinsley Sheridan</string>
-    <string name="pass_five">The secret of getting ahead is getting started\n\t - Mark Twain</string>
-    <string name="pass_six">It is in your moments of decision that your destiny is shaped\n\t - Tony Robbins</string>
+    <string name="pass_one">Our strength grows out of our weakness \t - Ralph Waldo Emerson</string>
+    <string name="pass_two">Believe in your potential, and you will be successful \\t - John Maxwell</string>
+    <string name="pass_three">Believe you can and you\'re halfway there \t - Theodore Roosevelt</string>
+    <string name="pass_four">The surest way not to fail is to determine to succeed \\t - Richard Brinsley Sheridan</string>
+    <string name="pass_five">The secret of getting ahead is getting started \t - Mark Twain</string>
+    <string name="pass_six">It is in your moments of decision that your destiny is shaped \t - Tony Robbins</string>
     <string name="first_day">Hello, this is your first day! Since you\'re here it means that you made the first step in order to get rid of your habit</string>
     <string name="abstained_last_days">Have you refrain from smoking in the last days ?</string>
     <string name="abstained_today">Have you refrain from smoking today ?</string>
     <string name="how_much_to_save">how much money to save</string>
     <string name="legal">Legal</string>
-    <string name="quithabit_nosmoke_for_android">QuitHabit! NoSmoke \nfor Android</string>
-    <string name="quithabit_nosmoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke for
-        \nAndroid is built using \nopen-source software:</string>
-    <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Terms and Conditions</a></string>
+    <string name="quithabit_nosmoke_for_android">QuitHabit! NoSmoke  for Android</string>
+    <string name="quithabit_nosmoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke for Android is built using  open-source software:</string>
     <string name="privacy_policy"><a href="https://bytao7mao.github.io/quithabit/legal/privacy_policy.html">Privacy Policy</a></string>
-    <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licences</a></string>
-    <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> and \nthe <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> \nlogos are trademarks of \nMarius Nicolae. \nAll  rights reserved</string>
     <string name="add_your_today_s_extra_savings">Add your today\'s extra savings!</string>
-    <string name="unlimited_price">1.99 %s</string>
     <string name="unlimited">Instead of smoking</string>
     <string name="done">DONE</string>
-    <string name="unlimited_price_ron">7.99 %s</string>
     <string name="about_your_smoking">About your smoking</string>
     <string name="and">and</string>
     <string name="version_app">Version 0.1 (100)</string>
@@ -99,8 +89,13 @@
     <string name="you_can_do_it">You can do it</string>
     <string name="wolf">Wolf</string>
     <string name="powered_by_q">Powered by Q!</string>
-    <string name="cannot_check_in">You cannot check-in right now!\nPlease check back later.</string>
+    <string name="cannot_check_in">You cannot check-in right now! Please check back later.</string>
     <string name="please_check_tomorrow">Please check again tomorrow!</string>
     <string name="continue_button">Continue</string>
     <string name="total_savings_top">Total Savings</string>
+    <string name="quit_date_change">Current quit date: %s</string>
+    <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licences</a></string>
+    <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> and  the <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a>  logos are trademarks of  Marius Nicolae.  All  rights reserved</string>
+    <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Terms and Conditions</a></string>
+    <string name="progress">progress</string>
 </resources>

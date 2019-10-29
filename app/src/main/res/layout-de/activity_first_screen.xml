@@ -10,9 +10,9 @@
         android:id="@+id/transitions_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="8dp"
         tools:context=".FirstScreenActivity">
-<!--        android:background="@color/white"-->
+        <!--        android:background="@color/white"-->
         <!--style="@style/Widget.AppCompat.EditText"-->
         <ImageView
             android:id="@+id/imageView"
@@ -33,8 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:alpha="0.8"
             android:fontFamily="@font/robotomedium"
             android:gravity="center"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/how_many_cigarettes_per_day"
                 android:textSize="14sp" />
-<!--            android:backgroundTint="@color/greenColorLed"-->
+            <!--            android:backgroundTint="@color/greenColorLed"-->
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtTxtForSavingsId"

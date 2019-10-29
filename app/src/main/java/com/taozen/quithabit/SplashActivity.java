@@ -24,6 +24,7 @@ import com.taozen.quithabit.utils.NetworkUtils;
 
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 import butterknife.BindView;
@@ -46,8 +47,6 @@ public class SplashActivity extends AppCompatActivity {
     private Calendar calendarForProgress;
     int DAY_OF_PRESENT, DAY_OF_CLICK;
 
-    Handler mHandler = new Handler();
-    int a = 3000;
     //shared pref
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
@@ -60,11 +59,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
         //shared pref
         preferences = PreferenceManager.getDefaultSharedPreferences(SplashActivity.this);
         editor = preferences.edit();
-//        getWindow().setStatusBarColor(ContextCompat.getColor(SplashActivity.this, R.color.white));
         if (preferences.contains(COUNTER)){
             int c = preferences.getInt(COUNTER, 0);
             editor.putInt(COUNTER, c);
@@ -85,9 +82,12 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @SideEffect
     private void checkActivityOnlineAndGetData() {
         try {
+            Random random = new Random();
+            int i = random.nextInt(100 - 1 + 1) + 1;
             int counter = 0;
             if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
@@ -96,16 +96,20 @@ public class SplashActivity extends AppCompatActivity {
                 if (counter == 0) {
                     requestDataById(1);
                 } else {
-                    requestDataById(counter);
+                    requestDataById(i);
                 }
                 //requestDataById(DAY_OF_PRESENT);
-                Log.d("DAYZEN", "is connected to net");
+                if (BuildConfig.DEBUG){
+                    Log.d("DAYZEN", "is connected to net");
+                }
             } else {
-                Log.d("DAYZEN", "is NOT connected to net");
+                if (BuildConfig.DEBUG){
+                    Log.d("DAYZEN", "is NOT connected to net");
+                }
                 if (counter == 0) {
                     requestDataById(1);
                 } else {
-                    requestDataById(counter);
+                    requestDataById(i);
                 }
                 Snackbar snackbar;
                 snackbar = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);

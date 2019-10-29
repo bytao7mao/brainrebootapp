@@ -458,7 +458,7 @@ public class MainActivity extends AppCompatActivity {
                                     ContextCompat.getColor(
                                             getApplicationContext(), R.color.grey_100)));
             TextView textView = new TextView(getApplicationContext());
-            textView.setText("progress");
+            textView.setText(getResources().getString(R.string.progress));
             textView.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.robotoblack));
             textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
             textView.setTextSize(28f);
@@ -574,7 +574,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //            //get initials like: RO/US/EN/FR
 //            final String PUT_LANGUAGE_IN_STRING_ON_CREATE = localeMAIN.getLanguage();
-//            Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING_ON_CREATE);
             if (counterInner < 2) {
 //                final Drawable ro_or_eng_for_first_day =
 //                        (PUT_LANGUAGE_IN_STRING_ON_CREATE.equalsIgnoreCase(RO))
@@ -615,7 +614,9 @@ public class MainActivity extends AppCompatActivity {
         final float DENSITY = getResources().getDisplayMetrics().density;
         final float DENSITY_WEIGHT = TV_WIDTH / DENSITY;
         final float DENSITY_HEIGHT = TV_HEIGHT / DENSITY;
-        Log.d("DENS", "widht: " + DENSITY_WEIGHT + " height: " + DENSITY_HEIGHT + DENSITY);
+        if (BuildConfig.DEBUG) {
+            Log.d("DAYZEN", "widht: " + DENSITY_WEIGHT + " height: " + DENSITY_HEIGHT + DENSITY);
+        }
     }
 
     private void checkInsteadOfSmoking() {
@@ -745,7 +746,9 @@ public class MainActivity extends AppCompatActivity {
         final String DAILY_QUOTE_TITLE = getResources().getString(R.string.awesome)
                 + "\n" + getResources().getString(R.string.daily_quote) + "\n";
         final String DAILY_QUOTE = generateQuoteForPassingTheDay()+"";
-        Log.d("QUOTE", " " + DAILY_QUOTE);
+        if (BuildConfig.DEBUG) {
+            Log.d("QUOTE", " " + DAILY_QUOTE);
+        }
         BottomDialog bottomDialog = new BottomDialog.Builder(this)
                 .setTitle(DAILY_QUOTE_TITLE)
                 .setContent(DAILY_QUOTE)
@@ -800,7 +803,9 @@ public class MainActivity extends AppCompatActivity {
                             q2 = m+YourQDay2.getText().toString().substring(YourQDay2.length()-5,YourQDay2.length());
                         }
 //                        quitDateTopText.setText(q2);
-                        Log.d("DAYZEN2", "date: " + q2);
+                        if (BuildConfig.DEBUG) {
+                            Log.d("DAYZEN2", "date: " + q2);
+                        }
                     }
                 }).show();
     }
@@ -813,7 +818,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //  Create a new boolean and preference and set it to true
-                Log.d(DAYZEN, "thread separat: " + Thread.currentThread().getName());
+                if (BuildConfig.DEBUG) {
+                    Log.d(DAYZEN, "thread separat: " + Thread.currentThread().getName());
+                }
                 if (preferences.contains(FIRST_START)) {
                     isFirstStart = preferences.getBoolean(FIRST_START, false);
                 } else {
@@ -844,7 +851,9 @@ public class MainActivity extends AppCompatActivity {
                     final Intent i = new Intent(MainActivity.this, FirstScreenActivity.class);
                     runOnUiThread(new Runnable() {
                         @Override public void run() {
-                            Log.d(DAYZEN, "thread din ui: " + Thread.currentThread().getName());
+                            if (BuildConfig.DEBUG) {
+                                Log.d(DAYZEN, "thread din ui: " + Thread.currentThread().getName());
+                            }
                             startActivity(i);
 //                            startIntroActivity();
                         }
@@ -991,7 +1000,9 @@ public class MainActivity extends AppCompatActivity {
                     counter++;
                     setCounterImageDaysOrDay(counter);
                     savings = preferences.getLong(SAVINGS_FINAL, ZERO) + firstSave;
-                    Log.d("taogenX", "savings from TAO = " + savings);
+                    if (BuildConfig.DEBUG) {
+                        Log.d("taogenX", "savings from TAO = " + savings);
+                    }
                     editor.putLong(SAVINGS_FINAL, savings);
                     editor.apply();
                     higherThanOne = false;
@@ -1103,7 +1114,9 @@ public class MainActivity extends AppCompatActivity {
                     firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
                     editor.putLong("firstsave", firstSave);
                     editor.apply();
-                    Log.d("taogenX", "firstsave is: " + firstSave);
+                    if (BuildConfig.DEBUG) {
+                        Log.d("taogenX", "firstsave is: " + firstSave);
+                    }
                 }
                 setTodayToClickDay();
                 firstCheckForInitialCiggarettesPerDay();
@@ -1116,10 +1129,8 @@ public class MainActivity extends AppCompatActivity {
                         firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
                         editor.putLong("firstsave", firstSave);
                         editor.apply();
-                        Log.d("taogenX", "firstsave is: " + firstSave);
                     }
                 }
-                Log.d("COUNTERTAO", "before - counter is raised with: " + counter);
                 counter++;
                 setCounterImageDaysOrDay(counter);
                 if (counter == 1){
@@ -1129,16 +1140,13 @@ public class MainActivity extends AppCompatActivity {
                         firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
                         editor.putLong("firstsave", firstSave);
                         editor.apply();
-                        Log.d("taogenX", "firstsave is: " + firstSave);
                     }
                 } else {
                     savings = preferences.getLong(SAVINGS_FINAL, ZERO) + firstSave;
-                    Log.d("taogenX", "savings from TAO = " + savings);
                     editor.putLong(SAVINGS_FINAL, savings);
                     editor.apply();
                 }
                 higherThanOne = false;
-                Log.d("COUNTERTAO", "after - counter is raised with: " + counter);
                 editor.putInt(COUNTER, counter);
                 setTextViewsForProgress();
                 checkActivityOnline();
@@ -1180,11 +1188,9 @@ public class MainActivity extends AppCompatActivity {
                 arr = TEM;
             }
             editor.putString("arr", arr);
-            Log.d("taogenX", "here is the last max counter for user: " + preferences.getInt("highest", ZERO));
             editor.apply();
             counter = 1;
             savings = firstSave;
-            Log.d("taogenX", "firstsave is: " + firstSave);
             //to see
             editor.putLong(SAVINGS_FINAL, savings);//off
             //maybe
@@ -1398,7 +1404,9 @@ public class MainActivity extends AppCompatActivity {
 //            int maxCount = preferences.getInt(getString(R.string.maxCounter), -1);
             int maxCount = Integer.parseInt(CALC_DAYS_TARGET);
             //max 30 always
-            Log.d("dayzen", ""+maxCount);
+            if (BuildConfig.DEBUG){
+                Log.d("dayzen", ""+maxCount);
+            }
 //            counterImgViewProgressbar.setProgress((float) ((30-maxCount)*3.3));
             counterImgViewProgressbar.setProgress(preferences.getInt(COUNTER, 0));
         } catch (final Exception e) {
@@ -1621,9 +1629,12 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);editor.apply();
                 editor.putInt(YEARLEAP, Calendar.getInstance().get(Calendar.YEAR));editor.apply();
             }
-            Log.d(DAYZEN, "DAY OF CLICK " + DAY_OF_CLICK
-                    + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
-                    " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
+            if (BuildConfig.DEBUG) {
+                Log.d(DAYZEN, "DAY OF CLICK " + DAY_OF_CLICK
+                        + " DAY OF PRESENT " + DAY_OF_PRESENT + "\n" +
+                        " HOUR_OF_FIRSTLAUNCH " + HOUR_OF_FIRSTLAUNCH + " HOUR_OF_DAYLIGHT " + HOUR_OF_DAYLIGHT);
+            }
+
             //if user started at hour of 00 or 23 at night and hour of now is 00 then we make hour of now equal
             //to 24 to be able to make the calculation
             //else we calculate only hour of now to be equal to 24 if hour of daylight is 00
@@ -1876,6 +1887,8 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void checkActivityOnline() {
         try {
+            Random random = new Random();
+            int i = random.nextInt(100 - 1 + 1) + 1;
             if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
                     counter = preferences.getInt(COUNTER, ZERO);
@@ -1883,14 +1896,14 @@ public class MainActivity extends AppCompatActivity {
                 if (counter == ZERO) {
                     requestDataById(1);
                 } else {
-                    requestDataById(counter);
+                    requestDataById(i);
                 }
                 //requestDataById(DAY_OF_PRESENT);
             } else {
                 if (counter == ZERO) {
                     requestDataById(1);
                 } else {
-                    requestDataById(counter);
+                    requestDataById(i);
                 }
                 final Snackbar SNACKBAR;
                 SNACKBAR = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
@@ -1944,7 +1957,7 @@ public class MainActivity extends AppCompatActivity {
                 final JsonElement ROOT_NODE = JSON_PARSER.parse(CONTENT_LOCAL);
                 final JsonObject DETAILS_LOCAL = ROOT_NODE.getAsJsonObject();
                 final JsonElement NAME_ELEMENT_NODE;
-                //Log.d(TAG, "Language is: " + LocaleUtils.getDefault().getDisplayLanguage());//get language like romana
+
                 final Locale locale;
                 //version api 23 higher or equal
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -1954,7 +1967,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //get initials like: RO/US/EN/FR
                 final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
-                Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING);
+                if (BuildConfig.DEBUG) {
+                    Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING);
+                }
                 //get quote from ro if user is ro, else get default quotes
                 NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
                         ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
@@ -2006,8 +2021,19 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, ZERO);
             }
-            Log.d("DAYZEN2", "counter " + counter);
-            if (counter>=ZERO&&counter<EIGHT) {
+            if (BuildConfig.DEBUG) {
+                Log.d("DAYZEN2", "counter " + counter);
+            }
+
+            if (counter >= ZERO && counter < 4) {
+                //user have between a day and a week
+                rankOneImg.setBackgroundResource(R.drawable.ic_qdate);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_oneday);
+                rankTwoImg.setAlpha(1.0f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_oneweek);
+                rankThreeImg.setAlpha(0.2f);
+            } else if (counter>=4&&counter<EIGHT) {
                 //user have between a day and a week
                 rankOneImg.setBackgroundResource(R.drawable.ic_oneday);
                 rankOneImg.setAlpha(1.0f);
@@ -2226,7 +2252,10 @@ public class MainActivity extends AppCompatActivity {
                 q2 = m+YourQDay2.getText().toString().substring(YourQDay2.length()-5,YourQDay2.length());
             }
 //            quitDateTopText.setText(q2);
-            Log.d("DAYZEN2", "date: " + q2);
+            if (BuildConfig.DEBUG) {
+                Log.d("DAYZEN2", "date: " + q2);
+            }
+
             //getting the highest streak and put it in progress card
             final int HIGHEST_STREAK;
             if (preferences.contains(HIGHEST)){
@@ -2260,8 +2289,10 @@ public class MainActivity extends AppCompatActivity {
                 TV_USER_CIGARETTES_PROGRESS2.setText(preferences.getInt(MODIFIED_CIGG_PER_DAY, ZERO));
 //                TV_HOURS_PROGRESS.setText(LIFE_REGAINED_STRING);
 //                TV_HOURS_PROGRESS2.setText(String.valueOf(numberFormat.format(lifeRegained)));
-                Log.d("DAYZEN", "txt1: " + LIFE_REGAINED_STRING
-                + "txt2: " + String.valueOf(numberFormat.format(lifeRegained)));
+                if (BuildConfig.DEBUG){
+                    Log.d("DAYZEN", "txt1: " + LIFE_REGAINED_STRING+ "txt2: "
+                            + String.valueOf(numberFormat.format(lifeRegained)));
+                }
 //                editor.putFloat(LIFEREGAINED, lifeRegained);
 //                editor.apply();
             }
@@ -2365,18 +2396,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private String setTxtVwToOffer(){
-        final String CURRENCY_LOCAL = preferences.getString("currency", "$");
-        if (CURRENCY_LOCAL.equalsIgnoreCase("ron")){
-            //RON
-            return getResources().getString(R.string.unlimited_price_ron, CURRENCY_LOCAL);
-        } else {
-            //USD OR EUR
-            return getResources().getString(R.string.unlimited_price, CURRENCY_LOCAL);
-        }
-//        return getResources().getString(R.string.unlimited_price, CURRENCY_LOCAL);
     }
 
 }//[END OF MAIN CLASS]

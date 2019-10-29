@@ -103,7 +103,8 @@
     },
     {
       "id":21,
-      "name": "Imagine Your Life Is Perfect In Every Respect; What Would It Look Like? \n– Brian Tracy"
+      "name": "Imagine Your Life Is Perfect In Every Respect; What Would It Look Like? \n– Brian Tracy",
+      "nameRO": "Dacă nu ai un plan al tău, alţii te vor include în planurile lor. \n– Anthony Robbins"
     },
     {
       "id":22,
@@ -347,39 +348,98 @@
     },
     {
       "id":82,
-      "name": "Whether You Think You Can Or Think You Can’t, You’re Right.\n- Quote By Henry Ford"
+      "name": "Whether You Think You Can Or Think You Can’t, You’re Right.\n- Quote By Henry Ford",
+      "nameRO": "Multe legende, mulți oameni au fost înaintea mea. Dar acum e momentul meu. \n– Usain Bolt"
     },
     {
       "id":83,
-      "name": "Security Is Mostly A Superstition. Life Is Either A Daring Adventure Or Nothing.\n- Life Quote By Helen Keller"
+      "name": "Security Is Mostly A Superstition. Life Is Either A Daring Adventure Or Nothing.\n- Life Quote By Helen Keller",
+      "nameRO": "Fă ce trebuie să faci, până poți face ceea ce vrei să faci. \n– Oprah Winfrey"
     },
     {
       "id":84,
-      "name": "The Man Who Has Confidence In Himself Gains The Confidence Of Others.\n- Hasidic Proverb"
+      "name": "The Man Who Has Confidence In Himself Gains The Confidence Of Others.\n- Hasidic Proverb",
+      "nameRO": "Eșecul este doar oportunitatea de a o lua de la capăt, de data aceasta într-un mod mai inteligent. \n– Henry Ford"
     },
     {
       "id":85,
-      "name": "The Only Limit To Our Realization Of Tomorrow Will Be Our Doubts Of Today.\n- Motivational Quote By Franklin D. Roosevelt"
+      "name": "The Only Limit To Our Realization Of Tomorrow Will Be Our Doubts Of Today.\n- Motivational Quote By Franklin D. Roosevelt",
+      "nameRO": "Oamenii spun de multe ori că nu reușesc să își păstreze nivelul de motivație. Ei bine, nici efectele dușului nu sunt eterne\n- de aceea este recomandat zilnic! \n– Zig Ziglar"
     },
     {
       "id":86,
-      "name": "Creativity Is Intelligence Having Fun.\n- Albert Einstein"
+      "name": "Creativity Is Intelligence Having Fun.\n- Albert Einstein",
+      "nameRO": "Dacă simți că nu contezi pentru că ești prea mic, încearcă să dormi în cameră cu un țânțar.\n- Dalai Lama"
     },
     {
       "id":87,
-      "name": "What You Lack In Talent Can Be Made Up With Desire, Hustle And Giving 110% All The Time.\n- Don Zimmer"
+      "name": "What You Lack In Talent Can Be Made Up With Desire, Hustle And Giving 110% All The Time.\n- Don Zimmer",
+      "nameRO": "Am urât fiecare minut de antrenament, dar mi-am spus „Nu renunța. Suferă acum și trăiește-ți restul vieții ca un campion”. \n- Muhammad Ali"
     },
     {
       "id":88,
-      "name": "Do What You Can With All You Have, Wherever You Are.\n- Theodore Roosevelt"
+      "name": "Do What You Can With All You Have, Wherever You Are.\n- Theodore Roosevelt",
+      "nameRO": "Viața este ca mersul pe bicicletă. Pentru a-ți menține echilibrul trebuie să continui să mergi inainte. \n– Albert Einstein"
     },
     {
       "id":89,
-      "name": "Develop An ‘Attitude Of Gratitude’. Say Thank You To Everyone You Meet For Everything They Do For You.\n- Encouraging Quote By Brian Tracy"
+      "name": "Develop An ‘Attitude Of Gratitude’. Say Thank You To Everyone You Meet For Everything They Do For You.\n- Encouraging Quote By Brian Tracy",
+      "nameRO": "Dacă nu ai un plan al tău, alţii te vor include în planurile lor. \n– Anthony Robbins"
     },
     {
       "id":90,
-      "name": "You Are Never Too Old To Set Another Goal Or To Dream A New Dream.\n- C.S. Lewis"
+      "name": "You Are Never Too Old To Set Another Goal Or To Dream A New Dream.\n- C.S. Lewis",
+      "nameRO":"Nu te compara cu nimeni altcineva din lume. Dacă o faci, te jigneşti pe tine. \n– Bill Gates"
+    },
+    {
+      "id":91,
+      "name": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. \n― Roy T. Bennett",
+      "nameRO": "Adevăratele greutăți pot fi depașite. Doar cele imaginare sunt de neînvins. \n– Theodore V. Nail"
+    },
+    {
+      "id":92,
+      "name": "A Room Without Books Is Like A Body Without A Soul. \n– Marcus Tullius Cicero",
+      "nameRO": "Nu te compara cu nimeni altcineva din lume. Dacă o faci, te jigneşti pe tine. \n– Bill Gates"
+    },
+    {
+      "id":93,
+      "name": "Things Work Out Best For Those Who Make The Best Of How Things Work Out. \n– Positive Quote By John Wooden",
+      "nameRO": "Dacă nu ai un plan al tău, alţii te vor include în planurile lor. \n– Anthony Robbins"
+    },
+    {
+      "id":94,
+      "name": "For Every Reason It’s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. \n– Jack Canfield",
+      "nameRO": "Viața este ca mersul pe bicicletă. Pentru a-ți menține echilibrul trebuie să continui să mergi inainte. \n– Albert Einstein"
+    },
+    {
+      "id":95,
+      "name": "The secret of change is to focus all of your energy, not on fighting the old, but on building the new \n- Socrates",
+      "nameRO": "Am urât fiecare minut de antrenament, dar mi-am spus „Nu renunța. Suferă acum și trăiește-ți restul vieții ca un campion”. \n- Muhammad Ali"
+    },
+    {
+      "id":96,
+      "name": "The Future Belongs To The Competent. Get Good, Get Better, Be The Best! \n– Success Quote By Brian Tracy",
+      "nameRO": "Dacă simți că nu contezi pentru că ești prea mic, încearcă să dormi în cameră cu un țânțar.\n- Dalai Lama"
+    },
+    {
+      "id":97,
+      "name": "Fake It Until You Make It! Act As If You Had All The Confidence You Require Until It Becomes Your Reality. \n– Brian Tracy",
+      "nameRO": "Oamenii spun de multe ori că nu reușesc să își păstreze nivelul de motivație. Ei bine, nici efectele dușului nu sunt eterne\n- de aceea este recomandat zilnic! \n– Zig Ziglar"
+    },
+    {
+      "id":98,
+      "name": "Reading Is To The Mind, As Exercise Is To The Body. \n– Brian Tracy",
+      "nameRO": "Eșecul este doar oportunitatea de a o lua de la capăt, de data aceasta într-un mod mai inteligent. \n– Henry Ford"
+    },
+    {
+      "id":99,
+      "name": "To See What Is Right And Not Do It Is A Lack Of Courage. \n– Confucius",
+      "nameRO": "Fă ce trebuie să faci, până poți face ceea ce vrei să faci. \n– Oprah Winfrey"
+    },
+    {
+      "id":100,
+      "name": "The Way Get Started Is To Quit Talking And Begin Doing. \n– Walt Disney",
+      "nameRO": "Multe legende, mulți oameni au fost înaintea mea. Dar acum e momentul meu. \n– Usain Bolt"
     }
   ]
 }

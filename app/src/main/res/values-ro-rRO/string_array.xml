@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles_arr_for_ranks">
+        <item>""</item>
+        <item>"Lup"</item>
+        <item>"Veverita"</item>
+        <item>"Bursuc"</item>
+        <item>"Urs"</item>
+        <item>"Urs Salbatic</item>
+        <item>"Caprioara"</item>
+        <item>"Vier"</item>
+        <item>"Elan"</item>
+        <item>"Castor"</item>
+        <item>"Vulpe"</item>
+        <item>"Ras"</item>
+        <item>"Vultur"</item>
+        <item>"Elefant"</item>
+        <item>"Leopard"</item>
+        <item>"Bivol"</item>
+        <item>"Rechin"</item>
+        <item>"Pantera"</item>
+        <item>"Tigru"</item>
+        <item>"Leu"</item>
+    </string-array>
+</resources>
