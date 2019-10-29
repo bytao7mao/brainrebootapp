@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Views
     @BindView(android.R.id.content) View parentLayout;
-    @BindView(R.id.InsteadOfLayout) ConstraintLayout insteadOfLayout;
+//    @BindView(R.id.InsteadOfLayout) ConstraintLayout insteadOfLayout;
     @BindView(R.id.layoutCheckIn) ConstraintLayout checkInButton;
 
     //CardViews
@@ -525,7 +525,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });//savingsCardView[END]
 
-            checkInsteadOfSmoking();
+//            checkInsteadOfSmoking();
 
             //disable views for "coming soon area"
 //        disableViewsForComingSoon();
@@ -619,14 +619,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkInsteadOfSmoking() {
-        insteadOfLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        insteadOfLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
                 insteadOfSmoking();
 //                insteadOfLayout.setEnabled(false);
 //                insteadOfLayout.setBackgroundColor(Color.WHITE);
-            }
-        });
+//            }
+//        });
     }
 
     private void setTargetAfterCheckingCounter() {
@@ -1242,7 +1242,7 @@ public class MainActivity extends AppCompatActivity {
         final DecimalFormat FORMATTER2= new DecimalFormat("###,###,##0");
         final String VALUE_PER_YEAR_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY))*365);
         final String TOTAL_SAVINGS_LOCAL = FORMATTER.format(Integer.parseInt(TOTAL_SAVINGS));
-        final String TOTAL_SAVINGS_LOCAL2 = FORMATTER2.format(Integer.parseInt(TOTAL_SAVINGS));
+        final String TOTAL_SAVINGS_LOCAL2 = FORMATTER.format(Integer.parseInt(TOTAL_SAVINGS));
         final String VALUE_PER_DAY_LOCAL = FORMATTER.format(Integer.parseInt(String.valueOf(SAVE_PER_DAY)));
         final String CURRENCY_LOCAL = preferences.getString("currency", "$");
         //target counter string
@@ -1432,7 +1432,7 @@ public class MainActivity extends AppCompatActivity {
     @SideEffect
     private void startTheEngine() {
         try {
-            checkInsteadOfSmoking();
+//            checkInsteadOfSmoking();
             //set text for checkin
             setCheckInText();
             showEntireProgressForUserCard(userCigaretesProgressTxt,

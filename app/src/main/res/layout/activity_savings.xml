@@ -15,10 +15,8 @@
         android:fillViewport="true">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="700dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp">
 
         <TextView
             android:id="@+id/savings_TitleId"
@@ -88,21 +86,21 @@
             android:text="@string/add_money"
             android:textAllCaps="true" />
 
-        <ImageView
-            android:id="@+id/bottom_tap_savings_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_below="@id/addSavingsBtnId"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_tap"
-            android:contentDescription="TODO" />
+<!--        <ImageView-->
+<!--            android:id="@+id/bottom_tap_savings_image"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:layout_below="@id/addSavingsBtnId"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:src="@drawable/ic_tap"-->
+<!--            android:contentDescription="TODO" />-->
 
         <TextView
             android:id="@+id/savingsTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/bottom_tap_savings_image"
+            android:layout_below="@id/addSavingsBtnId"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/robotomedium"
