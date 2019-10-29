@@ -693,7 +693,7 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "hour of daylight " + h);
         }
-        if (h >= 6 && h <= TWENTY) {
+        if (h >= 6 && h <= 18) {
             sunny.setImageResource(R.drawable.ic_sunlast);
         } else {
             sunny.setImageResource(R.drawable.ic_bat);

@@ -90,21 +90,20 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/confirmBtn"
             android:layout_width="match_parent"
-            android:stateListAnimator="@null"
             android:layout_height="48dp"
-            android:drawableEnd="@drawable/ic_arrow_forward_accent_24dp"
+            android:layout_margin="16dp"
             android:background="@drawable/custom_round_dark_orange"
-            android:layout_margin="10dp"
-            android:fontFamily="@font/robotomedium"
             android:elevation="0.2dp"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
+            android:stateListAnimator="@null"
+            android:text="@string/get_started"
             android:textAlignment="center"
-            android:text="@string/continue_button"
-            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/tvThanksId"
             android:layout_width="0dp"

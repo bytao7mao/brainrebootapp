@@ -7,7 +7,10 @@ import android.os.Bundle;
 import androidx.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +27,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.taozen.quithabit.R;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,20 +97,31 @@ public class SavingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             try {
-                editor.putBoolean("saveimg", false);
-                editor.apply();
-                otherIntSavings = Integer.parseInt(String.valueOf(etInputEdit.getText()));
-                finalSum = finalSum + otherIntSavings;
-                savingsTxtResult.setText(String.valueOf(FORMATTER.format(finalSum)) + CURRENCY_LOCAL);
-                savingsTxt.setText(R.string.total_money_saved_congrats);
-                Log.d("LOGGTAO", "savings from onClick: " + finalSum);
-                editor.putLong(SAVINGS_FINAL, finalSum);
-                long tempLong = otherIntSavings;
-                editor.putLong("tempLong", tempLong);
-                editor.apply();
-                otherSavingsBtn.setVisibility(View.GONE);
-                etSavingsLayout.setVisibility(View.GONE);
-                titleTxt.setText("Well done!");
+                Editable editM = etInputEdit.getText();
+                String nameSav = Objects.requireNonNull(etInputEdit.getText()).toString();
+                if (TextUtils.isEmpty(nameSav)) {
+                    etInputEdit.setError(getResources().getString(R.string.num_of_cig));
+                    return;
+                } else if (nameSav.length() == 1 && nameSav.startsWith("0")
+                        || (Integer.parseInt(nameSav) < 1)) {
+                    etInputEdit.setError(getResources().getString(R.string.cannot_be_zero));
+                    return;
+                } else {
+                    editor.putBoolean("saveimg", false);
+                    editor.apply();
+                    otherIntSavings = Integer.parseInt(String.valueOf(etInputEdit.getText()));
+                    finalSum = finalSum + otherIntSavings;
+                    savingsTxtResult.setText(String.valueOf(FORMATTER.format(finalSum)) + CURRENCY_LOCAL);
+                    savingsTxt.setText(R.string.total_money_saved_congrats);
+                    Log.d("LOGGTAO", "savings from onClick: " + finalSum);
+                    editor.putLong(SAVINGS_FINAL, finalSum);
+                    long tempLong = otherIntSavings;
+                    editor.putLong("tempLong", tempLong);
+                    editor.apply();
+                    otherSavingsBtn.setVisibility(View.GONE);
+                    etSavingsLayout.setVisibility(View.GONE);
+                    titleTxt.setText("Well done!");
+                }
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }

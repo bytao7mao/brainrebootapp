@@ -94,6 +94,8 @@
     <string name="and">and</string>
     <string name="version_app">Version 0.1 (100)</string>
     <string name="add">add</string>
+    <string name="add_money">add extra money</string>
+    <string name="get_started">Get Started</string>
     <string name="you_can_do_it">You can do it</string>
     <string name="wolf">Wolf</string>
     <string name="powered_by_q">Powered by Q!</string>

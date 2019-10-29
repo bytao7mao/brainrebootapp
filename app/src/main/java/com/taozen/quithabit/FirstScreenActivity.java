@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,9 +17,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.button.MaterialButton;
@@ -79,11 +82,13 @@ public class FirstScreenActivity extends AppCompatActivity {
     private boolean go,go2;
 
     private boolean visible;
+
     @SuppressLint("CommitPrefEdits")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
         ButterKnife.bind(FirstScreenActivity.this);
+
         go = false;
         go2 = false;
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
@@ -215,6 +220,7 @@ public class FirstScreenActivity extends AppCompatActivity {
                     editor.apply();
                     editor.putInt("splash", 1);
                     editor.apply();
+
                     firstCheckForInitialCiggarettesPerDay();
                     startActivity(i);
                     finish();
