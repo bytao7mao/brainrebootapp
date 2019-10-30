@@ -11,7 +11,7 @@
     <string name="add_money">zusätzliches Geld hinzufügen</string>
     <string name="add_your_today_s_extra_savings">Fügen Sie Ihre heutigen zusätzlichen Einsparungen hinzu!</string>
     <string name="agreeing_to_terms">Durch die Nutzung dieser App erklären Sie sich mit unserer einverstanden</string>
-    <string name="and">" und"</string>
+    <string name="and">" und\t"</string>
     <string name="are_you_sure">Bist du sicher ?</string>
     <string name="awesome">Genial!</string>
     <string name="beat_milestone">Schlagen Sie Ihren Meilenstein %d Tage!</string>

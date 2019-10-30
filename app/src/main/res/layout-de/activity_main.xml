@@ -287,10 +287,10 @@
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:src="@drawable/ic_idea"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvTipOfTheDay"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_20percentCard"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percent_inner"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tvTipOfTheDay" />
+                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_07percentCard" />
                     <!--                    on click we should alert the user that tips will update everyday-->
 
                     <TextView
@@ -308,7 +308,8 @@
                         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percentCard"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentCard"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15percent_inner"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.32" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/shareDays"
@@ -369,7 +370,7 @@
                         app:layout_constraintEnd_toEndOf="@+id/counterImageId"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/counterImageId"
-                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentCard" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvTipOfTheDay" />
 
 
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
@@ -434,7 +435,7 @@
                         android:id="@+id/milestoneImageId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="8dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
@@ -484,7 +485,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_toEndOf="@id/targetImageId"
                         android:alpha="0.7"
                         android:text="@string/target_string"

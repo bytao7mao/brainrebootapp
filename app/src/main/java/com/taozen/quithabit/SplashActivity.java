@@ -181,8 +181,13 @@ public class SplashActivity extends AppCompatActivity {
                 //get initials like: RO/US/EN/FR
                 final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
                 //get quote from ro if user is ro, else get default quotes
-                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
-                        ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
+//                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
+//                        ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
+                NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
+
+                if (BuildConfig.DEBUG) {
+                    Log.d("TAOZEN7", "lang is: " + PUT_LANGUAGE_IN_STRING);
+                }
 
                 return NAME_ELEMENT_NODE.getAsString();
             } catch (Exception e) {

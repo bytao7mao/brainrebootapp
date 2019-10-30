@@ -33,6 +33,7 @@ public class Constants {
         String DAYOFPRESENT = "DAYOFPRESENT";
         String CLICKDAY_SP = "CLICKDAY_SP";
         String HOUR_OF_FIRSLAUNCH_SP = "FIRSTHOUR";
+        String LANGUAGE_SP = "LANGUAGE_FROM_USER";
     }
 
 

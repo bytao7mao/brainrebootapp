@@ -10,10 +10,10 @@
     <string name="maxCounter">Calculare</string>
     <string name="checkinStr">In fiecare zi vom verifica la ora %d:00</string>
     <string name="rank_master">Rank: %s</string>
-    <string name="savings">Total: %s</string>
+    <string name="savings">Total: </string>
     <string name="check_in">verificare</string>
     <string name="daily_quote">Motivatia zilei!</string>
-    <string name="streak_string">Record: %d</string>
+    <string name="streak_string">Record: </string>
     <string name="thanks_for_downloading_this_app">Folosim aceste informatii pentru a analiza progresul tau zilnic.</string>
     <string name="check_in_tomorrow">Verificare maine!</string>
     <string name="non_smoker_since">Zile Fara Fumat</string>
@@ -75,7 +75,7 @@
     <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licenta</a></string>
     <string name="num_of_cig">Va rugam introduceti un numar</string>
     <string name="privacy_policy"><a href="https://bytao7mao.github.io/quithabit/legal/privacy_policy.html">Politica de confidentialitate</a></string>
-    <string name="qday">Ziua Q!: %s</string>
+    <string name="qday">Ziua Q! </string>
     <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> si <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> logo sunt marci inregistrate ale lui Marius Nicolae. Toate drepturile rezervate</string>
     <string name="quithabit_nosmoke_for_android">QuitHabit!  NoSmoke pentru Android</string>
     <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Termeni si Conditii</a></string>

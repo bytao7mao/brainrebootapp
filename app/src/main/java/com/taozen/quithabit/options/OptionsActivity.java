@@ -5,9 +5,13 @@ import android.app.ActivityManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ListView;
@@ -23,12 +27,15 @@ import androidx.preference.PreferenceManager;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.taozen.quithabit.BuildConfig;
 import com.taozen.quithabit.R;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import static com.taozen.quithabit.MainActivity.PRIVACY_POLICY;
 import static com.taozen.quithabit.MainActivity.TERMS_AND_CONDITIONS;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.LANGUAGE_SP;
 
 public class OptionsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -231,11 +238,30 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case LANGUAGE:
                 //TODO: let user choose from german, french, spanish, english, romanian languages
+                Toast.makeText(getApplicationContext(), "language clicked",Toast.LENGTH_SHORT).show();
+                changeLanguage("es");
                 break;
             case ABOUT_INTEGER:
                 final Intent INTENT_ABOUT = new Intent(OptionsActivity.this, AboutActivity.class);
                 startActivity(INTENT_ABOUT);
                 break;
+        }
+    }
+
+    private void changeLanguage(String language_code) {
+        editor.putString(LANGUAGE_SP, language_code);
+        editor.apply();
+        Locale locale = new Locale(language_code);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+        //get initials like: RO/US/EN/FR
+        if (BuildConfig.DEBUG) {
+            final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
+            Log.d("TAOZEN2", "lang is: " + PUT_LANGUAGE_IN_STRING);
         }
     }
 }

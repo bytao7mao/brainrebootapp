@@ -91,6 +91,7 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.COUNTER;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.DAYOFPRESENT;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.HOUR_OF_FIRSLAUNCH_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIGG_PER_DAY;
+import static com.taozen.quithabit.utils.Constants.SharedPreferences.LANGUAGE_SP;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.LIFEREGAINED;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.MODIFIED_CIGG_PER_DAY;
 import static com.taozen.quithabit.utils.Constants.SharedPreferences.SAVINGS_FINAL;
@@ -305,11 +306,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            setContentView(R.layout.activity_main);
-            ButterKnife.bind(MainActivity.this);
             //shared pref
             preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
             editor = preferences.edit();
+            if (preferences.contains(LANGUAGE_SP)){
+                if (BuildConfig.DEBUG){
+                    Log.d("TAOZEN2", "language is: " + preferences.getString(LANGUAGE_SP, "en"));
+                }
+                changeLanguage(preferences.getString(LANGUAGE_SP, "en"));
+            }
+
+            setContentView(R.layout.activity_main);
+            ButterKnife.bind(MainActivity.this);
 
             setBackgroundForDaylightOrNight();
 
@@ -1971,8 +1979,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING);
                 }
                 //get quote from ro if user is ro, else get default quotes
-                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
-                        ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
+                //                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
+//                        ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
+                NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
 
                 return NAME_ELEMENT_NODE.getAsString();
             } catch (final Exception e) {
@@ -2395,6 +2404,30 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void changeLanguage(String language_code) {
+
+        String languageToLoad  = language_code; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+//
+//        final Locale locale;
+//        //version api 23 higher or equal
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            locale = getResources().getConfiguration().getLocales().get(0);
+//        } else {
+//            locale = getResources().getConfiguration().locale;
+//        }
+//        //get initials like: RO/US/EN/FR
+        final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
+        if (BuildConfig.DEBUG) {
+            Log.d("TAOZEN2", "lang is: " + PUT_LANGUAGE_IN_STRING);
         }
     }
 
