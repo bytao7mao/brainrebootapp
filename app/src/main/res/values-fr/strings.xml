@@ -41,4 +41,62 @@
     <string name="fatigue">Rythme cardiaque</string>
     <string name="first_day">Hello, this is your first day! Since you\'re here it means that you made the first step in order to get rid of your habit</string>
     <string name="get_started">Get Started</string>
+    <string name="gums">La circulation sanguine</string>
+    <string name="hours">heures</string>
+    <string name="how_many_cigarettes_per_day">Combien de cigarettes par jour?</string>
+    <string name="how_much_do_you_spend_per_day">Combien dépensez-vous par jour?</string>
+    <string name="how_much_to_save">combien d\'argent économiser</string>
+    <string name="legal">Légal</string>
+    <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licences</a></string>
+    <string name="life_press_leaf">Appuyez sur check-in pour calculer</string>
+    <string name="life_r">La vie retrouvée:</string>
+    <string name="life_reg">La vie retrouvée:</string>
+    <string name="maxCounter">maxCounter</string>
+    <string name="no_connection">PAS DE CONNEXION INTERNET!</string>
+    <string name="non_smoker_since">Jours sans fumée</string>
+    <string name="non_smoker_sincer_one_day">Un jour sans fumée</string>
+    <string name="num_of_cig">S\'il vous plaît entrer un nombre</string>
+    <string name="ok_to_fail">C\'est bon d\'échouer!</string>
+    <string name="pass_five">Le secret pour avancer est de commencer - Mark Twain</string>
+    <string name="pass_four">Le moyen le plus sûr de ne pas échouer est de décider de réussir - Richard Brinsley Sheridan</string>
+    <string name="pass_one">Notre force provient de notre faiblesse - Ralph Waldo Emerson</string>
+    <string name="pass_six">C\'est dans vos moments de décision que votre destin est façonné - Tony Robbins</string>
+    <string name="pass_three">Crois que tu peux et que tu es à mi-chemin - Theodore Roosevelt</string>
+    <string name="pass_two">Croyez en votre potentiel et vous réussirez - John Maxwell</string>
+    <string name="perday">Par jour:</string>
+    <string name="perdaysimple">par jour</string>
+    <string name="personal_progress">Progrès personnels</string>
+    <string name="peryear">Par an:</string>
+    <string name="powered_by_q">Propulsé par Q!</string>
+    <string name="please_check_tomorrow">S\'il vous plaît vérifier à nouveau demain!</string>
+    <string name="privacy_policy"><a href="https://bytao7mao.github.io/quithabit/legal/privacy_policy.html"> Règles de confidentialité </a></string>
+    <string name="progressactivity_get_started">Commencez la vie que vous voulez</string>
+    <string name="qday">Q! Journée:</string>
+    <string name="quit_date_change">Date d\'abandon actuelle: %s</string>
+    <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quittez l\'habitude! NoSmoke </a> et le <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke </a> les logos sont des marques commerciales de Marius Nicolae. Tous les droits sont réservés</string>
+    <string name="quithabit_nosmoke_for_android">QuitHabit! NoSmoke pour Android</string>
+    <string name="quithabit_nosmoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke pour Android est construit à l\'aide d\'un logiciel open-source:</string>
+    <string name="rank_master">Rang actuel: %s</string>
+    <string name="remaining_days">Restant: %s</string>
+    <string name="reset_whole_progress">Réinitialiser tout votre progrès</string>
+    <string name="savings">Par total:</string>
+    <string name="smoking_data">Coût par paquet par exemple.</string>
+    <string name="streak_string">Les plus hauts jours consécutifs:</string>
+    <string name="tap_to_start_challenge">Appuyez sur pour lancer un défi!</string>
+    <string name="target_string">Cible: %s</string>
+    <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Termes et conditions</a></string>
+    <string name="thanks_for_downloading_this_app">Nous utilisons ces informations pour vous montrer des statistiques personnelles telles que le montant que vous économisez en cessant de fumer.</string>
+    <string name="total_money_saved">Total de l\'argent économisé</string>
+    <string name="total_money_saved_congrats">Votre montant total d\'argent</string>
+    <string name="total_savings">Ceci est votre économie totale: %s</string>
+    <string name="total_savings_top">Économies totales</string>
+    <string name="unlimited">Au lieu de fumer</string>
+    <string name="version_app">Version 0.1 (100)</string>
+    <string name="we_will_start_tutorial">Nous allons commencer le tutoriel maintenant.</string>
+    <string name="welcome_to_quit_habit">BIENVENUE À QUITTER HABIT!</string>
+    <string name="wolf">Loup</string>
+    <string name="you_can_do_it">Tu peux le faire</string>
+    <string name="your_entire_progress">Tout ton progrès</string>
+    <string name="your_latest_achievments">Vos dernières réalisations</string>
+    <string name="your_savings">Vos dernières économies</string>
 </resources>

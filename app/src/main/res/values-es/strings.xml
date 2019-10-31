@@ -2,4 +2,8 @@
 <resources>
     <string name="app_name">Quit Habit! NoSmoking</string>
     <string name="progress">progreso</string>
+    <string name="YES">SI</string>
+    <string name="OK">OK</string>
+    <string name="NO">NO</string>
+    <string name="about_your_smoking">Sobre tu fumar</string>
 </resources>
