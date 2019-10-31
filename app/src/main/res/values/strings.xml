@@ -7,7 +7,7 @@
     <string name="total_savings">This is your total savings: %s</string>
     <string name="total_money_saved_congrats">Your total amount of money</string>
     <string name="progressactivity_get_started">Get started on the life you want</string>
-    <string name="maxCounter">maxCounter</string>
+    <string name="maxCounter" translatable="false">maxCounter</string>
     <string name="checkinStr">You will check-in everyday at %d:00</string>
     <string name="error_sum">Please input a sum</string>
     <string name="num_of_cig">Please input a number</string>

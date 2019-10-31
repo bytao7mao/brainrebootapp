@@ -50,7 +50,6 @@
     <string name="life_press_leaf">Zum Berechnen Check-in drücken</string>
     <string name="life_r">Das Leben zurückerlangt:</string>
     <string name="life_reg">Das Leben zurückerlangt:</string>
-    <string name="maxCounter">maxCounter</string>
     <string name="no_connection">KEINE INTERNETVERBINDUNG!</string>
     <string name="non_smoker_since">Tage rauchfrei</string>
     <string name="non_smoker_sincer_one_day">Ein Tag rauchfrei</string>
@@ -82,7 +81,7 @@
     <string name="smoking_data">Kosten pro Paket zum Beispiel.</string>
     <string name="streak_string">Höchste Tage:</string>
     <string name="tap_to_start_challenge">Tippen Sie auf, um eine Herausforderung zu starten!</string>
-    <string name="target_string">Zweck: %s</string>
+    <string name="target_string">Ziel:: %s</string>
     <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Geschäftsbedingungen</a></string>
     <string name="thanks_for_downloading_this_app">Wir verwenden diese Informationen, um Ihnen einige persönliche Statistiken anzuzeigen, z. B. den Betrag, den Sie durch den Verzicht auf das Rauchen sparen.</string>
     <string name="total_money_saved">Insgesamt gespartes Geld</string>

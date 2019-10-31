@@ -7,7 +7,6 @@
     <string name="remaining_days">Zile ramase: %s</string>
     <string name="total_savings">Bani economisiti: %s $</string>
     <string name="progressactivity_get_started">Sa incepem o noua viata!</string>
-    <string name="maxCounter">Calculare</string>
     <string name="checkinStr">In fiecare zi vom verifica la ora %d:00</string>
     <string name="rank_master">Rank: %s</string>
     <string name="savings">Total: </string>
@@ -24,7 +23,7 @@
     <string name="cig_press_leaf">Apasati pentru calcul</string>
     <string name="your_entire_progress">Progresul tau</string>
     <string name="life_press_leaf">Viata recuperata: Calculam …</string>
-    <string name="life_reg">Viata recuperata: %s ore</string>
+    <string name="life_reg">Zile recuperate:</string>
     <string name="breath">Respiratie corecta</string>
     <string name="energy">Nivelul energiei</string>
     <string name="error_loading_data_from_api">Eroare la incarcarea datelor</string>
