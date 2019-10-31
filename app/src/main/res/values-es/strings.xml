@@ -75,14 +75,14 @@
     <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Salga del hábito! NoSmoke </a> y el <a href="https://bytao7mao.github.io/quithabit/">Salga del hábito! Los logotipos de NoSmoke </a> son marcas comerciales de Marius Nicolae. Todos los derechos reservados</string>
     <string name="quithabit_nosmoke_for_android">QuitHabit! NoSmoke para Android</string>
     <string name="quithabit_nosmoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke para Android está construido con software de código abierto:</string>
-    <string name="rank_master">Posición actual:</string>
+    <string name="rank_master">Posición actual: %s</string>
     <string name="remaining_days">Restante: %s</string>
     <string name="reset_whole_progress">Restablece todo tu progreso</string>
     <string name="savings">Por total:</string>
     <string name="smoking_data">Costo por paquete por ejemplo.</string>
     <string name="streak_string">La mejor racha de días:</string>
     <string name="tap_to_start_challenge">Toca para comenzar un desafío!</string>
-    <string name="target_string">Objetivo:</string>
+    <string name="target_string">Objetivo :%s</string>
     <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Términos y Condiciones</a></string>
     <string name="thanks_for_downloading_this_app">Utilizamos esta información para mostrarle algunas estadísticas personales, como la cantidad de dinero que está ahorrando al dejar de fumar.</string>
     <string name="total_money_saved">Dinero total ahorrado</string>

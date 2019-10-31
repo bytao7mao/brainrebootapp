@@ -1289,7 +1289,7 @@ public class MainActivity extends AppCompatActivity {
             final String STRING,
             final TextView TEXTVIEW) {
         //target counter string
-        TEXTVIEW.setText(getString(R.string.target_string, STRING));
+        TEXTVIEW.setText(getResources().getString(R.string.target_string, STRING));
     }
 
     private void savingsGetAndSetValue() {
@@ -2042,6 +2042,7 @@ public class MainActivity extends AppCompatActivity {
                 rankTwoImg.setAlpha(1.0f);
                 rankThreeImg.setBackgroundResource(R.drawable.ic_oneweek);
                 rankThreeImg.setAlpha(0.2f);
+                editor.putString(RANK, "Wolf");
             } else if (counter>=4&&counter<EIGHT) {
                 //user have between a day and a week
                 rankOneImg.setBackgroundResource(R.drawable.ic_oneday);
@@ -2138,6 +2139,14 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setBackgroundResource(R.drawable.ic_fivehundreddays);
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Lynx");
+            } else if (counter >= x && counter < FOUR_HUNDRED) {
+                rankOneImg.setBackgroundResource(R.drawable.ic_threehundreddays);
+                rankOneImg.setAlpha(1.0f);
+                rankTwoImg.setBackgroundResource(R.drawable.ic_fourhundreddays);
+                rankTwoImg.setAlpha(0.2f);
+                rankThreeImg.setBackgroundResource(R.drawable.ic_fivehundreddays);
+                rankThreeImg.setAlpha(0.2f);
+                editor.putString(RANK, "Eagle");
             } else if (counter >= FOUR_HUNDRED && counter < FIVE_HUNDRED) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_threehundreddays);
                 rankOneImg.setAlpha(1.0f);
@@ -2145,7 +2154,7 @@ public class MainActivity extends AppCompatActivity {
                 rankTwoImg.setAlpha(1.0f);
                 rankThreeImg.setBackgroundResource(R.drawable.ic_fivehundreddays);
                 rankThreeImg.setAlpha(0.2f);
-                editor.putString(RANK, "Eagle");
+                editor.putString(RANK, "Elephant");
             } else if (counter >= FIVE_HUNDRED && counter < SIX_HUNDRED) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_threehundreddays);
                 rankOneImg.setAlpha(1.0f);
@@ -2153,7 +2162,7 @@ public class MainActivity extends AppCompatActivity {
                 rankTwoImg.setAlpha(1.0f);
                 rankThreeImg.setBackgroundResource(R.drawable.ic_fivehundreddays);
                 rankThreeImg.setAlpha(1.0f);
-                editor.putString(RANK, "Elephant");
+                editor.putString(RANK, "Leopard");
             } else if (counter >= SIX_HUNDRED && counter < SEVEN_HUNDRED) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_sixhundreddays);
                 rankOneImg.setAlpha(1.0f);
@@ -2161,7 +2170,7 @@ public class MainActivity extends AppCompatActivity {
                 rankTwoImg.setAlpha(0.2f);
                 rankThreeImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
                 rankThreeImg.setAlpha(0.2f);
-                editor.putString(RANK, "Leopard");
+                editor.putString(RANK, "Buffalo");
             } else if (counter >= SEVEN_HUNDRED && counter < EIGHT_HUNDRED) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_sixhundreddays);
                 rankOneImg.setAlpha(1.0f);
@@ -2169,24 +2178,24 @@ public class MainActivity extends AppCompatActivity {
                 rankTwoImg.setAlpha(1.0f);
                 rankThreeImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
                 rankThreeImg.setAlpha(0.2f);
-                editor.putString(RANK, "Buffalo");
-            } else if (counter >= EIGHT_HUNDRED && counter < ONE_THOUSAND) {
+                editor.putString(RANK, "Shark");
+            } else if (counter >= EIGHT_HUNDRED && counter < ONE_THOUSAND-100) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_sixhundreddays);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.drawable.ic_sevenhundreddays);
                 rankTwoImg.setAlpha(1.0f);
                 rankThreeImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
                 rankThreeImg.setAlpha(1.0f);
-                editor.putString(RANK, "Buffalo");
-            } else if (counter >= ONE_THOUSAND && counter < ONE_THOUSAND+ONE_HUNDRED) {
+                editor.putString(RANK, "Panther");
+            } else if (counter >= ONE_THOUSAND-100 && counter < ONE_THOUSAND) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.drawable.ic_ninehundreddays);
                 rankTwoImg.setAlpha(0.2f);
                 rankThreeImg.setBackgroundResource(R.drawable.ic_onethousanddays);
                 rankThreeImg.setAlpha(0.2f);
-                editor.putString(RANK, "Lion");
-            } else if (counter >= ONE_THOUSAND+ONE_HUNDRED && counter < ONE_THOUSAND+TWO_HUNDRED) {
+                editor.putString(RANK, "Tiger");
+            } else if (counter >= ONE_THOUSAND && counter < ONE_THOUSAND+ONE_HUNDRED) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.drawable.ic_ninehundreddays);
@@ -2195,7 +2204,7 @@ public class MainActivity extends AppCompatActivity {
                 rankThreeImg.setAlpha(0.2f);
                 editor.putString(RANK, "Lion");
                 //higher than 1200
-            } else if (counter >= ONE_THOUSAND+TWO_HUNDRED) {
+            } else if (counter >= ONE_THOUSAND+ONE_HUNDRED) {
                 rankOneImg.setBackgroundResource(R.drawable.ic_eighthundreddays);
                 rankOneImg.setAlpha(1.0f);
                 rankTwoImg.setBackgroundResource(R.drawable.ic_ninehundreddays);

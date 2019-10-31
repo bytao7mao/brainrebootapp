@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.taozen.quithabit.BuildConfig;
 import com.taozen.quithabit.R;
 
 import java.util.Objects;
 
+import static com.taozen.quithabit.MainActivity.DAYZEN;
 import static com.taozen.quithabit.MainActivity.FIVE;
 import static com.taozen.quithabit.MainActivity.ONE;
 import static com.taozen.quithabit.MainActivity.RANK;
@@ -164,6 +167,9 @@ public class AchievmentsActivity extends AppCompatActivity {
                     holder.tv.setTextSize(22f);
                 }
 
+                if (BuildConfig.DEBUG){
+                    Log.d(DAYZEN, "rank from ach: " + preferences.getString(RANK, ""));
+                }
                 if (preferences.contains(RANK)){
                     if (Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("wolf")) {
                         if (position > ZERO+1){
@@ -208,91 +214,91 @@ public class AchievmentsActivity extends AppCompatActivity {
                             holder.days.setAlpha(0.2f);
                         }
                     }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("boar")) {
-                        if (position > FIVE+4){
+                        if (position > FIVE+3){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("elk")) {
-                        if (position > TEN){
+                        if (position > TEN-1){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     }else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("beaver")) {
-                        if (position > TEN+1) {
+                        if (position > TEN) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("fox")) {
-                        if (position > TEN+2){
+                        if (position > TEN+1){
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("lynx")) {
-                        if (position > TEN+3) {
+                        if (position > TEN+2) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("eagle")) {
-                        if (position > TEN + 4) {
+                        if (position > TEN + 3) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("elephant")) {
-                        if (position > TEN + 5) {
+                        if (position > TEN + 4) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("leopard")) {
-                    if (position > TEN + 6) {
+                    if (position > TEN + 5) {
                         holder.img.setAlpha(0.2f);
                         holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                         holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("buffalo")) {
-                        if (position > TEN + 7) {
+                        if (position > TEN + 6) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("shark")) {
-                        if (position > TEN + 8) {
+                        if (position > TEN + 7) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("panther")) {
-                        if (position > TEN + 9) {
+                        if (position > TEN + 8) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("tiger")) {
-                        if (position > TEN + TEN) {
+                        if (position > TEN + 9) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);
                             holder.days.setAlpha(0.2f);
                         }
                     } else if(Objects.requireNonNull(preferences.getString(RANK, "")).equalsIgnoreCase("lion")) {
-                        if (position > TEN + TEN + 1) {
+                        if (position > TEN + TEN) {
                             holder.img.setAlpha(0.2f);
                             holder.tv.setAlpha(0.2f);
 //                            holder.desc.setAlpha(0.2f);

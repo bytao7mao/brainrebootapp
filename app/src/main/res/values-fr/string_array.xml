@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles_arr_for_ranks">
+        <item>""</item>
+        <item>"Loup"</item>
+        <item>"Ecureuil"</item>
+        <item>"Blaireau"</item>
+        <item>"Ours"</item>
+        <item>"Ours sauvage"</item>
+        <item>"Cerf"</item>
+        <item>"Sanglier"</item>
+        <item>"Wapiti"</item>
+        <item>"Castor"</item>
+        <item>"Renard"</item>
+        <item>"Lynx"</item>
+        <item>"Aigle"</item>
+        <item>"L'éléphant"</item>
+        <item>"Léopard"</item>
+        <item>"Buffle"</item>
+        <item>"Requin"</item>
+        <item>"Panthère"</item>
+        <item>"Tigre"</item>
+        <item>"Lion"</item>
+    </string-array>
+</resources>
