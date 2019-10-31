@@ -23,7 +23,6 @@
     <string name="daily_quote">Today\'s motivation!</string>
     <string name="qday">Q! Day: </string>
     <string name="cannot_be_zero">Cannot be 0!</string>
-    <string name="calculating">Calculating …</string>
     <string name="check_in_now">Check-in now!</string>
     <string name="your_entire_progress">Your entire progress</string>
     <string name="cig_not_smoked">Cigarettes not smoked:</string>
@@ -98,4 +97,5 @@
     <string name="quit_habit_nosmoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> and  the <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a>  logos are trademarks of  Marius Nicolae.  All  rights reserved</string>
     <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Terms and Conditions</a></string>
     <string name="progress">progress</string>
+    <string name="calculating">Calculating …</string>
 </resources>
