@@ -2,6 +2,9 @@ package com.taozen.quithabit.options;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +31,7 @@ import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.taozen.quithabit.BuildConfig;
+import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
 
 import java.util.Locale;
@@ -240,6 +244,7 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
                 //TODO: let user choose from german, french, spanish, english, romanian languages
                 Toast.makeText(getApplicationContext(), "language clicked",Toast.LENGTH_SHORT).show();
                 changeLanguage("es");
+                restartActivity();
                 break;
             case ABOUT_INTEGER:
                 final Intent INTENT_ABOUT = new Intent(OptionsActivity.this, AboutActivity.class);
@@ -263,6 +268,18 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
             final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
             Log.d("TAOZEN2", "lang is: " + PUT_LANGUAGE_IN_STRING);
         }
+    }
+
+    private void restartActivity(){
+        Intent mStartActivity = new Intent(OptionsActivity.this, MainActivity.class);
+        int mPendingIntentId = 123456;
+        PendingIntent mPendingIntent =
+                PendingIntent.getActivity(getApplicationContext(),
+                        mPendingIntentId,
+                        mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+        System.exit(0);
     }
 }
 

@@ -306,6 +306,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
+            if (BuildConfig.DEBUG){
+            Log.d(DAYZEN, "onCreate");
+            }
+
             //shared pref
             preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
             editor = preferences.edit();
@@ -313,7 +317,18 @@ public class MainActivity extends AppCompatActivity {
                 if (BuildConfig.DEBUG){
                     Log.d("TAOZEN2", "language is: " + preferences.getString(LANGUAGE_SP, "en"));
                 }
-                changeLanguage(preferences.getString(LANGUAGE_SP, "en"));
+                final Locale locale;
+                //version api 23 higher or equal
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    locale = getResources().getConfiguration().getLocales().get(0);
+                } else {
+                    locale = getResources().getConfiguration().locale;
+                }
+                //get initials like: RO/US/EN/FR
+                final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
+                changeLanguage(preferences.getString(LANGUAGE_SP, PUT_LANGUAGE_IN_STRING));
+            }else {
+                Log.d("TAOZEN2", "language is: " + preferences.getString(LANGUAGE_SP, "en"));
             }
 
             setContentView(R.layout.activity_main);
@@ -1526,6 +1541,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         try {
+//            onCreate(new Bundle());
+            if (BuildConfig.DEBUG){
+                Log.d(DAYZEN, "onResume");
+            }
 //            checkActivityOnline();
             counterText.setText(String.valueOf(counter));
             setCheckInText();
@@ -1553,6 +1572,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         //-5 default
         try {
+//            onCreate(new Bundle());
             if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, -5);editor.putInt(INITIAL_CIGG_PER_DAY, cigarettesPerDay);editor.apply();}
             if (preferences.contains(SAVINGS_FINAL)) {savings = preferences.getLong(SAVINGS_FINAL, -5); editor.putLong(SAVINGS_FINAL, savings);editor.apply();}
             if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -5);editor.putInt(COUNTER, counter);editor.apply();}
@@ -2425,7 +2445,7 @@ public class MainActivity extends AppCompatActivity {
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
-//
+
 //        final Locale locale;
 //        //version api 23 higher or equal
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
