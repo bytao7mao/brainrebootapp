@@ -23,10 +23,10 @@
     <string name="cannot_check_in">Vous ne pouvez pas vous enregistrer maintenant! Veuillez vérifier plus tard.</string>
     <string name="check_in">" Enregistrement"</string>
     <string name="check_in_now">Enregistrez-vous maintenant!</string>
-    <string name="check_in_tomorrow">Check-in: demain!</string>
+    <string name="check_in_tomorrow">Enregistrement: demain!</string>
     <string name="checkinStr">Vous vous enregistrerez tous les jours à %d: 00</string>
     <string name="cig_not_smoked">Cigarettes non fumées:</string>
-    <string name="cig_press_leaf">Appuyez sur check-in pour calculer</string>
+    <string name="cig_press_leaf">Appuyez sur enregistrement pour calculer</string>
     <string name="cigarettes">cigarettes</string>
     <string name="daily_quote">La motivation d\'aujourd\'hui!</string>
     <string name="continue_button">Continuez</string>
@@ -39,8 +39,8 @@
     <string name="explore">Explorer</string>
     <string name="fail_content">Ne perdez pas votre vie! Tout ce dont vous avez besoin, c\'est d\'un peu de patience et de persévérance.</string>
     <string name="fatigue">Rythme cardiaque</string>
-    <string name="first_day">Hello, this is your first day! Since you\'re here it means that you made the first step in order to get rid of your habit</string>
-    <string name="get_started">Get Started</string>
+    <string name="first_day">Bonjour, c\'est votre premier jour! Depuis que vous êtes ici, cela signifie que vous avez fait le premier pas pour vous débarrasser de votre habitude</string>
+    <string name="get_started">Commencer</string>
     <string name="gums">La circulation sanguine</string>
     <string name="hours">heures</string>
     <string name="how_many_cigarettes_per_day">Combien de cigarettes par jour?</string>
@@ -48,7 +48,7 @@
     <string name="how_much_to_save">combien d\'argent économiser</string>
     <string name="legal">Légal</string>
     <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licences</a></string>
-    <string name="life_press_leaf">Appuyez sur check-in pour calculer</string>
+    <string name="life_press_leaf">Appuyez sur enregistrement pour calculer</string>
     <string name="life_r">La vie retrouvée:</string>
     <string name="life_reg">La vie retrouvée:</string>
     <string name="no_connection">PAS DE CONNEXION INTERNET!</string>

@@ -287,10 +287,10 @@
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:src="@drawable/ic_idea"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_20percentCard"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvTipOfTheDay"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percent_inner"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_07percentCard" />
+                        app:layout_constraintTop_toTopOf="@+id/tvTipOfTheDay" />
                     <!--                    on click we should alert the user that tips will update everyday-->
 
                     <TextView
@@ -433,7 +433,7 @@
                         android:id="@+id/milestoneImageId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="20dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
@@ -483,7 +483,7 @@
                         style="@style/TextColorBlack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="20dp"
                         android:layout_toEndOf="@id/targetImageId"
                         android:alpha="0.7"
                         android:text="@string/target_string"
@@ -588,7 +588,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_Middle"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="240dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -629,7 +629,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="1"
-                        android:padding="16dp"
                         android:fontFamily="@font/robotomedium"
                         android:text="@string/progressactivity_get_started"
                         android:textSize="20sp"
@@ -643,11 +642,10 @@
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:alpha="1"
                         android:text="@string/energy"
                         android:textAlignment="center"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_25percentPercent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/progress_bar_energy" />
@@ -657,14 +655,14 @@
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:alpha="1"
                         android:text="@string/breath"
                         android:textAlignment="center"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/subTextEnergyId"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_75percentPercent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentPercent"
-                        app:layout_constraintTop_toBottomOf="@+id/progress_bar_breath" />
+                        app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
                     <TextView
                         android:id="@+id/subTextHeartId"
@@ -674,7 +672,7 @@
                         android:alpha="1"
                         android:text="@string/fatigue"
                         android:textAlignment="center"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/subTextEnergyId"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_50percentPercent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_25percentPercent"
@@ -685,14 +683,15 @@
                         style="@style/TextColorBlack"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:alpha="1"
                         android:text="@string/gums"
                         android:textAlignment="center"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/subTextEnergyId"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_75percentPercent"
-                        app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
+                        app:layout_constraintTop_toBottomOf="@+id/progress_bar_blood" />
 
                     <com.budiyev.android.circularprogressbar.CircularProgressBar
                         android:id="@+id/progress_bar_energy"

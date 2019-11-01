@@ -305,7 +305,6 @@
                         android:paddingBottom="8dp"
                         android:text="@string/example_of_tip_of_the_day"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percentCard"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentCard"
                         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_15percent_inner"
                         app:layout_constraintTop_toTopOf="parent" />

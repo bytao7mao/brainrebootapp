@@ -87,7 +87,7 @@ public class SplashActivity extends AppCompatActivity {
     private void checkActivityOnlineAndGetData() {
         try {
             Random random = new Random();
-            int i = random.nextInt(100 - 1 + 1) + 1;
+            int i = random.nextInt(10 - 1 + 1) + 1;
             int counter = 0;
             if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
@@ -181,9 +181,18 @@ public class SplashActivity extends AppCompatActivity {
                 //get initials like: RO/US/EN/FR
                 final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
                 //get quote from ro if user is ro, else get default quotes
-//                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
-//                        ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
-                NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
+                if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO)){
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_RO);
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("es")){
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameES");
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("fr")) {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameFR");
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("de")) {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameDE");
+                } else {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
+                }
+//                NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
 
                 if (BuildConfig.DEBUG) {
                     Log.d("TAOZEN7", "lang is: " + PUT_LANGUAGE_IN_STRING);

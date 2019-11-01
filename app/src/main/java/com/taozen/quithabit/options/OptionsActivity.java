@@ -31,6 +31,7 @@ import com.github.javiersantos.bottomdialogs.BottomDialog;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.taozen.quithabit.BuildConfig;
+import com.taozen.quithabit.FirstScreenActivity;
 import com.taozen.quithabit.MainActivity;
 import com.taozen.quithabit.R;
 
@@ -173,7 +174,8 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
                         .onPositive(new BottomDialog.ButtonCallback() {
                             @Override
                             public void onClick(@NonNull BottomDialog bottomDialog) {
-                                clearAppData();
+//                                clearAppData();
+                                restartActivity();
                             }
                         }).show();
             }
@@ -235,6 +237,7 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case CHANGE_SMOKING_DATA:
                 //TODO: take values from shared prefs and change them
+
                 break;
             case QUIT_DATE:
                 //TODO: take value of smoking date and put calendar to give user freedom to choose whatever start
@@ -242,9 +245,6 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case LANGUAGE:
                 //TODO: let user choose from german, french, spanish, english, romanian languages
-                Toast.makeText(getApplicationContext(), "language clicked",Toast.LENGTH_SHORT).show();
-                changeLanguage("es");
-                restartActivity();
                 break;
             case ABOUT_INTEGER:
                 final Intent INTENT_ABOUT = new Intent(OptionsActivity.this, AboutActivity.class);
@@ -253,25 +253,8 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void changeLanguage(String language_code) {
-        editor.putString(LANGUAGE_SP, language_code);
-        editor.apply();
-        Locale locale = new Locale(language_code);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-
-        //get initials like: RO/US/EN/FR
-        if (BuildConfig.DEBUG) {
-            final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
-            Log.d("TAOZEN2", "lang is: " + PUT_LANGUAGE_IN_STRING);
-        }
-    }
-
     private void restartActivity(){
-        Intent mStartActivity = new Intent(OptionsActivity.this, MainActivity.class);
+        Intent mStartActivity = new Intent(OptionsActivity.this, FirstScreenActivity.class);
         int mPendingIntentId = 123456;
         PendingIntent mPendingIntent =
                 PendingIntent.getActivity(getApplicationContext(),

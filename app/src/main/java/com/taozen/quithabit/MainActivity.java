@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -309,31 +310,11 @@ public class MainActivity extends AppCompatActivity {
             if (BuildConfig.DEBUG){
             Log.d(DAYZEN, "onCreate");
             }
-
             //shared pref
             preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
             editor = preferences.edit();
-            if (preferences.contains(LANGUAGE_SP)){
-                if (BuildConfig.DEBUG){
-                    Log.d("TAOZEN2", "language is: " + preferences.getString(LANGUAGE_SP, "en"));
-                }
-                final Locale locale;
-                //version api 23 higher or equal
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    locale = getResources().getConfiguration().getLocales().get(0);
-                } else {
-                    locale = getResources().getConfiguration().locale;
-                }
-                //get initials like: RO/US/EN/FR
-                final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
-                changeLanguage(preferences.getString(LANGUAGE_SP, PUT_LANGUAGE_IN_STRING));
-            }else {
-                Log.d("TAOZEN2", "language is: " + preferences.getString(LANGUAGE_SP, "en"));
-            }
-
             setContentView(R.layout.activity_main);
             ButterKnife.bind(MainActivity.this);
-
             setBackgroundForDaylightOrNight();
 
             //strictmode ?
@@ -1916,7 +1897,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkActivityOnline() {
         try {
             Random random = new Random();
-            int i = random.nextInt(100 - 1 + 1) + 1;
+            int i = random.nextInt(10 - 1 + 1) + 1;
             if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
                     counter = preferences.getInt(COUNTER, ZERO);
@@ -1996,12 +1977,25 @@ public class MainActivity extends AppCompatActivity {
                 //get initials like: RO/US/EN/FR
                 final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
                 if (BuildConfig.DEBUG) {
-                    Log.d(TAG, "lang is: " + PUT_LANGUAGE_IN_STRING);
+                    Log.d(DAYZEN, "lang is: " + PUT_LANGUAGE_IN_STRING);
                 }
                 //get quote from ro if user is ro, else get default quotes
-                //                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
+//                NAME_ELEMENT_NODE = (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO))
 //                        ? DETAILS_LOCAL.get(NAME_RO) : DETAILS_LOCAL.get(NAME);
-                NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
+
+                if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO)){
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_RO);
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("es")){
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameES");
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("fr")) {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameFR");
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("de")) {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameDE");
+                } else {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
+                }
+
+//                NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
 
                 return NAME_ELEMENT_NODE.getAsString();
             } catch (final Exception e) {
@@ -2436,114 +2430,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void changeLanguage(String language_code) {
-
-        String languageToLoad  = language_code; // your language
-        Locale locale = new Locale(languageToLoad);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-
-//        final Locale locale;
-//        //version api 23 higher or equal
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            locale = getResources().getConfiguration().getLocales().get(0);
-//        } else {
-//            locale = getResources().getConfiguration().locale;
-//        }
-//        //get initials like: RO/US/EN/FR
-        final String PUT_LANGUAGE_IN_STRING = locale.getLanguage();
-        if (BuildConfig.DEBUG) {
-            Log.d("TAOZEN2", "lang is: " + PUT_LANGUAGE_IN_STRING);
-        }
-    }
-
 }//[END OF MAIN CLASS]
-//
-////    private boolean isLeap(final int year){
-////        return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
-////    }
-//
-////milestone dialog ------------
-////        AlertDialog.Builder milestoneAlert = new AlertDialog.Builder(this);
-////        final EditText editTextForMilestone = new EditText(MainActivity.this);
-////        milestoneAlert.setMessage("Set your milestone ?");
-////        milestoneAlert.setTitle("Milestone!");
-////        milestoneAlert.setView(editTextForMilestone);
-////        milestoneAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-////            public void onClick(DialogInterface dialog, int whichButton) {
-////                //What ever you want to do with the value
-//////                Editable milestone = editTextForMilestone.getText();
-////                String getMilestone = editTextForMilestone.getText().toString();
-////                userMaxCount = Integer.parseInt(getMilestone);
-////
-////            }
-////        });
-////        milestoneAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-////            public void onClick(DialogInterface dialog, int whichButton) {
-////                //do nothing
-////            }
-////        });
-////        milestoneAlert.show();
-//
-////choose your habit ------------
-////        AlertDialog.Builder habitAlert = new AlertDialog.Builder(this);
-////        final EditText editTextForChoosingHabit = new EditText(MainActivity.this);
-////        habitAlert.setMessage("Type your habit ?");
-////        habitAlert.setTitle("Habit!");
-////        habitAlert.setView(editTextForChoosingHabit);
-////        habitAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-////            public void onClick(DialogInterface dialog, int whichButton) {
-////                //What ever you want to do with the value
-//////                Editable habit = editTextForChoosingHabit.getText();
-////                habitString = editTextForChoosingHabit.getText().toString();
-////
-////            }
-////        });
-////        habitAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-////            public void onClick(DialogInterface dialog, int whichButton) {
-////                //do nothing
-////            }
-////        });
-////        habitAlert.show();
-//
-////        //dialog ------------
-////        new BottomDialog.Builder(this)
-////                .setTitle("Awesome!")
-////                .setContent("What can we improve? Your feedback is always welcome.")
-////                .setPositiveText("OK")
-////                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-////                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-////                .setPositiveTextColorResource(android.R.color.white)
-////                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-////                .onPositive(new BottomDialog.ButtonCallback() {
-////                    @Override
-////                    public void onClick(BottomDialog dialog) {
-////                        Log.d("BottomDialogs", "Do something!");
-////                    }
-////                }).show();
-
-////    //dialog when user pass a day
-////    private void showCustomDialogOnFirstLaunch(String title, StringBuilder content){
-////        //dialog ------------
-////        new BottomDialog.Builder(this)
-////                .setTitle(title)
-////                .setContent(content)
-////                .setPositiveText("OK")
-////                .setCancelable(false)
-////                .setPositiveBackgroundColorResource(R.color.colorPrimary)
-////                //.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
-////                .setPositiveTextColorResource(android.R.color.white)
-////                //.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-////                .onPositive(new BottomDialog.ButtonCallback() {
-////                    @Override
-////                    public void onClick(BottomDialog dialog) {
-////                        Log.d("BottomDialogs", "Do something!");
-////                        //intro activity check in a separate thread
-//////                        startIntroActivity();
-//////                        showDialogForSavingSum();
-////                    }
-////                }).show();
-////    }

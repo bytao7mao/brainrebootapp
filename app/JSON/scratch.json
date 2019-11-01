@@ -5,61 +5,81 @@
       "id":1,
       "name": "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart. \n― Roy T. Bennett",
       "nameRO": "Adevăratele greutăți pot fi depașite. Doar cele imaginare sunt de neînvins. \n– Theodore V. Nail",
-      "nameFR": "Ne soyez pas poussé par les peurs dans votre esprit. Soyez dirigé par les rêves dans votre coeur.\n- Roy T. Bennett"
+      "nameFR": "Ne soyez pas poussé par les peurs dans votre esprit. Soyez dirigé par les rêves dans votre coeur.\n- Roy T. Bennett",
+      "nameDE": "Lass dich nicht von den Ängsten in deinem Kopf herumschubsen. Lass dich von den Träumen in deinem Herzen leiten.\n- Roy T. Bennett",
+      "nameES": "No te dejes llevar por los miedos en tu mente. Déjate llevar por los sueños en tu corazón.\n- Roy T. Bennett"
     },
     {
       "id":2,
       "name": "A Room Without Books Is Like A Body Without A Soul. \n– Marcus Tullius Cicero",
       "nameRO": "Nu te compara cu nimeni altcineva din lume. Dacă o faci, te jigneşti pe tine. \n– Bill Gates",
-      "nameFR": "Une pièce sans livres est comme un corps sans âme.\n- Marcus Tullius Cicero"
+      "nameFR": "Une pièce sans livres est comme un corps sans âme.\n- Marcus Tullius Cicero",
+      "nameDE": "Ein Raum ohne Bücher ist wie ein Körper ohne Seele.\n- Marcus Tullius Cicero",
+      "nameES": "Una habitación sin libros es como un cuerpo sin alma.\n- Marcus Tullius Cicero"
     },
     {
       "id":3,
-      "name": "Things Work Out Best For Those Who Make The Best Of How Things Work Out. \n– Positive Quote By John Wooden",
+      "name": "Things Work Out Best For Those Who Make The Best Of How Things Work Out. \n– John Wooden",
       "nameRO": "Dacă nu ai un plan al tău, alţii te vor include în planurile lor. \n– Anthony Robbins",
-      "nameFR": "Les choses fonctionnent mieux pour ceux qui font le meilleur de la façon dont les choses fonctionnent.\n- Citation positive de John Wooden"
+      "nameFR": "Les choses fonctionnent mieux pour ceux qui font le meilleur de la façon dont les choses fonctionnent.\n- John Wooden",
+      "nameDE": "Die Dinge funktionieren am besten für diejenigen, die das Beste daraus machen, wie die Dinge funktionieren.\n- John Wooden",
+      "nameES": "Las cosas funcionan mejor para aquellos que hacen lo mejor de cómo funcionan las cosas.\n- John Wooden"
     },
     {
       "id":4,
       "name": "For Every Reason It’s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. \n– Jack Canfield",
       "nameRO": "Viața este ca mersul pe bicicletă. Pentru a-ți menține echilibrul trebuie să continui să mergi inainte. \n– Albert Einstein",
-      "nameFR": "Pour toutes les raisons, c’est impossible, il y a des centaines de personnes qui ont fait face aux mêmes circonstances et ont réussi.\n- Jack Canfield"
+      "nameFR": "Pour toutes les raisons, c’est impossible, il y a des centaines de personnes qui ont fait face aux mêmes circonstances et ont réussi.\n- Jack Canfield",
+      "nameDE": "Aus jedem Grund ist es nicht möglich, dass Hunderte von Menschen mit denselben Umständen konfrontiert wurden und Erfolg hatten.\n- Jack Canfield",
+      "nameES": "Por todas las razones no es posible, hay cientos de personas que han enfrentado las mismas circunstancias y han tenido éxito.\n- Jack Canfield"
     },
     {
       "id":5,
       "name": "The secret of change is to focus all of your energy, not on fighting the old, but on building the new \n- Socrates",
       "nameRO": "Am urât fiecare minut de antrenament, dar mi-am spus „Nu renunța. Suferă acum și trăiește-ți restul vieții ca un campion”. \n- Muhammad Ali",
-      "nameFR": "Le secret du changement est de concentrer toute votre énergie, non pas à combattre le vieux, mais à construire le nouveau\n- Socrate"
+      "nameFR": "Le secret du changement est de concentrer toute votre énergie, non pas à combattre le vieux, mais à construire le nouveau\n- Socrate",
+      "nameDE": "Das Geheimnis der Veränderung besteht darin, all Ihre Energie darauf zu konzentrieren, nicht gegen das Alte zu kämpfen, sondern das Neue aufzubauen\n- Socrates",
+      "nameES": "Las elecciones más difíciles requieren las voluntades más fuertes.\n- Thanos"
     },
     {
       "id":6,
       "name": "The Future Belongs To The Competent. Get Good, Get Better, Be The Best! \n– Success Quote By Brian Tracy",
       "nameRO": "Dacă simți că nu contezi pentru că ești prea mic, încearcă să dormi în cameră cu un țânțar.\n- Dalai Lama",
-      "nameFR": "L'avenir appartient aux compétents. Sois bon, sois meilleur, sois le meilleur!\n- Citation de la réussite par Brian Tracy"
+      "nameFR": "L'avenir appartient aux compétents. Sois bon, sois meilleur, sois le meilleur!\n- Citation de la réussite par Brian Tracy",
+      "nameDE": "Die Zukunft gehört dem Kompetenten. Werde gut, werde besser, sei der Beste!\n- Erfolgszitat von Brian Tracy",
+      "nameES": "El futuro pertenece a la competencia. Mejora, mejora, sé el mejor!\n- Cita de éxito de Brian Tracy"
     },
     {
       "id":7,
       "name": "Fake It Until You Make It! Act As If You Had All The Confidence You Require Until It Becomes Your Reality. \n– Brian Tracy",
       "nameRO": "Oamenii spun de multe ori că nu reușesc să își păstreze nivelul de motivație. Ei bine, nici efectele dușului nu sunt eterne\n- de aceea este recomandat zilnic! \n– Zig Ziglar",
-      "nameFR": "Fais semblant jusqu'à ce que tu y arrives! Agissez comme si vous aviez toute la confiance dont vous avez besoin jusqu'à ce que cela devienne votre réalité.\n- Brian Tracy"
+      "nameFR": "Fais semblant jusqu'à ce que tu y arrives! Agissez comme si vous aviez toute la confiance dont vous avez besoin jusqu'à ce que cela devienne votre réalité.\n- Brian Tracy",
+      "nameDE": "Fake es, bis du es schaffst! Tun Sie so, als ob Sie all das Vertrauen hätten, das Sie benötigen, bis es zu Ihrer Realität wird.\n- Brian Tracy",
+      "nameES": "Fingir hasta que lo hagas! Actúa como si tuvieras toda la confianza que necesitas hasta que se convierta en tu realidad.\n- Brian Tracy"
     },
     {
       "id":8,
       "name": "Reading Is To The Mind, As Exercise Is To The Body. \n– Brian Tracy",
       "nameRO": "Eșecul este doar oportunitatea de a o lua de la capăt, de data aceasta într-un mod mai inteligent. \n– Henry Ford",
-      "nameFR": "La lecture est à l'esprit, de même que l'exercice est au corps.\n- Brian Tracy"
+      "nameFR": "La lecture est à l'esprit, de même que l'exercice est au corps.\n- Brian Tracy",
+      "nameDE": "Lesen ist für den Geist, wie Übung für den Körper ist.\n- Brian Tracy",
+      "nameES": "Leer es para la mente, como el ejercicio es para el cuerpo.\n- Brian Tracy"
     },
     {
       "id":9,
       "name": "To See What Is Right And Not Do It Is A Lack Of Courage. \n– Confucius",
       "nameRO": "Fă ce trebuie să faci, până poți face ceea ce vrei să faci. \n– Oprah Winfrey",
-      "nameFR": "Voir ce qui est juste et ne pas le faire, c'est un manque de courage.\n- Confucius"
+      "nameFR": "Voir ce qui est juste et ne pas le faire, c'est un manque de courage.\n- Confucius",
+      "nameDE": "Zu sehen, was richtig ist und was nicht, ist ein Mangel an Mut.\n- Confucius",
+      "nameES": "Ver lo que es correcto y no hacerlo es una falta de coraje.\n- Confucio"
     },
     {
       "id":10,
       "name": "The Way Get Started Is To Quit Talking And Begin Doing. \n– Walt Disney",
       "nameRO": "Multe legende, mulți oameni au fost înaintea mea. Dar acum e momentul meu. \n– Usain Bolt",
-      "nameFR": "Pour commencer, il faut cesser de parler et commencer à faire.\n- Walt Disney"
+      "nameFR": "Pour commencer, il faut cesser de parler et commencer à faire.\n- Walt Disney",
+      "nameDE": "Die Art und Weise, wie Sie anfangen, ist, mit dem Sprechen aufzuhören und mit dem Tun zu beginnen.\n- Walt Disney",
+      "nameES": "La forma de comenzar es dejar de hablar y comenzar a hacer.\n- Walt Disney"
     },
     {
       "id":11,
