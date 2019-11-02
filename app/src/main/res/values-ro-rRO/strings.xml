@@ -99,4 +99,6 @@
     <string name="total_money_saved_congrats">Valoarea totala de bani</string>
     <string name="total_savings_top">Suma totala</string>
     <string name="progress">progres</string>
+    <string name="instead_of_smoking">Sfaturi</string>
+    <string name="example_instead_of_text">Cine este in control, tu sau corpul tau ?</string>
 </resources>

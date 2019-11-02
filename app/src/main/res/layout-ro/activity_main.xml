@@ -1756,7 +1756,7 @@
             android:id="@+id/intruderBottom"
             style="@style/CustomCardViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/colorPrimary"
             app:cardElevation="0dp"
@@ -1771,22 +1771,21 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:focusable="true"
+                android:paddingBottom="16dp"
                 android:foreground="?android:attr/selectableItemBackground">
 
-                <!--                    <androidx.appcompat.widget.AppCompatImageView-->
-                <!--                        android:id="@+id/appCompatImageViewSavings_top"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_margin="5dp"-->
-                <!--                        android:background="@drawable/ic_piggy_bank"-->
-                <!--                        android:clickable="true"-->
-                <!--                        android:contentDescription="@string/personal_progress"-->
-                <!--                        android:focusable="true"-->
-                <!--                        android:foreground="?android:attr/selectableItemBackground"-->
-                <!--                        app:layout_constraintBottom_toTopOf="@+id/guideline_top_horizontal_70_percent"-->
-                <!--                        app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percent"-->
-                <!--                        app:layout_constraintStart_toEndOf="@+id/savingsTopId"-->
-                <!--                        app:layout_constraintTop_toTopOf="parent" />-->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageViewSavings_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/ic_refresh_white_24dp"
+                    android:clickable="true"
+                    android:contentDescription="@string/personal_progress"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percentBottom"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/totalSavingsTopIdBottom"
@@ -1797,10 +1796,10 @@
                     android:paddingStart="8dp"
                     android:paddingTop="8dp"
                     android:paddingEnd="8dp"
-                    android:text="Instead of smoking"
+                    android:text="@string/instead_of_smoking"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_50_percentBottom"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageViewSavings_top"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@id/guideline_top_vertical_10_percentBottom"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1809,20 +1808,16 @@
                     android:id="@+id/savingsTopIdBottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
                     android:fontFamily="@font/robotomedium"
                     android:paddingStart="8dp"
                     android:paddingTop="8dp"
                     android:paddingEnd="8dp"
-                    android:text="You can go and \ntake a ride"
+                    android:text="@string/example_instead_of_text"
                     android:textColor="@color/white"
-                    android:textSize="32sp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline_top_horizontal_70_percentBottom"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percentBottom"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_10_percentBottom"
-                    app:layout_constraintTop_toBottomOf="@+id/totalSavingsTopIdBottom"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/totalSavingsTopIdBottom" />
 
                 <!--                    <com.google.android.material.textview.MaterialTextView-->
                 <!--                        android:id="@+id/QuitTopId"-->
@@ -1875,7 +1870,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.70" />
+                    app:layout_constraintGuide_percent="0.80" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_top_vertical_95_percentBottom"

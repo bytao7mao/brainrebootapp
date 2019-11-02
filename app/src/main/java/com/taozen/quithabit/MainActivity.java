@@ -149,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int SEVEN_HUNDRED = 700;
     public static final int EIGHT_HUNDRED = 800;
     public static final int NINE_HUNDRED = 900;
+    public static final String CRAVINGTITLE = "cravingtitle";
+    public static final String CRAVINGTEXT = "cravingtext";
 
     String[] monthName = {"Jan", "Feb",
             "Mar", "Apr", "May", "Jun", "Jul",
@@ -180,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.shareAchieve) ImageView shareAchieve;
     @BindView(R.id.shareSavings) ImageView shareSavings;
     @BindView(R.id.sunny) ImageView sunny;
+    @BindView(R.id.appCompatImageViewSavings_top) ImageView refreshCravingText;
 
     //Views
     @BindView(android.R.id.content) View parentLayout;
@@ -194,6 +197,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.card_view_Middle) MaterialCardView upperProgressPercentsCard;
 
     //TextViews
+    @BindView(R.id.totalSavingsTopIdBottom) MaterialTextView cravingTitleText;
+    @BindView(R.id.savingsTopIdBottom) MaterialTextView cravingTipsText;
     @BindView(R.id.savingsTopId) MaterialTextView savingsTopText;
 //    @BindView(R.id.QuitDateTopId) MaterialTextView quitDateTopText;
     @BindView(R.id.YourQDay) TextView YourQDay;
@@ -333,6 +338,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+//            generateCravingText();
+
+            refreshCravingText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    generateCravingText();
+                }
+            });
+            if (preferences.contains(CRAVINGTEXT)) {
+                cravingTipsText.setText(preferences.getString(CRAVINGTEXT, getString(R.string.example_instead_of_text)));
+                cravingTitleText.setText(preferences.getString(CRAVINGTITLE, getString(R.string.instead_of_smoking)));
+            }
+
             shareProgress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -381,15 +399,7 @@ public class MainActivity extends AppCompatActivity {
 
             firstCheckForInitialCiggarettesPerDay();
             startFirstActivity();
-            //using API from splash
-            final Intent INTENT = getIntent();
-            final String NAME = INTENT.getStringExtra("data");
-            if (NAME!=null){
-                tipOfTheDayTxtView.setText(NAME);
-            } else {
-                //if text cannot be get from server we put R.string.example_of_tip_of_the_day
-                checkActivityOnline();
-            }
+            checkActivityFromSplashScreen();
 
 
             numberFormat = new DecimalFormat("#.##");
@@ -567,7 +577,23 @@ public class MainActivity extends AppCompatActivity {
         }//[END OF RETRIEVING VALUES]
     }//[END OF ONCREATE]
 
-//    not using it now
+    private void checkActivityFromSplashScreen() {
+        //using API from splash
+        final Intent INTENT = getIntent();
+        final String NAME = INTENT.getStringExtra("data");
+        if (NAME!=null){
+            tipOfTheDayTxtView.setText(NAME);
+            editor.putString("tipoftheday", NAME);
+            editor.apply();
+        } else {
+            String example = getString(R.string.example_of_tip_of_the_day);
+            //if text cannot be get from server we put R.string.example_of_tip_of_the_day
+//                checkActivityOnline();
+            preferences.getString("tipoftheday", example);
+        }
+    }
+
+    //    not using it now
     private void setCounterImageDaysOrDay(int counterInner) {
         try {
 //            final Locale localeMAIN;
@@ -976,6 +1002,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setCancelable(false);
         milestoneAlert.setPositiveButton(getString(R.string.YES), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
+                generateCravingText();
                 setCheckInText();
                 setTodayToClickDay();
                 checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
@@ -1013,7 +1040,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 editor.putInt(COUNTER, counter);
                 setTextViewsForProgress();
-                checkActivityOnline();
+//                checkActivityOnline();
+                checkActivityFromSplashScreen();
 //                        setTheSavingsPerDay();
                 savingsGetAndSetValue();
                 setImprovementProgressLevels();
@@ -1036,6 +1064,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setNegativeButton(getString(R.string.NO), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 try {
+                    generateCravingText();
                     setTodayToClickDay();
                     checkInButton.setBackground(getDrawable(R.drawable.custom_round_grey_color));
                     //get time of relapse and put it into arraylist to send in logs activity
@@ -1113,6 +1142,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setCancelable(false);
         milestoneAlert.setPositiveButton(getString(R.string.YES), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
+                generateCravingText();
                 setTodayToClickDay();
                 if (preferences.contains(SAVINGS_FINAL)){
                     firstSave = preferences.getLong(SAVINGS_FINAL, ZERO);
@@ -1153,7 +1183,8 @@ public class MainActivity extends AppCompatActivity {
                 higherThanOne = false;
                 editor.putInt(COUNTER, counter);
                 setTextViewsForProgress();
-                checkActivityOnline();
+//                checkActivityOnline();
+                checkActivityFromSplashScreen();
 //                        setTheSavingsPerDay();
                 savingsGetAndSetValue();
                 setImprovementProgressLevels();
@@ -1893,6 +1924,71 @@ public class MainActivity extends AppCompatActivity {
         task = new MainActivity.MyAsyncTask();
         task.execute(MainActivity.HTTPS_PYFLASKTAO_HEROKUAPP_COM_BOOKS + "/" + id);
     }
+
+    private void generateCravingText() {
+        try {
+            Random random = new Random();
+            int i = random.nextInt(9 - 0 + 1)+0;
+
+            ArrayList<String> cravingText = new ArrayList<>();
+            cravingText.add(getString(R.string.example_instead_of_text));//0
+            cravingText.add("You might have tried to quit smoking before and not managed it, but don't let that put you off. \n" +
+                    "\n" +
+                    "Look back at the things your experience has taught you and think about how you're really going to do it this time.");//1
+            cravingText.add("Make a promise, set a date and stick to it. Sticking to the \"not a drag\" rule can really help.\n" +
+                    "\n" +
+                    "Whenever you find yourself in difficulty, say to yourself, " +
+                    "\"I won't even have a single drag\", and stick with this until the cravings pass.");//2
+            cravingText.add("Is your after-dinner cigarette your favourite? A US study revealed that some foods, including meat, make cigarettes more satisfying.\n" +
+                    "\n" +
+                    "Others, including cheese, fruit and vegetables, make cigarettes taste terrible. So swap your usual steak or burger for a veggie pizza instead.  ");//3
+            cravingText.add("The same US study as above also looked at drinks. Fizzy drinks, alcohol, cola, tea and coffee all make cigarettes taste better.\n" +
+                    "\n" +
+                    "So when you're out, drink more water and juice. Some people find simply changing their drink (for example, switching from wine to a vodka and tomato juice) affects their need to reach for a cigarette.");//4
+            cravingText.add("A craving can last 5 minutes. Before you give up, make a list of 5-minute strategies.\n" +
+                    "\n" +
+                    "For example, you could leave the party for a minute, dance or go to the bar.\n" +
+                    "\n" +
+                    "And think about this: the combination of smoking and drinking raises your risk of mouth cancer by 38 times.");//5
+            cravingText.add("If friends or family members want to give up, too, suggest to them that you give up together.\n" +
+                    "\n" +
+                    "There's also support available from your local stop smoking service. Did you know that you're up to 4 times more likely to quit successfully with their expert help and advice? ");//6
+            cravingText.add("A review of scientific studies has proved exercise, even a 5-minute walk or stretch, cuts cravings and may help your brain produce anti-craving chemicals.");//7
+            cravingText.add("Nicotine replacement therapy (NRT) can double your chances of success.\n" +
+                    "\n" +
+                    "As well as patches, there are tablets, lozenges, gum and a nasal spray. And if you like holding a cigarette, there are handheld products like the inhalator or e-cigarettes.\n" +
+                    "\n" +
+                    "When you're out, try putting your drink in the hand that usually holds a cigarette, or drink from a straw to keep your mouth busy.");//8
+            cravingText.add("Keep reminding yourself why you made the decision to give up. Make a list of the reasons and read it when you need support.\n" +
+                    "\n" +
+                    "Ex-smoker Daniel, 26, says: \"I used to take a picture of my baby daughter with me when I went out. If I was tempted, I'd look at that.\"\n" +
+                    "\n" +
+                    "Read more about the stop smoking treatments available on the NHS.");//9
+
+            ArrayList<String> cravingTitles = new ArrayList<>();
+            cravingTitles.add(getString(R.string.instead_of_smoking));//0
+            cravingTitles.add("Think positive");//1
+            cravingTitles.add("Make a plan to quit smoking");//2
+            cravingTitles.add("Consider your diet");//3
+            cravingTitles.add("Change your drink");//4
+            cravingTitles.add("Identify when you crave cigarettes");//5
+            cravingTitles.add("Get some stop smoking support");//6
+            cravingTitles.add("Get moving");//7
+            cravingTitles.add("Keep your hands and mouth busy");//8
+            cravingTitles.add("Make a list of reasons to quit");//9
+
+            cravingTitleText.setText(cravingTitles.get(i));
+            cravingTipsText.setText(cravingText.get(i));
+
+            editor.putString(CRAVINGTITLE, cravingTitles.get(i));
+            editor.putString(CRAVINGTEXT, cravingText.get(i));
+            editor.apply();
+
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @SideEffect
     private void checkActivityOnline() {
         try {
@@ -1902,10 +1998,33 @@ public class MainActivity extends AppCompatActivity {
                 if (preferences.contains(COUNTER)) {
                     counter = preferences.getInt(COUNTER, ZERO);
                 }
+//                if (counter == ZERO) {
+//                    requestDataById(1);
+//                } else {
+//                    requestDataById(i);
+//                }
                 if (counter == ZERO) {
                     requestDataById(1);
+                } else if (DAY_OF_PRESENT > 100 && DAY_OF_PRESENT < 200) {
+                    requestDataById(DAY_OF_PRESENT - 100);
+                } else if (DAY_OF_PRESENT > 200 && DAY_OF_PRESENT < 300) {
+                    requestDataById(DAY_OF_PRESENT - 200);
+                } else if (DAY_OF_PRESENT > 300 && DAY_OF_PRESENT < 400) {
+                    requestDataById(DAY_OF_PRESENT - 300);
+                } else if (DAY_OF_PRESENT > 400 && DAY_OF_PRESENT < 500) {
+                    requestDataById(DAY_OF_PRESENT - 400);
+                } else if (DAY_OF_PRESENT > 500 && DAY_OF_PRESENT < 600) {
+                    requestDataById(DAY_OF_PRESENT - 500);
+                } else if (DAY_OF_PRESENT > 600 && DAY_OF_PRESENT < 700) {
+                    requestDataById(DAY_OF_PRESENT - 600);
+                } else if (DAY_OF_PRESENT > 700 && DAY_OF_PRESENT < 800) {
+                    requestDataById(DAY_OF_PRESENT - 700);
+                } else if (DAY_OF_PRESENT > 800 && DAY_OF_PRESENT < 900) {
+                    requestDataById(DAY_OF_PRESENT - 800);
+                } else if (DAY_OF_PRESENT > 900 && DAY_OF_PRESENT <= 1000) {
+                    requestDataById(DAY_OF_PRESENT - 900);
                 } else {
-                    requestDataById(i);
+                    requestDataById(DAY_OF_PRESENT);
                 }
                 //requestDataById(DAY_OF_PRESENT);
             } else {
@@ -1917,7 +2036,7 @@ public class MainActivity extends AppCompatActivity {
                 final Snackbar SNACKBAR;
                 SNACKBAR = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
                 final View SNACKBAR_VIEW = SNACKBAR.getView();
-                SNACKBAR_VIEW.setBackgroundColor(Color.RED);
+                SNACKBAR_VIEW.setBackgroundColor(Color.YELLOW);
                 SNACKBAR.show();
             }
         } catch (final Exception e) {

@@ -40,11 +40,18 @@ import static com.taozen.quithabit.utils.Constants.SharedPreferences.INITIAL_CIG
 
 public class SplashActivity extends AppCompatActivity {
 
+    public static final String NAME_ES = "nameES";
+    public static final String NAME_DE = "nameDE";
+    public static final String NAME_FR = "nameFR";
+    public static final String ES = "es";
+    public static final String FR = "fr";
+    public static final String DE = "de";
+    public static final String CHINESE_SIMPLIFIED = "zh";
+    public static final String NAME_ZH = "nameZH";
     SplashActivity.MyAsyncTask task;
 
     //firstStart bool
     boolean isFirstStart;
-    private Calendar calendarForProgress;
     int DAY_OF_PRESENT, DAY_OF_CLICK;
 
     //shared pref
@@ -86,31 +93,47 @@ public class SplashActivity extends AppCompatActivity {
     @SideEffect
     private void checkActivityOnlineAndGetData() {
         try {
+            DAY_OF_PRESENT = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
             Random random = new Random();
-            int i = random.nextInt(10 - 1 + 1) + 1;
+            int i = random.nextInt(100 - 1 + 1) + 1;
             int counter = 0;
             if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
                     counter = preferences.getInt(COUNTER, 0);
                 }
-                if (counter == 0) {
+//                if (counter == 0) {
+//                    requestDataById(1);
+//                } else {
+//                    requestDataById(i);
+//                }
+                if (counter == ZERO) {
                     requestDataById(1);
+                } else if (DAY_OF_PRESENT > 100 && DAY_OF_PRESENT < 200) {
+                    requestDataById(DAY_OF_PRESENT - 100);
+                } else if (DAY_OF_PRESENT > 200 && DAY_OF_PRESENT < 300) {
+                    requestDataById(DAY_OF_PRESENT - 200);
+                } else if (DAY_OF_PRESENT > 300 && DAY_OF_PRESENT < 400) {
+                    requestDataById(DAY_OF_PRESENT - 300);
                 } else {
                     requestDataById(i);
                 }
                 //requestDataById(DAY_OF_PRESENT);
                 if (BuildConfig.DEBUG){
                     Log.d("DAYZEN", "is connected to net");
+                    Log.d("DAYZEN", "day of present: " + DAY_OF_PRESENT);
                 }
             } else {
-                if (BuildConfig.DEBUG){
-                    Log.d("DAYZEN", "is NOT connected to net");
-                }
+
                 if (counter == 0) {
                     requestDataById(1);
                 } else {
                     requestDataById(i);
                 }
+
+                if (BuildConfig.DEBUG){
+                    Log.d("DAYZEN", "is NOT connected to net");
+                }
+
                 Snackbar snackbar;
                 snackbar = Snackbar.make(parentLayout, R.string.no_connection, Snackbar.LENGTH_LONG);
                 View snackBarView = snackbar.getView();
@@ -152,6 +175,7 @@ public class SplashActivity extends AppCompatActivity {
     }
     @SuppressLint("StaticFieldLeak")
     private class MyAsyncTask extends AsyncTask<String, String, String> {
+
         @Override
         protected void onPreExecute() {
 
@@ -183,12 +207,14 @@ public class SplashActivity extends AppCompatActivity {
                 //get quote from ro if user is ro, else get default quotes
                 if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(RO)){
                     NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_RO);
-                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("es")){
-                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameES");
-                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("fr")) {
-                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameFR");
-                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase("de")) {
-                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get("nameDE");
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(ES)){
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_ES);
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(FR)) {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_FR);
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(DE)) {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_DE);
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(CHINESE_SIMPLIFIED)) {
+                    NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_ZH);
                 } else {
                     NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
                 }
@@ -229,7 +255,7 @@ public class SplashActivity extends AppCompatActivity {
             if (!preferences.contains(INITIAL_CIGG_PER_DAY)){
                 isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
                 //[calendar area]
-                calendarForProgress = Calendar.getInstance();
+                Calendar calendarForProgress = Calendar.getInstance();
                 calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
                 DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
                 DAY_OF_CLICK = DAY_OF_PRESENT - 1;

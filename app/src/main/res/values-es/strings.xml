@@ -98,4 +98,6 @@
     <string name="your_entire_progress">Todo tu progreso</string>
     <string name="your_latest_achievments">Tus ultimos logros</string>
     <string name="your_savings">Tus últimos ahorros</string>
+    <string name="instead_of_smoking">Consejos de antojo</string>
+    <string name="example_instead_of_text">Recuerdas quién te controla a ti o a tu cuerpo?</string>
 </resources>
