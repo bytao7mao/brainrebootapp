@@ -48,6 +48,8 @@ public class SplashActivity extends AppCompatActivity {
     public static final String DE = "de";
     public static final String CHINESE_SIMPLIFIED = "zh";
     public static final String NAME_ZH = "nameZH";
+    public static final String ZH_CN = "zh_CN";
+    public static final String ZH_TW = "zh_TW";
     SplashActivity.MyAsyncTask task;
 
     //firstStart bool
@@ -213,7 +215,9 @@ public class SplashActivity extends AppCompatActivity {
                     NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_FR);
                 } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(DE)) {
                     NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_DE);
-                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(CHINESE_SIMPLIFIED)) {
+                } else if (PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(CHINESE_SIMPLIFIED)
+                        || PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(ZH_CN)
+                        || PUT_LANGUAGE_IN_STRING.equalsIgnoreCase(ZH_TW)) {
                     NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME_ZH);
                 } else {
                     NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
@@ -234,7 +238,7 @@ public class SplashActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
                 final String tempResult = (result == null) ?
-                        "No quotes available in this moment ..." : result;
+                        getString(R.string.no_quotes) : result;
                 if (preferences.contains("splash")){
                     Intent i = new Intent(SplashActivity.this, MainActivity.class);
                     i.putExtra("data", tempResult);
@@ -256,7 +260,7 @@ public class SplashActivity extends AppCompatActivity {
                 isFirstStart = true;editor.putBoolean("firstStart",isFirstStart);editor.apply();
                 //[calendar area]
                 Calendar calendarForProgress = Calendar.getInstance();
-                calendarForProgress.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                calendarForProgress.setTimeZone(TimeZone.getDefault());
                 DAY_OF_PRESENT = calendarForProgress.get(Calendar.DAY_OF_YEAR);
                 DAY_OF_CLICK = DAY_OF_PRESENT - 1;
                 editor.putInt(CLICKDAY_SP, DAY_OF_CLICK);

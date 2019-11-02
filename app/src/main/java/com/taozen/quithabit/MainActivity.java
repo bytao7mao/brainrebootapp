@@ -1932,50 +1932,27 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> cravingText = new ArrayList<>();
             cravingText.add(getString(R.string.example_instead_of_text));//0
-            cravingText.add("You might have tried to quit smoking before and not managed it, but don't let that put you off. \n" +
-                    "\n" +
-                    "Look back at the things your experience has taught you and think about how you're really going to do it this time.");//1
-            cravingText.add("Make a promise, set a date and stick to it. Sticking to the \"not a drag\" rule can really help.\n" +
-                    "\n" +
-                    "Whenever you find yourself in difficulty, say to yourself, " +
-                    "\"I won't even have a single drag\", and stick with this until the cravings pass.");//2
-            cravingText.add("Is your after-dinner cigarette your favourite? A US study revealed that some foods, including meat, make cigarettes more satisfying.\n" +
-                    "\n" +
-                    "Others, including cheese, fruit and vegetables, make cigarettes taste terrible. So swap your usual steak or burger for a veggie pizza instead.  ");//3
-            cravingText.add("The same US study as above also looked at drinks. Fizzy drinks, alcohol, cola, tea and coffee all make cigarettes taste better.\n" +
-                    "\n" +
-                    "So when you're out, drink more water and juice. Some people find simply changing their drink (for example, switching from wine to a vodka and tomato juice) affects their need to reach for a cigarette.");//4
-            cravingText.add("A craving can last 5 minutes. Before you give up, make a list of 5-minute strategies.\n" +
-                    "\n" +
-                    "For example, you could leave the party for a minute, dance or go to the bar.\n" +
-                    "\n" +
-                    "And think about this: the combination of smoking and drinking raises your risk of mouth cancer by 38 times.");//5
-            cravingText.add("If friends or family members want to give up, too, suggest to them that you give up together.\n" +
-                    "\n" +
-                    "There's also support available from your local stop smoking service. Did you know that you're up to 4 times more likely to quit successfully with their expert help and advice? ");//6
-            cravingText.add("A review of scientific studies has proved exercise, even a 5-minute walk or stretch, cuts cravings and may help your brain produce anti-craving chemicals.");//7
-            cravingText.add("Nicotine replacement therapy (NRT) can double your chances of success.\n" +
-                    "\n" +
-                    "As well as patches, there are tablets, lozenges, gum and a nasal spray. And if you like holding a cigarette, there are handheld products like the inhalator or e-cigarettes.\n" +
-                    "\n" +
-                    "When you're out, try putting your drink in the hand that usually holds a cigarette, or drink from a straw to keep your mouth busy.");//8
-            cravingText.add("Keep reminding yourself why you made the decision to give up. Make a list of the reasons and read it when you need support.\n" +
-                    "\n" +
-                    "Ex-smoker Daniel, 26, says: \"I used to take a picture of my baby daughter with me when I went out. If I was tempted, I'd look at that.\"\n" +
-                    "\n" +
-                    "Read more about the stop smoking treatments available on the NHS.");//9
+            cravingText.add(getString(R.string.craving_text_index_one));//1
+            cravingText.add(getString(R.string.craving_text_index_two));//2
+            cravingText.add(getString(R.string.craving_text_index_three));//3
+            cravingText.add(getString(R.string.craving_text_index_four));//4
+            cravingText.add(getString(R.string.craving_text_index_five));//5
+            cravingText.add(getString(R.string.craving_text_index_six));//6
+            cravingText.add(getString(R.string.craving_text_index_seven));//7
+            cravingText.add(getString(R.string.craving_text_index_eight));//8
+            cravingText.add(getString(R.string.craving_text_index_nine));//9
 
             ArrayList<String> cravingTitles = new ArrayList<>();
             cravingTitles.add(getString(R.string.instead_of_smoking));//0
-            cravingTitles.add("Think positive");//1
-            cravingTitles.add("Make a plan to quit smoking");//2
-            cravingTitles.add("Consider your diet");//3
-            cravingTitles.add("Change your drink");//4
-            cravingTitles.add("Identify when you crave cigarettes");//5
-            cravingTitles.add("Get some stop smoking support");//6
-            cravingTitles.add("Get moving");//7
-            cravingTitles.add("Keep your hands and mouth busy");//8
-            cravingTitles.add("Make a list of reasons to quit");//9
+            cravingTitles.add(getString(R.string.craving_title_index_nine));//1
+            cravingTitles.add(getString(R.string.craving_title_index_two));//2
+            cravingTitles.add(getString(R.string.craving_title_index_three));//3
+            cravingTitles.add(getString(R.string.craving_title_index_four));//4
+            cravingTitles.add(getString(R.string.craving_title_index_five));//5
+            cravingTitles.add(getString(R.string.craving_title_index_six));//6
+            cravingTitles.add(getString(R.string.craving_title_index_seven));//7
+            cravingTitles.add(getString(R.string.craving_title_index_eight));//8
+            cravingTitles.add(getString(R.string.craving_title_index_nine));//9
 
             cravingTitleText.setText(cravingTitles.get(i));
             cravingTipsText.setText(cravingText.get(i));

@@ -100,4 +100,48 @@
     <string name="calculating">Calculating …</string>
     <string name="instead_of_smoking">Craving tips</string>
     <string name="example_instead_of_text">Remember who is in control  you, or your body ?</string>
+    <string name="no_quotes">No quotes available in this moment …</string>
+    <string name="craving_text_index_one">"You might have tried to quit smoking before and not managed it, but don't let that put you off. \n" +
+                    "\n" +
+                    "Look back at the things your experience has taught you and think about how you're really going to do it this time."</string>
+    <string name="craving_text_index_two">"Make a promise, set a date and stick to it. Sticking to the \"not a drag\" rule can really help.\n" +
+                    "\n" +
+                    "Whenever you find yourself in difficulty, say to yourself, " +
+                    "\"I won't even have a single drag\", and stick with this until the cravings pass."</string>
+    <string name="craving_text_index_three">"Is your after-dinner cigarette your favourite? A US study revealed that some foods, including meat, make cigarettes more satisfying.\n" +
+                    "\n" +
+                    "Others, including cheese, fruit and vegetables, make cigarettes taste terrible. So swap your usual steak or burger for a veggie pizza instead.  "</string>
+    <string name="craving_text_index_four">"The same US study as above also looked at drinks. Fizzy drinks, alcohol, cola, tea and coffee all make cigarettes taste better.\n" +
+                    "\n" +
+                    "So when you're out, drink more water and juice. Some people find simply changing their drink (for example, switching from wine to a vodka and tomato juice) affects their need to reach for a cigarette."</string>
+    <string name="craving_text_index_five">"A craving can last 5 minutes. Before you give up, make a list of 5-minute strategies.\n" +
+                    "\n" +
+                    "For example, you could leave the party for a minute, dance or go to the bar.\n" +
+                    "\n" +
+                    "And think about this: the combination of smoking and drinking raises your risk of mouth cancer by 38 times."</string>
+
+    <string name="craving_text_index_six">"If friends or family members want to give up, too, suggest to them that you give up together.\n" +
+                    "\n" +
+                    "There's also support available from your local stop smoking service. Did you know that you're up to 4 times more likely to quit successfully with their expert help and advice? "</string>
+    <string name="craving_text_index_seven">"A review of scientific studies has proved exercise, even a 5-minute walk or stretch, cuts cravings and may help your brain produce anti-craving chemicals."</string>
+    <string name="craving_text_index_eight">"Nicotine replacement therapy (NRT) can double your chances of success.\n" +
+                    "\n" +
+                    "As well as patches, there are tablets, lozenges, gum and a nasal spray. And if you like holding a cigarette, there are handheld products like the inhalator or e-cigarettes.\n" +
+                    "\n" +
+                    "When you're out, try putting your drink in the hand that usually holds a cigarette, or drink from a straw to keep your mouth busy."</string>
+    <string name="craving_text_index_nine">"Keep reminding yourself why you made the decision to give up. Make a list of the reasons and read it when you need support.\n" +
+                    "\n" +
+                    "Ex-smoker Daniel, 26, says: \"I used to take a picture of my baby daughter with me when I went out. If I was tempted, I'd look at that.\"\n" +
+                    "\n" +
+                    "Read more about the stop smoking treatments available on the NHS."</string>
+    <string name="craving_title_index_one">"Think positive"</string>
+    <string name="craving_title_index_two">"Make a plan to quit smoking"</string>
+    <string name="craving_title_index_three">"Consider your diet"</string>
+    <string name="craving_title_index_four">"Change your drink"</string>
+    <string name="craving_title_index_five">"Identify when you crave cigarettes"</string>
+    <string name="craving_title_index_six">"Get some stop smoking support"</string>
+    <string name="craving_title_index_seven">"Get moving"</string>
+    <string name="craving_title_index_eight">"Keep your hands and mouth busy"</string>
+    <string name="craving_title_index_nine">"Make a list of reasons to quit"</string>
+
 </resources>
