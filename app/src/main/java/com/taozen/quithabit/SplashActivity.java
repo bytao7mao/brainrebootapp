@@ -97,7 +97,7 @@ public class SplashActivity extends AppCompatActivity {
         try {
             DAY_OF_PRESENT = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
             Random random = new Random();
-            int i = random.nextInt(100 - 1 + 1) + 1;
+            int i = random.nextInt(10 - 1 + 1) + 1;
             int counter = 0;
             if (isOnline()) {
                 if (preferences.contains(COUNTER)) {
@@ -222,6 +222,7 @@ public class SplashActivity extends AppCompatActivity {
                 } else {
                     NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
                 }
+
 //                NAME_ELEMENT_NODE = DETAILS_LOCAL.get(NAME);
 
                 if (BuildConfig.DEBUG) {

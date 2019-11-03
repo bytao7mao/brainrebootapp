@@ -283,20 +283,20 @@
                     android:id="@+id/lightbulbForTip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:src="@drawable/ic_idea"
                     app:layout_constraintBottom_toBottomOf="@+id/tvTipOfTheDay"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_15percent_inner"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTipOfTheDay"
                     app:layout_constraintTop_toTopOf="@+id/tvTipOfTheDay" />
                 <!--                    on click we should alert the user that tips will update everyday-->
 
                 <TextView
                     android:id="@+id/tvTipOfTheDay"
                     style="@style/TextColorBlack"
-                    android:layout_width="250dp"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:alpha="0.8"
@@ -373,8 +373,8 @@
 
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/counterImageId"
-                    android:layout_width="240dp"
-                    android:layout_height="240dp"
+                    android:layout_width="320dp"
+                    android:layout_height="320dp"
                     android:layout_marginTop="58dp"
                     android:layout_marginBottom="8dp"
                     android:clickable="true"
@@ -409,7 +409,7 @@
                     android:alpha="1"
                     android:fontFamily="@font/robotomedium"
                     android:text="50"
-                    android:textSize="120sp"
+                    android:textSize="180sp"
                     app:layout_constraintBottom_toBottomOf="@+id/counterImageId"
                     app:layout_constraintEnd_toEndOf="@+id/counterImageId"
                     app:layout_constraintStart_toStartOf="@+id/counterImageId"
@@ -655,14 +655,14 @@
                     style="@style/TextColorBlack"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:alpha="1"
                     android:text="@string/breath"
                     android:textAlignment="center"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/subTextEnergyId"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_75percentPercent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentPercent"
-                    app:layout_constraintTop_toBottomOf="@+id/progress_bar_breath" />
+                    app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
                 <TextView
                     android:id="@+id/subTextHeartId"
@@ -683,14 +683,14 @@
                     style="@style/TextColorBlack"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:alpha="1"
                     android:text="@string/gums"
                     android:textAlignment="center"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/subTextEnergyId"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_vertical_75percentPercent"
-                    app:layout_constraintTop_toBottomOf="@+id/progress_bar_blood" />
+                    app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
 
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_energy"
@@ -1026,28 +1026,25 @@
                     style="@style/TextColorBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginBottom="8dp"
                     android:alpha="1"
                     android:text="Q! Day: "
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/YourProgressIdCigaretes"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/YourHighestStreakId"
-                    app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30percentBottom"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_30percentBottom" />
 
                 <TextView
                     android:id="@+id/YourQDay2"
                     style="@style/TextColorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:alpha="1"
                     android:text="24-09-2019"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/YourQDay"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                    app:layout_constraintHorizontal_bias="0.1"
                     app:layout_constraintStart_toEndOf="@+id/YourQDay"
                     app:layout_constraintTop_toTopOf="@+id/YourQDay" />
 
@@ -1055,93 +1052,85 @@
                     android:id="@+id/infoHighestDaysProgress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:src="@drawable/ic_info_outline_grey_24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId2"
                     app:layout_constraintStart_toEndOf="@+id/YourHighestStreakId2"
-                    app:layout_constraintTop_toTopOf="@+id/YourHighestStreakId" />
+                    app:layout_constraintTop_toTopOf="@+id/YourHighestStreakId2" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/infoLifeRegainedProgress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:src="@drawable/ic_info_outline_grey_24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours2"
                     app:layout_constraintStart_toEndOf="@+id/YourProgressIdHours2"
-                    app:layout_constraintTop_toTopOf="@+id/YourProgressIdHours"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toTopOf="@+id/YourProgressIdHours2" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/infoCigarettesProgress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:src="@drawable/ic_info_outline_grey_24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes2"
                     app:layout_constraintStart_toEndOf="@+id/YourProgressIdCigaretes2"
-                    app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes2" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/infoQDayProgress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:src="@drawable/ic_info_outline_grey_24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/YourQDay"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/YourQDay2"
                     app:layout_constraintStart_toEndOf="@+id/YourQDay2"
-                    app:layout_constraintTop_toTopOf="@+id/YourQDay" />
+                    app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentBottom" />
 
                 <TextView
                     android:id="@+id/YourProgressIdCigaretes"
                     style="@style/TextColorBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginBottom="8dp"
                     android:alpha="1"
                     android:text="example 1"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/YourHighestStreakId"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/YourHighestStreakId" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/YourProgressIdCigaretes2"
                     style="@style/TextColorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:alpha="1"
                     android:text="900"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdCigaretes"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                    app:layout_constraintHorizontal_bias="0.1"
                     app:layout_constraintStart_toEndOf="@+id/YourProgressIdCigaretes"
                     app:layout_constraintTop_toTopOf="@+id/YourProgressIdCigaretes" />
 
@@ -1156,23 +1145,19 @@
                     android:text="example 2"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentBottom"
-                    app:layout_constraintVertical_bias="0.6" />
+                    app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentBottom" />
 
                 <TextView
                     android:id="@+id/YourHighestStreakId2"
                     style="@style/TextColorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:alpha="1"
                     android:text="24-09-2019"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                    app:layout_constraintHorizontal_bias="0.1"
                     app:layout_constraintStart_toEndOf="@+id/YourHighestStreakId"
                     app:layout_constraintTop_toTopOf="@+id/YourHighestStreakId" />
 
@@ -1181,15 +1166,13 @@
                     style="@style/TextColorBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:alpha="1"
                     android:text="example 3"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/YourHighestStreakId"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/YourHighestStreakId"
                     app:layout_constraintVertical_bias="0.0" />
 
@@ -1198,12 +1181,11 @@
                     style="@style/TextColorOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:alpha="1"
                     android:text="24-09-2019"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/YourProgressIdHours"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
-                    app:layout_constraintHorizontal_bias="0.1"
                     app:layout_constraintStart_toEndOf="@+id/YourProgressIdHours"
                     app:layout_constraintTop_toTopOf="@+id/YourProgressIdHours" />
 

@@ -1140,7 +1140,7 @@ public class MainActivity extends AppCompatActivity {
         milestoneAlert.setTitle(title);
         milestoneAlert.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.popup_menu_round));
         milestoneAlert.setCancelable(false);
-        milestoneAlert.setPositiveButton(getString(R.string.YES), new DialogInterface.OnClickListener() {
+        milestoneAlert.setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 generateCravingText();
                 setTodayToClickDay();
