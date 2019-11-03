@@ -105,4 +105,17 @@
     <string name="craving_text_index_four">与上述相同的美国研究也研究了饮料。碳酸饮料，酒精，可乐，茶和咖啡都使香烟的味道更好。因此，外出时多喝水和果汁。有些人发现简单地改变他们的饮料（例如，从葡萄酒改为伏特加酒和番茄汁）会影响他们抽烟的需求。</string>
     <string name="craving_text_index_nine">不断提醒自己为什么决定放弃。列出原因并在需要支持时阅读。 26岁的前吸烟者丹尼尔（Daniel）说：“出去时，我常常和我一起拍下我的宝贝女儿的照片。如果我很受诱惑，我会去看看的。”阅读有关NHS上的戒烟治疗的更多信息。</string>
     <string name="craving_text_index_one">您可能曾经尝试过戒烟并且没有进行管理，但是不要让它让您失望。回顾一下您的经验教给您的内容，并考虑一下这次您将如何去做。</string>
+    <string name="craving_text_index_seven">科学研究的回顾表明，运动，甚至步行或伸展5分钟，都可以减少渴望，并且可以帮助您的大脑产生抗渴望的化学物质。</string>
+    <string name="craving_text_index_six">如果朋友或家人也想放弃，建议他们一起放弃。您当地的戒烟服务还提供支持。您是否知道在他们的专家帮助和建议下成功退出的可能性是您的四倍？</string>
+    <string name="craving_text_index_three">饭后香烟是您的最爱吗？美国的一项研究表明，包括肉类在内的某些食物使香烟更令人满意。其他产品，包括奶酪，水果和蔬菜，使香烟的味道很糟。因此，将您通常的牛排或汉堡换成素食比萨。</string>
+    <string name="craving_text_index_two">做出承诺，设定日期并遵守。坚持“不拖累”规则确实有帮助。每当您发现自己遇到困难时，对自己说：“我什至没有阻力”，并坚持下去直到渴望通过。</string>
+    <string name="craving_title_index_eight">保持双手和嘴巴忙碌</string>
+    <string name="craving_title_index_five">确定何时渴望吸烟</string>
+    <string name="craving_title_index_four">换酒</string>
+    <string name="craving_title_index_nine">列出退出原因</string>
+    <string name="craving_title_index_one">往正面想</string>
+    <string name="craving_title_index_seven">动起来</string>
+    <string name="craving_title_index_six">获得一些戒烟支持</string>
+    <string name="craving_title_index_three">考虑你的饮食</string>
+    <string name="craving_title_index_two">制定戒烟计划</string>
 </resources>

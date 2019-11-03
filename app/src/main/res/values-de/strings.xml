@@ -106,4 +106,17 @@
     <string name="craving_text_index_four">Die gleiche US-Studie wie oben befasste sich auch mit Getränken. Sprudelnde Getränke, Alkohol, Cola, Tee und Kaffee lassen Zigaretten besser schmecken. Wenn Sie nicht da sind, trinken Sie mehr Wasser und Saft. Manche Menschen bemerken, dass ein einfacher Wechsel ihres Getränks (zum Beispiel der Wechsel von Wein zu Wodka und Tomatensaft) das Bedürfnis beeinträchtigt, nach einer Zigarette zu greifen.</string>
     <string name="craving_text_index_nine">Erinnern Sie sich immer wieder daran, warum Sie die Entscheidung getroffen haben, aufzugeben. Machen Sie eine Liste der Gründe und lesen Sie sie, wenn Sie Unterstützung benötigen. Der Ex-Raucher Daniel, 26, sagt: \"Ich habe immer ein Foto von meiner kleinen Tochter mitgenommen, als ich ausgegangen bin. Wenn ich versucht wäre, würde ich mir das ansehen.\" Lesen Sie mehr über die Stop Smo King-Behandlungen, die im NHS angeboten werden.</string>
     <string name="craving_text_index_one">Sie haben vielleicht schon einmal versucht, mit dem Rauchen aufzuhören und es nicht geschafft, aber lassen Sie sich dadurch nicht abschrecken. Schauen Sie zurück auf die Dinge, die Ihnen Ihre Erfahrung beigebracht hat, und überlegen Sie, wie Sie es dieses Mal wirklich tun werden.</string>
+    <string name="craving_text_index_seven">Eine Überprüfung wissenschaftlicher Studien hat gezeigt, dass körperliche Betätigung, sogar ein 5-minütiges Gehen oder Strecken, Heißhungerattacken mindert und Ihrem Gehirn dabei helfen kann, Chemikalien gegen Heißhunger zu produzieren.</string>
+    <string name="craving_text_index_six">Wenn Freunde oder Familienmitglieder ebenfalls aufgeben möchten, schlagen Sie ihnen vor, dass Sie gemeinsam aufgeben. Es gibt auch Unterstützung von Ihrem örtlichen Raucherentwöhnungsdienst. Wussten Sie, dass es bis zu vier Mal wahrscheinlicher ist, dass Sie mit fachkundiger Hilfe und Beratung erfolgreich kündigen?</string>
+    <string name="craving_text_index_three">Ist Ihre Zigarette nach dem Abendessen Ihre Lieblingszigarette? Eine US-Studie ergab, dass einige Lebensmittel, einschließlich Fleisch, Zigaretten befriedigender machen. Andere, darunter Käse, Obst und Gemüse, machen Zigaretten schrecklich schmecken. Tauschen Sie stattdessen Ihr übliches Steak oder Ihren Burger gegen eine vegetarische Pizza aus.</string>
+    <string name="craving_text_index_two">Machen Sie ein Versprechen, legen Sie ein Datum fest und halten Sie sich daran. Das Festhalten an der \"Not a Drag\" -Regel kann wirklich helfen. Wenn Sie sich in Schwierigkeiten befinden, sagen Sie sich: \"Ich werde nicht einmal einen einzigen Zug haben\" und bleiben Sie dabei, bis das Verlangen nachlässt.</string>
+    <string name="craving_title_index_eight">Halten Sie Ihre Hände und Ihren Mund beschäftigt</string>
+    <string name="craving_title_index_five">Identifizieren Sie, wann Sie sich nach Zigaretten sehnen</string>
+    <string name="craving_title_index_four">Ändere dein Getränk</string>
+    <string name="craving_title_index_nine">Machen Sie eine Liste mit Gründen zum Beenden</string>
+    <string name="craving_title_index_one">Denk positiv</string>
+    <string name="craving_title_index_seven">Beweg dich</string>
+    <string name="craving_title_index_six">Holen Sie sich Unterstützung beim Aufhören mit dem Rauchen</string>
+    <string name="craving_title_index_three">Betrachten Sie Ihre Ernährung</string>
+    <string name="craving_title_index_two">Machen Sie einen Plan, mit dem Rauchen aufzuhören</string>
 </resources>

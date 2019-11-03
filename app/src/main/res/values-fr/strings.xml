@@ -106,4 +106,17 @@
     <string name="craving_text_index_four">La même étude américaine que ci-dessus a également porté sur les boissons. Les boissons gazeuses, l\'alcool, les boissons gazeuses, le thé et le café font que les cigarettes ont meilleur goût. Alors, quand tu seras dehors, bois plus d\'eau et de jus. Certaines personnes se contentent de changer de boisson (par exemple, passer du vin à une vodka ou à un jus de tomate) affecte leur besoin d\'aller chercher une cigarette.</string>
     <string name="craving_text_index_nine">Continuez à vous rappeler pourquoi vous avez pris la décision d\'abandonner. Faites une liste des raisons et lisez-la lorsque vous avez besoin d\'assistance. Daniel, un ex-fumeur de 26 ans, a déclaré: \"Quand je sortais, je prenais une photo de ma petite fille avec moi. Si j\'étais tenté, je regarderais ça.\" En savoir plus sur les traitements stop smo king disponibles sur le NHS.</string>
     <string name="craving_text_index_one">Vous avez peut-être déjà essayé d\'arrêter de fumer sans y parvenir, mais ne vous laissez pas décourager. Revenez sur ce que votre expérience vous a appris et réfléchissez à la façon dont vous allez vraiment le faire cette fois-ci.</string>
+    <string name="craving_text_index_seven">Un examen des études scientifiques a prouvé que l\'exercice, même une marche ou un étirement de 5 minutes, coupe les envies de fumer et peut aider votre cerveau à produire des produits chimiques anti-soif.</string>
+    <string name="craving_text_index_six">Si des amis ou des membres de la famille veulent abandonner aussi, proposez-leur de renoncer ensemble. Un service d’arrêt du tabac local est également disponible. Saviez-vous que vous avez jusqu\'à 4 fois plus de chances de réussir à arrêter de fumer avec leur aide et leurs conseils d\'experts?</string>
+    <string name="craving_text_index_three">Est-ce que votre cigarette d\'après-dîner est votre préférée? Une étude américaine a révélé que certains aliments, y compris la viande, rendent les cigarettes plus satisfaisantes. D\'autres, comme le fromage, les fruits et les légumes, rendent le goût des cigarettes terrible. Alors remplacez votre steak ou votre hamburger habituel par une pizza végétarienne.</string>
+    <string name="craving_text_index_two">Faites une promesse, fixez une date et respectez-la. S\'en tenir à la règle \"pas un frein\" peut vraiment aider. Chaque fois que vous vous trouvez en difficulté, dites-vous: \"Je n\'aurai même pas une traînée\", et persévérez jusqu\'à ce que vos envies passent.</string>
+    <string name="craving_title_index_eight">Gardez vos mains et votre bouche occupées</string>
+    <string name="craving_title_index_five">Identifiez quand vous avez envie de cigarettes</string>
+    <string name="craving_title_index_four">Change ton verre</string>
+    <string name="craving_title_index_nine">Faites une liste de raisons pour arrêter de fumer</string>
+    <string name="craving_title_index_one">Penser positivement</string>
+    <string name="craving_title_index_seven">Bouger</string>
+    <string name="craving_title_index_six">Obtenir de l\'aide pour arrêter de fumer</string>
+    <string name="craving_title_index_three">Considérez votre régime</string>
+    <string name="craving_title_index_two">Établissez un plan pour cesser de fumer</string>
 </resources>

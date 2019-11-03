@@ -106,4 +106,17 @@
     <string name="craving_text_index_four">El mismo estudio de EE. UU. Que el anterior también analizó las bebidas. Las bebidas gaseosas, el alcohol, la cola, el té y el café hacen que los cigarrillos sepan mejor. Entonces, cuando salgas, bebe más agua y jugo. Algunas personas encuentran que simplemente cambiar su bebida (por ejemplo, cambiar de vino a vodka y jugo de tomate) afecta su necesidad de alcanzar un cigarrillo.</string>
     <string name="craving_text_index_nine">Sigue recordándote por qué tomaste la decisión de rendirte. Haga una lista de los motivos y léala cuando necesite asistencia. El ex fumador Daniel, de 26 años, dice: \"Solía ​​tomar una foto de mi pequeña hija cuando salí. Si tuviera la tentación, lo miraría\". Lea más sobre los tratamientos para dejar de fumar disponibles en el NHS.</string>
     <string name="craving_text_index_one">Es posible que haya tratado de dejar de fumar antes y no lo haya logrado, pero no permita que eso lo desanime. Mire hacia atrás a las cosas que su experiencia le ha enseñado y piense cómo realmente lo va a hacer esta vez.</string>
+    <string name="craving_text_index_seven">Una revisión de estudios científicos ha demostrado que el ejercicio, incluso una caminata o estiramiento de 5 minutos, reduce los antojos y puede ayudar a su cerebro a producir químicos anti-antojos.</string>
+    <string name="craving_text_index_six">Si sus amigos o familiares también quieren renunciar, sugiérales que renuncien juntos. También hay soporte disponible de su servicio local para dejar de fumar. Sabía que tiene hasta 4 veces más probabilidades de dejar de fumar con éxito con su ayuda y asesoramiento expertos?</string>
+    <string name="craving_text_index_three">Es tu cigarrillo después de cenar tu favorito? Un estudio estadounidense reveló que algunos alimentos, incluida la carne, hacen que los cigarrillos sean más satisfactorios. Otros, como queso, frutas y verduras, hacen que los cigarrillos tengan un sabor terrible. Así que cambie su bistec o hamburguesa habitual por una pizza vegetariana.</string>
+    <string name="craving_text_index_two">Haz una promesa, fija una fecha y cúmplela. Cumplir con la regla de \"no arrastrar\" realmente puede ayudar. Cada vez que te encuentres en dificultades, dite a ti mismo: \"Ni siquiera tendré un solo arrastre\", y quédate con esto hasta que pasen los antojos.</string>
+    <string name="craving_title_index_eight">Mantenga sus manos y boca ocupadas</string>
+    <string name="craving_title_index_five">Identifica cuando anhelas los cigarrillos</string>
+    <string name="craving_title_index_four">Cambia tu bebida</string>
+    <string name="craving_title_index_nine">Haga una lista de razones para dejar de fumar</string>
+    <string name="craving_title_index_one">Piensa positivo</string>
+    <string name="craving_title_index_seven">Muévanse</string>
+    <string name="craving_title_index_six">Obtenga ayuda para dejar de fumar</string>
+    <string name="craving_title_index_three">Considera tu dieta</string>
+    <string name="craving_title_index_two">Haga un plan para dejar de fumar.</string>
 </resources>
