@@ -101,4 +101,10 @@
     <string name="progress">progres</string>
     <string name="instead_of_smoking">Sfaturi</string>
     <string name="example_instead_of_text">Cine este in control, tu sau corpul tau ?</string>
+    <string name="no_quotes">Citatele nu sunt disponiile …</string>
+    <string name="craving_text_index_eight">Terapia de înlocuire cu nicotină (NRT) îți poate dubla șansele de succes. Pe lângă patch-uri, există tablete, pastile, gumă și un spray nazal. Și dacă vă place să țineți o țigară, există produse de mână precum inhalatorul sau e-țigările. Când ieșiți, încercați să puneți băutura în mâna care ține de obicei o țigară sau bea dintr-un paie pentru a vă ține gura ocupată.</string>
+    <string name="craving_text_index_five">O pofta poate dura 5 minute. Înainte de a renunța, fă o listă cu strategiile de 5 minute. De exemplu, puteți părăsi petrecerea pentru un minut, dansați sau mergeți la bar. Și gândiți-vă la asta: combinația de fumat și băut crește riscul de cancer de gură de 38 de ori.</string>
+    <string name="craving_text_index_four">Același studiu american am arătat și la băuturi. Băuturile aromate, alcoolul, cola, ceaiul și cafeaua fac ca țigările să aibă un gust mai bun. Așa că, atunci când vei ieși, bea mai multă apă și suc. Unii oameni consideră că simpla schimbare a băuturii (de exemplu, trecerea de la vin la vodcă și suc de roșii) afectează nevoia lor de a ajunge la o țigară.</string>
+    <string name="craving_text_index_nine">Reamintește-ți de ce ai luat decizia de a renunța. Faceți o listă cu motivele și citiți-o atunci când aveți nevoie de asistență. Fostul fumător Daniel, în vârstă de 26 de ani, spune: \"Am făcut o poză fiicei mele cu mine când am ieșit. Dacă aș fi ispitit, m-aș uita la asta.\" Citiți mai multe despre tratamentele stop smooth king disponibile pe NHS.</string>
+    <string name="craving_text_index_one">Poate că ați încercat să renunțați la fumat și nu l-ați gestionat, dar nu lăsați asta să vă lase. Privește înapoi lucrurile pe care ți le-a învățat experiența și gândește-te la modul în care o vei face cu adevărat de data asta.</string>
 </resources>

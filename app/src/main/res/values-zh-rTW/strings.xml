@@ -7,7 +7,6 @@
     <string name="total_savings">这是您的总储蓄: %s</string>
     <string name="total_money_saved_congrats">您的总金额</string>
     <string name="progressactivity_get_started">开始您想要的生活</string>
-    <string name="maxCounter" translatable="false">maxCounter</string>
     <string name="checkinStr">您每天都将在 %d:00</string>
     <string name="error_sum">请输入总和</string>
     <string name="num_of_cig">请输入一个数字</string>
@@ -100,4 +99,10 @@
     <string name="calculating">计算中 …</string>
     <string name="instead_of_smoking">渴望技巧</string>
     <string name="example_instead_of_text">还记得谁控制着你，还是你的身体？</string>
+    <string name="no_quotes">目前没有报价 …</string>
+    <string name="craving_text_index_eight">尼古丁替代疗法（NRT）可以使您成功的机会翻倍。除贴剂外，还有片剂，锭剂，口香糖和喷鼻剂。如果您喜欢拿着香烟，可以使用诸如吸入器或电子烟之类的手持产品。外出时，请尝试将饮料放在通常会抽烟的手中，或尝试用吸管喝饮料以保持嘴巴忙碌。</string>
+    <string name="craving_text_index_five">渴望可以持续5分钟。放弃之前，请列出5分钟的策略。例如，您可以离开聚会一分钟，跳舞或去酒吧。考虑一下：吸烟和饮酒相结合会使您患口腔癌的风险增加38倍。</string>
+    <string name="craving_text_index_four">与上述相同的美国研究也研究了饮料。碳酸饮料，酒精，可乐，茶和咖啡都使香烟的味道更好。因此，外出时多喝水和果汁。有些人发现简单地改变他们的饮料（例如，从葡萄酒改为伏特加酒和番茄汁）会影响他们抽烟的需求。</string>
+    <string name="craving_text_index_nine">不断提醒自己为什么决定放弃。列出原因并在需要支持时阅读。 26岁的前吸烟者丹尼尔（Daniel）说：“出去时，我常常和我一起拍下我的宝贝女儿的照片。如果我很受诱惑，我会去看看的。”阅读有关NHS上的戒烟治疗的更多信息。</string>
+    <string name="craving_text_index_one">您可能曾经尝试过戒烟并且没有进行管理，但是不要让它让您失望。回顾一下您的经验教给您的内容，并考虑一下这次您将如何去做。</string>
 </resources>
