@@ -12,6 +12,8 @@
     <color name="white">#FFF</color>
     <color name="orange_not_referenced">#ffff8800</color>
 
+    <color name="android_primary">#6200EE</color>
+
     <!-- Grey Color Shades -->
     <color name="grey_10">#FBFBFB</color>
     <color name="grey_50">#FAFAFA</color>

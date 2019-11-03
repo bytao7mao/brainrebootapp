@@ -1156,7 +1156,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="8dp"
                         android:alpha="1"
-                        android:text="example 2"
+                        android:text="@string/streak_string"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
@@ -1171,7 +1171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="1"
-                        android:text="24-09-2019"
+                        android:text="@string/not_available"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="@+id/YourHighestStreakId"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_90percentBottom"
@@ -1772,27 +1772,27 @@
                     android:id="@+id/top_announcement_barBottom"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:paddingBottom="16dp"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:layout_margin="16dp"
+                    android:paddingBottom="16dp">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/appCompatImageViewSavings_top"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:background="@drawable/ic_refresh_white_24dp"
+                        android:src="@drawable/ic_refresh_white_24dp"
                         android:clickable="true"
                         android:contentDescription="@string/personal_progress"
                         android:focusable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percentBottom"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_95_percentBottom"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/totalSavingsTopIdBottom"
-                        android:layout_width="wrap_content"
+                        android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:alpha="0.8"
                         android:fontFamily="@font/robotomedium"
@@ -1801,15 +1801,15 @@
                         android:paddingEnd="8dp"
                         android:text="@string/instead_of_smoking"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toStartOf="@+id/appCompatImageViewSavings_top"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_50_percentBottom"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@id/guideline_top_vertical_10_percentBottom"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/savingsTopIdBottom"
-                        android:layout_width="wrap_content"
+                        android:layout_width="280dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
                         android:paddingStart="8dp"
@@ -1817,7 +1817,7 @@
                         android:paddingEnd="8dp"
                         android:text="@string/example_instead_of_text"
                         android:textColor="@color/white"
-                        android:textSize="12sp"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percentBottom"
                         app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_10_percentBottom"
                         app:layout_constraintTop_toBottomOf="@+id/totalSavingsTopIdBottom" />

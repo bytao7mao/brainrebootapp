@@ -120,5 +120,6 @@
     <string name="craving_title_index_seven">"Get moving"</string>
     <string name="craving_title_index_eight">"Keep your hands and mouth busy"</string>
     <string name="craving_title_index_nine">"Make a list of reasons to quit"</string>
+    <string name="not_available">not available</string>
 
 </resources>

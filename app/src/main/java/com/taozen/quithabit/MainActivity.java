@@ -514,13 +514,8 @@ public class MainActivity extends AppCompatActivity {
             if (preferences.contains(COUNTER)) {
                 counter = preferences.getInt(COUNTER, -1);
             }
-            //setting the achievments images for user
-            showEntireProgressForUserCard(userCigaretesProgressTxt,
-                    userCigaretesProgressTxt2,
-                    userHighestStreakTxt,
-                    userHighestStreakTxt2,
-                    userHoursProgressTxt,
-                    userHoursProgressTxt2);
+//            getLastHighestStreakDay();
+            estabilishHighestRecordForCounter();
             setImagesForAchievementCard();
             setImprovementProgressLevels();
             TvExploreAchievement.setOnClickListener(new View.OnClickListener() {
@@ -576,6 +571,19 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }//[END OF RETRIEVING VALUES]
     }//[END OF ONCREATE]
+
+    private void getLastHighestStreakDay() {
+        //getting the highest streak and put it in progress card
+        final int HIGHEST_STREAK;
+        if (preferences.contains(HIGHEST)){
+            HIGHEST_STREAK = preferences.getInt(HIGHEST, ONE);
+        } else {
+            HIGHEST_STREAK = preferences.getInt(COUNTER, ONE);
+        }
+        final String TEMP_STREAK = getString(R.string.streak_string);
+        userHighestStreakTxt.setText(TEMP_STREAK);
+        userHighestStreakTxt2.setText(String.valueOf(HIGHEST_STREAK));
+    }
 
     private void checkActivityFromSplashScreen() {
         //using API from splash
@@ -661,11 +669,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTargetAfterCheckingCounter() {
-        if (preferences.contains(COUNTER)){ counter = preferences.getInt(COUNTER, -1);counterText.setText(String.valueOf(counter)); }
+        if (preferences.contains(COUNTER)) {
+            counter = preferences.getInt(COUNTER, -1);
+            if (counter == ZERO) {
+                counterText.setText("?");
+            } else {
+                counterText.setText(String.valueOf(counter));
+            }
+        }
         //test
-        if (!preferences.contains(COUNTER)){counterText.setText(ZERO_STRING);
+        if (!preferences.contains(COUNTER)){counterText.setText("?");
         } else {
-            counterText.setText(String.valueOf(counter));
+            if (counter == ZERO) {
+                counterText.setText("?");
+            } else {
+                counterText.setText(String.valueOf(counter));
+            }
         }
         if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, ZERO);}
         if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, ZERO); }
@@ -1012,6 +1031,7 @@ public class MainActivity extends AppCompatActivity {
                 if (preferences.contains("diff") && higherThanOne) {
                     final int DIF = preferences.getInt("diff", -100);
                     counter = counter + DIF;
+                    estabilishHighestRecordForCounter();
                     setCounterImageDaysOrDay(counter);
                     if (preferences.contains("tempLong")){
                         longFromSavingActivity = preferences.getLong("tempLong", ZERO);
@@ -1029,6 +1049,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     counter++;
+                    estabilishHighestRecordForCounter();
                     setCounterImageDaysOrDay(counter);
                     savings = preferences.getLong(SAVINGS_FINAL, ZERO) + firstSave;
                     if (BuildConfig.DEBUG) {
@@ -1046,7 +1067,11 @@ public class MainActivity extends AppCompatActivity {
                 savingsGetAndSetValue();
                 setImprovementProgressLevels();
                 setImagesForAchievementCard();
-                counterText.setText(String.valueOf(counter));
+                if (counter == ZERO) {
+                    counterText.setText("?");
+                } else {
+                    counterText.setText(String.valueOf(counter));
+                }
                 setTargetDays();
                 //var 1 - dialog after answer
                 positiveDialogAfterPassDay();
@@ -1059,6 +1084,7 @@ public class MainActivity extends AppCompatActivity {
                         userHoursProgressTxt,
                         userHoursProgressTxt2);
 //                counterImgViewProgressbar.setProgress(counter);
+//                getLastHighestStreakDay();
             }
         });
         milestoneAlert.setNegativeButton(getString(R.string.NO), new DialogInterface.OnClickListener() {
@@ -1104,10 +1130,15 @@ public class MainActivity extends AppCompatActivity {
                     savingsGetAndSetValue();
                     setImprovementProgressLevels();
                     counter = preferences.getInt(COUNTER, -1);
-                    counterText.setText(String.valueOf(counter));
+                    if (counter == ZERO) {
+                        counterText.setText("?");
+                    } else {
+                        counterText.setText(String.valueOf(counter));
+                    }
                     setTargetDays();
                     negativeDialogAfterRelapse();
                     estabilishHighestRecordForCounter();
+//                    getLastHighestStreakDay();
 //                    counterImgViewProgressbar.setProgress(counter);
                 } catch (final Exception e) {
                     e.printStackTrace();
@@ -1157,6 +1188,7 @@ public class MainActivity extends AppCompatActivity {
                 setCheckInText();
                 if (counter == ZERO) {
                     savings = preferences.getLong("taoz10", -10);
+                    counterText.setText("?");
                 }
                 if (counter == 1) {
                     if (preferences.contains(SAVINGS_FINAL)){
@@ -1166,6 +1198,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 counter++;
+                estabilishHighestRecordForCounter();
                 setCounterImageDaysOrDay(counter);
                 if (counter == 1){
                     savings = preferences.getLong(SAVINGS_FINAL, ZERO);
@@ -1189,10 +1222,13 @@ public class MainActivity extends AppCompatActivity {
                 savingsGetAndSetValue();
                 setImprovementProgressLevels();
                 setImagesForAchievementCard();
-                counterText.setText(String.valueOf(counter));
+                if (counter == ZERO) {
+                    counterText.setText("?");
+                } else {
+                    counterText.setText(String.valueOf(counter));
+                }
                 setTargetDays();
                 //var 2 - custom toast after answer
-                estabilishHighestRecordForCounter();
                 showEntireProgressForUserCard(userCigaretesProgressTxt,
                         userCigaretesProgressTxt2,
                         userHighestStreakTxt,
@@ -1247,7 +1283,11 @@ public class MainActivity extends AppCompatActivity {
             savingsGetAndSetValue();
             setImprovementProgressLevels();
             counter = preferences.getInt(COUNTER, -1);
-            counterText.setText(String.valueOf(counter));
+            if (counter == ZERO) {
+                counterText.setText("?");
+            } else {
+                counterText.setText(String.valueOf(counter));
+            }
             setTargetDays();
             //TODO: to replace with another dialog
 //            negativeDialogAfterRelapse();
@@ -1258,21 +1298,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void estabilishHighestRecordForCounter() {
         try {
-            if (preferences.contains("highest")){
+            int c = preferences.getInt(COUNTER, 1);
+            if (preferences.contains("highest")) {
                 //if editor cointains highest, we see which is higher, present counter or last counter;
                 final int FINAL_HIGHEST;
-                final int HIGHEST = preferences.getInt("highest",ZERO);
-                if (counter >= HIGHEST) {
-                    FINAL_HIGHEST = counter;
-                } else {
+                final int HIGHEST = preferences.getInt("highest", ONE); //ex: highest is 2 days
+                if (c >= HIGHEST) { //if counter is 1 >= 2 will be false
+                    FINAL_HIGHEST = c;
+                } else { // so the highest streak will remain 2
                     FINAL_HIGHEST = HIGHEST;
                 }
                 editor.putInt("highest", FINAL_HIGHEST);
                 editor.apply();
             } else {
-                editor.putInt("highest", preferences.getInt(COUNTER, ZERO));
+                editor.putInt("highest", preferences.getInt(COUNTER, ONE));
                 editor.apply();
             }
+            //TODO: add highest to both textviews
+            final String HIGHEST_STREAK_TITLE = getString(R.string.streak_string);
+            userHighestStreakTxt.setText(HIGHEST_STREAK_TITLE);
+            userHighestStreakTxt2.setText(String.valueOf(preferences.getInt("highest", -1)));
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -1558,7 +1603,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(DAYZEN, "onResume");
             }
 //            checkActivityOnline();
-            counterText.setText(String.valueOf(counter));
+            if (counter == ZERO) {
+                counterText.setText("?");
+            } else {
+                counterText.setText(String.valueOf(counter));
+            }
             setCheckInText();
             //Only retrieve and save in onpause
             //-3 default values
@@ -1819,7 +1868,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        counterText.setText(String.valueOf(counter));
+        if (counter == ZERO) {
+            counterText.setText("?");
+        } else {
+            counterText.setText(String.valueOf(counter));
+        }
         finish();
     }
 
@@ -2032,8 +2085,13 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             try {
                 counter = preferences.getInt(COUNTER, counter);
-                if (!preferences.contains(COUNTER)){counterText.setText(ZERO);}else {
-                    counterText.setText(String.valueOf(counter));
+                if (!preferences.contains(COUNTER)){counterText.setText("?");}
+                else {
+                    if (counter == ZERO) {
+                        counterText.setText("?");
+                    } else {
+                        counterText.setText(String.valueOf(counter));
+                    }
                 }
                 updateDisplayString("Trying to get some quotes ...");
                 if (tasks.size() == ZERO) {
@@ -2384,24 +2442,19 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("DAYZEN2", "date: " + q2);
             }
 
-            //getting the highest streak and put it in progress card
-            final int HIGHEST_STREAK;
-            if (preferences.contains(HIGHEST)){
-                HIGHEST_STREAK = preferences.getInt(HIGHEST, ZERO);
-            } else {
-                HIGHEST_STREAK = preferences.getInt(COUNTER, ZERO);
-            }
-            final String TEMP_STREAK = getString(R.string.streak_string);
-            TV_HIGHEST_STREAK.setText(TEMP_STREAK);
-            TV_HIGHEST_STREAK2.setText(String.valueOf(HIGHEST_STREAK));
-            //getting highest rank and put it into ranks card
-            final String LAST_STREAK = preferences.getString(RANK, UNRANKED);
-            final String RANK_LOCAL = getString(R.string.rank_master, LAST_STREAK);
-//            rankMasterTxt.setText(RANK_LOCAL);
+//            //getting the highest streak and put it in progress card
+//            final int HIGHEST_STREAK;
+//            if (preferences.contains(HIGHEST)){
+//                HIGHEST_STREAK = preferences.getInt(HIGHEST, ZERO);
+//            } else {
+//                HIGHEST_STREAK = preferences.getInt(COUNTER, ZERO);
+//            }
+//            final String TEMP_STREAK = getString(R.string.streak_string);
+//            TV_HIGHEST_STREAK.setText(TEMP_STREAK);
+//            TV_HIGHEST_STREAK2.setText(String.valueOf(HIGHEST_STREAK));
 
             if (counter == ZERO) {
                 TV_USER_CIGARETTES_PROGRESS.setText(R.string.cig_press_leaf);
-                final String PRESS_LEAF = getString(R.string.life_press_leaf);
 //                TV_HOURS_PROGRESS.setText(PRESS_LEAF);
             } else {
                 if (preferences.contains(LIFEREGAINED)) {
