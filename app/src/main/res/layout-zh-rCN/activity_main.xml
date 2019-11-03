@@ -27,13 +27,14 @@
             android:id="@+id/intruder"
             style="@style/CustomCardViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:layout_marginTop="32dp"
+            android:layout_height="280dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/colorPrimary"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/guideline_10_top"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline_10_top">
             <!--                android:backgroundTint="@color/colorPrimary"-->
             <!--                android:layout_marginStart="16dp"-->
             <!--                android:layout_marginTop="16dp"-->
@@ -86,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/robotoregular"
-                    android:text="9.000.00 YENI"
+                    android:text="9.000.00 RON"
                     android:textColor="@color/white"
                     android:textSize="42sp"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percent"
@@ -178,7 +179,7 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_percent="0.090"
+            app:layout_constraintGuide_percent="0.10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -364,11 +365,12 @@
                     android:id="@+id/sunny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:src="@drawable/ic_sunlast"
                     app:layout_constraintEnd_toEndOf="@+id/counterImageId"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/counterImageId"
-                    app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_25percentCard" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvTipOfTheDay" />
 
 
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
@@ -656,6 +658,7 @@
                     style="@style/TextColorBlack"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:alpha="1"
                     android:text="@string/breath"
                     android:textAlignment="center"
@@ -663,7 +666,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/subTextEnergyId"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_75percentPercent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_vertical_50percentPercent"
-                    app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
+                    app:layout_constraintTop_toBottomOf="@+id/progress_bar_breath" />
 
                 <TextView
                     android:id="@+id/subTextHeartId"
@@ -684,6 +687,7 @@
                     style="@style/TextColorBlack"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:alpha="1"
                     android:text="@string/gums"
                     android:textAlignment="center"
@@ -691,7 +695,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/subTextEnergyId"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_vertical_75percentPercent"
-                    app:layout_constraintTop_toTopOf="@+id/subTextEnergyId" />
+                    app:layout_constraintTop_toBottomOf="@+id/progress_bar_breath" />
 
                 <com.budiyev.android.circularprogressbar.CircularProgressBar
                     android:id="@+id/progress_bar_energy"
@@ -1770,22 +1774,20 @@
                 android:id="@+id/top_announcement_barBottom"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="16dp"
-                android:paddingBottom="16dp">
+                android:layout_margin="8dp"
+                android:paddingBottom="8dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageViewSavings_top"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/ic_refresh_white_24dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:contentDescription="@string/personal_progress"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="8dp"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_top_vertical_95_percentBottom"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_top_vertical_95_percentBottom"
+                    android:src="@drawable/ic_refresh_white_24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -1809,6 +1811,7 @@
                     android:id="@+id/savingsTopIdBottom"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/robotomedium"
                     android:paddingStart="8dp"
                     android:paddingTop="8dp"

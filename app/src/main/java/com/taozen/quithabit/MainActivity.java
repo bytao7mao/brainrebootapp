@@ -682,9 +682,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             if (counter == ZERO) {
                 counterText.setText("?");
-            } else {
-                counterText.setText(String.valueOf(counter));
             }
+//            else {
+//                counterText.setText(String.valueOf(counter));
+//            }
         }
         if (preferences.contains(INITIAL_CIGG_PER_DAY)){cigarettesPerDay = preferences.getInt(INITIAL_CIGG_PER_DAY, ZERO);}
         if (preferences.contains(LIFEREGAINED)){ lifeRegained = preferences.getFloat(LIFEREGAINED, ZERO); }
