@@ -1,5 +1,6 @@
 package com.taozen.quithabit;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

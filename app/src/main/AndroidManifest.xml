@@ -38,6 +38,13 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
 
+        <uses-library android:name="android.test.runner"
+            android:required="false" />
+        <uses-library android:name="android.test.base"
+            android:required="false" />
+        <uses-library android:name="android.test.mock"
+            android:required="false" />
+
         <provider
             android:name=".GenericFileProvider"
             android:authorities="${applicationId}.fileprovider"
