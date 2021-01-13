@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:text="@string/quit_habit_no_smoke_for_android"
+            android:textSize="28sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_10percent" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version_app"
+            android:textSize="18sp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_logo"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/quit_habit_no_smoke_and_the_quit_habit_logos_are_trademarks"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_version" />
+
+        <TextView
+            android:id="@+id/tv_third_party_licences"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/quit_habit_no_smoke_for_android_is_built_using_open_source_software"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_logo" />
+
+        <TextView
+            android:id="@+id/tv_third_party_licences_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/licences"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_third_party_licences" />
+
+        <TextView
+            android:id="@+id/tv_terms_and_conditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textColorLink="@color/colorPrimary"
+            android:text="@string/terms_of_service"
+            android:autoLink="all"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_80percent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10percent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_third_party_licences_link" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_10percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.10" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_80percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.80" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_10percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

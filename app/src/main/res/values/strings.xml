@@ -1,0 +1,276 @@
+<resources>
+    <string name="app_name">Quit Habit! NoSmoking</string>
+    <string name="dashboard" translatable="false">Q! NoSmoke</string>
+    <string name="target_string">Goal: %s</string>
+    <string name="per_total">Per total:</string>
+    <string name="remaining_days">Remaining: %s</string>
+    <string name="total_money_saved">Total money saved</string>
+    <string name="total_savings">This is your total savings: %s</string>
+    <string name="total_money_saved_congrats">Your total amount of money</string>
+    <string name="progress_activity_get_started">Get started on the life you want</string>
+    <string name="maxCounter" translatable="false">maxCounter</string>
+    <string name="check_in_str">You will check-in everyday at %d:00</string>
+    <string name="error_sum">Please input a sum</string>
+    <string name="num_of_cig">Please input a number</string>
+    <string name="thanks_for_downloading_this_app">We use this information to show you         some personal statistics such as the amount         of money you\'re saving by giving up     smoking.</string>
+    <string name="agreeing_to_terms">By using this app you are agreeing to our</string>
+    <string name="rank_master">Current Rank: %s</string>
+    <string name="streak_string">Highest days streak: </string>
+    <string name="non_smoker_since">Days Smoke Free</string>
+    <string name="one_day_smoke_free">One Day Smoke Free</string>
+    <string name="check_in_tomorrow">Check-in: tomorrow!</string>
+    <string name="check_in">Check-in</string>
+    <string name="daily_quote">Today\'s motivation!</string>
+    <string name="q_day">Q! Day: </string>
+    <string name="cannot_be_zero">Cannot be 0!</string>
+    <string name="check_in_now">Check-in now!</string>
+    <string name="your_entire_progress">Your entire progress</string>
+    <string name="cig_not_smoked">Cigarettes not smoked:</string>
+    <string name="cig_press_leaf">Press check-in to calculate</string>
+    <string name="life_press_leaf">Press check-in to calculate</string>
+    <string name="life_reg">Life regained: </string>
+    <string name="explore">Explore</string>
+    <string name="your_savings">Your latest savings</string>
+    <string name="your_latest_achievments">Your latest achievements</string>
+    <string name="personal_progress">Personal progress</string>
+    <string name="error_loading_data_from_api">Cannot retrieve data from server</string>
+    <string name="energy">Energy levels</string>
+    <string name="breath">Proper breathing</string>
+    <string name="fatigue">Heart rate</string>
+    <string name="gums">Blood circulation</string>
+    <string name="how_many_cigarettes_per_day">How many cigarettes per day ?</string>
+    <string name="how_much_do_you_spend_per_day">How much do you spend per day ?</string>
+    <string name="break_your_habit">Break your habit now!</string>
+    <string name="cigarettes">cigarettes</string>
+    <string name="example_of_tip_of_the_day">"For Every Reason It\'s Not Possible, There Are Hundreds Of People Who Have Faced The Same Circumstances And Succeeded. – Jack Canfield"</string>
+    <string name="per_day">Per day:</string>
+    <string name="per_day_simple">per day</string>
+    <string name="per_year">Per year:</string>
+    <string name="reset_whole_progress">Reset your whole progress</string>
+    <string name="are_you_sure">Are you sure ?</string>
+    <string name="YES">YES</string>
+    <string name="NO">NO</string>
+    <string name="OK">OK</string>
+    <string name="no_connection">NO INTERNET CONNECTION!</string>
+    <string name="error_forty_four">ERROR 404</string>
+    <string name="tap_to_start_challenge">Tap to start a challenge!</string>
+    <string name="life_r">Life regained:</string>
+    <string name="hours">hours</string>
+    <string name="welcome_to_quit_habit">WELCOME TO QUIT HABIT!</string>
+    <string name="beat_milestone">BEAT YOUR MILESTONE %d DAYS!</string>
+    <string name="ok_to_fail">It\'s OK to fail!</string>
+    <string name="fail_content">Don\'t waste your life! All you need is a little patience and persistence.</string>
+    <string name="awesome">Awesome!</string>
+    <string name="we_will_start_tutorial">We will start tutorial now.</string>
+    <string name="pass_one">Our strength grows out of our weakness - Ralph Waldo Emerson</string>
+    <string name="pass_two">Believe in your potential, and you will be successful - John Maxwell</string>
+    <string name="pass_three">Believe you can and you\'re halfway there - Theodore Roosevelt</string>
+    <string name="pass_four">The surest way not to fail is to determine to succeed - Richard Brinsley Sheridan</string>
+    <string name="pass_five">The secret of getting ahead is getting started - Mark Twain</string>
+    <string name="pass_six">It is in your moments of decision that your destiny is shaped - Tony Robbins</string>
+    <string name="first_day">Hello, this is your first day! Since you\'re here it means that you made the first step in order to get rid of your habit</string>
+    <string name="abstained_last_days">Have you refrain from smoking in the last days ?</string>
+    <string name="abstained_today">Have you refrain from smoking today ?</string>
+    <string name="how_much_to_save">how much money to save</string>
+    <string name="legal">Legal</string>
+    <string name="quit_habit_no_smoke_for_android">QuitHabit! NoSmoke  for Android</string>
+    <string name="quit_habit_no_smoke_for_android_is_built_using_open_source_software">QuitHabit! NoSmoke for Android is built using  open-source software:</string>
+    <string name="privacy_policy"><a href="https://bytao7mao.github.io/quithabit/legal/privacy_policy.html">Privacy Policy</a></string>
+    <string name="add_your_today_s_extra_savings">Add your today\'s extra savings!</string>
+    <string name="unlimited">Be grateful</string>
+    <string name="done">DONE</string>
+    <string name="about_your_smoking">About your smoking</string>
+    <string name="and">and</string>
+    <string name="version_app">Version 0.2 (200)</string>
+    <string name="add">add</string>
+    <string name="add_money">add extra money</string>
+    <string name="get_started">Get Started</string>
+    <string name="you_can_do_it">You can do it</string>
+    <string name="wolf">Wolf</string>
+    <string name="powered_by_q">Powered by Q!</string>
+    <string name="cannot_check_in">You cannot check-in right now! Please check back later.</string>
+    <string name="please_check_tomorrow">Please check again tomorrow!</string>
+    <string name="continue_button">Continue</string>
+    <string name="total_savings_top">Total Savings</string>
+    <string name="quit_date_change">Current streak: %s days</string>
+    <string name="licences"><a href="https://bytao7mao.github.io/quithabit/legal/licences.html">licences</a></string>
+    <string name="quit_habit_no_smoke_and_the_quit_habit_logos_are_trademarks"><a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a> and  the <a href="https://bytao7mao.github.io/quithabit/">Quit Habit! NoSmoke</a>  logos are trademarks of  Marius Nicolae.  All  rights reserved</string>
+    <string name="terms_of_service"><a href="https://bytao7mao.github.io/quithabit/legal/terms_and_conditions.html">Terms and Conditions</a></string>
+    <string name="progress">progress</string>
+    <string name="calculating">Calculating …</string>
+    <string name="instead_of_smoking">Craving tips</string>
+    <string name="example_instead_of_text">Write a list of things you are grateful for.
+        Keep reviewing your list and adding to it every time you have a craving.</string>
+    <string name="no_quotes">No quotes available in this moment …</string>
+    <string name="craving_text_index_one">You might have tried to quit smoking before and not managed it, but don\'t let that put you off.  Look back at the things your experience has taught you and think about how you\'re really going to do it this time.</string>
+    <string name="craving_text_index_two">Make a promise, set a date and stick to it. Sticking to the \"not a drag\" rule can really help. Whenever you find yourself in difficulty, say to yourself, \"I won\'t even have a single drag\", and stick with this until the cravings pass.</string>
+    <string name="craving_text_index_three">"Is your after-dinner cigarette your favourite? A US study revealed that some foods, including meat, make cigarettes more satisfying. Others, including cheese, fruit and vegetables, make cigarettes taste terrible. So swap your usual steak or burger for a veggie pizza instead.  "</string>
+    <string name="craving_text_index_four">The same US study as above also looked at drinks. Fizzy drinks, alcohol, cola, tea and coffee all make cigarettes taste better.  So when you\'re out, drink more water and juice. Some people find simply changing their drink (for example, switching from wine to a vodka and tomato juice) affects their need to reach for a cigarette.</string>
+    <string name="craving_text_index_five">A craving can last 5 minutes. Before you give up, make a list of 5-minute strategies. For example, you could leave the party for a minute, dance or go to the bar.   And think about this: the combination of smoking and drinking raises your risk of mouth cancer by 38 times.</string>
+    <string name="craving_text_index_six">"If friends or family members want to give up, too, suggest to them that you give up together. There's also support available from your local stop smoking service. Did you know that you're up to 4 times more likely to quit successfully with their expert help and advice? "</string>
+    <string name="craving_text_index_seven">"A review of scientific studies has proved exercise, even a 5-minute walk or stretch, cuts cravings and may help your brain produce anti-craving chemicals."</string>
+    <string name="craving_text_index_eight">Nicotine replacement therapy (NRT) can double your chances of success. As well as patches, there are tablets, lozenges, gum and a nasal spray. And if you like holding a cigarette, there are handheld products like the inhalator or e-cigarettes. When you\'re out, try putting your drink in the hand that usually holds a cigarette, or drink from a straw to keep your mouth busy.</string>
+    <string name="craving_text_index_nine">Keep reminding yourself why you made the decision to give up. Make a list of the reasons and read it when you need support. Ex-smoker Daniel, 26, says: \"I used to take a picture of my baby daughter with me when I went out. If I was tempted, I\'d look at that.\"  Read more about the stop smoking treatments available on the NHS.</string>
+    <string name="craving_text_index_ten">The positive health effects of quitting smoking begin 20 minutes after your last cigarette. Your blood pressure and pulse will start to return to more normal levels. In addition, fibers in the bronchial tubes that previously didn\'t move well due to constant exposure to smoke will start to move again. This is beneficial for the lungs: These fibers help move irritants and bacteria out of the lungs, helping reduce the risk for infection.</string>
+    <string name="craving_text_index_eleven">Within eight hours, your carbon monoxide levels will return to a more normal level. Carbon monoxide is a chemical present in cigarette smoke that replaces oxygen particles in the blood, lowering the amount of oxygen your tissues receive. When carbon monoxide goes away, your oxygen levels start to increase to more normal levels. This increased oxygen helps nourish tissues and blood vessels that were getting less oxygen while you were smoking.</string>
+    <string name="craving_text_index_twelve">By the one-day mark, you\'ve already decreased your risk of heart attack. This is because of reduced constriction of veins and arteries as well as increased oxygen levels that go to the heart to boost its functioning. Nicotine levels in your bloodstream have also decreased to negligible amounts at this time.</string>
+    <string name="craving_text_index_thirteen">At 48 hours, previously damaged nerve endings start to regrow. You may also start to notice that senses that were previously dulled due to smoking improve. You may realize you\'re smelling and tasting things better than you were before.</string>
+    <string name="craving_text_index_fourteen">Within three days after quitting smoking, you\'ll often find yourself breathing more easily. This is because the bronchial tubes inside the lungs have started to relax and open up more. This makes air exchange between carbon dioxide and oxygen easier. In addition, your lung capacity, or ability of the lungs to fill up with air, increases about three days after quitting.</string>
+    <string name="craving_text_index_fifteen">The one-week milestone is important not only for your health, but for your success rate in quitting smoking successfully long term. Smokers who successfully make it one week without smoking are nine times as likely to successfully quit. The chances of quitting smoking for good increase with every attempt. If you can make it to one week, you can make it for a lifetime.</string>
+    <string name="craving_text_index_sixteen">In just one short month, you can experience many health changes related to stopping smoking. One is feeling a sense of heightened overall energy. You may also notice that many smoking-related symptoms have decreased, such as sinus congestion and shortness of breath with exercise. In addition to these benefits, fibers in the lungs that help keep the lungs healthy are growing back. These fibers can help reduce excess mucus buildup and protect against bacterial infections.</string>
+    <string name="craving_text_index_seventeen">Within three months after quitting, a woman can improve her fertility as well as reduce the risk that her baby will be born prematurely.</string>
+    <string name="craving_text_index_eighteen">After six months of quitting, many people often notice they\'re better able to handle stressful events that come their way without feeling like they need to smoke. They may also notice they’re coughing up much less mucus and phlegm. This is because the airways are much less inflamed without the constant exposure to cigarette smoke and the chemicals contained within cigarettes.</string>
+    <string name="craving_text_index_nineteen">After one year of quitting smoking, your lungs will have experienced dramatic health improvements in terms of capacity and functioning. You\'ll notice how much easier you breathe when you’re exerting yourself and how much less coughing you have compared to when you smoked.</string>
+    <string name="craving_text_index_twenty">In three years after quitting smoking, your risk of a heart attack has decreased to that of a nonsmoker. Smoking not only limits oxygen flow to the heart. It also damages the lining of the arteries. Fatty tissue starts to build up, making it more likely that a person will experience a heart attack or stroke. Quitting smoking can help reverse these effects and promote a healthier heart in the years to come.</string>
+    <string name="craving_text_index_twenty_one">Five years after you stop smoking, your risk of death from lung cancer has dropped by half compared to when you smoked, according to the University of North Carolina.</string>
+
+    <string name="craving_title_index_one">"Think positive"</string>
+    <string name="craving_title_index_two">"Make a plan to quit smoking"</string>
+    <string name="craving_title_index_three">"Consider your diet"</string>
+    <string name="craving_title_index_four">"Change your drink"</string>
+    <string name="craving_title_index_five">"Identify when you crave cigarettes"</string>
+    <string name="craving_title_index_six">"Get some stop smoking support"</string>
+    <string name="craving_title_index_seven">"Get moving"</string>
+    <string name="craving_title_index_eight">"Keep your hands and mouth busy"</string>
+    <string name="craving_title_index_nine">"Make a list of reasons to quit"</string>
+    <string name="craving_title_index_ten">20 minutes after your last cigarette</string>
+    <string name="craving_title_index_eleven">8 hours after your last cigarette</string>
+    <string name="craving_title_index_twelve">24 hours after your last cigarette</string>
+    <string name="craving_title_index_thirteen">48 hours after your last cigarette</string>
+    <string name="craving_title_index_fourteen">72 hours after your last cigarette</string>
+    <string name="craving_title_index_fifteen">One week after your last cigarette</string>
+    <string name="craving_title_index_sixteen">One month after your last cigarette</string>
+    <string name="craving_title_index_seventeen">Three months after your last cigarette</string>
+    <string name="craving_title_index_eighteen">Six months after your last cigarette</string>
+    <string name="craving_title_index_nineteen">One year after your last cigarette</string>
+    <string name="craving_title_index_twenty">Three years after your last cigarette</string>
+    <string name="craving_title_index_twenty_one">Five years after your last cigarette</string>
+
+
+    <string name="not_available">not available</string>
+    <string name="no_content">We found no content</string>
+    <string name="options">Options</string>
+    <string name="your_progress_will_be_reset">Your progress will reset permanently!</string>
+    <string name="your_progress_has_been_reset">Your progress has been reset!</string>
+    <string name="app_will_restart">App will restart now.</string>
+    <string name="feedback">feedback</string>
+    <string name="there_are_no_email">There are no email clients installed.</string>
+    <string name="send_email">Send e-mail …</string>
+    <string name="share_progress">Share Progress</string>
+    <string name="no_app_available">No App Available</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="congrats_for_share">Congrats for sharing!</string>
+    <string name="my_achievement_share_text">My Q! free achievement</string>
+    <string name="quit_date_text_congrats">Keep in mind that the quit date day is very important for you. From this day you chose to get rid of your bad habit</string>
+    <string name="share_progress_with_friends_text">Sharing your progress with friends is very important because it shows that you\'re committed to this and you should be proud of it.</string>
+    <string name="reboot_way_address" translatable="false">rebootway@outlook.com</string>
+    <string name="your_last_achievement">Your last achievement</string>
+    <string name="achievements">Achievements</string>
+    <string name="achievement">Achievement</string>
+    <string name="motivation_example">Don\'t waste your life on bad habits!</string>
+    <string name="refresh_the_tips">Refresh tips</string>
+    <string name="see_current_achievement">See your achievement!</string>
+    <string name="wonderful_day">Have a wonderful day!</string>
+    <string name="good_night">Hope you have a relaxing night</string>
+    <string name="number_of_days">Days Counter</string>
+    <string name="press_twice">Press back again to exit</string>
+    <string name="info_q_day_text">Here is shown info for your quit day. Q! is the quit day, the date you decided to quit smoking.</string>
+    <string name="info_cigarettes_day_title">Cigarettes</string>
+    <string name="info_cigarettes_day_text">Here is shown the number of cigarettes you didn\'t smoked until today.</string>
+    <string name="info_highest_day_title">Highest record ?</string>
+    <string name="info_highest_day_text">There are times when you relapse on smoking and go back from the start, we will keep a record of your highest record days.</string>
+    <string name="info_life_regained_title">How much time ?</string>
+    <string name="info_life_regained_text">Have you ever wondered how much time will you recover if you quit smoking ? Here we calculate for you how much time you will gain starting from your Q! day.</string>
+    <string name="info_q_day_title">Quit day</string>
+    <string name="quotation_mark" translatable="false">"?"</string>
+    <string name="per_total_in_layout_example" translatable="false">per total:</string>
+    <string name="blood_explanation">2 Weeks - 3 Months. During this time, you make huge strides.
+        You can do more because your lungs are stronger and clearer, and your blood flow has improved.
+        You can exercise without getting as winded.
+        And your risk of a heart attack goes down even more.</string>
+    <string name="heart_explanation">1 year. Your heart attack risk has started to drop.         Your lung function has noticeably improved. If your health permits,         sample your circulation and lung improvement by walking briskly,         climbing stairs or running further or faster than normal.</string>
+    <string name="energy_explanation">1 to 9 months. Any smoking related sinus congestion,         fatigue or shortness of breath has decreased.         Cilia have regrown in your trachea (windpipe) thereby increasing the ability to sweep dirt and mucus out of your lungs.         Your body\'s overall energy has increased.</string>
+    <string name="breath_explanation">72 hours. By the end of day 3,
+        you breathe easier and have more energy.
+        Your lungs start to recover and will keep getting better.</string>
+    <string name="health_progress">Health progress</string>
+    <string name="health">Health</string>
+    <string name="what_happens">What happens when you quit smoking ?</string>
+    <string name="full_recovered">You are now full recovered!</string>
+
+    <string name="congrats_one_week_text">1 Week Smoke Free!</string>
+    <string name="congrats_one_month_text">1 Month Smoke Free!</string>
+    <string name="congrats_two_months_text">2 Months Smoke Free!</string>
+    <string name="congrats_three_months_text">3 Months Smoke Free!</string>
+    <string name="congrats_four_months_text">4 Months Smoke Free!</string>
+    <string name="congrats_five_months_text">5 Months Smoke Free!</string>
+    <string name="congrats_six_months_text">6 Months Smoke Free!</string>
+    <string name="congrats_seven_months_text">7 Months Smoke Free!</string>
+    <string name="congrats_nine_months_text">9 Months Smoke Free!</string>
+    <string name="congrats_one_year_text">1 Year Smoke Free!</string>
+    <string name="congrats_two_years_text">2 Year Smoke Free!</string>
+    <string name="congrats_three_years_text">3 Year Smoke Free!</string>
+
+    <string name="settings_area">Settings area</string>
+    <string name="change_current_streak_period">Change highest streak period</string>
+    <string name="cancel">Cancel</string>
+    <string name="personal_counter_changed_to">Your personal highest streak record changed to</string>
+    <string name="time_picker">counter picker</string>
+    <string name="choose_value">Choose Value</string>
+    <string name="choose_number">Choose a number:</string>
+    <string name="third_party_licences">Third party licences</string>
+    <string name="material_title_example">Material Components For Android</string>
+    <string name="material_content_example">Licensed under the Apache License, Version 2.0 (the License);    you may not use this file except in compliance with the License.    You may obtain a copy of the License at         http://www.apache.org/licenses/LICENSE-2.0     Unless required by applicable law or agreed to in writing, software    distributed under the License is distributed on an AS IS BASIS,    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the License for the specific language governing permissions and    limitations under the License.</string>
+    <string name="sun_moon_icons_made">Sun/Moon/Penguin icons made by Freepik from www.flaticon.com and altered by me.</string>
+    <string name="check_in_icon_made">Check-in icon made by Good Ware from www.flaticon.com and altered by me.</string>
+    <string name="goal_icon_made">Goal icon made by Freepik from www.flaticon.com and altered by me.</string>
+    <string name="remaining_days_icon_made">Remaining days icon made by Freepik from www.flaticon.com and altered by me.</string>
+    <string name="tip_of_the_day_icon_made">Tip of the day icon made by Freepik from www.flaticon.com and altered by me.</string>
+    <string name="savings_icon_template_made">Savings icon template made by Eucalyp from www.flaticon.com and altered by me.</string>
+    <string name="total_money_saved_icon_made">Total money saved icon made by Freepik from www.flaticon.com and altered by me.</string>
+    <string name="achievment_icon_template_made">Achievement icon template made by Smashicons from www.flaticon.com and altered by me.</string>
+    <string name="sharing_your_progres">Sharing your progress with friends can make you proud of, and committed to, your quit.</string>
+
+    <string name="change_smoking_data">Change currency</string>
+    <string name="smoking_data">Ex: Euro(EUR), US Dollar(USD)</string>
+
+    <string name="choose_currency">Choose your currency:</string>
+    <string name="currency_changed">Currency changed to</string>
+    <string name="selected_currency" translatable="false">selected currency: </string>
+    <string name="usd_currency">U.S. Dollar (USD)</string>
+    <string name="eur_currency">European Euro (EUR)</string>
+    <string name="gbp_currency">British Pound (GBP)</string>
+    <string name="jpy_currency">Japanese Yen (JPY)</string>
+    <string name="chf_currency">Swiss Franc (CHF)</string>
+    <string name="cad_currency">Canadian Dollar (CAD)</string>
+    <string name="aud_currency">Australian dollar (AUD)</string>
+    <string name="zar_currency">South African Rand (ZAR)</string>
+    <string name="mxn_currency">Mexican peso (MXN)</string>
+    <string name="try_currency">Turkish lira (TRY)</string>
+    <string name="ro_currency">Romanian leu (RON)</string>
+
+    <string name="happy_holidays">Happy holidays</string>
+    <string name="well_done">Well done!</string>
+    <string name="savings">Savings</string>
+    <string name="quit_date_">Quit Date!</string>
+    <string name="one_day_">1 Day!</string>
+    <string name="one_week_">1 Week!</string>
+    <string name="one_month_">1 Month!</string>
+    <string name="two_months_">2 Months!</string>
+    <string name="three_months_">3 Months!</string>
+    <string name="four_months_">4 Months!</string>
+    <string name="five_months_">5 Months!</string>
+    <string name="six_months_">6 Months!</string>
+    <string name="seven_months_">7 Months!</string>
+    <string name="nine_months_">9 Months!</string>
+    <string name="three_hundred_days_">300 Days!</string>
+    <string name="four_hundred_days_">400 Days!</string>
+    <string name="five_hundred_days_">500 Days!</string>
+    <string name="six_hundred_days_">600 Days!</string>
+    <string name="seven_hundred_days_">700 Days!</string>
+    <string name="eight_hundred_days_">800 Days!</string>
+    <string name="nine_hundred_days_">900 Days!</string>
+    <string name="one_thousand__days_">1000 Days!</string>
+    <string name="one_year_">1 Year!</string>
+
+</resources>

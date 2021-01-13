@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FirstScreenActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/transitions_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        tools:context=".FirstScreenActivity">
+        <!--        android:background="@color/white"-->
+        <!--style="@style/Widget.AppCompat.EditText"-->
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:contentDescription="TODO"-->
+<!--            android:elevation="0.2dp"-->
+<!--            android:src="@mipmap/ic_launcher_round"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <TextView
+            android:id="@+id/tvTitleId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:alpha="0.8"
+            android:fontFamily="@font/robotomedium"
+            android:gravity="center"
+            android:text="@string/break_your_habit"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvSubtitleSmoking"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="8dp"-->
+        <!--            android:text="@string/about_your_smoking"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_25percent"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/edtTxtLayoutForCiggsId" />-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtTxtLayoutForCiggsId"
+            style="@style/EditTextCustomTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_25percent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtTxtForCiggarettedId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/how_many_cigarettes_per_day"
+                android:textSize="12sp" />
+            <!--            android:backgroundTint="@color/greenColorLed"-->
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtTxtForSavingsId"
+            style="@style/EditTextCustomTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtTxtLayoutForCiggsId">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/how_much_do_you_spend_per_day"
+                android:textColorHighlight="@color/colorPrimary"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirmBtn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:background="@color/colorPrimary"
+            android:elevation="0dp"
+            android:text="@string/get_started"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:cornerRadius="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ldpi"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/tvTitleId"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/imageView" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvThanksId"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:paddingStart="10dp"-->
+        <!--            android:paddingEnd="10dp"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:text="@string/thanks_for_downloading_this_app"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textSize="14sp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/edtTxtForSavingsId" />-->
+        <TextView
+            android:id="@+id/tvAllRightsId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/agreeing_to_terms"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/confirmBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tvPolicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/privacy_policy"
+                android:textColorLink="@color/colorPrimary"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/confirmBtn"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_20percent" />
+
+            <TextView
+                android:id="@+id/tvAnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="@string/and"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPolicy"
+                app:layout_constraintEnd_toStartOf="@+id/tvTerms"
+                app:layout_constraintStart_toEndOf="@+id/tvPolicy" />
+
+            <TextView
+                android:id="@+id/tvTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_of_service"
+                android:textColorLink="@color/colorPrimary"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPolicy"
+                app:layout_constraintStart_toEndOf="@+id/tvAnd" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_20percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_10percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.10" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_25percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_80percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp">
+
+        <TextView
+            android:id="@+id/savings_TitleId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/robotomedium"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:padding="24dp"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:text="@string/add_your_today_s_extra_savings"
+            android:textSize="32sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTxtSavingsId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/EditTextCustomTheme"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:layout_below="@id/savings_TitleId">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:hint="@string/how_much_to_save"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/edtTxtForSavingsId"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="8dp"-->
+<!--            style="@style/EditTextCustomTheme"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/edtTxtLayoutForCiggsId">-->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/editText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="@string/how_much_do_you_spend_per_day"-->
+<!--                android:textSize="14sp" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addSavingsBtnId"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTxtSavingsId"
+            android:layout_centerHorizontal="true"
+            app:cornerRadius="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/custom_round_primary_color"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:elevation="0dp"
+            android:text="@string/add_money"
+            android:textAllCaps="true" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/bottom_tap_savings_image"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="8dp"-->
+<!--            android:layout_below="@id/addSavingsBtnId"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:src="@drawable/ic_tap"-->
+<!--            android:contentDescription="TODO" />-->
+
+        <TextView
+            android:id="@+id/savingsTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addSavingsBtnId"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/robotomedium"
+            android:alpha="0.8"
+            android:padding="6dp"
+            android:text="@string/total_money_saved"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/savingsTxtResult"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/savingsTxt"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/robotomedium"
+            android:alpha="0.8"
+            android:text="6.000.000$"
+            android:textSize="38sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/savingsTxtResult"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_money"
+            android:contentDescription="@string/total_money_saved_icon_made" />
+
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            android:id="@+id/adView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/imgSave"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="33dp"-->
+<!--            app:adSize="BANNER"-->
+<!--            app:adUnitId="ca-app-pub-3940256099942544/6300978111">-->
+<!--&lt;!&ndash;       real     ca-app-pub-8605805180436473/8417283556&ndash;&gt;-->
+<!--&lt;!&ndash;     test       ca-app-pub-3940256099942544/6300978111&ndash;&gt;-->
+<!--        </com.google.android.gms.ads.AdView>-->
+    </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

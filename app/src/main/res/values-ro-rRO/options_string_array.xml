@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options_array">
+        <item>"Resetare progres"</item>
+        <item>"Schimba zilele de record"</item>
+        <item>"Schimba moneda"</item>
+        <item>"Trimite feedback"</item>
+        <item>"Legal"</item>
+        <item>"Despre"</item>
+    </string-array>
+    <string-array name="legal_array">
+        <item>"Politica de confidentialitate"</item>
+        <item>"Termeni si servicii"</item>
+        <item>"Licente terte"</item>
+    </string-array>
+</resources>

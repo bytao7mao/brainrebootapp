@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options_array">
+        <item>"Réinitialiser vos progrès"</item>
+        <item>"Changer la période de strie actuelle"</item>
+        <item>"Changer de devise"</item>
+        <item>"Envoyer des commentaires"</item>
+        <item>"Légal"</item>
+        <item>"À propos"</item>
+    </string-array>
+    <string-array name="legal_array">
+        <item>"Politique de confidentialité"</item>
+        <item>"Conditions d'utilisation"</item>
+        <item>"Licences tierces"</item>
+    </string-array>
+</resources>

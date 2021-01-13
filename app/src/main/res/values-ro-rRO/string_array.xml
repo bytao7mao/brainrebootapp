@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles_arr_for_ranks">
+        <item>"</item>
+        <item>"Lup"</item>
+        <item>"Veverita"</item>
+        <item>"Bursuc"</item>
+        <item>"Urs"</item>
+        <item>"Urs Salbatic</item>
+        <item>"Caprioara"</item>
+        <item>"Vier"</item>
+        <item>"Elan"</item>
+        <item>"Castor"</item>
+        <item>"Vulpe"</item>
+        <item>"Ras"</item>
+        <item>"Vultur"</item>
+        <item>"Elefant"</item>
+        <item>"Leopard"</item>
+        <item>"Bivol"</item>
+        <item>"Rechin"</item>
+        <item>"Pantera"</item>
+        <item>"Tigru"</item>
+        <item>"Leu"</item>
+    </string-array>
+    <string-array name = "titles_arr_for_motivation">
+                <item>"Bun venit in clubul Q!"</item>
+                <item>"O calatorie frumoasa!"</item>
+                <item>"Puteti face asta!"</item>
+                <item>"Calea ta!"</item>
+                <item>"Controleaza-te!"</item>
+                <item>"Calea potrivita!"</item>
+                <item>"Calea zen!"</item>
+                <item>"Zen ucenic"</item>
+                <item>"Zen calugar!"</item>
+                <item>"Pastreaza drumul!"</item>
+                <item>"Acesta este singurul mod!"</item>
+                <item>"Numai tu ai controlul!"</item>
+                <item>"Uitati de viata veche!"</item>
+                <item>"Nu esti singur!"</item>
+                <item>"Fii ca apa, prietenul meu"</item>
+                <item>"Hasta la vedere tigarilor"</item>
+                <item>"Nu-ti pierde viata cu vicii!"</item>
+                <item>"Nu te mai intoarce!"</item>
+                <item>"Esti aproape acolo!"</item>
+                <item>"O viata noua!"</item>
+            </string-array>
+    <string-array name = "titles_arr_for_third_party">
+                <item>"Licentiat sub Licenta Apache, versiunea 2.0 ("Licenta");
+   nu puteti utiliza acest fisier decat in ​​conformitate cu Licenta.
+   Puteti obtine o copie a licentei la
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Cu exceptia cazului in care se impune prin legislatia in vigoare sau este convenit in scris, software-ul
+   distribuit sub LicentA este distribuit pe o BAZA "ASA ESTE",
+   FARA GARANTII SAU CONDITII DE ORICE TIP, fie expres, fie implicit.
+   Consultati Licenta pentru limba specifica care reglementeaza permisiunile si
+   limitari in baza licentei."</item> <!-- 1 -->
+                <item>"Licentiat sub Licenta Apache, versiunea 2.0 ("Licenta");
+   nu puteti utiliza acest fisier decat in ​​conformitate cu Licenta.
+   Puteti obtine o copie a licentei la
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Cu exceptia cazului in care se impune prin legislatia in vigoare sau este convenit in scris, software-ul
+   distribuit sub LicentA este distribuit pe o BAZA "ASA ESTE",
+   FARA GARANTII SAU CONDITII DE ORICE TIP, fie expres, fie implicit.
+   Consultati Licenta pentru limba specifica care reglementeaza permisiunile si
+   limitari in baza licentei."</item> <!-- 2 -->
+                <item>"Licentiat sub Licenta Apache, versiunea 2.0 ("Licenta");
+   nu puteti utiliza acest fisier decat in ​​conformitate cu Licenta.
+   Puteti obtine o copie a licentei la
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Cu exceptia cazului in care se impune prin legislatia in vigoare sau este convenit in scris, software-ul
+   distribuit sub LicentA este distribuit pe o BAZA "ASA ESTE",
+   FARA GARANTII SAU CONDITII DE ORICE TIP, fie expres, fie implicit.
+   Consultati Licenta pentru limba specifica care reglementeaza permisiunile si
+   limitari in baza licentei."</item> <!-- 3 -->
+            <item>"Licentiat sub Licenta Apache, versiunea 2.0 ("Licenta");
+   nu puteti utiliza acest fisier decat in ​​conformitate cu Licenta.
+   Puteti obtine o copie a licentei la
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Cu exceptia cazului in care se impune prin legislatia in vigoare sau este convenit in scris, software-ul
+   distribuit sub LicentA este distribuit pe o BAZA "ASA ESTE",
+   FARA GARANTII SAU CONDITII DE ORICE TIP, fie expres, fie implicit.
+   Consultati Licenta pentru limba specifica care reglementeaza permisiunile si
+   limitari in baza licentei."</item> <!-- 4 -->
+
+                <item>"Copyright 2013 Jake Wharton
+
+"Licentiat sub Licenta Apache, versiunea 2.0 ("Licenta");
+   nu puteti utiliza acest fisier decat in ​​conformitate cu Licenta.
+   Puteti obtine o copie a licentei la
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Cu exceptia cazului in care se impune prin legislatia in vigoare sau este convenit in scris, software-ul
+   distribuit sub LicentA este distribuit pe o BAZA "ASA ESTE",
+   FARA GARANTII SAU CONDITII DE ORICE TIP, fie expres, fie implicit.
+   Consultati Licenta pentru limba specifica care reglementeaza permisiunile si
+   limitari in baza licentei."</item> <!-- 5 -->
+
+                <item>"Copyright 2016-2018 Javier Santos
+
+        "Licentiat sub Licenta Apache, versiunea 2.0 ("Licenta");
+   nu puteti utiliza acest fisier decat in ​​conformitate cu Licenta.
+   Puteti obtine o copie a licentei la
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Cu exceptia cazului in care se impune prin legislatia in vigoare sau este convenit in scris, software-ul
+   distribuit sub LicentA este distribuit pe o BAZA "ASA ESTE",
+   FARA GARANTII SAU CONDITII DE ORICE TIP, fie expres, fie implicit.
+   Consultati Licenta pentru limba specifica care reglementeaza permisiunile si
+   limitari in baza licentei."</item> <!-- 6 -->
+
+                <item>"LicentA MIT
+
+        Copyright © 2017 Yuriy Budiyev
+
+        Prin prezenta se acorda, gratuit, oricarei persoane care obtine o copie
+        a acestui software si a fiSierelor de documentare asociate ("Software-ul"), de tratat
+        in software fara restrictii, inclusiv fara limitare a drepturilor
+        sa foloseascAa, sa copieze, sa modifice, sa imbine, sa publice, sa distribuie, sa sublenteze si / sau sa vanda
+        copii ale software-ului si pentru a permite persoanelor carora le este Software-ul
+        mobilat in acest sens, cu respectarea urmatoarelor conditii:
+
+        Notificarea privind drepturile de autor de mai sus si aceasta notificare de permis sunt incluse in toate
+        copii sau portiuni substantiale ale software-ului.
+
+        SOFTWARE-ul ESTE FURNIZAT "ASA ESTE", FARA GARANTIA NICIUNU TIP, EXPRIM SAU
+        IMPLICIT, INCLUS DAR NU SE LIMITA LA GARANtII DE COMERCIABILITATE,
+        CONFORMITATE PENTRU UN SCOP PARTICULAR SI NONFRINGEMENT. NICI UN EVENIMENT NICIODA
+        AUTORII SAU DEtINATORII DREPTULUI DE DREPT DE COPItIE FARA RASPUNSURI PENTRU ORICE PLANDURI, DAUNE SAU ALTE ALTE
+        RESPONSABILITATEA, DUPA O ACTIUNE DE CONTRACT, TORTURA SAU ALTA, VIZITA DE LA,
+        DUPA SAU IN CONEXIUNE CU PROGRAMUL SAU UTILIZAREA SAU ALTE TRATARI IN
+        SOFTWARE."</item> <!-- 7 -->
+
+                <item>"Copyright 2008 Google Inc.
+
+        "Licentiat sub Licenta Apache, versiunea 2.0 ("Licenta");
+   nu puteti utiliza acest fisier decat in ​​conformitate cu Licenta.
+   Puteti obtine o copie a licentei la
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Cu exceptia cazului in care se impune prin legislatia in vigoare sau este convenit in scris, software-ul
+   distribuit sub LicentA este distribuit pe o BAZA "ASA ESTE",
+   FARA GARANTII SAU CONDITII DE ORICE TIP, fie expres, fie implicit.
+   Consultati Licenta pentru limba specifica care reglementeaza permisiunile si
+   limitari in baza licentei."</item> <!-- 8 -->
+                
+            <item>"Sablonul de pictograma de realizare realizat de Smashicons de la www.flaticon.com Si modificat de mine.
+        \nSablonul de pictograma salvat realizat de Eucalyp de la www.flaticon.com si modificat de mine.
+        \nPictograma economisita de bani realizata de Freepik de la www.flaticon .com si modificat de mine.
+        \nTipul pictogramei zilei realizat de Freepik de la www.flaticon.com si modificat de mine.
+        \nPictograma de zile ramase creata de Freepik de la www.flaticon.com si modificata de mine.
+        \nConsultati pictograma realizata de "Good Ware" de pe www.flaticon.com si modificata de mine."</item> <!-- 9 -->
+
+            </string-array>
+        <string-array name = "titles_arr_for_third_party_titles">
+            <item>"Componente materiale pentru Android"</item> <!-- 1 -->
+            <item>"Android ConstraintLayout"</item> <!-- 2 -->
+            <item>"SDB pentru Android Firebase"</item> <!-- 3 -->
+            <item>"Biblioteca AppCompat Androidx"</item> <!-- 4 -->
+            <item>"ButterKnife"</item> <!-- 5 -->
+            <item>"Javier Santos BottomDialogs"</item> <!-- 6 -->
+            <item>"Budiyev Circular Progress Bar"</item> <!-- 7 -->
+            <item>"Biblioteca Gson"</item> <!-- 8 -->
+            <item>"Credite pentru design"</item> <!-- 9 -->
+        </string-array>
+</resources>

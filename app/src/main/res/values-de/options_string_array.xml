@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options_array">
+        <item>"Setzen Sie Ihren Fortschritt zurück"</item>
+        <item>"Ändern Sie die aktuelle Streak-Periode"</item>
+        <item>"Währung ändern"</item>
+        <item>"Feedback schicken"</item>
+        <item>"Legal"</item>
+        <item>"Über"</item>
+    </string-array>
+    <string-array name="legal_array">
+        <item>"Datenschutz-Bestimmungen"</item>
+        <item>"Nutzungsbedingungen"</item>
+        <item>"Lizenzen von Drittanbietern"</item>
+    </string-array>
+</resources>

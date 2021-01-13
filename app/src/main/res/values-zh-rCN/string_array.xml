@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string-array name ="titles_arr_for_ranks">
+            <item>"" </item>
+            <item>"狼" </item>
+            <item>"松鼠" </item>
+            <item>"徽章" </item>
+            <item>"熊" </item>
+            <item>"野熊</item>
+            <item>"鹿" </item>
+            <item>"野猪" </item>
+            <item>"麋鹿" </item>
+            <item>"海狸" </item>
+            <item>"狐狸" </item>
+            <item>"天猫座" </item>
+            <item>"鹰" </item>
+            <item>"大象" </item>
+            <item>"豹" </item>
+            <item>"水牛城" </item>
+            <item>"鲨鱼" </item>
+            <item>"豹" </item>
+            <item>"老虎" </item>
+            <item>"狮子" </item>
+        </string-array>
+        <string-array name ="titles_arr_for_motivation">
+            <item>"欢迎来到Q！俱乐部" </item>
+            <item>"一段美好的旅程" </item>
+            <item>"您可以做到" </item>
+            <item>"用自己的方式" </item>
+            <item>"控制自己" </item>
+            <item>"正确的方法" </item>
+            <item>"禅宗方式" </item>
+            <item>"禅宗徒弟" </item>
+            <item>"禅僧" </item>
+            <item>"继续前进" </item>
+            <item>"这是唯一的方法" </item>
+            <item>"只有您拥有控制权" </item>
+            <item>"忘记旧生活" </item>
+            <item>"你并不孤单" </item>
+            <item>"成为我的朋友" </item>
+            <item>"香烟的烟熏味觉" </item>
+            <item>"不要浪费时间养成不良习惯" </item>
+            <item>"没有回头路了" </item>
+            <item>"快到了" </item>
+            <item>"新生活" </item>
+        </string-array>
+        <string-array name ="titles_arr_for_third_party">
+            <item>根据Apache许可版本2.0（"许可"）许可；
+   除非遵守许可，否则不得使用此文件。
+   您可以在以下位置获得许可的副本：
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   除非适用法律要求或书面同意，否则软件
+   根据许可分发的内容按"原样"分发，
+   没有任何明示或暗示的保证或条件。
+   有关特定语言的管理权限，请参阅许可证。
+   许可中的限制。</item> <!--1-->
+            <item>根据Apache许可版本2.0（"许可"）许可；
+   除非遵守许可，否则不得使用此文件。
+   您可以在以下位置获得许可的副本：
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   除非适用法律要求或书面同意，否则软件
+   根据许可分发的内容按"原样"分发，
+   没有任何明示或暗示的保证或条件。
+   有关特定语言的管理权限，请参阅许可证。
+   许可中的限制。</item> <!--2-->
+            <item>根据Apache许可版本2.0（"许可"）许可；
+   除非遵守许可，否则不得使用此文件。
+   您可以在以下位置获得许可的副本：
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   除非适用法律要求或书面同意，否则软件
+   根据许可分发的内容按"原样"分发，
+   没有任何明示或暗示的保证或条件。
+   有关特定语言的管理权限，请参阅许可证。
+   许可中的限制。</item> <!--3-->
+        <item>根据Apache许可版本2.0（"许可"）许可；
+   除非遵守许可，否则不得使用此文件。
+   您可以在以下位置获得许可的副本：
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   除非适用法律要求或书面同意，否则软件
+   根据许可分发的内容按"原样"分发，
+   没有任何明示或暗示的保证或条件。
+   有关特定语言的管理权限，请参阅许可证。
+   许可中的限制。</item> <!--4-->
+
+            <item>版权所有2013 Jake Wharton
+
+根据Apache许可版本2.0（"许可"）许可；
+除非遵守许可，否则不得使用此文件。
+您可以在以下位置获得许可的副本：
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+除非适用法律要求或书面同意，否则软件
+根据许可分发的内容按"原样"分发，
+没有任何明示或暗示的保证或条件。
+有关特定语言的管理权限，请参阅许可证。
+许可中的限制。</item> <!--5-->
+
+            <item>版权所有2016-2018 Javier Santos
+
+        根据Apache许可版本2.0（"许可"）许可；
+        除非遵守许可，否则不得使用此文件。
+        您可以在以下位置获得许可的副本：
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        除非适用法律要求或书面同意，否则软件
+        根据许可分发的内容按"原样"分发，
+        没有任何明示或暗示的保证或条件。
+        有关特定语言的管理权限，请参阅许可证。
+        许可中的限制。</item> <!--6-->
+
+            <item> MIT许可证
+
+        版权所有©2017 Yuriy Budiyev
+
+        特此授予获得副本的任何人免费的许可
+        软件和相关文档文件（以下简称"软件"）的交易
+        在软件中不受限制，包括但不限于权利
+        使用，复制，修改，合并，发布，分发，再许可和/或出售
+        本软件的副本，并允许本软件所针对的人
+        具备以下条件：
+
+        上述版权声明和此许可声明应包含在所有
+        复制本软件或本软件的实质部分。
+
+        本软件按"原样"提供，不提供任何形式的明示或明示保证。
+        暗示（包括但不限于适销性的保证），
+        适用于特定目的和非侵权。在任何情况下都不会
+        作者或版权持有人对任何索赔，损害或其他责任
+        无论是由于合同，侵权或其他原因而引起的责任，
+        与软件或软件的使用或其他交易无关或与之有关
+        软件。</item> <!--7-->
+
+            <item>版权所有2008 Google Inc.。
+
+        根据Apache许可版本2.0（"许可"）许可；
+        除非遵守许可，否则不得使用此文件。
+        您可以在以下位置获得许可的副本：
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        除非适用法律要求或书面同意，否则软件
+        根据许可分发的内容按"原样"分发，
+        没有任何明示或暗示的保证或条件。
+        有关特定语言的管理权限，请参阅许可证。
+        许可中的限制。</item> <!--8-->
+
+        <item>由Smashicons从www.flaticon.com制作并由我修改的成就图标模板。\ n由Eucalyp从www.flaticon.com制作并由我修改的Savings图标模板。\ n由Freepik从www.flaticon制作的总省钱图标。 .com并由我修改。\ n由www.flaticon.com上的Freepik制作并由我修改的每日图标提示。\ n由www.flaticon.com上的Freepik制作并由我修改的剩余日期图标。\ n来自www.flaticon.com并由我修改的Freepik。\ n由www.flaticon.com的Good Ware制造并由我修改的签入图标。</item> <!--9-->
+
+        </string-array>
+        <string-array name ="titles_arr_for_third_party_titles">
+            <item>用于Android的材料组件</item> <!--1-->
+            <item> Android ConstraintLayout </item> <!--2-->
+            <item> Firebase Android SDK </item> <!--3-->
+            <item> Androidx AppCompat库</item> <!--4-->
+            <item>黄油刀</item> <!--5-->
+            <item> Javier Santos BottomDialogs </item> <!--6-->
+            <item> Budiyev圆形进度栏</item> <!--7-->
+            <item> Gson库</item> <!--8-->
+            <item>设计学分</item> <!--9-->
+        </string-array>
+</resources>

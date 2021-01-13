@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles_arr_for_ranks">
+        <item>""</item>
+        <item>"Wolf"</item>
+        <item>"Eichhörnchen"</item>
+        <item>"Dachs"</item>
+        <item>"Bär"</item>
+        <item>"Wild Bär"</item>
+        <item>"Hirsch"</item>
+        <item>"Eber"</item>
+        <item>"Elch"</item>
+        <item>"Biber"</item>
+        <item>"Fuchs"</item>
+        <item>"Luchs"</item>
+        <item>"Adler"</item>
+        <item>"Elefant"</item>
+        <item>"Leopard"</item>
+        <item>"Büffel"</item>
+        <item>"Hai"</item>
+        <item>"Panther"</item>
+        <item>"Tiger"</item>
+        <item>"Löwe"</item>
+    </string-array>
+    <string-array name = "titles_arr_for_motivation">
+                <item>"Willkommen im Q! club!"</item>
+                <item>"Eine schöne Reise!"</item>
+                <item>"Sie können es schaffen!"</item>
+                <item>"Dein eigener Weg!"</item>
+                <item>"Kontrolliere dich selbst!"</item>
+                <item>"Der richtige Weg!"</item>
+                <item>"Der Zen-Weg!"</item>
+                <item>"Zen-Lehrling"</item>
+                <item>"Zen-Mönch!"</item>
+                <item>"Weiter so!"</item>
+                <item>"Dies ist der einzige Weg!"</item>
+                <item>"Nur Sie haben die Kontrolle!"</item>
+                <item>"Vergiss das alte Leben!"</item>
+                <item>"Du bist nicht allein!"</item>
+                <item>"Sei Wasser mein Freund"</item>
+                <item>"Hasta la Vista to Cigarettes"</item>
+                <item>"Verschwenden Sie Ihr Leben nicht mit schlechten Gewohnheiten!"</item>
+                <item>"Es gibt kein Zurück!"</item>
+                <item>"Fast da!"</item>
+                <item>"Ein neues Leben!"</item>
+            </string-array>
+    <string-array name = "titles_arr_for_third_party">
+                <item>"Lizenziert unter der Apache-Lizenz, Version 2.0 (die "Lizenz");
+   Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+   Eine Kopie der Lizenz erhalten Sie unter
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart, Software
+   unter der Lizenz vertrieben wird auf einer "AS IS" -Basis verteilt,
+   OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER Art, entweder ausdrücklich oder stillschweigend.
+   In der Lizenz finden Sie die spezifische Sprache für die Berechtigungen und
+   Einschränkungen unter der Lizenz."</item> <!-- 1 -->
+                <item>"Lizenziert unter der Apache-Lizenz, Version 2.0 (die "Lizenz");
+   Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+   Eine Kopie der Lizenz erhalten Sie unter
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart, Software
+   unter der Lizenz vertrieben wird auf einer "AS IS" -Basis verteilt,
+   OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER Art, entweder ausdrücklich oder stillschweigend.
+   In der Lizenz finden Sie die spezifische Sprache für die Berechtigungen und
+   Einschränkungen unter der Lizenz."</item> <!-- 2 -->
+                <item>"Lizenziert unter der Apache-Lizenz, Version 2.0 (die "Lizenz");
+   Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+   Eine Kopie der Lizenz erhalten Sie unter
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart, Software
+   unter der Lizenz vertrieben wird auf einer "AS IS" -Basis verteilt,
+   OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER Art, entweder ausdrücklich oder stillschweigend.
+   In der Lizenz finden Sie die spezifische Sprache für die Berechtigungen und
+   Einschränkungen unter der Lizenz."</item> <!-- 3 -->
+            <item>"Lizenziert unter der Apache-Lizenz, Version 2.0 (die "Lizenz");
+   Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+   Eine Kopie der Lizenz erhalten Sie unter
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart, Software
+   unter der Lizenz vertrieben wird auf einer "AS IS" -Basis verteilt,
+   OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER Art, entweder ausdrücklich oder stillschweigend.
+   In der Lizenz finden Sie die spezifische Sprache für die Berechtigungen und
+   Einschränkungen unter der Lizenz."</item> <!-- 4 -->
+
+                <item>"Copyright 2013 Jake Wharton
+
+Lizenziert unter der Apache-Lizenz, Version 2.0 (die "Lizenz");
+Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+Eine Kopie der Lizenz erhalten Sie unter
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart, Software
+unter der Lizenz vertrieben wird auf einer "AS IS" -Basis verteilt,
+OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER Art, entweder ausdrücklich oder stillschweigend.
+In der Lizenz finden Sie die spezifische Sprache für die Berechtigungen und
+Einschränkungen unter der Lizenz."</item> <!-- 5 -->
+
+                <item>"Copyright 2016-2018 Javier Santos
+
+        Lizenziert unter der Apache-Lizenz, Version 2.0 (die "Lizenz");
+        Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+        Eine Kopie der Lizenz erhalten Sie unter
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart, Software
+        unter der Lizenz vertrieben wird auf einer "AS IS" -Basis verteilt,
+        OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER Art, entweder ausdrücklich oder stillschweigend.
+        In der Lizenz finden Sie die spezifische Sprache für die Berechtigungen und
+        Einschränkungen unter der Lizenz."</item> <!-- 6 -->
+
+                <item>"MIT-Lizenz
+
+        Copyright © 2017 Yuriy Budiyev
+
+        Hiermit wird jeder Person, die eine Kopie erhält, kostenlos die Erlaubnis erteilt
+        von dieser Software und den dazugehörigen Dokumentationsdateien (die "Software") zu handeln
+        in der Software ohne Einschränkung, einschließlich ohne Einschränkung der Rechte
+        zum Verwenden, Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und / oder Verkaufen
+        Kopien der Software zu erstellen und Personen zu gestatten, denen die Software gehört
+        zu diesem Zweck eingerichtet, unter folgenden Bedingungen:
+
+        Der obige Copyright-Hinweis und dieser Erlaubnishinweis sind in allen enthalten
+        Kopien oder wesentliche Teile der Software.
+
+        DIE SOFTWARE WIRD "WIE BESEHEN" ZUR VERFÜGUNG GESTELLT, OHNE JEGLICHE GEWÄHRLEISTUNG, AUSDRÜCKLICH ODER
+        STILLSCHWEIGEND, EINSCHLIESSLICH DER GEWÄHRLEISTUNG DER MARKTGÄNGIGKEIT,
+        EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND NICHTVERLETZUNG. NIEMALS WIRD DAS
+        AUTOREN ODER COPYRIGHT-INHABER HAFTEN FÜR JEGLICHE ANSPRÜCHE, SCHÄDEN ODER ANDERE
+        HAFTUNG, OB IM RAHMEN EINES VERTRAGS, EINES SCHWERPUNKTS ODER EINES ANDEREN SCHWERPUNKTS,
+        AUSSERHALB ODER IN VERBINDUNG MIT DER SOFTWARE ODER DER NUTZUNG ODER ANDEREN VERHANDLUNGEN IN DER
+        SOFTWARE."</item> <!-- 7 -->
+
+                <item>"Copyright 2008 Google Inc.
+
+        Lizenziert unter der Apache-Lizenz, Version 2.0 (die "Lizenz");
+        Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+        Eine Kopie der Lizenz erhalten Sie unter
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart, Software
+        unter der Lizenz vertrieben wird auf einer "AS IS" -Basis verteilt,
+        OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER Art, entweder ausdrücklich oder stillschweigend.
+        In der Lizenz finden Sie die spezifische Sprache für die Berechtigungen und
+        Einschränkungen unter der Lizenz."</item> <!-- 8 -->
+                
+            <item>"Vorlage für Leistungssymbole, die von Smashicons von www.flaticon.com erstellt und von mir geändert wurde. \ nSpar-Symbolvorlage, die von Eucalyp von www.flaticon.com erstellt und von mir geändert wurde. \ nGespartes Symbol von Freepik von www.flaticon .com und von mir geändert. \ nTipp des von Freepik von www.flaticon.com und von mir geändert. \ nResttage-Symbol von Freepik von www.flaticon.com und von mir geändert. \ nZiel-Symbol von Freepik von www.flaticon.com und von mir geändert. \ NEincheck-Symbol von Good Ware von www.flaticon.com und von mir geändert."</item> <!-- 9 -->
+
+            </string-array>
+        <string-array name = "titles_arr_for_third_party_titles">
+            <item>"Materialkomponenten für Android"</item> <!-- 1 -->
+            <item>"Android ConstraintLayout"</item> <!-- 2 -->
+            <item>"Firebase Android SDK"</item> <!-- 3 -->
+            <item>"Androidx AppCompat Library"</item> <!-- 4 -->
+            <item>"Buttermesser"</item> <!-- 5 -->
+            <item>"Javier Santos BottomDialogs"</item> <!-- 6 -->
+            <item>"Budiyev-Fortschrittsbalken"</item> <!-- 7 -->
+            <item>"Gson Library"</item> <!-- 8 -->
+            <item>"Design Credits"</item> <!-- 9 -->
+        </string-array>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options_array">
+        <item>"Reset your progress"</item>
+        <item>"Change current streak period"</item>
+        <item>"Change currency"</item>
+        <item>"Send feedback"</item>
+        <item>"Legal"</item>
+        <item>"About"</item>
+    </string-array>
+    <string-array name="legal_array">
+        <item>"Privacy Policy"</item>
+        <item>"Terms of Service"</item>
+        <item>"Third party licences"</item>
+    </string-array>
+</resources>

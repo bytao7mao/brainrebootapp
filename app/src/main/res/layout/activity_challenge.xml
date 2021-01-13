@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rltvlayout"
+    tools:context=".cardActivities.ChallengeActivity">
+<!--    <ImageView-->
+<!--        android:id="@+id/challBackgroundId"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:src="@drawable/on"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:alpha="0.7"-->
+<!--        android:contentDescription="TODO" />-->
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/progressCardIdChallengeInside"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:alpha="1.0"-->
+<!--        app:cardCornerRadius="8dp">-->
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@color/white"-->
+<!--            android:contentDescription="TODO" />-->
+<!--        <ImageView-->
+<!--            android:id="@+id/savingsImgId"-->
+<!--            android:layout_width="35dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_toStartOf="@id/challengeTxtIdTitleId"-->
+<!--            android:background="@drawable/ic_hot_air_balloon"-->
+<!--            android:contentDescription="TODO" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/challengeTxtIdTitleId"-->
+<!--            style="@style/TextColorBlack"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:alpha="0.7"-->
+<!--            android:textSize="18sp"-->
+<!--            android:text="Your challenge: 7 days" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/text_view_countdown"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="00:00"-->
+<!--            android:alpha="0.7"-->
+<!--            style="@style/TextColorBlack"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:textSize="18sp" />-->
+<!--        <Button-->
+<!--            android:id="@+id/button_start_pause"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:background="@drawable/custom_round_primary_color"-->
+<!--            android:stateListAnimator="@null"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:text="start" />-->
+<!--        &lt;!&ndash;        android:layout_toRightOf="@id/challengeImgId"&ndash;&gt;-->
+<!--        <Button-->
+<!--            android:id="@+id/button_reset"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_below="@id/text_view_countdown"-->
+<!--            android:stateListAnimator="@null"-->
+<!--            android:layout_marginStart="111dp"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@drawable/custom_round_primary_color"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:text="reset"-->
+<!--            android:visibility="invisible"-->
+<!--            tools:visibility="visible" />-->
+<!--    </androidx.cardview.widget.CardView>-->
+<!--    <View-->
+<!--        style="@style/Divider"-->
+<!--        android:alpha="0.5"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginBottom="115dp"-->
+<!--        android:layout_height="0.2dp"-->
+<!--        android:background="@android:color/darker_gray" />-->
+</RelativeLayout>

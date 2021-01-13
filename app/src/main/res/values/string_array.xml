@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles_arr_for_ranks">
+        <item>""</item>
+        <item>"Wolf"</item>
+        <item>"Squirrel"</item>
+        <item>"Badger"</item>
+        <item>"Bear"</item>
+        <item>"Wild Bear</item>
+        <item>"Deer"</item>
+        <item>"Boar"</item>
+        <item>"Elk"</item>
+        <item>"Beaver"</item>
+        <item>"Fox"</item>
+        <item>"Lynx"</item>
+        <item>"Eagle"</item>
+        <item>"Elephant"</item>
+        <item>"Leopard"</item>
+        <item>"Buffalo"</item>
+        <item>"Shark"</item>
+        <item>"Panther"</item>
+        <item>"Tiger"</item>
+        <item>"Lion"</item>
+    </string-array>
+    <string-array name="titles_arr_for_motivation">
+        <item>"Welcome to the Q! club!"</item>
+        <item>"A beautiful journey!"</item>
+        <item>"You can do it!"</item>
+        <item>"Your own way!"</item>
+        <item>"Control yourself!"</item>
+        <item>"The right way!"</item>
+        <item>"The zen way!"</item>
+        <item>"Zen apprentice"</item>
+        <item>"Zen monk!"</item>
+        <item>"Keep up the way!"</item>
+        <item>"This is the only way!"</item>
+        <item>"Only you have the control!"</item>
+        <item>"Forget the old life!"</item>
+        <item>"You are not alone!"</item>
+        <item>"Be water my friend"</item>
+        <item>"Hasta la vista to cigarettes"</item>
+        <item>"Don\'t waste your life on bad habits!"</item>
+        <item>"There is no going back!"</item>
+        <item>"Almost there!"</item>
+        <item>"A new life!"</item>
+    </string-array>
+    <string-array name="titles_arr_for_third_party">
+        <item>Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.</item><!-- 1 -->
+        <item>Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.</item><!-- 2 -->
+        <item>Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.</item><!-- 3 -->
+    <item>Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.</item><!-- 4 -->
+
+        <item>Copyright 2013 Jake Wharton
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</item><!-- 5 -->
+
+        <item>Copyright 2016-2018 Javier Santos
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.</item><!-- 6 -->
+
+        <item>MIT License
+
+        Copyright © 2017 Yuriy Budiyev
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.</item><!-- 7 -->
+
+        <item>Copyright 2008 Google Inc.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.</item><!-- 8 -->
+
+    <item>Achievement icon template made by Smashicons from www.flaticon.com and altered by me.
+        \nSavings icon template made by Eucalyp from www.flaticon.com and altered by me.
+        \nTotal money saved icon made by Freepik from www.flaticon.com and altered by me.
+        \nTip of the day icon made by Freepik from www.flaticon.com and altered by me.
+        \nRemaining days icon made by Freepik from www.flaticon.com and altered by me.
+        \nGoal icon made by Freepik from www.flaticon.com and altered by me.
+        \nCheck-in icon made by Good Ware from www.flaticon.com and altered by me.
+        \nSun/Moon icons made by Freepik from www.flaticon.com and altered by me.</item><!-- 9 -->
+
+    </string-array>
+    <string-array name="titles_arr_for_third_party_titles">
+        <item>Material Components For Android</item><!-- 1 -->
+        <item>Android ConstraintLayout</item><!-- 2 -->
+        <item>Firebase Android SDK</item><!-- 3 -->
+        <item>Androidx AppCompat Library</item><!-- 4 -->
+        <item>Butter Knife</item><!-- 5 -->
+        <item>Javier Santos BottomDialogs</item><!-- 6 -->
+        <item>Budiyev Circular Progress Bar</item><!-- 7 -->
+        <item>Gson Library</item><!-- 8 -->
+        <item>Design Credits</item><!-- 9 -->
+    </string-array>
+</resources>

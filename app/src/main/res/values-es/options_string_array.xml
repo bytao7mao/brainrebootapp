@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options_array">
+        <item>"Restablece tu progreso"</item>
+        <item>"Cambiar el período de racha actual"</item>
+        <item>"Cambiar moneda"</item>
+        <item>"Enviar comentarios"</item>
+        <item>"Legal"</item>
+        <item>"Acerca de"</item>
+    </string-array>
+    <string-array name="legal_array">
+        <item>"Política de privacidad"</item>
+        <item>"Términos de servicio"</item>
+        <item>"Licencias de terceros"</item>
+    </string-array>
+</resources>

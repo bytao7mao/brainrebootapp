@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="images_arr_for_ranks">
+        <item>@drawable/ic_qdate</item>
+        <item>@drawable/ic_oneday</item>
+        <item>@drawable/ic_oneweek</item>
+        <item>@drawable/ic_onemonth</item>
+        <item>@drawable/ic_twomonths</item>
+        <item>@drawable/ic_threemonths</item>
+        <item>@drawable/ic_fourmonths</item>
+        <item>@drawable/ic_fivemonths</item>
+        <item>@drawable/ic_sixmonths</item>
+        <item>@drawable/ic_sevenmonths</item>
+        <item>@drawable/ic_ninemonths</item>
+        <item>@drawable/ic_threehundreddays</item> <!--12-->
+        <item>@drawable/ic_oneyear</item>
+        <item>@drawable/ic_fourhundreddays</item>
+        <item>@drawable/ic_fivehundreddays</item>
+        <item>@drawable/ic_sixhundreddays</item>
+        <item>@drawable/ic_sevenhundreddays</item>
+        <item>@drawable/ic_eighthundreddays</item>
+        <item>@drawable/ic_ninehundreddays</item>
+        <item>@drawable/ic_onethousanddays</item><!--20-->
+    </integer-array>
+</resources>

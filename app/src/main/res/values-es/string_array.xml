@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles_arr_for_ranks">
+        <item>""</item>
+        <item>"Lobo"</item>
+        <item>"Ardilla"</item>
+        <item>"Tejón"</item>
+        <item>"Oso"</item>
+        <item>"Oso salvaje"</item>
+        <item>"Ciervo"</item>
+        <item>"Jabalí"</item>
+        <item>"Elk"</item>
+        <item>"Castor"</item>
+        <item>"Fox"</item>
+        <item>"Lynx"</item>
+        <item>"Águila"</item>
+        <item>"Elefante"</item>
+        <item>"Leopardo"</item>
+        <item>"Búfalo"</item>
+        <item>"Tiburón"</item>
+        <item>"Pantera"</item>
+        <item>"Tigre"</item>
+        <item>"León"</item>
+    </string-array>
+    <string-array name = "titles_arr_for_motivation">
+                <item>"Bienvenido al club Q!"</item>
+                <item>"Un hermoso viaje!"</item>
+                <item>"Puedes hacerlo!"</item>
+                <item>"A tu manera!"</item>
+                <item>"Contrólate!"</item>
+                <item>"La forma correcta!"</item>
+                <item>"La forma zen!"</item>
+                <item>"Aprendiz zen"</item>
+                <item>"Monje Zen!"</item>
+                <item>"Sigue el camino!"</item>
+                <item>"Esta es la única forma!"</item>
+                <item>"Solo tú tienes el control!"</item>
+                <item>"Olvídate de la vieja vida!"</item>
+                <item>"No estás solo!"</item>
+                <item>"Se agua mi amigo"</item>
+                <item>"Hasta la vista a los cigarrillos"</item>
+                <item>"No desperdicies tu vida en malos hábitos!"</item>
+                <item>"No hay vuelta atrás!"</item>
+                <item>"Casi allí!"</item>
+                <item>"Una nueva vida!"</item>
+            </string-array>
+    <string-array name = "titles_arr_for_third_party">
+                <item>"Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+   no puede usar este archivo excepto en cumplimiento con la Licencia.
+   Puede obtener una copia de la Licencia en
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   A menos que lo exija la ley aplicable o se acuerde por escrito, el software
+   distribuido bajo la Licencia se distribuye "TAL CUAL",
+   SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sea expresa o implícita.
+   Consulte la Licencia para ver los permisos de idioma específicos y
+   limitaciones bajo la Licencia."</item> <!-- 1 -->
+                <item>"Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+   no puede usar este archivo excepto en cumplimiento con la Licencia.
+   Puede obtener una copia de la Licencia en
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   A menos que lo exija la ley aplicable o se acuerde por escrito, el software
+   distribuido bajo la Licencia se distribuye "TAL CUAL",
+   SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sea expresa o implícita.
+   Consulte la Licencia para ver los permisos de idioma específicos y
+   limitaciones bajo la Licencia."</item> <!-- 2 -->
+                <item>"Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+   no puede usar este archivo excepto en cumplimiento con la Licencia.
+   Puede obtener una copia de la Licencia en
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   A menos que lo exija la ley aplicable o se acuerde por escrito, el software
+   distribuido bajo la Licencia se distribuye "TAL CUAL",
+   SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sea expresa o implícita.
+   Consulte la Licencia para ver los permisos de idioma específicos y
+   limitaciones bajo la Licencia."</item> <!-- 3 -->
+            <item>"Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+   no puede usar este archivo excepto en cumplimiento con la Licencia.
+   Puede obtener una copia de la Licencia en
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   A menos que lo exija la ley aplicable o se acuerde por escrito, el software
+   distribuido bajo la Licencia se distribuye "TAL CUAL",
+   SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sea expresa o implícita.
+   Consulte la Licencia para ver los permisos de idioma específicos y
+   limitaciones bajo la Licencia."</item> <!-- 4 -->
+
+                <item>"Copyright 2013 Jake Wharton
+
+Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+no puede usar este archivo excepto en cumplimiento con la Licencia.
+Puede obtener una copia de la Licencia en
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+A menos que lo exija la ley aplicable o se acuerde por escrito, el software
+distribuido bajo la Licencia se distribuye "TAL CUAL",
+SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sea expresa o implícita.
+Consulte la Licencia para ver los permisos de idioma específicos y
+limitaciones bajo la Licencia."</item> <!-- 5 -->
+
+                <item>"Copyright 2016-2018 Javier Santos
+
+        Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+        no puede usar este archivo excepto en cumplimiento con la Licencia.
+        Puede obtener una copia de la Licencia en
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        A menos que lo exija la ley aplicable o se acuerde por escrito, el software
+        distribuido bajo la Licencia se distribuye "TAL CUAL",
+        SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sea expresa o implícita.
+        Consulte la Licencia para ver los permisos de idioma específicos y
+        limitaciones bajo la Licencia."</item> <!-- 6 -->
+
+                <item>"Licencia MIT
+
+        Copyright © 2017 Yuriy Budiyev
+
+        Por la presente se otorga permiso, sin cargo, a cualquier persona que obtenga una copia
+        de este software y los archivos de documentación asociados (el "Software"), para tratar
+        en el Software sin restricción, incluidos, entre otros, los derechos
+        para usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y / o vender
+        copias del Software y para permitir a las personas a quienes pertenece el Software
+        amueblado para hacerlo, sujeto a las siguientes condiciones:
+
+        El aviso de copyright anterior y este aviso de permiso se incluirán en todos
+        copias o partes sustanciales del software.
+
+        EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
+        IMPLÍCITO, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD,
+        APTITUD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO EL
+        LOS AUTORES O LOS TITULARES DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES POR CUALQUIER RECLAMACIÓN, DAÑO U OTRO
+        RESPONSABILIDAD, EN CASO DE ACCIÓN DE CONTRATO, TORTURA O DE OTRA MANERA, DERIVADA DE,
+        FUERA DE O EN CONEXIÓN CON EL SOFTWARE O EL USO U OTRAS OFERTAS EN EL
+        SOFTWARE."</item> <!-- 7 -->
+
+                <item>"Copyright 2008 Google Inc.
+
+        Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+        no puede usar este archivo excepto en cumplimiento con la Licencia.
+        Puede obtener una copia de la Licencia en
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        A menos que lo exija la ley aplicable o se acuerde por escrito, el software
+        distribuido bajo la Licencia se distribuye "TAL CUAL",
+        SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sea expresa o implícita.
+        Consulte la Licencia para ver los permisos de idioma específicos y
+        limitaciones bajo la Licencia."</item> <!-- 8 -->
+                
+            <item>"Plantilla de ícono de logros realizada por Smashicons de www.flaticon.com y modificada por mí. \ n Plantilla de ícono de ahorros hecha por Eucalyp de www.flaticon.com y modificada por mí. \ nIcono de ahorro total de dinero hecho por Freepik de www.flaticon .com y modificado por mí. \ n Icono del consejo del día realizado por Freepik desde www.flaticon.com y modificado por mí. \ n Icono de días restantes realizado por Freepik desde www.flaticon.com y modificado por mí. \ n Icono de objetivo realizado por Freepik de www.flaticon.com y modificado por mí. \ NIcono de registro hecho por Good Ware de www.flaticon.com y modificado por mí."</item> <!-- 9 -->
+
+            </string-array>
+        <string-array name = "titles_arr_for_third_party_titles">
+            <item>"Componentes materiales para Android"</item> <!-- 1 -->
+            <item>"Android RestraintLayout"</item> <!-- 2 -->
+            <item>"Firebase Android SDK"</item> <!-- 3 -->
+            <item>"Biblioteca Androidx AppCompat"</item> <!-- 4 -->
+            <item>"Cuchillo de mantequilla"</item> <!-- 5 -->
+            <item>"Javier Santos BottomDialogs"</item> <!-- 6 -->
+            <item>"Barra de progreso circular de Budiyev"</item> <!-- 7 -->
+            <item>"Biblioteca Gson"</item> <!-- 8 -->
+            <item>"Créditos de diseño"</item> <!-- 9 -->
+        </string-array>
+</resources>
